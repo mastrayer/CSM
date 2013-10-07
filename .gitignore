@@ -11,3 +11,10 @@
 *.lai
 *.la
 *.a
+
+
+# Debug folder
+Debug/
+
+# Project files
+*.sdf
