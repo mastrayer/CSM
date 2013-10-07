@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{057eb90d-dbb0-428e-9609-f7f45c20d982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{68ddafa6-4182-4db2-8421-e164f09beebe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
