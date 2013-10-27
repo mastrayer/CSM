@@ -11,14 +11,14 @@ NNSprite* NNSprite::Create( std::wstring path )
 	static RendererStatus rendererStatus = NNApplication::GetInstance()->GetRendererStatus();
 
 	NNSprite* pInstance = nullptr;
-	switch ( rendererStatus )
+	/*switch ( rendererStatus )
 	{
 	case D2D:
-		pInstance = new NND2DSprite( path );
-		break;
+	*/	pInstance = new NND2DSprite( path );
+	/*	break;
 	default:
 		break;
-	}
+	}*/
 	
 	return pInstance;
 }
