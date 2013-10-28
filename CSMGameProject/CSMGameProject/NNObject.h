@@ -3,6 +3,7 @@
 
 #include "NNConfig.h"
 #include "NNPoint.h"
+#include "NNSize.h"
 
 /* */
 /* NNObject
@@ -25,33 +26,17 @@ public:
 	virtual void Render();
 	virtual void Update( float dTime );
 
-private:
-	void SortingChildByZindex();
-	
-protected:
-	NNObject* m_pParent;
-	std::list<NNObject*> m_ChildList;
-
-protected:
-	D2D1::Matrix3x2F m_Matrix;
-	NNPoint m_Position;
-	NNPoint m_Center;
-	float m_ScaleX;
-	float m_ScaleY;
-	float m_Rotation; // Degree
-	int m_Zindex;
-	bool m_Visible;
-
-public:
 	NNObject* GetParent() { return m_pParent; }
 	std::list<NNObject*> GetChildList() { return m_ChildList; }
 
 	void SetParent( NNObject* object ) { m_pParent = object; }
 
 	void AddChild( NNObject* object );
+	void AddChild( NNObject* object, int zindex );
 	void RemoveChild( NNObject* object, bool memoryDel=true );
 
-public:
+	void SortingChildByZindex();
+
 	inline D2D1::Matrix3x2F GetMatrix() const { return m_Matrix; }
 	inline NNPoint GetPosition() { return m_Position; }
 	inline float GetPositionX() const { return m_Position.GetX(); }
@@ -77,7 +62,23 @@ public:
 	void SetScaleY( float scaleY ) { m_ScaleY = scaleY; }
 	void SetRotation( float rotation ) { m_Rotation = rotation; }
 	void SetZindex( int zindex ) { m_Zindex = zindex; }
-	void SetVisible( bool visible ) { m_Visible = visible; }
+	void SetVisible( bool visible ) { m_Visible = visible; SortingChildByZindex(); }
+
+protected:
+	NNObject* m_pParent;
+	std::list<NNObject*> m_ChildList;
+
+protected:
+	D2D1::Matrix3x2F m_Matrix;
+	NNPoint m_Position;
+	NNPoint m_Center;
+	float m_ScaleX;
+	float m_ScaleY;
+	float m_Rotation; // Degree
+	NNSize m_Size;
+	int m_Zindex;
+	int m_ZindexCount;
+	bool m_Visible;
 };
 
 
