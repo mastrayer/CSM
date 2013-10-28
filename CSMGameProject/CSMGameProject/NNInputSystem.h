@@ -36,6 +36,7 @@ public:
 public:
 	void UpdateKeyState();
 	KeyState GetKeyState( int key );
+	NNPoint GetMousePosition();
 };
 
 

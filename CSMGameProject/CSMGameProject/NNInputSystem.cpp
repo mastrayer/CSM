@@ -65,4 +65,11 @@ KeyState NNInputSystem::GetKeyState( int key )
 	return KEY_NOTPRESSED;
 }
 
+NNPoint NNInputSystem::GetMousePosition()
+{
+	POINT pt;
+	GetCursorPos( &pt );
+	ScreenToClient( NNApplication::GetInstance()->GetHWND(), &pt );
 
+	return NNPoint((float)pt.x,(float)pt.y);
+}
