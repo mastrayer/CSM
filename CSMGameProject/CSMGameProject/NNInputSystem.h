@@ -2,6 +2,7 @@
 #pragma once
 
 #include "NNConfig.h"
+#include "NNPoint.h"
 
 /* */
 /* NNInputSystem
