@@ -1,6 +1,6 @@
 
 #include "NNApplication.h"
-
+#include "GameScene.h"
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
 #ifdef _DEBUG
@@ -11,6 +11,8 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"D2D Test", 800, 600, D2D );
+
+	 NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
 
 	Application->Run();
 	Application->Release();

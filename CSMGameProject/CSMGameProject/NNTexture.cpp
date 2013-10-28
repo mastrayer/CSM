@@ -37,7 +37,11 @@ NND2DTexture::NND2DTexture( std::wstring path )
 {
 	if ( g_pWICFactory == nullptr)
 	{
-		CoCreateInstance( CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+		HRESULT ret = CoCreateInstance( CLSID_WICImagingFactory, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+		if( ret == REGDB_E_CLASSNOTREG ) 
+		{
+			 CoCreateInstance( CLSID_WICImagingFactory1, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&g_pWICFactory) );
+		}
 	}
 
 	m_Path = path;
