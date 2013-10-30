@@ -28,6 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +71,16 @@
             this.menu_item_info = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.contants = new System.Windows.Forms.TreeView();
+            this.button_new = new System.Windows.Forms.Button();
+            this.button_load = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
+            this.minimap = new System.Windows.Forms.PictureBox();
+            this.map = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.메뉴.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
             this.SuspendLayout();
             // 
             // 메뉴
@@ -74,7 +94,7 @@
             this.toolStripMenuItem1});
             this.메뉴.Location = new System.Drawing.Point(0, 0);
             this.메뉴.Name = "메뉴";
-            this.메뉴.Size = new System.Drawing.Size(765, 24);
+            this.메뉴.Size = new System.Drawing.Size(1016, 24);
             this.메뉴.TabIndex = 0;
             this.메뉴.Text = "menuStrip1";
             // 
@@ -96,21 +116,25 @@
             this.menu_file.Name = "menu_file";
             this.menu_file.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.menu_file.Size = new System.Drawing.Size(57, 20);
-            this.menu_file.Text = "파일(F)";
+            this.menu_file.Text = "파일(&F)";
             // 
             // menu_item_new
             // 
+            this.menu_item_new.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_new.Image")));
             this.menu_item_new.Name = "menu_item_new";
             this.menu_item_new.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.menu_item_new.Size = new System.Drawing.Size(220, 22);
             this.menu_item_new.Text = "새로 만들기";
+            this.menu_item_new.Click += new System.EventHandler(this.menu_item_new_Click);
             // 
             // menu_item_open
             // 
+            this.menu_item_open.Image = global::Maptool.Properties.Resources.load;
             this.menu_item_open.Name = "menu_item_open";
             this.menu_item_open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.menu_item_open.Size = new System.Drawing.Size(220, 22);
             this.menu_item_open.Text = "열기";
+            this.menu_item_open.Click += new System.EventHandler(this.menu_item_open_Click);
             // 
             // toolStripSeparator3
             // 
@@ -136,10 +160,12 @@
             // 
             // menu_item_save
             // 
+            this.menu_item_save.Image = ((System.Drawing.Image)(resources.GetObject("menu_item_save.Image")));
             this.menu_item_save.Name = "menu_item_save";
             this.menu_item_save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.menu_item_save.Size = new System.Drawing.Size(220, 22);
             this.menu_item_save.Text = "저장";
+            this.menu_item_save.Click += new System.EventHandler(this.menu_item_save_Click);
             // 
             // menu_item_save_as
             // 
@@ -170,7 +196,6 @@
             this.menu_item_exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.menu_item_exit.Size = new System.Drawing.Size(220, 22);
             this.menu_item_exit.Text = "끝내기";
-            this.menu_item_exit.Click += new System.EventHandler(this.menu_item_exit_MouseDown);
             this.menu_item_exit.Click += new System.EventHandler(this.menu_item_exit_MouseUp);
             // 
             // menu_edit
@@ -186,9 +211,9 @@
             this.toolStripSeparator5,
             this.menu_item_select_all});
             this.menu_edit.Name = "menu_edit";
-            this.menu_edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
+            this.menu_edit.ShowShortcutKeys = false;
             this.menu_edit.Size = new System.Drawing.Size(57, 20);
-            this.menu_edit.Text = "편집(E)";
+            this.menu_edit.Text = "편집(&E)";
             // 
             // menu_item_undo
             // 
@@ -254,14 +279,14 @@
             this.menu_view.Name = "menu_view";
             this.menu_view.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.V)));
             this.menu_view.Size = new System.Drawing.Size(59, 20);
-            this.menu_view.Text = "보기(V)";
+            this.menu_view.Text = "보기(&V)";
             // 
             // menu_tool
             // 
             this.menu_tool.Name = "menu_tool";
             this.menu_tool.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.T)));
             this.menu_tool.Size = new System.Drawing.Size(57, 20);
-            this.menu_tool.Text = "도구(T)";
+            this.menu_tool.Text = "도구(&T)";
             // 
             // menu_help
             // 
@@ -272,7 +297,7 @@
             this.menu_help.Name = "menu_help";
             this.menu_help.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.H)));
             this.menu_help.Size = new System.Drawing.Size(72, 20);
-            this.menu_help.Text = "도움말(H)";
+            this.menu_help.Text = "도움말(&H)";
             // 
             // menu_item_view_help
             // 
@@ -300,17 +325,108 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(335, 192);
+            this.label1.Location = new System.Drawing.Point(821, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // contants
+            // 
+            this.contants.Location = new System.Drawing.Point(0, 284);
+            this.contants.Name = "contants";
+            treeNode7.Name = "tile_empty";
+            treeNode7.Text = "empty";
+            treeNode8.Name = "tile_water";
+            treeNode8.Text = "water";
+            treeNode9.Name = "tile_soil";
+            treeNode9.Text = "soil";
+            treeNode10.Name = "tile";
+            treeNode10.Text = "tile";
+            treeNode11.Name = "structure_";
+            treeNode11.Text = "노드5";
+            treeNode12.Name = "structure";
+            treeNode12.Text = "structure";
+            this.contants.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode12});
+            this.contants.Size = new System.Drawing.Size(200, 454);
+            this.contants.TabIndex = 3;
+            // 
+            // button_new
+            // 
+            this.button_new.BackColor = System.Drawing.SystemColors.Control;
+            this.button_new.Image = ((System.Drawing.Image)(resources.GetObject("button_new.Image")));
+            this.button_new.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button_new.Location = new System.Drawing.Point(19, 38);
+            this.button_new.Name = "button_new";
+            this.button_new.Size = new System.Drawing.Size(30, 30);
+            this.button_new.TabIndex = 6;
+            this.button_new.UseVisualStyleBackColor = false;
+            this.button_new.Click += new System.EventHandler(this.menu_item_new_Click);
+            // 
+            // button_load
+            // 
+            this.button_load.BackColor = System.Drawing.SystemColors.Control;
+            this.button_load.Image = global::Maptool.Properties.Resources.load;
+            this.button_load.Location = new System.Drawing.Point(91, 38);
+            this.button_load.Name = "button_load";
+            this.button_load.Size = new System.Drawing.Size(30, 30);
+            this.button_load.TabIndex = 5;
+            this.button_load.UseVisualStyleBackColor = false;
+            // 
+            // button_save
+            // 
+            this.button_save.BackColor = System.Drawing.SystemColors.Control;
+            this.button_save.Image = ((System.Drawing.Image)(resources.GetObject("button_save.Image")));
+            this.button_save.Location = new System.Drawing.Point(55, 38);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(30, 30);
+            this.button_save.TabIndex = 4;
+            this.button_save.UseVisualStyleBackColor = false;
+            // 
+            // minimap
+            // 
+            this.minimap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minimap.Location = new System.Drawing.Point(0, 86);
+            this.minimap.Name = "minimap";
+            this.minimap.Size = new System.Drawing.Size(200, 200);
+            this.minimap.TabIndex = 2;
+            this.minimap.TabStop = false;
+            // 
+            // map
+            // 
+            this.map.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.map.Location = new System.Drawing.Point(200, 86);
+            this.map.Name = "map";
+            this.map.Size = new System.Drawing.Size(816, 652);
+            this.map.TabIndex = 7;
+            this.map.TabStop = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Layer 1",
+            "Layer 2",
+            "Layer 3"});
+            this.comboBox1.Location = new System.Drawing.Point(364, 48);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(290, 20);
+            this.comboBox1.TabIndex = 9;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 599);
+            this.ClientSize = new System.Drawing.Size(1016, 737);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.map);
+            this.Controls.Add(this.button_new);
+            this.Controls.Add(this.button_load);
+            this.Controls.Add(this.button_save);
+            this.Controls.Add(this.contants);
+            this.Controls.Add(this.minimap);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.메뉴);
             this.MainMenuStrip = this.메뉴;
@@ -319,6 +435,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.메뉴.ResumeLayout(false);
             this.메뉴.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.minimap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,6 +476,13 @@
         private System.Windows.Forms.ToolStripMenuItem menu_item_close_all;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox minimap;
+        private System.Windows.Forms.TreeView contants;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_load;
+        private System.Windows.Forms.Button button_new;
+        private System.Windows.Forms.PictureBox map;
+        private System.Windows.Forms.ComboBox comboBox1;
 
     }
 }
