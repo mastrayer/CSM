@@ -39,6 +39,9 @@ namespace Maptool
             InitializeComponent();
 
             CreateBitmapAtRuntime();
+
+            layers.SelectedIndex = 0;
+            //layers.CanFocus = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -114,7 +117,6 @@ namespace Maptool
             }
 
         }
-
 
     }
 }

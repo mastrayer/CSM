@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +77,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.minimap = new System.Windows.Forms.PictureBox();
             this.map = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.layers = new System.Windows.Forms.ComboBox();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
@@ -335,21 +335,21 @@
             // 
             this.contants.Location = new System.Drawing.Point(0, 284);
             this.contants.Name = "contants";
-            treeNode7.Name = "tile_empty";
-            treeNode7.Text = "empty";
-            treeNode8.Name = "tile_water";
-            treeNode8.Text = "water";
-            treeNode9.Name = "tile_soil";
-            treeNode9.Text = "soil";
-            treeNode10.Name = "tile";
-            treeNode10.Text = "tile";
-            treeNode11.Name = "structure_";
-            treeNode11.Text = "노드5";
-            treeNode12.Name = "structure";
-            treeNode12.Text = "structure";
+            treeNode1.Name = "tile_empty";
+            treeNode1.Text = "empty";
+            treeNode2.Name = "tile_water";
+            treeNode2.Text = "water";
+            treeNode3.Name = "tile_soil";
+            treeNode3.Text = "soil";
+            treeNode4.Name = "tile";
+            treeNode4.Text = "tile";
+            treeNode5.Name = "structure_";
+            treeNode5.Text = "노드5";
+            treeNode6.Name = "structure";
+            treeNode6.Text = "structure";
             this.contants.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode12});
+            treeNode4,
+            treeNode6});
             this.contants.Size = new System.Drawing.Size(200, 454);
             this.contants.TabIndex = 3;
             // 
@@ -374,6 +374,7 @@
             this.button_load.Size = new System.Drawing.Size(30, 30);
             this.button_load.TabIndex = 5;
             this.button_load.UseVisualStyleBackColor = false;
+            this.button_load.Click += new System.EventHandler(this.menu_item_open_Click);
             // 
             // button_save
             // 
@@ -384,6 +385,7 @@
             this.button_save.Size = new System.Drawing.Size(30, 30);
             this.button_save.TabIndex = 4;
             this.button_save.UseVisualStyleBackColor = false;
+            this.button_save.Click += new System.EventHandler(this.menu_item_save_Click);
             // 
             // minimap
             // 
@@ -403,24 +405,26 @@
             this.map.TabIndex = 7;
             this.map.TabStop = false;
             // 
-            // comboBox1
+            // layers
             // 
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.layers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.layers.FormattingEnabled = true;
+            this.layers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.layers.Items.AddRange(new object[] {
             "Layer 1",
             "Layer 2",
             "Layer 3"});
-            this.comboBox1.Location = new System.Drawing.Point(364, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(290, 20);
-            this.comboBox1.TabIndex = 9;
+            this.layers.Location = new System.Drawing.Point(364, 48);
+            this.layers.Name = "layers";
+            this.layers.Size = new System.Drawing.Size(290, 20);
+            this.layers.TabIndex = 9;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.layers);
             this.Controls.Add(this.map);
             this.Controls.Add(this.button_new);
             this.Controls.Add(this.button_load);
@@ -482,7 +486,7 @@
         private System.Windows.Forms.Button button_load;
         private System.Windows.Forms.Button button_new;
         private System.Windows.Forms.PictureBox map;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox layers;
 
     }
 }
