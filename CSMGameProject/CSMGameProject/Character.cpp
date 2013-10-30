@@ -35,7 +35,7 @@ void CCharacter::TransState(CharacterState state)
 		delete m_CharacterSprite;
 	}
 	WCHAR buff[1024];
-	swprintf(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix,m_NowFrame);
+	swprintf_s(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix,m_NowFrame);
 	std::wstring framePath = buff;
 	m_CharacterSprite = NNSprite::Create(framePath);
 	AddChild(m_CharacterSprite);
@@ -61,7 +61,7 @@ void CCharacter::Update( float dTime)
 		RemoveChild(m_CharacterSprite);
 		delete m_CharacterSprite;
 		WCHAR buff[1024];
-		swprintf(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix,m_NowFrame);
+		swprintf_s(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix,m_NowFrame);
 		std::wstring framePath = buff;
 		m_CharacterSprite = NNSprite::Create(framePath);
 		AddChild(m_CharacterSprite);
