@@ -70,17 +70,18 @@
             this.menu_item_report_a_bug = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_info = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.contants = new System.Windows.Forms.TreeView();
-            this.button_new = new System.Windows.Forms.Button();
-            this.button_load = new System.Windows.Forms.Button();
-            this.button_save = new System.Windows.Forms.Button();
             this.minimap = new System.Windows.Forms.PictureBox();
             this.map = new System.Windows.Forms.PictureBox();
             this.layers = new System.Windows.Forms.ComboBox();
+            this.button_load = new System.Windows.Forms.Button();
+            this.button_save = new System.Windows.Forms.Button();
+            this.button_new = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // 메뉴
@@ -196,7 +197,7 @@
             this.menu_item_exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.menu_item_exit.Size = new System.Drawing.Size(220, 22);
             this.menu_item_exit.Text = "끝내기";
-            this.menu_item_exit.Click += new System.EventHandler(this.menu_item_exit_MouseUp);
+            this.menu_item_exit.Click += new System.EventHandler(this.menu_item_exit_Click);
             // 
             // menu_edit
             // 
@@ -302,34 +303,25 @@
             // menu_item_view_help
             // 
             this.menu_item_view_help.Name = "menu_item_view_help";
-            this.menu_item_view_help.Size = new System.Drawing.Size(138, 22);
+            this.menu_item_view_help.Size = new System.Drawing.Size(152, 22);
             this.menu_item_view_help.Text = "도움말 보기";
             // 
             // menu_item_report_a_bug
             // 
             this.menu_item_report_a_bug.Name = "menu_item_report_a_bug";
-            this.menu_item_report_a_bug.Size = new System.Drawing.Size(138, 22);
+            this.menu_item_report_a_bug.Size = new System.Drawing.Size(152, 22);
             this.menu_item_report_a_bug.Text = "버그 보고";
             // 
             // menu_item_info
             // 
             this.menu_item_info.Name = "menu_item_info";
-            this.menu_item_info.Size = new System.Drawing.Size(138, 22);
+            this.menu_item_info.Size = new System.Drawing.Size(152, 22);
             this.menu_item_info.Text = "정보";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(821, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             // 
             // contants
             // 
@@ -352,40 +344,6 @@
             treeNode6});
             this.contants.Size = new System.Drawing.Size(200, 454);
             this.contants.TabIndex = 3;
-            // 
-            // button_new
-            // 
-            this.button_new.BackColor = System.Drawing.SystemColors.Control;
-            this.button_new.Image = ((System.Drawing.Image)(resources.GetObject("button_new.Image")));
-            this.button_new.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button_new.Location = new System.Drawing.Point(19, 38);
-            this.button_new.Name = "button_new";
-            this.button_new.Size = new System.Drawing.Size(30, 30);
-            this.button_new.TabIndex = 6;
-            this.button_new.UseVisualStyleBackColor = false;
-            this.button_new.Click += new System.EventHandler(this.menu_item_new_Click);
-            // 
-            // button_load
-            // 
-            this.button_load.BackColor = System.Drawing.SystemColors.Control;
-            this.button_load.Image = global::Maptool.Properties.Resources.load;
-            this.button_load.Location = new System.Drawing.Point(91, 38);
-            this.button_load.Name = "button_load";
-            this.button_load.Size = new System.Drawing.Size(30, 30);
-            this.button_load.TabIndex = 5;
-            this.button_load.UseVisualStyleBackColor = false;
-            this.button_load.Click += new System.EventHandler(this.menu_item_open_Click);
-            // 
-            // button_save
-            // 
-            this.button_save.BackColor = System.Drawing.SystemColors.Control;
-            this.button_save.Image = ((System.Drawing.Image)(resources.GetObject("button_save.Image")));
-            this.button_save.Location = new System.Drawing.Point(55, 38);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(30, 30);
-            this.button_save.TabIndex = 4;
-            this.button_save.UseVisualStyleBackColor = false;
-            this.button_save.Click += new System.EventHandler(this.menu_item_save_Click);
             // 
             // minimap
             // 
@@ -414,33 +372,79 @@
             "Layer 1",
             "Layer 2",
             "Layer 3"});
-            this.layers.Location = new System.Drawing.Point(364, 48);
+            this.layers.Location = new System.Drawing.Point(218, 47);
             this.layers.Name = "layers";
             this.layers.Size = new System.Drawing.Size(290, 20);
             this.layers.TabIndex = 9;
+            // 
+            // button_load
+            // 
+            this.button_load.BackColor = System.Drawing.SystemColors.Control;
+            this.button_load.Image = global::Maptool.Properties.Resources.load;
+            this.button_load.Location = new System.Drawing.Point(36, 20);
+            this.button_load.Name = "button_load";
+            this.button_load.Size = new System.Drawing.Size(30, 30);
+            this.button_load.TabIndex = 5;
+            this.button_load.UseVisualStyleBackColor = false;
+            this.button_load.Click += new System.EventHandler(this.menu_item_open_Click);
+            // 
+            // button_save
+            // 
+            this.button_save.BackColor = System.Drawing.SystemColors.Control;
+            this.button_save.Image = ((System.Drawing.Image)(resources.GetObject("button_save.Image")));
+            this.button_save.Location = new System.Drawing.Point(72, 20);
+            this.button_save.Name = "button_save";
+            this.button_save.Size = new System.Drawing.Size(30, 30);
+            this.button_save.TabIndex = 4;
+            this.button_save.UseVisualStyleBackColor = false;
+            this.button_save.Click += new System.EventHandler(this.menu_item_save_Click);
+            // 
+            // button_new
+            // 
+            this.button_new.BackColor = System.Drawing.SystemColors.Control;
+            this.button_new.Image = ((System.Drawing.Image)(resources.GetObject("button_new.Image")));
+            this.button_new.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button_new.Location = new System.Drawing.Point(0, 20);
+            this.button_new.Name = "button_new";
+            this.button_new.Size = new System.Drawing.Size(30, 30);
+            this.button_new.TabIndex = 6;
+            this.button_new.UseVisualStyleBackColor = false;
+            this.button_new.Click += new System.EventHandler(this.menu_item_new_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button_new);
+            this.groupBox1.Controls.Add(this.button_save);
+            this.groupBox1.Controls.Add(this.button_load);
+            this.groupBox1.Location = new System.Drawing.Point(12, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 54);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "button";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
             this.Controls.Add(this.map);
-            this.Controls.Add(this.button_new);
-            this.Controls.Add(this.button_load);
-            this.Controls.Add(this.button_save);
             this.Controls.Add(this.contants);
             this.Controls.Add(this.minimap);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.메뉴);
             this.MainMenuStrip = this.메뉴;
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Main";
             this.Text = "CSM Map Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Main_Resize);
             this.메뉴.ResumeLayout(false);
             this.메뉴.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -479,14 +483,14 @@
         private System.Windows.Forms.ToolStripMenuItem menu_item_close;
         private System.Windows.Forms.ToolStripMenuItem menu_item_close_all;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox minimap;
         private System.Windows.Forms.TreeView contants;
-        private System.Windows.Forms.Button button_save;
-        private System.Windows.Forms.Button button_load;
-        private System.Windows.Forms.Button button_new;
         private System.Windows.Forms.PictureBox map;
         private System.Windows.Forms.ComboBox layers;
+        private System.Windows.Forms.Button button_load;
+        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button button_new;
+        private System.Windows.Forms.GroupBox groupBox1;
 
     }
 }

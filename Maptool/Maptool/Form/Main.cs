@@ -15,23 +15,18 @@ namespace Maptool
         //PictureBox pictureBox2 = new PictureBox();
         public void CreateBitmapAtRuntime()
         {
-            //pictureBox1.SetBounds(0, 0, 200, 100);
-            //minimap.Size = new Size(210, 110);
-            //this.Controls.Add(pictureBox1);
-
-            Bitmap flag = new Bitmap(150, 150);
+            Bitmap flag = new Bitmap(200, 200);
             Graphics flagGraphics = Graphics.FromImage(flag);
-            int red = 0;
-            int white = 11;
-            while (white <= 100)
+
+            for (int i = 0; i < 200; i++)
             {
-                flagGraphics.FillRectangle(Brushes.Red, 0, red, 200, 10);
-                flagGraphics.FillRectangle(Brushes.White, 0, white, 200, 10);
-                red += 20;
-                white += 20;
+                for (int j = i % 2; j < 200; j += 2)
+                {
+                    flagGraphics.FillRectangle(Brushes.Yellow, i, j, 1, 1);
+                    flagGraphics.FillRectangle(Brushes.Red, i, j-(j%2), 1, 1);
+                }
             }
             minimap.Image = flag;
-
         }
 
         public Main()
@@ -39,25 +34,12 @@ namespace Maptool
             InitializeComponent();
 
             CreateBitmapAtRuntime();
-
-            layers.SelectedIndex = 0;
-            //layers.CanFocus = false;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void menu_item_exit_MouseDown(object sender, EventArgs e)
-        {
-            label1.Text = "마우스 누름";
-            MessageBox.Show("mouse down", "alarm");
-        }
-        private void menu_item_exit_MouseUp(object sender, EventArgs e)
-        {
-            label1.Text = "마우스 뗌";
-            MessageBox.Show("mouse down", "alarm");
+            layers.SelectedIndex = 0;
         }
 
         private void menu_item_new_Click(object sender, EventArgs e)
@@ -116,6 +98,22 @@ namespace Maptool
                 }
             }
 
+        }
+
+        private void menu_item_exit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            // map resizing
+            map.Size = new Size(Screen.PrimaryScreen.Bounds.Width - minimap.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+
+            // contants resizing
+            contants.Size = new Size(contants.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+
+            
         }
 
     }
