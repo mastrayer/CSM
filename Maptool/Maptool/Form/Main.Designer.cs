@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +78,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.button_new = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.main_map_panel = new System.Windows.Forms.Panel();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
@@ -303,19 +304,19 @@
             // menu_item_view_help
             // 
             this.menu_item_view_help.Name = "menu_item_view_help";
-            this.menu_item_view_help.Size = new System.Drawing.Size(152, 22);
+            this.menu_item_view_help.Size = new System.Drawing.Size(138, 22);
             this.menu_item_view_help.Text = "도움말 보기";
             // 
             // menu_item_report_a_bug
             // 
             this.menu_item_report_a_bug.Name = "menu_item_report_a_bug";
-            this.menu_item_report_a_bug.Size = new System.Drawing.Size(152, 22);
+            this.menu_item_report_a_bug.Size = new System.Drawing.Size(138, 22);
             this.menu_item_report_a_bug.Text = "버그 보고";
             // 
             // menu_item_info
             // 
             this.menu_item_info.Name = "menu_item_info";
-            this.menu_item_info.Size = new System.Drawing.Size(152, 22);
+            this.menu_item_info.Size = new System.Drawing.Size(138, 22);
             this.menu_item_info.Text = "정보";
             // 
             // toolStripMenuItem1
@@ -327,21 +328,21 @@
             // 
             this.contants.Location = new System.Drawing.Point(0, 284);
             this.contants.Name = "contants";
-            treeNode1.Name = "tile_empty";
-            treeNode1.Text = "empty";
-            treeNode2.Name = "tile_water";
-            treeNode2.Text = "water";
-            treeNode3.Name = "tile_soil";
-            treeNode3.Text = "soil";
-            treeNode4.Name = "tile";
-            treeNode4.Text = "tile";
-            treeNode5.Name = "structure_";
-            treeNode5.Text = "노드5";
-            treeNode6.Name = "structure";
-            treeNode6.Text = "structure";
+            treeNode7.Name = "tile_empty";
+            treeNode7.Text = "empty";
+            treeNode8.Name = "tile_water";
+            treeNode8.Text = "water";
+            treeNode9.Name = "tile_soil";
+            treeNode9.Text = "soil";
+            treeNode10.Name = "tile";
+            treeNode10.Text = "tile";
+            treeNode11.Name = "structure_";
+            treeNode11.Text = "노드5";
+            treeNode12.Name = "structure";
+            treeNode12.Text = "structure";
             this.contants.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode6});
+            treeNode10,
+            treeNode12});
             this.contants.Size = new System.Drawing.Size(200, 454);
             this.contants.TabIndex = 3;
             // 
@@ -356,8 +357,8 @@
             // 
             // map
             // 
-            this.map.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.map.Location = new System.Drawing.Point(200, 86);
+            this.map.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.map.Location = new System.Drawing.Point(578, 207);
             this.map.Name = "map";
             this.map.Size = new System.Drawing.Size(816, 652);
             this.map.TabIndex = 7;
@@ -423,11 +424,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "button";
             // 
+            // main_map_panel
+            // 
+            this.main_map_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.main_map_panel.Location = new System.Drawing.Point(197, 86);
+            this.main_map_panel.Name = "main_map_panel";
+            this.main_map_panel.Size = new System.Drawing.Size(818, 651);
+            this.main_map_panel.TabIndex = 11;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
+            this.Controls.Add(this.main_map_panel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
             this.Controls.Add(this.map);
@@ -491,6 +501,7 @@
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_new;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel main_map_panel;
 
     }
 }

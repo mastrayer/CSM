@@ -56,10 +56,19 @@
     <Compile Include="Form\new map.Designer.cs">
       <DependentUpon>new map.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\main_map.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\main_map.Designer.cs">
+      <DependentUpon>main_map.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\main_map.resx">
+      <DependentUpon>main_map.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\new map.resx">
       <DependentUpon>new map.cs</DependentUpon>
