@@ -12,7 +12,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	Application->Init( L"D2D Test", 800, 600, D2D );
 
-	 NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
+	NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
 
 	Application->Run();
 	Application->Release();
