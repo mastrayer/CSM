@@ -19,6 +19,9 @@ namespace Maptool
         {
             public const int TILE_SIZE = 30;
         }
+        public main_map._tile SelectedTileInfo;
+        public List<Bitmap> TileList = new List<Bitmap>();
+
         /*
         public class CMap
         {
@@ -107,6 +110,7 @@ namespace Maptool
             c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 30, c_Form.Parent.Size.Height - 50);
 
             c_Form.Show();
+
             Minimap_init();
 
         }
@@ -157,7 +161,7 @@ namespace Maptool
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.Filter = "image files (*.png)|*.txt|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
@@ -169,7 +173,23 @@ namespace Maptool
                     {
                         using (myStream)
                         {
-                            // Insert code to read the stream here.
+
+                            TileList.Add(new Bitmap(openFileDialog1.FileName));
+                            pictureBox1.Image = TileList[0];
+//                             Image image = Image.FromFile(openFile.FileName);
+// 
+//                             // Image 클래스뿐아니라위에서상속된클래스로도
+// 
+//                             // 이미지를보여줄수있다
+// 
+//                             Bitmap image = new Bitmap(openFile.FileName);
+// 
+//                             //Image image = Image.FromStream(stream);
+// 
+//                             // 여기서은이미지정보가포함된스트림이다
+// 
+//                             picbox_main.Image = image;
+//                             // Insert code to read the stream here.
                         }
                     }
                 }
