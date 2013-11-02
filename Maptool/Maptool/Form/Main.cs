@@ -89,24 +89,25 @@ namespace Maptool
 
             map.Image = flag;
         }*/
-
+        main_map c_Form = new main_map();
         public void init()
         {
             //main_map = new CMap(16, 16);
 
-            main_map c_Form = new main_map();
+            //main_map c_Form = new main_map();
             c_Form.TopLevel = false;
-            this.Controls.Add(c_Form);
+            this.main_map_panel.Controls.Add(c_Form);
 
             c_Form.Parent = this.main_map_panel;
             c_Form.Text = "";
 
             c_Form.ControlBox = false;
-            c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width, c_Form.Parent.Size.Height);
+
+            main_map_panel.Size = new Size(this.Size.Width - this.main_map_panel.Location.X, this.Size.Height - this.main_map_panel.Location.Y);
+            c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 30, c_Form.Parent.Size.Height - 50);
 
             c_Form.Show();
             Minimap_init();
-            //map_init();
 
         }
         public Main()
@@ -114,6 +115,7 @@ namespace Maptool
             InitializeComponent();
 
             init();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -187,12 +189,19 @@ namespace Maptool
         private void Main_Resize(object sender, EventArgs e)
         {
             // map resizing
-            map.Size = new Size(Screen.PrimaryScreen.Bounds.Width - minimap.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+            //panel1.SetBounds(main_map_panel.Location.X, main_map_panel.Location.Y, Screen.PrimaryScreen.Bounds.Width - minimap.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
 
-            // contants resizing
-            contants.Size = new Size(contants.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+            //panel1.Size = new Size(this.Size.Width - this.panel1.Location.X - 10 , this.Size.Height - this.panel1.Location.Y - 30 );
+            main_map_panel.Size = new Size(this.Size.Width - this.main_map_panel.Location.X, this.Size.Height - this.main_map_panel.Location.Y);
+            c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 10, c_Form.Parent.Size.Height - 30);
+            //c_Form.work_map.Size = new Size(c_Form.Parent.Width, c_Form.Parent.Height);
 
-            
+            //label1.Text = this.Size.Width + "/" + this.Size.Height + "..." + (this.Size.Width - this.panel1.Location.X).ToString() + " /" + (this.Size.Height - this.panel1.Location.Y).ToString();
+            //c_Form.Size = new Size(Screen.PrimaryScreen.Bounds.Width - minimap.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+            //c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width, c_Form.Parent.Size.Height);
+
+            // contents resizing
+            //contents.Size = new Size(contents.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
         }
 
     }

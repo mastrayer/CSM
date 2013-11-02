@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode20});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,18 +72,18 @@
             this.menu_item_report_a_bug = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_info = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.contants = new System.Windows.Forms.TreeView();
+            this.contents = new System.Windows.Forms.TreeView();
             this.minimap = new System.Windows.Forms.PictureBox();
-            this.map = new System.Windows.Forms.PictureBox();
             this.layers = new System.Windows.Forms.ComboBox();
             this.button_load = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.button_new = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.main_map_panel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.map)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -324,45 +326,39 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
             // 
-            // contants
+            // contents
             // 
-            this.contants.Location = new System.Drawing.Point(0, 284);
-            this.contants.Name = "contants";
-            treeNode7.Name = "tile_empty";
-            treeNode7.Text = "empty";
-            treeNode8.Name = "tile_water";
-            treeNode8.Text = "water";
-            treeNode9.Name = "tile_soil";
-            treeNode9.Text = "soil";
-            treeNode10.Name = "tile";
-            treeNode10.Text = "tile";
-            treeNode11.Name = "structure_";
-            treeNode11.Text = "노드5";
-            treeNode12.Name = "structure";
-            treeNode12.Text = "structure";
-            this.contants.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode12});
-            this.contants.Size = new System.Drawing.Size(200, 454);
-            this.contants.TabIndex = 3;
+            this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contents.Location = new System.Drawing.Point(0, 280);
+            this.contents.Name = "contents";
+            treeNode15.Name = "tile_empty";
+            treeNode15.Text = "empty";
+            treeNode16.Name = "tile_water";
+            treeNode16.Text = "water";
+            treeNode17.Name = "tile_soil";
+            treeNode17.Text = "soil";
+            treeNode18.Name = "노드0";
+            treeNode18.Text = "노드0";
+            treeNode19.Name = "tile";
+            treeNode19.Text = "tile";
+            treeNode20.Name = "structure_";
+            treeNode20.Text = "노드5";
+            treeNode21.Name = "structure";
+            treeNode21.Text = "structure";
+            this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode19,
+            treeNode21});
+            this.contents.Size = new System.Drawing.Size(200, 457);
+            this.contents.TabIndex = 3;
             // 
             // minimap
             // 
-            this.minimap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.minimap.Location = new System.Drawing.Point(0, 86);
+            this.minimap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.minimap.Location = new System.Drawing.Point(0, 80);
             this.minimap.Name = "minimap";
             this.minimap.Size = new System.Drawing.Size(200, 200);
             this.minimap.TabIndex = 2;
             this.minimap.TabStop = false;
-            // 
-            // map
-            // 
-            this.map.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.map.Location = new System.Drawing.Point(578, 207);
-            this.map.Name = "map";
-            this.map.Size = new System.Drawing.Size(816, 652);
-            this.map.TabIndex = 7;
-            this.map.TabStop = false;
             // 
             // layers
             // 
@@ -375,7 +371,7 @@
             "Layer 3"});
             this.layers.Location = new System.Drawing.Point(218, 47);
             this.layers.Name = "layers";
-            this.layers.Size = new System.Drawing.Size(290, 20);
+            this.layers.Size = new System.Drawing.Size(129, 20);
             this.layers.TabIndex = 9;
             // 
             // button_load
@@ -426,24 +422,55 @@
             // 
             // main_map_panel
             // 
-            this.main_map_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.main_map_panel.Location = new System.Drawing.Point(197, 86);
+            this.main_map_panel.BackColor = System.Drawing.SystemColors.Control;
+            this.main_map_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.main_map_panel.CausesValidation = false;
+            this.main_map_panel.Location = new System.Drawing.Point(200, 80);
             this.main_map_panel.Name = "main_map_panel";
-            this.main_map_panel.Size = new System.Drawing.Size(818, 651);
+            this.main_map_panel.Size = new System.Drawing.Size(818, 657);
             this.main_map_panel.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(639, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 12);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "label1";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "10%",
+            "20%",
+            "30%",
+            "50%",
+            "70%",
+            "90%",
+            "100%",
+            "120%",
+            "150%",
+            "200%"});
+            this.comboBox1.Location = new System.Drawing.Point(353, 47);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(102, 20);
+            this.comboBox1.TabIndex = 17;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
-            this.Controls.Add(this.main_map_panel);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
-            this.Controls.Add(this.map);
-            this.Controls.Add(this.contants);
+            this.Controls.Add(this.contents);
             this.Controls.Add(this.minimap);
             this.Controls.Add(this.메뉴);
+            this.Controls.Add(this.main_map_panel);
             this.MainMenuStrip = this.메뉴;
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Main";
@@ -453,7 +480,6 @@
             this.메뉴.ResumeLayout(false);
             this.메뉴.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.map)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -494,14 +520,16 @@
         private System.Windows.Forms.ToolStripMenuItem menu_item_close_all;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.PictureBox minimap;
-        private System.Windows.Forms.TreeView contants;
-        private System.Windows.Forms.PictureBox map;
+        private System.Windows.Forms.TreeView contents;
+
         private System.Windows.Forms.ComboBox layers;
         private System.Windows.Forms.Button button_load;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Button button_new;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel main_map_panel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
 
     }
 }
