@@ -177,18 +177,9 @@ namespace Maptool
                         using (myStream)
                         {
                             TileList.Add(new Bitmap(openFileDialog1.FileName));
-
-
                             TileSelectWindow.Show();
-                            TileSelectWindow.Size = new Size(TileList[TileList.Count - 1].Width + 5, TileList[TileList.Count - 1].Height +55);
-                            TileSelectWindow.pictureBox1.Location = new Point(0, 25);
-                            TileSelectWindow.pictureBox1.Size = new Size(TileList[TileList.Count - 1].Width, TileList[TileList.Count - 1].Height);
-                            TileSelectWindow.pictureBox1.Image = TileList[TileList.Count - 1];
 
-                            TileSelectWindow.label1.Text = TileList.Count.ToString() + " / " + TileList.Count.ToString();
-                            //TileSelectWindow.label1.Text = TileSelectWindow.pictureBox1.Location.X.ToString() + "." + TileSelectWindow.pictureBox1.Location.Y.ToString() + " / " + TileList[TileList.Count - 1].Width.ToString() + "." + TileList[TileList.Count - 1].Height.ToString() + " / " + TileSelectWindow.Size.Width.ToString() + "." + TileSelectWindow.Size.Height.ToString();
-                            TileSelectWindow.index = TileList.Count - 1;
-
+                            TileSelectWindow.changeImage(TileList.Count - 1);
 
 
                             //pictureBox1.Image = TileList[TileList.Count-1];
