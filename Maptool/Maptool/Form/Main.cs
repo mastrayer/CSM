@@ -21,6 +21,7 @@ namespace Maptool
         }
         public main_map._tile SelectedTileInfo;
         public List<Bitmap> TileList = new List<Bitmap>();
+        TileSelectForm TileSelectWindow = null;
 
         /*
         public class CMap
@@ -98,6 +99,8 @@ namespace Maptool
             //main_map = new CMap(16, 16);
 
             //main_map c_Form = new main_map();
+            TileSelectWindow = new TileSelectForm(this);
+
             c_Form.TopLevel = false;
             this.main_map_panel.Controls.Add(c_Form);
 
@@ -173,9 +176,22 @@ namespace Maptool
                     {
                         using (myStream)
                         {
-
                             TileList.Add(new Bitmap(openFileDialog1.FileName));
-                            pictureBox1.Image = TileList[0];
+
+
+                            TileSelectWindow.Show();
+                            TileSelectWindow.Size = new Size(TileList[TileList.Count - 1].Width + 5, TileList[TileList.Count - 1].Height +55);
+                            TileSelectWindow.pictureBox1.Location = new Point(0, 25);
+                            TileSelectWindow.pictureBox1.Size = new Size(TileList[TileList.Count - 1].Width, TileList[TileList.Count - 1].Height);
+                            TileSelectWindow.pictureBox1.Image = TileList[TileList.Count - 1];
+
+                            TileSelectWindow.label1.Text = TileList.Count.ToString() + " / " + TileList.Count.ToString();
+                            //TileSelectWindow.label1.Text = TileSelectWindow.pictureBox1.Location.X.ToString() + "." + TileSelectWindow.pictureBox1.Location.Y.ToString() + " / " + TileList[TileList.Count - 1].Width.ToString() + "." + TileList[TileList.Count - 1].Height.ToString() + " / " + TileSelectWindow.Size.Width.ToString() + "." + TileSelectWindow.Size.Height.ToString();
+                            TileSelectWindow.index = TileList.Count - 1;
+
+
+
+                            //pictureBox1.Image = TileList[TileList.Count-1];
 //                             Image image = Image.FromFile(openFile.FileName);
 // 
 //                             // Image 클래스뿐아니라위에서상속된클래스로도
@@ -223,6 +239,5 @@ namespace Maptool
             // contents resizing
             //contents.Size = new Size(contents.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
         }
-
     }
 }
