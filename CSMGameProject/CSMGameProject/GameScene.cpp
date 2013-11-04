@@ -22,4 +22,7 @@ void CGameScene::Render()
 void CGameScene::Update( float dTime )
 {
 	NNObject::Update(dTime);
+
+	SetPosition(- m_Character->GetPositionX() - m_Character->GetCharacterSprite()->GetImageWidth()/2 + 400.f
+		,- m_Character->GetPositionY() - m_Character->GetCharacterSprite()->GetImageHeight()/2 + 300.f);
 }

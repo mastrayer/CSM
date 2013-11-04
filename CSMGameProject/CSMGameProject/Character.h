@@ -30,6 +30,7 @@ public:
 	virtual ~CCharacter(void);
 	NNCREATE_FUNC(CCharacter);
 	void TransState(CharacterState state);
+	NNSprite* GetCharacterSprite() { return m_CharacterSprite; }
 	
 private:
 	void Render();
