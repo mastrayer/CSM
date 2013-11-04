@@ -28,6 +28,7 @@ public:
 	NNPoint operator-() const;
 	NNPoint operator*( float n ) const;
 	NNPoint operator/( float n ) const;
+	NNPoint Lerp( const NNPoint& startPoint, const NNPoint& endPoint, float t );
 
 public:
 	inline float GetDistance( NNPoint& point ) const { 

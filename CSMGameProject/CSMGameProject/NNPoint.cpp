@@ -28,5 +28,9 @@ NNPoint NNPoint::operator/( float n ) const
 {
 	return NNPoint( this->m_X/n, this->m_Y/n );
 }
-
+NNPoint NNPoint::Lerp( const NNPoint& startPoint, const NNPoint& endPoint, float t )
+{
+	return NNPoint( t * startPoint.GetX() + ( 1 - t ) * endPoint.GetX()
+		, t * startPoint.GetY() + ( 1 - t ) * endPoint.GetY() );
+}
 
