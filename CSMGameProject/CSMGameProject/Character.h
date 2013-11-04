@@ -3,6 +3,7 @@
 #include "NNSprite.h"
 #include "NNInputSystem.h"
 #include "NNLabel.h"
+#include "NNAudioSystem.h"
 enum CharacterState
 {
 	IDLE,

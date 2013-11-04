@@ -21,6 +21,10 @@ CCharacter::CCharacter(void):m_CharacterSprite(NULL)
 	m_LogLabel = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
 	m_LogLabel->SetPosition(50.f,50.f);
 	AddChild(m_LogLabel);
+
+	NNAudioSystem::GetInstance()->AddEffectSound( "Effect", L"Sound/effect.wav" );
+	NNAudioSystem::GetInstance()->AddEffectSound( "Effect1", L"Sound/effect1.mp3" );
+
 }
 
 CCharacter::~CCharacter(void)
@@ -42,6 +46,7 @@ void CCharacter::TransState(CharacterState state)
 	std::wstring framePath = buff;
 	m_CharacterSprite = NNSprite::Create(framePath);
 	AddChild(m_CharacterSprite);
+
 }
 
 
@@ -112,7 +117,14 @@ void CCharacter::Update( float dTime)
 	{
 		TransState(DIE);
 	}
-
+	if ( NNInputSystem::GetInstance()->GetKeyState( '5' ) == KEY_DOWN )
+	{
+		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
+	}
+	if ( NNInputSystem::GetInstance()->GetKeyState( '6' ) == KEY_DOWN )
+	{
+		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
+	}
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	WCHAR buff[1024];
