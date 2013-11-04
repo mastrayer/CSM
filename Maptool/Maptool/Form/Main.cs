@@ -21,7 +21,7 @@ namespace Maptool
         }
         public main_map._tile SelectedTileInfo;
         public List<Bitmap> TileList = new List<Bitmap>();
-        TileSelectForm TileSelectWindow = null;
+        public TileSelectForm TileSelectWindow = null;
 
         /*
         public class CMap
@@ -93,13 +93,14 @@ namespace Maptool
 
             map.Image = flag;
         }*/
-        main_map c_Form = new main_map();
+        main_map c_Form;
         public void init()
         {
             //main_map = new CMap(16, 16);
 
             //main_map c_Form = new main_map();
             TileSelectWindow = new TileSelectForm(this);
+            c_Form = new main_map(this);
 
             c_Form.TopLevel = false;
             this.main_map_panel.Controls.Add(c_Form);
