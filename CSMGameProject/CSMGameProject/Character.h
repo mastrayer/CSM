@@ -2,6 +2,7 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 #include "NNInputSystem.h"
+#include "NNLabel.h"
 enum CharacterState
 {
 	IDLE,
@@ -24,6 +25,7 @@ private:
 	std::map<CharacterState,AnimationImageInfo> m_AnimationImageInfo; 
 	float m_AnimationFrameTime; // init when Animation Type Change.
 	int m_NowFrame;
+	NNLabel* m_LogLabel;
 
 public:
 	CCharacter(void);

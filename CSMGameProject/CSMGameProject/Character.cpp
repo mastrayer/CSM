@@ -18,6 +18,9 @@ CCharacter::CCharacter(void):m_CharacterSprite(NULL)
 	m_AnimationFrameTime = 0.f;
 	
 	TransState(IDLE);
+	m_LogLabel = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
+	m_LogLabel->SetPosition(50.f,50.f);
+	AddChild(m_LogLabel);
 }
 
 CCharacter::~CCharacter(void)
@@ -111,6 +114,11 @@ void CCharacter::Update( float dTime)
 	}
 
 	//Change Image By now Frame.
+	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
+	WCHAR buff[1024];
+	swprintf_s(buff,L"%f / %f",mousePoint.GetX(),mousePoint.GetY());
+	m_LogLabel->SetString(buff);
+	m_CharacterSprite->SetRotation(atan2f(mousePoint.GetY() - 300.f, mousePoint.GetX() - 400.f) * 180.0f / 3.14f);
 }
 void CCharacter::Render()
 {
