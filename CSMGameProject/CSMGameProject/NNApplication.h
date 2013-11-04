@@ -59,6 +59,10 @@ private:
 	int m_PrevTime;
 	int m_NowTime;
 
+	bool m_DestroyWindow;
+
+private:
+	static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 public:
 	inline NNRenderer* GetRenderer() const { return m_Renderer; }
 	inline HWND GetHWND() const { return m_Hwnd; }
@@ -72,6 +76,4 @@ public:
 	inline float GetElapsedTime() const { return m_ElapsedTime; }
 	inline float GetDeltaTime() const { return m_DeltaTime; }
 };
-
-static LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 
