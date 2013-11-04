@@ -3,12 +3,13 @@
 #include "NNApplication.h"
 wchar_t* GetFileExtenstion (const wchar_t * file_name)
 { 
-	wchar_t* _file_name;
-	wcscpy_s(_file_name, wcslen(file_name), file_name);
+	wchar_t* _file_name = nullptr;
+	_file_name = (wchar_t*)malloc(1024);
+	wcscpy_s(_file_name, 256, file_name);
 	int file_name_len = wcslen (_file_name); 
 	_file_name +=file_name_len ;
 
-	wchar_t *file_ext ;
+	wchar_t *file_ext = nullptr;
 	for(int i =0 ; i <file_name_len ; i ++)
 	{
 		if(* _file_name == '.' )
