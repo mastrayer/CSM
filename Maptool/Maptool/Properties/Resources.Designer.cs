@@ -71,6 +71,15 @@ namespace Maptool.Properties {
         }
         
         /// <summary>
+        ///   2과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string GRID_CELL_WIDTH {
+            get {
+                return ResourceManager.GetString("GRID_CELL_WIDTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.Drawing.Bitmap load {

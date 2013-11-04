@@ -131,4 +131,8 @@
     <value>64</value>
     <comment>타일의 사이즈입니다.</comment>
   </data>
+  <data name="GRID_CELL_WIDTH" xml:space="preserve">
+    <value>2</value>
+    <comment>그리드 셀의 경계선 두께입니다.</comment>
+  </data>
 </root>
