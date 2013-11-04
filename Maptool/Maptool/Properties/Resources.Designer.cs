@@ -89,5 +89,14 @@ namespace Maptool.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   64과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string TILESIZE {
+            get {
+                return ResourceManager.GetString("TILESIZE", resourceCulture);
+            }
+        }
     }
 }

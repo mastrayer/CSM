@@ -164,7 +164,7 @@ namespace Maptool
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "image files (*.png)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.Filter = "image files (*.png)|*.png|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
 
