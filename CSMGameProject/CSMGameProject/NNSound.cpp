@@ -1,7 +1,25 @@
 
 #include "NNSound.h"
 #include "NNApplication.h"
+wchar_t* GetFileExtenstion (const wchar_t * file_name)
+{ 
+	wchar_t* _file_name;
+	wcscpy_s(_file_name, wcslen(file_name), file_name);
+	int file_name_len = wcslen (_file_name); 
+	_file_name +=file_name_len ;
 
+	wchar_t *file_ext ;
+	for(int i =0 ; i <file_name_len ; i ++)
+	{
+		if(* _file_name == '.' )
+		{
+			file_ext = _file_name +1 ;
+			break;
+		} 
+		_file_name --;
+	} 
+	return file_ext ;
+}
 
 
 NNSound::NNSound()
@@ -17,8 +35,16 @@ void NNSound::Create( std::wstring path )
 {
 	MCI_OPEN_PARMS mciOpen = {0};
 	MCIERROR mciError = {0};
-
-	mciOpen.lpstrDeviceType = L"waveaudio";//(LPCWSTR)MCI_DEVTYPE_WAVEFORM_AUDIO;
+	
+	if(wcscmp(GetFileExtenstion(path.c_str()), L"mp3") == 0 )
+	{
+		//mp3
+		mciOpen.lpstrDeviceType = L"MPEGVideo";//(LPCWSTR)MCI_DEVTYPE_WAVEFORM_AUDIO;
+	}
+	else if(wcscmp(GetFileExtenstion(path.c_str()), L"wav") == 0 )
+	{
+		mciOpen.lpstrDeviceType = L"waveaudio";//(LPCWSTR)MCI_DEVTYPE_WAVEFORM_AUDIO;
+	}
 	mciOpen.lpstrElementName = path.c_str();
 
 	mciError = mciSendCommand( NULL, MCI_OPEN, MCI_OPEN_ELEMENT|MCI_OPEN_TYPE, (DWORD)&mciOpen );
