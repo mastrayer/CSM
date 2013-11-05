@@ -149,7 +149,6 @@ namespace Maptool
             magnification.Text = "100%";
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length-1)) / 100;
 
-            MessageBox.Show(Zoom.ToString());
             TileSelectWindow = new TileSelectForm(this);
             c_Form = new main_map(this);
 
@@ -165,6 +164,8 @@ namespace Maptool
             c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 30, c_Form.Parent.Size.Height - 50);
 
             c_Form.Show();
+            TileSelectWindow.Show();
+            //TileSelectWindow.Location = new Point(this.Location.X, this.Location.Y);
 
             Minimap_init();
 
@@ -212,6 +213,7 @@ namespace Maptool
 
         private void menu_item_open_Click(object sender, EventArgs e)
         {
+            /*
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
@@ -257,6 +259,7 @@ namespace Maptool
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+            */
 
         }
 
