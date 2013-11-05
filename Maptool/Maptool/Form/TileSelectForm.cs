@@ -39,15 +39,22 @@ namespace Maptool
             index = idx;
 
             bmp = new Bitmap(mainForm.TileList[idx]);
+
+            bmp = mainForm.drawGrid(bmp, new Pen(Color.Blue, brush), true, TileSize);
+
+            /*
             Graphics g = Graphics.FromImage(bmp);
+            Pen gridPen = new Pen(Color.Blue, brush);
+            gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+
             for (int i = 0; i < bmp.Size.Width / TileSize; ++i)
             {
                 for (int j = 0; j < bmp.Size.Height / TileSize; ++j)
-                    g.DrawRectangle(new Pen(Color.White, 2), i * TileSize, j * TileSize, TileSize, TileSize);
+                    g.DrawRectangle(gridPen, i * TileSize, j * TileSize, TileSize, TileSize);
             }
-
+            */
             this.pictureBox1.Image = bmp;
-            g.Dispose();
+            //g.Dispose();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -75,7 +82,10 @@ namespace Maptool
 
             Bitmap temp = new Bitmap(bmp);
             int HighlightBrush = brush + 2;
-            Graphics.FromImage(temp).DrawRectangle(new Pen(Color.Red, HighlightBrush), (e.X / TileSize) * TileSize + ((HighlightBrush - 1) / 2), (e.Y / TileSize) * TileSize + ((HighlightBrush - 1) / 2), TileSize - (HighlightBrush / 2), TileSize - (HighlightBrush / 2));
+            Pen highlightPen = new Pen(Color.Red, HighlightBrush);
+            //highlightPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+
+            Graphics.FromImage(temp).DrawRectangle(highlightPen, (e.X / TileSize) * TileSize + ((HighlightBrush - 1) / 2), (e.Y / TileSize) * TileSize + ((HighlightBrush - 1) / 2), TileSize - (HighlightBrush / 2), TileSize - (HighlightBrush / 2));
 
             highlight.X = e.X / TileSize;
             highlight.Y = e.Y / TileSize;

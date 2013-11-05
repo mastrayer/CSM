@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +81,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.main_map_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.magnification = new System.Windows.Forms.ComboBox();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -331,23 +331,23 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 268);
             this.contents.Name = "contents";
-            treeNode1.Name = "tile_empty";
-            treeNode1.Text = "empty";
-            treeNode2.Name = "tile_water";
-            treeNode2.Text = "water";
-            treeNode3.Name = "tile_soil";
-            treeNode3.Text = "soil";
-            treeNode4.Name = "노드0";
-            treeNode4.Text = "노드0";
-            treeNode5.Name = "tile";
-            treeNode5.Text = "tile";
-            treeNode6.Name = "structure_";
-            treeNode6.Text = "노드5";
-            treeNode7.Name = "structure";
-            treeNode7.Text = "structure";
+            treeNode8.Name = "tile_empty";
+            treeNode8.Text = "empty";
+            treeNode9.Name = "tile_water";
+            treeNode9.Text = "water";
+            treeNode10.Name = "tile_soil";
+            treeNode10.Text = "soil";
+            treeNode11.Name = "노드0";
+            treeNode11.Text = "노드0";
+            treeNode12.Name = "tile";
+            treeNode12.Text = "tile";
+            treeNode13.Name = "structure_";
+            treeNode13.Text = "노드5";
+            treeNode14.Name = "structure";
+            treeNode14.Text = "structure";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
+            treeNode12,
+            treeNode14});
             this.contents.Size = new System.Drawing.Size(192, 469);
             this.contents.TabIndex = 3;
             // 
@@ -439,10 +439,11 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "label1";
             // 
-            // comboBox1
+            // magnification
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.magnification.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.magnification.FormattingEnabled = true;
+            this.magnification.Items.AddRange(new object[] {
             "10%",
             "20%",
             "30%",
@@ -452,18 +453,20 @@
             "100%",
             "120%",
             "150%",
-            "200%"});
-            this.comboBox1.Location = new System.Drawing.Point(353, 47);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 20);
-            this.comboBox1.TabIndex = 17;
+            "200%",
+            "400%"});
+            this.magnification.Location = new System.Drawing.Point(353, 47);
+            this.magnification.Name = "magnification";
+            this.magnification.Size = new System.Drawing.Size(102, 20);
+            this.magnification.TabIndex = 17;
+            this.magnification.TextChanged += new System.EventHandler(this.magnification_TextChanged);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.magnification);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
@@ -529,7 +532,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel main_map_panel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox magnification;
 
     }
 }

@@ -108,8 +108,10 @@ namespace Maptool
 
             Bitmap temp = new Bitmap(flag);
             int HighlightBrush = brush + 2;
+            Pen highlightPen = new Pen(Color.Red, HighlightBrush);
+            //highlightPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
 
-            Graphics.FromImage(temp).DrawRectangle(new Pen(Color.Red, HighlightBrush), (e.X / TileSize) * TileSize + ((HighlightBrush - 1) / 2), (e.Y / TileSize) * TileSize + ((HighlightBrush - 1) / 2), TileSize - (HighlightBrush / 2), TileSize - (HighlightBrush / 2));
+            Graphics.FromImage(temp).DrawRectangle(highlightPen, (e.X / TileSize) * TileSize + ((HighlightBrush - 1) / 2), (e.Y / TileSize) * TileSize + ((HighlightBrush - 1) / 2), TileSize - (HighlightBrush / 2), TileSize - (HighlightBrush / 2));
 
             //Graphics.FromImage(flag).DrawRectangle(new Pen(Color.White, HighlightBrush), highlight.X  * TileSize + HighlightBrush, highlight.Y * TileSize + HighlightBrush, TileSize - HighlightBrush*2, TileSize - HighlightBrush*2);
             //Graphics.FromImage(flag).DrawRectangle(new Pen(Color.Red, HighlightBrush), (e.X / TileSize) * TileSize + (HighlightBrush / 2), (e.Y / TileSize) * TileSize + (HighlightBrush / 2), TileSize - HighlightBrush, TileSize - HighlightBrush);
@@ -147,15 +149,21 @@ namespace Maptool
         private void main_map_Load(object sender, EventArgs e)
         {
             flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
+            flag = mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
+
+            /*
             Graphics flagGraphics = Graphics.FromImage(flag);
+            Pen gridPen = new Pen(Color.Blue, brush);
+            gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
 
             for (int i = 0; i < MapSize.Width; ++i)
             {
                 for (int j = 0; j < MapSize.Height ; ++j)
                 {
-                    flagGraphics.DrawRectangle(new Pen(Color.Black, brush), i * TileSize, j * TileSize, TileSize, TileSize);
+                    flagGraphics.DrawRectangle(gridPen, i * TileSize, j * TileSize, TileSize, TileSize);
                 }
             }
+            */
             work_map.Image = flag;
         }
     }/*
