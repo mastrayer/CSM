@@ -2,31 +2,6 @@
 #include "NNSound.h"
 #include "NNApplication.h"
 
-void GetFileExtenstion(const wchar_t * file_name, wchar_t * file_ext, size_t file_ext_size)
-{ 
-	_wsplitpath_s(file_name, NULL, 0, NULL, 0, NULL, 0, file_ext, file_ext_size);
-	wprintf(L"%s\n", file_ext);
-	
-	/*wchar_t* _file_name = nullptr;
-	_file_name = (wchar_t*)malloc(1024);
-	wcscpy_s(_file_name, 256, file_name);
-	int file_name_len = wcslen (_file_name); 
-	_file_name +=file_name_len ;
-
-	wchar_t *file_ext = nullptr;
-	for(int i = 0 ; i <file_name_len ; i ++)
-	{
-		if(* _file_name == '.' )
-		{
-			file_ext = _file_name +1 ;
-			break;
-		} 
-		_file_name --;
-	} 
-	return file_ext ;*/
-	//return file_ext;
-}
-
 NNSound::NNSound()
 	: m_Playing(false)
 {
@@ -42,8 +17,9 @@ void NNSound::Create( std::wstring path )
 	MCIERROR mciError = {0};
 	wchar_t file_ext[10];
 	
-	GetFileExtenstion(path.c_str(), file_ext, sizeof(file_ext) / sizeof(wchar_t));
-
+	// 파일확장자 추출
+	_wsplitpath_s(path.c_str(), NULL, 0, NULL, 0, NULL, 0, file_ext, sizeof(file_ext) / sizeof(wchar_t));
+	
 	if(wcscmp(file_ext, L".mp3") == 0 )
 	{
 		//mp3
