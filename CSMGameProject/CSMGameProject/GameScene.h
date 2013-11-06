@@ -10,6 +10,7 @@ private:
 	CGameMap* m_GameMap;
 	CCharacter* m_Character;
 	NNLabel* m_FPSLbael;
+	wchar_t m_FPSLabelBuff[100];
 public:
 	CGameScene(void);
 	virtual ~CGameScene(void);

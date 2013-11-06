@@ -27,9 +27,8 @@ void CGameScene::Update( float dTime )
 {
 	NNObject::Update(dTime);
 	
-	WCHAR buff[1024];
-	swprintf_s(buff,L"%f",(1.f/dTime));
-	m_FPSLbael->SetString(buff);
+	swprintf_s(m_FPSLabelBuff,L"%f",NNApplication::GetInstance()->GetFPS());
+	m_FPSLbael->SetString(m_FPSLabelBuff);
 
 	NNPoint endPoint = NNPoint(- m_Character->GetPositionX() - m_Character->GetCharacterSprite()->GetImageWidth()/2 + 400.f
 		,- m_Character->GetPositionY() - m_Character->GetCharacterSprite()->GetImageHeight()/2 + 300.f);
