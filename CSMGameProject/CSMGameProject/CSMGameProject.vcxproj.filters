@@ -64,6 +64,18 @@
     <Filter Include="Framework\NetworkSystem">
       <UniqueIdentifier>{f43f4b25-70d7-4e59-ba2b-4805e0ebbabb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\Animation">
+      <UniqueIdentifier>{8d164760-a690-42b9-81de-4c060263cbc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample">
+      <UniqueIdentifier>{2df9a5cf-c77a-4ba9-9673-d1997b45c669}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\AnimationSample">
+      <UniqueIdentifier>{846747f4-d180-47c6-bccc-ee5d610fdf9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\Animation\SpriteNode">
+      <UniqueIdentifier>{6b060ca6-c31d-4b07-b334-f6701b3cb569}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -120,6 +132,18 @@
     </ClCompile>
     <ClCompile Include="NNNetworkSystem.cpp">
       <Filter>Framework\NetworkSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NNAnimation.cpp">
+      <Filter>Framework\Node\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleScene.cpp">
+      <Filter>Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSample.cpp">
+      <Filter>Sample\AnimationSample</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSpriteNode.cpp">
+      <Filter>Framework\Node\Animation\SpriteNode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +215,18 @@
     </ClInclude>
     <ClInclude Include="NNNetworkSystem.h">
       <Filter>Framework\NetworkSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="NNAnimation.h">
+      <Filter>Framework\Node\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleScene.h">
+      <Filter>Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSample.h">
+      <Filter>Sample\AnimationSample</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSpriteNode.h">
+      <Filter>Framework\Node\Animation\SpriteNode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

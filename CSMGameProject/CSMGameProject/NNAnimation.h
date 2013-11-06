@@ -13,7 +13,7 @@ public:
 	void Render();
 	void Update( float eTime );
 
-	NNAnimation* Create( ... );
+	static NNAnimation* Create( ... );
 private:
 	std::vector<NNSpriteNode*> m_SpriteList;
 

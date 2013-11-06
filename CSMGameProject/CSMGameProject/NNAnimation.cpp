@@ -11,6 +11,11 @@ NNAnimation::~NNAnimation()
 
 }
 
+NNAnimation* NNAnimation::Create( ... )
+{
+
+}
+
 void NNAnimation::Render()
 {
 	NNObject::Render();
@@ -18,4 +23,6 @@ void NNAnimation::Render()
 void NNAnimation::Update( float eTime )
 {
 	NNObject::Update( eTime );
+
+	m_Frame += eTime;
 }
