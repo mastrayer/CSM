@@ -149,6 +149,18 @@ namespace Maptool
             work_map.Image = flag;
             mainForm.Minimap_update();
         }
+
+        private void main_map_Scroll(object sender, ScrollEventArgs e)
+        {
+            label2.Text = ((main_map)sender).ScrollToControl(this).ToString() + "." + ((main_map)sender).VerticalScroll.Value.ToString();
+            work_map.Image = flag;
+            mainForm.Minimap_update();
+        }
+
+        private void main_map_Wheel(object sender, MouseEventArgs e)
+        {
+            
+        }
     }/*
     public class GridCell : PictureBox
     {

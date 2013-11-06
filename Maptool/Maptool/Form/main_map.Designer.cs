@@ -31,6 +31,7 @@
         { 
             this.work_map = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.work_map)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +54,15 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(-2, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "label2";
+            // 
             // main_map
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -61,6 +71,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(810, 620);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.work_map);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -69,6 +80,8 @@
             this.ShowInTaskbar = false;
             this.Text = "main_map";
             this.TopMost = true;
+            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.main_map_Wheel);
+            this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.main_map_Scroll);
             ((System.ComponentModel.ISupportInitialize)(this.work_map)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -79,6 +92,7 @@
 
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.PictureBox work_map;
+        private System.Windows.Forms.Label label2;
         
 
 

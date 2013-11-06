@@ -15,7 +15,6 @@ namespace Maptool
         public int index = -1;
         int brush = Convert.ToInt32(Maptool.Properties.Resources.GRID_CELL_WIDTH);
         Bitmap bmp = null;
-
         public TileSelectForm(Main form)
         {
             InitializeComponent();
