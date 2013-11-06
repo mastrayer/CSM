@@ -34,6 +34,17 @@ NNAnimation* NNAnimation::Create( int count, ... )
 
 	return pInstance;
 }
+NNAnimation* NNAnimation::Create()
+{
+	NNAnimation* pInstance = new NNAnimation();
+	return pInstance;
+}
+
+void NNAnimation::AddSpriteNode( wchar_t* path )
+{
+	m_FrameCount++;
+	m_SpriteList.push_back( NNSpriteNode::Create(path) );
+}
 
 void NNAnimation::Render()
 {
