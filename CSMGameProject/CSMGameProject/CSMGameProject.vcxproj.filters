@@ -133,17 +133,17 @@
     <ClCompile Include="NNNetworkSystem.cpp">
       <Filter>Framework\NetworkSystem</Filter>
     </ClCompile>
-    <ClCompile Include="NNAnimation.cpp">
-      <Filter>Framework\Node\Animation</Filter>
+    <ClCompile Include="AnimationSample.cpp">
+      <Filter>Sample\AnimationSample</Filter>
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
       <Filter>Sample</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationSample.cpp">
-      <Filter>Sample\AnimationSample</Filter>
-    </ClCompile>
     <ClCompile Include="NNSpriteNode.cpp">
       <Filter>Framework\Node\Animation\SpriteNode</Filter>
+    </ClCompile>
+    <ClCompile Include="NNAnimation.cpp">
+      <Filter>Framework\Node\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,17 +216,17 @@
     <ClInclude Include="NNNetworkSystem.h">
       <Filter>Framework\NetworkSystem</Filter>
     </ClInclude>
-    <ClInclude Include="NNAnimation.h">
-      <Filter>Framework\Node\Animation</Filter>
+    <ClInclude Include="AnimationSample.h">
+      <Filter>Sample\AnimationSample</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene.h">
       <Filter>Sample</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationSample.h">
-      <Filter>Sample\AnimationSample</Filter>
-    </ClInclude>
     <ClInclude Include="NNSpriteNode.h">
       <Filter>Framework\Node\Animation\SpriteNode</Filter>
+    </ClInclude>
+    <ClInclude Include="NNAnimation.h">
+      <Filter>Framework\Node\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
