@@ -81,7 +81,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.main_map_panel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.magnification = new System.Windows.Forms.ComboBox();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -439,10 +439,11 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "label1";
             // 
-            // comboBox1
+            // magnification
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.magnification.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.magnification.FormattingEnabled = true;
+            this.magnification.Items.AddRange(new object[] {
             "10%",
             "20%",
             "30%",
@@ -452,18 +453,20 @@
             "100%",
             "120%",
             "150%",
-            "200%"});
-            this.comboBox1.Location = new System.Drawing.Point(353, 47);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(102, 20);
-            this.comboBox1.TabIndex = 17;
+            "200%",
+            "400%"});
+            this.magnification.Location = new System.Drawing.Point(353, 47);
+            this.magnification.Name = "magnification";
+            this.magnification.Size = new System.Drawing.Size(102, 20);
+            this.magnification.TabIndex = 17;
+            this.magnification.TextChanged += new System.EventHandler(this.magnification_TextChanged);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.magnification);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
@@ -474,6 +477,7 @@
             this.MainMenuStrip = this.메뉴;
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CSM Map Editor";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Main_Resize);
@@ -529,7 +533,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel main_map_panel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox magnification;
 
     }
 }

@@ -8,11 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Xml;
+using System.Collections.Specialized;
+
 
 namespace Maptool
 {
     public partial class Main : Form
     {
+        private void XMLCreate()
+        {
+            XmlDocument NewXmldoc = new XmlDocument();
+            NewXmldoc.AppendChild(NewXmldoc.CreateXmlDeclaration("1.0", "utf-8", "yes"));
+
+            XmlNode root = NewXmldoc.CreateElement("", "Root", "");
+            NewXmldoc.AppendChild(root);
+
+            NewXmldoc.Save("test.xml");
+
+        }
         //CMap main_map;
 
         static class DEFINE
@@ -22,6 +36,37 @@ namespace Maptool
         public main_map._tile SelectedTileInfo;
         public List<Bitmap> TileList = new List<Bitmap>();
         public TileSelectForm TileSelectWindow = null;
+        public double Zoom;
+
+        public Bitmap drawGrid(Bitmap image, Pen gridPen, bool isDot, int size)
+        {
+//             flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
+//             Graphics flagGraphics = Graphics.FromImage(flag);
+//             Pen gridPen = new Pen(Color.Blue, brush);
+//             gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+// 
+//             for (int i = 0; i < MapSize.Width; ++i)
+//             {
+//                 for (int j = 0; j < MapSize.Height; ++j)
+//                 {
+//                     flagGraphics.DrawRectangle(gridPen, i * TileSize, j * TileSize, TileSize, TileSize);
+//                 }
+//             }
+//             work_map.Image = flag;
+
+            Graphics g = Graphics.FromImage(image);
+            if (isDot == true)
+                gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+
+            for (int i = 0; i < image.Width / size; ++i)
+            {
+                for (int j = 0; j < image.Height / size; ++j)
+                    g.DrawRectangle(gridPen, i * size, j * size, size, size);
+            }
+
+            g.Dispose();
+            return image;
+         }
 
         /*
         public class CMap
@@ -96,9 +141,14 @@ namespace Maptool
         main_map c_Form;
         public void init()
         {
+            XMLCreate();
             //main_map = new CMap(16, 16);
 
             //main_map c_Form = new main_map();
+
+            magnification.Text = "100%";
+            Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length-1)) / 100;
+
             TileSelectWindow = new TileSelectForm(this);
             c_Form = new main_map(this);
 
@@ -114,6 +164,8 @@ namespace Maptool
             c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 30, c_Form.Parent.Size.Height - 50);
 
             c_Form.Show();
+            TileSelectWindow.Show();
+            //TileSelectWindow.Location = new Point(this.Location.X, this.Location.Y);
 
             Minimap_init();
 
@@ -161,6 +213,7 @@ namespace Maptool
 
         private void menu_item_open_Click(object sender, EventArgs e)
         {
+            /*
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
@@ -206,6 +259,7 @@ namespace Maptool
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+            */
 
         }
 
@@ -230,6 +284,11 @@ namespace Maptool
 
             // contents resizing
             //contents.Size = new Size(contents.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
+        }
+
+        private void magnification_TextChanged(object sender, EventArgs e)
+        {
+            Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
         }
     }
 }

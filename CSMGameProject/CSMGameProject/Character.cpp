@@ -122,7 +122,7 @@ void CCharacter::Update( float dTime)
 		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( '6' ) == KEY_DOWN )
-	{
+{
 		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
 	}
 	//Change Image By now Frame.
