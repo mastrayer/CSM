@@ -27,7 +27,7 @@ public:
 	static void ReleaseInstance();
 
 public:
-	bool Init( wchar_t* const title, int width, int height, RendererStatus renderStatus );
+	bool Init( const wchar_t* title, int width, int height, RendererStatus renderStatus );
 	/* 파라메터에 따라 윈도우 프레임, 렌더러 생성 */
 	bool Release();
 
@@ -47,7 +47,7 @@ private:
 	RendererStatus m_RendererStatus;
 
 private:
-	wchar_t* m_Title;
+	wchar_t m_Title[256];
 	int m_ScreenWidth;
 	int m_ScreenHeight;
 

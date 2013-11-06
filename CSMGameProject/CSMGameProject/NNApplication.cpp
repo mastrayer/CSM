@@ -39,11 +39,11 @@ void NNApplication::ReleaseInstance()
 	}
 }
 
-bool NNApplication::Init( wchar_t* const title, int width, int height, RendererStatus renderStatus )
+bool NNApplication::Init( const wchar_t* title, int width, int height, RendererStatus renderStatus )
 {
 	m_hInstance = GetModuleHandle(0);
 
-	m_Title = title;
+	wcscpy_s( m_Title, sizeof(m_Title), title );
 	m_ScreenWidth = width;
 	m_ScreenHeight = height;
 	m_RendererStatus = renderStatus;
