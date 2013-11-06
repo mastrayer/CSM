@@ -3,9 +3,9 @@
 
 #ifdef _DEBUG
 
-#include "NNObject.h"
+#include "NNScene.h"
 
-class SampleScene : public NNObject
+class SampleScene : public NNScene
 {
 public:
 	SampleScene();

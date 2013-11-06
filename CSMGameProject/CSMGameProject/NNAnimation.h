@@ -11,7 +11,7 @@ public:
 	virtual ~NNAnimation();
 
 	void Render();
-	void Update( float eTime );
+	void Update( float dTime );
 
 	static NNAnimation* Create( int count, ... );
 private:

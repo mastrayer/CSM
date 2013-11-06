@@ -10,7 +10,7 @@ NNSpriteNode::~NNSpriteNode()
 	SafeDelete( m_Sprite );
 }
 
-NNSpriteNode* NNSpriteNode::Create( std::wstring path )
+NNSpriteNode* NNSpriteNode::Create( wchar_t* path )
 {
 	NNSpriteNode* pInstance = new NNSpriteNode();
 	pInstance->m_Sprite = NNSprite::Create( path );

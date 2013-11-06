@@ -47,7 +47,7 @@ private:
 	RendererStatus m_RendererStatus;
 
 private:
-	wchar_t m_Title[256];
+	wchar_t* m_Title;
 	int m_ScreenWidth;
 	int m_ScreenHeight;
 

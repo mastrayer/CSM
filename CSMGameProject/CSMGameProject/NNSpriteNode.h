@@ -14,7 +14,7 @@ public:
 
 	//NNCREATE_FUNC(NNSpriteNode);
 
-	static NNSpriteNode* Create( std::wstring path );
+	static NNSpriteNode* Create( wchar_t* path );
 
 public:
 	NNSprite* GetSprite() const { return m_Sprite; }

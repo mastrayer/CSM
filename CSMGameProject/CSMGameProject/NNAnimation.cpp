@@ -24,11 +24,13 @@ NNAnimation* NNAnimation::Create( int count, ... )
 
 	for (int i=0; i<count; i++ )
 	{
-		pInstance->m_SpriteList[i] = NNSpriteNode::Create( va_arg( ap, std::wstring ) );
-		pInstance->m_SpriteList[i]->SetFrameTime( 0.2f );
+		pInstance->m_SpriteList.push_back( NNSpriteNode::Create( va_arg( ap, wchar_t* ) ) );
+		pInstance->m_SpriteList[i]->SetFrameTime( 1.f );
 	}
 
 	va_end( ap );
+
+	pInstance->m_FrameCount = count;
 
 	return pInstance;
 }
@@ -39,11 +41,11 @@ void NNAnimation::Render()
 
 	m_SpriteList[m_Frame]->Render();
 }
-void NNAnimation::Update( float eTime )
+void NNAnimation::Update( float dTime )
 {
-	NNObject::Update( eTime );
+	NNObject::Update( dTime );
 
-	m_Time += eTime;
+	m_Time += dTime;
 
 	if ( m_Time >= m_SpriteList[m_Frame]->GetFrameTime() )
 	{

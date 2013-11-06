@@ -43,7 +43,7 @@ bool NNApplication::Init( const wchar_t* title, int width, int height, RendererS
 {
 	m_hInstance = GetModuleHandle(0);
 
-	wcscpy_s( m_Title, sizeof(m_Title), title );
+	//wcscpy_s( m_Title, sizeof(m_Title), title );
 	m_ScreenWidth = width;
 	m_ScreenHeight = height;
 	m_RendererStatus = renderStatus;
@@ -101,7 +101,7 @@ bool NNApplication::Run()
 			{
 				m_PrevTime = m_NowTime;
 			}
-			m_DeltaTime = static_cast<float>(m_NowTime - m_PrevTime) / 60.f;
+			m_DeltaTime = static_cast<float>(m_NowTime - m_PrevTime) / 1000.f;
 			m_PrevTime = m_NowTime;
 			m_Fps = 1.f / m_DeltaTime;
 
