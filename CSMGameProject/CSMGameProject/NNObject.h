@@ -72,6 +72,7 @@ protected:
 	D2D1::Matrix3x2F m_Matrix;
 	NNPoint m_Position;
 	NNPoint m_Center;
+	NNPoint m_AnchorPoint;
 	float m_ScaleX;
 	float m_ScaleY;
 	float m_Rotation; // Degree
