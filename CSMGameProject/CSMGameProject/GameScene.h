@@ -2,12 +2,14 @@
 #include "NNScene.h"
 #include "GameMap.h"
 #include "Character.h"
+#include "NNLabel.h"
 class CGameScene :
 	public NNScene
 {
 private:
 	CGameMap* m_GameMap;
 	CCharacter* m_Character;
+	NNLabel* m_FPSLbael;
 public:
 	CGameScene(void);
 	virtual ~CGameScene(void);
