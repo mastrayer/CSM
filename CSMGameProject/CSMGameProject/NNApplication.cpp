@@ -3,7 +3,7 @@
 #include "NNInputSystem.h"
 #include "NNAudioSystem.h"
 #include "NNResourceManager.h"
-
+#include <stdio.h>
 NNApplication* NNApplication::m_pInstance = nullptr;
 
 NNApplication::NNApplication()
@@ -12,7 +12,8 @@ NNApplication::NNApplication()
 	  m_Fps(0.f), m_ElapsedTime(0.f), m_DeltaTime(0.f),
 	  m_PrevTime(0), m_NowTime(0),
 	  m_Renderer(nullptr), m_pSceneDirector(nullptr),
-	  m_RendererStatus(UNKNOWN),m_DestroyWindow(false)
+	  m_RendererStatus(UNKNOWN),m_DestroyWindow(false),
+	  m_FrameCount(0)
 {
 
 }
@@ -96,17 +97,22 @@ bool NNApplication::Run()
 		}
 		else
 		{
+			m_FrameCount++;
 			m_NowTime = timeGetTime();
 			if ( m_PrevTime == 0.f )
 			{
 				m_PrevTime = m_NowTime;
 			}
-			m_DeltaTime = static_cast<float>(m_NowTime - m_PrevTime) / 60.f;
-			m_PrevTime = m_NowTime;
-			m_Fps = 1.f / m_DeltaTime;
-
+			m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime)) / 1000.f;
 			m_ElapsedTime += m_DeltaTime;
-
+			if(m_ElapsedTime > 0.1f)
+			{
+				m_Fps = ((float)m_FrameCount) / m_ElapsedTime;
+				m_FrameCount = 0;
+				m_ElapsedTime = 0.f;
+			}
+			m_PrevTime = m_NowTime;
+			
 			NNInputSystem::GetInstance()->UpdateKeyState();
 
 			m_pSceneDirector->UpdateScene( m_DeltaTime );
