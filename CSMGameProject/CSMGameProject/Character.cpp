@@ -45,6 +45,7 @@ void CCharacter::TransState(CharacterState state)
 	swprintf_s(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix.c_str(),m_NowFrame);
 	std::wstring framePath = buff;
 	m_CharacterSprite = NNSprite::Create(framePath);
+	m_CharacterSprite->SetCenter(m_CharacterSprite->GetImageWidth()/2.f, m_CharacterSprite->GetImageHeight()/2.f);
 	AddChild(m_CharacterSprite);
 
 }
@@ -71,11 +72,12 @@ void CCharacter::Update( float dTime)
 		swprintf_s(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix.c_str(),m_NowFrame);
 		std::wstring framePath = buff;
 		m_CharacterSprite = NNSprite::Create(framePath);
+		m_CharacterSprite->SetCenter(m_CharacterSprite->GetImageWidth()/2.f, m_CharacterSprite->GetImageHeight()/2.f);
 		AddChild(m_CharacterSprite);
 	}
 
 
-	//Check Moving Input, and set Position to move
+	//Check Moving Input, and set Position to d
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_PRESSED)
 	{
