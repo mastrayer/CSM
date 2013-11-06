@@ -82,25 +82,25 @@ void CCharacter::Update( float dTime)
 		NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_PRESSED)
 	{
 		//Left
-		SetPosition( GetPosition() + NNPoint(-10.f,0.f) * dTime );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + -90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() -90.f)/180.f*3.14f)) * dTime * 10.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_PRESSED)
 	{
 		//Right
-		SetPosition( GetPosition() + NNPoint(10.f,0.f) * dTime );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + +90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() +90.f)/180.f*3.14f)) * dTime * 10.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_PRESSED)
 	{
 		//UP
-		SetPosition( GetPosition() + NNPoint(0.f,-10.f) * dTime );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation())/180.f*3.14f), sin((m_CharacterSprite->GetRotation())/180.f*3.14f)) * dTime * 10.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_PRESSED)
 	{
 		//Down
-		SetPosition( GetPosition() + NNPoint(0.f,10.f) * dTime );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 10.f );
 	}
 
 	if ( NNInputSystem::GetInstance()->GetKeyState( '1' ) == KEY_DOWN )
@@ -130,7 +130,7 @@ void CCharacter::Update( float dTime)
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	WCHAR buff[1024];
-	swprintf_s(buff,L"%f / %f",mousePoint.GetX(),mousePoint.GetY());
+	swprintf_s(buff,L"%f / %f",mousePoint.GetX(),m_CharacterSprite->GetRotation());//mousePoint.GetY());
 	m_LogLabel->SetString(buff);
 	m_CharacterSprite->SetRotation(atan2f(mousePoint.GetY() - 300.f, mousePoint.GetX() - 400.f) * 180.0f / 3.14f);
 }
