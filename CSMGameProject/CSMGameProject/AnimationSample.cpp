@@ -12,6 +12,8 @@ AnimationSample::AnimationSample()
 										L"Sprite/idle_0.png", 
 										L"Sprite/idle_1.png");
 
+	m_Animation->SetPosition( NNPoint(50.f,50.f) );
+
 	AddChild( m_Animation );
 }
 AnimationSample::~AnimationSample()

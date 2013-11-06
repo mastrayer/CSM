@@ -4,8 +4,6 @@
 #include "NNConfig.h"
 #include <mmsystem.h>
 
-
-
 class NNSound
 {
 private:
@@ -29,5 +27,3 @@ private:
 public:
 	inline bool IsPlaying() { return m_Playing; }
 };
-
-
