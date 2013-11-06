@@ -43,16 +43,16 @@ void CCharacter::TransState(CharacterState state)
 	}
 	WCHAR buff[1024];
 	swprintf_s(buff,L"Sprite/%s_%d.png",nowAnimationImageInfo.imagePrefix.c_str(),m_NowFrame);
-	std::wstring framePath = buff;
+	std::wstring framePath = buff;//L"Sprite/" + nowAnimationImageInfo.imagePrefix + "_"; 
 	m_CharacterSprite = NNSprite::Create(framePath);
 	m_CharacterSprite->SetCenter(m_CharacterSprite->GetImageWidth()/2.f, m_CharacterSprite->GetImageHeight()/2.f);
 	AddChild(m_CharacterSprite);
-
 }
 
 
 void CCharacter::Update( float dTime)
 {
+	
 	//Animation With m_State
 	AnimationImageInfo nowAnimationImageInfo = m_AnimationImageInfo.find(m_CharacterState)->second;
 	
@@ -75,32 +75,32 @@ void CCharacter::Update( float dTime)
 		m_CharacterSprite->SetCenter(m_CharacterSprite->GetImageWidth()/2.f, m_CharacterSprite->GetImageHeight()/2.f);
 		AddChild(m_CharacterSprite);
 	}
-
+	
 
 	//Check Moving Input, and set Position to d
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_PRESSED)
 	{
 		//Left
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + -90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() -90.f)/180.f*3.14f)) * dTime * 30.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + -90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() -90.f)/180.f*3.14f)) * dTime * 100.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_PRESSED)
 	{
 		//Right
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + +90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() +90.f)/180.f*3.14f)) * dTime * 30.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + +90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() +90.f)/180.f*3.14f)) * dTime * 100.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_PRESSED)
 	{
 		//UP
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation())/180.f*3.14f), sin((m_CharacterSprite->GetRotation())/180.f*3.14f)) * dTime * 30.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation())/180.f*3.14f), sin((m_CharacterSprite->GetRotation())/180.f*3.14f)) * dTime * 100.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_PRESSED)
 	{
 		//Down
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 30.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 100.f );
 	}
 
 	if ( NNInputSystem::GetInstance()->GetKeyState( '1' ) == KEY_DOWN )

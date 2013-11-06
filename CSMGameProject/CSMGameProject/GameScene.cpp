@@ -26,12 +26,12 @@ void CGameScene::Render()
 void CGameScene::Update( float dTime )
 {
 	NNObject::Update(dTime);
-	
-	swprintf_s(m_FPSLabelBuff,L"%f",NNApplication::GetInstance()->GetFPS());
+	swprintf_s(m_FPSLabelBuff,L"%d",(int)NNApplication::GetInstance()->GetFPS());
 	m_FPSLbael->SetString(m_FPSLabelBuff);
 
 	NNPoint endPoint = NNPoint(- m_Character->GetPositionX() - m_Character->GetCharacterSprite()->GetImageWidth()/2 + 400.f
 		,- m_Character->GetPositionY() - m_Character->GetCharacterSprite()->GetImageHeight()/2 + 300.f);
 	
 	SetPosition(NNPoint().Lerp(GetPosition(),endPoint,0.99f));
+	
 }
