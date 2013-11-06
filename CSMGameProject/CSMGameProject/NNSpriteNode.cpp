@@ -7,13 +7,15 @@ NNSpriteNode::NNSpriteNode()
 }
 NNSpriteNode::~NNSpriteNode()
 {
-	SafeDelete( m_Sprite );
 }
 
 NNSpriteNode* NNSpriteNode::Create( wchar_t* path )
 {
 	NNSpriteNode* pInstance = new NNSpriteNode();
-	pInstance->m_Sprite = NNSprite::Create( path );
+	NNSprite* spriteInstance = NNSprite::Create( path );
+	pInstance->m_Sprite = spriteInstance;
+
+	pInstance->AddChild( spriteInstance );
 
 	return pInstance;
 }
