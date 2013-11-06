@@ -55,7 +55,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -100,7 +100,25 @@
     <ClCompile Include="NNSprite.cpp" />
     <ClCompile Include="NNSpriteNode.cpp" />
     <ClCompile Include="NNTexture.cpp" />
+    <ClCompile Include="NNXML.cpp" />
     <ClCompile Include="SampleScene.cpp" />
+    <ClCompile Include="TinyXML\action_store.cpp" />
+    <ClCompile Include="TinyXML\htmlutil.cpp" />
+    <ClCompile Include="TinyXML\lex_util.cpp" />
+    <ClCompile Include="TinyXML\node_set.cpp" />
+    <ClCompile Include="TinyXML\tinystr.cpp" />
+    <ClCompile Include="TinyXML\tinyxml.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="TinyXML\tokenlist.cpp" />
+    <ClCompile Include="TinyXML\xml_util.cpp" />
+    <ClCompile Include="TinyXML\xpath_expression.cpp" />
+    <ClCompile Include="TinyXML\xpath_processor.cpp" />
+    <ClCompile Include="TinyXML\xpath_stack.cpp" />
+    <ClCompile Include="TinyXML\xpath_static.cpp" />
+    <ClCompile Include="TinyXML\xpath_stream.cpp" />
+    <ClCompile Include="TinyXML\xpath_syntax.cpp" />
+    <ClCompile Include="XMLSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
@@ -129,7 +147,26 @@
     <ClInclude Include="NNSprite.h" />
     <ClInclude Include="NNSpriteNode.h" />
     <ClInclude Include="NNTexture.h" />
+    <ClInclude Include="NNXML.h" />
     <ClInclude Include="SampleScene.h" />
+    <ClInclude Include="TinyXML\action_store.h" />
+    <ClInclude Include="TinyXML\byte_stream.h" />
+    <ClInclude Include="TinyXML\htmlutil.h" />
+    <ClInclude Include="TinyXML\lex_token.h" />
+    <ClInclude Include="TinyXML\lex_util.h" />
+    <ClInclude Include="TinyXML\node_set.h" />
+    <ClInclude Include="TinyXML\tinystr.h" />
+    <ClInclude Include="TinyXML\tinyxml.h" />
+    <ClInclude Include="TinyXML\tinyxpath_conf.h" />
+    <ClInclude Include="TinyXML\tokenlist.h" />
+    <ClInclude Include="TinyXML\xml_util.h" />
+    <ClInclude Include="TinyXML\xpath_expression.h" />
+    <ClInclude Include="TinyXML\xpath_processor.h" />
+    <ClInclude Include="TinyXML\xpath_stack.h" />
+    <ClInclude Include="TinyXML\xpath_static.h" />
+    <ClInclude Include="TinyXML\xpath_stream.h" />
+    <ClInclude Include="TinyXML\xpath_syntax.h" />
+    <ClInclude Include="XMLSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
