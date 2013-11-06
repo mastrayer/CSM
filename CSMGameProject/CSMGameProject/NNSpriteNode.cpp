@@ -2,7 +2,7 @@
 #include "NNSpriteNode.h"
 
 NNSpriteNode::NNSpriteNode()
-	: m_Sprite(nullptr), m_FrameTime(0.f), m_Index(0)
+	: m_Sprite(nullptr), m_FrameTime(0.f)
 {
 }
 NNSpriteNode::~NNSpriteNode()
@@ -21,6 +21,8 @@ NNSpriteNode* NNSpriteNode::Create( std::wstring path )
 void NNSpriteNode::Render()
 {
 	NNObject::Render();
+
+	m_Sprite->Render();
 }
 void NNSpriteNode::Update( float dTime )
 {

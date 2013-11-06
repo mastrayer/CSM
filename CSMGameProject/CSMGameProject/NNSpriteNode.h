@@ -16,8 +16,13 @@ public:
 
 	static NNSpriteNode* Create( std::wstring path );
 
+public:
+	NNSprite* GetSprite() const { return m_Sprite; }
+	float GetFrameTime() const { return m_FrameTime; }
+
+	void SetFrameTime( float frameTime ) { m_FrameTime = frameTime; }
+
 private:
 	NNSprite* m_Sprite;
 	float m_FrameTime;
-	int m_Index;
 };
