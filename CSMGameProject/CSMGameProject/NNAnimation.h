@@ -21,6 +21,7 @@ public:
 	bool IsLoop() const { return m_Loop; }
 
 	void AddSpriteNode( wchar_t* path );
+	void SetLoop( bool loop ) { m_Loop = loop; }
 
 private:
 	std::vector<NNSpriteNode*> m_SpriteList;
@@ -29,4 +30,5 @@ private:
 	int m_Frame;
 	float m_Time;
 	bool m_Loop;
+	bool m_AnimationEnd;
 };
