@@ -69,7 +69,6 @@
             this.ShowInTaskbar = false;
             this.Text = "main_map";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.main_map_Load);
             ((System.ComponentModel.ISupportInitialize)(this.work_map)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

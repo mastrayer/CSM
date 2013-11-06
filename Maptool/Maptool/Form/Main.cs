@@ -97,21 +97,26 @@ namespace Maptool
             }
         }*/
 
-        public void Minimap_init()
+        public void Minimap_update()
         {
-            Bitmap flag = new Bitmap(200, 200);
-            Graphics flagGraphics = Graphics.FromImage(flag);
+            Image img = c_Form.work_map.Image;
+            Bitmap bmpMod = new Bitmap(img.Width, img.Height);
+            Graphics g = Graphics.FromImage(bmpMod);
+            g.DrawImage(img, 0, 0, bmpMod.Width, bmpMod.Height);
+            g.Dispose();
+            minimap.Image = bmpMod;
 
-            for (int i = 0; i < 200; i++)
-            {
-
-                for (int j = i % 2; j < 200; j += 2)
-                {
-                    flagGraphics.FillRectangle(Brushes.Yellow, i, j, 1, 1);
-                    flagGraphics.FillRectangle(Brushes.Red, i, j - (j % 2), 1, 1);
-                }
-            }
-            minimap.Image = flag;
+//             
+//             for (int i = 0; i < 200; i++)
+//             {
+// 
+//                 for (int j = i % 2; j < 200; j += 2)
+//                 {
+//                     flagGraphics.FillRectangle(Brushes.Yellow, i, j, 1, 1);
+//                     flagGraphics.FillRectangle(Brushes.Red, i, j - (j % 2), 1, 1);
+//                 }
+//             }
+//            minimap.Image = flag;
         }/*
         public void map_init()
         {
@@ -167,7 +172,7 @@ namespace Maptool
             TileSelectWindow.Show();
             //TileSelectWindow.Location = new Point(this.Location.X, this.Location.Y);
 
-            Minimap_init();
+            Minimap_update();
 
         }
         public Main()
@@ -213,13 +218,12 @@ namespace Maptool
 
         private void menu_item_open_Click(object sender, EventArgs e)
         {
-            /*
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "image files (*.png)|*.png|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.Filter = "XML files (*.xml)|*.XML|CSM Map files|*.CSM|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -230,6 +234,7 @@ namespace Maptool
                     {
                         using (myStream)
                         {
+                            /*
                             TileList.Add(new Bitmap(openFileDialog1.FileName));
                             TileSelectWindow.Show();
 
@@ -250,7 +255,7 @@ namespace Maptool
 //                             // 여기서은이미지정보가포함된스트림이다
 // 
 //                             picbox_main.Image = image;
-//                             // Insert code to read the stream here.
+//                             // Insert code to read the stream here.*/
                         }
                     }
                 }
@@ -259,7 +264,6 @@ namespace Maptool
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
-            */
 
         }
 

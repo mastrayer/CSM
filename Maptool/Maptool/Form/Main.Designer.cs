@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode20});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -331,23 +331,23 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 268);
             this.contents.Name = "contents";
-            treeNode1.Name = "tile_empty";
-            treeNode1.Text = "empty";
-            treeNode2.Name = "tile_water";
-            treeNode2.Text = "water";
-            treeNode3.Name = "tile_soil";
-            treeNode3.Text = "soil";
-            treeNode4.Name = "노드0";
-            treeNode4.Text = "노드0";
-            treeNode5.Name = "tile";
-            treeNode5.Text = "tile";
-            treeNode6.Name = "structure_";
-            treeNode6.Text = "노드5";
-            treeNode7.Name = "structure";
-            treeNode7.Text = "structure";
+            treeNode15.Name = "tile_empty";
+            treeNode15.Text = "empty";
+            treeNode16.Name = "tile_water";
+            treeNode16.Text = "water";
+            treeNode17.Name = "tile_soil";
+            treeNode17.Text = "soil";
+            treeNode18.Name = "노드0";
+            treeNode18.Text = "노드0";
+            treeNode19.Name = "tile";
+            treeNode19.Text = "tile";
+            treeNode20.Name = "structure_";
+            treeNode20.Text = "노드5";
+            treeNode21.Name = "structure";
+            treeNode21.Text = "structure";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
+            treeNode19,
+            treeNode21});
             this.contents.Size = new System.Drawing.Size(192, 469);
             this.contents.TabIndex = 3;
             // 
@@ -357,6 +357,7 @@
             this.minimap.Location = new System.Drawing.Point(0, 80);
             this.minimap.Name = "minimap";
             this.minimap.Size = new System.Drawing.Size(192, 192);
+            this.minimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimap.TabIndex = 2;
             this.minimap.TabStop = false;
             // 
