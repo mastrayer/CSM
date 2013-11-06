@@ -167,3 +167,22 @@ bool NNApplication::_CreateRenderer( RendererStatus renderStatus )
 
 	return true;
 }
+
+
+LRESULT CALLBACK NNApplication::WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )
+{
+	switch( message )
+	{
+	case WM_DESTROY:
+		NNApplication::GetInstance()->Release();
+		NNApplication::GetInstance()->m_DestroyWindow = true;
+		PostQuitMessage(0);
+		return 0;
+	case WM_PAINT:
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint( hWnd, &ps );
+		EndPaint( hWnd, &ps );
+	}
+
+	return(DefWindowProc(hWnd,message,wParam,lParam));
+}
