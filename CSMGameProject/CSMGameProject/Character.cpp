@@ -82,25 +82,25 @@ void CCharacter::Update( float dTime)
 		NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_PRESSED)
 	{
 		//Left
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + -90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() -90.f)/180.f*3.14f)) * dTime * 10.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + -90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() -90.f)/180.f*3.14f)) * dTime * 30.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_PRESSED)
 	{
 		//Right
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + +90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() +90.f)/180.f*3.14f)) * dTime * 10.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + +90.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() +90.f)/180.f*3.14f)) * dTime * 30.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_PRESSED)
 	{
 		//UP
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation())/180.f*3.14f), sin((m_CharacterSprite->GetRotation())/180.f*3.14f)) * dTime * 10.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation())/180.f*3.14f), sin((m_CharacterSprite->GetRotation())/180.f*3.14f)) * dTime * 30.f );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_DOWN  || 
 		NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_PRESSED)
 	{
 		//Down
-		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 10.f );
+		SetPosition( GetPosition() + NNPoint( cos((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f), sin((m_CharacterSprite->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 30.f );
 	}
 
 	if ( NNInputSystem::GetInstance()->GetKeyState( '1' ) == KEY_DOWN )
