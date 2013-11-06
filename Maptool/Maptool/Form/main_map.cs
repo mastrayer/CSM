@@ -12,11 +12,12 @@ namespace Maptool
 {
     public partial class main_map : Form
     {
-        public int TileSize = 64;
+        public int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
         public Size MapSize;
         public _tile[,] grid;
         public Point highlight;
         int brush = Convert.ToInt32(Maptool.Properties.Resources.GRID_CELL_WIDTH);
+        Bitmap flag;
         Main mainForm;
 
         public struct _tile
@@ -35,7 +36,10 @@ namespace Maptool
             grid = new _tile[MapSize.Width, MapSize.Height];
             work_map.Size = new Size(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
             highlight = new Point(0, 0);
+            flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
+            flag = mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
 
+            work_map.Image = flag;
             /*
             Bitmap flag = new Bitmap(30, 30);
             Graphics flagGraphics = Graphics.FromImage(flag);
@@ -143,28 +147,19 @@ namespace Maptool
             aaa.DrawImage(mainForm.TileSelectWindow.SelectedTile.Tile, new Point(x, y));
 
             work_map.Image = flag;
+            mainForm.Minimap_update();
         }
 
-        Bitmap flag;
-        private void main_map_Load(object sender, EventArgs e)
+        private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
-            flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
-            flag = mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
-
-            /*
-            Graphics flagGraphics = Graphics.FromImage(flag);
-            Pen gridPen = new Pen(Color.Blue, brush);
-            gridPen.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
-
-            for (int i = 0; i < MapSize.Width; ++i)
-            {
-                for (int j = 0; j < MapSize.Height ; ++j)
-                {
-                    flagGraphics.DrawRectangle(gridPen, i * TileSize, j * TileSize, TileSize, TileSize);
-                }
-            }
-            */
+            label2.Text = ((main_map)sender).ScrollToControl(this).ToString() + "." + ((main_map)sender).VerticalScroll.Value.ToString();
             work_map.Image = flag;
+            mainForm.Minimap_update();
+        }
+
+        private void main_map_Wheel(object sender, MouseEventArgs e)
+        {
+            
         }
     }/*
     public class GridCell : PictureBox

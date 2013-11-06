@@ -36,6 +36,7 @@ namespace Maptool
         public main_map._tile SelectedTileInfo;
         public List<Bitmap> TileList = new List<Bitmap>();
         public TileSelectForm TileSelectWindow = null;
+        public int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
         public double Zoom;
 
         public Bitmap drawGrid(Bitmap image, Pen gridPen, bool isDot, int size)
@@ -97,21 +98,19 @@ namespace Maptool
             }
         }*/
 
-        public void Minimap_init()
+        public void Minimap_update()
         {
-            Bitmap flag = new Bitmap(200, 200);
-            Graphics flagGraphics = Graphics.FromImage(flag);
+            Image img = mainMap.work_map.Image;
+            Bitmap bmpMod = new Bitmap(img.Width, img.Height);
+            Graphics g = Graphics.FromImage(bmpMod);
+            Pen pen = new Pen(Color.Black, 10);
 
-            for (int i = 0; i < 200; i++)
-            {
+            g.DrawImage(img, 0, 0, bmpMod.Width, bmpMod.Height);
 
-                for (int j = i % 2; j < 200; j += 2)
-                {
-                    flagGraphics.FillRectangle(Brushes.Yellow, i, j, 1, 1);
-                    flagGraphics.FillRectangle(Brushes.Red, i, j - (j % 2), 1, 1);
-                }
-            }
-            minimap.Image = flag;
+            g.DrawRectangle(pen, new Rectangle(mainMap.HorizontalScroll.Value, mainMap.VerticalScroll.Value, main_map_panel.Width -30, main_map_panel.Height-50));
+
+            g.Dispose();
+            minimap.Image = bmpMod;
         }/*
         public void map_init()
         {
@@ -138,7 +137,7 @@ namespace Maptool
 
             map.Image = flag;
         }*/
-        main_map c_Form;
+        main_map mainMap;
         public void init()
         {
             XMLCreate();
@@ -150,24 +149,24 @@ namespace Maptool
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length-1)) / 100;
 
             TileSelectWindow = new TileSelectForm(this);
-            c_Form = new main_map(this);
+            mainMap = new main_map(this);
 
-            c_Form.TopLevel = false;
-            this.main_map_panel.Controls.Add(c_Form);
+            mainMap.TopLevel = false;
+            this.main_map_panel.Controls.Add(mainMap);
 
-            c_Form.Parent = this.main_map_panel;
-            c_Form.Text = "";
+            mainMap.Parent = this.main_map_panel;
+            mainMap.Text = "";
 
-            c_Form.ControlBox = false;
+            mainMap.ControlBox = false;
 
             main_map_panel.Size = new Size(this.Size.Width - this.main_map_panel.Location.X, this.Size.Height - this.main_map_panel.Location.Y);
-            c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 30, c_Form.Parent.Size.Height - 50);
+            mainMap.SetBounds(0, 0, mainMap.Parent.Size.Width - 30, mainMap.Parent.Size.Height - 50);
 
-            c_Form.Show();
+            mainMap.Show();
             TileSelectWindow.Show();
             //TileSelectWindow.Location = new Point(this.Location.X, this.Location.Y);
 
-            Minimap_init();
+            Minimap_update();
 
         }
         public Main()
@@ -213,13 +212,12 @@ namespace Maptool
 
         private void menu_item_open_Click(object sender, EventArgs e)
         {
-            /*
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "image files (*.png)|*.png|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.Filter = "XML files (*.xml)|*.XML|CSM Map files|*.CSM|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -230,6 +228,7 @@ namespace Maptool
                     {
                         using (myStream)
                         {
+                            /*
                             TileList.Add(new Bitmap(openFileDialog1.FileName));
                             TileSelectWindow.Show();
 
@@ -250,7 +249,7 @@ namespace Maptool
 //                             // 여기서은이미지정보가포함된스트림이다
 // 
 //                             picbox_main.Image = image;
-//                             // Insert code to read the stream here.
+//                             // Insert code to read the stream here.*/
                         }
                     }
                 }
@@ -259,7 +258,6 @@ namespace Maptool
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
-            */
 
         }
 
@@ -275,7 +273,7 @@ namespace Maptool
 
             //panel1.Size = new Size(this.Size.Width - this.panel1.Location.X - 10 , this.Size.Height - this.panel1.Location.Y - 30 );
             main_map_panel.Size = new Size(this.Size.Width - this.main_map_panel.Location.X, this.Size.Height - this.main_map_panel.Location.Y);
-            c_Form.SetBounds(0, 0, c_Form.Parent.Size.Width - 10, c_Form.Parent.Size.Height - 30);
+            mainMap.SetBounds(0, 0, mainMap.Parent.Size.Width - 10, mainMap.Parent.Size.Height - 30);
             //c_Form.work_map.Size = new Size(c_Form.Parent.Width, c_Form.Parent.Height);
 
             //label1.Text = this.Size.Width + "/" + this.Size.Height + "..." + (this.Size.Width - this.panel1.Location.X).ToString() + " /" + (this.Size.Height - this.panel1.Location.Y).ToString();

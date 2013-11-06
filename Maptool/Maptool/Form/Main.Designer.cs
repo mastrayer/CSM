@@ -329,7 +329,7 @@
             // contents
             // 
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.contents.Location = new System.Drawing.Point(0, 268);
+            this.contents.Location = new System.Drawing.Point(0, 272);
             this.contents.Name = "contents";
             treeNode1.Name = "tile_empty";
             treeNode1.Text = "empty";
@@ -348,7 +348,7 @@
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode5,
             treeNode7});
-            this.contents.Size = new System.Drawing.Size(192, 469);
+            this.contents.Size = new System.Drawing.Size(192, 459);
             this.contents.TabIndex = 3;
             // 
             // minimap
@@ -357,6 +357,7 @@
             this.minimap.Location = new System.Drawing.Point(0, 80);
             this.minimap.Name = "minimap";
             this.minimap.Size = new System.Drawing.Size(192, 192);
+            this.minimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimap.TabIndex = 2;
             this.minimap.TabStop = false;
             // 
