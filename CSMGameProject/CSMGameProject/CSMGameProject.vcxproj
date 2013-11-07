@@ -106,6 +106,7 @@
     <ClCompile Include="NNAnimation.cpp" />
     <ClCompile Include="NNAnimationAtlas.cpp" />
     <ClCompile Include="NNCamera.cpp" />
+    <ClCompile Include="NNCircularBuffer.cpp" />
     <ClCompile Include="NNNetworkSystem.cpp" />
     <ClCompile Include="NNApplication.cpp" />
     <ClCompile Include="NNAudioSystem.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="NNAnimation.h" />
     <ClInclude Include="NNAnimationAtlas.h" />
     <ClInclude Include="NNCamera.h" />
+    <ClInclude Include="NNCircularBuffer.h" />
     <ClInclude Include="NNNetworkSystem.h" />
     <ClInclude Include="NNApplication.h" />
     <ClInclude Include="NNAudioSystem.h" />

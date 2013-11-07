@@ -121,6 +121,9 @@
     <Filter Include="Framework\NetworkSystem\PacketHeader">
       <UniqueIdentifier>{b62274ac-3d08-4458-9d40-ff4b43b616af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\NetworkSystem\CircularBuffer">
+      <UniqueIdentifier>{ba41a31c-3d67-415f-89d2-75b7d08842e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -273,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="NNAnimationAtlas.cpp">
       <Filter>Framework\Node\AnimationAtlas</Filter>
+    </ClCompile>
+    <ClCompile Include="NNCircularBuffer.cpp">
+      <Filter>Framework\NetworkSystem\CircularBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +452,9 @@
     </ClInclude>
     <ClInclude Include="NNPacketHeader.h">
       <Filter>Framework\NetworkSystem\PacketHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="NNCircularBuffer.h">
+      <Filter>Framework\NetworkSystem\CircularBuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
