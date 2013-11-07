@@ -360,7 +360,9 @@
             this.minimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimap.TabIndex = 2;
             this.minimap.TabStop = false;
-            this.minimap.MouseClick += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseClick);
+            this.minimap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseDown);
+            this.minimap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseMove);
+            this.minimap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseUp);
             // 
             // layers
             // 

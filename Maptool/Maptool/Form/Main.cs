@@ -101,6 +101,7 @@ namespace Maptool
         {
             Image img = mainMap.work_map.Image;
             Bitmap bmpMod = new Bitmap(img.Width, img.Height);
+            bmpMod.Size = new Size(10, 10);
             Graphics g = Graphics.FromImage(bmpMod);
             Pen pen = new Pen(Color.Black, 10);
 
@@ -298,7 +299,7 @@ namespace Maptool
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
         }
 
-        private void minimap_MouseClick(object sender, MouseEventArgs e)
+        private void minimapViewMove(MouseEventArgs e)
         {
              double w = e.X * TileSize / (minimap.Width / mainMap.MapSize.Width);
              double h = e.Y * TileSize / (minimap.Height / mainMap.MapSize.Height);
@@ -308,6 +309,25 @@ namespace Maptool
              mainMap.PerformLayout();
 
              Minimap_update();
+        }
+
+        bool isMinimapDrag = false;
+        private void minimap_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMinimapDrag = true;
+            minimapViewMove(e);
+        }
+
+        private void minimap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.X <= 0 || e.X >= minimap.Width || e.Y <= 0 || e.Y >= minimap.Height) return;
+            if (isMinimapDrag)
+                minimapViewMove(e);
+        }
+
+        private void minimap_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMinimapDrag = false;
         }
     }
 }
