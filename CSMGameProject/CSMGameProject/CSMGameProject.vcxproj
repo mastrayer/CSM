@@ -102,6 +102,8 @@
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNXML.cpp" />
     <ClCompile Include="SampleScene.cpp" />
+    <ClCompile Include="NNSpriteAtlas.cpp" />
+    <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="TinyXML\action_store.cpp" />
     <ClCompile Include="TinyXML\htmlutil.cpp" />
     <ClCompile Include="TinyXML\lex_util.cpp" />
@@ -149,6 +151,8 @@
     <ClInclude Include="NNTexture.h" />
     <ClInclude Include="NNXML.h" />
     <ClInclude Include="SampleScene.h" />
+    <ClInclude Include="NNSpriteAtlas.h" />
+    <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="TinyXML\action_store.h" />
     <ClInclude Include="TinyXML\byte_stream.h" />
     <ClInclude Include="TinyXML\htmlutil.h" />

@@ -88,6 +88,12 @@
     <Filter Include="Framework\TinyXML\TinyXPath">
       <UniqueIdentifier>{120f9d5e-74b9-479c-b735-ec0111d910ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\SpriteAtlas">
+      <UniqueIdentifier>{57319199-2a83-4184-9543-b871a22c92a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\SpriteAtlasSample">
+      <UniqueIdentifier>{70c18ecf-4e44-44f3-96b0-994a9bba1472}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -210,6 +216,12 @@
     </ClCompile>
     <ClCompile Include="TinyXML\xpath_syntax.cpp">
       <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteAtlasSample.cpp">
+      <Filter>Sample\SpriteAtlasSample</Filter>
+    </ClCompile>
+    <ClCompile Include="NNSpriteAtlas.cpp">
+      <Filter>Framework\Node\SpriteAtlas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,6 +362,12 @@
     </ClInclude>
     <ClInclude Include="TinyXML\tinyxpath_conf.h">
       <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteAtlasSample.h">
+      <Filter>Sample\SpriteAtlasSample</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSpriteAtlas.h">
+      <Filter>Framework\Node\SpriteAtlas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
