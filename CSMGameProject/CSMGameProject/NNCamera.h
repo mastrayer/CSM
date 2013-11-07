@@ -24,6 +24,12 @@ public:
 	~NNCamera();
 
 	CameraAnchor GetAnchorStatus() const { return m_Anchor; }
+	NNPoint GetPosition() { return m_Position; }
+	float GetPositionX() const { return m_Position.GetX(); }
+	float GetPositionY() const { return m_Position.GetY(); }
+	float GetRotation() const { return m_Rotation; }
+	float GetZoom() const { return m_Zoom; }
+
 	void SetCameraAnchor( CameraAnchor anchor );
 
 private:
@@ -31,4 +37,7 @@ private:
 
 	NNPoint m_Position;
 	float m_Rotation;
+	float m_Zoom;
+	int m_ScreenWidth;
+	int m_ScreenHeight;
 };
