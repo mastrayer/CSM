@@ -20,11 +20,11 @@ XMLSample::~XMLSample()
 
 void XMLSample::Render()
 {
-	NNObject::Render();
+	NNScene::Render();
 }
 void XMLSample::Update( float dTime )
 {
-	NNObject::Update(dTime);
+	NNScene::Update(dTime);
 }
 
 #endif

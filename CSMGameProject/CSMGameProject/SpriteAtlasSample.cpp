@@ -19,12 +19,12 @@ SpriteAtlasSample::~SpriteAtlasSample()
 
 void SpriteAtlasSample::Render()
 {
-	NNObject::Render();
+	NNScene::Render();
 }
 
 void SpriteAtlasSample::Update( float dTime )
 {
-	NNObject::Update(dTime);
+	NNScene::Update(dTime);
 }
 
 #endif
