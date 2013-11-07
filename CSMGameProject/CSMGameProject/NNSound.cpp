@@ -10,7 +10,7 @@ NNSound::NNSound()
 }
 NNSound::~NNSound()
 {
-
+	m_Sound->release();
 }
 
 NNSound* NNSound::Create( std::string path, bool isLoop, bool isBackground )
