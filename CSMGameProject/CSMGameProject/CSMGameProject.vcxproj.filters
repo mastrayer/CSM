@@ -169,59 +169,11 @@
     <ClCompile Include="NNAnimation.cpp">
       <Filter>Framework\Node\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="TinyXML\tinystr.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\tinyxml.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
     <ClCompile Include="XMLSample.cpp">
       <Filter>Sample\XMLSample</Filter>
     </ClCompile>
     <ClCompile Include="NNXML.cpp">
       <Filter>Framework\Resource\XML</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_static.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_processor.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\action_store.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\htmlutil.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\lex_util.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\node_set.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\tokenlist.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xml_util.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_expression.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_stack.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_stream.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="TinyXML\xpath_syntax.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
     </ClCompile>
     <ClCompile Include="SpriteAtlasSample.cpp">
       <Filter>Sample\SpriteAtlasSample</Filter>
@@ -234,6 +186,54 @@
     </ClCompile>
     <ClCompile Include="CameraSample.cpp">
       <Filter>Sample\CameraSample</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinystr.cpp">
+      <Filter>Framework\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxml.cpp">
+      <Filter>Framework\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxmlerror.cpp">
+      <Filter>Framework\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxmlparser.cpp">
+      <Filter>Framework\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\action_store.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\htmlutil.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\lex_util.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\node_set.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tokenlist.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xml_util.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_expression.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_processor.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_stack.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_static.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_stream.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_syntax.cpp">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -318,62 +318,11 @@
     <ClInclude Include="NNAnimation.h">
       <Filter>Framework\Node\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="TinyXML\tinystr.h">
-      <Filter>Framework\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\tinyxml.h">
-      <Filter>Framework\TinyXML</Filter>
-    </ClInclude>
     <ClInclude Include="XMLSample.h">
       <Filter>Sample\XMLSample</Filter>
     </ClInclude>
     <ClInclude Include="NNXML.h">
       <Filter>Framework\Resource\XML</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_static.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_processor.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\action_store.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\byte_stream.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\htmlutil.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\lex_token.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\lex_util.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\node_set.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\tokenlist.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xml_util.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_expression.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_stack.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_stream.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\xpath_syntax.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="TinyXML\tinyxpath_conf.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAtlasSample.h">
       <Filter>Sample\SpriteAtlasSample</Filter>
@@ -386,6 +335,57 @@
     </ClInclude>
     <ClInclude Include="CameraSample.h">
       <Filter>Sample\CameraSample</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinystr.h">
+      <Filter>Framework\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinyxml.h">
+      <Filter>Framework\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\action_store.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\byte_stream.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\htmlutil.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\lex_token.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\lex_util.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\node_set.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinyxpath_conf.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tokenlist.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xml_util.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_expression.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_processor.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_stack.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_static.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_stream.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_syntax.h">
+      <Filter>Framework\TinyXML\TinyXPath</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

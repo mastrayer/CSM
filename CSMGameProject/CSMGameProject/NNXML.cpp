@@ -1,6 +1,5 @@
 
 #include "NNXML.h"
-#include "TinyXML/xpath_static.h"
 
 NNXML::NNXML( std::string path )
 	: m_LoadSuccess(false)

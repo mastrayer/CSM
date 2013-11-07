@@ -1,7 +1,8 @@
 
 #pragma once
 
-#include "TinyXML/tinyxml.h"
+#include "Library/TinyXML/tinyxml.h"
+#include "Library/TinyXML/xpath_static.h"
 #include <string>
 
 class NNXML
