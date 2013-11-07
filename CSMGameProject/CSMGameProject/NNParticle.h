@@ -1,9 +1,7 @@
 
 #pragma once
 
-#include "NNObject.h"
-
-class NNParticle : public NNObject
+class NNParticle
 {
 public:
 	NNParticle();
