@@ -94,6 +94,12 @@
     <Filter Include="Sample\SpriteAtlasSample">
       <UniqueIdentifier>{70c18ecf-4e44-44f3-96b0-994a9bba1472}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\Scene\Camera">
+      <UniqueIdentifier>{f91735c8-a0d4-4474-b7f6-21efe0305028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\CameraSample">
+      <UniqueIdentifier>{c93dd7c7-2beb-40be-a5e9-aae482e87701}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -222,6 +228,12 @@
     </ClCompile>
     <ClCompile Include="NNSpriteAtlas.cpp">
       <Filter>Framework\Node\SpriteAtlas</Filter>
+    </ClCompile>
+    <ClCompile Include="NNCamera.cpp">
+      <Filter>Framework\Node\Scene\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraSample.cpp">
+      <Filter>Sample\CameraSample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +380,12 @@
     </ClInclude>
     <ClInclude Include="NNSpriteAtlas.h">
       <Filter>Framework\Node\SpriteAtlas</Filter>
+    </ClInclude>
+    <ClInclude Include="NNCamera.h">
+      <Filter>Framework\Node\Scene\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSample.h">
+      <Filter>Sample\CameraSample</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -147,8 +147,11 @@ bool NNApplication::_CreateWindow( wchar_t* title, int width, int height )
 
 	DWORD style = WS_OVERLAPPEDWINDOW;
 
+	RECT wr = {0, 0, width, height};
+	AdjustWindowRect( &wr, WS_OVERLAPPEDWINDOW, FALSE );
+
 	m_Hwnd = CreateWindow( L"NNApplication", title, style, CW_USEDEFAULT, CW_USEDEFAULT,
-		width, height, NULL, NULL, m_hInstance, NULL);
+		wr.right-wr.left, wr.bottom-wr.top, NULL, NULL, m_hInstance, NULL);
 
 	ShowWindow( m_Hwnd, SW_SHOWNORMAL );
 
