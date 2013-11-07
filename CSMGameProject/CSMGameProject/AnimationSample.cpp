@@ -23,11 +23,11 @@ AnimationSample::~AnimationSample()
 
 void AnimationSample::Render()
 {
-	NNObject::Render();
+	NNScene::Render();
 }
 void AnimationSample::Update( float eTime )
 {
-	NNObject::Update( eTime );
+	NNScene::Update( eTime );
 }
 
 #endif
