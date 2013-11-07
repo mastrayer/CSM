@@ -5,7 +5,7 @@
 
 NNObject::NNObject()
 	: m_pParent(nullptr),
-	m_Position(0.f,0.f), m_Center(0.f,0.f), m_AnchorPoint(0.f,0.f),
+	m_Position(0.f,0.f), m_Center(0.f,0.f),
 	m_ScaleX(1.f), m_ScaleY(1.f), m_Rotation(0.f), m_Zindex(0),
 	m_Visible(true)
 {
@@ -28,7 +28,7 @@ void NNObject::Render()
 		D2D1::Matrix3x2F::Rotation( m_Rotation, D2D1::Point2F((m_Position+m_Center).GetX(), (m_Position+m_Center).GetY()) ) *
 		D2D1::Matrix3x2F::Scale( m_ScaleX, m_ScaleY, D2D1::Point2F((m_Position+m_Center).GetX(), (m_Position+m_Center).GetY()) );
 
-	m_Matrix.TransformPoint( D2D1::Point2F( m_AnchorPoint.GetX(), m_AnchorPoint.GetY() ) );
+	m_Matrix.TransformPoint( D2D1::Point2F( m_Center.GetX(), m_Center.GetY() ) );
 
 	if( m_pParent )
 	{
