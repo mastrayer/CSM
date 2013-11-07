@@ -103,6 +103,15 @@
     <Filter Include="Sample\FMODSoundSample">
       <UniqueIdentifier>{087f1e9d-685d-453d-8d4f-c4e2d6197c9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Node\ParticleSystem">
+      <UniqueIdentifier>{2629d50c-c63a-42b6-864c-a8c26b1d7685}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\ParticleSample">
+      <UniqueIdentifier>{de20fdae-17fb-4ab0-b6cc-3829145f30df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\ParticleSystem\Particle">
+      <UniqueIdentifier>{7e46e0c8-881b-4f31-acd8-d1c7ffd4aec5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -240,6 +249,15 @@
     </ClCompile>
     <ClCompile Include="FMODSoundSample.cpp">
       <Filter>Sample\FMODSoundSample</Filter>
+    </ClCompile>
+    <ClCompile Include="NNParticleSystem.cpp">
+      <Filter>Framework\Node\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="NNParticle.cpp">
+      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSample.cpp">
+      <Filter>Sample\ParticleSample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,6 +413,15 @@
     </ClInclude>
     <ClInclude Include="FMODSoundSample.h">
       <Filter>Sample\FMODSoundSample</Filter>
+    </ClInclude>
+    <ClInclude Include="NNParticleSystem.h">
+      <Filter>Framework\Node\ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="NNParticle.h">
+      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSample.h">
+      <Filter>Sample\ParticleSample</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

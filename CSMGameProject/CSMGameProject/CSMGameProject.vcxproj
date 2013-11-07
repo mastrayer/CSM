@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Users\Sun-hyoup\Desktop\CSM\CSMGameProject\CSMGameProject\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -111,6 +111,8 @@
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNLabel.cpp" />
     <ClCompile Include="NNObject.cpp" />
+    <ClCompile Include="NNParticle.cpp" />
+    <ClCompile Include="NNParticleSystem.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
     <ClCompile Include="NNScene.cpp" />
@@ -121,6 +123,7 @@
     <ClCompile Include="NNSpriteNode.cpp" />
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNXML.cpp" />
+    <ClCompile Include="ParticleSample.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="NNSpriteAtlas.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
@@ -163,6 +166,8 @@
     <ClInclude Include="NNLibSet.h" />
     <ClInclude Include="NNMacroSet.h" />
     <ClInclude Include="NNObject.h" />
+    <ClInclude Include="NNParticle.h" />
+    <ClInclude Include="NNParticleSystem.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNRenderer.h" />
     <ClInclude Include="NNResourceManager.h" />
@@ -174,6 +179,7 @@
     <ClInclude Include="NNSpriteNode.h" />
     <ClInclude Include="NNTexture.h" />
     <ClInclude Include="NNXML.h" />
+    <ClInclude Include="ParticleSample.h" />
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="NNSpriteAtlas.h" />
     <ClInclude Include="SpriteAtlasSample.h" />
