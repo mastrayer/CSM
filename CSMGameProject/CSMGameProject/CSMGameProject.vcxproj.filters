@@ -40,9 +40,6 @@
     <Filter Include="Framework\AudioSystem">
       <UniqueIdentifier>{4a7ac418-a6e3-44a3-a837-f889f2449102}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\AudioSystem\Sound">
-      <UniqueIdentifier>{3738308b-eaf0-4018-bd71-49801d44c11f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Node\Label">
       <UniqueIdentifier>{d418dc2b-a868-4497-9ded-641e435aedf9}</UniqueIdentifier>
     </Filter>
@@ -100,6 +97,12 @@
     <Filter Include="Sample\CameraSample">
       <UniqueIdentifier>{c93dd7c7-2beb-40be-a5e9-aae482e87701}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\Resource\Sound">
+      <UniqueIdentifier>{3738308b-eaf0-4018-bd71-49801d44c11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sample\FMODSoundSample">
+      <UniqueIdentifier>{087f1e9d-685d-453d-8d4f-c4e2d6197c9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -109,7 +112,7 @@
       <Filter>Framework\AudioSystem</Filter>
     </ClCompile>
     <ClCompile Include="NNSound.cpp">
-      <Filter>Framework\AudioSystem\Sound</Filter>
+      <Filter>Framework\Resource\Sound</Filter>
     </ClCompile>
     <ClCompile Include="NNPoint.cpp">
       <Filter>Framework\DataType\Point</Filter>
@@ -235,6 +238,9 @@
     <ClCompile Include="Library\TinyXML\xpath_syntax.cpp">
       <Filter>Framework\TinyXML\TinyXPath</Filter>
     </ClCompile>
+    <ClCompile Include="FMODSoundSample.cpp">
+      <Filter>Sample\FMODSoundSample</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -244,7 +250,7 @@
       <Filter>Framework\AudioSystem</Filter>
     </ClInclude>
     <ClInclude Include="NNSound.h">
-      <Filter>Framework\AudioSystem\Sound</Filter>
+      <Filter>Framework\Resource\Sound</Filter>
     </ClInclude>
     <ClInclude Include="NNPoint.h">
       <Filter>Framework\DataType\Point</Filter>
@@ -386,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="Library\TinyXML\xpath_syntax.h">
       <Filter>Framework\TinyXML\TinyXPath</Filter>
+    </ClInclude>
+    <ClInclude Include="FMODSoundSample.h">
+      <Filter>Sample\FMODSoundSample</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
