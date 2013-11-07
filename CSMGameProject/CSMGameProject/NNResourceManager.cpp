@@ -51,3 +51,12 @@ NNXML* NNResourceManager::LoadXMLFromFIle( std::string path )
 	}
 	return m_XMLTable[path];
 }
+
+NNSound* NNResourceManager::LoadSoundFromFile( std::string path )
+{
+	if ( !m_SoundTable[path] )
+	{
+		m_SoundTable[path] = NNSound::Create( path );
+	}
+	return m_SoundTable[path];
+}
