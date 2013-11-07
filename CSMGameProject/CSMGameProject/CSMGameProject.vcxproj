@@ -102,7 +102,9 @@
     <ClCompile Include="Library\TinyXML\xpath_stream.cpp" />
     <ClCompile Include="Library\TinyXML\xpath_syntax.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NetworkSample.cpp" />
     <ClCompile Include="NNAnimation.cpp" />
+    <ClCompile Include="NNAnimationAtlas.cpp" />
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NNNetworkSystem.cpp" />
     <ClCompile Include="NNApplication.cpp" />
@@ -153,7 +155,9 @@
     <ClInclude Include="Library\TinyXML\xpath_static.h" />
     <ClInclude Include="Library\TinyXML\xpath_stream.h" />
     <ClInclude Include="Library\TinyXML\xpath_syntax.h" />
+    <ClInclude Include="NetworkSample.h" />
     <ClInclude Include="NNAnimation.h" />
+    <ClInclude Include="NNAnimationAtlas.h" />
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNNetworkSystem.h" />
     <ClInclude Include="NNApplication.h" />
@@ -166,6 +170,7 @@
     <ClInclude Include="NNLibSet.h" />
     <ClInclude Include="NNMacroSet.h" />
     <ClInclude Include="NNObject.h" />
+    <ClInclude Include="NNPacketHeader.h" />
     <ClInclude Include="NNParticle.h" />
     <ClInclude Include="NNParticleSystem.h" />
     <ClInclude Include="NNPoint.h" />

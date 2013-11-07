@@ -112,6 +112,15 @@
     <Filter Include="Framework\Node\ParticleSystem\Particle">
       <UniqueIdentifier>{7e46e0c8-881b-4f31-acd8-d1c7ffd4aec5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sample\NetworkSample">
+      <UniqueIdentifier>{7a560de2-6167-4807-b446-266770bb61a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Node\AnimationAtlas">
+      <UniqueIdentifier>{5033ac60-e117-4ce1-9fc2-23260f6a16db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\NetworkSystem\PacketHeader">
+      <UniqueIdentifier>{b62274ac-3d08-4458-9d40-ff4b43b616af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NNApplication.cpp">
@@ -258,6 +267,12 @@
     </ClCompile>
     <ClCompile Include="ParticleSample.cpp">
       <Filter>Sample\ParticleSample</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkSample.cpp">
+      <Filter>Sample\NetworkSample</Filter>
+    </ClCompile>
+    <ClCompile Include="NNAnimationAtlas.cpp">
+      <Filter>Framework\Node\AnimationAtlas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +437,15 @@
     </ClInclude>
     <ClInclude Include="ParticleSample.h">
       <Filter>Sample\ParticleSample</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkSample.h">
+      <Filter>Sample\NetworkSample</Filter>
+    </ClInclude>
+    <ClInclude Include="NNAnimationAtlas.h">
+      <Filter>Framework\Node\AnimationAtlas</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPacketHeader.h">
+      <Filter>Framework\NetworkSystem\PacketHeader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
