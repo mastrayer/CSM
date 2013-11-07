@@ -6,6 +6,7 @@
 #include "XMLSample.h"
 #include "SpriteAtlasSample.h"
 #include "CameraSample.h"
+#include "FMODSoundSample.h"
 
 /*
 void main()
@@ -29,7 +30,8 @@ int main()
 	// NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
 	// NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
 	// NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
-	NNSceneDirector::GetInstance()->ChangeScene( CameraSample::Create() );
+	// NNSceneDirector::GetInstance()->ChangeScene( CameraSample::Create() );
+	NNSceneDirector::GetInstance()->ChangeScene( FMODSoundSample::Create() );
 
 	Application->Run();
 	Application->Release();
