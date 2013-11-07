@@ -28,7 +28,13 @@ public:
 	NNPoint operator-() const;
 	NNPoint operator*( float n ) const;
 	NNPoint operator/( float n ) const;
-	NNPoint Lerp( const NNPoint& startPoint, const NNPoint& endPoint, float t );
+
+public:
+	NNPoint NNPoint::Lerp( const NNPoint& startPoint, const NNPoint& endPoint, float t )
+	{
+		return NNPoint( t * startPoint.GetX() + ( 1 - t ) * endPoint.GetX()
+			, t * startPoint.GetY() + ( 1 - t ) * endPoint.GetY() );
+	}
 
 public:
 	inline float GetDistance( NNPoint& point ) const { 
