@@ -4,6 +4,7 @@
 
 #include "AnimationSample.h"
 #include "XMLSample.h"
+#include "SpriteAtlasSample.h"
 
 /*
 void main()
@@ -25,7 +26,8 @@ int main()
 
 	// NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
 	// NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
-	NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
+	// NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
+	NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
 
 	Application->Run();
 	Application->Release();
