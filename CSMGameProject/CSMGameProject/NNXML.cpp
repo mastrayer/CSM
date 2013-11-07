@@ -2,10 +2,10 @@
 #include "NNXML.h"
 #include "TinyXML/xpath_static.h"
 
-NNXML::NNXML( char* path )
+NNXML::NNXML( std::string path )
 	: m_LoadSuccess(false)
 {
-	m_Document = TiXmlDocument( path );
+	m_Document = TiXmlDocument( path.c_str() );
 	//m_Document.LoadFile(TIXML_ENCODING_UTF8);
 	m_LoadSuccess = m_Document.LoadFile();
 }
@@ -18,7 +18,7 @@ NNXML::~NNXML()
 
 }
 
-NNXML* NNXML::Create( char* path )
+NNXML* NNXML::Create( std::string path )
 {
 	NNXML* pInstacne = new NNXML(path);
 	return pInstacne;
@@ -30,7 +30,7 @@ NNXML* NNXML::Create()
 	return pInstacne;
 }
 
-TiXmlString NNXML::XPathToString( char* xpath )
+TiXmlString NNXML::XPathToString( std::string xpath )
 {
-	return TinyXPath::S_xpath_string(m_Document.RootElement(), xpath);
+	return TinyXPath::S_xpath_string(m_Document.RootElement(), xpath.c_str());
 }
