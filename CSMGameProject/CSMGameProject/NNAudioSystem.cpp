@@ -33,7 +33,7 @@ void NNAudioSystem::ReleaseInstance()
 
 void NNAudioSystem::Play( NNSound* sound )
 {
-	m_System->playSound( sound->GetSound(), nullptr, false, sound->GetChannelPointer() );
+	m_System->playSound( sound->GetSound(), m_ChannelGroup, false, sound->GetChannelPointer() );
 }
 void NNAudioSystem::Pause( NNSound* sound )
 {
