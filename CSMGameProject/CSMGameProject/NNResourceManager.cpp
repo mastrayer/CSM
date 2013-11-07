@@ -43,4 +43,11 @@ NNTexture* NNResourceManager::LoadTextureFromFile( std::wstring path )
 	return m_TextureTable[path];
 }
 
-
+NNXML* NNResourceManager::LoadXMLFromFIle( std::string path )
+{
+	if ( !m_XMLTable[path] )
+	{
+		m_XMLTable[path] = NNXML::Create( path );
+	}
+	return m_XMLTable[path];
+}

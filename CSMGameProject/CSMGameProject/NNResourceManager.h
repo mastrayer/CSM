@@ -3,6 +3,7 @@
 
 #include "NNConfig.h"
 #include "NNTexture.h"
+#include "NNXML.h"
 
 /* */
 /* NNResourceManager
@@ -17,7 +18,7 @@ private:
 
 private:
 	std::map<std::wstring,NNTexture*> m_TextureTable;
-
+	std::map<std::string,NNXML*> m_XMLTable;
 private:
 	NNResourceManager();
 	~NNResourceManager();
@@ -28,7 +29,7 @@ public:
 
 	//NNTexture* LoadTexture( std::string key );
 	NNTexture* LoadTextureFromFile( std::wstring path );
-	
+	NNXML* LoadXMLFromFIle( std::string path );
 };
 
 
