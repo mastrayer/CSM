@@ -5,7 +5,10 @@
 
 CameraSample::CameraSample()
 {
-	m_Sprite = NNSprite::Create(L"Sprite/character.png");
+	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
+	GetCamera().SetZoom( 2.f );
+
+	m_Sprite = NNSprite::Create(L"Sprite/walk_0.png");
 	AddChild(m_Sprite);
 }
 CameraSample::~CameraSample()

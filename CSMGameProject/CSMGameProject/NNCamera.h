@@ -35,6 +35,10 @@ public:
 	int GetScreenWidth() const { return m_ScreenWidth; }
 	int GetScreenHeight() const { return m_ScreenHeight; }
 
+	void SetPosition( NNPoint position ) { m_Position = position; }
+	void SetPosition( float x, float y ) { m_Position = NNPoint(x,y); }
+	void SetRotation( float rotation ) { m_Rotation = rotation; }
+	void SetZoom( float zoom ) { m_Zoom = zoom; }
 	void SetCenter( NNPoint center )
 	{
 		m_Center = center;
@@ -47,34 +51,36 @@ public:
 	}
 	void SetCameraAnchor( CameraAnchor anchor )
 	{
+		m_Anchor = anchor;
+
 		switch ( anchor )
 		{
 		case CameraAnchor::TOP_LEFT:
 			m_Center = NNPoint(0.f,0.f);
 			break;
 		case CameraAnchor::TOP_CENTER:
-			m_Center = NNPoint(0.f,(float)m_ScreenWidth/2.f);
+			m_Center = NNPoint((float)m_ScreenWidth/2.f, 0.f);
 			break;
 		case CameraAnchor::TOP_RIGHT:
-			m_Center = NNPoint(0.f,(float)m_ScreenWidth);
+			m_Center = NNPoint((float)m_ScreenWidth, 0.f);
 			break;
 		case CameraAnchor::MIDDLE_LEFT:
-			m_Center = NNPoint((float)m_ScreenHeight/2.f,0.f);
+			m_Center = NNPoint(0.f, (float)m_ScreenHeight/2.f);
 			break;
 		case CameraAnchor::MIDDLE_CENTER:
-			m_Center = NNPoint((float)m_ScreenHeight/2.f,(float)m_ScreenWidth/2.f);
+			m_Center = NNPoint((float)m_ScreenWidth/2.f, (float)m_ScreenHeight/2.f);
 			break;
 		case CameraAnchor::MIDDLE_RIGHT:
-			m_Center = NNPoint((float)m_ScreenHeight/2.f,(float)m_ScreenWidth);
+			m_Center = NNPoint((float)m_ScreenWidth, (float)m_ScreenHeight/2.f);
 			break;
 		case CameraAnchor::BOTTOM_LEFT:
-			m_Center = NNPoint((float)m_ScreenHeight,0.f);
+			m_Center = NNPoint(0.f, (float)m_ScreenHeight);
 			break;
 		case CameraAnchor::BOTTOM_CENTER:
-			m_Center = NNPoint((float)m_ScreenHeight,(float)m_ScreenWidth/2.f);
+			m_Center = NNPoint((float)m_ScreenWidth/2.f, (float)m_ScreenHeight);
 			break;
 		case CameraAnchor::BOTTOM_RIGHT:
-			m_Center = NNPoint((float)m_ScreenHeight,(float)m_ScreenWidth);
+			m_Center = NNPoint((float)m_ScreenWidth, (float)m_ScreenHeight);
 			break;
 		}
 	}

@@ -17,11 +17,11 @@ public:
 
 	static NNScene* Create();
 
-	void Render();
-	void Update( float dTime );
+	virtual void Render();
+	virtual void Update( float dTime );
 
-	NNCamera* GetCamera() const { return m_Camera; }
+	NNCamera& GetCamera() { return m_Camera; }
 
 protected:
-	NNCamera* m_Camera;
+	NNCamera m_Camera;
 };
