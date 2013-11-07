@@ -360,6 +360,9 @@
             this.minimap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimap.TabIndex = 2;
             this.minimap.TabStop = false;
+            this.minimap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseDown);
+            this.minimap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseMove);
+            this.minimap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.minimap_MouseUp);
             // 
             // layers
             // 
@@ -524,7 +527,6 @@
         private System.Windows.Forms.ToolStripMenuItem menu_item_close;
         private System.Windows.Forms.ToolStripMenuItem menu_item_close_all;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        private System.Windows.Forms.PictureBox minimap;
         private System.Windows.Forms.TreeView contents;
 
         private System.Windows.Forms.ComboBox layers;
@@ -533,8 +535,9 @@
         private System.Windows.Forms.Button button_new;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel main_map_panel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox magnification;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.PictureBox minimap;
 
     }
 }

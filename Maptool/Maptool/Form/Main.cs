@@ -97,17 +97,17 @@ namespace Maptool
                 Map.Initialize();
             }
         }*/
-
         public void Minimap_update()
         {
             Image img = mainMap.work_map.Image;
             Bitmap bmpMod = new Bitmap(img.Width, img.Height);
+            bmpMod.Size = new Size(10, 10);
             Graphics g = Graphics.FromImage(bmpMod);
             Pen pen = new Pen(Color.Black, 10);
 
             g.DrawImage(img, 0, 0, bmpMod.Width, bmpMod.Height);
 
-            g.DrawRectangle(pen, new Rectangle(mainMap.HorizontalScroll.Value, mainMap.VerticalScroll.Value, main_map_panel.Width -30, main_map_panel.Height-50));
+            g.DrawRectangle(pen, new Rectangle(mainMap.HorizontalScroll.Value, mainMap.VerticalScroll.Value, main_map_panel.Width - 30, main_map_panel.Height - 50 ));
 
             g.Dispose();
             minimap.Image = bmpMod;
@@ -172,9 +172,19 @@ namespace Maptool
         public Main()
         {
             InitializeComponent();
+            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.main_map_Wheel);
 
             init();
 
+        }
+        private void main_map_Wheel(object sender, MouseEventArgs e)
+        {
+            if ((e.Delta / 120) > 0)
+                MessageBox.Show(" UP ");
+            else
+                MessageBox.Show(" DOWN ");
+
+            ((main_map)sender).VerticalScroll.Value += 10;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -287,6 +297,37 @@ namespace Maptool
         private void magnification_TextChanged(object sender, EventArgs e)
         {
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
+        }
+
+        private void minimapViewMove(MouseEventArgs e)
+        {
+             double w = e.X * TileSize / (minimap.Width / mainMap.MapSize.Width);
+             double h = e.Y * TileSize / (minimap.Height / mainMap.MapSize.Height);
+
+             mainMap.VerticalScroll.Value = Convert.ToInt32(h);
+             mainMap.HorizontalScroll.Value = Convert.ToInt32(w);
+             mainMap.PerformLayout();
+
+             Minimap_update();
+        }
+
+        bool isMinimapDrag = false;
+        private void minimap_MouseDown(object sender, MouseEventArgs e)
+        {
+            isMinimapDrag = true;
+            minimapViewMove(e);
+        }
+
+        private void minimap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.X <= 0 || e.X >= minimap.Width || e.Y <= 0 || e.Y >= minimap.Height) return;
+            if (isMinimapDrag)
+                minimapViewMove(e);
+        }
+
+        private void minimap_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMinimapDrag = false;
         }
     }
 }
