@@ -152,14 +152,19 @@ namespace Maptool
 
         private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
-            label2.Text = ((main_map)sender).ScrollToControl(this).ToString() + "." + ((main_map)sender).VerticalScroll.Value.ToString();
+            mainForm.label1.Text = ((main_map)sender).ScrollToControl(this).ToString() + "." + ((main_map)sender).VerticalScroll.Value.ToString();
             work_map.Image = flag;
             mainForm.Minimap_update();
         }
 
         private void main_map_Wheel(object sender, MouseEventArgs e)
         {
-            
+            if ((e.Delta / 120) > 0)
+                MessageBox.Show(" UP ");
+            else
+                MessageBox.Show(" DOWN ");
+
+            ((main_map)sender).VerticalScroll.Value += 10;
         }
     }/*
     public class GridCell : PictureBox
