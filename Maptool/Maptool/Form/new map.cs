@@ -12,8 +12,11 @@ namespace Maptool
 {
     public partial class new_map : Form
     {
-        public new_map()
+        Main mainForm;
+
+        public new_map(Main form)
         {
+            mainForm = form;
             InitializeComponent();
             select_map_tile.SelectedIndex = 0;
         }
@@ -30,8 +33,12 @@ namespace Maptool
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            int a = Convert.ToInt32(this.width.Text) * Convert.ToInt32(this.height.Text);
-            MessageBox.Show(a.ToString());
+            mainForm.mainMap.Dispose();
+            mainForm.mainMap_init(Convert.ToInt32(this.width.Text), Convert.ToInt32(this.height.Text));
+
+            this.Dispose();
+//             int a = Convert.ToInt32(this.width.Text) * Convert.ToInt32(this.height.Text);
+//             MessageBox.Show(a.ToString());
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
