@@ -3,7 +3,6 @@
 #include "NNInputSystem.h"
 #include "NNAudioSystem.h"
 #include "NNResourceManager.h"
-#include <stdio.h>
 
 NNApplication* NNApplication::m_pInstance = nullptr;
 
