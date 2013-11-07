@@ -16,6 +16,18 @@ NNResourceManager::~NNResourceManager()
 		SafeDelete( iter->second );
 	}
 	m_TextureTable.clear();
+
+	for (auto& iter=m_XMLTable.begin(); iter!=m_XMLTable.end(); iter++ )
+	{
+		SafeDelete( iter->second );
+	}
+	m_TextureTable.clear();
+
+	for (auto& iter=m_SoundTable.begin(); iter!=m_SoundTable.end(); iter++ )
+	{
+		SafeDelete( iter->second );
+	}
+	m_TextureTable.clear();
 }
 
 NNResourceManager* NNResourceManager::GetInstance()
@@ -52,11 +64,11 @@ NNXML* NNResourceManager::LoadXMLFromFIle( std::string path )
 	return m_XMLTable[path];
 }
 
-NNSound* NNResourceManager::LoadSoundFromFile( std::string path )
+NNSound* NNResourceManager::LoadSoundFromFile( std::string path, bool isLoop, bool isBackground )
 {
 	if ( !m_SoundTable[path] )
 	{
-		m_SoundTable[path] = NNSound::Create( path );
+		m_SoundTable[path] = NNSound::Create( path, isLoop, isBackground );
 	}
 	return m_SoundTable[path];
 }

@@ -32,7 +32,7 @@ public:
 	//NNTexture* LoadTexture( std::string key );
 	NNTexture* LoadTextureFromFile( std::wstring path );
 	NNXML* LoadXMLFromFIle( std::string path );
-	NNSound* LoadSoundFromFile( std::string path );
+	NNSound* LoadSoundFromFile( std::string path, bool isLoop=false, bool isBackground=false );
 };
 
 
