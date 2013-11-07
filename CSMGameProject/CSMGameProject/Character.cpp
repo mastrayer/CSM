@@ -22,8 +22,8 @@ CCharacter::CCharacter(void):m_CharacterSprite(NULL)
 	m_LogLabel->SetPosition(50.f,50.f);
 	AddChild(m_LogLabel);
 
-	NNAudioSystem::GetInstance()->AddEffectSound( "Effect", L"Sound/effect.wav" );
-	NNAudioSystem::GetInstance()->AddEffectSound( "Effect1", L"Sound/effect1.mp3" );
+	//NNAudioSystem::GetInstance()->AddEffectSound( "Effect", L"Sound/effect.wav" );
+	//NNAudioSystem::GetInstance()->AddEffectSound( "Effect1", L"Sound/effect1.mp3" );
 
 }
 
@@ -121,11 +121,11 @@ void CCharacter::Update( float dTime)
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( '5' ) == KEY_DOWN )
 	{
-		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
+//		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( '6' ) == KEY_DOWN )
 {
-		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
+	//	NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
 	}
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
