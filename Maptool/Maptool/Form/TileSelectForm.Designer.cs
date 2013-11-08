@@ -28,65 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.Prev = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
+            this.ImageIndex = new System.Windows.Forms.Label();
+            this.ImageLoadPanel = new System.Windows.Forms.PictureBox();
+            this.Selected = new System.Windows.Forms.PictureBox();
             this.OpenTileSet = new System.Windows.Forms.Button();
             this.DelTileSet = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageLoadPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Selected)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // Prev
             // 
-            this.button1.Location = new System.Drawing.Point(68, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(20, 20);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "<<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Prev.Location = new System.Drawing.Point(68, 5);
+            this.Prev.Name = "Prev";
+            this.Prev.Size = new System.Drawing.Size(20, 20);
+            this.Prev.TabIndex = 0;
+            this.Prev.Text = "<<";
+            this.Prev.UseVisualStyleBackColor = true;
+            this.Prev.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // Next
             // 
-            this.button2.Location = new System.Drawing.Point(138, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(20, 20);
-            this.button2.TabIndex = 1;
-            this.button2.Text = ">";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Next.Location = new System.Drawing.Point(138, 5);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(20, 20);
+            this.Next.TabIndex = 1;
+            this.Next.Text = ">";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label1
+            // ImageIndex
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "0 / 0";
+            this.ImageIndex.AutoSize = true;
+            this.ImageIndex.Location = new System.Drawing.Point(97, 10);
+            this.ImageIndex.Name = "ImageIndex";
+            this.ImageIndex.Size = new System.Drawing.Size(31, 12);
+            this.ImageIndex.TabIndex = 2;
+            this.ImageIndex.Text = "0 / 0";
             // 
-            // pictureBox1
+            // ImageLoadPanel
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 68);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(300, 400);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.ImageLoadPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ImageLoadPanel.Location = new System.Drawing.Point(0, 68);
+            this.ImageLoadPanel.Name = "ImageLoadPanel";
+            this.ImageLoadPanel.Size = new System.Drawing.Size(300, 400);
+            this.ImageLoadPanel.TabIndex = 3;
+            this.ImageLoadPanel.TabStop = false;
+            this.ImageLoadPanel.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.ImageLoadPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
-            // pictureBox2
+            // Selected
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
+            this.Selected.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Selected.Location = new System.Drawing.Point(0, 0);
+            this.Selected.Name = "Selected";
+            this.Selected.Size = new System.Drawing.Size(64, 64);
+            this.Selected.TabIndex = 4;
+            this.Selected.TabStop = false;
             // 
             // OpenTileSet
             // 
@@ -110,27 +111,37 @@
             this.DelTileSet.UseVisualStyleBackColor = false;
             this.DelTileSet.Click += new System.EventHandler(this.DelTileSet_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(215, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "label2";
+            // 
             // TileSelectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(292, 469);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.DelTileSet);
             this.Controls.Add(this.OpenTileSet);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Selected);
+            this.Controls.Add(this.ImageLoadPanel);
+            this.Controls.Add(this.ImageIndex);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.Prev);
             this.Location = new System.Drawing.Point(100, 100);
             this.Name = "TileSelectForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "TileSelectForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TileSelectForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageLoadPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Selected)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,12 +149,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        public System.Windows.Forms.PictureBox pictureBox1;
-        public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button Prev;
+        private System.Windows.Forms.Button Next;
+        public System.Windows.Forms.PictureBox ImageLoadPanel;
+        public System.Windows.Forms.Label ImageIndex;
+        private System.Windows.Forms.PictureBox Selected;
         private System.Windows.Forms.Button OpenTileSet;
         private System.Windows.Forms.Button DelTileSet;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -14,18 +14,18 @@ namespace Maptool
     {
         public int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
         public Size MapSize;
-        public _tile[,] grid;
+        public Tile[,] grid;
         public Point highlight;
         int brush = Convert.ToInt32(Maptool.Properties.Resources.GRID_CELL_WIDTH);
         public Bitmap flag;
         Main mainForm;
 
-        public struct _tile
+        public struct Tile
         {
             public Point TileLocation;
-            public int TIleSetIndex;
+            public int TIleSetID;
             public int Attribute;
-            public Bitmap Tile;
+            public Bitmap tile;
         };
         public main_map(int width, int height, Main Form)
         {
@@ -33,7 +33,7 @@ namespace Maptool
 
             mainForm = Form;
             MapSize = new Size(width, height);
-            grid = new _tile[MapSize.Width, MapSize.Height];
+            grid = new Tile[MapSize.Width, MapSize.Height];
             work_map.Size = new Size(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
             highlight = new Point(0, 0);
             flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
@@ -60,7 +60,6 @@ namespace Maptool
             highlightPen.Dispose();
             //temp.Dispose();
         }
-
         private void GridCellClick(object sender, EventArgs e)
         {
             MouseEventArgs Event = (MouseEventArgs)e;
@@ -68,29 +67,20 @@ namespace Maptool
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
 
+            grid[x / TileSize, y / TileSize] = mainForm.TileSelectWindow.SelectedTile;
+
             Graphics g = Graphics.FromImage(flag);
-            g.DrawImage(mainForm.TileSelectWindow.SelectedTile.Tile, new Point(x, y));
+            g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
 
             work_map.Image = flag;
             mainForm.Minimap_update();
 
             g.Dispose();
         }
-
         private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
             work_map.Image = flag;
             mainForm.Minimap_update();
-        }
-
-        private void main_map_Wheel(object sender, MouseEventArgs e)
-        {
-            if ((e.Delta / 120) > 0)
-                MessageBox.Show(" UP ");
-            else
-                MessageBox.Show(" DOWN ");
-
-            ((main_map)sender).VerticalScroll.Value += 10;
         }
     }
 }

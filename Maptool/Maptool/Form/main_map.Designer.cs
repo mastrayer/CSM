@@ -48,10 +48,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(810, 620);
             this.ControlBox = false;
             this.Controls.Add(this.work_map);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "main_map";
             this.ShowIcon = false;
@@ -59,7 +61,6 @@
             this.Text = "main_map";
             this.TopMost = true;
             this.Scroll += new System.Windows.Forms.ScrollEventHandler(this.main_map_Scroll);
-            this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.main_map_Wheel);
             ((System.ComponentModel.ISupportInitialize)(this.work_map)).EndInit();
             this.ResumeLayout(false);
 
