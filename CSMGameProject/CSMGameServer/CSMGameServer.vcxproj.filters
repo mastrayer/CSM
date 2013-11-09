@@ -13,11 +13,17 @@
     <Filter Include="Core\System">
       <UniqueIdentifier>{10fc5e95-86df-4598-9b65-2355c40907fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\ABCircularBuffer">
+      <UniqueIdentifier>{ffc6e7d9-3521-4a11-962e-22947547159d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="System.cpp">
       <Filter>Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="ABCircularBuffer.cpp">
+      <Filter>Core\ABCircularBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -26,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="ABCircularBuffer.h">
+      <Filter>Core\ABCircularBuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

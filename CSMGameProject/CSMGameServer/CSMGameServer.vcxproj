@@ -78,10 +78,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ABCircularBuffer.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="System.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ABCircularBuffer.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="System.h" />
   </ItemGroup>
