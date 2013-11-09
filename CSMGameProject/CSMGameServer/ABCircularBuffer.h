@@ -1,12 +1,13 @@
 
 #pragma once
 
+#include <windows.h>
 #include <assert.h>
 
 class ABCircularBuffer
 {
 public:
-	ABCircularBuffer();
+	ABCircularBuffer( int capacity );
 	~ABCircularBuffer();
 
 	char* Reserve( int size, OUT int& reserved );
