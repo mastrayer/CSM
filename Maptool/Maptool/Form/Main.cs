@@ -78,55 +78,6 @@ namespace Maptool
             }
             bitmapID = TileList.Count;
         }
-        private void ReadXML()
-        {
-//             string folder = @"c:\Some\Folder";
-//             string output = @"D:\OtherFolder";
-// 
-//             string outputFilename = Path.Combine(output, string.Format("Archive{0}.zip", DateTime.Now.ToString("yyyymmDD")));
-// 
-//             System.IO.Compression.GZipStream.ZipFIle a;
-//             using (ZipFile zip = new ZipFile())
-//             {
-//                 // Add all files in directory
-//                 foreach(var file in Directory.EnumerateFiles(folder))
-//                    zip.AddFile(file);
-// 
-//                 // Save to output filename
-//                 zip.Save(outputFilename);
-//             }
-
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(@"test.xml");
-            XmlElement root = xmldoc.DocumentElement;
-
-            // 노드 요소들
-            XmlNodeList nodes = root.ChildNodes;
-
-            // 노드 요소의 값을 읽어 옵니다.
-            foreach (XmlNode node in nodes)
-            {
-                switch (node.Name)
-                {
-                    case "root_a":
-                        MessageBox.Show(node.InnerText);
-                        break;
-
-                    case "root_b":
-
-                        MessageBox.Show(node["b"].InnerText + "." + node["bb"].InnerText);
-                        string b = node["b"].InnerText;
-                        string bb = node["bb"].InnerText;
-                        break;
-
-                    case "root_c":
-
-                        MessageBox.Show((int.Parse(node.InnerText)).ToString());
-                        int c = int.Parse(node.InnerText);
-                        break;
-                }
-            }
-        }
         public void Minimap_update()
         {
             if (minimapImage != null)
@@ -159,6 +110,9 @@ namespace Maptool
         }
         public void mainMap_init(int width, int height)
         {
+            if (mainMap != null)
+                mainMap.Dispose();
+
             mainMap = new main_map(width, height, this);
 
             mainMap.TopLevel = false;
@@ -240,18 +194,30 @@ namespace Maptool
                     {
                         for (int j = 0; j < mainMap.MapSize.Height; ++j)
                         {
-                            textWriter.WriteStartElement(i.ToString() + "/" + j.ToString());
+                            textWriter.WriteStartElement("t" + i.ToString() + "-" + j.ToString());
                             {
-                                textWriter.WriteStartElement("TileSetIndex");
-                                textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
-                                textWriter.WriteEndElement();
+                                textWriter.WriteStartElement("TileImageInfo");
+                                {
+                                    textWriter.WriteStartAttribute("Index");
+                                    textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
+                                    textWriter.WriteEndAttribute();
 
-                                textWriter.WriteStartElement("Location");
-                                textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString() + "/" + mainMap.grid[i, j].TileLocation.Y.ToString());
+                                    textWriter.WriteStartAttribute("X");
+                                    textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString());
+                                    textWriter.WriteEndAttribute();
+
+                                    textWriter.WriteStartAttribute("Y");
+                                    textWriter.WriteString(mainMap.grid[i, j].TileLocation.Y.ToString());
+                                    textWriter.WriteEndAttribute();
+                                }
                                 textWriter.WriteEndElement();
 
                                 textWriter.WriteStartElement("Attribute");
-                                textWriter.WriteString(mainMap.grid[i, j].Attribute.ToString());
+                                {
+                                    textWriter.WriteStartAttribute("value");
+                                    textWriter.WriteString(mainMap.grid[i, j].Attribute.ToString());
+                                    textWriter.WriteEndAttribute();
+                                }
                                 textWriter.WriteEndElement();
                             }
                             textWriter.WriteEndElement();
@@ -287,6 +253,53 @@ namespace Maptool
             foreach (string file in files)
                 File.Delete(file);
         }
+        private void XMLRead(String fileName)
+        {
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(fileName);
+            TileList.Clear();
+
+            int width=0, height=0;
+            int usedTileSetCount = 0;
+
+            XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
+            foreach (XmlNode xn in xnList)
+            {
+                width = Convert.ToInt32(xn["size"].Attributes["width"].Value);
+                height = Convert.ToInt32(xn["size"].Attributes["height"].Value);
+                usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
+            }
+            for (int i = 0; i < usedTileSetCount; ++i)
+                TileList.Add(new BitmapList(bitmapID++, new Bitmap("temp\\" + "TileSet" + i.ToString())));
+            TileSelectWindow.changeImage(TileList.Count - 1);
+
+            mainMap_init(width, height);
+            for (int i = 0; i < width; ++i)
+            {
+                for (int j = 0; j < height; ++j)
+                {
+                    xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+
+                    foreach (XmlNode xn in xnList)
+                    {
+                        string index = xn["TileImageInfo"].Attributes["Index"].InnerText;
+                        string x = xn["TileImageInfo"].Attributes["X"].InnerText;
+                        string y = xn["TileImageInfo"].Attributes["Y"].InnerText;
+                        string attribute = xn["Attribute"].Attributes["value"].InnerText;
+
+                        mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                        mainMap.grid[i, j].TIleSetID = Convert.ToInt32(index);
+                        mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(x);
+                        mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(y);
+                        mainMap.grid[i, j].tile = TileList[Convert.ToInt32(index)].image.Clone(new Rectangle(new Point(Convert.ToInt32(x), Convert.ToInt32(y)), new Size(TileSize, TileSize)), TileList[Convert.ToInt32(index)].image.PixelFormat);
+
+                        mainMap.grid[i, j].tile.Save(i.ToString() + j.ToString() + ".png");
+                    }
+                }
+            }
+            mainMap.refresh();
+            Minimap_update();
+        }
         private void menu_item_save_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -306,7 +319,6 @@ namespace Maptool
 
         private void menu_item_open_Click(object sender, EventArgs e)
         {
-            System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "CSM Map files|*.CSM";
@@ -316,32 +328,20 @@ namespace Maptool
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                string sDirPath = Application.StartupPath + "\\temp";
+                DirectoryInfo di = new DirectoryInfo(sDirPath);
+                if (di.Exists == false)
+                    di.Create();
+
                 string zipToUnpack = openFileDialog1.FileName;
-                string unpackDirectory = System.IO.Directory.GetCurrentDirectory();
+                string unpackDirectory = "temp\\";
+
                 using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
                 {
-                    // here, we extract every entry, but we could extract conditionally
-                    // based on entry name, size, date, checkbox status, etc.  
                     foreach (ZipEntry a in zip1)
-                    {
                         a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
-                    }
                 }
-// 
-//                 XmlTextReader reader = new XmlTextReader(openFileDialog1.FileName); // xml 파일을 엽니다
-// 
-//                 while (reader.Read()) //xml 을 읽습니다.
-//                 {
-//                     switch (reader.LocalName) // 속성을 읽습니다.
-//                     {
-//                         case "1": // thumbnail 이라는 속성이 있을때 다음 명령을 실행합니다.
-//                             label1.Text = reader.ReadElementContentAsString();
-//                             break;
-//                         case "2": // total 이라는 속성이 있을경우 다음명령을 실행합니다.
-//                             label2.Text = reader.ReadElementContentAsString();
-//                             break;
-//                     }
-//                 }
+                XMLRead(@"temp\\map.xml");
             }
 
         }
@@ -400,6 +400,11 @@ namespace Maptool
         private void minimap_MouseUp(object sender, MouseEventArgs e)
         {
             isMinimapDrag = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mainMap.refresh();
         }
     }
 }
