@@ -6,10 +6,7 @@
 */
 #pragma once
 
-#include <winsock2.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <map>
+#include "Packet.h"
 
 class System
 {
@@ -19,7 +16,6 @@ public:
 
 	void AddClient( SOCKET sock );
 	void RemoveClient( SOCKET sock );
-
 
 
 private:

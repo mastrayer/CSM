@@ -1,4 +1,5 @@
 
+#include "PreComfiled.h"
 #include "ABCircularBuffer.h"
 
 ABCircularBuffer::ABCircularBuffer( int capacity )

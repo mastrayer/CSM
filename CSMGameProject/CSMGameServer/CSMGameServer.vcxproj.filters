@@ -16,6 +16,9 @@
     <Filter Include="Core\ABCircularBuffer">
       <UniqueIdentifier>{ffc6e7d9-3521-4a11-962e-22947547159d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\ClientInfo">
+      <UniqueIdentifier>{b60459ea-6ef0-4a34-a9bf-7352395364cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -25,6 +28,10 @@
     <ClCompile Include="ABCircularBuffer.cpp">
       <Filter>Core\ABCircularBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="ClientInfo.cpp">
+      <Filter>Core\ClientInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="PreComfiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Packet.h">
@@ -36,5 +43,9 @@
     <ClInclude Include="ABCircularBuffer.h">
       <Filter>Core\ABCircularBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="ClientInfo.h">
+      <Filter>Core\ClientInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="PreComfiled.h" />
   </ItemGroup>
 </Project>
