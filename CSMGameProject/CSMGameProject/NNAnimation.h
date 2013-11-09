@@ -16,6 +16,8 @@ public:
 	static NNAnimation* Create( int count, ... );
 	static NNAnimation* Create();
 
+	NNSpriteNode* GetItem( int no ) { return m_SpriteList[no]; }
+
 	int GetFrameCount() const { return m_FrameCount; }
 	int GetNowFrame() const { return m_Frame; }
 	bool IsLoop() const { return m_Loop; }
