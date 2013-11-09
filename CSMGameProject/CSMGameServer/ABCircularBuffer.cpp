@@ -80,7 +80,39 @@ char* ABCircularBuffer::Reserve( int size, OUT int& reserved )
 }
 void ABCircularBuffer::Commit( int size )
 {
+	if ( size == 0 )
+	{
+		m_SizeReserve = 0;
+		m_IndexReserve = 0;
+		return;
+	}
 
+	if ( size > m_SizeReserve )
+	{
+		assert(false);
+		size = m_SizeReserve;
+	}
+
+	if ( m_SizeA == 0 && m_SizeB == 0 )
+	{
+		m_IndexA = m_IndexReserve;
+		m_SizeA = size;
+		m_IndexReserve = 0;
+		m_SizeReserve = 0;
+		return;
+	}
+
+	if ( m_IndexReserve == m_IndexA+m_SizeA )
+	{
+		m_SizeA += size;
+	}
+	else
+	{
+		m_SizeB += size;
+	}
+
+	m_IndexReserve = 0;
+	m_SizeReserve = 0;
 }
 
 char* ABCircularBuffer::GetFirstDataBlock( OUT int& size )
