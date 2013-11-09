@@ -10,6 +10,41 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
+    <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="DatabaseJobContext.cpp" />
+    <ClCompile Include="DatabaseJobManager.cpp" />
+    <ClCompile Include="DbHelper.cpp" />
+    <ClCompile Include="EasyServer.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CircularBuffer.h" />
+    <ClInclude Include="ClientManager.h" />
+    <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="DatabaseJobContext.h" />
+    <ClInclude Include="DatabaseJobManager.h" />
+    <ClInclude Include="DbHelper.h" />
+    <ClInclude Include="EasyServer.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="PacketType.h" />
+    <ClInclude Include="SPSCQueue.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
+    <ClInclude Include="SQLStatement.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2D19F49-C4E5-4C62-A9E1-A39ADA1071D0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -53,12 +88,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <PrecompiledHeaderFile>PreComfiled.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)\PreComfiled.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DbgHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,22 +115,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ABCircularBuffer.cpp" />
-    <ClCompile Include="ClientInfo.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PreComfiled.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="System.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ABCircularBuffer.h" />
-    <ClInclude Include="ClientInfo.h" />
-    <ClInclude Include="Packet.h" />
-    <ClInclude Include="PreComfiled.h" />
-    <ClInclude Include="System.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

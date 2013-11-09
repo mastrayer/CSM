@@ -1,51 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Core">
-      <UniqueIdentifier>{f2d14287-cd7f-4e92-9930-4f519a5ab2a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Logic">
-      <UniqueIdentifier>{5d84cc1c-b7ca-414d-9824-78a66a0a6d3d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Packet">
-      <UniqueIdentifier>{73370b78-e777-4661-9c63-60664e6ef180}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\System">
-      <UniqueIdentifier>{10fc5e95-86df-4598-9b65-2355c40907fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ABCircularBuffer">
-      <UniqueIdentifier>{ffc6e7d9-3521-4a11-962e-22947547159d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\ClientInfo">
-      <UniqueIdentifier>{b60459ea-6ef0-4a34-a9bf-7352395364cf}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="CircularBuffer.cpp">
+      <Filter>CircularBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientManager.cpp">
+      <Filter>ClientManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientSession.cpp">
+      <Filter>ClientSession</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseJobContext.cpp">
+      <Filter>DatabaseJobContext</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseJobManager.cpp">
+      <Filter>DatabaseJobManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DbHelper.cpp">
+      <Filter>DbHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="EasyServer.cpp">
+      <Filter>EasyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>sqlite3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="System.cpp">
-      <Filter>Core\System</Filter>
-    </ClCompile>
-    <ClCompile Include="ABCircularBuffer.cpp">
-      <Filter>Core\ABCircularBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="ClientInfo.cpp">
-      <Filter>Core\ClientInfo</Filter>
-    </ClCompile>
-    <ClCompile Include="PreComfiled.cpp" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="SPSCQueue.h" />
+    <ClInclude Include="SQLStatement.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="PacketType.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="CircularBuffer.h">
+      <Filter>CircularBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientManager.h">
+      <Filter>ClientManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientSession.h">
+      <Filter>ClientSession</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseJobContext.h">
+      <Filter>DatabaseJobContext</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseJobManager.h">
+      <Filter>DatabaseJobManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DbHelper.h">
+      <Filter>DbHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="EasyServer.h">
+      <Filter>EasyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3ext.h">
+      <Filter>sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>sqlite3</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Packet.h">
-      <Filter>Core\Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="System.h">
-      <Filter>Core\System</Filter>
-    </ClInclude>
-    <ClInclude Include="ABCircularBuffer.h">
-      <Filter>Core\ABCircularBuffer</Filter>
-    </ClInclude>
-    <ClInclude Include="ClientInfo.h">
-      <Filter>Core\ClientInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="PreComfiled.h" />
+    <Filter Include="CircularBuffer">
+      <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientManager">
+      <UniqueIdentifier>{77506c68-9f8a-4607-bc16-914cff7de7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientSession">
+      <UniqueIdentifier>{a3a8d734-b3f3-4c83-adfb-f8e9b5fa826d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DatabaseJobContext">
+      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DatabaseJobManager">
+      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DbHelper">
+      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EasyServer">
+      <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exception">
+      <UniqueIdentifier>{dba7c159-fd26-486e-a0d1-c134f124ed96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sqlite3">
+      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

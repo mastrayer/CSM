@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Config.h"
-#include "Packet.h"
+#include "PacketType.h"
 #include "CircularBuffer.h"
 #include <map>
 #include <WinSock2.h>
@@ -23,35 +23,37 @@ class ClientSession
 {
 public:
 	ClientSession(SOCKET sock)
-		: m_Connected(false), m_Logon(false), m_Socket(sock), m_PlayerId(-1), m_SendBuffer(BUFSIZE), m_RecvBuffer(BUFSIZE), m_OverlappedRequested(0)
-		, m_PosX(0), m_PosY(0), m_PosZ(0), m_DbUpdateCount(0)
+		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedRequested(0)
+		, mPosX(0), mPosY(0), mPosZ(0), mDbUpdateCount(0)
 	{
-		memset(&m_ClientAddr, 0, sizeof(SOCKADDR_IN)) ;
-		memset(m_PlayerName, 0, sizeof(m_PlayerName)) ;
+		memset(&mClientAddr, 0, sizeof(SOCKADDR_IN)) ;
+		memset(mPlayerName, 0, sizeof(mPlayerName)) ;
 	}
 	~ClientSession() {}
 
-	void	OnRead(size_t len);
-	void	OnWriteComplete(size_t len);
 
-	bool	OnConnect(SOCKADDR_IN* addr);
+	
+	void	OnRead(size_t len) ;
+	void	OnWriteComplete(size_t len) ;
 
-	bool	PostRecv();
+	bool	OnConnect(SOCKADDR_IN* addr) ;
+	
+	bool	PostRecv() ;
 
-	bool	Send(NNPacketHeader* pkt);
-	bool	Broadcast(NNPacketHeader* pkt);
+	bool	Send(PacketHeader* pkt) ;
+	bool	Broadcast(PacketHeader* pkt) ;
 
-	void	Disconnect();
+	void	Disconnect() ;
 
-	bool	IsConnected() const { return m_Connected; }
+	bool	IsConnected() const { return mConnected ; }
 
 	void	DatabaseJobDone(DatabaseJobContext* result) ;
 
 
 	/// 현재 Send/Recv 요청 중인 상태인지 검사하기 위함
-	void	IncOverlappedRequest() { ++m_OverlappedRequested; }
-	void	DecOverlappedRequest() { --m_OverlappedRequested; }
-	bool	DoingOverlappedOperation() const { return m_OverlappedRequested > 0; }
+	void	IncOverlappedRequest()		{ ++mOverlappedRequested ; }
+	void	DecOverlappedRequest()		{ --mOverlappedRequested ; }
+	bool	DoingOverlappedOperation() const { return mOverlappedRequested > 0 ; }
 
 private:
 	void	OnTick() ;
@@ -61,27 +63,27 @@ private:
 
 
 private:
-	double			m_PosX ;
-	double			m_PosY ;
-	double			m_PosZ ;
-	char			m_PlayerName[MAX_NAME_LEN] ;
+	double			mPosX ;
+	double			mPosY ;
+	double			mPosZ ;
+	char			mPlayerName[MAX_NAME_LEN] ;
 
 private:
-	bool			m_Connected ;
-	bool			m_Logon ;
-	SOCKET			m_Socket ;
+	bool			mConnected ;
+	bool			mLogon ;
+	SOCKET			mSocket ;
 
-	int				m_PlayerId ;
-	SOCKADDR_IN		m_ClientAddr ;
+	int				mPlayerId ;
+	SOCKADDR_IN		mClientAddr ;
 
-	CircularBuffer	m_SendBuffer ;
-	CircularBuffer	m_RecvBuffer ;
+	CircularBuffer	mSendBuffer ;
+	CircularBuffer	mRecvBuffer ;
 
-	OverlappedIO	m_OverlappedSend ;
-	OverlappedIO	m_OverlappedRecv ;
-	int				m_OverlappedRequested ;
+	OverlappedIO	mOverlappedSend ;
+	OverlappedIO	mOverlappedRecv ;
+	int				mOverlappedRequested ;
 
-	int				m_DbUpdateCount ; ///< DB에 주기적으로 업데이트 하기 위한 변수
+	int				mDbUpdateCount ; ///< DB에 주기적으로 업데이트 하기 위한 변수
 
 	friend class ClientManager ;
 } ;
