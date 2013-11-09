@@ -2,18 +2,18 @@
 #include "NNCircularBuffer.h"
 #include <memory.h>
 
-NNCircleBuffer::NNCircleBuffer( size_t capacity )
+NNCircularBuffer::NNCircularBuffer( size_t capacity )
 	: m_BeginIndex(0), m_EndIndex(0), m_CurrentSize(0), m_Capacity(capacity)
 {
 	m_Data = new char[capacity];
 }
 
-NNCircleBuffer::~NNCircleBuffer()
+NNCircularBuffer::~NNCircularBuffer()
 {
 	delete[] m_Data;
 }
 
-bool NNCircleBuffer::Write( const char* data, size_t bytes )
+bool NNCircularBuffer::Write( const char* data, size_t bytes )
 {
 	if ( bytes == 0 )
 	{
@@ -52,7 +52,7 @@ bool NNCircleBuffer::Write( const char* data, size_t bytes )
 	return true;
 }
 
-bool NNCircleBuffer::Read( char* data, size_t bytes )
+bool NNCircularBuffer::Read( char* data, size_t bytes )
 {
 	if ( bytes == 0 )
 	{
@@ -89,7 +89,7 @@ bool NNCircleBuffer::Read( char* data, size_t bytes )
 	return true;
 }
 
-void NNCircleBuffer::Peek( char* data )
+void NNCircularBuffer::Peek( char* data )
 {
 	if ( m_CurrentSize <= m_Capacity-m_BeginIndex )
 	{
@@ -104,7 +104,7 @@ void NNCircleBuffer::Peek( char* data )
 	}
 }
 
-bool NNCircleBuffer::Peek( char* data, size_t bytes )
+bool NNCircularBuffer::Peek( char* data, size_t bytes )
 {
 	if ( bytes == 0 )
 	{
@@ -132,7 +132,7 @@ bool NNCircleBuffer::Peek( char* data, size_t bytes )
 	return true;
 }
 
-bool NNCircleBuffer::Consume( size_t bytes )
+bool NNCircularBuffer::Consume( size_t bytes )
 {
 	if ( bytes == 0 )
 	{
