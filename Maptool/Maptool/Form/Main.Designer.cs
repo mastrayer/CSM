@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11});
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode13});
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30,
+            treeNode31,
+            treeNode32});
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -349,23 +349,23 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 272);
             this.contents.Name = "contents";
-            treeNode8.Name = "tile_empty";
-            treeNode8.Text = "empty";
-            treeNode9.Name = "tile_water";
-            treeNode9.Text = "water";
-            treeNode10.Name = "tile_soil";
-            treeNode10.Text = "soil";
-            treeNode11.Name = "노드0";
-            treeNode11.Text = "노드0";
-            treeNode12.Name = "tile";
-            treeNode12.Text = "tile";
-            treeNode13.Name = "structure_";
-            treeNode13.Text = "노드5";
-            treeNode14.Name = "structure";
-            treeNode14.Text = "structure";
+            treeNode29.Name = "tile_empty";
+            treeNode29.Text = "empty";
+            treeNode30.Name = "tile_water";
+            treeNode30.Text = "water";
+            treeNode31.Name = "tile_soil";
+            treeNode31.Text = "soil";
+            treeNode32.Name = "노드0";
+            treeNode32.Text = "노드0";
+            treeNode33.Name = "tile";
+            treeNode33.Text = "tile";
+            treeNode34.Name = "structure_";
+            treeNode34.Text = "노드5";
+            treeNode35.Name = "structure";
+            treeNode35.Text = "structure";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12,
-            treeNode14});
+            treeNode33,
+            treeNode35});
             this.contents.Size = new System.Drawing.Size(192, 464);
             this.contents.TabIndex = 3;
             // 
@@ -404,6 +404,7 @@
             this.button_load.Name = "button_load";
             this.button_load.Size = new System.Drawing.Size(30, 30);
             this.button_load.TabIndex = 5;
+            this.button_load.TabStop = false;
             this.button_load.UseVisualStyleBackColor = false;
             this.button_load.Click += new System.EventHandler(this.menu_item_open_Click);
             // 
@@ -415,6 +416,7 @@
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(30, 30);
             this.button_save.TabIndex = 4;
+            this.button_save.TabStop = false;
             this.button_save.UseVisualStyleBackColor = false;
             this.button_save.Click += new System.EventHandler(this.menu_item_save_Click);
             // 
@@ -427,6 +429,7 @@
             this.button_new.Name = "button_new";
             this.button_new.Size = new System.Drawing.Size(30, 30);
             this.button_new.TabIndex = 6;
+            this.button_new.TabStop = false;
             this.button_new.UseVisualStyleBackColor = false;
             this.button_new.Click += new System.EventHandler(this.menu_item_new_Click);
             // 
@@ -450,7 +453,8 @@
             this.main_map_panel.Location = new System.Drawing.Point(192, 80);
             this.main_map_panel.Name = "main_map_panel";
             this.main_map_panel.Size = new System.Drawing.Size(824, 641);
-            this.main_map_panel.TabIndex = 11;
+            this.main_map_panel.TabIndex = 0;
+            this.main_map_panel.TabStop = true;
             // 
             // magnification
             // 

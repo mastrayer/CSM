@@ -19,10 +19,10 @@ namespace Maptool
         {
             InitializeComponent();
             mainForm = form;
-            SelectedTile.Tile = new Bitmap(TileSize, TileSize);
+            SelectedTile.tile = new Bitmap(TileSize, TileSize);
         }
 
-        public main_map._tile SelectedTile;
+        public main_map.Tile SelectedTile;
         int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
         private Main mainForm ;
 
@@ -31,25 +31,27 @@ namespace Maptool
             if (mainForm.TileList.Count == 0)
             {
                 this.Size = new Size(300, 500);
-                this.pictureBox1.Size = new Size(300, 400);
+                this.ImageLoadPanel.Size = new Size(300, 400);
                 bmp = new Bitmap(300, 400);
-                this.pictureBox1.Image = bmp;
-                this.label1.Text = "0 / 0";
+                this.ImageLoadPanel.Image = bmp;
+                this.ImageIndex.Text = "0 / 0";
 
                 index = -1;
 
                 return;
             }
-            this.Size = new Size(mainForm.TileList[idx].Width + 5, mainForm.TileList[idx].Height + 95);
-            this.pictureBox1.Location = new Point(0, 64);
-            this.pictureBox1.Size = new Size(mainForm.TileList[idx].Width, mainForm.TileList[idx].Height);
+
+            this.label2.Text = mainForm.TileList[idx].ID.ToString();
+            this.Size = new Size(mainForm.TileList[idx].image.Width + 5, mainForm.TileList[idx].image.Height + 95);
+            this.ImageLoadPanel.Location = new Point(0, 64);
+            this.ImageLoadPanel.Size = new Size(mainForm.TileList[idx].image.Width, mainForm.TileList[idx].image.Height);
             //this.pictureBox1.Image = mainForm.TileList[idx];
 
-            this.label1.Text = (idx + 1).ToString() + " / " + mainForm.TileList.Count.ToString();
+            this.ImageIndex.Text = (idx + 1).ToString() + " / " + mainForm.TileList.Count.ToString();
 
             index = idx;
 
-            bmp = new Bitmap(mainForm.TileList[idx]);
+            bmp = new Bitmap(mainForm.TileList[idx].image);
 
             bmp = mainForm.drawGrid(bmp, new Pen(Color.Blue, brush), true, TileSize);
 
@@ -64,7 +66,7 @@ namespace Maptool
                     g.DrawRectangle(gridPen, i * TileSize, j * TileSize, TileSize, TileSize);
             }
             */
-            this.pictureBox1.Image = bmp;
+            this.ImageLoadPanel.Image = bmp;
             //g.Dispose();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -102,7 +104,7 @@ namespace Maptool
             highlight.X = e.X / TileSize;
             highlight.Y = e.Y / TileSize;
 
-            pictureBox1.Image = temp;
+            ImageLoadPanel.Image = temp;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -115,10 +117,10 @@ namespace Maptool
             int y = (Event.Y / TileSize) * TileSize;
 
             SelectedTile.TileLocation = new Point(x, y);
-            SelectedTile.TIleSetIndex = index;
-            SelectedTile.Tile = new Bitmap(TileSize, TileSize);
-            SelectedTile.Tile = mainForm.TileList[index].Clone(new Rectangle(new Point(x,y),new Size(TileSize, TileSize)), mainForm.TileList[index].PixelFormat);
-            pictureBox2.Image = SelectedTile.Tile;
+            SelectedTile.TIleSetID = mainForm.TileList[index].ID;
+            SelectedTile.tile = new Bitmap(TileSize, TileSize);
+            SelectedTile.tile = mainForm.TileList[index].image.Clone(new Rectangle(new Point(x,y),new Size(TileSize, TileSize)), mainForm.TileList[index].image.PixelFormat);
+            Selected.Image = SelectedTile.tile;
         }
 
         private void OpenTileSet_Click(object sender, EventArgs e)
@@ -126,7 +128,7 @@ namespace Maptool
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
             openFileDialog1.Filter = "image files (*.png)|*.png|All files (*.*)|*.*";
             openFileDialog1.FilterIndex = 2;
             openFileDialog1.RestoreDirectory = true;
@@ -139,7 +141,7 @@ namespace Maptool
                     {
                         using (myStream)
                         {
-                            mainForm.TileList.Add(new Bitmap(openFileDialog1.FileName));
+                            mainForm.TileList.Add(new Main.BitmapList(mainForm.bitmapID++, new Bitmap(openFileDialog1.FileName)));
                             mainForm.TileSelectWindow.Show();
 
                             mainForm.TileSelectWindow.changeImage(mainForm.TileList.Count - 1);
@@ -176,8 +178,19 @@ namespace Maptool
             if (count == 0)
                 return;
 
+            for (int i = 0; i < mainForm.mainMap.MapSize.Width; ++i)
+            {
+                for (int j = 0; j < mainForm.mainMap.MapSize.Height; ++j)
+                {
+                    if (mainForm.mainMap.grid[i, j].TIleSetID == mainForm.TileList[index].ID)
+                    {
+                        MessageBox.Show("이 이미지 파일이 사용중이므로 삭제할 수 없습니다. : [" + i.ToString() + "." + j.ToString() + "]");
+                        return;
+                    }
+                }
+            }
             mainForm.TileList.RemoveAt(index);
-            changeImage(0);
+            changeImage(index-1 < 0 ? 0 : index-1);
         }
     }
 }
