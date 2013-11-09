@@ -56,7 +56,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -186,6 +186,8 @@
     <ClInclude Include="NNSpriteNode.h" />
     <ClInclude Include="NNTexture.h" />
     <ClInclude Include="NNXML.h" />
+    <ClInclude Include="Packet.h" />
+    <ClInclude Include="PacketFunction.h" />
     <ClInclude Include="ParticleSample.h" />
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="NNSpriteAtlas.h" />
