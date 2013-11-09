@@ -145,24 +145,24 @@ void ABCircularBuffer::DecommitFirstDataBlock( int size )
 }
 int ABCircularBuffer::GetCommittedSize() const
 {
-
+	return m_SizeA + m_SizeB;
 }
 int ABCircularBuffer::GetReservationSize() const
 {
-
+	return m_SizeReserve;
 }
 int ABCircularBuffer::GetCapacity() const
 {
-
+	return m_Capacity;
 }
 
 
 //////////////////////////////////////////////////////////////////////////
 int ABCircularBuffer::GetSpaceAfterA() const
 {
-
+	return m_Capacity - (m_IndexA + m_SizeA);
 }
 int ABCircularBuffer::GetBFreeSpace() const
 {
-
+	return m_IndexA - (m_IndexB + m_SizeB);
 }
