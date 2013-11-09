@@ -11,7 +11,6 @@ using System.IO.Compression;
 using System.IO;
 
 using Ionic.Zip;
-using System.Runtime.InteropServices;
 
 using System.Xml;
 using System.Collections.Specialized;
@@ -21,36 +20,6 @@ namespace Maptool
 {
     public partial class Main : Form
     {
-        //[DllImport("Ionic.Zip.dll")]
-        //public static extern int TestFunc(int a, int b);
-        //public static extern 
-
-        public void test()
-        {
-            DirectoryInfo DI = new DirectoryInfo(@"C:\test");
-            FileInfo[] fi = DI.GetFiles();
-            String[] files = new String[fi.Length];
-            for (int i = 0; i < fi.Length; i++)
-                files[i] = fi[i].FullName;
-
-            byte[] b = null;
-            string d = null;
-
-            using (ZipFile zip = new ZipFile())
-            {
-
-                foreach (string file in files)
-                {
-                    b = System.Text.Encoding.Default.GetBytes(file);
-                    d = System.Text.Encoding.GetEncoding("IBM437").GetString(b);
-                    zip.AddEntry(d, "", File.ReadAllBytes(file));
-                }
-                zip.Save(@"c:\test\test.zip");
-            }
-        }
-
-
-
         // form
         public main_map mainMap;
         public TileSelectForm TileSelectWindow = null;
@@ -186,86 +155,48 @@ namespace Maptool
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            
+            DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
+            FileInfo[] fi = new FileInfo[TileList.Count + 1];
+            String[] files = new String[fi.Length];
 
-            /*
+            files[0] = "map.xml";
+            for (int i = 0; i < fi.Length -1; i++)
+                files[i+1] = "TileSet" + i.ToString();
 
-            FileStream sourceFile = File.OpenRead(@"C:\test\a.txt");
-            FileStream destFile = File.Create(@"C:\test\result.zip");
-            GZipStream compStream = new GZipStream(destFile, CompressionMode.Compress);
+            byte[] b = null;
+            string d = null;
 
-            try
+            using (ZipFile zip = new ZipFile())
             {
-                int theByte = sourceFile.ReadByte();
-                while (theByte != -1)
+                foreach (string file in files)
                 {
-                    compStream.WriteByte((byte)theByte);
-                    theByte = sourceFile.ReadByte();
+                    b = System.Text.Encoding.Default.GetBytes(file);
+                    d = System.Text.Encoding.GetEncoding("IBM437").GetString(b);
+                    zip.AddEntry(d, "", File.ReadAllBytes(file));
                 }
-            }
-            finally
-            {
-                compStream.Flush();
-                compStream.Dispose();
+                zip.Save(@"map.csm");
             }
 
-
-            string sourcepath2 = @"C:\test\result.zip";
-            string destFolder2 = @"C:\test\result\";
-            string destFilename2 = string.Format("sample_{0}.zip", DateTime.Now.ToString("MM_dd_yyyy"));
-            string destpath2 = System.IO.Path.Combine(destFolder2, destFilename2);
-            FileStream sourceFile2 = File.OpenRead(sourcepath2);
-            FileStream destFile2 = File.Create(destpath2);
-            GZipStream compStream2 = new GZipStream(destFile2, CompressionMode.Compress);
-
-            try
-            {
-                int theByte2 = sourceFile2.ReadByte();
-                while (theByte2 != -1)
-                {
-                    compStream2.WriteByte((byte)theByte2);
-                    theByte2 = sourceFile2.ReadByte();
-                }
-            }
-            finally
-            {
-                compStream2.Flush();
-                compStream2.Dispose();
-            }
-             */
-        }
-        public static void Compress(FileInfo fileToCompress)
-        {
-            using (FileStream originalFileStream = fileToCompress.OpenRead())
-            {
-                if ((File.GetAttributes(fileToCompress.FullName) & FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
-                {
-                    using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
-                    {
-                        using (GZipStream compressionStream = new GZipStream(compressedFileStream, CompressionMode.Compress))
-                        {
-                            originalFileStream.CopyTo(compressionStream);
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void Decompress(FileInfo fileToDecompress)
-        {
-            using (FileStream originalFileStream = fileToDecompress.OpenRead())
-            {
-                string currentFileName = fileToDecompress.FullName;
-                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
-
-                using (FileStream decompressedFileStream = File.Create(newFileName))
-                {
-                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
-                    {
-                        decompressionStream.CopyTo(decompressedFileStream);
-                    }
-                }
-            }
+//             DirectoryInfo DI = new DirectoryInfo(@"");
+//             FileInfo[] fi = DI.GetFiles();
+//             String[] files = new String[fi.Length];
+//             for (int i = 0; i < fi.Length; i++)
+//                 files[i] = fi[i].FullName;
+// 
+//             byte[] b = null;
+//             string d = null;
+// 
+//             using (ZipFile zip = new ZipFile())
+//             {
+// 
+//                 foreach (string file in files)
+//                 {
+//                     b = System.Text.Encoding.Default.GetBytes(file);
+//                     d = System.Text.Encoding.GetEncoding("IBM437").GetString(b);
+//                     zip.AddEntry(d, "", File.ReadAllBytes(file));
+//                 }
+//                 zip.Save(@"c:\test\test.zip");
+//             }
         }
 
         private void ReadXML()
@@ -367,9 +298,6 @@ namespace Maptool
         }
         public Main()
         {
-
-            test();
-
             this.MouseWheel += new MouseEventHandler(test);
             InitializeComponent();
             init();
