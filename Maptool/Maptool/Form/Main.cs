@@ -11,7 +11,6 @@ using System.IO.Compression;
 using System.IO;
 
 using Ionic.Zip;
-using System.Runtime.InteropServices;
 
 using System.Xml;
 using System.Collections.Specialized;
@@ -21,36 +20,6 @@ namespace Maptool
 {
     public partial class Main : Form
     {
-        //[DllImport("Ionic.Zip.dll")]
-        //public static extern int TestFunc(int a, int b);
-        //public static extern 
-
-        public void test()
-        {
-            DirectoryInfo DI = new DirectoryInfo(@"C:\test");
-            FileInfo[] fi = DI.GetFiles();
-            String[] files = new String[fi.Length];
-            for (int i = 0; i < fi.Length; i++)
-                files[i] = fi[i].FullName;
-
-            byte[] b = null;
-            string d = null;
-
-            using (ZipFile zip = new ZipFile())
-            {
-
-                foreach (string file in files)
-                {
-                    b = System.Text.Encoding.Default.GetBytes(file);
-                    d = System.Text.Encoding.GetEncoding("IBM437").GetString(b);
-                    zip.AddEntry(d, "", File.ReadAllBytes(file));
-                }
-                zip.Save(@"c:\test\test.zip");
-            }
-        }
-
-
-
         // form
         public main_map mainMap;
         public TileSelectForm TileSelectWindow = null;
@@ -109,165 +78,6 @@ namespace Maptool
             }
             bitmapID = TileList.Count;
         }
-        private void XMLCreate()
-        {
-            // 생성할 XML 파일 경로와 이름, 인코딩 방식을 설정합니다.
-            SortBitmapID();
-            XmlTextWriter textWriter = new XmlTextWriter(@"map.xml", Encoding.UTF8);
-
-            textWriter.Formatting = Formatting.Indented;
-            textWriter.WriteStartDocument();
-
-            textWriter.WriteStartElement("map");
-            {
-                // 기본적인 맵 정보
-                textWriter.WriteStartElement("mapInfo");
-                {
-                    // map size
-                    textWriter.WriteStartElement("size");
-                    {
-                        textWriter.WriteStartAttribute("width");
-                        textWriter.WriteString(mainMap.MapSize.Width.ToString());
-                        textWriter.WriteEndAttribute();
-
-                        textWriter.WriteStartAttribute("height");
-                        textWriter.WriteString(mainMap.MapSize.Height.ToString());
-                        textWriter.WriteEndAttribute();
-                    }
-                    textWriter.WriteEndElement();
-
-                    // used tile set
-                    textWriter.WriteStartElement("usedTileSet");
-                    {
-                        textWriter.WriteStartAttribute("count");
-                        textWriter.WriteString(TileList.Count.ToString());
-                        textWriter.WriteEndAttribute();
-
-                        for (int i = 0; i < TileList.Count; ++i )
-                            TileList[i].image.Save("TileSet" + i.ToString());
-                    }
-                    textWriter.WriteEndElement();
-                }
-                textWriter.WriteEndElement();
-
-                // 배치된 타일의 이미지 / 속성
-                textWriter.WriteStartElement("tileInfo");
-                {
-                    for (int i = 0; i < mainMap.MapSize.Width; ++i)
-                    {
-                        for (int j = 0; j < mainMap.MapSize.Height; ++j)
-                        {
-                            textWriter.WriteStartElement(i.ToString() + "/" + j.ToString());
-                            {
-                                textWriter.WriteStartElement("TileSetIndex");
-                                textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
-                                textWriter.WriteEndElement();
-
-                                textWriter.WriteStartElement("Location");
-                                textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString() + "/" + mainMap.grid[i, j].TileLocation.Y.ToString());
-                                textWriter.WriteEndElement();
-
-                                textWriter.WriteStartElement("Attribute");
-                                textWriter.WriteString(mainMap.grid[i, j].Attribute.ToString());
-                                textWriter.WriteEndElement();
-                            }
-                            textWriter.WriteEndElement();
-                        }
-                    }
-                }
-                textWriter.WriteEndElement();
-            }
-            textWriter.WriteEndElement();
-
-            textWriter.WriteEndDocument();
-            textWriter.Close();
-
-
-
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            
-
-            /*
-
-            FileStream sourceFile = File.OpenRead(@"C:\test\a.txt");
-            FileStream destFile = File.Create(@"C:\test\result.zip");
-            GZipStream compStream = new GZipStream(destFile, CompressionMode.Compress);
-
-            try
-            {
-                int theByte = sourceFile.ReadByte();
-                while (theByte != -1)
-                {
-                    compStream.WriteByte((byte)theByte);
-                    theByte = sourceFile.ReadByte();
-                }
-            }
-            finally
-            {
-                compStream.Flush();
-                compStream.Dispose();
-            }
-
-
-            string sourcepath2 = @"C:\test\result.zip";
-            string destFolder2 = @"C:\test\result\";
-            string destFilename2 = string.Format("sample_{0}.zip", DateTime.Now.ToString("MM_dd_yyyy"));
-            string destpath2 = System.IO.Path.Combine(destFolder2, destFilename2);
-            FileStream sourceFile2 = File.OpenRead(sourcepath2);
-            FileStream destFile2 = File.Create(destpath2);
-            GZipStream compStream2 = new GZipStream(destFile2, CompressionMode.Compress);
-
-            try
-            {
-                int theByte2 = sourceFile2.ReadByte();
-                while (theByte2 != -1)
-                {
-                    compStream2.WriteByte((byte)theByte2);
-                    theByte2 = sourceFile2.ReadByte();
-                }
-            }
-            finally
-            {
-                compStream2.Flush();
-                compStream2.Dispose();
-            }
-             */
-        }
-        public static void Compress(FileInfo fileToCompress)
-        {
-            using (FileStream originalFileStream = fileToCompress.OpenRead())
-            {
-                if ((File.GetAttributes(fileToCompress.FullName) & FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
-                {
-                    using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
-                    {
-                        using (GZipStream compressionStream = new GZipStream(compressedFileStream, CompressionMode.Compress))
-                        {
-                            originalFileStream.CopyTo(compressionStream);
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void Decompress(FileInfo fileToDecompress)
-        {
-            using (FileStream originalFileStream = fileToDecompress.OpenRead())
-            {
-                string currentFileName = fileToDecompress.FullName;
-                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
-
-                using (FileStream decompressedFileStream = File.Create(newFileName))
-                {
-                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
-                    {
-                        decompressionStream.CopyTo(decompressedFileStream);
-                    }
-                }
-            }
-        }
-
         private void ReadXML()
         {
 //             string folder = @"c:\Some\Folder";
@@ -367,9 +177,6 @@ namespace Maptool
         }
         public Main()
         {
-
-            test();
-
             this.MouseWheel += new MouseEventHandler(test);
             InitializeComponent();
             init();
@@ -385,58 +192,116 @@ namespace Maptool
             newForm.Show();
         }
 
+        private void XMLCreate(string FileName)
+        {
+            // 생성할 XML 파일 경로와 이름, 인코딩 방식을 설정합니다.
+            SortBitmapID();
+            XmlTextWriter textWriter = new XmlTextWriter(@"map.xml", Encoding.UTF8);
+
+            textWriter.Formatting = Formatting.Indented;
+            textWriter.WriteStartDocument();
+
+            textWriter.WriteStartElement("map");
+            {
+                // 기본적인 맵 정보
+                textWriter.WriteStartElement("mapInfo");
+                {
+                    // map size
+                    textWriter.WriteStartElement("size");
+                    {
+                        textWriter.WriteStartAttribute("width");
+                        textWriter.WriteString(mainMap.MapSize.Width.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("height");
+                        textWriter.WriteString(mainMap.MapSize.Height.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+
+                    // used tile set
+                    textWriter.WriteStartElement("usedTileSet");
+                    {
+                        textWriter.WriteStartAttribute("count");
+                        textWriter.WriteString(TileList.Count.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        for (int i = 0; i < TileList.Count; ++i)
+                            TileList[i].image.Save("TileSet" + i.ToString());
+                    }
+                    textWriter.WriteEndElement();
+                }
+                textWriter.WriteEndElement();
+
+                // 배치된 타일의 이미지 / 속성
+                textWriter.WriteStartElement("tileInfo");
+                {
+                    for (int i = 0; i < mainMap.MapSize.Width; ++i)
+                    {
+                        for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                        {
+                            textWriter.WriteStartElement(i.ToString() + "/" + j.ToString());
+                            {
+                                textWriter.WriteStartElement("TileSetIndex");
+                                textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
+                                textWriter.WriteEndElement();
+
+                                textWriter.WriteStartElement("Location");
+                                textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString() + "/" + mainMap.grid[i, j].TileLocation.Y.ToString());
+                                textWriter.WriteEndElement();
+
+                                textWriter.WriteStartElement("Attribute");
+                                textWriter.WriteString(mainMap.grid[i, j].Attribute.ToString());
+                                textWriter.WriteEndElement();
+                            }
+                            textWriter.WriteEndElement();
+                        }
+                    }
+                }
+                textWriter.WriteEndElement();
+            }
+            textWriter.WriteEndElement();
+
+            textWriter.WriteEndDocument();
+            textWriter.Close();
+        }
+        private void CSMCreate(string FileName)
+        {
+            DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
+            FileInfo[] fi = new FileInfo[TileList.Count + 1];
+            String[] files = new String[fi.Length];
+
+            files[0] = "map.xml";
+            for (int i = 0; i < fi.Length - 1; i++)
+                files[i + 1] = "TileSet" + i.ToString();
+
+            byte[] b = null;
+            string d = null;
+
+            using (ZipFile zip = new ZipFile())
+            {
+                foreach (string file in files)
+                    zip.AddFile(file);
+                zip.Save(FileName);
+            }
+            foreach (string file in files)
+                File.Delete(file);
+        }
         private void menu_item_save_Click(object sender, EventArgs e)
         {
-            XMLCreate();
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-            saveFileDialog1.Filter = "XML files (*.xml)|*.xml|CSM map files (*.csm)|*.csm";
+            saveFileDialog1.Filter = "CSM map files (*.csm)|*.csm";
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
             saveFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-//                if (saveFileDialog1.OpenFile() != null)
-                {
-                    String a = saveFileDialog1.FileName;
-                    saveFileDialog1.Dispose();
-                    // Code to write the stream goes here.
-
-                    XmlDocument xml = new XmlDocument();
-                    xml.AppendChild(xml.CreateXmlDeclaration("1.0", "utf-8", "yes"));
-
-                    XmlNode test = xml.CreateElement("Map");
-                    test.Value = mainMap.MapSize.Width.ToString() + ":" + mainMap.MapSize.Height.ToString();
-                    xml.AppendChild(test);
-                    //XmlNode root = xml.CreateElement("", "Root", "");
-                    //xml.AppendChild(root);
-                    //XmlNode test = xml.CreateElement("");
-
-                    xml.Save(a);
-                    
-                    
-
-//                     XmlTextReader reader = new XmlTextReader(saveFileDialog1.FileName); // xml 파일을 엽니다
-// 
-//                     while (reader.Read()) //xml 을 읽습니다.
-//                     {
-//                         switch (reader.LocalName) // 속성을 읽습니다.
-//                         {
-//                             case "thumbnail": // thumbnail 이라는 속성이 있을때 다음 명령을 실행합니다.
-//                                 string str = reader.ReadElementContentAsString(); //str 에 속성값을 지정합니다.
-//                                 listBox1.Items.Add(str); //리스트 박스 1 에 str 을 넣습니다.
-//                                 break;
-//                             case "total": // total 이라는 속성이 있을경우 다음명령을 실행합니다.
-//                                 label3.Text = reader.ReadElementContentAsString() + "개";
-//                                 break;
-//                         }
-//                     }
-
-                    
-                }
+                String fileName = saveFileDialog1.FileName;
+                XMLCreate(fileName);
+                CSMCreate(fileName);
             }
-
         }
 
         private void menu_item_open_Click(object sender, EventArgs e)
@@ -444,40 +309,39 @@ namespace Maptool
             System.IO.Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            openFileDialog1.Filter = "XML files (*.xml)|*.XML|CSM Map files|*.CSM";
+            openFileDialog1.Filter = "CSM Map files|*.CSM";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
             openFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                try
+                string zipToUnpack = openFileDialog1.FileName;
+                string unpackDirectory = System.IO.Directory.GetCurrentDirectory();
+                using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
                 {
-                    if ((myStream = openFileDialog1.OpenFile()) != null)
+                    // here, we extract every entry, but we could extract conditionally
+                    // based on entry name, size, date, checkbox status, etc.  
+                    foreach (ZipEntry a in zip1)
                     {
-                        using (myStream)
-                        {
-                            XmlTextReader reader = new XmlTextReader(openFileDialog1.FileName); // xml 파일을 엽니다
-
-                            while (reader.Read()) //xml 을 읽습니다.
-                            {
-                                switch (reader.LocalName) // 속성을 읽습니다.
-                                {
-                                    case "1": // thumbnail 이라는 속성이 있을때 다음 명령을 실행합니다.
-                                        label1.Text = reader.ReadElementContentAsString();
-                                        break;
-                                    case "2": // total 이라는 속성이 있을경우 다음명령을 실행합니다.
-                                        label2.Text = reader.ReadElementContentAsString();
-                                        break;
-                                }
-                            }
-                        }
+                        a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
+// 
+//                 XmlTextReader reader = new XmlTextReader(openFileDialog1.FileName); // xml 파일을 엽니다
+// 
+//                 while (reader.Read()) //xml 을 읽습니다.
+//                 {
+//                     switch (reader.LocalName) // 속성을 읽습니다.
+//                     {
+//                         case "1": // thumbnail 이라는 속성이 있을때 다음 명령을 실행합니다.
+//                             label1.Text = reader.ReadElementContentAsString();
+//                             break;
+//                         case "2": // total 이라는 속성이 있을경우 다음명령을 실행합니다.
+//                             label2.Text = reader.ReadElementContentAsString();
+//                             break;
+//                     }
+//                 }
             }
 
         }

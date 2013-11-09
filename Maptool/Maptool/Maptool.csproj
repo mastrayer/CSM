@@ -133,10 +133,11 @@
     <None Include="Resources\load.bmp" />
     <None Include="Resources\NewTileSet.bmp" />
     <None Include="Resources\DelTileSet.bmp" />
-    <Content Include="Properties\DataSources\Ionic.Zip.dll" />
     <Content Include="Resources\save.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
