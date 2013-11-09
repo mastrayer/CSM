@@ -1,7 +1,7 @@
 
 #include "System.h"
 
-System* m_pInstance = nullptr;
+System* System::m_pInstance = nullptr;
 
 System* System::GetInstance()
 {
