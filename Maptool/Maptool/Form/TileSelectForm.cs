@@ -111,7 +111,6 @@ namespace Maptool
         {
             if (index == -1) return;
             MouseEventArgs Event = (MouseEventArgs)e;
-            //MessageBox.Show((Event.X / TileSize).ToString() + "." + (Event.Y / TileSize).ToString());
 
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
@@ -145,23 +144,6 @@ namespace Maptool
                             mainForm.TileSelectWindow.Show();
 
                             mainForm.TileSelectWindow.changeImage(mainForm.TileList.Count - 1);
-
-
-                            //pictureBox1.Image = TileList[TileList.Count-1];
-                            //                             Image image = Image.FromFile(openFile.FileName);
-                            // 
-                            //                             // Image 클래스뿐아니라위에서상속된클래스로도
-                            // 
-                            //                             // 이미지를보여줄수있다
-                            // 
-                            //                             Bitmap image = new Bitmap(openFile.FileName);
-                            // 
-                            //                             //Image image = Image.FromStream(stream);
-                            // 
-                            //                             // 여기서은이미지정보가포함된스트림이다
-                            // 
-                            //                             picbox_main.Image = image;
-                            //                             // Insert code to read the stream here.
                         }
                     }
                 }

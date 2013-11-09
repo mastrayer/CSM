@@ -41,6 +41,23 @@ namespace Maptool
 
             work_map.Image = flag;
         }
+        public void refresh()
+        {
+            flag.Dispose();
+            flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
+            Graphics g = Graphics.FromImage(flag);
+
+            for (int i = 0; i < MapSize.Width; ++i)
+            {
+                for (int j = 0; j < MapSize.Height; ++j)
+                    g.DrawImage(grid[i, j].tile, new Point(i * TileSize, j * TileSize));
+            }
+            mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
+
+            g.Dispose();
+
+            work_map.Image = flag;
+        }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
