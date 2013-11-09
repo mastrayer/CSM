@@ -117,11 +117,31 @@ void ABCircularBuffer::Commit( int size )
 
 char* ABCircularBuffer::GetFirstDataBlock( OUT int& size )
 {
+	if ( m_SizeA == 0 )
+	{
+		size = 0;
+		return nullptr;
+	}
 
+	size = m_SizeA;
+	return m_Buffer + m_IndexA;
 }
 void ABCircularBuffer::DecommitFirstDataBlock( int size )
 {
+	if ( size >= m_SizeA )
+	{
+		assert( size == m_SizeA ); // size가 더 크게 들어오면 안됨
 
+		m_IndexA = m_IndexB;
+		m_SizeA = m_SizeB;
+		m_IndexB = 0;
+		m_SizeB = 0;
+	}
+	else
+	{
+		m_SizeA -= size;
+		m_IndexA += size;
+	}
 }
 int ABCircularBuffer::GetCommittedSize() const
 {
