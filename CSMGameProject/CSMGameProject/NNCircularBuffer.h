@@ -3,11 +3,11 @@
 
 // size_t == unsigned int
 
-class NNCircleBuffer
+class NNCircularBuffer
 {
 public:
-	NNCircleBuffer( size_t capacity );
-	~NNCircleBuffer();
+	NNCircularBuffer( size_t capacity );
+	~NNCircularBuffer();
 
 	size_t GetCurrentSize() const { return m_CurrentSize; }
 	size_t GetCapacity() const { return m_Capacity; }
