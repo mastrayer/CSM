@@ -64,6 +64,31 @@ bool NNNetworkSystem::Connect( const char* serverIP, int port )
 	return true;
 }
 
+void NNNetworkSystem::ProcessPacket()
+{
+	while ( true )
+	{
+		NNPacketHeader header;
+
+		if ( m_CircularBuffer->Peek((char*)&header, sizeof(NNPacketHeader)) )
+		{
+			break;
+		}
+
+		if ( (unsigned)header.m_Size > m_CircularBuffer->GetCurrentSize() )
+		{
+			break;
+		}
+
+		m_PacketFunction[header.m_Type](m_CircularBuffer,header);
+	}
+}
+
+void NNNetworkSystem::SetPacketFunction( short packetType, void(Function)(NNCircularBuffer*&, NNPacketHeader&) )
+{
+	m_PacketFunction[packetType] = Function;
+}
+
 NNNetworkSystem* NNNetworkSystem::GetInstance()
 {
 	if ( m_pInstance == nullptr )

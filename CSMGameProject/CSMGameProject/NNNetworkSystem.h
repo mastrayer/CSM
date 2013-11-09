@@ -13,19 +13,22 @@
 
 #include "NNConfig.h"
 #include "NNPacketHeader.h"
+#include "NNCircularBuffer.h"
+#include <map>
 
 class NNNetworkSystem
 {
-private:
-	static NNNetworkSystem* m_pInstance;
-
-private:
-	NNNetworkSystem();
-	~NNNetworkSystem();
-
 public:
 	static NNNetworkSystem* GetInstance();
 	static void ReleaseInstance();
+
+	bool Init();
+	bool Connect( const char* serverIP, int port );
+
+	void ProcessPacket();
+
+	void SetPacketFunction( short packetType, void(*Function)(NNCircularBuffer*&, NNPacketHeader&) );
+	NNCircularBuffer* GetCircularBuffer() { return m_CircularBuffer; }
 
 private:
 	WSADATA m_WSAData;
@@ -36,7 +39,13 @@ private:
 	char* m_ServerIP;
 	int m_Port;
 
-public:
-	bool Init();
-	bool Connect( const char* serverIP, int port );
+	NNCircularBuffer* m_CircularBuffer;
+
+	std::map<short,void(*)(NNCircularBuffer*&, NNPacketHeader&)> m_PacketFunction;
+
+private:
+	static NNNetworkSystem* m_pInstance;
+
+	NNNetworkSystem();
+	~NNNetworkSystem();
 };
