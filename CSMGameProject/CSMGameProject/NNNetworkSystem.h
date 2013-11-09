@@ -23,6 +23,7 @@ public:
 	static void ReleaseInstance();
 
 	bool Init();
+	void Destroy();
 	bool Connect( const char* serverIP, int port );
 
 	void ProcessPacket();

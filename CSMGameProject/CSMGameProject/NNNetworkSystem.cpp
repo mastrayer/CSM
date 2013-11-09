@@ -19,7 +19,7 @@ NNNetworkSystem::NNNetworkSystem()
 }
 NNNetworkSystem::~NNNetworkSystem()
 {
-
+	Destroy();
 }
 
 bool NNNetworkSystem::Init()
@@ -37,6 +37,12 @@ bool NNNetworkSystem::Init()
 	}
 
 	return true;
+}
+
+void NNNetworkSystem::Destroy()
+{
+	SafeDelete( m_CircularBuffer );
+
 }
 
 bool NNNetworkSystem::Connect( const char* serverIP, int port )
