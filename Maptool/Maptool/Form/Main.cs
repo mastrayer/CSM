@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Compression;
+using System.IO;
+
+using Ionic.Zip;
+using System.Runtime.InteropServices;
 
 using System.Xml;
 using System.Collections.Specialized;
@@ -16,6 +21,36 @@ namespace Maptool
 {
     public partial class Main : Form
     {
+        //[DllImport("Ionic.Zip.dll")]
+        //public static extern int TestFunc(int a, int b);
+        //public static extern 
+
+        public void test()
+        {
+            DirectoryInfo DI = new DirectoryInfo(@"C:\test");
+            FileInfo[] fi = DI.GetFiles();
+            String[] files = new String[fi.Length];
+            for (int i = 0; i < fi.Length; i++)
+                files[i] = fi[i].FullName;
+
+            byte[] b = null;
+            string d = null;
+
+            using (ZipFile zip = new ZipFile())
+            {
+
+                foreach (string file in files)
+                {
+                    b = System.Text.Encoding.Default.GetBytes(file);
+                    d = System.Text.Encoding.GetEncoding("IBM437").GetString(b);
+                    zip.AddEntry(d, "", File.ReadAllBytes(file));
+                }
+                zip.Save(@"c:\test\test.zip");
+            }
+        }
+
+
+
         // form
         public main_map mainMap;
         public TileSelectForm TileSelectWindow = null;
@@ -55,10 +90,30 @@ namespace Maptool
             g.Dispose();
             return image;
         }
+        private void SortBitmapID()
+        {
+            for (int i = 0; i < TileList.Count; ++i)
+            {
+                if (i != TileList[i].ID)
+                {
+                    for(int j=0; j<mainMap.MapSize.Width; ++j)
+                    {
+                        for (int k = 0; k < mainMap.MapSize.Height; ++k)
+                        {
+                            if (mainMap.grid[j,k].TIleSetID == TileList[i].ID)
+                                mainMap.grid[j, k].TIleSetID = i;
+                        }
+                    }
+                    TileList[i].ID = i;
+                }
+            }
+            bitmapID = TileList.Count;
+        }
         private void XMLCreate()
         {
             // 생성할 XML 파일 경로와 이름, 인코딩 방식을 설정합니다.
-            XmlTextWriter textWriter = new XmlTextWriter(@"test.xml", Encoding.UTF8);
+            SortBitmapID();
+            XmlTextWriter textWriter = new XmlTextWriter(@"map.xml", Encoding.UTF8);
 
             textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();
@@ -126,7 +181,93 @@ namespace Maptool
 
             textWriter.WriteEndDocument();
             textWriter.Close();
+
+
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            
+
+            /*
+
+            FileStream sourceFile = File.OpenRead(@"C:\test\a.txt");
+            FileStream destFile = File.Create(@"C:\test\result.zip");
+            GZipStream compStream = new GZipStream(destFile, CompressionMode.Compress);
+
+            try
+            {
+                int theByte = sourceFile.ReadByte();
+                while (theByte != -1)
+                {
+                    compStream.WriteByte((byte)theByte);
+                    theByte = sourceFile.ReadByte();
+                }
+            }
+            finally
+            {
+                compStream.Flush();
+                compStream.Dispose();
+            }
+
+
+            string sourcepath2 = @"C:\test\result.zip";
+            string destFolder2 = @"C:\test\result\";
+            string destFilename2 = string.Format("sample_{0}.zip", DateTime.Now.ToString("MM_dd_yyyy"));
+            string destpath2 = System.IO.Path.Combine(destFolder2, destFilename2);
+            FileStream sourceFile2 = File.OpenRead(sourcepath2);
+            FileStream destFile2 = File.Create(destpath2);
+            GZipStream compStream2 = new GZipStream(destFile2, CompressionMode.Compress);
+
+            try
+            {
+                int theByte2 = sourceFile2.ReadByte();
+                while (theByte2 != -1)
+                {
+                    compStream2.WriteByte((byte)theByte2);
+                    theByte2 = sourceFile2.ReadByte();
+                }
+            }
+            finally
+            {
+                compStream2.Flush();
+                compStream2.Dispose();
+            }
+             */
         }
+        public static void Compress(FileInfo fileToCompress)
+        {
+            using (FileStream originalFileStream = fileToCompress.OpenRead())
+            {
+                if ((File.GetAttributes(fileToCompress.FullName) & FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
+                {
+                    using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
+                    {
+                        using (GZipStream compressionStream = new GZipStream(compressedFileStream, CompressionMode.Compress))
+                        {
+                            originalFileStream.CopyTo(compressionStream);
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void Decompress(FileInfo fileToDecompress)
+        {
+            using (FileStream originalFileStream = fileToDecompress.OpenRead())
+            {
+                string currentFileName = fileToDecompress.FullName;
+                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
+
+                using (FileStream decompressedFileStream = File.Create(newFileName))
+                {
+                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
+                    {
+                        decompressionStream.CopyTo(decompressedFileStream);
+                    }
+                }
+            }
+        }
+
         private void ReadXML()
         {
 //             string folder = @"c:\Some\Folder";
@@ -195,9 +336,6 @@ namespace Maptool
         }
         public void init()
         {
-            //XMLCreate();
-            //ReadXML();
-
             layers.SelectedIndex = 0;
             magnification.Text = "100%";
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
@@ -229,6 +367,9 @@ namespace Maptool
         }
         public Main()
         {
+
+            test();
+
             this.MouseWheel += new MouseEventHandler(test);
             InitializeComponent();
             init();
