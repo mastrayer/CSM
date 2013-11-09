@@ -11,17 +11,17 @@ enum NNPacketTypes
 
 struct NNPacketHeader
 {
-	NNPacketHeader() : mSize(0), mType(PKT_NONE) {}
-	short mSize;
-	short mType;
+	NNPacketHeader() : m_Size(0), m_Type(PKT_NONE) {}
+	short m_Size;
+	short m_Type;
 };
 
 struct TestPacket : public NNPacketHeader
 {
 	TestPacket()
 	{
-		mSize = sizeof(TestPacket) ;
-		mType = PKT_TEST;
+		m_Size = sizeof(TestPacket) ;
+		m_Type = PKT_TEST;
 		m_Int = 10;
 		m_Float = 10.f;
 		m_Char = 2;
