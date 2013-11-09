@@ -1,9 +1,4 @@
-/*
-#ifndef _SYSTEM_H_
-#define _SYSTEM_H_
 
-#endif _SYSTEM_H_
-*/
 #pragma once
 
 #include "Packet.h"
