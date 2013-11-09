@@ -12,9 +12,14 @@
 *.la
 *.a
 
-
 # Debug folder
 Debug/
+
+# Release folder
+Release/
+
+# ipch folder
+ipch/
 
 # Project files
 *.sdf
