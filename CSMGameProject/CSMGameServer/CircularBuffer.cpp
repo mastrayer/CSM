@@ -3,6 +3,19 @@
 #include "CircularBuffer.h"
 #include <assert.h>
 
+CircularBuffer::CircularBuffer( size_t capacity )
+	: m_BRegionPointer(nullptr), m_ARegionSize(0), m_BRegionSize(0)
+{
+	m_Buffer = new char[capacity] ;
+	m_BufferEnd = m_Buffer + capacity ;
+	m_ARegionPointer = m_Buffer ;
+}
+
+CircularBuffer::~CircularBuffer()
+{
+	delete [] m_Buffer ;
+}
+
 bool CircularBuffer::Peek( OUT char* destbuf, size_t bytes ) const
 {
 	assert( m_Buffer != nullptr );

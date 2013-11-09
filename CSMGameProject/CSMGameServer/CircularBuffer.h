@@ -4,7 +4,7 @@
 class CircularBuffer
 {
 public:
-	CircularBuffer();
+	CircularBuffer(size_t capacity) : m_BRegionPointer(nullptr), m_ARegionSize(0), m_BRegionSize(0);
 	~CircularBuffer();
 
 	bool Peek( OUT char* destbuf, size_t bytes ) const;
