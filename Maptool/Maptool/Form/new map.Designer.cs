@@ -36,6 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.select_map_tile = new System.Windows.Forms.ComboBox();
+            this.Title = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_ok
@@ -118,11 +120,31 @@
             this.select_map_tile.TabIndex = 7;
             this.select_map_tile.SelectedIndexChanged += new System.EventHandler(this.select_map_tile_SelectedIndexChanged);
             // 
+            // Title
+            // 
+            this.Title.Location = new System.Drawing.Point(123, 24);
+            this.Title.MaxLength = 2;
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(89, 21);
+            this.Title.TabIndex = 8;
+            this.Title.Text = "Notitled";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(63, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "map title";
+            // 
             // new_map
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(292, 269);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Title);
             this.Controls.Add(this.select_map_tile);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -148,6 +170,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox select_map_tile;
+        private System.Windows.Forms.TextBox Title;
+        private System.Windows.Forms.Label label3;
 
     }
 }
