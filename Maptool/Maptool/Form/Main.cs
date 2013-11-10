@@ -270,7 +270,15 @@ namespace Maptool
                 usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
             }
             for (int i = 0; i < usedTileSetCount; ++i)
-                TileList.Add(new BitmapList(bitmapID++, new Bitmap("temp\\" + "TileSet" + i.ToString())));
+            {
+                Bitmap load = new Bitmap("temp\\" + "TileSet" + i.ToString());
+                Bitmap temp = new Bitmap(load.Width, load.Height);
+                Graphics.FromImage(temp).DrawImage(load, new Point(0, 0));
+
+                TileList.Add(new BitmapList(bitmapID++, temp));
+
+                load.Dispose();              
+            }
             TileSelectWindow.changeImage(TileList.Count - 1);
 
             mainMap_init(width, height);
@@ -292,8 +300,6 @@ namespace Maptool
                         mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(x);
                         mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(y);
                         mainMap.grid[i, j].tile = TileList[Convert.ToInt32(index)].image.Clone(new Rectangle(new Point(Convert.ToInt32(x), Convert.ToInt32(y)), new Size(TileSize, TileSize)), TileList[Convert.ToInt32(index)].image.PixelFormat);
-
-                        mainMap.grid[i, j].tile.Save(i.ToString() + j.ToString() + ".png");
                     }
                 }
             }
@@ -342,7 +348,7 @@ namespace Maptool
                         a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
                 XMLRead(@"temp\\map.xml");
-               // Directory.Delete("temp\\", true);
+                Directory.Delete("temp\\", true);
             }
         }
 
@@ -400,11 +406,6 @@ namespace Maptool
         private void minimap_MouseUp(object sender, MouseEventArgs e)
         {
             isMinimapDrag = false;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            mainMap.refresh();
         }
     }
 }
