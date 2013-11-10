@@ -53,6 +53,7 @@ private:
 
 private:
 	float m_Fps;
+	float m_FpsTimer;
 	float m_ElapsedTime;
 	float m_DeltaTime;
 

@@ -10,7 +10,7 @@ NNApplication* NNApplication::m_pInstance = nullptr;
 NNApplication::NNApplication()
 	: m_Hwnd(nullptr), m_hInstance(nullptr),
 	  m_ScreenHeight(0), m_ScreenWidth(0),
-	  m_Fps(0.f), m_ElapsedTime(0.f), m_DeltaTime(0.f),
+	  m_Fps(0.f), m_ElapsedTime(0.f), m_DeltaTime(0.f),m_FpsTimer(0.f),
 	  m_PrevTime(0), m_NowTime(0),
 	  m_Renderer(nullptr), m_pSceneDirector(nullptr),
 	  m_RendererStatus(UNKNOWN),m_DestroyWindow(false)
@@ -104,11 +104,12 @@ bool NNApplication::Run()
 			}
 			m_DeltaTime = (static_cast<float>(m_NowTime - m_PrevTime)) / 1000.f;
 			m_ElapsedTime += m_DeltaTime;
-			if(m_ElapsedTime > 0.1f)
+			m_FpsTimer += m_DeltaTime;
+			if(m_FpsTimer > 0.1f)
 			{
-				m_Fps = ((float)m_FrameCount) / m_ElapsedTime;
+				m_Fps = ((float)m_FrameCount) / m_FpsTimer;
 				m_FrameCount = 0;
-				m_ElapsedTime = 0.f;
+				m_FpsTimer = 0.f;
 			}
 			m_PrevTime = m_NowTime;
 
