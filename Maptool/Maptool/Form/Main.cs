@@ -342,8 +342,8 @@ namespace Maptool
                         a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
                 XMLRead(@"temp\\map.xml");
+               // Directory.Delete("temp\\", true);
             }
-
         }
 
         private void menu_item_exit_Click(object sender, EventArgs e)
