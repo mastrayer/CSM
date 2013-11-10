@@ -58,6 +58,7 @@ private:
 
 	int m_PrevTime;
 	int m_NowTime;
+	int m_FrameCount;
 
 	bool m_DestroyWindow;
 
