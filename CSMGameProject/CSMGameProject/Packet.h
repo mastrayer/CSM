@@ -58,23 +58,23 @@ struct KeyStateUpdateRequset : public NNPacketHeader
 		m_Type = PKT_CS_KEYSTATE ;
 		m_PlayerId = -1 ;
 		
-		m_UpDirectKey = NNInputSystem::GetInstance()->GetUpDirectKeyState();
-		m_DownDirectKey = NNInputSystem::GetInstance()->GetDownDirectKeyState();
-		m_LeftDirectKey = NNInputSystem::GetInstance()->GetLeftDirectKeyState();
-		m_RightDirectKey = NNInputSystem::GetInstance()->GetRightDirectKeyState();
-		m_AttackKey = NNInputSystem::GetInstance()->GetAttackKeyState();
-		m_UserActiveSkillKey = NNInputSystem::GetInstance()->GetUserActiveSkillKeyState();
-		m_TypeActiveSkillKey = NNInputSystem::GetInstance()->GetTypeActiveSkillKeyState();
+		m_UpDirectKeyState = NNInputSystem::GetInstance()->GetUpDirectKeyState();
+		m_DownDirectKeyState = NNInputSystem::GetInstance()->GetDownDirectKeyState();
+		m_LeftDirectKeyState = NNInputSystem::GetInstance()->GetLeftDirectKeyState();
+		m_RightDirectKeyState = NNInputSystem::GetInstance()->GetRightDirectKeyState();
+		m_AttackKeyState = NNInputSystem::GetInstance()->GetAttackKeyState();
+		m_UserActiveSkillKeyState = NNInputSystem::GetInstance()->GetUserActiveSkillKeyState();
+		m_TypeActiveSkillKeyState = NNInputSystem::GetInstance()->GetTypeActiveSkillKeyState();
 	}
 	
-	int	m_PlayerId ;
-	int m_UpDirectKey;
-	int m_DownDirectKey;
-	int m_LeftDirectKey;
-	int m_RightDirectKey;
-	int m_AttackKey;
-	int m_UserActiveSkillKey;
-	int m_TypeActiveSkillKey;
+	int m_PlayerId ;
+	KeyState m_UpDirectKeyState;
+	KeyState m_DownDirectKeyState;
+	KeyState m_LeftDirectKeyState;
+	KeyState m_RightDirectKeyState;
+	KeyState m_AttackKeyState;
+	KeyState m_UserActiveSkillKeyState;
+	KeyState m_TypeActiveSkillKeyState;
 } ;
 
 #pragma pack(pop)
