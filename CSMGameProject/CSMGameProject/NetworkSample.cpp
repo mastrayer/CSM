@@ -39,9 +39,12 @@ void NetworkSample::Update( float dTime )
 	if(m_Time > 1)
 	{
 		m_Time = 0;
-		KeyStateUpdateRequset KSUR = KeyStateUpdateRequset();
+		ChatBroadcastRequest CBR = ChatBroadcastRequest();
+		strcpy_s(CBR.m_Chat,"hihi");
+		NNNetworkSystem::GetInstance()->Send(&CBR);
+	/*	KeyStateUpdateRequset KSUR = KeyStateUpdateRequset();
 		KSUR.m_PlayerId = -1;
-		NNNetworkSystem::GetInstance()->Send(&KSUR);
+		NNNetworkSystem::GetInstance()->Send(&KSUR);*/
 	}
 }
 
