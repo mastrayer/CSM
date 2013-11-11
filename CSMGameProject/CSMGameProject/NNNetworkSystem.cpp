@@ -34,6 +34,9 @@ bool NNNetworkSystem::Init()
 		return false;
 	}
 
+	
+	SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
+
 	return true;
 }
 
