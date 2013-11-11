@@ -5,6 +5,7 @@ CSM
 
 
 ## 잠깐!
+* dll 폴더에서 fmod.dll 파일을 실행파일과 같은 디렉토리에 위치해주세요
 * git을 쓰시는 분들은 clone하고 나서 submodule로 설치되어 있는 NNGameFramework를 설치해야 합니다. 클론 후 아래 명령어를 입력해 주세요.
 * git submodule init
 * git submodule update
