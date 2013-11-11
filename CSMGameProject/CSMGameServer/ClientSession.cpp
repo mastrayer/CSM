@@ -111,7 +111,18 @@ void ClientSession::OnRead(size_t len)
  
 			}
 			break ;
+		case PKT_CS_KEYSTATE:
+			{
+				KeyStateUpdateRequset inPacket ;
+				mRecvBuffer.Read((char*)&inPacket, header.mSize);
 
+				KeyStateUpdateResult outPacket = KeyStateUpdateResult();
+				outPacket.mPlayerId = inPacket.mPlayerId;
+				
+				if( !Send(&outPacket) )
+					return;
+			}
+			break ;
 		default:
 			{
 				/// 여기 들어오면 이상한 패킷 보낸거다.
