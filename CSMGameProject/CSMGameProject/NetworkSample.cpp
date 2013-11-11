@@ -1,23 +1,16 @@
 
-/**********************************************************************/
-/**********************************************************************/
-/*                                                                    */
-/*                                                                    */
-/*                       작업 중 건들지 말 것!                        */
-/*                                                                    */
-/*                                                                    */
-/**********************************************************************/
-/**********************************************************************/
-
 #ifdef _DEBUG
 
 #include "NetworkSample.h"
 #include "Packet.h"
+#include "PacketFunction.h"
 #include "NNNetworkSystem.h"
 
 NetworkSample::NetworkSample()
 {
 	NNNetworkSystem::GetInstance()->Init();
+
+	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 	m_Time = 0;
 }

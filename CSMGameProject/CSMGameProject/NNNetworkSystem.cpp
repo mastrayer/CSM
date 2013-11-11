@@ -1,7 +1,6 @@
 
 #include "NNNetworkSystem.h"
-#include "Packet.h"
-#include "PacketFunction.h"
+
 NNNetworkSystem* NNNetworkSystem::m_pInstance = nullptr;
 
 NNNetworkSystem::NNNetworkSystem()
@@ -36,7 +35,7 @@ bool NNNetworkSystem::Init()
 	}
 
 	
-	SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
+	//SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
 
 	return true;
 }
