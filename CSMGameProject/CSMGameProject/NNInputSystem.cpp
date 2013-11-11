@@ -5,7 +5,14 @@
 
 NNInputSystem* NNInputSystem::m_pInstance = nullptr;
 
-NNInputSystem::NNInputSystem()
+NNInputSystem::NNInputSystem():
+	m_UpDirectKey('W'),
+	m_DownDirectKey('S'),
+	m_LeftDirectKey('A'),
+	m_RightDirectKey('D'),
+	m_AttackKey(VK_LBUTTON),
+	m_UserActiveSkillKey(VK_SPACE),
+	m_TypeActiveSkillKey(VK_RBUTTON)
 {
 	ZeroMemory( m_PrevKeyState, sizeof(m_PrevKeyState) );
 	ZeroMemory( m_NowKeyState, sizeof(m_NowKeyState) );
