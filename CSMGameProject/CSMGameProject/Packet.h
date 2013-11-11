@@ -10,30 +10,12 @@
 
 enum PacketTypes
 {
-	PKT_TEST = 0,
-	
 	PKT_CS_CHAT		= 3,
 	PKT_SC_CHAT		= 4,
 	PKT_CS_KEYSTATE = 5,
 };
 
 #pragma pack(push,1)
-
-struct TestPacket : public NNPacketHeader
-{
-	TestPacket()
-	{
-		m_Size = sizeof(TestPacket) ;
-		m_Type = PKT_TEST;
-		m_Int = 0;
-		m_Float = 0.f;
-		m_Char = 0;
-	}
-
-	int m_Int;
-	float m_Float;
-	char m_Char;
-};
 
 struct ChatBroadcastRequest : public NNPacketHeader
 {

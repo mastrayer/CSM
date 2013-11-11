@@ -6,22 +6,6 @@
 #include "NNNetworkSystem.h"
 #include <iostream>
 
-void TestPacketFunction( NNPacketHeader& header )
-{
-	TestPacket recvData;
-	if ( NNNetworkSystem::GetInstance()->GetRecvBuffer()->Read((char*)&recvData, header.m_Size) )
-	{
-		std::cout << recvData.m_Char << std::endl;
-		std::cout << recvData.m_Float << std::endl;
-		std::cout << recvData.m_Int << std::endl;
-	}
-	else
-	{
-		std::cout << "exception" << std::endl;
-	}
-}
-
-
 void TestChatResultPacketFunction( NNPacketHeader& header )
 {
 	ChatBroadcastResult recvData;
