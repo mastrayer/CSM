@@ -136,7 +136,6 @@ void CCharacter::Update( float dTime)
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	WCHAR buff[1024];
 	swprintf_s(buff,L"%f / %f",mousePoint.GetX(),m_CharacterSprite->GetRotation());//mousePoint.GetY());
-	m_LogLabel->SetString(buff);
 	SetCenter(m_CharacterSprite->GetImageWidth()/2.f,m_CharacterSprite->GetImageHeight()/2.f);
 	SetRotation(atan2f(mousePoint.GetY() - 300.f, mousePoint.GetX() - 400.f) * 180.0f / 3.14f);
 }
