@@ -9,6 +9,12 @@
 #include "FMODSoundSample.h"
 #include "NetworkSample.h"
 
+#ifdef _DEBUG
+#pragma comment(lib, "NNGameFramework_DEBUG.lib")
+#else
+#pragma comment(lib, "NNGameFramework.lib")
+#endif
+
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
 #ifdef _DEBUG

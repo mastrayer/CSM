@@ -57,7 +57,7 @@ struct KeyStateUpdateRequset : public NNPacketHeader
 		m_Size = sizeof(KeyStateUpdateRequset) ;
 		m_Type = PKT_CS_KEYSTATE ;
 		m_PlayerId = -1 ;
-		
+		/*
 		m_UpDirectKeyState = NNInputSystem::GetInstance()->GetUpDirectKeyState();
 		m_DownDirectKeyState = NNInputSystem::GetInstance()->GetDownDirectKeyState();
 		m_LeftDirectKeyState = NNInputSystem::GetInstance()->GetLeftDirectKeyState();
@@ -65,6 +65,14 @@ struct KeyStateUpdateRequset : public NNPacketHeader
 		m_AttackKeyState = NNInputSystem::GetInstance()->GetAttackKeyState();
 		m_UserActiveSkillKeyState = NNInputSystem::GetInstance()->GetUserActiveSkillKeyState();
 		m_TypeActiveSkillKeyState = NNInputSystem::GetInstance()->GetTypeActiveSkillKeyState();
+		*/
+		m_UpDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('W');
+		m_DownDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('S');
+		m_LeftDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('A');
+		m_RightDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('D');
+		m_AttackKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON);
+		m_UserActiveSkillKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_SPACE);
+		m_TypeActiveSkillKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_RBUTTON);
 	}
 	
 	int m_PlayerId ;

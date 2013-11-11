@@ -1,68 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{057eb90d-dbb0-428e-9609-f7f45c20d982}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{68ddafa6-4182-4db2-8421-e164f09beebe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Application">
-      <UniqueIdentifier>{f09bd372-6e2b-49e8-bb48-8693074202fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DataType">
-      <UniqueIdentifier>{1a9e812b-27e4-420e-8887-c83ef2276355}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\InputSystem">
-      <UniqueIdentifier>{3409efb3-ac2a-40de-9aa0-f95c58ef87ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Macro">
-      <UniqueIdentifier>{3a28a7c4-f2b9-4bac-acc4-e19c63466812}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node">
-      <UniqueIdentifier>{dbff36b2-b5db-451c-855a-22c10d68009b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Renderer">
-      <UniqueIdentifier>{43067217-f15d-49f6-b02c-2f032020d448}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource">
-      <UniqueIdentifier>{e0c63940-b13e-4efc-87d6-eba703c17ead}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Scene">
-      <UniqueIdentifier>{1abc8b2d-e76b-4865-b668-b12c9964c6b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DataType\Point">
-      <UniqueIdentifier>{dd495e15-84a5-4d0c-9a2c-411ada86c973}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DataType\Size">
-      <UniqueIdentifier>{d6932661-d4b5-4952-8528-5ee1c4e8725a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\AudioSystem">
-      <UniqueIdentifier>{4a7ac418-a6e3-44a3-a837-f889f2449102}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Label">
-      <UniqueIdentifier>{d418dc2b-a868-4497-9ded-641e435aedf9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Scene">
-      <UniqueIdentifier>{7205b4d4-0826-4efd-9ee4-04df44723117}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Sprite">
-      <UniqueIdentifier>{4dc06c18-89de-44ee-8f81-a653bac9dca8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Renderer\D2D">
-      <UniqueIdentifier>{415931a6-7c11-4a59-9c17-32c2866fca51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Object">
-      <UniqueIdentifier>{4992b6d7-d0e0-4e10-95e4-7ee9b0ab9e32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\Texture">
-      <UniqueIdentifier>{82c083da-db35-4a4f-a36b-28aab4af51c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\NetworkSystem">
-      <UniqueIdentifier>{f43f4b25-70d7-4e59-ba2b-4805e0ebbabb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\Animation">
-      <UniqueIdentifier>{8d164760-a690-42b9-81de-4c060263cbc0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sample">
       <UniqueIdentifier>{2df9a5cf-c77a-4ba9-9673-d1997b45c669}</UniqueIdentifier>
@@ -70,114 +10,30 @@
     <Filter Include="Sample\AnimationSample">
       <UniqueIdentifier>{846747f4-d180-47c6-bccc-ee5d610fdf9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Animation\SpriteNode">
-      <UniqueIdentifier>{6b060ca6-c31d-4b07-b334-f6701b3cb569}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\XML">
-      <UniqueIdentifier>{0a0070a5-7f25-4b13-ae13-1a7fc184d3e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\TinyXML">
-      <UniqueIdentifier>{4b134ec3-3f0d-4c01-9da7-96fa5999011d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample\XMLSample">
       <UniqueIdentifier>{b26bc4e7-441d-41c1-a3e9-7274887b8b9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\TinyXML\TinyXPath">
-      <UniqueIdentifier>{120f9d5e-74b9-479c-b735-ec0111d910ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\SpriteAtlas">
-      <UniqueIdentifier>{57319199-2a83-4184-9543-b871a22c92a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sample\SpriteAtlasSample">
       <UniqueIdentifier>{70c18ecf-4e44-44f3-96b0-994a9bba1472}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\Scene\Camera">
-      <UniqueIdentifier>{f91735c8-a0d4-4474-b7f6-21efe0305028}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample\CameraSample">
       <UniqueIdentifier>{c93dd7c7-2beb-40be-a5e9-aae482e87701}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Resource\Sound">
-      <UniqueIdentifier>{3738308b-eaf0-4018-bd71-49801d44c11f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sample\FMODSoundSample">
       <UniqueIdentifier>{087f1e9d-685d-453d-8d4f-c4e2d6197c9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\ParticleSystem">
-      <UniqueIdentifier>{2629d50c-c63a-42b6-864c-a8c26b1d7685}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sample\ParticleSample">
       <UniqueIdentifier>{de20fdae-17fb-4ab0-b6cc-3829145f30df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Node\ParticleSystem\Particle">
-      <UniqueIdentifier>{7e46e0c8-881b-4f31-acd8-d1c7ffd4aec5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sample\NetworkSample">
       <UniqueIdentifier>{7a560de2-6167-4807-b446-266770bb61a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Node\AnimationAtlas">
-      <UniqueIdentifier>{5033ac60-e117-4ce1-9fc2-23260f6a16db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\NetworkSystem\PacketHeader">
-      <UniqueIdentifier>{b62274ac-3d08-4458-9d40-ff4b43b616af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\NetworkSystem\CircularBuffer">
-      <UniqueIdentifier>{ba41a31c-3d67-415f-89d2-75b7d08842e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util">
-      <UniqueIdentifier>{62b5d810-6e4c-4484-add3-aaa1d47db5be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util\Random">
-      <UniqueIdentifier>{5a962622-a4ef-4052-9263-1c53129159a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Packet">
+    <Filter Include="Sample\NetworkSample\Packet">
       <UniqueIdentifier>{d70a5eb2-6595-4b07-b909-2563bc511657}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NNApplication.cpp">
-      <Filter>Framework\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="NNAudioSystem.cpp">
-      <Filter>Framework\AudioSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="NNSound.cpp">
-      <Filter>Framework\Resource\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="NNPoint.cpp">
-      <Filter>Framework\DataType\Point</Filter>
-    </ClCompile>
-    <ClCompile Include="NNSize.cpp">
-      <Filter>Framework\DataType\Size</Filter>
-    </ClCompile>
-    <ClCompile Include="NNInputSystem.cpp">
-      <Filter>Framework\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="NNSceneDirector.cpp">
-      <Filter>Framework\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="NNLabel.cpp">
-      <Filter>Framework\Node\Label</Filter>
-    </ClCompile>
-    <ClCompile Include="NNScene.cpp">
-      <Filter>Framework\Node\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="NNSprite.cpp">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClCompile>
-    <ClCompile Include="NND2DRenderer.cpp">
-      <Filter>Framework\Renderer\D2D</Filter>
-    </ClCompile>
-    <ClCompile Include="NNResourceManager.cpp">
-      <Filter>Framework\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="NNObject.cpp">
-      <Filter>Framework\Node\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="NNTexture.cpp">
-      <Filter>Framework\Resource\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -187,95 +43,23 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="NNNetworkSystem.cpp">
-      <Filter>Framework\NetworkSystem</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationSample.cpp">
       <Filter>Sample\AnimationSample</Filter>
     </ClCompile>
     <ClCompile Include="SampleScene.cpp">
       <Filter>Sample</Filter>
     </ClCompile>
-    <ClCompile Include="NNSpriteNode.cpp">
-      <Filter>Framework\Node\Animation\SpriteNode</Filter>
-    </ClCompile>
-    <ClCompile Include="NNAnimation.cpp">
-      <Filter>Framework\Node\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="XMLSample.cpp">
       <Filter>Sample\XMLSample</Filter>
-    </ClCompile>
-    <ClCompile Include="NNXML.cpp">
-      <Filter>Framework\Resource\XML</Filter>
     </ClCompile>
     <ClCompile Include="SpriteAtlasSample.cpp">
       <Filter>Sample\SpriteAtlasSample</Filter>
     </ClCompile>
-    <ClCompile Include="NNSpriteAtlas.cpp">
-      <Filter>Framework\Node\SpriteAtlas</Filter>
-    </ClCompile>
-    <ClCompile Include="NNCamera.cpp">
-      <Filter>Framework\Node\Scene\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="CameraSample.cpp">
       <Filter>Sample\CameraSample</Filter>
     </ClCompile>
-    <ClCompile Include="Library\TinyXML\tinystr.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\tinyxml.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\tinyxmlerror.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\tinyxmlparser.cpp">
-      <Filter>Framework\TinyXML</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\action_store.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\htmlutil.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\lex_util.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\node_set.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\tokenlist.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xml_util.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_expression.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_processor.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_stack.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_static.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_stream.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\TinyXML\xpath_syntax.cpp">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClCompile>
     <ClCompile Include="FMODSoundSample.cpp">
       <Filter>Sample\FMODSoundSample</Filter>
-    </ClCompile>
-    <ClCompile Include="NNParticleSystem.cpp">
-      <Filter>Framework\Node\ParticleSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="NNParticle.cpp">
-      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSample.cpp">
       <Filter>Sample\ParticleSample</Filter>
@@ -283,74 +67,8 @@
     <ClCompile Include="NetworkSample.cpp">
       <Filter>Sample\NetworkSample</Filter>
     </ClCompile>
-    <ClCompile Include="NNAnimationAtlas.cpp">
-      <Filter>Framework\Node\AnimationAtlas</Filter>
-    </ClCompile>
-    <ClCompile Include="NNCircularBuffer.cpp">
-      <Filter>Framework\NetworkSystem\CircularBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="NNRandom.cpp">
-      <Filter>Framework\Util\Random</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NNApplication.h">
-      <Filter>Framework\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="NNAudioSystem.h">
-      <Filter>Framework\AudioSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="NNSound.h">
-      <Filter>Framework\Resource\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="NNPoint.h">
-      <Filter>Framework\DataType\Point</Filter>
-    </ClInclude>
-    <ClInclude Include="NNSize.h">
-      <Filter>Framework\DataType\Size</Filter>
-    </ClInclude>
-    <ClInclude Include="NNInputSystem.h">
-      <Filter>Framework\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="NNConfig.h">
-      <Filter>Framework\Macro</Filter>
-    </ClInclude>
-    <ClInclude Include="NNIncludeSet.h">
-      <Filter>Framework\Macro</Filter>
-    </ClInclude>
-    <ClInclude Include="NNMacroSet.h">
-      <Filter>Framework\Macro</Filter>
-    </ClInclude>
-    <ClInclude Include="NNLibSet.h">
-      <Filter>Framework\Macro</Filter>
-    </ClInclude>
-    <ClInclude Include="NNSceneDirector.h">
-      <Filter>Framework\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="NNLabel.h">
-      <Filter>Framework\Node\Label</Filter>
-    </ClInclude>
-    <ClInclude Include="NNScene.h">
-      <Filter>Framework\Node\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="NNSprite.h">
-      <Filter>Framework\Node\Sprite</Filter>
-    </ClInclude>
-    <ClInclude Include="NNRenderer.h">
-      <Filter>Framework\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="NND2DRenderer.h">
-      <Filter>Framework\Renderer\D2D</Filter>
-    </ClInclude>
-    <ClInclude Include="NNResourceManager.h">
-      <Filter>Framework\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="NNObject.h">
-      <Filter>Framework\Node\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="NNTexture.h">
-      <Filter>Framework\Resource\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -360,98 +78,23 @@
     <ClInclude Include="GameScene.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="NNNetworkSystem.h">
-      <Filter>Framework\NetworkSystem</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationSample.h">
       <Filter>Sample\AnimationSample</Filter>
     </ClInclude>
     <ClInclude Include="SampleScene.h">
       <Filter>Sample</Filter>
     </ClInclude>
-    <ClInclude Include="NNSpriteNode.h">
-      <Filter>Framework\Node\Animation\SpriteNode</Filter>
-    </ClInclude>
-    <ClInclude Include="NNAnimation.h">
-      <Filter>Framework\Node\Animation</Filter>
-    </ClInclude>
     <ClInclude Include="XMLSample.h">
       <Filter>Sample\XMLSample</Filter>
-    </ClInclude>
-    <ClInclude Include="NNXML.h">
-      <Filter>Framework\Resource\XML</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAtlasSample.h">
       <Filter>Sample\SpriteAtlasSample</Filter>
     </ClInclude>
-    <ClInclude Include="NNSpriteAtlas.h">
-      <Filter>Framework\Node\SpriteAtlas</Filter>
-    </ClInclude>
-    <ClInclude Include="NNCamera.h">
-      <Filter>Framework\Node\Scene\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="CameraSample.h">
       <Filter>Sample\CameraSample</Filter>
     </ClInclude>
-    <ClInclude Include="Library\TinyXML\tinystr.h">
-      <Filter>Framework\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\tinyxml.h">
-      <Filter>Framework\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\action_store.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\byte_stream.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\htmlutil.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\lex_token.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\lex_util.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\node_set.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\tinyxpath_conf.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\tokenlist.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xml_util.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_expression.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_processor.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_stack.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_static.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_stream.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\TinyXML\xpath_syntax.h">
-      <Filter>Framework\TinyXML\TinyXPath</Filter>
-    </ClInclude>
     <ClInclude Include="FMODSoundSample.h">
       <Filter>Sample\FMODSoundSample</Filter>
-    </ClInclude>
-    <ClInclude Include="NNParticleSystem.h">
-      <Filter>Framework\Node\ParticleSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="NNParticle.h">
-      <Filter>Framework\Node\ParticleSystem\Particle</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSample.h">
       <Filter>Sample\ParticleSample</Filter>
@@ -459,23 +102,11 @@
     <ClInclude Include="NetworkSample.h">
       <Filter>Sample\NetworkSample</Filter>
     </ClInclude>
-    <ClInclude Include="NNAnimationAtlas.h">
-      <Filter>Framework\Node\AnimationAtlas</Filter>
-    </ClInclude>
-    <ClInclude Include="NNPacketHeader.h">
-      <Filter>Framework\NetworkSystem\PacketHeader</Filter>
-    </ClInclude>
-    <ClInclude Include="NNCircularBuffer.h">
-      <Filter>Framework\NetworkSystem\CircularBuffer</Filter>
-    </ClInclude>
     <ClInclude Include="Packet.h">
-      <Filter>Game\Packet</Filter>
+      <Filter>Sample\NetworkSample\Packet</Filter>
     </ClInclude>
     <ClInclude Include="PacketFunction.h">
-      <Filter>Game\Packet</Filter>
-    </ClInclude>
-    <ClInclude Include="NNRandom.h">
-      <Filter>Framework\Util\Random</Filter>
+      <Filter>Sample\NetworkSample\Packet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
