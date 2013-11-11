@@ -96,6 +96,8 @@ bool NNApplication::Run()
 			DispatchMessage( &msg );
 		}
 		else{
+			
+			SleepEx(0, TRUE);
 			m_FrameCount++;
 			m_NowTime = timeGetTime();
 			if ( m_PrevTime == 0.f )
