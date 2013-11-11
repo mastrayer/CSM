@@ -1,4 +1,6 @@
 #include "Character.h"
+#include "Packet.h"
+#include "NNNetworkSystem.h"
 
 
 CCharacter::CCharacter(void):m_CharacterSprite(NULL)
@@ -65,7 +67,7 @@ void CCharacter::Update( float dTime)
 		m_NowFrame = (m_NowFrame+1)%nowAnimationImageInfo.totalFrameCount;
 		isFrameChange = true;
 	}
-	if(isFrameChange == true)
+	if(isFrameChange= true)
 	{
 		RemoveChild(m_CharacterSprite);
 		WCHAR buff[1024];
@@ -127,11 +129,18 @@ void CCharacter::Update( float dTime)
 {
 	//	NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
 	}
+	if ( NNInputSystem::GetInstance()->GetKeyState( '7' ) == KEY_DOWN )
+	{
+		ChatBroadcastRequest CBR = ChatBroadcastRequest();
+		strcpy_s(CBR.m_Chat,"hihi");
+		NNNetworkSystem::GetInstance()->Send(&CBR);
+	}
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	WCHAR buff[1024];
 	swprintf_s(buff,L"%f / %f",mousePoint.GetX(),m_CharacterSprite->GetRotation());//mousePoint.GetY());
 	m_LogLabel->SetString(buff);
+	m_CharacterSprite->SetCenter(m_CharacterSprite->GetImageWidth()/2.f,m_CharacterSprite->GetImageHeight()/2.f);
 	m_CharacterSprite->SetRotation(atan2f(mousePoint.GetY() - 300.f, mousePoint.GetX() - 400.f) * 180.0f / 3.14f);
 }
 void CCharacter::Render()
