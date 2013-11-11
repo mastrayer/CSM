@@ -22,7 +22,9 @@ void KeyStateUpdateResultPacketFunction( NNPacketHeader& header )
 	if ( NNNetworkSystem::GetInstance()->GetRecvBuffer()->Read((char*)&recvData, header.m_Size) )
 	{
 		std::cout << recvData.m_PlayerId << std::endl;
-
+		
+		KeyStateUpdateRequset KSURequest = KeyStateUpdateRequset();
+		NNNetworkSystem::GetInstance()->Send(&KSURequest);
 	}
 	else
 	{
