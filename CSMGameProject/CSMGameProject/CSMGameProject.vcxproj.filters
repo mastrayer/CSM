@@ -130,7 +130,7 @@
     <Filter Include="Framework\Util\Random">
       <UniqueIdentifier>{5a962622-a4ef-4052-9263-1c53129159a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\NetworkSystem\Packet">
+    <Filter Include="Game\Packet">
       <UniqueIdentifier>{d70a5eb2-6595-4b07-b909-2563bc511657}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -469,10 +469,10 @@
       <Filter>Framework\NetworkSystem\CircularBuffer</Filter>
     </ClInclude>
     <ClInclude Include="Packet.h">
-      <Filter>Framework\NetworkSystem\Packet</Filter>
+      <Filter>Game\Packet</Filter>
     </ClInclude>
     <ClInclude Include="PacketFunction.h">
-      <Filter>Framework\NetworkSystem\Packet</Filter>
+      <Filter>Game\Packet</Filter>
     </ClInclude>
     <ClInclude Include="NNRandom.h">
       <Filter>Framework\Util\Random</Filter>
