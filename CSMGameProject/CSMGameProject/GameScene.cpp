@@ -20,6 +20,9 @@ CGameScene::CGameScene(void)
 	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,ChatResultPacketFunction);
 	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_KEYSTATE,KeyStateUpdateResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
+		
+	KeyStateUpdateRequset KSURequest = KeyStateUpdateRequset();
+	NNNetworkSystem::GetInstance()->Send(&KSURequest);
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 	
