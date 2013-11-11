@@ -8,4 +8,4 @@
 
 
 void TestChatResultPacketFunction( NNPacketHeader& header );
-void TestChatRequestPacketFunction( NNPacketHeader& header );
+void KeyStateUpdateResultPacketFunction( NNPacketHeader& header )

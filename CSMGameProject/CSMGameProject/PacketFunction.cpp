@@ -1,7 +1,8 @@
 #include "PacketFunction.h"
-void TestChatResultPacketFunction( NNPacketHeader& header )
+void ChatResultPacketFunction( NNPacketHeader& header )
 {
 	ChatBroadcastResult recvData;
+	std::cout << "ChatResultPacketFunction" << std::endl;
 	if ( NNNetworkSystem::GetInstance()->GetRecvBuffer()->Read((char*)&recvData, header.m_Size) )
 	{
 		std::cout << recvData.m_Chat << std::endl;
@@ -14,14 +15,14 @@ void TestChatResultPacketFunction( NNPacketHeader& header )
 	}
 }
 
-
-void TestChatRequestPacketFunction( NNPacketHeader& header )
+void KeyStateUpdateResultPacketFunction( NNPacketHeader& header )
 {
-	ChatBroadcastRequest recvData;
+	KeyStateUpdateResult recvData;
+	std::cout << "KeyStateUpdateResultPacketFunction" << std::endl;
 	if ( NNNetworkSystem::GetInstance()->GetRecvBuffer()->Read((char*)&recvData, header.m_Size) )
 	{
-		std::cout << recvData.m_Chat << std::endl;
 		std::cout << recvData.m_PlayerId << std::endl;
+
 	}
 	else
 	{
