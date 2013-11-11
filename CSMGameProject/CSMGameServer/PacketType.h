@@ -15,7 +15,16 @@ enum PacketTypes
 	PKT_CS_CHAT		= 3,
 	PKT_SC_CHAT		= 4,
 	
+	PKT_CS_KEYSTATE = 5,
+	
 } ;
+enum KeyState
+{
+	KEY_DOWN,
+	KEY_PRESSED,
+	KEY_UP,
+	KEY_NOTPRESSED,
+};
 
 #pragma pack(push, 1)
 
@@ -90,4 +99,22 @@ struct ChatBroadcastResult : public PacketHeader
 	char mChat[MAX_CHAT_LEN] ;
 } ;
 
+struct KeyStateUpdateRequset : public PacketHeader
+{
+	KeyStateUpdateRequset()
+	{
+		mSize = sizeof(KeyStateUpdateRequset) ;
+		mType = PKT_CS_KEYSTATE ;
+		m_PlayerId = -1 ;
+	}
+	
+	int	m_PlayerId ;
+	KeyState m_UpDirectKeyState;
+	KeyState m_DownDirectKeyState;
+	KeyState m_LeftDirectKeyState;
+	KeyState m_RightDirectKeyState;
+	KeyState m_AttackKeyState;
+	KeyState m_UserActiveSkillKeyState;
+	KeyState m_TypeActiveSkillKeyState;
+} ;
 #pragma pack(pop)
