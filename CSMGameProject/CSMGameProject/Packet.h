@@ -14,6 +14,7 @@ enum PacketTypes
 	PKT_CS_CHAT		= 3,
 	PKT_SC_CHAT		= 4,
 	PKT_CS_KEYSTATE = 5,
+	PKT_SC_KEYSTATE = 6,
 };
 
 #pragma pack(push,1)
@@ -83,6 +84,18 @@ struct KeyStateUpdateRequset : public NNPacketHeader
 	KeyState m_AttackKeyState;
 	KeyState m_UserActiveSkillKeyState;
 	KeyState m_TypeActiveSkillKeyState;
+} ;
+
+struct KeyStateUpdateResult : public NNPacketHeader
+{
+	KeyStateUpdateResult()
+	{
+		m_Size = sizeof(KeyStateUpdateResult) ;
+		m_Type = PKT_SC_KEYSTATE ;
+		m_PlayerId = -1 ;
+	}
+	
+	int m_PlayerId ;
 } ;
 
 #pragma pack(pop)
