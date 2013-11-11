@@ -36,6 +36,8 @@ void TestChatResultPacketFunction( NNPacketHeader& header )
 		std::cout << "exception" << std::endl;
 	}
 }
+
+
 void TestChatRequestPacketFunction( NNPacketHeader& header )
 {
 	ChatBroadcastRequest recvData;
