@@ -22,7 +22,7 @@ NetworkSample::NetworkSample()
 	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_TEST,TestPacketFunction);
 	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
 	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_CS_CHAT,TestChatRequestPacketFunction);
-	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9002);
+	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 	m_Time = 0;
 }
 NetworkSample::~NetworkSample()
