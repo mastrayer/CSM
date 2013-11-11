@@ -1,164 +1,199 @@
-
 #include "NNCircularBuffer.h"
-#include <memory.h>
+#include <assert.h>
+#include <memory>
 
-NNCircularBuffer::NNCircularBuffer( size_t capacity )
-	: m_BeginIndex(0), m_EndIndex(0), m_CurrentSize(0), m_Capacity(capacity)
-{
-	m_Data = new char[capacity];
-}
 
-NNCircularBuffer::~NNCircularBuffer()
+bool NNCircularBuffer::Peek(char* destbuf, size_t bytes) const
 {
-	delete[] m_Data;
-}
+	assert( m_Buffer != nullptr ) ;
 
-bool NNCircularBuffer::Write( const char* data, size_t bytes )
-{
-	if ( bytes == 0 )
+	if( m_ARegionSize + m_BRegionSize < bytes )
+		return false ;
+
+	size_t cnt = bytes ;
+	size_t aRead = 0 ;
+
+	/// A, B 영역 둘다 데이터가 있는 경우는 A먼저 읽는다
+	if ( m_ARegionSize > 0 )
 	{
-		return false;
+		aRead = (cnt > m_ARegionSize) ? m_ARegionSize : cnt ;
+		memcpy(destbuf, m_ARegionPointer, aRead) ;
+		cnt -= aRead ;
 	}
 
-	// 용량이 부족할 경우
-	if ( bytes > m_Capacity - m_CurrentSize )
+	/// 읽기 요구한 데이터가 더 있다면 B 영역에서 읽는다
+	if ( cnt > 0 && m_BRegionSize > 0 )
 	{
-		return false;
+		assert(cnt <= m_BRegionSize) ;
+
+		/// 남은거 마저 다 읽기
+		size_t bRead = cnt ;
+
+		memcpy(destbuf+aRead, m_BRegionPointer, bRead) ;
+		cnt -= bRead ;
 	}
 
-	// 버퍼에 바로 쓸 수 있을 경우
-	if ( bytes <= m_Capacity - m_CurrentSize )
-	{
-		memcpy( m_Data+m_EndIndex, data, bytes );
-		m_EndIndex += bytes;
+	assert( cnt == 0 ) ;
 
-		if ( m_EndIndex == m_Capacity )
+	return true ;
+
+}
+
+bool NNCircularBuffer::Read(char* destbuf, size_t bytes)
+{
+	assert( m_Buffer != nullptr ) ;
+
+	if( m_ARegionSize + m_BRegionSize < bytes )
+		return false ;
+
+	size_t cnt = bytes ;
+	size_t aRead = 0 ;
+
+
+	/// A, B 영역 둘다 데이터가 있는 경우는 A먼저 읽는다
+	if ( m_ARegionSize > 0 )
+	{
+		aRead = (cnt > m_ARegionSize) ? m_ARegionSize : cnt ;
+		memcpy(destbuf, m_ARegionPointer, aRead) ;
+		m_ARegionSize -= aRead ;
+		m_ARegionPointer += aRead ;
+		cnt -= aRead ;
+	}
+	
+	/// 읽기 요구한 데이터가 더 있다면 B 영역에서 읽는다
+	if ( cnt > 0 && m_BRegionSize > 0 )
+	{
+		assert(cnt <= m_BRegionSize) ;
+
+		/// 남은거 마저 다 읽기
+		size_t bRead = cnt ;
+
+		memcpy(destbuf+aRead, m_BRegionPointer, bRead) ;
+		m_BRegionSize -= bRead ;
+		m_BRegionPointer += bRead ;
+		cnt -= bRead ;
+	}
+
+	assert( cnt == 0 ) ;
+
+	/// A 버퍼가 비었다면 B버퍼를 맨 앞으로 당기고 A 버퍼로 지정 
+	if ( m_ARegionSize == 0 )
+	{
+		if ( m_BRegionSize > 0 )
 		{
-			m_EndIndex = 0;
+			if ( m_BRegionPointer != m_Buffer )
+				memmove(m_Buffer, m_BRegionPointer, m_BRegionSize) ;
+
+			m_ARegionPointer = m_Buffer ;
+			m_ARegionSize = m_BRegionSize ;
+			m_BRegionPointer = nullptr ;
+			m_BRegionSize = 0 ;
+		}
+		else
+		{
+			/// B에 아무것도 없는 경우 그냥 A로 스위치
+			m_BRegionPointer = nullptr ;
+			m_BRegionSize = 0 ;
+			m_ARegionPointer = m_Buffer ;
+			m_ARegionSize = 0 ;
 		}
 	}
-	// 버퍼에 바로 못 넣어서 나눠서 넣어야 할 경우
-	else
-	{
-		size_t size1 = m_Capacity - m_EndIndex;
-		memcpy( m_Data+m_EndIndex, data, size1 );
-		size_t size2 = bytes - m_EndIndex;
-		memcpy( m_Data, data+size1, size2 );
-		m_EndIndex = size2;
-	}
 
-	m_CurrentSize += bytes;
-
-	return true;
+	return true ;
 }
 
-bool NNCircularBuffer::Read( char* data, size_t bytes )
+
+
+
+bool NNCircularBuffer::Write(const char* data, size_t bytes)
 {
-	if ( bytes == 0 )
+	assert( m_Buffer != nullptr ) ;
+
+	/// Read와 반대로 B가 있다면 B영역에 먼저 쓴다
+	if( m_BRegionPointer != nullptr )
 	{
-		return false;
+		if ( GetBFreeSpace() < bytes )
+			return false ;
+
+		memcpy(m_BRegionPointer + m_BRegionSize, data, bytes) ;
+		m_BRegionSize += bytes ;
+
+		return true ;
 	}
 
-	if ( m_CurrentSize < bytes )
+	/// A영역보다 다른 영역의 용량이 더 클 경우 그 영역을 B로 설정하고 기록
+	if ( GetAFreeSpace() < GetSpaceBeforeA() )
 	{
-		return false;
+		AllocateB() ;
+
+		if ( GetBFreeSpace() < bytes )
+			return false ;
+
+		memcpy(m_BRegionPointer + m_BRegionSize, data, bytes) ;
+		m_BRegionSize += bytes ;
+
+		return true ;
+	}
+	/// A영역이 더 크면 당연히 A에 쓰기
+	else
+	{
+		if ( GetAFreeSpace() < bytes )
+			return false ;
+
+		memcpy(m_ARegionPointer + m_ARegionSize, data, bytes) ;
+		m_ARegionSize += bytes ;
+
+		return true ;
+	}
+}
+
+
+
+void NNCircularBuffer::Remove(size_t len)
+{
+	size_t cnt = len ;
+	
+	/// Read와 마찬가지로 A가 있다면 A영역에서 먼저 삭제
+
+	if ( m_ARegionSize > 0 )
+	{
+		size_t aRemove = (cnt > m_ARegionSize) ? m_ARegionSize : cnt ;
+		m_ARegionSize -= aRemove ;
+		m_ARegionPointer += aRemove ;
+		cnt -= aRemove ;
 	}
 
-	if ( bytes <= m_Capacity-m_BeginIndex )
+	// 제거할 용량이 더 남은경우 B에서 제거 
+	if ( cnt > 0 && m_BRegionSize > 0 )
 	{
-		memcpy( data, m_Data+m_BeginIndex, bytes );
-		m_BeginIndex += bytes;
+		size_t bRemove = (cnt > m_BRegionSize) ? m_BRegionSize : cnt ;
+		m_BRegionSize -= bRemove ;
+		m_BRegionPointer += bRemove ;
+		cnt -= bRemove ;
+	}
 
-		if ( m_BeginIndex == m_Capacity )
+	/// A영역이 비워지면 B를 A로 스위치 
+	if ( m_ARegionSize == 0 )
+	{
+		if ( m_BRegionSize > 0 )
 		{
-			m_BeginIndex = 0;
+			/// 앞으로 당겨 붙이기
+			if ( m_BRegionPointer != m_Buffer )
+				memmove(m_Buffer, m_BRegionPointer, m_BRegionSize) ;
+	
+			m_ARegionPointer = m_Buffer ;
+			m_ARegionSize = m_BRegionSize ;
+			m_BRegionPointer = nullptr ;
+			m_BRegionSize = 0 ;
+		}
+		else
+		{
+			m_BRegionPointer = nullptr ;
+			m_BRegionSize = 0 ;
+			m_ARegionPointer = m_Buffer ;
+			m_ARegionSize = 0 ;
 		}
 	}
-	else
-	{
-		size_t size1 = m_Capacity-m_BeginIndex;
-		memcpy( data, m_Data+m_BeginIndex, size1 );
-
-		size_t size2 = bytes - size1;
-		memcpy( data+size1, m_Data, size2 );
-		m_BeginIndex = size2;
-	}
-
-	m_CurrentSize -= bytes;
-
-	return true;
 }
 
-void NNCircularBuffer::Peek( char* data )
-{
-	if ( m_CurrentSize <= m_Capacity-m_BeginIndex )
-	{
-		memcpy( data, m_Data+m_BeginIndex, m_CurrentSize );
-	}
-	else
-	{
-		size_t size1 = m_Capacity - m_BeginIndex;
-		memcpy( data, m_Data+m_BeginIndex, size1 );
-		size_t size2 = m_CurrentSize + size1;
-		memcpy( data+size1, m_Data, size2 );
-	}
-}
 
-bool NNCircularBuffer::Peek( char* data, size_t bytes )
-{
-	if ( bytes == 0 )
-	{
-		return false;
-	}
-
-	if ( m_CurrentSize < bytes )
-	{
-		return false;
-	}
-
-	if ( bytes <= m_Capacity - m_BeginIndex )
-	{
-		memcpy( data, m_Data+m_BeginIndex, bytes );
-	}
-	else
-	{
-		size_t size1 = m_Capacity - m_BeginIndex;
-		memcpy( data, m_Data+m_BeginIndex, size1 );
-
-		size_t size2 = bytes - size1;
-		memcpy( data+size1, m_Data, size2 );
-	}
-
-	return true;
-}
-
-bool NNCircularBuffer::Consume( size_t bytes )
-{
-	if ( bytes == 0 )
-	{
-		return false;
-	}
-
-	if ( m_CurrentSize < bytes )
-	{
-		return false;
-	}
-
-	if ( bytes <= m_Capacity - m_BeginIndex )
-	{
-		m_BeginIndex += bytes;
-		if ( m_BeginIndex == m_Capacity )
-		{
-			m_BeginIndex = 0;
-		}
-	}
-	else
-	{
-		size_t size2 = bytes + m_BeginIndex - m_Capacity;
-		m_BeginIndex = size2;
-	}
-
-	m_CurrentSize -= bytes;
-
-	return true;
-}
