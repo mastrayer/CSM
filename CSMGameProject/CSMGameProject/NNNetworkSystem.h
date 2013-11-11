@@ -5,8 +5,6 @@
 #include "NNPacketHeader.h"
 #include "NNCircularBuffer.h"
 #include <map>
-#include "Packet.h"
-#include "PacketFunction.h"
 
 #define assert(_Expression) (void)( (!!(_Expression)) || (_wassert(_CRT_WIDE(#_Expression), _CRT_WIDE(__FILE__), __LINE__), 0) )
 

@@ -1,6 +1,7 @@
 
 #include "NNNetworkSystem.h"
-
+#include "Packet.h"
+#include "PacketFunction.h"
 NNNetworkSystem* NNNetworkSystem::m_pInstance = nullptr;
 
 NNNetworkSystem::NNNetworkSystem()
