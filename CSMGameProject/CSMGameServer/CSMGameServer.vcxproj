@@ -19,6 +19,7 @@
     <ClCompile Include="DbHelper.cpp" />
     <ClCompile Include="EasyServer.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="sqlite3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -38,6 +39,7 @@
     <ClInclude Include="Exception.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="PacketType.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="SPSCQueue.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="sqlite3ext.h" />

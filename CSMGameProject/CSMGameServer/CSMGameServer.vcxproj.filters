@@ -29,6 +29,9 @@
     <ClCompile Include="sqlite3.c">
       <Filter>sqlite3</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
@@ -68,6 +71,9 @@
     <ClInclude Include="sqlite3.h">
       <Filter>sqlite3</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CircularBuffer">
@@ -96,6 +102,9 @@
     </Filter>
     <Filter Include="sqlite3">
       <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{ebc28d19-ca52-48c6-b372-80b54fe1d764}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
