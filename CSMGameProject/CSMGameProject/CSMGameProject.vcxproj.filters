@@ -28,7 +28,7 @@
     <Filter Include="Sample\NetworkSample">
       <UniqueIdentifier>{7a560de2-6167-4807-b446-266770bb61a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample\NetworkSample\Packet">
+    <Filter Include="Game\Packet">
       <UniqueIdentifier>{d70a5eb2-6595-4b07-b909-2563bc511657}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -67,6 +67,9 @@
     <ClCompile Include="NetworkSample.cpp">
       <Filter>Sample\NetworkSample</Filter>
     </ClCompile>
+    <ClCompile Include="PacketFunction.cpp">
+      <Filter>Game\Packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -103,10 +106,10 @@
       <Filter>Sample\NetworkSample</Filter>
     </ClInclude>
     <ClInclude Include="Packet.h">
-      <Filter>Sample\NetworkSample\Packet</Filter>
+      <Filter>Game\Packet</Filter>
     </ClInclude>
     <ClInclude Include="PacketFunction.h">
-      <Filter>Sample\NetworkSample\Packet</Filter>
+      <Filter>Game\Packet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

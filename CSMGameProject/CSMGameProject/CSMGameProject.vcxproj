@@ -87,6 +87,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NetworkSample.cpp" />
+    <ClCompile Include="PacketFunction.cpp" />
     <ClCompile Include="ParticleSample.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
