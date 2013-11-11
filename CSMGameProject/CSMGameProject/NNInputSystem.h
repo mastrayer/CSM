@@ -55,13 +55,13 @@ public:
 	void SetUserActiveSkillKey( int key ) { m_UserActiveSkillKey = key; }
 	void SetTypeActiveSkillKey( int key ) { m_TypeActiveSkillKey = key; }
 
-	int GetUpDirectKeyState( ) { return GetKeyState(m_UpDirectKey); }
-	int GetDownDirectKeyState( ) { return GetKeyState(m_DownDirectKey); }
-	int GetLeftDirectKeyState( ) { return GetKeyState(m_LeftDirectKey); }
-	int GetRightDirectKeyState( ) { return GetKeyState(m_RightDirectKey); }
-	int GetAttackKeyState( ) { return GetKeyState(m_AttackKey); }
-	int GetUserActiveSkillKeyState( ) { return GetKeyState(m_UserActiveSkillKey); }
-	int GetTypeActiveSkillKeyState( ) { return GetKeyState(m_TypeActiveSkillKey); }
+	KeyState GetUpDirectKeyState( ) { return GetKeyState(m_UpDirectKey); }
+	KeyState GetDownDirectKeyState( ) { return GetKeyState(m_DownDirectKey); }
+	KeyState GetLeftDirectKeyState( ) { return GetKeyState(m_LeftDirectKey); }
+	KeyState GetRightDirectKeyState( ) { return GetKeyState(m_RightDirectKey); }
+	KeyState GetAttackKeyState( ) { return GetKeyState(m_AttackKey); }
+	KeyState GetUserActiveSkillKeyState( ) { return GetKeyState(m_UserActiveSkillKey); }
+	KeyState GetTypeActiveSkillKeyState( ) { return GetKeyState(m_TypeActiveSkillKey); }
 };
 
 
