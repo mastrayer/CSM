@@ -7,5 +7,5 @@
 #include <iostream>
 
 
-void TestChatResultPacketFunction( NNPacketHeader& header );
+void ChatResultPacketFunction( NNPacketHeader& header );
 void KeyStateUpdateResultPacketFunction( NNPacketHeader& header );
