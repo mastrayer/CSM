@@ -24,3 +24,4 @@ ipch/
 # Project files
 *.sdf
 *.opensdf
+*.suo
