@@ -13,15 +13,11 @@
 
 #include "NetworkSample.h"
 #include "Packet.h"
-#include "PacketFunction.h"
 #include "NNNetworkSystem.h"
 
 NetworkSample::NetworkSample()
 {
 	NNNetworkSystem::GetInstance()->Init();
-	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_TEST,TestPacketFunction);
-	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
-	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_CS_CHAT,TestChatRequestPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 	m_Time = 0;
 }
@@ -43,10 +39,9 @@ void NetworkSample::Update( float dTime )
 	if(m_Time > 1)
 	{
 		m_Time = 0;
-		ChatBroadcastRequest CBR = ChatBroadcastRequest();
-		strcpy_s(CBR.m_Chat, "H");
-		CBR.m_PlayerId = -1;
-		NNNetworkSystem::GetInstance()->Send(&CBR);
+		KeyStateUpdateRequset KSUR = KeyStateUpdateRequset();
+		KSUR.m_PlayerId = -1;
+		NNNetworkSystem::GetInstance()->Send(&KSUR);
 	}
 }
 
