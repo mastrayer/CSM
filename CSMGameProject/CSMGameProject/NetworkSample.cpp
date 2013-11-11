@@ -10,7 +10,7 @@ NetworkSample::NetworkSample()
 {
 	NNNetworkSystem::GetInstance()->Init();
 
-	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,TestChatResultPacketFunction);
+	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,ChatResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 	m_Time = 0;
 }
