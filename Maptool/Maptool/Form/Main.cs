@@ -259,21 +259,20 @@ namespace Maptool
             string zipToUnpack = FileName;
             MemoryStream ms;
 
+            TileList.Clear();
             using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
             {
                 foreach (ZipEntry a in zip1)
                 {
                     ms = new MemoryStream();
                     a.Extract(ms);
+                    ms.Seek(0, SeekOrigin.Begin);
 
                     // XML
                     if (a.FileName.ToLower().IndexOf(".xml") > 0)
                     {
                         XmlDocument xmldoc = new XmlDocument();
-
-                        ms.Seek(0, SeekOrigin.Begin);
                         xmldoc.Load(ms);
-                        TileList.Clear();
 
                         XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
                         foreach (XmlNode xn in xnList)
@@ -306,11 +305,8 @@ namespace Maptool
                         }
                     }
                     else
-                    {
-                        Bitmap load = new Bitmap(ms);
-                        TileList.Add(new BitmapList(bitmapID++, load));
-                        load.Dispose();
-                    }
+                        TileList.Add(new BitmapList(bitmapID++, new Bitmap(ms)));
+
                     ms.Dispose();
                 }
                 
