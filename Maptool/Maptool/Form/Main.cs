@@ -31,6 +31,7 @@ namespace Maptool
         public main_map.Tile SelectedTileInfo;
         public List<BitmapList> TileList = new List<BitmapList>();
         public int bitmapID = 0;
+        public Point selectedPoint = new Point(0,0);
 
         public class BitmapList
         {
@@ -145,7 +146,6 @@ namespace Maptool
             newForm.Owner = this;
             newForm.Show();
         }
-
         private void XMLCreate(string FileName)
         {
             SortBitmapID();
@@ -347,7 +347,6 @@ namespace Maptool
                 CSMCreate(fileName);
             }
         }
-
         private void menu_item_open_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -424,12 +423,10 @@ namespace Maptool
                 //Directory.Delete("temp\\", true);
             }
         }
-
         private void menu_item_exit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
-
         private void Main_Resize(object sender, EventArgs e)
         {
             // main_map resizing
@@ -441,12 +438,10 @@ namespace Maptool
             // 
             Minimap_update();
         }
-
         private void magnification_TextChanged(object sender, EventArgs e)
         {
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
         }
-
         private void minimapViewMove(MouseEventArgs e)
         {
             double w = e.X * TileSize / (minimap.Width / mainMap.MapSize.Width);
@@ -467,17 +462,49 @@ namespace Maptool
             isMinimapDrag = true;
             minimapViewMove(e);
         }
-
         private void minimap_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.X <= 0 || e.X >= minimap.Width || e.Y <= 0 || e.Y >= minimap.Height) return;
             if (isMinimapDrag)
                 minimapViewMove(e);
         }
-
         private void minimap_MouseUp(object sender, MouseEventArgs e)
         {
             isMinimapDrag = false;
+        }
+        public void updateAttributePanel(int x, int y)
+        {
+             selectedPoint.X = x;
+             selectedPoint.Y = y;
+ 
+             attribute_move.Checked = mainMap.grid[x, y].attributeMove;
+             attribute_height.Text = mainMap.grid[x, y].attributeHeight.ToString();
+             attribute_index.Text = x.ToString() + "/" + y.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String test = mainMap.grid[0, 0].attributeMove.ToString() + "." + mainMap.grid[0, 0].attributeHeight.ToString() + " : " + "0/0\n";
+
+            test += mainMap.grid[0, 1].attributeMove.ToString() + "." + mainMap.grid[0, 1].attributeHeight.ToString() + " : " + "0/1\n";
+            test += mainMap.grid[1, 0].attributeMove.ToString() + "." + mainMap.grid[1, 0].attributeHeight.ToString() + " : " + "1/0\n";
+            test += mainMap.grid[1, 1].attributeMove.ToString() + "." + mainMap.grid[1, 1].attributeHeight.ToString() + " : " + "1/1\n";
+            MessageBox.Show(test);
+        }
+
+        private void attribute_OK_Click(object sender, EventArgs e)
+        {
+            mainMap.grid[selectedPoint.X, selectedPoint.Y].attributeMove = attribute_move.Checked;
+            mainMap.grid[selectedPoint.X, selectedPoint.Y].attributeHeight = Convert.ToInt32(attribute_height.Text);
+        }
+
+        private void isNumber(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != Convert.ToChar(Keys.Back))
+            {
+                //숫자입력만 받도록 한다.
+                e.Handled = true;
+            }
         }
     }
 }

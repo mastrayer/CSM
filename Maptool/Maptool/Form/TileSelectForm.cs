@@ -15,16 +15,17 @@ namespace Maptool
         public int index = -1;
         int brush = Convert.ToInt32(Maptool.Properties.Resources.GRID_CELL_WIDTH);
         Bitmap bmp = null;
+        public main_map.Tile SelectedTile;
+        int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
+        private Main mainForm;
+
+
         public TileSelectForm(Main form)
         {
             InitializeComponent();
             mainForm = form;
             SelectedTile.tile = new Bitmap(TileSize, TileSize);
         }
-
-        public main_map.Tile SelectedTile;
-        int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
-        private Main mainForm ;
 
         public void changeImage(int idx)
         {

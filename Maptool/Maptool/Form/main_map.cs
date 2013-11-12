@@ -27,6 +27,9 @@ namespace Maptool
             public int Attribute;
             public Bitmap tile;
             public bool isFull;
+
+            public bool attributeMove;
+            public int attributeHeight;
         };
         public main_map(int width, int height, Main Form)
         {
@@ -81,6 +84,13 @@ namespace Maptool
             highlightPen.Dispose();
             //temp.Dispose();
         }
+        private Tile returnSelectedTile(Tile cell, Tile tile)
+        {
+            tile.attributeHeight = cell.attributeHeight;
+            tile.attributeMove = cell.attributeMove;
+
+            return tile;
+        }
         private void GridCellClick(object sender, EventArgs e)
         {
             MouseEventArgs Event = (MouseEventArgs)e;
@@ -88,10 +98,13 @@ namespace Maptool
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
 
-            grid[x / TileSize, y / TileSize] = mainForm.TileSelectWindow.SelectedTile;
+            //grid[x / TileSize, y / TileSize] = mainForm.TileSelectWindow.SelectedTile;
+            grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
 
             Graphics g = Graphics.FromImage(flag);
             g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
+
+            mainForm.updateAttributePanel(x / TileSize, y / TileSize);
 
             work_map.Image = flag;
             mainForm.Minimap_update();

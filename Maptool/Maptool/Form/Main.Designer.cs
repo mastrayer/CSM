@@ -160,10 +160,17 @@
             this.label17 = new System.Windows.Forms.Label();
             this.status_panel = new System.Windows.Forms.Panel();
             this.Attribute_panel = new System.Windows.Forms.Panel();
+            this.attribute_OK = new System.Windows.Forms.Button();
+            this.attribute_index = new System.Windows.Forms.Label();
+            this.attribute_height = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.attribute_move = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.status_panel.SuspendLayout();
+            this.Attribute_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // 메뉴
@@ -779,17 +786,82 @@
             // 
             // Attribute_panel
             // 
+            this.Attribute_panel.Controls.Add(this.attribute_OK);
+            this.Attribute_panel.Controls.Add(this.attribute_index);
+            this.Attribute_panel.Controls.Add(this.attribute_height);
+            this.Attribute_panel.Controls.Add(this.label18);
+            this.Attribute_panel.Controls.Add(this.attribute_move);
             this.Attribute_panel.Location = new System.Drawing.Point(1, 275);
             this.Attribute_panel.Margin = new System.Windows.Forms.Padding(0);
             this.Attribute_panel.Name = "Attribute_panel";
             this.Attribute_panel.Size = new System.Drawing.Size(191, 118);
             this.Attribute_panel.TabIndex = 0;
             // 
+            // attribute_OK
+            // 
+            this.attribute_OK.Location = new System.Drawing.Point(159, 95);
+            this.attribute_OK.Name = "attribute_OK";
+            this.attribute_OK.Size = new System.Drawing.Size(32, 23);
+            this.attribute_OK.TabIndex = 0;
+            this.attribute_OK.Text = "OK";
+            this.attribute_OK.UseVisualStyleBackColor = true;
+            this.attribute_OK.Click += new System.EventHandler(this.attribute_OK_Click);
+            // 
+            // attribute_index
+            // 
+            this.attribute_index.AutoSize = true;
+            this.attribute_index.Location = new System.Drawing.Point(3, 8);
+            this.attribute_index.Name = "attribute_index";
+            this.attribute_index.Size = new System.Drawing.Size(9, 12);
+            this.attribute_index.TabIndex = 3;
+            this.attribute_index.Text = " ";
+            // 
+            // attribute_height
+            // 
+            this.attribute_height.Location = new System.Drawing.Point(44, 39);
+            this.attribute_height.MaxLength = 1;
+            this.attribute_height.Name = "attribute_height";
+            this.attribute_height.Size = new System.Drawing.Size(14, 21);
+            this.attribute_height.TabIndex = 2;
+            this.attribute_height.Text = "0";
+            this.attribute_height.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.isNumber);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(3, 42);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(39, 12);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "height";
+            // 
+            // attribute_move
+            // 
+            this.attribute_move.AutoSize = true;
+            this.attribute_move.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.attribute_move.Location = new System.Drawing.Point(3, 23);
+            this.attribute_move.Name = "attribute_move";
+            this.attribute_move.Size = new System.Drawing.Size(55, 16);
+            this.attribute_move.TabIndex = 0;
+            this.attribute_move.Text = "move";
+            this.attribute_move.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(658, 53);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Attribute_panel);
             this.Controls.Add(this.status_panel);
             this.Controls.Add(this.magnification);
@@ -811,6 +883,8 @@
             this.groupBox1.ResumeLayout(false);
             this.status_panel.ResumeLayout(false);
             this.status_panel.PerformLayout();
+            this.Attribute_panel.ResumeLayout(false);
+            this.Attribute_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -878,6 +952,12 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel status_panel;
         private System.Windows.Forms.Panel Attribute_panel;
+        private System.Windows.Forms.CheckBox attribute_move;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox attribute_height;
+        private System.Windows.Forms.Label attribute_index;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button attribute_OK;
 
     }
 }
