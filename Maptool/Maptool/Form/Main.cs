@@ -217,8 +217,12 @@ namespace Maptool
 
                                 textWriter.WriteStartElement("Attribute");
                                 {
-                                    textWriter.WriteStartAttribute("value");
-                                    textWriter.WriteString(mainMap.grid[i, j].Attribute.ToString());
+                                    textWriter.WriteStartAttribute("move");
+                                    textWriter.WriteString(mainMap.grid[i, j].attributeMove == true ? "true" : "false");
+                                    textWriter.WriteEndAttribute();
+
+                                    textWriter.WriteStartAttribute("height");
+                                    textWriter.WriteString(mainMap.grid[i, j].attributeHeight.ToString());
                                     textWriter.WriteEndAttribute();
                                 }
                                 textWriter.WriteEndElement();
@@ -298,15 +302,13 @@ namespace Maptool
 
                                 foreach (XmlNode xn in xnList)
                                 {
-                                    string index = xn["TileImageInfo"].Attributes["Index"].InnerText;
-                                    string x = xn["TileImageInfo"].Attributes["X"].InnerText;
-                                    string y = xn["TileImageInfo"].Attributes["Y"].InnerText;
-                                    string attribute = xn["Attribute"].Attributes["value"].InnerText;
-
-                                    mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
-                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(index);
-                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(x);
-                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(y);
+                                    //mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(xn["TileImageInfo"].Attributes["Index"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(xn["TileImageInfo"].Attributes["X"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
+                                    mainMap.grid[i, j].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
+                                    mainMap.grid[i, j].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
+ 
                                 }
                             }
                         }
