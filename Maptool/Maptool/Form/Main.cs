@@ -148,7 +148,6 @@ namespace Maptool
 
         private void XMLCreate(string FileName)
         {
-            // 생성할 XML 파일 경로와 이름, 인코딩 방식을 설정합니다.
             SortBitmapID();
             XmlTextWriter textWriter = new XmlTextWriter(@"map.xml", Encoding.UTF8);
 
@@ -257,7 +256,7 @@ namespace Maptool
             foreach (string file in files)
                 File.Delete(file);
         }
-        private void XMLRead(string FileName)//(String fileName)
+        private void OpenCSMFile(string FileName)//(String fileName)
         {
             int usedTileSetCount = 0;
             string zipToUnpack = FileName;
@@ -360,7 +359,7 @@ namespace Maptool
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                XMLRead(openFileDialog1.FileName);
+                OpenCSMFile(openFileDialog1.FileName);
                 //                 string zipToUnpack = "c:\\test\\1000.zip";
                 //                 string unpackDirectory = "c:\\test\\temp\\";
                 // 
