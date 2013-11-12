@@ -196,6 +196,10 @@ namespace Maptool
                         {
                             textWriter.WriteStartElement("t" + i.ToString() + "-" + j.ToString());
                             {
+                                textWriter.WriteStartAttribute("isFull");
+                                textWriter.WriteString(mainMap.grid[i, j].isFull == true ? "true" : "false");
+                                textWriter.WriteEndAttribute();
+
                                 textWriter.WriteStartElement("TileImageInfo");
                                 {
                                     textWriter.WriteStartAttribute("Index");
@@ -288,6 +292,10 @@ namespace Maptool
                             for (int j = 0; j < mainMap.MapSize.Height; ++j)
                             {
                                 xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+                                mainMap.grid[i,j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
+
+                                if (!mainMap.grid[i, j].isFull)
+                                    continue;
 
                                 foreach (XmlNode xn in xnList)
                                 {
@@ -314,7 +322,10 @@ namespace Maptool
             for (int i = 0; i < mainMap.MapSize.Width; ++i)
             {
                 for (int j = 0; j < mainMap.MapSize.Height; ++j)
-                    mainMap.grid[i, j].tile = TileList[mainMap.grid[i, j].TIleSetID].image.Clone(new Rectangle(new Point(mainMap.grid[i, j].TileLocation.X, mainMap.grid[i, j].TileLocation.Y), new Size(TileSize, TileSize)), TileList[mainMap.grid[i, j].TIleSetID].image.PixelFormat);
+                {
+                    if(mainMap.grid[i,j].isFull)
+                        mainMap.grid[i, j].tile = TileList[mainMap.grid[i, j].TIleSetID].image.Clone(new Rectangle(new Point(mainMap.grid[i, j].TileLocation.X, mainMap.grid[i, j].TileLocation.Y), new Size(TileSize, TileSize)), TileList[mainMap.grid[i, j].TIleSetID].image.PixelFormat);
+                }
             }
 
             TileSelectWindow.changeImage(TileList.Count - 1);

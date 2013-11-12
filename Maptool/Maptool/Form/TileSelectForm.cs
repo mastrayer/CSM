@@ -115,6 +115,7 @@ namespace Maptool
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
 
+            SelectedTile.isFull = true;
             SelectedTile.TileLocation = new Point(x, y);
             SelectedTile.TIleSetID = mainForm.TileList[index].ID;
             SelectedTile.tile = new Bitmap(TileSize, TileSize);
