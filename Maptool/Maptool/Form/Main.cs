@@ -334,21 +334,52 @@ namespace Maptool
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string sDirPath = Application.StartupPath + "\\temp";
-                DirectoryInfo di = new DirectoryInfo(sDirPath);
-                if (di.Exists == false)
-                    di.Create();
+                string zipToUnpack = "c:\\test\\1000.zip";
+                string unpackDirectory = "c:\\test\\temp\\";
 
-                string zipToUnpack = openFileDialog1.FileName;
-                string unpackDirectory = "temp\\";
+                string f = string.Empty;
+                Bitmap bm = null;
+                MemoryStream ms;
 
-                using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+                using (ZipFile zip = ZipFile.Read(zipToUnpack))
                 {
-                    foreach (ZipEntry a in zip1)
-                        a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
+                    foreach (ZipEntry E in zip)
+                    {
+                        if (E.FileName.ToLower().IndexOf(".jpg") > 0)
+                        {
+                            ms = new MemoryStream();
+                            E.Extract(ms);
+                            try
+                            {
+                                bm = new Bitmap(ms);
+                                //f = unpackDirectory + E.FileName.ToLower().Replace(".bmp", ".jpg");
+                                //bm.Save(f, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("File: " + E.FileName + " " + ex.ToString());
+                            }
+                            ms.Dispose();
+                        }
+                    }
                 }
-                XMLRead(@"temp\\map.xml");
-                Directory.Delete("temp\\", true);
+                minimap.Image = bm;
+
+//                 string sDirPath = Application.StartupPath + "\\temp";
+//                 DirectoryInfo di = new DirectoryInfo(sDirPath);
+//                 if (di.Exists == false)
+//                     di.Create();
+// 
+//                 string zipToUnpack = openFileDialog1.FileName;
+//                 string unpackDirectory = "temp\\";
+// 
+//                 using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+//                 {
+//                     foreach (ZipEntry a in zip1)
+//                         a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
+//                 }
+//                 XMLRead(@"temp\\map.xml");
+//                 Directory.Delete("temp\\", true);
             }
         }
 
@@ -364,8 +395,7 @@ namespace Maptool
             mainMap.SetBounds(0, 0, mainMap.Parent.Size.Width - 10, mainMap.Parent.Size.Height - 30);
 
             // contents resizing
-            contents.Size = new Size(contents.Size.Width, Screen.PrimaryScreen.Bounds.Height - minimap.Size.Height);
-
+             contents.Size = new Size(contents.Size.Width, this.Size.Height - minimap.Size.Height - Attribute_panel.Size.Height - status_panel.Size.Height);
             // 
             Minimap_update();
         }

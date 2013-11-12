@@ -26,6 +26,7 @@ namespace Maptool
             public int TIleSetID;
             public int Attribute;
             public Bitmap tile;
+            public bool isEmpty;
         };
         public main_map(int width, int height, Main Form)
         {
@@ -50,7 +51,11 @@ namespace Maptool
             for (int i = 0; i < MapSize.Width; ++i)
             {
                 for (int j = 0; j < MapSize.Height; ++j)
+                {
+                    if (grid[i, j].isEmpty) continue;
+
                     g.DrawImage(grid[i, j].tile, new Point(i * TileSize, j * TileSize));
+                }
             }
             mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
 

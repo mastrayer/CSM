@@ -33,14 +33,74 @@
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
             System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드1");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("노드2");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("노드3");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("노드4");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드6");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("노드7");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("노드8");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("노드9");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("노드10");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("노드11");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("노드12");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("노드13");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("노드14");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("노드15");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("노드16");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("노드17");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("노드18");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("노드19");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("노드20");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("노드21");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("노드22");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("노드23");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("노드24");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("노드25");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("노드26");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("노드27");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("노드28");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("노드29");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode29,
+            treeNode30,
+            treeNode31,
+            treeNode32,
+            treeNode33,
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode36});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,11 +158,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.status_panel = new System.Windows.Forms.Panel();
+            this.Attribute_panel = new System.Windows.Forms.Panel();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.status_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // 메뉴
@@ -347,7 +408,7 @@
             // contents
             // 
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.contents.Location = new System.Drawing.Point(0, 272);
+            this.contents.Location = new System.Drawing.Point(0, 396);
             this.contents.Name = "contents";
             treeNode1.Name = "tile_empty";
             treeNode1.Text = "empty";
@@ -357,16 +418,76 @@
             treeNode3.Text = "soil";
             treeNode4.Name = "노드0";
             treeNode4.Text = "노드0";
-            treeNode5.Name = "tile";
-            treeNode5.Text = "tile";
-            treeNode6.Name = "structure_";
-            treeNode6.Text = "노드5";
-            treeNode7.Name = "structure";
-            treeNode7.Text = "structure";
+            treeNode5.Name = "노드0";
+            treeNode5.Text = "노드0";
+            treeNode6.Name = "노드1";
+            treeNode6.Text = "노드1";
+            treeNode7.Name = "노드2";
+            treeNode7.Text = "노드2";
+            treeNode8.Name = "노드3";
+            treeNode8.Text = "노드3";
+            treeNode9.Name = "노드4";
+            treeNode9.Text = "노드4";
+            treeNode10.Name = "노드5";
+            treeNode10.Text = "노드5";
+            treeNode11.Name = "노드6";
+            treeNode11.Text = "노드6";
+            treeNode12.Name = "노드7";
+            treeNode12.Text = "노드7";
+            treeNode13.Name = "노드8";
+            treeNode13.Text = "노드8";
+            treeNode14.Name = "노드9";
+            treeNode14.Text = "노드9";
+            treeNode15.Name = "노드10";
+            treeNode15.Text = "노드10";
+            treeNode16.Name = "노드11";
+            treeNode16.Text = "노드11";
+            treeNode17.Name = "노드12";
+            treeNode17.Text = "노드12";
+            treeNode18.Name = "노드13";
+            treeNode18.Text = "노드13";
+            treeNode19.Name = "노드14";
+            treeNode19.Text = "노드14";
+            treeNode20.Name = "노드15";
+            treeNode20.Text = "노드15";
+            treeNode21.Name = "노드16";
+            treeNode21.Text = "노드16";
+            treeNode22.Name = "노드17";
+            treeNode22.Text = "노드17";
+            treeNode23.Name = "노드18";
+            treeNode23.Text = "노드18";
+            treeNode24.Name = "노드19";
+            treeNode24.Text = "노드19";
+            treeNode25.Name = "노드20";
+            treeNode25.Text = "노드20";
+            treeNode26.Name = "노드21";
+            treeNode26.Text = "노드21";
+            treeNode27.Name = "노드22";
+            treeNode27.Text = "노드22";
+            treeNode28.Name = "노드23";
+            treeNode28.Text = "노드23";
+            treeNode29.Name = "노드24";
+            treeNode29.Text = "노드24";
+            treeNode30.Name = "노드25";
+            treeNode30.Text = "노드25";
+            treeNode31.Name = "노드26";
+            treeNode31.Text = "노드26";
+            treeNode32.Name = "노드27";
+            treeNode32.Text = "노드27";
+            treeNode33.Name = "노드28";
+            treeNode33.Text = "노드28";
+            treeNode34.Name = "노드29";
+            treeNode34.Text = "노드29";
+            treeNode35.Name = "tile";
+            treeNode35.Text = "tile";
+            treeNode36.Name = "structure_";
+            treeNode36.Text = "노드5";
+            treeNode37.Name = "structure";
+            treeNode37.Text = "structure";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            this.contents.Size = new System.Drawing.Size(192, 464);
+            treeNode35,
+            treeNode37});
+            this.contents.Size = new System.Drawing.Size(192, 323);
             this.contents.TabIndex = 3;
             // 
             // minimap
@@ -631,37 +752,46 @@
             this.label17.TabIndex = 33;
             this.label17.Text = "label17";
             // 
-            // panel1
+            // status_panel
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 725);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1016, 12);
-            this.panel1.TabIndex = 0;
+            this.status_panel.Controls.Add(this.label1);
+            this.status_panel.Controls.Add(this.label14);
+            this.status_panel.Controls.Add(this.label17);
+            this.status_panel.Controls.Add(this.label2);
+            this.status_panel.Controls.Add(this.label16);
+            this.status_panel.Controls.Add(this.label3);
+            this.status_panel.Controls.Add(this.label15);
+            this.status_panel.Controls.Add(this.label4);
+            this.status_panel.Controls.Add(this.label5);
+            this.status_panel.Controls.Add(this.label13);
+            this.status_panel.Controls.Add(this.label6);
+            this.status_panel.Controls.Add(this.label12);
+            this.status_panel.Controls.Add(this.label7);
+            this.status_panel.Controls.Add(this.label11);
+            this.status_panel.Controls.Add(this.label8);
+            this.status_panel.Controls.Add(this.label10);
+            this.status_panel.Controls.Add(this.label9);
+            this.status_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.status_panel.Location = new System.Drawing.Point(0, 725);
+            this.status_panel.Name = "status_panel";
+            this.status_panel.Size = new System.Drawing.Size(1016, 12);
+            this.status_panel.TabIndex = 0;
+            // 
+            // Attribute_panel
+            // 
+            this.Attribute_panel.Location = new System.Drawing.Point(1, 275);
+            this.Attribute_panel.Margin = new System.Windows.Forms.Padding(0);
+            this.Attribute_panel.Name = "Attribute_panel";
+            this.Attribute_panel.Size = new System.Drawing.Size(191, 118);
+            this.Attribute_panel.TabIndex = 0;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 737);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Attribute_panel);
+            this.Controls.Add(this.status_panel);
             this.Controls.Add(this.magnification);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.layers);
@@ -679,8 +809,8 @@
             this.메뉴.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.status_panel.ResumeLayout(false);
+            this.status_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -746,7 +876,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel status_panel;
+        private System.Windows.Forms.Panel Attribute_panel;
 
     }
 }
