@@ -93,6 +93,7 @@ namespace Maptool
             if (index == -1) return;
             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
                 return;
+            
 
             Bitmap temp = new Bitmap(bmp);
             int HighlightBrush = brush + 2;
@@ -114,6 +115,9 @@ namespace Maptool
 
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
+
+            if (x + TileSize >= mainForm.TileList[index].image.Width || y + TileSize >= mainForm.TileList[index].image.Height)
+                return;
 
             SelectedTile.isFull = true;
             SelectedTile.TileLocation = new Point(x, y);
