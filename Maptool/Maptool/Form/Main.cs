@@ -65,11 +65,11 @@ namespace Maptool
             {
                 if (i != TileList[i].ID)
                 {
-                    for(int j=0; j<mainMap.MapSize.Width; ++j)
+                    for (int j = 0; j < mainMap.MapSize.Width; ++j)
                     {
                         for (int k = 0; k < mainMap.MapSize.Height; ++k)
                         {
-                            if (mainMap.grid[j,k].TIleSetID == TileList[i].ID)
+                            if (mainMap.grid[j, k].TIleSetID == TileList[i].ID)
                                 mainMap.grid[j, k].TIleSetID = i;
                         }
                     }
@@ -253,56 +253,75 @@ namespace Maptool
             foreach (string file in files)
                 File.Delete(file);
         }
-        private void XMLRead(String fileName)
+        private void XMLRead(string FileName)//(String fileName)
         {
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(fileName);
-            TileList.Clear();
-
-            int width=0, height=0;
             int usedTileSetCount = 0;
+            string zipToUnpack = FileName;
+            MemoryStream ms;
 
-            XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
-            foreach (XmlNode xn in xnList)
+            using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
             {
-                width = Convert.ToInt32(xn["size"].Attributes["width"].Value);
-                height = Convert.ToInt32(xn["size"].Attributes["height"].Value);
-                usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
-            }
-            for (int i = 0; i < usedTileSetCount; ++i)
-            {
-                Bitmap load = new Bitmap("temp\\" + "TileSet" + i.ToString());
-                Bitmap temp = new Bitmap(load.Width, load.Height);
-                Graphics.FromImage(temp).DrawImage(load, new Point(0, 0));
-
-                TileList.Add(new BitmapList(bitmapID++, temp));
-
-                load.Dispose();              
-            }
-            TileSelectWindow.changeImage(TileList.Count - 1);
-
-            mainMap_init(width, height);
-            for (int i = 0; i < width; ++i)
-            {
-                for (int j = 0; j < height; ++j)
+                foreach (ZipEntry a in zip1)
                 {
-                    xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+                    ms = new MemoryStream();
+                    a.Extract(ms);
 
-                    foreach (XmlNode xn in xnList)
+                    // XML
+                    if (a.FileName.ToLower().IndexOf(".xml") > 0)
                     {
-                        string index = xn["TileImageInfo"].Attributes["Index"].InnerText;
-                        string x = xn["TileImageInfo"].Attributes["X"].InnerText;
-                        string y = xn["TileImageInfo"].Attributes["Y"].InnerText;
-                        string attribute = xn["Attribute"].Attributes["value"].InnerText;
+                        XmlDocument xmldoc = new XmlDocument();
 
-                        mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
-                        mainMap.grid[i, j].TIleSetID = Convert.ToInt32(index);
-                        mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(x);
-                        mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(y);
-                        mainMap.grid[i, j].tile = TileList[Convert.ToInt32(index)].image.Clone(new Rectangle(new Point(Convert.ToInt32(x), Convert.ToInt32(y)), new Size(TileSize, TileSize)), TileList[Convert.ToInt32(index)].image.PixelFormat);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        xmldoc.Load(ms);
+                        TileList.Clear();
+
+                        XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            mainMap.MapSize.Width = Convert.ToInt32(xn["size"].Attributes["width"].Value);
+                            mainMap.MapSize.Height = Convert.ToInt32(xn["size"].Attributes["height"].Value);
+                            usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
+                        }
+                        mainMap_init(mainMap.MapSize.Width, mainMap.MapSize.Height);
+
+                        for (int i = 0; i < mainMap.MapSize.Width; ++i)
+                        {
+                            for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                            {
+                                xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+
+                                foreach (XmlNode xn in xnList)
+                                {
+                                    string index = xn["TileImageInfo"].Attributes["Index"].InnerText;
+                                    string x = xn["TileImageInfo"].Attributes["X"].InnerText;
+                                    string y = xn["TileImageInfo"].Attributes["Y"].InnerText;
+                                    string attribute = xn["Attribute"].Attributes["value"].InnerText;
+
+                                    mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(index);
+                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(x);
+                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(y);
+                                }
+                            }
+                        }
                     }
+                    else
+                    {
+                        Bitmap load = new Bitmap(ms);
+                        TileList.Add(new BitmapList(bitmapID++, load));
+                        load.Dispose();
+                    }
+                    ms.Dispose();
                 }
+                
             }
+            for (int i = 0; i < mainMap.MapSize.Width; ++i)
+            {
+                for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                    mainMap.grid[i, j].tile = TileList[mainMap.grid[i, j].TIleSetID].image.Clone(new Rectangle(new Point(mainMap.grid[i, j].TileLocation.X, mainMap.grid[i, j].TileLocation.Y), new Size(TileSize, TileSize)), TileList[mainMap.grid[i, j].TIleSetID].image.PixelFormat);
+            }
+
+            TileSelectWindow.changeImage(TileList.Count - 1);
             mainMap.refresh();
             Minimap_update();
         }
@@ -334,52 +353,69 @@ namespace Maptool
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string zipToUnpack = "c:\\test\\1000.zip";
-                string unpackDirectory = "c:\\test\\temp\\";
+                XMLRead(openFileDialog1.FileName);
+                //                 string zipToUnpack = "c:\\test\\1000.zip";
+                //                 string unpackDirectory = "c:\\test\\temp\\";
+                // 
+                //                 string f = string.Empty;
+                //                 Bitmap bm = null;
+                //                 MemoryStream ms;
+                // 
+                //                 using (ZipFile zip = ZipFile.Read(zipToUnpack))
+                //                 {
+                //                     foreach (ZipEntry E in zip)
+                //                     {
+                //                         if (E.FileName.ToLower().IndexOf(".jpg") > 0)
+                //                         {
+                //                             ms = new MemoryStream();
+                //                             E.Extract(ms);
+                //                             try
+                //                             {
+                //                                 bm = new Bitmap(ms);
+                //                                 //f = unpackDirectory + E.FileName.ToLower().Replace(".bmp", ".jpg");
+                //                                 //bm.Save(f, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //                             }
+                //                             catch (Exception ex)
+                //                             {
+                //                                 Console.WriteLine("File: " + E.FileName + " " + ex.ToString());
+                //                             }
+                //                             ms.Dispose();
+                //                         }
+                //                     }
+                //                 }
 
-                string f = string.Empty;
-                Bitmap bm = null;
-                MemoryStream ms;
+                //string sDirPath = Application.StartupPath + "\\temp";
+                //DirectoryInfo di = new DirectoryInfo(sDirPath);
+                //if (di.Exists == false)
+                //   di.Create();
 
-                using (ZipFile zip = ZipFile.Read(zipToUnpack))
-                {
-                    foreach (ZipEntry E in zip)
-                    {
-                        if (E.FileName.ToLower().IndexOf(".jpg") > 0)
-                        {
-                            ms = new MemoryStream();
-                            E.Extract(ms);
-                            try
-                            {
-                                bm = new Bitmap(ms);
-                                //f = unpackDirectory + E.FileName.ToLower().Replace(".bmp", ".jpg");
-                                //bm.Save(f, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("File: " + E.FileName + " " + ex.ToString());
-                            }
-                            ms.Dispose();
-                        }
-                    }
-                }
-                minimap.Image = bm;
-
-//                 string sDirPath = Application.StartupPath + "\\temp";
-//                 DirectoryInfo di = new DirectoryInfo(sDirPath);
-//                 if (di.Exists == false)
-//                     di.Create();
-// 
-//                 string zipToUnpack = openFileDialog1.FileName;
-//                 string unpackDirectory = "temp\\";
-// 
-//                 using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
-//                 {
-//                     foreach (ZipEntry a in zip1)
-//                         a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
-//                 }
-//                 XMLRead(@"temp\\map.xml");
-//                 Directory.Delete("temp\\", true);
+                //                 string zipToUnpack = openFileDialog1.FileName;
+                //                 MemoryStream ms;
+                //                 //string unpackDirectory = "temp\\";
+                // 
+                //                 using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+                //                 {
+                //                     foreach (ZipEntry a in zip1)
+                //                     {
+                //                         ms = new MemoryStream();
+                //                         a.Extract(ms);
+                // 
+                //                         // XML
+                //                         if (a.FileName.ToLower().IndexOf(".xml") > 0)
+                //                         {
+                //                             XmlDocument b = new XmlDocument();
+                //                             b.Load(ms);
+                // 
+                //                             XMLRead(b);
+                //                         }
+                //                         else
+                //                         {
+                //                             //a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
+                //                         }
+                //                     }
+                //                 }
+                //XMLRead(@"temp\\map.xml");
+                //Directory.Delete("temp\\", true);
             }
         }
 
@@ -395,7 +431,7 @@ namespace Maptool
             mainMap.SetBounds(0, 0, mainMap.Parent.Size.Width - 10, mainMap.Parent.Size.Height - 30);
 
             // contents resizing
-             contents.Size = new Size(contents.Size.Width, this.Size.Height - minimap.Size.Height - Attribute_panel.Size.Height - status_panel.Size.Height);
+            contents.Size = new Size(contents.Size.Width, this.Size.Height - minimap.Size.Height - Attribute_panel.Size.Height - status_panel.Size.Height);
             // 
             Minimap_update();
         }
