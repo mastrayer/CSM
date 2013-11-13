@@ -68,8 +68,35 @@ namespace Maptool
 
             work_map.Image = flag;
         }
+        private void cellClick(MouseEventArgs e)
+        {
+            if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
+                return;
+
+            int x = (e.X / TileSize) * TileSize;
+            int y = (e.Y / TileSize) * TileSize;
+
+            grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
+
+            Graphics g = Graphics.FromImage(flag);
+            g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
+            refresh();
+
+            mainForm.updateAttributePanel(x / TileSize, y / TileSize);
+
+            work_map.Image = flag;
+            mainForm.Minimap_update();
+            refresh();
+
+            g.Dispose();
+        }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
+            if (isDrag)
+            {
+                cellClick(e);
+                //return;
+            }
             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
                 return;
 
@@ -96,27 +123,7 @@ namespace Maptool
         }
         private void GridCellClick(object sender, EventArgs e)
         {
-            MouseEventArgs Event = (MouseEventArgs)e;
 
-            if (Event.Button != MouseButtons.Left)
-                return;
-
-            int x = (Event.X / TileSize) * TileSize;
-            int y = (Event.Y / TileSize) * TileSize;
-
-            //grid[x / TileSize, y / TileSize] = mainForm.TileSelectWindow.SelectedTile;
-            grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
-
-            Graphics g = Graphics.FromImage(flag);
-            g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
-            refresh();
-
-            mainForm.updateAttributePanel(x / TileSize, y / TileSize);
-
-            work_map.Image = flag;
-            mainForm.Minimap_update();
-
-            g.Dispose();
         }
         private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
@@ -125,17 +132,23 @@ namespace Maptool
         }
 
         Bitmap temp = new Bitmap(64, 64);
+        bool isDrag = false;
         private void main_map_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                mainForm.TileSelectWindow.SelectedTile = new Tile();
-                //mainForm.TileSelectWindow.SelectedTile.isFull = false;
+                mainForm.TileSelectWindow.SelectedTile.isFull = false;
                 mainForm.TileSelectWindow.SelectedTile.tile = temp;
-                //mainForm.TileSelectWindow.SelectedTile.TileLocation.X = 0;
-                //mainForm.TileSelectWindow.SelectedTile.TileLocation.Y = 0;
-                //mainForm.TileSelectWindow.SelectedTile.TIleSetID = 0;
+
+                return;
             }
+            isDrag = true;
+            cellClick(e);
+        }
+
+        private void work_map_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDrag = false;
         }
     }
 }

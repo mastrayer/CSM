@@ -40,9 +40,9 @@
             this.work_map.Size = new System.Drawing.Size(571, 404);
             this.work_map.TabIndex = 0;
             this.work_map.TabStop = false;
-            this.work_map.Click += new System.EventHandler(this.GridCellClick);
             this.work_map.MouseDown += new System.Windows.Forms.MouseEventHandler(this.main_map_MouseDown);
             this.work_map.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GridCellHighlight);
+            this.work_map.MouseUp += new System.Windows.Forms.MouseEventHandler(this.work_map_MouseUp);
             // 
             // main_map
             // 
