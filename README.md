@@ -12,3 +12,4 @@ CSM
 * 그 후 이용하시면 됩니다.
 * 만약 NNGameFramework가 업데이트 됬을 경우 해당 폴더로 이동하여 git pull 하시면 됩니다.
 * svn은 잘 모르겠네요
+* Maptool도 Ionic.Zip.dll을 실행파일과 같은 폴더에 넣고 실행해야 합니다.
