@@ -42,6 +42,7 @@ namespace Maptool
             highlight = new Point(0, 0);
             flag = new Bitmap(MapSize.Width * TileSize + brush, MapSize.Height * TileSize + brush);
             flag = mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
+            Graphics.FromImage(temp).FillRectangle(new SolidBrush(Color.White), 0, 0, TileSize, TileSize);
 
             work_map.Image = flag;
         }
@@ -57,6 +58,8 @@ namespace Maptool
                 {
                     if (grid[i, j].isFull)
                         g.DrawImage(grid[i, j].tile, new Point(i * TileSize, j * TileSize));
+                    else
+                        g.DrawImage(temp, new Point(i * TileSize, j * TileSize));
                 }
             }
             mainForm.drawGrid(flag, new Pen(Color.Blue, brush), true, TileSize);
@@ -95,6 +98,9 @@ namespace Maptool
         {
             MouseEventArgs Event = (MouseEventArgs)e;
 
+            if (Event.Button != MouseButtons.Left)
+                return;
+
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
 
@@ -103,6 +109,7 @@ namespace Maptool
 
             Graphics g = Graphics.FromImage(flag);
             g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
+            refresh();
 
             mainForm.updateAttributePanel(x / TileSize, y / TileSize);
 
@@ -115,6 +122,20 @@ namespace Maptool
         {
             work_map.Image = flag;
             mainForm.Minimap_update();
+        }
+
+        Bitmap temp = new Bitmap(64, 64);
+        private void main_map_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                mainForm.TileSelectWindow.SelectedTile = new Tile();
+                //mainForm.TileSelectWindow.SelectedTile.isFull = false;
+                mainForm.TileSelectWindow.SelectedTile.tile = temp;
+                //mainForm.TileSelectWindow.SelectedTile.TileLocation.X = 0;
+                //mainForm.TileSelectWindow.SelectedTile.TileLocation.Y = 0;
+                //mainForm.TileSelectWindow.SelectedTile.TIleSetID = 0;
+            }
         }
     }
 }
