@@ -117,7 +117,7 @@ namespace Maptool
             int x = (Event.X / TileSize) * TileSize;
             int y = (Event.Y / TileSize) * TileSize;
 
-            if (x + TileSize >= mainForm.TileList[index].image.Width || y + TileSize >= mainForm.TileList[index].image.Height)
+            if (x + TileSize > mainForm.TileList[index].image.Width || y + TileSize > mainForm.TileList[index].image.Height)
                 return;
 
             SelectedTile.isFull = true;
