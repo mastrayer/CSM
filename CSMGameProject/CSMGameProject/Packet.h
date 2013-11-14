@@ -68,7 +68,7 @@ struct KeyStateUpdateRequset : public NNPacketHeader
 		m_Size = sizeof(KeyStateUpdateRequset) ;
 		m_Type = PKT_CS_KEYSTATE ;
 		m_PlayerId = -1 ;
-		int m_TimeStamp = time(NULL);
+		time_t m_TimeStamp = time(NULL);
 		m_GameKeyStates = gameKeyStates;
 	}
 	
