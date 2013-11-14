@@ -76,62 +76,6 @@ void CCharacter::Update( float dTime)
 	}
 	
 
-	//Check Moving Input, and set Position to d
-	if ( NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_DOWN  || 
-		NNInputSystem::GetInstance()->GetKeyState( 'A' ) == KEY_PRESSED)
-	{
-		//Left
-		SetPosition( GetPosition() + NNPoint( cos((GetRotation() + -90.f)/180.f*3.14f), sin((GetRotation() -90.f)/180.f*3.14f)) * dTime * 100.f );
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_DOWN  || 
-		NNInputSystem::GetInstance()->GetKeyState( 'D' ) == KEY_PRESSED)
-	{
-		//Right
-		SetPosition( GetPosition() + NNPoint( cos((GetRotation() + +90.f)/180.f*3.14f), sin((GetRotation() +90.f)/180.f*3.14f)) * dTime * 100.f );
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_DOWN  || 
-		NNInputSystem::GetInstance()->GetKeyState( 'W' ) == KEY_PRESSED)
-	{
-		//UP
-		SetPosition( GetPosition() + NNPoint( cos((GetRotation())/180.f*3.14f), sin((GetRotation())/180.f*3.14f)) * dTime * 100.f );
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_DOWN  || 
-		NNInputSystem::GetInstance()->GetKeyState( 'S' ) == KEY_PRESSED)
-	{
-		//Down
-		SetPosition( GetPosition() + NNPoint( cos((GetRotation() + 180.f)/180.f*3.14f), sin((GetRotation() + 180.f)/180.f*3.14f)) * dTime * 100.f );
-	}
-
-	if ( NNInputSystem::GetInstance()->GetKeyState( '1' ) == KEY_DOWN )
-	{
-		TransState(WALK);
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '2' ) == KEY_DOWN )
-	{
-		TransState(IDLE);
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '3' ) == KEY_DOWN )
-	{
-		TransState(ATTACK);
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '4' ) == KEY_DOWN )
-	{
-		TransState(DIE);
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '5' ) == KEY_DOWN )
-	{
-//		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '6' ) == KEY_DOWN )
-{
-	//	NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
-	}
-	if ( NNInputSystem::GetInstance()->GetKeyState( '7' ) == KEY_DOWN )
-	{
-		ChatBroadcastRequest CBR = ChatBroadcastRequest();
-		strcpy_s(CBR.m_Chat,"hihi");
-	//	NNNetworkSystem::GetInstance()->Send(&CBR);
-	}
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	WCHAR buff[1024];
