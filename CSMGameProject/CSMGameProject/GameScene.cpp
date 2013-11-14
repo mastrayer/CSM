@@ -23,6 +23,7 @@ CGameScene::CGameScene(void)
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
+	m_MyPlayerId = -1;
 }
 
 
