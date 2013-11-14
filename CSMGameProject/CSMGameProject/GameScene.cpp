@@ -11,18 +11,18 @@ CGameScene::CGameScene(void)
 
 	m_FPSLbael = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
 	AddChild(m_FPSLbael);
-	
+
 	NNNetworkSystem::GetInstance()->Init();
 
 	//NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_CHAT,ChatResultPacketFunction);
 	//NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_KEYSTATE,KeyStateUpdateResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
-		
+
 	KeyStateUpdateRequset KSURequest = KeyStateUpdateRequset();
 	//NNNetworkSystem::GetInstance()->Send(&KSURequest);
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
-	
+
 }
 
 
@@ -37,7 +37,7 @@ void CGameScene::Render()
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
-	
+
 	swprintf_s(m_FPSLabelBuff,L"%d",(int)NNApplication::GetInstance()->GetFPS());
 	m_FPSLbael->SetString(m_FPSLabelBuff);
 
@@ -45,14 +45,77 @@ void CGameScene::Update( float dTime )
 	{
 		NNPoint endPoint = NNPoint(m_MyCharacter->GetPositionX()
 			,m_MyCharacter->GetPositionY());
-	
+
 		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),endPoint,0.99f));
 
 		if( isChangedGameKeyStates() == true )
 		{
 			//send packet
 		}
+		
+		/// above is... before Update Game Key States
+		
+		m_NowGameKeyStates = GetNowGameKeyStates();
 
+		/// under is... After Update Game Key States
+
+		//Move myCharacter with Game Key States.
+		//Check Moving Input, and set Position to d
+		if ( m_NowGameKeyStates.leftDirectKey ==  KEY_DOWN  || 
+			m_NowGameKeyStates.leftDirectKey == KEY_PRESSED )
+		{
+			//Left
+			m_MyCharacter->SetPosition( m_MyCharacter->GetPosition() + NNPoint( cos((m_MyCharacter->GetRotation() + -90.f)/180.f*3.14f), sin((m_MyCharacter->GetRotation() -90.f)/180.f*3.14f)) * dTime * 100.f );
+		}
+		if ( m_NowGameKeyStates.rightDirectKey == KEY_DOWN  || 
+			m_NowGameKeyStates.rightDirectKey == KEY_PRESSED)
+		{
+			//Right
+			m_MyCharacter->SetPosition( m_MyCharacter->GetPosition() + NNPoint( cos((m_MyCharacter->GetRotation() +90.f)/180.f*3.14f), sin((m_MyCharacter->GetRotation() +90.f)/180.f*3.14f)) * dTime * 100.f );
+		}
+		if (m_NowGameKeyStates.upDirectKey == KEY_DOWN  || 
+			m_NowGameKeyStates.upDirectKey == KEY_PRESSED)
+		{
+			//UP
+			m_MyCharacter->SetPosition( m_MyCharacter->GetPosition() + NNPoint( cos((m_MyCharacter->GetRotation())/180.f*3.14f), sin((m_MyCharacter->GetRotation())/180.f*3.14f)) * dTime * 100.f );
+		}
+		if ( m_NowGameKeyStates.downDirectKey == KEY_DOWN  || 
+			m_NowGameKeyStates.downDirectKey == KEY_PRESSED)
+		{
+			//Down
+			m_MyCharacter->SetPosition( m_MyCharacter->GetPosition() + NNPoint( cos((m_MyCharacter->GetRotation() + 180.f)/180.f*3.14f), sin((m_MyCharacter->GetRotation() + 180.f)/180.f*3.14f)) * dTime * 100.f );
+		}
+
+		if ( NNInputSystem::GetInstance()->GetKeyState( '1' ) == KEY_DOWN )
+		{
+			m_MyCharacter->TransState(WALK);
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '2' ) == KEY_DOWN )
+		{
+			m_MyCharacter->TransState(IDLE);
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '3' ) == KEY_DOWN )
+		{
+			m_MyCharacter->TransState(ATTACK);
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '4' ) == KEY_DOWN )
+		{
+			m_MyCharacter->TransState(DIE);
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '5' ) == KEY_DOWN )
+		{
+			//		NNAudioSystem::GetInstance()->PlayEffectSound( "Effect" );
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '6' ) == KEY_DOWN )
+		{
+			//	NNAudioSystem::GetInstance()->PlayEffectSound( "Effect1" );
+		}
+		if ( NNInputSystem::GetInstance()->GetKeyState( '7' ) == KEY_DOWN )
+		{
+			ChatBroadcastRequest CBR = ChatBroadcastRequest();
+			strcpy_s(CBR.m_Chat,"hihi");
+			//	NNNetworkSystem::GetInstance()->Send(&CBR);
+		}
 
 	}
 }
@@ -97,5 +160,5 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 bool CGameScene::isChangedGameKeyStates()
 {
 	GameKeyStates nowGameKeyState = GetNowGameKeyStates();
-	return memcmp(&m_PreGameKeyStates, &nowGameKeyState, sizeof(GameKeyStates));
+	return memcmp(&m_NowGameKeyStates, &nowGameKeyState, sizeof(GameKeyStates));
 }

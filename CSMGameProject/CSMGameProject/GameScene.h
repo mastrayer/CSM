@@ -14,7 +14,7 @@ private:
 	CGameMap* m_GameMap;
 	NNLabel* m_FPSLbael;
 	wchar_t m_FPSLabelBuff[100];
-	GameKeyStates m_PreGameKeyStates;
+	GameKeyStates m_NowGameKeyStates;
 	std::map<int,CCharacter*>m_Characters;
 	CCharacter* m_MyCharacter;
 
