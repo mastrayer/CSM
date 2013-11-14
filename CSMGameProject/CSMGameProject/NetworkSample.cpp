@@ -10,7 +10,7 @@ NetworkSample::NetworkSample()
 {
 	NNNetworkSystem::GetInstance()->Init();
 
-	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,ChatResultPacketFunction);
+//	NNNetworkSystem::GetInstance()->SetPacketFunction(PKT_SC_CHAT,ChatResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 	m_Time = 0;
 }
@@ -34,10 +34,7 @@ void NetworkSample::Update( float dTime )
 		m_Time = 0;
 		ChatBroadcastRequest CBR = ChatBroadcastRequest();
 		strcpy_s(CBR.m_Chat,"hihi");
-		NNNetworkSystem::GetInstance()->Send(&CBR);
-	/*	KeyStateUpdateRequset KSUR = KeyStateUpdateRequset();
-		KSUR.m_PlayerId = -1;
-		NNNetworkSystem::GetInstance()->Send(&KSUR);*/
+//		NNNetworkSystem::GetInstance()->Send(&CBR);
 	}
 }
 

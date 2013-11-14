@@ -1,5 +1,5 @@
 #include "PacketFunction.h"
-void ChatResultPacketFunction( NNPacketHeader& header )
+/*void ChatResultPacketFunction( NNPacketHeader& header )
 {
 	ChatBroadcastResult recvData;
 	std::cout << "ChatResultPacketFunction" << std::endl;
@@ -30,4 +30,4 @@ void KeyStateUpdateResultPacketFunction( NNPacketHeader& header )
 	{
 		std::cout << "exception" << std::endl;
 	}
-}
+}*/
