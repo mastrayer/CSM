@@ -17,6 +17,16 @@ enum PacketTypes
 	PKT_SC_KEYSTATE = 6,
 };
 
+struct GameKeyStates
+{
+	KeyState upDirectKey;
+	KeyState downDirectKey;
+	KeyState leftDirectKey;
+	KeyState rightDirectKey;
+	KeyState attackKey;
+	KeyState userActiveSkillKey;
+	KeyState typeActiveSkillKey;
+};
 #pragma pack(push,1)
 
 struct ChatBroadcastRequest : public NNPacketHeader
@@ -53,37 +63,18 @@ struct ChatBroadcastResult : public NNPacketHeader
 
 struct KeyStateUpdateRequset : public NNPacketHeader
 {
-	KeyStateUpdateRequset()
+	KeyStateUpdateRequset(GameKeyStates gameKeyStates)
 	{
 		m_Size = sizeof(KeyStateUpdateRequset) ;
 		m_Type = PKT_CS_KEYSTATE ;
 		m_PlayerId = -1 ;
-		/*
-		m_UpDirectKeyState = NNInputSystem::GetInstance()->GetUpDirectKeyState();
-		m_DownDirectKeyState = NNInputSystem::GetInstance()->GetDownDirectKeyState();
-		m_LeftDirectKeyState = NNInputSystem::GetInstance()->GetLeftDirectKeyState();
-		m_RightDirectKeyState = NNInputSystem::GetInstance()->GetRightDirectKeyState();
-		m_AttackKeyState = NNInputSystem::GetInstance()->GetAttackKeyState();
-		m_UserActiveSkillKeyState = NNInputSystem::GetInstance()->GetUserActiveSkillKeyState();
-		m_TypeActiveSkillKeyState = NNInputSystem::GetInstance()->GetTypeActiveSkillKeyState();
-		*/
-		m_UpDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('W');
-		m_DownDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('S');
-		m_LeftDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('A');
-		m_RightDirectKeyState = NNInputSystem::GetInstance()->GetKeyState('D');
-		m_AttackKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON);
-		m_UserActiveSkillKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_SPACE);
-		m_TypeActiveSkillKeyState = NNInputSystem::GetInstance()->GetKeyState(VK_RBUTTON);
+		int m_TimeStamp = time(NULL);
+		m_GameKeyStates = gameKeyStates;
 	}
 	
 	int m_PlayerId ;
-	KeyState m_UpDirectKeyState;
-	KeyState m_DownDirectKeyState;
-	KeyState m_LeftDirectKeyState;
-	KeyState m_RightDirectKeyState;
-	KeyState m_AttackKeyState;
-	KeyState m_UserActiveSkillKeyState;
-	KeyState m_TypeActiveSkillKeyState;
+	int m_TimeStamp;
+	GameKeyStates m_GameKeyStates;
 } ;
 
 struct KeyStateUpdateResult : public NNPacketHeader

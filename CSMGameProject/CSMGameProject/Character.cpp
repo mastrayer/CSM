@@ -130,7 +130,7 @@ void CCharacter::Update( float dTime)
 	{
 		ChatBroadcastRequest CBR = ChatBroadcastRequest();
 		strcpy_s(CBR.m_Chat,"hihi");
-		NNNetworkSystem::GetInstance()->Send(&CBR);
+	//	NNNetworkSystem::GetInstance()->Send(&CBR);
 	}
 	//Change Image By now Frame.
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();

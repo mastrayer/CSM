@@ -1,7 +1,6 @@
 #pragma once
 #include "NNObject.h"
 #include "NNSprite.h"
-#include "NNInputSystem.h"
 #include "NNLabel.h"
 #include "NNAudioSystem.h"
 enum CharacterState
@@ -26,14 +25,14 @@ private:
 	std::map<CharacterState,AnimationImageInfo> m_AnimationImageInfo; 
 	float m_AnimationFrameTime; // init when Animation Type Change.
 	int m_NowFrame;
-
+	
 public:
 	CCharacter(void);
 	virtual ~CCharacter(void);
 	NNCREATE_FUNC(CCharacter);
 	void TransState(CharacterState state);
 	NNSprite* GetCharacterSprite() { return m_CharacterSprite; }
-	
+		
 private:
 	void Render();
 	void Update( float dTime );
