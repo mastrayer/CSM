@@ -18,7 +18,7 @@ CGameScene::CGameScene(void)
 	//NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_KEYSTATE,KeyStateUpdateResultPacketFunction);
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
 
-	KeyStateUpdateRequset KSURequest = KeyStateUpdateRequset();
+//	KeyStateUpdateRequset KSURequest = KeyStateUpdateRequset();
 	//NNNetworkSystem::GetInstance()->Send(&KSURequest);
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
@@ -126,14 +126,15 @@ void CGameScene::SetMyPlayerId(int id)
 }
 CCharacter* CGameScene::NewCharacter(int id)
 {
-	CCharacter* newCharacter;
+	CCharacter* newCharacter = NULL;
 	if( m_Characters.find(id)->second == NULL )
 	{
 		newCharacter = new CCharacter();
 		m_Characters.insert(std::map<int,CCharacter*>::value_type(id,newCharacter));
 		AddChild(newCharacter);
-
 	}
+	else
+		newCharacter = m_Characters.find(id)->second;
 	return newCharacter;
 }
 void CGameScene::DeleteCharacter(int id)
@@ -160,5 +161,5 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 bool CGameScene::isChangedGameKeyStates()
 {
 	GameKeyStates nowGameKeyState = GetNowGameKeyStates();
-	return memcmp(&m_NowGameKeyStates, &nowGameKeyState, sizeof(GameKeyStates));
+	return memcmp(&m_NowGameKeyStates, &nowGameKeyState, sizeof(GameKeyStates)) == 0 ? true : false;
 }
