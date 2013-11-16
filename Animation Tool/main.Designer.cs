@@ -35,6 +35,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.spritePanel = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -50,6 +51,7 @@
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadedSprite)).BeginInit();
@@ -111,11 +113,24 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.spritePanel);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
-            this.splitContainer1.Panel1.Controls.Add(this.LoadedSprite);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.LoadedSprite);
             this.splitContainer1.Size = new System.Drawing.Size(706, 437);
             this.splitContainer1.SplitterDistance = 179;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // spritePanel
+            // 
+            this.spritePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.spritePanel.Location = new System.Drawing.Point(3, 26);
+            this.spritePanel.Name = "spritePanel";
+            this.spritePanel.Size = new System.Drawing.Size(171, 406);
+            this.spritePanel.TabIndex = 2;
             // 
             // toolStrip2
             // 
@@ -164,6 +179,7 @@
             this.ButtonSpriteDelete.Name = "ButtonSpriteDelete";
             this.ButtonSpriteDelete.Size = new System.Drawing.Size(23, 22);
             this.ButtonSpriteDelete.Text = "-";
+            this.ButtonSpriteDelete.Click += new System.EventHandler(this.ButtonSpriteDelete_Click);
             // 
             // toolStripSeparator3
             // 
@@ -174,10 +190,11 @@
             // 
             this.LoadedSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadedSprite.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.LoadedSprite.Location = new System.Drawing.Point(-1, 28);
+            this.LoadedSprite.BackColor = System.Drawing.SystemColors.Control;
+            this.LoadedSprite.Location = new System.Drawing.Point(139, 26);
             this.LoadedSprite.Name = "LoadedSprite";
-            this.LoadedSprite.Size = new System.Drawing.Size(175, 404);
+            this.LoadedSprite.Padding = new System.Windows.Forms.Padding(5);
+            this.LoadedSprite.Size = new System.Drawing.Size(363, 404);
             this.LoadedSprite.TabIndex = 0;
             this.LoadedSprite.TabStop = false;
             // 
@@ -217,6 +234,7 @@
             this.mainPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
@@ -245,6 +263,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton ButtonSpriteDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.Panel spritePanel;
     }
 }
 

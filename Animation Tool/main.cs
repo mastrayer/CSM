@@ -18,7 +18,8 @@ namespace Animation_Tool
         }
 
         List<Bitmap> sprites = new List<Bitmap>();
-        Bitmap imageList;
+        List<PictureBox> temp = new List<PictureBox>();
+        int selectedSprite = 0;
 
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
@@ -31,37 +32,72 @@ namespace Animation_Tool
 
             if (openImage.ShowDialog() == DialogResult.OK)
             {
+                PictureBox a = new PictureBox();
+
                 sprites.Add(new Bitmap(openImage.FileName));
+                //a.Image = sprites[sprites.Count-1];
+
+                temp.Add(a);
+                a.Click += new System.EventHandler(this.LoadedSprite_Click);
+                a.DoubleClick += new System.EventHandler(this.LoadedSprite_DoubleClick);
+                spritePanel.Controls.Add(a);
                 updateImageList();
             }
         }
         private void updateImageList()
         {
-            int upGap = 5;
-            int leftGap = 0;
+            int totalHeight = 0;
+            int spriteWidth = splitContainer1.Panel1.Width - 30;//spritePanel.Width;
             int spriteGap = 10;
-            int spriteWidth = this.LoadedSprite.Size.Width;
-            int totalHeight = upGap;
-            int p = upGap;
+            Graphics g = null;
 
-            if (imageList != null) imageList.Dispose();
-
-
-            foreach (Bitmap image in sprites)
-                totalHeight += (int)((double)image.Size.Height / (double)image.Size.Width * (double)spriteWidth + spriteGap);
-
-            imageList = new Bitmap(spriteWidth, totalHeight);
-            Graphics g = Graphics.FromImage(imageList);
-
-            foreach (Bitmap image in sprites)
+            for (int i=0; i<temp.Count; ++i)
             {
-                g.DrawImage(image, new Rectangle(leftGap, p, spriteWidth, (int)((double)image.Size.Height / (double)image.Size.Width * (double)spriteWidth)));
-                p += (int)((double)image.Size.Height / (double)image.Size.Width * (double)spriteWidth) + spriteGap;
+                int spriteHeight = (int)((double)sprites[i].Size.Height / (double)sprites[i].Size.Width * (double)spriteWidth);
+                if (temp[i].Image != null)
+                    temp[i].Image.Dispose();
+
+                temp[i].Image = new Bitmap(spriteWidth, spriteHeight);
+                g = Graphics.FromImage(temp[i].Image);
+                
+                temp[i].Size = new Size(spriteWidth, spriteHeight); // temp[i].Image.Size;
+                temp[i].Location = new Point(0, totalHeight);// i == 0 ? new Point(0, 0) : new Point(0, temp[i - 1].Bottom + spriteGap);
+                g.DrawImage(sprites[i], new Rectangle(0, 0, spriteWidth, spriteHeight));
+                totalHeight += spriteHeight + spriteGap;
             }
 
-            LoadedSprite.Image = imageList;
-            LoadedSprite.Size = new Size(LoadedSprite.Size.Width, totalHeight);
-            g.Dispose();
+            spritePanel.Height = totalHeight;
+            if(g != null)
+                g.Dispose();
+        }
+
+        private void ButtonSpriteDelete_Click(object sender, EventArgs e)
+        {
+            if (temp.Count == 0) return;
+
+            sprites[selectedSprite].Dispose();
+            temp[selectedSprite].Dispose();
+            sprites.RemoveAt(selectedSprite);
+            temp.RemoveAt(selectedSprite);
+
+            updateImageList();
+        }
+
+        private void LoadedSprite_Click(object sender, EventArgs e)
+        {
+            PictureBox a = (PictureBox)sender;
+            updateImageList();
+            Graphics.FromImage(a.Image).DrawRectangle(new Pen(Color.Red, 8), new Rectangle(0, 0, a.Image.Width, a.Image.Height));
+
+            selectedSprite = temp.FindIndex(delegate(PictureBox s)
+            {
+                return s.GetHashCode() == a.GetHashCode();
+            });
+        }
+
+        private void LoadedSprite_DoubleClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("DoubleClick");
         }
     }
 }
