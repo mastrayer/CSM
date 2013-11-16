@@ -28,223 +28,200 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menu = new System.Windows.Forms.ToolStripMenuItem();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.sasdsa = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuIcon = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.ButtonSpriteDelete = new System.Windows.Forms.Button();
-            this.ButtonSpriteAdd = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonSpriteAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonSpriteDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.LoadedSprite = new System.Windows.Forms.PictureBox();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.label4 = new System.Windows.Forms.Label();
-            this.workSpace = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
+            this.attribute = new System.Windows.Forms.Panel();
+            this.timeline = new System.Windows.Forms.Panel();
+            this.menu.SuspendLayout();
+            this.menuIcon.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadedSprite)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
-            this.splitContainer3.Panel1.SuspendLayout();
-            this.splitContainer3.Panel2.SuspendLayout();
-            this.splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.workSpace)).BeginInit();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menu});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(792, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // menu
             // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sasdsa});
+            this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(31, 20);
-            this.menu.Text = "aa";
+            this.menu.Size = new System.Drawing.Size(792, 24);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menuStrip1";
+            // 
+            // sasdsa
+            // 
+            this.sasdsa.Name = "sasdsa";
+            this.sasdsa.Size = new System.Drawing.Size(31, 20);
+            this.sasdsa.Text = "aa";
+            // 
+            // menuIcon
+            // 
+            this.menuIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1});
+            this.menuIcon.Location = new System.Drawing.Point(0, 24);
+            this.menuIcon.Name = "menuIcon";
+            this.menuIcon.Size = new System.Drawing.Size(792, 25);
+            this.menuIcon.TabIndex = 1;
+            this.menuIcon.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.Controls.Add(this.splitContainer1);
+            this.mainPanel.Controls.Add(this.attribute);
+            this.mainPanel.Controls.Add(this.timeline);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(0, 49);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(792, 520);
+            this.mainPanel.TabIndex = 2;
             // 
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel1MinSize = 400;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(792, 545);
-            this.splitContainer1.SplitterDistance = 441;
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
+            this.splitContainer1.Panel1.Controls.Add(this.LoadedSprite);
+            this.splitContainer1.Size = new System.Drawing.Size(706, 437);
+            this.splitContainer1.SplitterDistance = 179;
             this.splitContainer1.TabIndex = 2;
             // 
-            // splitContainer2
+            // toolStrip2
             // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripSeparator1,
+            this.ButtonSpriteAdd,
+            this.toolStripSeparator2,
+            this.ButtonSpriteDelete,
+            this.toolStripSeparator3});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(177, 25);
+            this.toolStrip2.TabIndex = 1;
             // 
-            // splitContainer2.Panel1
+            // toolStripLabel1
             // 
-            this.splitContainer2.Panel1.AutoScroll = true;
-            this.splitContainer2.Panel1.Controls.Add(this.ButtonSpriteDelete);
-            this.splitContainer2.Panel1.Controls.Add(this.ButtonSpriteAdd);
-            this.splitContainer2.Panel1.Controls.Add(this.label2);
-            this.splitContainer2.Panel1.Controls.Add(this.LoadedSprite);
-            this.splitContainer2.Panel1MinSize = 100;
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(43, 22);
+            this.toolStripLabel1.Text = "Sprites";
             // 
-            // splitContainer2.Panel2
+            // toolStripSeparator1
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Panel2MinSize = 400;
-            this.splitContainer2.Size = new System.Drawing.Size(792, 441);
-            this.splitContainer2.SplitterDistance = 100;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // ButtonSpriteDelete
-            // 
-            this.ButtonSpriteDelete.Location = new System.Drawing.Point(75, 3);
-            this.ButtonSpriteDelete.Name = "ButtonSpriteDelete";
-            this.ButtonSpriteDelete.Size = new System.Drawing.Size(20, 20);
-            this.ButtonSpriteDelete.TabIndex = 0;
-            this.ButtonSpriteDelete.Text = "-";
-            this.ButtonSpriteDelete.UseVisualStyleBackColor = true;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // ButtonSpriteAdd
             // 
-            this.ButtonSpriteAdd.Location = new System.Drawing.Point(53, 3);
+            this.ButtonSpriteAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ButtonSpriteAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ButtonSpriteAdd.Name = "ButtonSpriteAdd";
-            this.ButtonSpriteAdd.Size = new System.Drawing.Size(20, 20);
-            this.ButtonSpriteAdd.TabIndex = 0;
+            this.ButtonSpriteAdd.Size = new System.Drawing.Size(23, 22);
             this.ButtonSpriteAdd.Text = "+";
-            this.ButtonSpriteAdd.UseVisualStyleBackColor = true;
+            this.ButtonSpriteAdd.Click += new System.EventHandler(this.ButtonSpriteAdd_Click);
             // 
-            // label2
+            // toolStripSeparator2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Sprites";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ButtonSpriteDelete
+            // 
+            this.ButtonSpriteDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ButtonSpriteDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonSpriteDelete.Name = "ButtonSpriteDelete";
+            this.ButtonSpriteDelete.Size = new System.Drawing.Size(23, 22);
+            this.ButtonSpriteDelete.Text = "-";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // LoadedSprite
             // 
-            this.LoadedSprite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LoadedSprite.Location = new System.Drawing.Point(0, 0);
+            this.LoadedSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LoadedSprite.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LoadedSprite.Location = new System.Drawing.Point(-1, 28);
             this.LoadedSprite.Name = "LoadedSprite";
-            this.LoadedSprite.Size = new System.Drawing.Size(98, 439);
-            this.LoadedSprite.TabIndex = 3;
+            this.LoadedSprite.Size = new System.Drawing.Size(175, 404);
+            this.LoadedSprite.TabIndex = 0;
             this.LoadedSprite.TabStop = false;
             // 
-            // splitContainer3
+            // attribute
             // 
-            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
+            this.attribute.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.attribute.Dock = System.Windows.Forms.DockStyle.Right;
+            this.attribute.Location = new System.Drawing.Point(706, 0);
+            this.attribute.Name = "attribute";
+            this.attribute.Size = new System.Drawing.Size(86, 437);
+            this.attribute.TabIndex = 1;
             // 
-            // splitContainer3.Panel1
+            // timeline
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.label4);
-            this.splitContainer3.Panel1.Controls.Add(this.workSpace);
-            this.splitContainer3.Panel1MinSize = 400;
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.label3);
-            this.splitContainer3.Panel2MinSize = 100;
-            this.splitContainer3.Size = new System.Drawing.Size(688, 441);
-            this.splitContainer3.SplitterDistance = 584;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(544, 421);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 12);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "label4";
-            // 
-            // workSpace
-            // 
-            this.workSpace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workSpace.Location = new System.Drawing.Point(0, 0);
-            this.workSpace.Name = "workSpace";
-            this.workSpace.Size = new System.Drawing.Size(582, 439);
-            this.workSpace.TabIndex = 0;
-            this.workSpace.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Attribute";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Timeline";
+            this.timeline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.timeline.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.timeline.Location = new System.Drawing.Point(0, 437);
+            this.timeline.Name = "timeline";
+            this.timeline.Size = new System.Drawing.Size(792, 83);
+            this.timeline.TabIndex = 0;
             // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 569);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.menuIcon);
+            this.Controls.Add(this.menu);
+            this.MainMenuStrip = this.menu;
             this.Name = "main";
             this.Text = "CSM Animation Tool";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
+            this.menuIcon.ResumeLayout(false);
+            this.menuIcon.PerformLayout();
+            this.mainPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
+            this.splitContainer1.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoadedSprite)).EndInit();
-            this.splitContainer3.Panel1.ResumeLayout(false);
-            this.splitContainer3.Panel1.PerformLayout();
-            this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
-            this.splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.workSpace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,19 +229,22 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menu;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem sasdsa;
+        private System.Windows.Forms.ToolStrip menuIcon;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button ButtonSpriteDelete;
-        private System.Windows.Forms.Button ButtonSpriteAdd;
-        private System.Windows.Forms.PictureBox workSpace;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel attribute;
+        private System.Windows.Forms.Panel timeline;
         private System.Windows.Forms.PictureBox LoadedSprite;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton ButtonSpriteAdd;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton ButtonSpriteDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 
