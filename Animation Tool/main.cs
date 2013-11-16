@@ -28,20 +28,24 @@ namespace Animation_Tool
             openImage.Filter = "Image Files(*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png";
             openImage.FilterIndex = 1;
             openImage.RestoreDirectory = true;
+            openImage.Multiselect = true;
             openImage.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
-
+            
             if (openImage.ShowDialog() == DialogResult.OK)
             {
-                PictureBox a = new PictureBox();
+                foreach (string filename in openImage.FileNames)
+                {
+                    PictureBox a = new PictureBox();
 
-                sprites.Add(new Bitmap(openImage.FileName));
-                //a.Image = sprites[sprites.Count-1];
+                    sprites.Add(new Bitmap(filename));
+                    //a.Image = sprites[sprites.Count-1];
 
-                temp.Add(a);
-                a.Click += new System.EventHandler(this.LoadedSprite_Click);
-                a.DoubleClick += new System.EventHandler(this.LoadedSprite_DoubleClick);
-                spritePanel.Controls.Add(a);
-                updateImageList();
+                    temp.Add(a);
+                    a.Click += new System.EventHandler(this.LoadedSprite_Click);
+                    a.DoubleClick += new System.EventHandler(this.LoadedSprite_DoubleClick);
+                    spritePanel.Controls.Add(a);
+                }
+                updateImageList();                
             }
         }
         private void updateImageList()
