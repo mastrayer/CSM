@@ -43,8 +43,22 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ButtonSpriteDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.LoadedSprite = new System.Windows.Forms.PictureBox();
+            this.workSpace = new System.Windows.Forms.PictureBox();
             this.attribute = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.AttributePlayTime = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AttributeSpriteLotate = new System.Windows.Forms.TextBox();
+            this.AttributeSpriteRotateLabel = new System.Windows.Forms.Label();
+            this.AttributeSpriteHeight = new System.Windows.Forms.TextBox();
+            this.AttributeSpriteHeightLabel = new System.Windows.Forms.Label();
+            this.AttributeSpriteWidth = new System.Windows.Forms.TextBox();
+            this.SpriteY = new System.Windows.Forms.TextBox();
+            this.SpritePositionYLabel = new System.Windows.Forms.Label();
+            this.SpriteX = new System.Windows.Forms.TextBox();
+            this.SpritePositionXLabel = new System.Windows.Forms.Label();
+            this.AttributeSpriteWidthLabel = new System.Windows.Forms.Label();
             this.timeline = new System.Windows.Forms.Panel();
             this.menu.SuspendLayout();
             this.menuIcon.SuspendLayout();
@@ -54,7 +68,8 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LoadedSprite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workSpace)).BeginInit();
+            this.attribute.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -118,10 +133,11 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.LoadedSprite);
-            this.splitContainer1.Size = new System.Drawing.Size(706, 437);
-            this.splitContainer1.SplitterDistance = 179;
+            this.splitContainer1.Panel2.Controls.Add(this.workSpace);
+            this.splitContainer1.Size = new System.Drawing.Size(678, 437);
+            this.splitContainer1.SplitterDistance = 144;
             this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // spritePanel
             // 
@@ -129,7 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spritePanel.Location = new System.Drawing.Point(3, 26);
             this.spritePanel.Name = "spritePanel";
-            this.spritePanel.Size = new System.Drawing.Size(171, 406);
+            this.spritePanel.Size = new System.Drawing.Size(136, 406);
             this.spritePanel.TabIndex = 2;
             // 
             // toolStrip2
@@ -143,7 +159,7 @@
             this.toolStripSeparator3});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(177, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(142, 25);
             this.toolStrip2.TabIndex = 1;
             // 
             // toolStripLabel1
@@ -186,26 +202,165 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // LoadedSprite
+            // workSpace
             // 
-            this.LoadedSprite.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LoadedSprite.BackColor = System.Drawing.SystemColors.Control;
-            this.LoadedSprite.Location = new System.Drawing.Point(139, 26);
-            this.LoadedSprite.Name = "LoadedSprite";
-            this.LoadedSprite.Padding = new System.Windows.Forms.Padding(5);
-            this.LoadedSprite.Size = new System.Drawing.Size(363, 404);
-            this.LoadedSprite.TabIndex = 0;
-            this.LoadedSprite.TabStop = false;
+            this.workSpace.BackColor = System.Drawing.SystemColors.Control;
+            this.workSpace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workSpace.Location = new System.Drawing.Point(0, 0);
+            this.workSpace.Name = "workSpace";
+            this.workSpace.Padding = new System.Windows.Forms.Padding(5);
+            this.workSpace.Size = new System.Drawing.Size(528, 435);
+            this.workSpace.TabIndex = 0;
+            this.workSpace.TabStop = false;
             // 
             // attribute
             // 
             this.attribute.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.attribute.Controls.Add(this.label3);
+            this.attribute.Controls.Add(this.AttributePlayTime);
+            this.attribute.Controls.Add(this.label2);
+            this.attribute.Controls.Add(this.label1);
+            this.attribute.Controls.Add(this.AttributeSpriteLotate);
+            this.attribute.Controls.Add(this.AttributeSpriteRotateLabel);
+            this.attribute.Controls.Add(this.AttributeSpriteHeight);
+            this.attribute.Controls.Add(this.AttributeSpriteHeightLabel);
+            this.attribute.Controls.Add(this.AttributeSpriteWidth);
+            this.attribute.Controls.Add(this.SpriteY);
+            this.attribute.Controls.Add(this.SpritePositionYLabel);
+            this.attribute.Controls.Add(this.SpriteX);
+            this.attribute.Controls.Add(this.SpritePositionXLabel);
+            this.attribute.Controls.Add(this.AttributeSpriteWidthLabel);
             this.attribute.Dock = System.Windows.Forms.DockStyle.Right;
-            this.attribute.Location = new System.Drawing.Point(706, 0);
+            this.attribute.Location = new System.Drawing.Point(678, 0);
             this.attribute.Name = "attribute";
-            this.attribute.Size = new System.Drawing.Size(86, 437);
+            this.attribute.Size = new System.Drawing.Size(114, 437);
             this.attribute.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(73, 215);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 12);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "ms";
+            // 
+            // AttributePlayTime
+            // 
+            this.AttributePlayTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AttributePlayTime.Location = new System.Drawing.Point(32, 209);
+            this.AttributePlayTime.MaxLength = 4;
+            this.AttributePlayTime.Name = "AttributePlayTime";
+            this.AttributePlayTime.Size = new System.Drawing.Size(40, 21);
+            this.AttributePlayTime.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 215);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "time";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(73, 188);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "%";
+            // 
+            // AttributeSpriteLotate
+            // 
+            this.AttributeSpriteLotate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AttributeSpriteLotate.Location = new System.Drawing.Point(43, 182);
+            this.AttributeSpriteLotate.MaxLength = 3;
+            this.AttributeSpriteLotate.Name = "AttributeSpriteLotate";
+            this.AttributeSpriteLotate.Size = new System.Drawing.Size(29, 21);
+            this.AttributeSpriteLotate.TabIndex = 14;
+            // 
+            // AttributeSpriteRotateLabel
+            // 
+            this.AttributeSpriteRotateLabel.AutoSize = true;
+            this.AttributeSpriteRotateLabel.Location = new System.Drawing.Point(5, 188);
+            this.AttributeSpriteRotateLabel.Name = "AttributeSpriteRotateLabel";
+            this.AttributeSpriteRotateLabel.Size = new System.Drawing.Size(40, 12);
+            this.AttributeSpriteRotateLabel.TabIndex = 13;
+            this.AttributeSpriteRotateLabel.Text = "Rotate";
+            // 
+            // AttributeSpriteHeight
+            // 
+            this.AttributeSpriteHeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AttributeSpriteHeight.Location = new System.Drawing.Point(43, 155);
+            this.AttributeSpriteHeight.MaxLength = 3;
+            this.AttributeSpriteHeight.Name = "AttributeSpriteHeight";
+            this.AttributeSpriteHeight.Size = new System.Drawing.Size(29, 21);
+            this.AttributeSpriteHeight.TabIndex = 12;
+            // 
+            // AttributeSpriteHeightLabel
+            // 
+            this.AttributeSpriteHeightLabel.AutoSize = true;
+            this.AttributeSpriteHeightLabel.Location = new System.Drawing.Point(5, 161);
+            this.AttributeSpriteHeightLabel.Name = "AttributeSpriteHeightLabel";
+            this.AttributeSpriteHeightLabel.Size = new System.Drawing.Size(40, 12);
+            this.AttributeSpriteHeightLabel.TabIndex = 11;
+            this.AttributeSpriteHeightLabel.Text = "Height";
+            // 
+            // AttributeSpriteWidth
+            // 
+            this.AttributeSpriteWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AttributeSpriteWidth.Location = new System.Drawing.Point(43, 128);
+            this.AttributeSpriteWidth.MaxLength = 3;
+            this.AttributeSpriteWidth.Name = "AttributeSpriteWidth";
+            this.AttributeSpriteWidth.Size = new System.Drawing.Size(29, 21);
+            this.AttributeSpriteWidth.TabIndex = 10;
+            // 
+            // SpriteY
+            // 
+            this.SpriteY.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SpriteY.Location = new System.Drawing.Point(72, 101);
+            this.SpriteY.MaxLength = 3;
+            this.SpriteY.Name = "SpriteY";
+            this.SpriteY.Size = new System.Drawing.Size(29, 21);
+            this.SpriteY.TabIndex = 9;
+            // 
+            // SpritePositionYLabel
+            // 
+            this.SpritePositionYLabel.AutoSize = true;
+            this.SpritePositionYLabel.Location = new System.Drawing.Point(59, 104);
+            this.SpritePositionYLabel.Name = "SpritePositionYLabel";
+            this.SpritePositionYLabel.Size = new System.Drawing.Size(13, 12);
+            this.SpritePositionYLabel.TabIndex = 8;
+            this.SpritePositionYLabel.Text = "Y";
+            // 
+            // SpriteX
+            // 
+            this.SpriteX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SpriteX.Location = new System.Drawing.Point(16, 101);
+            this.SpriteX.MaxLength = 3;
+            this.SpriteX.Name = "SpriteX";
+            this.SpriteX.Size = new System.Drawing.Size(29, 21);
+            this.SpriteX.TabIndex = 7;
+            // 
+            // SpritePositionXLabel
+            // 
+            this.SpritePositionXLabel.AutoSize = true;
+            this.SpritePositionXLabel.Location = new System.Drawing.Point(3, 104);
+            this.SpritePositionXLabel.Name = "SpritePositionXLabel";
+            this.SpritePositionXLabel.Size = new System.Drawing.Size(13, 12);
+            this.SpritePositionXLabel.TabIndex = 6;
+            this.SpritePositionXLabel.Text = "X";
+            // 
+            // AttributeSpriteWidthLabel
+            // 
+            this.AttributeSpriteWidthLabel.AutoSize = true;
+            this.AttributeSpriteWidthLabel.Location = new System.Drawing.Point(5, 134);
+            this.AttributeSpriteWidthLabel.Name = "AttributeSpriteWidthLabel";
+            this.AttributeSpriteWidthLabel.Size = new System.Drawing.Size(35, 12);
+            this.AttributeSpriteWidthLabel.TabIndex = 1;
+            this.AttributeSpriteWidthLabel.Text = "Width";
             // 
             // timeline
             // 
@@ -239,7 +394,9 @@
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LoadedSprite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.workSpace)).EndInit();
+            this.attribute.ResumeLayout(false);
+            this.attribute.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,7 +412,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel attribute;
         private System.Windows.Forms.Panel timeline;
-        private System.Windows.Forms.PictureBox LoadedSprite;
+        private System.Windows.Forms.PictureBox workSpace;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripButton ButtonSpriteAdd;
@@ -264,6 +421,20 @@
         private System.Windows.Forms.ToolStripButton ButtonSpriteDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.Panel spritePanel;
+        private System.Windows.Forms.TextBox AttributeSpriteHeight;
+        private System.Windows.Forms.Label AttributeSpriteHeightLabel;
+        private System.Windows.Forms.TextBox AttributeSpriteWidth;
+        private System.Windows.Forms.TextBox SpriteY;
+        private System.Windows.Forms.Label SpritePositionYLabel;
+        private System.Windows.Forms.TextBox SpriteX;
+        private System.Windows.Forms.Label SpritePositionXLabel;
+        private System.Windows.Forms.Label AttributeSpriteWidthLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox AttributePlayTime;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox AttributeSpriteLotate;
+        private System.Windows.Forms.Label AttributeSpriteRotateLabel;
     }
 }
 
