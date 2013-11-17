@@ -135,13 +135,6 @@ namespace Animation_Tool
         {
             workSpace.Location = new Point((splitContainer1.Panel2.Right - splitContainer1.Panel2.Left) / 2 - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom - splitContainer1.Panel2.Top) / 2 - workSpace.Size.Height / 2);
 
-//              label4.Text = splitContainer1.Panel2.Top.ToString();
-//              label5.Text = splitContainer1.Panel2.Bottom.ToString();
-//              label6.Text = splitContainer1.Panel2.Left.ToString();
-//              label7.Text = splitContainer1.Panel2.Right.ToString();
-//              label8.Text = workSpace.Location.X.ToString();
-//              label9.Text = workSpace.Location.Y.ToString();
-            
             if (workSpace.Image != null)
                 workSpace.Image.Dispose();
             workSpace.Image = new Bitmap(workSpace.Size.Width, workSpace.Size.Height);
@@ -156,33 +149,44 @@ namespace Animation_Tool
 
             g.Dispose();
         }
+        private void updateAttribute()
+        {
+            AttributeSpriteWidth.ReadOnly = isDrag;
+            AttributeSpriteHeight.ReadOnly = isDrag;
+            SpriteX.ReadOnly = isDrag;
+            SpriteY.ReadOnly = isDrag;
 
+            AttributeSpriteWidth.Text = frameImage.Image.Width.ToString();
+            AttributeSpriteHeight.Text = frameImage.Image.Height.ToString();
+            SpriteX.Text = frameImage.Location.X.ToString();
+            SpriteY.Text = frameImage.Location.Y.ToString();
+        }
 
-        private void test(object sender, MouseEventArgs e)
+        bool isDrag = false;
+        Point firstPoint = new Point();
+        private void spriteDrag(object sender, MouseEventArgs e)
         {
             ((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - firstPoint.X), ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y));
             label8.Text = e.X.ToString();
             label9.Text = e.Y.ToString();
+            updateAttribute();
         }
-        bool isDrag = false;
-        Point firstPoint = new Point();
         private void workSpace_MouseDown(object sender, MouseEventArgs e)
         {
             isDrag = true;
             firstPoint.X = e.X;
             firstPoint.Y = e.Y;
-            test(sender, e);
+            spriteDrag(sender, e);
         }
-
         private void workSpace_MouseMove(object sender, MouseEventArgs e)
         {
             if(isDrag)
-                test(sender, e);
+                spriteDrag(sender, e);
         }
-
         private void workSpace_MouseUp(object sender, MouseEventArgs e)
         {
             isDrag = false;
+            updateAttribute();
         }
     }
 }

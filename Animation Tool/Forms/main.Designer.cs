@@ -67,7 +67,7 @@
             this.AttributePlayTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.AttributeSpriteLotate = new System.Windows.Forms.TextBox();
+            this.AttributeSpriteRotate = new System.Windows.Forms.TextBox();
             this.AttributeSpriteRotateLabel = new System.Windows.Forms.Label();
             this.AttributeSpriteHeight = new System.Windows.Forms.TextBox();
             this.AttributeSpriteHeightLabel = new System.Windows.Forms.Label();
@@ -341,7 +341,7 @@
             this.attribute.Controls.Add(this.AttributePlayTime);
             this.attribute.Controls.Add(this.label2);
             this.attribute.Controls.Add(this.label1);
-            this.attribute.Controls.Add(this.AttributeSpriteLotate);
+            this.attribute.Controls.Add(this.AttributeSpriteRotate);
             this.attribute.Controls.Add(this.AttributeSpriteRotateLabel);
             this.attribute.Controls.Add(this.AttributeSpriteHeight);
             this.attribute.Controls.Add(this.AttributeSpriteHeightLabel);
@@ -448,14 +448,14 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "%";
             // 
-            // AttributeSpriteLotate
+            // AttributeSpriteRotate
             // 
-            this.AttributeSpriteLotate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AttributeSpriteLotate.Location = new System.Drawing.Point(43, 182);
-            this.AttributeSpriteLotate.MaxLength = 3;
-            this.AttributeSpriteLotate.Name = "AttributeSpriteLotate";
-            this.AttributeSpriteLotate.Size = new System.Drawing.Size(29, 21);
-            this.AttributeSpriteLotate.TabIndex = 14;
+            this.AttributeSpriteRotate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AttributeSpriteRotate.Location = new System.Drawing.Point(43, 182);
+            this.AttributeSpriteRotate.MaxLength = 3;
+            this.AttributeSpriteRotate.Name = "AttributeSpriteRotate";
+            this.AttributeSpriteRotate.Size = new System.Drawing.Size(29, 21);
+            this.AttributeSpriteRotate.TabIndex = 14;
             // 
             // AttributeSpriteRotateLabel
             // 
@@ -609,7 +609,7 @@
         private System.Windows.Forms.TextBox AttributePlayTime;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox AttributeSpriteLotate;
+        private System.Windows.Forms.TextBox AttributeSpriteRotate;
         private System.Windows.Forms.Label AttributeSpriteRotateLabel;
         private System.Windows.Forms.ToolStripButton loadButton;
         private System.Windows.Forms.ToolStripButton saveButton;
