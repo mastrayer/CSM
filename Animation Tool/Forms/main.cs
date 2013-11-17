@@ -18,13 +18,12 @@ namespace Animation_Tool
 
             workSpace.Width = 2000;
             workSpace.Height = 2000;
-            workSpace.Controls.Add(frameImage);
             updateWorkSpace();
         }
 
         List<Bitmap> originalSprites = new List<Bitmap>();
         List<PictureBox> sprites = new List<PictureBox>();
-        PictureBox frameImage = new PictureBox();
+        PictureBox frameImage;
         int selectedSprite = 0;
 
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
@@ -111,29 +110,38 @@ namespace Animation_Tool
         private void sprite_DoubleClick(object sender, EventArgs e)
         {
             //MessageBox.Show("DoubleClick");
+            if (frameImage != null)
+            {
+                workSpace.Controls.Remove(frameImage);
+                frameImage.Dispose();
+            }
 
-
+            frameImage = new PictureBox();
             frameImage.Image = originalSprites[selectedSprite];
             frameImage.Size = originalSprites[selectedSprite].Size;
-            frameImage.Location = new Point(workSpace.Width / 2, workSpace.Height / 2);
+            frameImage.Location = new Point((workSpace.Size.Width - originalSprites[selectedSprite].Size.Width) / 2, (workSpace.Size.Height - originalSprites[selectedSprite].Size.Height) / 2);
+            frameImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseDown);
+            frameImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseMove);
+            frameImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseUp);
+
+            workSpace.Controls.Add(frameImage);
         }
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             updateImageList();
             updateWorkSpace();
-            //Graphics.FromImage(originalSprites[0]).Clear()
         }
 
         private void updateWorkSpace()
         {
             workSpace.Location = new Point((splitContainer1.Panel2.Right - splitContainer1.Panel2.Left) / 2 - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom - splitContainer1.Panel2.Top) / 2 - workSpace.Size.Height / 2);
 
-             label4.Text = splitContainer1.Panel2.Top.ToString();
-             label5.Text = splitContainer1.Panel2.Bottom.ToString();
-             label6.Text = splitContainer1.Panel2.Left.ToString();
-             label7.Text = splitContainer1.Panel2.Right.ToString();
-             label8.Text = workSpace.Location.X.ToString();
-             label9.Text = workSpace.Location.Y.ToString();
+//              label4.Text = splitContainer1.Panel2.Top.ToString();
+//              label5.Text = splitContainer1.Panel2.Bottom.ToString();
+//              label6.Text = splitContainer1.Panel2.Left.ToString();
+//              label7.Text = splitContainer1.Panel2.Right.ToString();
+//              label8.Text = workSpace.Location.X.ToString();
+//              label9.Text = workSpace.Location.Y.ToString();
             
             if (workSpace.Image != null)
                 workSpace.Image.Dispose();
@@ -148,6 +156,40 @@ namespace Animation_Tool
             g.FillRectangle(new SolidBrush(Color.Blue), workSpace.Size.Height / 2 -1 , workSpace.Size.Width / 2-1 , 3 , 3);
 
             g.Dispose();
+        }
+
+
+        private void test(object sender, MouseEventArgs e)
+        {
+            //((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - ((PictureBox)sender).Size.Width / 2), ((PictureBox)sender).Location.Y + (e.Y - ((PictureBox)sender).Size.Height / 2));
+            ((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - firstPoint.X), ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y));
+            //((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + e.X, ((PictureBox)sender).Location.Y + e.Y);
+            label8.Text = e.X.ToString();
+            label9.Text = e.Y.ToString();
+
+//             firstPoint.X = ((PictureBox)sender).Location.X;
+//             firstPoint.Y = ((PictureBox)sender).Location.Y;
+        }
+        bool isDrag = false;
+        Point firstPoint = new Point();
+        private void workSpace_MouseDown(object sender, MouseEventArgs e)
+        {
+            label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
+            isDrag = true;
+             firstPoint.X = e.X;
+             firstPoint.Y = e.Y;
+            //test(sender, e);
+        }
+
+        private void workSpace_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isDrag)
+                test(sender, e);
+        }
+
+        private void workSpace_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDrag = false;
         }
     }
 }
