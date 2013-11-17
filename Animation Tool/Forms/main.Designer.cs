@@ -242,13 +242,15 @@
             this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.spritePanel);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
+            this.splitContainer1.Panel1MinSize = 120;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.workSpace);
+            this.splitContainer1.Panel2MinSize = 300;
             this.splitContainer1.Size = new System.Drawing.Size(672, 437);
-            this.splitContainer1.SplitterDistance = 100;
+            this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
@@ -258,7 +260,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spritePanel.Location = new System.Drawing.Point(3, 26);
             this.spritePanel.Name = "spritePanel";
-            this.spritePanel.Size = new System.Drawing.Size(78, 406);
+            this.spritePanel.Size = new System.Drawing.Size(98, 406);
             this.spritePanel.TabIndex = 2;
             // 
             // toolStrip2
@@ -272,7 +274,7 @@
             this.toolStripSeparator3});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(98, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(118, 25);
             this.toolStrip2.TabIndex = 1;
             // 
             // toolStripLabel1
@@ -319,10 +321,9 @@
             // 
             this.workSpace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.workSpace.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.workSpace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.workSpace.Location = new System.Drawing.Point(-24, 0);
+            this.workSpace.Location = new System.Drawing.Point(-10, 0);
+            this.workSpace.Margin = new System.Windows.Forms.Padding(0);
             this.workSpace.Name = "workSpace";
-            this.workSpace.Padding = new System.Windows.Forms.Padding(5);
             this.workSpace.Size = new System.Drawing.Size(528, 435);
             this.workSpace.TabIndex = 0;
             this.workSpace.TabStop = false;

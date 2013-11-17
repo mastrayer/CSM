@@ -16,8 +16,8 @@ namespace Animation_Tool
         {            
             InitializeComponent();
 
-            workSpace.Width = 1000;
-            workSpace.Height = 1000;
+            workSpace.Width = 2000;
+            workSpace.Height = 2000;
             workSpace.Controls.Add(frameImage);
             updateWorkSpace();
         }
@@ -126,7 +126,7 @@ namespace Animation_Tool
 
         private void updateWorkSpace()
         {
-            workSpace.Location = new Point((splitContainer1.Panel2.Right + splitContainer1.Panel2.Left) / 2 - splitContainer1.Panel2.Left - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom + splitContainer1.Panel2.Top) / 2 - splitContainer1.Panel2.Top - workSpace.Size.Height / 2);
+            workSpace.Location = new Point((splitContainer1.Panel2.Right - splitContainer1.Panel2.Left) / 2 - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom - splitContainer1.Panel2.Top) / 2 - workSpace.Size.Height / 2);
 
              label4.Text = splitContainer1.Panel2.Top.ToString();
              label5.Text = splitContainer1.Panel2.Bottom.ToString();
@@ -148,7 +148,6 @@ namespace Animation_Tool
             g.FillRectangle(new SolidBrush(Color.Blue), workSpace.Size.Height / 2 -1 , workSpace.Size.Width / 2-1 , 3 , 3);
 
             g.Dispose();
-
         }
     }
 }
