@@ -59,12 +59,12 @@ namespace Animation_Tool
                 selectedSprite = 0;
                 return;
             }
-
             int totalHeight = 0;
             int spriteWidth = splitContainer1.Panel1.Width - 30;//spritePanel.Width;
             int spriteGap = 10;
             Graphics g = null;
 
+            spritePanel.Width = spriteWidth;
             for (int i=0; i<sprites.Count; ++i)
             {
                 int spriteHeight = (int)((double)originalSprites[i].Size.Height / (double)originalSprites[i].Size.Width * (double)spriteWidth);
@@ -109,7 +109,6 @@ namespace Animation_Tool
         }
         private void sprite_DoubleClick(object sender, EventArgs e)
         {
-            //MessageBox.Show("DoubleClick");
             if (frameImage != null)
             {
                 workSpace.Controls.Remove(frameImage);
@@ -161,24 +160,18 @@ namespace Animation_Tool
 
         private void test(object sender, MouseEventArgs e)
         {
-            //((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - ((PictureBox)sender).Size.Width / 2), ((PictureBox)sender).Location.Y + (e.Y - ((PictureBox)sender).Size.Height / 2));
             ((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - firstPoint.X), ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y));
-            //((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + e.X, ((PictureBox)sender).Location.Y + e.Y);
             label8.Text = e.X.ToString();
             label9.Text = e.Y.ToString();
-
-//             firstPoint.X = ((PictureBox)sender).Location.X;
-//             firstPoint.Y = ((PictureBox)sender).Location.Y;
         }
         bool isDrag = false;
         Point firstPoint = new Point();
         private void workSpace_MouseDown(object sender, MouseEventArgs e)
         {
-            label4.Text = (Convert.ToInt32(label4.Text) + 1).ToString();
             isDrag = true;
-             firstPoint.X = e.X;
-             firstPoint.Y = e.Y;
-            //test(sender, e);
+            firstPoint.X = e.X;
+            firstPoint.Y = e.Y;
+            test(sender, e);
         }
 
         private void workSpace_MouseMove(object sender, MouseEventArgs e)
