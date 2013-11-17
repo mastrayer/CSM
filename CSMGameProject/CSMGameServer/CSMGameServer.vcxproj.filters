@@ -32,6 +32,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
@@ -72,6 +75,9 @@
       <Filter>sqlite3</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
       <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>

@@ -82,6 +82,8 @@ void ClientManager::CollectGarbageSessions()
 
 void ClientManager::ClientPeriodWork()
 {
+	PlayerManager::GetInstance()->UpdatePlayers();
+	
 	/// FYI: C++ 11 스타일의 루프
 	for (auto& it : mClientList)
 	{

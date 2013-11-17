@@ -1,23 +1,24 @@
 #pragma once
 #include "NNScene.h"
 #include "GameMap.h"
-#include "Character.h"
+#include "Player.h"
 #include "NNLabel.h"
 #include "NNInputSystem.h"
-#include "Packet.h"
+#include "PacketType.h"
+#include "PlayerManager.h"
+#include "PacketHandler.h"
 
 class CGameScene :
 	public NNScene
 {
 private:
-	int m_MyPlayerId;
 	CGameMap* m_GameMap;
 	NNLabel* m_FPSLbael;
 	wchar_t m_FPSLabelBuff[100];
 	GameKeyStates m_NowGameKeyStates;
-	std::map<int,CCharacter*>m_Characters;
-	CCharacter* m_MyCharacter;
-
+	GameKeyStatesUpdateHandler* m_GameKeyStatesUpdateHandler;
+	LoginHandler* m_LoginHandler;
+	
 public:
 	CGameScene(void);
 	virtual ~CGameScene(void);
@@ -27,9 +28,6 @@ public:
 	void Update( float dTime );
 	NNCREATE_FUNC(CGameScene);
 
-	void SetMyPlayerId(int id);
-	CCharacter* NewCharacter(int id);
-	void DeleteCharacter(int id);
 
 private:
 	

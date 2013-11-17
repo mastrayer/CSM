@@ -34,9 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Character.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="GameMap.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -67,14 +64,20 @@
     <ClCompile Include="NetworkSample.cpp">
       <Filter>Sample\NetworkSample</Filter>
     </ClCompile>
-    <ClCompile Include="PacketFunction.cpp">
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginHandler.cpp">
+      <Filter>Game\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameKeyStatesUpdateHandler.cpp">
       <Filter>Game\Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="GameMap.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -105,10 +108,16 @@
     <ClInclude Include="NetworkSample.h">
       <Filter>Sample\NetworkSample</Filter>
     </ClInclude>
-    <ClInclude Include="Packet.h">
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler.h">
       <Filter>Game\Packet</Filter>
     </ClInclude>
-    <ClInclude Include="PacketFunction.h">
+    <ClInclude Include="PacketType.h">
       <Filter>Game\Packet</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,24 +1,23 @@
 #pragma once
+#include <time.h>
 
 #define MAX_CHAT_LEN	1024
 
 #define MAX_NAME_LEN	30
 #define MAX_COMMENT_LEN	40
 
+#define MAX_PLAYER_LEN 20
+
 enum PacketTypes
 {
-	PKT_NONE	= 0,
-	
+	PKT_NONE		= 0,
 	PKT_CS_LOGIN	= 1,
 	PKT_SC_LOGIN	= 2,
-	
-	PKT_CS_CHAT		= 3,
-	PKT_SC_CHAT		= 4,
-	
-	PKT_CS_KEYSTATE = 5,
-	PKT_SC_KEYSTATE = 6,
-	
-} ;
+	PKT_SC_LOGIN_BROADCAST	= 3,
+	PKT_CS_KEYSTATE = 4,
+	PKT_SC_KEYSTATE = 5,
+};
+
 enum KeyState
 {
 	KEY_DOWN,
@@ -26,7 +25,33 @@ enum KeyState
 	KEY_UP,
 	KEY_NOTPRESSED,
 };
+struct GameKeyStates
+{
+	GameKeyStates()
+	{
+		upDirectKey = KEY_NOTPRESSED;
+		downDirectKey = KEY_NOTPRESSED;
+		leftDirectKey = KEY_NOTPRESSED;
+		rightDirectKey = KEY_NOTPRESSED;
+		attackKey = KEY_NOTPRESSED;
+		userActiveSkillKey = KEY_NOTPRESSED;
+		typeActiveSkillKey = KEY_NOTPRESSED;
+	}
+	KeyState upDirectKey;
+	KeyState downDirectKey;
+	KeyState leftDirectKey;
+	KeyState rightDirectKey;
+	KeyState attackKey;
+	KeyState userActiveSkillKey;
+	KeyState typeActiveSkillKey;
+};
 
+struct PlayerInfo
+{
+	float mX, mY;
+	int mPlayerId;
+	GameKeyStates mGameKeyStates;
+};
 #pragma pack(push, 1)
 
 struct PacketHeader
@@ -37,98 +62,58 @@ struct PacketHeader
 } ;
 
 
-
 struct LoginRequest : public PacketHeader
 {
 	LoginRequest()
 	{
-		mSize = sizeof(LoginRequest) ;
-		mType = PKT_CS_LOGIN ;
-		mPlayerId = -1 ;
+		mSize = sizeof(LoginRequest);
+		mType = PKT_CS_LOGIN;
 	}
-
-	int	mPlayerId ;
-} ;
-
+};
 struct LoginResult : public PacketHeader
 {
 	LoginResult()
 	{
-		mSize = sizeof(LoginResult) ;
-		mType = PKT_SC_LOGIN ;
-		mPlayerId = -1 ;
-		memset(mName, 0, MAX_NAME_LEN) ;
+		mSize = sizeof(LoginResult);
+		mType = PKT_SC_LOGIN;
 	}
-
-	int		mPlayerId ;
-	double	mPosX ;
-	double	mPosY ;
-	double	mPosZ ;
-	char	mName[MAX_NAME_LEN] ;
-
-} ;
-
-struct ChatBroadcastRequest : public PacketHeader
+	PlayerInfo mMyPlayerInfo;
+	int mNowPlayersLength;
+	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
+};
+struct LoginBroadcastResult : public PacketHeader
 {
-	ChatBroadcastRequest()
+	LoginBroadcastResult()
 	{
-		mSize = sizeof(ChatBroadcastRequest) ;
-		mType = PKT_CS_CHAT ;
-		mPlayerId = -1 ;
-	
-		memset(mChat, 0, MAX_CHAT_LEN) ;
+		mSize = sizeof(LoginBroadcastResult);
+		mType = PKT_SC_LOGIN_BROADCAST;
 	}
-
-	int	mPlayerId ;
-	char mChat[MAX_CHAT_LEN] ;
-} ;
-
-struct ChatBroadcastResult : public PacketHeader
+	PlayerInfo mMyPlayerInfo;
+};
+struct GameKeyStatesUpdateRequest : public PacketHeader
 {
-	ChatBroadcastResult()
+	GameKeyStatesUpdateRequest()
 	{
-		mSize = sizeof(ChatBroadcastResult) ;
-		mType = PKT_SC_CHAT ;
-		mPlayerId = -1 ;
-		
-		memset(mName, 0, MAX_NAME_LEN) ;
-		memset(mChat, 0, MAX_CHAT_LEN) ;
-	}
-	
-	int	mPlayerId ;
-	char mName[MAX_NAME_LEN] ;
-	char mChat[MAX_CHAT_LEN] ;
-} ;
-
-struct KeyStateUpdateRequset : public PacketHeader
-{
-	KeyStateUpdateRequset()
-	{
-		mSize = sizeof(KeyStateUpdateRequset) ;
+		mSize = sizeof(GameKeyStatesUpdateRequest) ;
 		mType = PKT_CS_KEYSTATE ;
-		mPlayerId = -1 ;
+		mMyPlayerInfo.mPlayerId = -1 ;
+		time_t mTimeStamp = time(NULL);
 	}
-	
-	int	mPlayerId ;
-	KeyState mUpDirectKeyState;
-	KeyState mDownDirectKeyState;
-	KeyState mLeftDirectKeyState;
-	KeyState mRightDirectKeyState;
-	KeyState mAttackKeyState;
-	KeyState mUserActiveSkillKeyState;
-	KeyState mTypeActiveSkillKeyState;
+
+	PlayerInfo mMyPlayerInfo;
+	int mTimeStamp;
 } ;
 
-struct KeyStateUpdateResult : public PacketHeader
+struct GameKeyStatesUpdateResult : public PacketHeader
 {
-	KeyStateUpdateResult()
+	GameKeyStatesUpdateResult()
 	{
-		mSize = sizeof(KeyStateUpdateResult) ;
+		mSize = sizeof(GameKeyStatesUpdateResult) ;
 		mType = PKT_SC_KEYSTATE ;
-		mPlayerId = -1 ;
+		mMyPlayerInfo.mPlayerId = -1 ;
 	}
-	
-	int mPlayerId ;
+	PlayerInfo mMyPlayerInfo;
 } ;
+
 
 #pragma pack(pop)

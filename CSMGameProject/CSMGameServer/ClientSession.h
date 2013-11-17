@@ -5,6 +5,7 @@
 #include "CircularBuffer.h"
 #include <map>
 #include <WinSock2.h>
+#include "PlayerManager.h"
 
 #define BUFSIZE	(1024*10)
 class ClientSession ;
@@ -24,10 +25,9 @@ class ClientSession
 public:
 	ClientSession(SOCKET sock)
 		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedRequested(0)
-		, mPosX(0), mPosY(0), mPosZ(0), mDbUpdateCount(0)
+		, mDbUpdateCount(0)
 	{
 		memset(&mClientAddr, 0, sizeof(SOCKADDR_IN)) ;
-		memset(mPlayerName, 0, sizeof(mPlayerName)) ;
 	}
 	~ClientSession() {}
 
@@ -42,6 +42,7 @@ public:
 
 	bool	Send(PacketHeader* pkt) ;
 	bool	Broadcast(PacketHeader* pkt) ;
+	bool	BroadcastWithoutSelf(PacketHeader* pkt) ;
 
 	void	Disconnect() ;
 
@@ -61,12 +62,6 @@ private:
 	void	LoginDone(int pid, double x, double y, double z, const char* name) ;
 	void	UpdateDone() ;
 
-
-private:
-	double			mPosX ;
-	double			mPosY ;
-	double			mPosZ ;
-	char			mPlayerName[MAX_NAME_LEN] ;
 
 private:
 	bool			mConnected ;

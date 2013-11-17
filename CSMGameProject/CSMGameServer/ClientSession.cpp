@@ -88,14 +88,34 @@ void ClientSession::OnRead(size_t len)
 				LoginRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
 
+				int id = PlayerManager::GetInstance()->GetNewPlayerId();
+				PlayerManager::GetInstance()->NewPlayer(id);
+
 				/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.
-				LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(mSocket, inPacket.mPlayerId) ;
+				LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(mSocket, id);
 				GDatabaseJobManager->PushDatabaseJobRequest(newDbJob) ;
-			
+
+				LoginResult outPacket ;
+				outPacket.mMyPlayerInfo = PlayerManager::GetInstance()->GetPlayer(id)->GetPlayerInfo();
+				outPacket.mNowPlayersLength = PlayerManager::GetInstance()->GetPlayersLength();
+				std::map<int,Player*> players = PlayerManager::GetInstance()->GetPlayers();
+				int i=0;
+				for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+				{
+					outPacket.mPlayerInfo[i] = it->second->GetPlayerInfo();
+					i++;
+				}
+				if(!Send(&outPacket) )
+					return;
+				
+				LoginBroadcastResult outPacketBroadCast;
+				outPacketBroadCast.mMyPlayerInfo = PlayerManager::GetInstance()->GetPlayer(id)->GetPlayerInfo();
+				if(!BroadcastWithoutSelf(&outPacketBroadCast) )
+					return;
 			}
 			break ;
 
-		case PKT_CS_CHAT:
+		/*case PKT_CS_CHAT:
 			{
 				ChatBroadcastRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
@@ -111,15 +131,19 @@ void ClientSession::OnRead(size_t len)
  
 			}
 			break ;
-		case PKT_CS_KEYSTATE:
+		*/case PKT_CS_KEYSTATE:
 			{
-				KeyStateUpdateRequset inPacket ;
+				GameKeyStatesUpdateRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize);
 
-				KeyStateUpdateResult outPacket = KeyStateUpdateResult();
-				outPacket.mPlayerId = inPacket.mPlayerId;
+				Player* _player = PlayerManager::GetInstance()->GetPlayer(inPacket.mMyPlayerInfo.mPlayerId);
+				_player->SetGameKeyStates(inPacket.mMyPlayerInfo.mGameKeyStates);
+				_player->SetPosition(Point(inPacket.mMyPlayerInfo.mX, inPacket.mMyPlayerInfo.mY));
+
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = _player->GetPlayerInfo();
 				
-				if( !Send(&outPacket) )
+				if( !BroadcastWithoutSelf(&outPacket) )
 					return;
 			}
 			break ;
@@ -201,7 +225,15 @@ bool ClientSession::Broadcast(PacketHeader* pkt)
 
 	return true ;
 }
+bool ClientSession::BroadcastWithoutSelf(PacketHeader* pkt)
+{
+	if ( !IsConnected() )
+		return false ;
 
+	GClientManager->BroadcastPacket(this, pkt) ;
+
+	return true ;
+}
 void ClientSession::OnTick()
 {
 	/// 클라별로 주기적으로 해야될 일은 여기에
@@ -212,10 +244,7 @@ void ClientSession::OnTick()
 		mDbUpdateCount = 0 ;
 		UpdatePlayerDataContext* updatePlayer = new UpdatePlayerDataContext(mSocket, mPlayerId) ;
 
-		updatePlayer->mPosX = mPosX ;
-		updatePlayer->mPosY = mPosY ;
-		updatePlayer->mPosZ = mPosZ ;
-		strcpy_s(updatePlayer->mComment, "updated_test") ; ///< 일단은 테스트를 위해
+		//strcpy_s(updatePlayer->mComment, "updated_test") ; ///< 일단은 테스트를 위해
 		GDatabaseJobManager->PushDatabaseJobRequest(updatePlayer) ;
 	}
 	
@@ -232,7 +261,7 @@ void ClientSession::DatabaseJobDone(DatabaseJobContext* result)
 	{
 		LoadPlayerDataContext* login = dynamic_cast<LoadPlayerDataContext*>(result) ;
 
-		LoginDone(login->mPlayerId, login->mPosX, login->mPosY, login->mPosZ, login->mPlayerName) ;
+		//LoginDone(login->mPlayerId, login->mPosX, login->mPosY, login->mPosZ, login->mPlayerName) ;
 	
 	}
 	else if ( typeInfo == typeid(UpdatePlayerDataContext) )
@@ -256,7 +285,7 @@ void ClientSession::UpdateDone()
 
 void ClientSession::LoginDone(int pid, double x, double y, double z, const char* name)
 {
-	LoginResult outPacket ;
+/*	LoginResult outPacket ;
 
 	outPacket.mPlayerId = mPlayerId = pid ;
 	outPacket.mPosX = mPosX = x ;
@@ -266,7 +295,7 @@ void ClientSession::LoginDone(int pid, double x, double y, double z, const char*
 	strcpy_s(outPacket.mName, name) ;
 
 	Send(&outPacket) ;
-
+*/
 	mLogon = true ;
 }
 

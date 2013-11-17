@@ -81,14 +81,16 @@
   <ItemGroup>
     <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="CameraSample.cpp" />
-    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
+    <ClCompile Include="LoginHandler.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="FMODSoundSample.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NetworkSample.cpp" />
-    <ClCompile Include="PacketFunction.cpp" />
     <ClCompile Include="ParticleSample.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="XMLSample.cpp" />
@@ -96,14 +98,15 @@
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
-    <ClInclude Include="Character.h" />
+    <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="FMODSoundSample.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="NetworkSample.h" />
-    <ClInclude Include="Packet.h" />
-    <ClInclude Include="PacketFunction.h" />
+    <ClInclude Include="PacketType.h" />
     <ClInclude Include="ParticleSample.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="XMLSample.h" />
