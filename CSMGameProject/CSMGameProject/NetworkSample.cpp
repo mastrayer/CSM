@@ -2,8 +2,7 @@
 #ifdef _DEBUG
 
 #include "NetworkSample.h"
-#include "Packet.h"
-#include "PacketFunction.h"
+#include "PacketType.h"
 #include "NNNetworkSystem.h"
 
 NetworkSample::NetworkSample()
@@ -32,8 +31,8 @@ void NetworkSample::Update( float dTime )
 	if(m_Time > 1)
 	{
 		m_Time = 0;
-		ChatBroadcastRequest CBR = ChatBroadcastRequest();
-		strcpy_s(CBR.m_Chat,"hihi");
+//		ChatBroadcastRequest CBR = ChatBroadcastRequest();
+//		strcpy_s(CBR.m_Chat,"hihi");
 //		NNNetworkSystem::GetInstance()->Send(&CBR);
 	}
 }
