@@ -69,8 +69,8 @@ namespace Animation_Tool
                 sprites[i].Image = new Bitmap(spriteWidth, spriteHeight);
                 g = Graphics.FromImage(sprites[i].Image);
                 
-                sprites[i].Size = new Size(spriteWidth, spriteHeight); // temp[i].Image.Size;
-                sprites[i].Location = new Point(0, totalHeight);// i == 0 ? new Point(0, 0) : new Point(0, temp[i - 1].Bottom + spriteGap);
+                sprites[i].Size = new Size(spriteWidth, spriteHeight);
+                sprites[i].Location = new Point(0, totalHeight);
                 g.DrawImage(originalSprites[i], new Rectangle(0, 0, spriteWidth, spriteHeight));
                 totalHeight += spriteHeight + spriteGap;
             }
@@ -80,7 +80,6 @@ namespace Animation_Tool
             if(g != null)
                 g.Dispose();
         }
-
         private void ButtonSpriteDelete_Click(object sender, EventArgs e)
         {
             if (sprites.Count == 0) return;
@@ -94,7 +93,6 @@ namespace Animation_Tool
 
             updateImageList();
         }
-
         private void sprite_Click(object sender, EventArgs e)
         {
             PictureBox a = (PictureBox)sender;
@@ -104,14 +102,15 @@ namespace Animation_Tool
             });
             updateImageList();
         }
-
         private void sprite_DoubleClick(object sender, EventArgs e)
         {
+          
             MessageBox.Show("DoubleClick");
         }
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             updateImageList();
+            //Graphics.FromImage(originalSprites[0]).Clear()
         }
     }
 }
