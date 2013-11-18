@@ -57,12 +57,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.workSpace = new System.Windows.Forms.PictureBox();
             this.attribute = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.AttributePlayTime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -78,6 +72,12 @@
             this.SpritePositionXLabel = new System.Windows.Forms.Label();
             this.AttributeSpriteWidthLabel = new System.Windows.Forms.Label();
             this.timeline = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.workSpaceScaling = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.menuIcon.SuspendLayout();
             this.mainPanel.SuspendLayout();
@@ -88,6 +88,8 @@
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.workSpace)).BeginInit();
             this.attribute.SuspendLayout();
+            this.timeline.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -331,12 +333,6 @@
             // attribute
             // 
             this.attribute.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.attribute.Controls.Add(this.label9);
-            this.attribute.Controls.Add(this.label8);
-            this.attribute.Controls.Add(this.label7);
-            this.attribute.Controls.Add(this.label6);
-            this.attribute.Controls.Add(this.label5);
-            this.attribute.Controls.Add(this.label4);
             this.attribute.Controls.Add(this.label3);
             this.attribute.Controls.Add(this.AttributePlayTime);
             this.attribute.Controls.Add(this.label2);
@@ -357,61 +353,6 @@
             this.attribute.Size = new System.Drawing.Size(120, 437);
             this.attribute.TabIndex = 1;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(41, 67);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(11, 12);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "1";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(41, 55);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 12);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "label8";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(75, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 12);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "label7";
-            // 
-            // label6
-            // 
-            this.label6.AllowDrop = true;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 12);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "label6";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(41, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 12);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "label5";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 13);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 12);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "1";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -429,7 +370,7 @@
             this.AttributePlayTime.Name = "AttributePlayTime";
             this.AttributePlayTime.Size = new System.Drawing.Size(40, 21);
             this.AttributePlayTime.TabIndex = 17;
-            this.AttributePlayTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.AttributePlayTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // label2
             // 
@@ -453,11 +394,11 @@
             // 
             this.AttributeSpriteRotate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AttributeSpriteRotate.Location = new System.Drawing.Point(43, 182);
-            this.AttributeSpriteRotate.MaxLength = 3;
+            this.AttributeSpriteRotate.MaxLength = 4;
             this.AttributeSpriteRotate.Name = "AttributeSpriteRotate";
             this.AttributeSpriteRotate.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteRotate.TabIndex = 14;
-            this.AttributeSpriteRotate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.AttributeSpriteRotate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // AttributeSpriteRotateLabel
             // 
@@ -476,7 +417,7 @@
             this.AttributeSpriteHeight.Name = "AttributeSpriteHeight";
             this.AttributeSpriteHeight.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteHeight.TabIndex = 12;
-            this.AttributeSpriteHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.AttributeSpriteHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // AttributeSpriteHeightLabel
             // 
@@ -495,7 +436,7 @@
             this.AttributeSpriteWidth.Name = "AttributeSpriteWidth";
             this.AttributeSpriteWidth.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteWidth.TabIndex = 10;
-            this.AttributeSpriteWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.AttributeSpriteWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // SpriteY
             // 
@@ -505,7 +446,7 @@
             this.SpriteY.Name = "SpriteY";
             this.SpriteY.Size = new System.Drawing.Size(29, 21);
             this.SpriteY.TabIndex = 9;
-            this.SpriteY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.SpriteY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // SpritePositionYLabel
             // 
@@ -524,7 +465,7 @@
             this.SpriteX.Name = "SpriteX";
             this.SpriteX.Size = new System.Drawing.Size(29, 21);
             this.SpriteX.TabIndex = 7;
-            this.SpriteX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
+            this.SpriteX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
             // 
             // SpritePositionXLabel
             // 
@@ -547,17 +488,90 @@
             // timeline
             // 
             this.timeline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.timeline.Controls.Add(this.toolStrip1);
             this.timeline.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.timeline.Location = new System.Drawing.Point(0, 437);
             this.timeline.Name = "timeline";
             this.timeline.Size = new System.Drawing.Size(792, 83);
             this.timeline.TabIndex = 0;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3});
+            this.toolStrip1.Location = new System.Drawing.Point(766, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(24, 81);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(21, 19);
+            this.toolStripButton1.Text = "+";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(21, 19);
+            this.toolStripButton2.Text = "-";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(21, 19);
+            this.toolStripButton3.Text = "▶";
+            // 
+            // workSpaceScaling
+            // 
+            this.workSpaceScaling.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.workSpaceScaling.FormattingEnabled = true;
+            this.workSpaceScaling.Items.AddRange(new object[] {
+            "10%",
+            "20%",
+            "30%",
+            "50%",
+            "80%",
+            "100%",
+            "120%",
+            "150%",
+            "200%",
+            "300%",
+            "400%"});
+            this.workSpaceScaling.Location = new System.Drawing.Point(615, 29);
+            this.workSpaceScaling.Name = "workSpaceScaling";
+            this.workSpaceScaling.Size = new System.Drawing.Size(57, 20);
+            this.workSpaceScaling.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(567, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 12);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "ZOOM";
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 569);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.workSpaceScaling);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuIcon);
             this.Controls.Add(this.menu);
@@ -579,6 +593,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.workSpace)).EndInit();
             this.attribute.ResumeLayout(false);
             this.attribute.PerformLayout();
+            this.timeline.ResumeLayout(false);
+            this.timeline.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -629,12 +647,12 @@
         private System.Windows.Forms.ToolStripMenuItem 플레이PToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 옵션OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 도움말HToolStripMenuItem;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ComboBox workSpaceScaling;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
     }
 }
 

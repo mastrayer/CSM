@@ -16,16 +16,36 @@ namespace Animation_Tool
         {            
             InitializeComponent();
 
+            frames.Add(new frameInfo(new Point(0,0), new Size(0,0), 100, 0));
             workSpace.Width = 2000;
             workSpace.Height = 2000;
             updateWorkSpace();
         }
 
+        public class frameInfo
+        {
+            public Point point { get; set; }
+            public Size size { get; set; }
+            public int rotate { get; set; }
+            public int time { get; set; }
+            public Bitmap sprite { get; set; }
+
+            public frameInfo(Point p, Size s, int r, int t)
+            {
+                point = p;
+                size = s;
+                rotate = r;
+                time = t;
+            }
+        }
+
+        List<frameInfo> frames = new List<frameInfo>();
         List<Bitmap> originalSprites = new List<Bitmap>();
         List<PictureBox> sprites = new List<PictureBox>();
         PictureBox frameImage;
         int selectedSprite = 0;
         int allocatedSprite = 0;
+        int selectedFrame = 0;
 
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
@@ -162,18 +182,27 @@ namespace Animation_Tool
             AttributeSpriteHeight.Text = frameImage.Image.Height.ToString();
             SpriteX.Text = (frameImage.Location.X - workSpace.Width/2).ToString();
             SpriteY.Text = (frameImage.Location.Y - workSpace.Height/2).ToString();
+            AttributeSpriteRotate.Text = frames[selectedFrame].rotate.ToString();
+            AttributePlayTime.Text = frames[selectedFrame].time.ToString();
+
+            //updateFrameInfo(new Point(frameImage.Location.X - workSpace.Width / 2, frameImage.Location.Y - workSpace.Height / 2), new Size(frameImage.Image.Width, frameImage.Image.Height));
+        }
+        private void updateFrameInfo(Point p, Size s)
+        {
+            frames[selectedFrame].point = p;
+            frames[selectedFrame].size = s;
+            frames[selectedFrame].sprite = new Bitmap(frameImage.Image);
         }
 
         bool isDrag = false;
         Point firstPoint = new Point();
         private void spriteDrag(object sender, MouseEventArgs e)
         {
-            int x = ((PictureBox)sender).Location.X + (e.X - firstPoint.X);
-            int y = ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y);
+            PictureBox obj = (PictureBox)sender;
+            int x = obj.Location.X + (e.X - firstPoint.X);
+            int y = obj.Location.Y + (e.Y - firstPoint.Y);
 
-            ((PictureBox)sender).Location = new Point(x, y);
-            label8.Text = x.ToString();
-            label9.Text = y.ToString();
+            obj.Location = new Point(x, y);
             updateAttribute();
         }
         private void workSpace_MouseDown(object sender, MouseEventArgs e)
@@ -194,7 +223,6 @@ namespace Animation_Tool
             isDrag = false;
             updateAttribute();
         }
-
         private int convertTextBoxToValue(TextBox box, int value, int low, int high, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != Convert.ToChar(Keys.Back) && e.KeyChar != Convert.ToChar(Keys.Enter))
@@ -228,8 +256,7 @@ namespace Animation_Tool
                 return -9999;
             }
         }
-
-        private void Attribute_KeyPress(object sender, KeyPressEventArgs e)
+        private void AttributeInputValue(object sender, KeyPressEventArgs e)
         {
             TextBox box = (TextBox)sender;
 
@@ -269,27 +296,18 @@ namespace Animation_Tool
             }
             else if (sender == AttributeSpriteRotate)
             {
-                int result = convertTextBoxToValue(box, frameImage.Top - workSpace.Height / 2, 0, 360, e);
+                int result = convertTextBoxToValue(box, frames[selectedFrame].rotate, -360, 360, e);
                 if (result != -9999)
-                    frameImage.Top = result + workSpace.Height / 2;
+                    frames[selectedFrame].rotate = result;
             }
             else if (sender == AttributePlayTime)
             {
-                int result = convertTextBoxToValue(box, frameImage.Top - workSpace.Height / 2, 0, 5000, e);
+                int result = convertTextBoxToValue(box, frames[selectedFrame].time, 0, 9999, e);
                 if (result != -9999)
-                    frameImage.Top = result + workSpace.Height / 2;
+                    frames[selectedFrame].time = result;
             }
+
+            //updateFrameInfo(new Point(frameImage.Left - workSpace.Width / 2, frameImage.Top - workSpace.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height));
         }
-//         private void AttributeSpriteWidth_KeyPress(object sender, KeyPressEventArgs e)
-//         {
-//             int result = convertTextBoxToValue((TextBox)sender, -999, 999, e);
-//             if (result != -9999)
-//             {
-//                 frameImage.Image = new Bitmap(result, frameImage.Size.Height);
-//                 Graphics g = Graphics.FromImage(frameImage.Image);
-//                 frameImage.Size = new Size(result, frameImage.Size.Height);
-//                 g.DrawImage(originalSprites[allocatedSprite], new Rectangle(0, 0, result, frameImage.Height));
-//             }
-//         }
     }
 }
