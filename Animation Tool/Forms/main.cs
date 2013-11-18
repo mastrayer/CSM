@@ -52,7 +52,6 @@ namespace Animation_Tool
         int selectedSprite = 0;
         int allocatedSprite = 0;
         int selectedFrame = 0;
-        int allocatedFrame = 0;
 
         // Sprite load
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
@@ -191,8 +190,8 @@ namespace Animation_Tool
             AttributeSpriteHeight.Text = frameImage.Image.Height.ToString();
             SpriteX.Text = (frameImage.Location.X - workSpace.Width/2).ToString();
             SpriteY.Text = (frameImage.Location.Y - workSpace.Height/2).ToString();
-            AttributeSpriteRotate.Text = frames[allocatedFrame].rotate.ToString();
-            AttributePlayTime.Text = frames[allocatedFrame].time.ToString();
+            AttributeSpriteRotate.Text = frames[selectedFrame].rotate.ToString();
+            AttributePlayTime.Text = frames[selectedFrame].time.ToString();
         }
         private void updateTimeline()
         {
@@ -222,15 +221,15 @@ namespace Animation_Tool
             Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 4), new Rectangle(0, 0, timelineImage[selectedFrame].Image.Width-2, timelineImage[selectedFrame].Image.Height-2));
             timelineFrame.Width = totalWidth;
         }
-        private void updateFrameInfo(Point p, Size s)
+        private void updateFrameInfo(Point p, Size s,int index)
         {
             if (frames.Count == 0)
                 return;
 
-            frames[allocatedFrame].point = p;
-            frames[allocatedFrame].size = s;
+            frames[index].point = p;
+            frames[index].size = s;
             if(frameImage.Image != null)
-                frames[allocatedFrame].sprite = new Bitmap(frameImage.Image);
+                frames[index].sprite = new Bitmap(frameImage.Image);
         }
 
         // sprite Drag
@@ -341,30 +340,29 @@ namespace Animation_Tool
             }
             else if (sender == AttributeSpriteRotate)
             {
-                int result = convertTextBoxToValue(box, frames[allocatedFrame].rotate, -360, 360, e);
+                int result = convertTextBoxToValue(box, frames[selectedFrame].rotate, -360, 360, e);
                 if (result != -9999)
-                    frames[allocatedFrame].rotate = result;
+                    frames[selectedFrame].rotate = result;
             }
             else if (sender == AttributePlayTime)
             {
-                int result = convertTextBoxToValue(box, frames[allocatedFrame].time, 0, 9999, e);
+                int result = convertTextBoxToValue(box, frames[selectedFrame].time, 0, 9999, e);
                 if (result != -9999)
-                    frames[allocatedFrame].time = result;
+                    frames[selectedFrame].time = result;
             }
         }
 
         // timeline
         private void NewFrame(object sender, EventArgs e)
         {
-            updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height));
+            updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
             frames.Add(new frameInfo(new Point(0, 0), new Size(0, 0), 100, 0));
             selectedFrame = frames.Count - 1;
-            allocatedFrame = frames.Count - 1;
 
             timelineImage.Add(new PictureBox());
             timelineImage[timelineImage.Count - 1].BorderStyle = BorderStyle.FixedSingle;
             timelineImage[timelineImage.Count - 1].Click += new System.EventHandler(this.Frame_Click);
-            timelineImage[timelineImage.Count - 1].DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
+            //timelineImage[timelineImage.Count - 1].DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
             timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
 
             frameImage.Dispose();
@@ -382,10 +380,7 @@ namespace Animation_Tool
                 NewFrame(null, null);
 
             if (frames.Count <= selectedFrame)
-            {
                 --selectedFrame;
-                allocatedFrame = selectedFrame;
-            }
             updateTimeline();
         }
         private void openPlayWindow(object sender, EventArgs e)
@@ -394,26 +389,28 @@ namespace Animation_Tool
         }
         private void Frame_Click(object sender, EventArgs e)
         {
+            updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
+
             PictureBox a = (PictureBox)sender;
             selectedFrame = timelineImage.FindIndex(delegate(PictureBox s)
             {
                 return s.GetHashCode() == a.GetHashCode();
             });
-            updateTimeline();
-        }
-        private void Frame_DoubleClick(object sender, EventArgs e)
-        {
+
             if (frameImage != null)
             {
                 workSpace.Controls.Remove(frameImage);
                 frameImage.Dispose();
             }
-
-            allocatedSprite = selectedSprite;
             frameImage = new PictureBox();
-            frameImage.Image = frames[selectedFrame].sprite;
-            frameImage.Size = frames[selectedFrame].sprite.Size;
-            frameImage.Location = new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2);
+
+            if (frames[selectedFrame].sprite != null)
+            {
+                frameImage.Image = frames[selectedFrame].sprite;
+                frameImage.Size = frames[selectedFrame].sprite.Size;
+                frameImage.Location = new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2);
+            }
+
             frameImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseDown);
             frameImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseMove);
             frameImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseUp);
@@ -422,5 +419,31 @@ namespace Animation_Tool
 
             updateTimeline();
         }
+//         private void Frame_DoubleClick(object sender, EventArgs e)
+//         {
+//             if (frameImage != null)
+//             {
+//                 workSpace.Controls.Remove(frameImage);
+//                 frameImage.Dispose();
+//             }
+// 
+//             allocatedSprite = selectedSprite;
+//             frameImage = new PictureBox();
+// 
+//             if (frames[selectedFrame].sprite != null)
+//             {
+//                 frameImage.Image = frames[selectedFrame].sprite;
+//                 frameImage.Size = frames[selectedFrame].sprite.Size;
+//                 frameImage.Location = new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2);
+//             }
+// 
+//             frameImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseDown);
+//             frameImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseMove);
+//             frameImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseUp);
+// 
+//             workSpace.Controls.Add(frameImage);
+// 
+//             updateTimeline();
+//         }
     }
 }
