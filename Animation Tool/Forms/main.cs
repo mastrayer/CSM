@@ -419,6 +419,7 @@ namespace Animation_Tool
             workSpace.Controls.Add(frameImage);
 
             updateTimeline();
+            updateAttribute();
         }
 //         private void Frame_DoubleClick(object sender, EventArgs e)
 //         {
