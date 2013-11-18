@@ -366,6 +366,7 @@ namespace Animation_Tool
             timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
 
             frameImage.Dispose();
+            frameImage = new PictureBox();
             updateTimeline();
         }
         private void DeleteFrame(object sender, EventArgs e)
