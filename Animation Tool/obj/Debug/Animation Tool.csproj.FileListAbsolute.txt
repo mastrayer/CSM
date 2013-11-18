@@ -7,3 +7,4 @@ C:\Users\kim jihwan\Documents\Visual Studio 2012\Projects\2013-3-PROJECT\CSM\tru
 C:\Users\kim jihwan\Documents\Visual Studio 2012\Projects\2013-3-PROJECT\CSM\trunk\Animation Tool\obj\Debug\Animation Tool.exe
 C:\Users\kim jihwan\Documents\Visual Studio 2012\Projects\2013-3-PROJECT\CSM\trunk\Animation Tool\obj\Debug\Animation Tool.pdb
 C:\Users\kim jihwan\Documents\Visual Studio 2012\Projects\2013-3-PROJECT\CSM\trunk\Animation Tool\obj\Debug\Animation_Tool.main.resources
+C:\Users\kim jihwan\Documents\Visual Studio 2012\Projects\2013-3-PROJECT\CSM\trunk\Animation Tool\obj\Debug\Animation_Tool.play.resources

@@ -72,10 +72,11 @@
             this.SpritePositionXLabel = new System.Windows.Forms.Label();
             this.AttributeSpriteWidthLabel = new System.Windows.Forms.Label();
             this.timeline = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.timelineFrame = new System.Windows.Forms.Panel();
+            this.timelineIcon = new System.Windows.Forms.ToolStrip();
+            this.buttonFrameAdd = new System.Windows.Forms.ToolStripButton();
+            this.buttonFrameDelete = new System.Windows.Forms.ToolStripButton();
+            this.buttonOpenPlayWindow = new System.Windows.Forms.ToolStripButton();
             this.workSpaceScaling = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
@@ -89,7 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.workSpace)).BeginInit();
             this.attribute.SuspendLayout();
             this.timeline.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.timelineIcon.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -251,7 +252,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.workSpace);
             this.splitContainer1.Panel2MinSize = 300;
-            this.splitContainer1.Size = new System.Drawing.Size(672, 437);
+            this.splitContainer1.Size = new System.Drawing.Size(672, 420);
             this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -262,7 +263,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spritePanel.Location = new System.Drawing.Point(3, 26);
             this.spritePanel.Name = "spritePanel";
-            this.spritePanel.Size = new System.Drawing.Size(98, 406);
+            this.spritePanel.Size = new System.Drawing.Size(98, 336);
             this.spritePanel.TabIndex = 2;
             // 
             // toolStrip2
@@ -323,10 +324,10 @@
             // 
             this.workSpace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.workSpace.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.workSpace.Location = new System.Drawing.Point(-10, 0);
+            this.workSpace.Location = new System.Drawing.Point(76, 26);
             this.workSpace.Margin = new System.Windows.Forms.Padding(0);
             this.workSpace.Name = "workSpace";
-            this.workSpace.Size = new System.Drawing.Size(528, 435);
+            this.workSpace.Size = new System.Drawing.Size(408, 370);
             this.workSpace.TabIndex = 0;
             this.workSpace.TabStop = false;
             // 
@@ -350,7 +351,7 @@
             this.attribute.Dock = System.Windows.Forms.DockStyle.Right;
             this.attribute.Location = new System.Drawing.Point(672, 0);
             this.attribute.Name = "attribute";
-            this.attribute.Size = new System.Drawing.Size(120, 437);
+            this.attribute.Size = new System.Drawing.Size(120, 420);
             this.attribute.TabIndex = 1;
             // 
             // label3
@@ -488,52 +489,67 @@
             // timeline
             // 
             this.timeline.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.timeline.Controls.Add(this.toolStrip1);
+            this.timeline.Controls.Add(this.timelineFrame);
+            this.timeline.Controls.Add(this.timelineIcon);
             this.timeline.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.timeline.Location = new System.Drawing.Point(0, 437);
+            this.timeline.Location = new System.Drawing.Point(0, 420);
+            this.timeline.Margin = new System.Windows.Forms.Padding(0);
             this.timeline.Name = "timeline";
-            this.timeline.Size = new System.Drawing.Size(792, 83);
+            this.timeline.Size = new System.Drawing.Size(792, 100);
             this.timeline.TabIndex = 0;
             // 
-            // toolStrip1
+            // timelineFrame
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(766, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(24, 81);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.timelineFrame.AutoScroll = true;
+            this.timelineFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timelineFrame.Location = new System.Drawing.Point(0, 0);
+            this.timelineFrame.Margin = new System.Windows.Forms.Padding(0);
+            this.timelineFrame.Name = "timelineFrame";
+            this.timelineFrame.Size = new System.Drawing.Size(758, 98);
+            this.timelineFrame.TabIndex = 1;
             // 
-            // toolStripButton1
+            // timelineIcon
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(21, 19);
-            this.toolStripButton1.Text = "+";
+            this.timelineIcon.Dock = System.Windows.Forms.DockStyle.Right;
+            this.timelineIcon.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonFrameAdd,
+            this.buttonFrameDelete,
+            this.buttonOpenPlayWindow});
+            this.timelineIcon.Location = new System.Drawing.Point(758, 0);
+            this.timelineIcon.Name = "timelineIcon";
+            this.timelineIcon.Size = new System.Drawing.Size(32, 98);
+            this.timelineIcon.TabIndex = 0;
+            this.timelineIcon.Text = "toolStrip1";
             // 
-            // toolStripButton2
+            // buttonFrameAdd
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(21, 19);
-            this.toolStripButton2.Text = "-";
+            this.buttonFrameAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonFrameAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonFrameAdd.Image")));
+            this.buttonFrameAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonFrameAdd.Name = "buttonFrameAdd";
+            this.buttonFrameAdd.Size = new System.Drawing.Size(29, 19);
+            this.buttonFrameAdd.Text = "+";
+            this.buttonFrameAdd.Click += new System.EventHandler(this.NewFrame);
             // 
-            // toolStripButton3
+            // buttonFrameDelete
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(21, 19);
-            this.toolStripButton3.Text = "▶";
+            this.buttonFrameDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonFrameDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonFrameDelete.Image")));
+            this.buttonFrameDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonFrameDelete.Name = "buttonFrameDelete";
+            this.buttonFrameDelete.Size = new System.Drawing.Size(29, 19);
+            this.buttonFrameDelete.Text = "-";
+            this.buttonFrameDelete.Click += new System.EventHandler(this.DeleteFrame);
+            // 
+            // buttonOpenPlayWindow
+            // 
+            this.buttonOpenPlayWindow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonOpenPlayWindow.Image = ((System.Drawing.Image)(resources.GetObject("buttonOpenPlayWindow.Image")));
+            this.buttonOpenPlayWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonOpenPlayWindow.Name = "buttonOpenPlayWindow";
+            this.buttonOpenPlayWindow.Size = new System.Drawing.Size(29, 19);
+            this.buttonOpenPlayWindow.Text = "▶";
+            this.buttonOpenPlayWindow.Click += new System.EventHandler(this.openPlayWindow);
             // 
             // workSpaceScaling
             // 
@@ -595,8 +611,8 @@
             this.attribute.PerformLayout();
             this.timeline.ResumeLayout(false);
             this.timeline.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.timelineIcon.ResumeLayout(false);
+            this.timelineIcon.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -647,12 +663,13 @@
         private System.Windows.Forms.ToolStripMenuItem 플레이PToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 옵션OToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 도움말HToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStrip timelineIcon;
+        private System.Windows.Forms.ToolStripButton buttonFrameAdd;
+        private System.Windows.Forms.ToolStripButton buttonFrameDelete;
+        private System.Windows.Forms.ToolStripButton buttonOpenPlayWindow;
         private System.Windows.Forms.ComboBox workSpaceScaling;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel timelineFrame;
     }
 }
 
