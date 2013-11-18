@@ -429,6 +429,7 @@
             this.AttributePlayTime.Name = "AttributePlayTime";
             this.AttributePlayTime.Size = new System.Drawing.Size(40, 21);
             this.AttributePlayTime.TabIndex = 17;
+            this.AttributePlayTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // label2
             // 
@@ -456,6 +457,7 @@
             this.AttributeSpriteRotate.Name = "AttributeSpriteRotate";
             this.AttributeSpriteRotate.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteRotate.TabIndex = 14;
+            this.AttributeSpriteRotate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // AttributeSpriteRotateLabel
             // 
@@ -470,10 +472,11 @@
             // 
             this.AttributeSpriteHeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AttributeSpriteHeight.Location = new System.Drawing.Point(43, 155);
-            this.AttributeSpriteHeight.MaxLength = 3;
+            this.AttributeSpriteHeight.MaxLength = 4;
             this.AttributeSpriteHeight.Name = "AttributeSpriteHeight";
             this.AttributeSpriteHeight.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteHeight.TabIndex = 12;
+            this.AttributeSpriteHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // AttributeSpriteHeightLabel
             // 
@@ -488,10 +491,11 @@
             // 
             this.AttributeSpriteWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AttributeSpriteWidth.Location = new System.Drawing.Point(43, 128);
-            this.AttributeSpriteWidth.MaxLength = 3;
+            this.AttributeSpriteWidth.MaxLength = 4;
             this.AttributeSpriteWidth.Name = "AttributeSpriteWidth";
             this.AttributeSpriteWidth.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteWidth.TabIndex = 10;
+            this.AttributeSpriteWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // SpriteY
             // 
@@ -501,6 +505,7 @@
             this.SpriteY.Name = "SpriteY";
             this.SpriteY.Size = new System.Drawing.Size(29, 21);
             this.SpriteY.TabIndex = 9;
+            this.SpriteY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // SpritePositionYLabel
             // 
@@ -515,10 +520,11 @@
             // 
             this.SpriteX.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SpriteX.Location = new System.Drawing.Point(16, 101);
-            this.SpriteX.MaxLength = 3;
+            this.SpriteX.MaxLength = 4;
             this.SpriteX.Name = "SpriteX";
             this.SpriteX.Size = new System.Drawing.Size(29, 21);
             this.SpriteX.TabIndex = 7;
+            this.SpriteX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Attribute_KeyPress);
             // 
             // SpritePositionXLabel
             // 

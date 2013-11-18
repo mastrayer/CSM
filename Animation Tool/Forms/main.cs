@@ -25,6 +25,7 @@ namespace Animation_Tool
         List<PictureBox> sprites = new List<PictureBox>();
         PictureBox frameImage;
         int selectedSprite = 0;
+        int allocatedSprite = 0;
 
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
@@ -115,8 +116,9 @@ namespace Animation_Tool
                 frameImage.Dispose();
             }
 
+            allocatedSprite = selectedSprite;
             frameImage = new PictureBox();
-            frameImage.Image = originalSprites[selectedSprite];
+            frameImage.Image = (Bitmap)originalSprites[selectedSprite];
             frameImage.Size = originalSprites[selectedSprite].Size;
             frameImage.Location = new Point((workSpace.Size.Width - originalSprites[selectedSprite].Size.Width) / 2, (workSpace.Size.Height - originalSprites[selectedSprite].Size.Height) / 2);
             frameImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseDown);
@@ -158,17 +160,20 @@ namespace Animation_Tool
 
             AttributeSpriteWidth.Text = frameImage.Image.Width.ToString();
             AttributeSpriteHeight.Text = frameImage.Image.Height.ToString();
-            SpriteX.Text = frameImage.Location.X.ToString();
-            SpriteY.Text = frameImage.Location.Y.ToString();
+            SpriteX.Text = (frameImage.Location.X - workSpace.Width/2).ToString();
+            SpriteY.Text = (frameImage.Location.Y - workSpace.Height/2).ToString();
         }
 
         bool isDrag = false;
         Point firstPoint = new Point();
         private void spriteDrag(object sender, MouseEventArgs e)
         {
-            ((PictureBox)sender).Location = new Point(((PictureBox)sender).Location.X + (e.X - firstPoint.X), ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y));
-            label8.Text = e.X.ToString();
-            label9.Text = e.Y.ToString();
+            int x = ((PictureBox)sender).Location.X + (e.X - firstPoint.X);
+            int y = ((PictureBox)sender).Location.Y + (e.Y - firstPoint.Y);
+
+            ((PictureBox)sender).Location = new Point(x, y);
+            label8.Text = x.ToString();
+            label9.Text = y.ToString();
             updateAttribute();
         }
         private void workSpace_MouseDown(object sender, MouseEventArgs e)
@@ -180,6 +185,7 @@ namespace Animation_Tool
         }
         private void workSpace_MouseMove(object sender, MouseEventArgs e)
         {
+          //  if()
             if(isDrag)
                 spriteDrag(sender, e);
         }
@@ -188,5 +194,102 @@ namespace Animation_Tool
             isDrag = false;
             updateAttribute();
         }
+
+        private int convertTextBoxToValue(TextBox box, int value, int low, int high, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != Convert.ToChar(Keys.Back) && e.KeyChar != Convert.ToChar(Keys.Enter))
+                e.Handled = true;
+
+            if (e.KeyChar != Convert.ToChar(Keys.Enter))
+                return -9999;
+
+            try
+            {
+                int result = Convert.ToInt32(box.Text);
+
+                if (result > high)
+                {
+                    box.Text = high.ToString();
+                    result = high;
+                }
+                if (result < low)
+                {
+                    box.Text = low.ToString();
+                    result = low;
+                }
+                box.Text = result.ToString();
+
+                return result;
+            }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(ex.Message);
+                box.Text = value.ToString();
+                return -9999;
+            }
+        }
+
+        private void Attribute_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+
+            if (sender == SpriteX)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Left - workSpace.Width / 2, -999, 999, e);
+                if (result != -9999)
+                    frameImage.Left = result + workSpace.Width / 2;
+            }
+            else if (sender == SpriteY)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Top - workSpace.Height / 2, -999, 999, e);
+                if (result != -9999)
+                    frameImage.Top = result + workSpace.Height / 2;
+            }
+            else if (sender == AttributeSpriteWidth)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Size.Width, -999, 999, e);
+                if (result != -9999)
+                {
+                    frameImage.Image = new Bitmap(result, frameImage.Size.Height);
+                    Graphics g = Graphics.FromImage(frameImage.Image);
+                    frameImage.Size = new Size(result, frameImage.Size.Height);
+                    g.DrawImage(originalSprites[allocatedSprite], new Rectangle(0, 0, result, frameImage.Height));
+                }
+            }
+            else if (sender == AttributeSpriteHeight)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Size.Height, -999, 999, e);
+                if (result != -9999)
+                {
+                    frameImage.Image = new Bitmap(frameImage.Size.Width, result);
+                    Graphics g = Graphics.FromImage(frameImage.Image);
+                    frameImage.Size = new Size(frameImage.Size.Width, result);
+                    g.DrawImage(originalSprites[allocatedSprite], new Rectangle(0, 0, frameImage.Size.Width, result));
+                }
+            }
+            else if (sender == AttributeSpriteRotate)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Top - workSpace.Height / 2, 0, 360, e);
+                if (result != -9999)
+                    frameImage.Top = result + workSpace.Height / 2;
+            }
+            else if (sender == AttributePlayTime)
+            {
+                int result = convertTextBoxToValue(box, frameImage.Top - workSpace.Height / 2, 0, 5000, e);
+                if (result != -9999)
+                    frameImage.Top = result + workSpace.Height / 2;
+            }
+        }
+//         private void AttributeSpriteWidth_KeyPress(object sender, KeyPressEventArgs e)
+//         {
+//             int result = convertTextBoxToValue((TextBox)sender, -999, 999, e);
+//             if (result != -9999)
+//             {
+//                 frameImage.Image = new Bitmap(result, frameImage.Size.Height);
+//                 Graphics g = Graphics.FromImage(frameImage.Image);
+//                 frameImage.Size = new Size(result, frameImage.Size.Height);
+//                 g.DrawImage(originalSprites[allocatedSprite], new Rectangle(0, 0, result, frameImage.Height));
+//             }
+//         }
     }
 }
