@@ -120,6 +120,8 @@ namespace Animation_Tool
             frameImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseUp);
 
             workSpace.Controls.Add(frameImage);
+
+            updateAttribute();
         }
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
@@ -188,10 +190,11 @@ namespace Animation_Tool
 
             AttributeSpriteWidth.Text = frameImage.Image.Width.ToString();
             AttributeSpriteHeight.Text = frameImage.Image.Height.ToString();
-            SpriteX.Text = (frameImage.Location.X - workSpace.Width/2).ToString();
-            SpriteY.Text = (frameImage.Location.Y - workSpace.Height/2).ToString();
+            SpriteX.Text = (frameImage.Location.X - workSpace.Width / 2).ToString();
+            SpriteY.Text = (frameImage.Location.Y - workSpace.Height / 2).ToString();
             AttributeSpriteRotate.Text = frames[selectedFrame].rotate.ToString();
             AttributePlayTime.Text = frames[selectedFrame].time.ToString();
+
         }
         private void updateTimeline()
         {
@@ -387,6 +390,7 @@ namespace Animation_Tool
         private void openPlayWindow(object sender, EventArgs e)
         {
             PlayWindow.Show();
+            PlayWindow.playAnimation(frames);
         }
         private void Frame_Click(object sender, EventArgs e)
         {
