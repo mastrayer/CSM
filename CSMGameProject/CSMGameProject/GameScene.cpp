@@ -20,7 +20,7 @@ CGameScene::CGameScene(void):m_NowGameKeyStates()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN,m_LoginHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN_BROADCAST,m_LoginHandler);
 
-	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);
+	NNNetworkSystem::GetInstance()->Connect("10.73.44.30",9001);
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 
