@@ -55,6 +55,9 @@ void ClientSession::Disconnect()
 	if ( !IsConnected() )
 		return ;
 
+	LogoutResult outPacket;
+	outPacket.mPlayerId = mPlayerId;
+	//BroadcastWithoutSelf(&outPacket);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port)) ;
 
 	::shutdown(mSocket, SD_BOTH) ;
@@ -88,7 +91,7 @@ void ClientSession::OnRead(size_t len)
 				LoginRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
 
-				int id = PlayerManager::GetInstance()->GetNewPlayerId();
+				int id = mPlayerId = PlayerManager::GetInstance()->GetNewPlayerId();
 				PlayerManager::GetInstance()->NewPlayer(id);
 
 				/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.

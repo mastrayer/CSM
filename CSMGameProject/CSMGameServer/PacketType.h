@@ -16,6 +16,7 @@ enum PacketTypes
 	PKT_SC_LOGIN_BROADCAST	= 3,
 	PKT_CS_KEYSTATE = 4,
 	PKT_SC_KEYSTATE = 5,
+	PKT_SC_LOGOUT	= 6,
 };
 
 enum KeyState
@@ -114,6 +115,14 @@ struct GameKeyStatesUpdateResult : public PacketHeader
 	}
 	PlayerInfo mMyPlayerInfo;
 } ;
-
+struct LogoutResult : public PacketHeader
+{
+	LogoutResult()
+	{
+		mSize = sizeof(LogoutResult);
+		mType = PKT_SC_LOGOUT;
+	}
+	int mPlayerId;
+};
 
 #pragma pack(pop)

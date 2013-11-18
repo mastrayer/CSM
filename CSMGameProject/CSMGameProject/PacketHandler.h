@@ -27,5 +27,6 @@ public:
 	LoginRequest m_LoginRequestPacket;
 	LoginResult m_LoginResultPacket;
 	LoginBroadcastResult m_LoginBroadcastResultPacket;
+	LogoutResult m_LogoutResultPacket;
 
 };
