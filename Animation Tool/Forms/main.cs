@@ -215,10 +215,11 @@ namespace Animation_Tool
                 timelineImage[i].Size = new Size(frameHeight, frameHeight);
                 timelineImage[i].Location = new Point(totalWidth, 0);
                 g.DrawImage(bmp, new Rectangle(0, 0, frameWidth, frameHeight));
+                g.DrawString((i + 1).ToString(), DefaultFont, new SolidBrush(Color.Black), new Point(0, 0));
                 totalWidth += frameHeight + frameGap;
             }
 
-            Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 8), new Rectangle(0, 0, timelineImage[selectedFrame].Image.Width, timelineImage[selectedFrame].Image.Height));
+            Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 4), new Rectangle(0, 0, timelineImage[selectedFrame].Image.Width-2, timelineImage[selectedFrame].Image.Height-2));
             timelineFrame.Width = totalWidth;
              
             if (g != null)
@@ -371,6 +372,7 @@ namespace Animation_Tool
             allocatedFrame = frames.Count - 1;
 
             timelineImage.Add(new PictureBox());
+            timelineImage[timelineImage.Count - 1].BorderStyle = BorderStyle.FixedSingle;
             timelineImage[timelineImage.Count-1].Click += new System.EventHandler(this.Frame_Click);
             timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
 
