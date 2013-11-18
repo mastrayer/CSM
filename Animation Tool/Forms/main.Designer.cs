@@ -527,7 +527,7 @@
             this.buttonFrameAdd.Image = ((System.Drawing.Image)(resources.GetObject("buttonFrameAdd.Image")));
             this.buttonFrameAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonFrameAdd.Name = "buttonFrameAdd";
-            this.buttonFrameAdd.Size = new System.Drawing.Size(29, 19);
+            this.buttonFrameAdd.Size = new System.Drawing.Size(21, 19);
             this.buttonFrameAdd.Text = "+";
             this.buttonFrameAdd.Click += new System.EventHandler(this.NewFrame);
             // 
@@ -537,7 +537,7 @@
             this.buttonFrameDelete.Image = ((System.Drawing.Image)(resources.GetObject("buttonFrameDelete.Image")));
             this.buttonFrameDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonFrameDelete.Name = "buttonFrameDelete";
-            this.buttonFrameDelete.Size = new System.Drawing.Size(29, 19);
+            this.buttonFrameDelete.Size = new System.Drawing.Size(21, 19);
             this.buttonFrameDelete.Text = "-";
             this.buttonFrameDelete.Click += new System.EventHandler(this.DeleteFrame);
             // 
@@ -547,7 +547,7 @@
             this.buttonOpenPlayWindow.Image = ((System.Drawing.Image)(resources.GetObject("buttonOpenPlayWindow.Image")));
             this.buttonOpenPlayWindow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buttonOpenPlayWindow.Name = "buttonOpenPlayWindow";
-            this.buttonOpenPlayWindow.Size = new System.Drawing.Size(29, 19);
+            this.buttonOpenPlayWindow.Size = new System.Drawing.Size(21, 19);
             this.buttonOpenPlayWindow.Text = "▶";
             this.buttonOpenPlayWindow.Click += new System.EventHandler(this.openPlayWindow);
             // 

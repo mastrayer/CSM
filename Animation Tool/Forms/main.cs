@@ -16,12 +16,11 @@ namespace Animation_Tool
         {            
             InitializeComponent();
 
-            frames.Add(new frameInfo(new Point(0,0), new Size(0,0), 100, 0));
-
             workSpace.Width = 2000;
             workSpace.Height = 2000;
 
             PlayWindow.Show();
+            NewFrame(null, null);
 
             updateWorkSpace();
             updateTimeline();
@@ -82,39 +81,6 @@ namespace Animation_Tool
                 updateImageList();                
             }
         }
-        private void updateImageList()
-        {
-            if (sprites.Count == 0)
-            {
-                selectedSprite = 0;
-                return;
-            }
-            int totalHeight = 0;
-            int spriteWidth = splitContainer1.Panel1.Width - 30;//spritePanel.Width;
-            int spriteGap = 10;
-            Graphics g = null;
-
-            spritePanel.Width = spriteWidth;
-            for (int i=0; i<sprites.Count; ++i)
-            {
-                int spriteHeight = (int)((double)originalSprites[i].Size.Height / (double)originalSprites[i].Size.Width * (double)spriteWidth);
-                if (sprites[i].Image != null)
-                    sprites[i].Image.Dispose();
-
-                sprites[i].Image = new Bitmap(spriteWidth, spriteHeight);
-                g = Graphics.FromImage(sprites[i].Image);
-                
-                sprites[i].Size = new Size(spriteWidth, spriteHeight);
-                sprites[i].Location = new Point(0, totalHeight);
-                g.DrawImage(originalSprites[i], new Rectangle(0, 0, spriteWidth, spriteHeight));
-                totalHeight += spriteHeight + spriteGap;
-            }
-
-            Graphics.FromImage(sprites[selectedSprite].Image).DrawRectangle(new Pen(Color.Red, 8), new Rectangle(0, 0, sprites[selectedSprite].Image.Width, sprites[selectedSprite].Image.Height));
-            spritePanel.Height = totalHeight;
-            if(g != null)
-                g.Dispose();
-        }
         private void ButtonSpriteDelete_Click(object sender, EventArgs e)
         {
             if (sprites.Count == 0) return;
@@ -161,8 +127,41 @@ namespace Animation_Tool
             updateImageList();
             updateWorkSpace();
         }
-
+        
         // Update
+        private void updateImageList()
+        {
+            if (sprites.Count == 0)
+            {
+                selectedSprite = 0;
+                return;
+            }
+            int totalHeight = 0;
+            int spriteWidth = splitContainer1.Panel1.Width - 30;//spritePanel.Width;
+            int spriteGap = 10;
+            Graphics g = null;
+
+            spritePanel.Width = spriteWidth;
+            for (int i=0; i<sprites.Count; ++i)
+            {
+                int spriteHeight = (int)((double)originalSprites[i].Size.Height / (double)originalSprites[i].Size.Width * (double)spriteWidth);
+                if (sprites[i].Image != null)
+                    sprites[i].Image.Dispose();
+
+                sprites[i].Image = new Bitmap(spriteWidth, spriteHeight);
+                g = Graphics.FromImage(sprites[i].Image);
+                
+                sprites[i].Size = new Size(spriteWidth, spriteHeight);
+                sprites[i].Location = new Point(0, totalHeight);
+                g.DrawImage(originalSprites[i], new Rectangle(0, 0, spriteWidth, spriteHeight));
+                totalHeight += spriteHeight + spriteGap;
+            }
+
+            Graphics.FromImage(sprites[selectedSprite].Image).DrawRectangle(new Pen(Color.Red, 8), new Rectangle(0, 0, sprites[selectedSprite].Image.Width, sprites[selectedSprite].Image.Height));
+            spritePanel.Height = totalHeight;
+            if(g != null)
+                g.Dispose();
+        }
         private void updateWorkSpace()
         {
             workSpace.Location = new Point((splitContainer1.Panel2.Right - splitContainer1.Panel2.Left) / 2 - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom - splitContainer1.Panel2.Top) / 2 - workSpace.Size.Height / 2);
@@ -197,21 +196,50 @@ namespace Animation_Tool
         }
         private void updateTimeline()
         {
-            PictureBox a = new PictureBox();
-            a.Image = new Bitmap(@"C:\Users\kim jihwan\Desktop\s.png");
-            a.Location = new Point(512, 0);
-            a.Size = new Size(1024, 80);
-            timelineFrame.Controls.Add(a);
+            int totalWidth = 0;
+            int frameHeight = 80;
+            int frameGap = 10;
+            Graphics g = null;
+
+            for (int i = 0; i < frames.Count; ++i)
+            {
+                Bitmap bmp = frames[i].sprite;
+                if (bmp == null)
+                    bmp = new Bitmap(frameHeight, frameHeight);
+
+                int frameWidth = (int)((double)bmp.Size.Width / (double)bmp.Size.Height * (double)frameHeight);
+
+                timelineImage[i].Image = new Bitmap(frameWidth, frameHeight);
+                g = Graphics.FromImage(timelineImage[i].Image);
+
+                timelineImage[i].Size = new Size(frameHeight, frameHeight);
+                timelineImage[i].Location = new Point(totalWidth, 0);
+                g.DrawImage(bmp, new Rectangle(0, 0, frameWidth, frameHeight));
+                totalWidth += frameHeight + frameGap;
+            }
+
+            Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 8), new Rectangle(0, 0, timelineImage[selectedFrame].Image.Width, timelineImage[selectedFrame].Image.Height));
+            timelineFrame.Width = totalWidth;
+             
+            if (g != null)
+                g.Dispose();
+            
+
+            //             PictureBox a = new PictureBox();
+//             a.Image = new Bitmap(@"C:\Users\kim jihwan\Desktop\s.png");
+//             a.Location = new Point(512, 0);
+//             a.Size = new Size(1024, 80);
+//             timelineFrame.Controls.Add(a);
         }
         private void updateFrameInfo(Point p, Size s)
         {
+            if (frames.Count == 0)
+                return;
+
             frames[allocatedFrame].point = p;
             frames[allocatedFrame].size = s;
             if(frameImage.Image != null)
                 frames[allocatedFrame].sprite = new Bitmap(frameImage.Image);
-
-            frameImage.Dispose();
-            //updateAttribute();
         }
 
         // sprite Drag
@@ -281,6 +309,9 @@ namespace Animation_Tool
         }
         private void EditAttribute(object sender, KeyPressEventArgs e)
         {
+            if (sprites.Count == 0)
+                return;
+
             TextBox box = (TextBox)sender;
 
             if (sender == SpriteX)
@@ -338,14 +369,61 @@ namespace Animation_Tool
             frames.Add(new frameInfo(new Point(0, 0), new Size(0, 0), 100, 0));
             selectedFrame = frames.Count - 1;
             allocatedFrame = frames.Count - 1;
+
+            timelineImage.Add(new PictureBox());
+            timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
+
+            frameImage.Dispose();
+            updateTimeline();
         }
         private void DeleteFrame(object sender, EventArgs e)
         {
-            frames.RemoveAt(selectedFrame);
+            if (frames.Count > 0)
+            {
+                frames.RemoveAt(selectedFrame);
+                timelineFrame.Controls.Remove(timelineImage[selectedFrame]);
+                timelineImage.RemoveAt(selectedFrame);
+            }
+            if (frames.Count == 0)
+                NewFrame(null, null);
+
+            if (frames.Count <= selectedFrame) --selectedFrame;
+            updateTimeline();
         }
         private void openPlayWindow(object sender, EventArgs e)
         {
             PlayWindow.Show();
+        }
+        private void Frame_Click(object sender, EventArgs e)
+        {
+            PictureBox a = (PictureBox)sender;
+            selectedSprite = sprites.FindIndex(delegate(PictureBox s)
+            {
+                return s.GetHashCode() == a.GetHashCode();
+            });
+            updateImageList();
+
+            this.workSpace.Click += new System.EventHandler(this.Frame_Click);
+            this.workSpace.DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
+        }
+        private void Frame_DoubleClick(object sender, EventArgs e)
+        {
+            if (frameImage != null)
+            {
+                workSpace.Controls.Remove(frameImage);
+                frameImage.Dispose();
+            }
+
+            allocatedSprite = selectedSprite;
+            frameImage = new PictureBox();
+            frameImage.Image = (Bitmap)originalSprites[selectedSprite];
+            frameImage.Size = originalSprites[selectedSprite].Size;
+            frameImage.Location = new Point((workSpace.Size.Width - originalSprites[selectedSprite].Size.Width) / 2, (workSpace.Size.Height - originalSprites[selectedSprite].Size.Height) / 2);
+            frameImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseDown);
+            frameImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseMove);
+            frameImage.MouseUp += new System.Windows.Forms.MouseEventHandler(this.workSpace_MouseUp);
+
+            workSpace.Controls.Add(frameImage);
         }
     }
 }
