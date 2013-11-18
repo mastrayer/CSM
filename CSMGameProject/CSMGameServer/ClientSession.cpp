@@ -57,6 +57,7 @@ void ClientSession::Disconnect()
 
 	LogoutResult outPacket;
 	outPacket.mPlayerId = mPlayerId;
+	PlayerManager::GetInstance()->DeletePlayer(mPlayerId);
 	//BroadcastWithoutSelf(&outPacket);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port)) ;
 
