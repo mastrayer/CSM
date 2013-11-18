@@ -17,8 +17,12 @@ namespace Animation_Tool
             InitializeComponent();
 
             frames.Add(new frameInfo(new Point(0,0), new Size(0,0), 100, 0));
+
             workSpace.Width = 2000;
             workSpace.Height = 2000;
+
+            PlayWindow.Show();
+
             updateWorkSpace();
             updateTimeline();
         }
@@ -40,16 +44,18 @@ namespace Animation_Tool
             }
         }
 
+        play PlayWindow = new play();
         List<Bitmap> originalSprites = new List<Bitmap>();
         List<PictureBox> sprites = new List<PictureBox>();
         List<frameInfo> frames = new List<frameInfo>();
         List<PictureBox> timelineImage = new List<PictureBox>();
-        PictureBox frameImage;
+        PictureBox frameImage = new PictureBox();
         int selectedSprite = 0;
         int allocatedSprite = 0;
         int selectedFrame = 0;
         int allocatedFrame = 0;
 
+        // Sprite load
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
             OpenFileDialog openImage = new OpenFileDialog();
@@ -156,6 +162,7 @@ namespace Animation_Tool
             updateWorkSpace();
         }
 
+        // Update
         private void updateWorkSpace()
         {
             workSpace.Location = new Point((splitContainer1.Panel2.Right - splitContainer1.Panel2.Left) / 2 - workSpace.Size.Width / 2, (splitContainer1.Panel2.Bottom - splitContainer1.Panel2.Top) / 2 - workSpace.Size.Height / 2);
@@ -200,9 +207,14 @@ namespace Animation_Tool
         {
             frames[allocatedFrame].point = p;
             frames[allocatedFrame].size = s;
-            frames[allocatedFrame].sprite = new Bitmap(frameImage.Image);
+            if(frameImage.Image != null)
+                frames[allocatedFrame].sprite = new Bitmap(frameImage.Image);
+
+            frameImage.Dispose();
+            //updateAttribute();
         }
 
+        // sprite Drag
         bool isDrag = false;
         Point firstPoint = new Point();
         private void spriteDrag(object sender, MouseEventArgs e)
@@ -232,6 +244,8 @@ namespace Animation_Tool
             isDrag = false;
             updateAttribute();
         }
+
+        // edit Attribute
         private int convertTextBoxToValue(TextBox box, int value, int low, int high, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != Convert.ToChar(Keys.Back) && e.KeyChar != Convert.ToChar(Keys.Enter))
@@ -265,7 +279,7 @@ namespace Animation_Tool
                 return -9999;
             }
         }
-        private void AttributeInputValue(object sender, KeyPressEventArgs e)
+        private void EditAttribute(object sender, KeyPressEventArgs e)
         {
             TextBox box = (TextBox)sender;
 
@@ -317,20 +331,21 @@ namespace Animation_Tool
             }
         }
 
+        // timeline
         private void NewFrame(object sender, EventArgs e)
         {
-
+            updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height));
+            frames.Add(new frameInfo(new Point(0, 0), new Size(0, 0), 100, 0));
+            selectedFrame = frames.Count - 1;
+            allocatedFrame = frames.Count - 1;
         }
-
         private void DeleteFrame(object sender, EventArgs e)
         {
-
+            frames.RemoveAt(selectedFrame);
         }
-
         private void openPlayWindow(object sender, EventArgs e)
         {
-            play form = new play();
-            form.Show();
+            PlayWindow.Show();
         }
     }
 }

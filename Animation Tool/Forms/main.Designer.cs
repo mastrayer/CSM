@@ -371,7 +371,7 @@
             this.AttributePlayTime.Name = "AttributePlayTime";
             this.AttributePlayTime.Size = new System.Drawing.Size(40, 21);
             this.AttributePlayTime.TabIndex = 17;
-            this.AttributePlayTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.AttributePlayTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // label2
             // 
@@ -399,7 +399,7 @@
             this.AttributeSpriteRotate.Name = "AttributeSpriteRotate";
             this.AttributeSpriteRotate.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteRotate.TabIndex = 14;
-            this.AttributeSpriteRotate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.AttributeSpriteRotate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // AttributeSpriteRotateLabel
             // 
@@ -418,7 +418,7 @@
             this.AttributeSpriteHeight.Name = "AttributeSpriteHeight";
             this.AttributeSpriteHeight.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteHeight.TabIndex = 12;
-            this.AttributeSpriteHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.AttributeSpriteHeight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // AttributeSpriteHeightLabel
             // 
@@ -437,7 +437,7 @@
             this.AttributeSpriteWidth.Name = "AttributeSpriteWidth";
             this.AttributeSpriteWidth.Size = new System.Drawing.Size(29, 21);
             this.AttributeSpriteWidth.TabIndex = 10;
-            this.AttributeSpriteWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.AttributeSpriteWidth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // SpriteY
             // 
@@ -447,7 +447,7 @@
             this.SpriteY.Name = "SpriteY";
             this.SpriteY.Size = new System.Drawing.Size(29, 21);
             this.SpriteY.TabIndex = 9;
-            this.SpriteY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.SpriteY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // SpritePositionYLabel
             // 
@@ -466,7 +466,7 @@
             this.SpriteX.Name = "SpriteX";
             this.SpriteX.Size = new System.Drawing.Size(29, 21);
             this.SpriteX.TabIndex = 7;
-            this.SpriteX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AttributeInputValue);
+            this.SpriteX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EditAttribute);
             // 
             // SpritePositionXLabel
             // 
@@ -505,7 +505,7 @@
             this.timelineFrame.Location = new System.Drawing.Point(0, 0);
             this.timelineFrame.Margin = new System.Windows.Forms.Padding(0);
             this.timelineFrame.Name = "timelineFrame";
-            this.timelineFrame.Size = new System.Drawing.Size(758, 98);
+            this.timelineFrame.Size = new System.Drawing.Size(766, 98);
             this.timelineFrame.TabIndex = 1;
             // 
             // timelineIcon
@@ -515,9 +515,9 @@
             this.buttonFrameAdd,
             this.buttonFrameDelete,
             this.buttonOpenPlayWindow});
-            this.timelineIcon.Location = new System.Drawing.Point(758, 0);
+            this.timelineIcon.Location = new System.Drawing.Point(766, 0);
             this.timelineIcon.Name = "timelineIcon";
-            this.timelineIcon.Size = new System.Drawing.Size(32, 98);
+            this.timelineIcon.Size = new System.Drawing.Size(24, 98);
             this.timelineIcon.TabIndex = 0;
             this.timelineIcon.Text = "toolStrip1";
             // 
@@ -574,6 +574,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(567, 32);
             this.label4.Name = "label4";
@@ -592,6 +593,7 @@
             this.Controls.Add(this.menuIcon);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
+            this.MinimumSize = new System.Drawing.Size(600, 400);
             this.Name = "main";
             this.Text = "CSM Animation Tool";
             this.menu.ResumeLayout(false);
