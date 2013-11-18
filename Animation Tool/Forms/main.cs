@@ -371,6 +371,7 @@ namespace Animation_Tool
             allocatedFrame = frames.Count - 1;
 
             timelineImage.Add(new PictureBox());
+            timelineImage[timelineImage.Count-1].Click += new System.EventHandler(this.Frame_Click);
             timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
 
             frameImage.Dispose();
@@ -397,14 +398,13 @@ namespace Animation_Tool
         private void Frame_Click(object sender, EventArgs e)
         {
             PictureBox a = (PictureBox)sender;
-            selectedSprite = sprites.FindIndex(delegate(PictureBox s)
+            selectedFrame = timelineImage.FindIndex(delegate(PictureBox s)
             {
                 return s.GetHashCode() == a.GetHashCode();
             });
-            updateImageList();
+            updateTimeline();
 
-            this.workSpace.Click += new System.EventHandler(this.Frame_Click);
-            this.workSpace.DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
+//             this.workSpace.DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
         }
         private void Frame_DoubleClick(object sender, EventArgs e)
         {
