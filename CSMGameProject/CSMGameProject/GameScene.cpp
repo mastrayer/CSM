@@ -7,6 +7,7 @@
 CGameScene::CGameScene(void):m_NowGameKeyStates()
 {
 	m_LoginHandler = new LoginHandler();
+	m_LoginBroadcastHandler = new LoginBroadcastHandler();
 	m_GameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
 	m_GameMap = CGameMap::Create();
 	AddChild(m_GameMap);
