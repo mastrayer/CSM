@@ -609,25 +609,40 @@ namespace Animation_Tool
         }
         private void CSMCreate(string FileName)
         {
+            MemoryStream ms = new MemoryStream();
+
             Bitmap atlas = createSpriteAtlas();
-            atlas.Save(@"atlas");
+            atlas.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 
-            DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
-            FileInfo[] fi = new FileInfo[originalSprites.Count + 2];
-            String[] files = new String[fi.Length];
+//             DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
+//             FileInfo[] fi = new FileInfo[originalSprites.Count + 2];
+//             String[] files = new String[fi.Length];
 
+            /*
             files[0] = "animation.xml";
             files[1] = "atlas";
             for (int i = 0; i < fi.Length - 2; i++)
             {
                 files[i + 2] = "sprite" + i.ToString();
                 originalSprites[i].Save(files[i + 2]);
+            }*/
+
+            using (ZipFile tmp = new ZipFile())
+            {
+                tmp.AddEntry("TEST.xml", "", XMLCreate(atlas.Size));
+                tmp.AddEntry("atlas", "", ms.ToArray());
+
+                for (int i = 0; i < originalSprites.Count; ++i)
+                {
+                    ms.Seek(0, 0);
+                    originalSprites[i].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                    tmp.AddEntry("sprite" + i.ToString(), "", ms.ToArray());
+                }
+                tmp.Save(FileName);
             }
 
-            ZipFile tmp = new ZipFile();
             
-            tmp.AddEntry("TEST.xml", "", XMLCreate(atlas.Size));
-            tmp.Save("AAA.zip");
 //             
 //             using (ZipFile zip = new ZipFile())
 //             {
