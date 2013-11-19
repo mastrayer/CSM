@@ -505,9 +505,11 @@ namespace Animation_Tool
 
             return result;
         }
-        private void XMLCreate(Size atlasSize)
+        private byte[] XMLCreate(Size atlasSize)
         {
-            XmlTextWriter textWriter = new XmlTextWriter(@"animation.xml", Encoding.UTF8);
+            MemoryStream ms = new MemoryStream();
+            //XmlTextWriter textWriter = new XmlTextWriter(@"animation.xml", Encoding.UTF8);
+            XmlTextWriter textWriter = new XmlTextWriter(ms, Encoding.UTF8);
 
             textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();
@@ -599,9 +601,17 @@ namespace Animation_Tool
 
             textWriter.WriteEndDocument();
             textWriter.Close();
+
+            byte[] bytes = ms.ToArray();
+            ms.Close();
+
+            return bytes;
         }
         private void CSMCreate(string FileName)
         {
+            Bitmap atlas = createSpriteAtlas();
+            atlas.Save(@"atlas");
+
             DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
             FileInfo[] fi = new FileInfo[originalSprites.Count + 2];
             String[] files = new String[fi.Length];
@@ -614,14 +624,21 @@ namespace Animation_Tool
                 originalSprites[i].Save(files[i + 2]);
             }
 
-            using (ZipFile zip = new ZipFile())
-            {
-                foreach (string file in files)
-                    zip.AddFile(file);
-                zip.Save(FileName);
-            }
-            foreach (string file in files)
-                File.Delete(file);
+            ZipFile tmp = new ZipFile();
+            
+            tmp.AddEntry("TEST.xml", "", XMLCreate(atlas.Size));
+            tmp.Save("AAA.zip");
+//             
+//             using (ZipFile zip = new ZipFile())
+//             {
+//                 zip.AddFileFromStream("TEST.txt","", bbb);
+// 
+//                 foreach (string file in files)
+//                     zip.AddFile(file);
+//                 zip.Save(FileName);
+//             }
+//             foreach (string file in files)
+//                 File.Delete(file);
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -634,10 +651,6 @@ namespace Animation_Tool
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Bitmap atlas = createSpriteAtlas();
-                atlas.Save(@"atlas");
-
-                XMLCreate(atlas.Size);
                 CSMCreate(saveFileDialog1.FileName);
 //                 if (saveFileDialog1.FileName.ToLower().IndexOf(".ani") > 0)
 //                 {
