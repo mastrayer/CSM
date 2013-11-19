@@ -192,6 +192,7 @@ namespace Animation_Tool
         {
             int totalWidth = 0;
             int frameHeight = 80;
+            int frameWidth = 80;
             int frameGap = 5;
             Graphics g = null;
 
@@ -201,7 +202,7 @@ namespace Animation_Tool
                 if (bmp == null)
                     bmp = new Bitmap(frameHeight, frameHeight);
 
-                int frameWidth = (int)((double)bmp.Size.Width / (double)bmp.Size.Height * (double)frameHeight);
+                frameWidth = (int)((double)bmp.Size.Width / (double)bmp.Size.Height * (double)frameHeight);
 
                 timelineImage[i].Image = new Bitmap(frameWidth, frameHeight);
                 g = Graphics.FromImage(timelineImage[i].Image);
@@ -213,7 +214,7 @@ namespace Animation_Tool
                 totalWidth += frameHeight + frameGap;
             }
 
-            Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 4), new Rectangle(0, 0, timelineImage[selectedFrame].Image.Width-2, timelineImage[selectedFrame].Image.Height-2));
+            Graphics.FromImage(timelineImage[selectedFrame].Image).DrawRectangle(new Pen(Color.Red, 4), new Rectangle(0, 0, frameWidth, frameHeight));
             timelineFrame.Width = totalWidth;
         }
         private void updateFrameInfo(Point p, Size s,int index)
@@ -358,6 +359,7 @@ namespace Animation_Tool
             timelineImage.Add(new PictureBox());
             timelineImage[timelineImage.Count - 1].BorderStyle = BorderStyle.FixedSingle;
             timelineImage[timelineImage.Count - 1].Click += new System.EventHandler(this.FrameChange);
+            timelineImage[timelineImage.Count - 1].SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             //timelineImage[timelineImage.Count - 1].DoubleClick += new System.EventHandler(this.Frame_DoubleClick);
             timelineFrame.Controls.Add(timelineImage[timelineImage.Count - 1]);
 
@@ -381,14 +383,12 @@ namespace Animation_Tool
                 --selectedFrame;
 
             FrameChange(timelineImage[selectedFrame], null);
-            //updateTimeline();
         }
         private void ResetFrameImage(Bitmap img, Point location)
         {
             if (!frameImage.IsDisposed)
                 frameImage.Dispose();
             frameImage = new PictureBox();
-            //frameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             frameImage.Image = img;
             frameImage.Size = img.Size;
             frameImage.Location = location;
@@ -414,9 +414,6 @@ namespace Animation_Tool
             {
                 return s.GetHashCode() == a.GetHashCode();
             });
-            //(frameImage.Location.X - workSpace.Width / 2)
-
-            //ResetFrameImage(frames[selectedFrame].sprite, new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2));
             ResetFrameImage(frames[selectedFrame].sprite, new Point(frames[selectedFrame].point.X  + workSpace.Width / 2, frames[selectedFrame].point.Y + workSpace.Height / 2));
 
             updateTimeline();
