@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Animation_Tool
 {
@@ -36,6 +37,7 @@ namespace Animation_Tool
             public int rotate { get; set; }
             public int time { get; set; }
             public Bitmap sprite { get; set; }
+            public Bitmap oriSprite { get; set; }
 
             public frameInfo(Point p, Size s, int r, int t)
             {
@@ -114,6 +116,7 @@ namespace Animation_Tool
             }
 
             allocatedSprite = selectedSprite;
+            frames[allocatedSprite].oriSprite = originalSprites[selectedSprite];
             ResetFrameImage(originalSprites[selectedSprite], new Point((workSpace.Size.Width - originalSprites[selectedSprite].Size.Width) / 2, (workSpace.Size.Height - originalSprites[selectedSprite].Size.Height) / 2));
             updateAttribute();
         }
@@ -430,7 +433,6 @@ namespace Animation_Tool
 
         private void newButton_Click(object sender, EventArgs e)
         {
-
             foreach (Bitmap temp in originalSprites)
                 temp.Dispose();
             foreach (PictureBox temp in sprites)
@@ -467,7 +469,133 @@ namespace Animation_Tool
                 //OpenCSMFile(openFileDialog1.FileName);
             }
         }
+        private int findSpriteIndex(Bitmap src)
+        {
+            int result = originalSprites.FindIndex(delegate(Bitmap s)
+               {
+                   return s.GetHashCode() == src.GetHashCode();
+               });
 
+            return result;
+        }
+        private Bitmap createSpriteAtlas()
+        {
+            int totalWidth = 0;
+            int maxHeight = 0;
+
+            foreach (frameInfo frame in frames)
+            {
+                totalWidth += frame.size.Width;
+                maxHeight = frame.size.Height > maxHeight ? frame.size.Height : maxHeight;
+            }
+
+            Bitmap result = new Bitmap(totalWidth, maxHeight);
+            Graphics g = Graphics.FromImage(result);
+            totalWidth = 0;
+
+            foreach (frameInfo frame in frames)
+            {
+                g.DrawImage(frame.sprite, new Point(totalWidth, 0));
+                totalWidth += frame.size.Width;
+            }
+
+            return result;
+        }
+        private void XMLCreate(Size atlasSize)
+        {
+            XmlTextWriter textWriter = new XmlTextWriter(@"animation.xml", Encoding.UTF8);
+
+            textWriter.Formatting = Formatting.Indented;
+            textWriter.WriteStartDocument();
+
+            //                    <animation>
+            //              	    <resource>
+            //                 		    <frame count="2"/>
+            //                          <sprite count="4"/>
+            //                  		<atlas width="100" height="100"/>                  		
+            //                  	</resource>
+            //                  	<frame index="0" spriteIndex="0" X="0" Y="0" Width="10" Height="10" Rotate="100" Time="100">
+            //                  	<frame index="1" spriteIndex="1" X="0" Y="0" Width="10" Height="10" Rotate="100" Time="100">
+            //                    </animation>
+
+            textWriter.WriteStartElement("animation");
+            {
+                textWriter.WriteStartElement("resource");
+                {
+                    textWriter.WriteStartElement("frame");
+                    {
+                        textWriter.WriteStartAttribute("count");
+                        textWriter.WriteString(frames.Count.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+
+                    textWriter.WriteStartElement("sprite");
+                    {
+                        textWriter.WriteStartAttribute("count");
+                        textWriter.WriteString(sprites.Count.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+
+                    textWriter.WriteStartElement("atlas");
+                    {
+                        textWriter.WriteStartAttribute("width");
+                        textWriter.WriteString(atlasSize.Width.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("height");
+                        textWriter.WriteString(atlasSize.Height.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+                }
+                textWriter.WriteEndElement();
+
+                for (int i = 0; i < frames.Count; ++i)
+                {
+                    textWriter.WriteStartElement("frame");
+                    {
+                        textWriter.WriteStartAttribute("index");
+                        textWriter.WriteString(i.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("spriteIndex");
+                        textWriter.WriteString(findSpriteIndex(frames[i].oriSprite).ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("X");
+                        textWriter.WriteString(frames[i].point.X.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("Y");
+                        textWriter.WriteString(frames[i].point.Y.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("Width");
+                        textWriter.WriteString(frames[i].sprite.Size.Width.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("Height");
+                        textWriter.WriteString(frames[i].sprite.Size.Height.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("Rotate");
+                        textWriter.WriteString(frames[i].rotate.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("Time");
+                        textWriter.WriteString(frames[i].time.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+                } 
+            }
+            textWriter.WriteEndElement();
+
+            textWriter.WriteEndDocument();
+            textWriter.Close();
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -479,6 +607,18 @@ namespace Animation_Tool
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                Bitmap atlas = createSpriteAtlas();
+
+                XMLCreate(atlas.Size);
+//                 if (saveFileDialog1.FileName.ToLower().IndexOf(".ani") > 0)
+//                 {
+// 
+//                 }
+//                 else if (saveFileDialog1.FileName.ToLower().IndexOf(".") > 0)
+//                 {
+// 
+//                 }
+//                 createSpriteAtlas().Save("a.png");
                 //String fileName = saveFileDialog1.FileName;
             }
         }
