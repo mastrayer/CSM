@@ -18,7 +18,7 @@ private:
 	GameKeyStates m_NowGameKeyStates;
 	GameKeyStatesUpdateHandler* m_GameKeyStatesUpdateHandler;
 	LoginHandler* m_LoginHandler;
-	LoginBroadcastHandler* m_LoginbroadcastHandler;
+	LoginBroadcastHandler* m_LoginBroadcastHandler;
 	LogoutHandler* m_LogoutHandler;
 	
 public:
