@@ -18,6 +18,10 @@ namespace Animation_Tool
         {
             InitializeComponent();        
         }
+        public void Init()
+        {
+            playScene.Image = null;
+        }
         private void play_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
@@ -46,34 +50,6 @@ namespace Animation_Tool
                 // Stop timing
                 stopwatch.Stop();
             }
-            /*
-            foreach (main.frameInfo frame in frames)
-            {
-                Timer timer = new System.Windows.Forms.Timer();
-                timer.Interval = 1000;//frame.time;
-                timer.Tick += new EventHandler(timer_Tick);
-                timer.Start();
-
-                playScene.Image = new Bitmap(frame.sprite);
-                while (flag == false)
-                    Application.DoEvents();
-
-                timer.Dispose();
-                //playScene.Image.Dispose();
-            }
-            
-            MessageBox.Show("A");*/
-            
-            //foreach (main.frameInfo frame in frames)
-            {
-                
-            }
         }
-        bool flag = false;
-        void timer_Tick(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

@@ -15,7 +15,10 @@ namespace Animation_Tool
         public main()
         {            
             InitializeComponent();
-
+            init();
+        }
+        private void init()
+        {
             workSpace.Width = 2000;
             workSpace.Height = 2000;
 
@@ -423,6 +426,41 @@ namespace Animation_Tool
         {
             PlayWindow.Show();
             PlayWindow.playAnimation(frames);
+        }
+
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            //PlayWindow.Dispose();
+            //PlayWindow = new play();
+            PlayWindow.Init();
+
+            foreach (PictureBox temp in sprites)
+                temp.Dispose();
+            foreach (PictureBox temp in timelineImage)
+                temp.Dispose();
+
+            originalSprites.Clear();
+            sprites.Clear();
+            frames.Clear();
+            timelineImage.Clear();
+
+            frameImage.Dispose();
+            frameImage = new PictureBox();
+
+            selectedSprite = allocatedSprite = selectedFrame = 0;
+            System.GC.Collect();
+
+            init();
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+
         }
 //         private void Frame_DoubleClick(object sender, EventArgs e)
 //         {
