@@ -44,4 +44,5 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 			}
 		}
 		break;
+	}
 }

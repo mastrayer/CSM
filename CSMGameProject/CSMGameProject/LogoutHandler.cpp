@@ -27,7 +27,7 @@ void LogoutHandler::HandlingPacket( short packetType, NNCircularBuffer* circular
 					//내 로그아웃 아니니까 일단은 그냥 무시할것
 				}
 				CPlayerManager::GetInstance()->DeletePlayer( m_LogoutResultPacket.m_PlayerId );
-				printf("NEW LOGIN SUCCESS ClientId[%d] \n", m_LoginBroadcastResultPacket.m_MyPlayerInfo.m_PlayerId) ;
+				printf("Logout ClientId[%d] \n", m_LogoutResultPacket.m_PlayerId) ;
 			}
 			else
 			{
