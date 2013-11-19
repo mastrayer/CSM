@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.IO.Compression;
+using System.IO;
+using Ionic.Zip;
+using System.Collections.Specialized;
 
 namespace Animation_Tool
 {
@@ -596,6 +600,29 @@ namespace Animation_Tool
             textWriter.WriteEndDocument();
             textWriter.Close();
         }
+        private void CSMCreate(string FileName)
+        {
+            DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
+            FileInfo[] fi = new FileInfo[originalSprites.Count + 2];
+            String[] files = new String[fi.Length];
+
+            files[0] = "animation.xml";
+            files[1] = "atlas";
+            for (int i = 0; i < fi.Length - 2; i++)
+            {
+                files[i + 2] = "sprite" + i.ToString();
+                originalSprites[i].Save(files[i + 2]);
+            }
+
+            using (ZipFile zip = new ZipFile())
+            {
+                foreach (string file in files)
+                    zip.AddFile(file);
+                zip.Save(FileName);
+            }
+            foreach (string file in files)
+                File.Delete(file);
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -608,8 +635,10 @@ namespace Animation_Tool
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 Bitmap atlas = createSpriteAtlas();
+                atlas.Save(@"atlas");
 
                 XMLCreate(atlas.Size);
+                CSMCreate(saveFileDialog1.FileName);
 //                 if (saveFileDialog1.FileName.ToLower().IndexOf(".ani") > 0)
 //                 {
 // 
