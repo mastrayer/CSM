@@ -63,6 +63,17 @@ namespace Animation_Tool
         int selectedFrame = 0;
 
         // Sprite load
+        private void spriteAdd(string FileName)
+        {
+            PictureBox a = new PictureBox();
+
+            originalSprites.Add(new Bitmap(FileName));
+
+            sprites.Add(a);
+            a.Click += new System.EventHandler(this.sprite_Click);
+            a.DoubleClick += new System.EventHandler(this.sprite_DoubleClick);
+            spritePanel.Controls.Add(a);
+        }
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
             OpenFileDialog openImage = new OpenFileDialog();
@@ -77,14 +88,7 @@ namespace Animation_Tool
             {
                 foreach (string filename in openImage.FileNames)
                 {
-                    PictureBox a = new PictureBox();
-
-                    originalSprites.Add(new Bitmap(filename));
-
-                    sprites.Add(a);
-                    a.Click += new System.EventHandler(this.sprite_Click);
-                    a.DoubleClick += new System.EventHandler(this.sprite_DoubleClick);
-                    spritePanel.Controls.Add(a);
+                    spriteAdd(filename);
                 }
                 updateImageList();                
             }
@@ -435,7 +439,7 @@ namespace Animation_Tool
             PlayWindow.playAnimation(frames);
         }
 
-        private void newButton_Click(object sender, EventArgs e)
+        private void applicationReset()
         {
             foreach (Bitmap temp in originalSprites)
                 temp.Dispose();
@@ -454,9 +458,13 @@ namespace Animation_Tool
 
             selectedSprite = allocatedSprite = selectedFrame = 0;
             System.GC.Collect();
-            
+
             PlayWindow.Init();
             init();
+        }
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            applicationReset();
         }
 
         private void loadButton_Click(object sender, EventArgs e)
@@ -470,6 +478,7 @@ namespace Animation_Tool
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                openAniFile(openFileDialog1.FileName);
                 //OpenCSMFile(openFileDialog1.FileName);
             }
         }
@@ -481,6 +490,147 @@ namespace Animation_Tool
                });
 
             return result;
+        }
+        private void openAniFile(string FileName)
+        {
+            applicationReset();
+
+            int frameCount = 0, spriteCount = 0;
+            Size atlasSize = new Size();
+            List<int> spriteIndex = new List<int>();
+
+            string zipToUnpack = FileName;
+            MemoryStream ms;
+
+            using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+            {
+                foreach (ZipEntry a in zip1)
+                {
+                    ms = new MemoryStream();
+                    a.Extract(ms);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    // XML
+                    if (a.FileName.ToLower().IndexOf(".xml") > 0)
+                    {
+                        XmlDocument xmldoc = new XmlDocument();
+                        xmldoc.Load(ms);
+
+                        XmlNodeList xnList = xmldoc.SelectNodes("animation/Info"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            frameCount = Convert.ToInt32(xn["frame"].Attributes["count"].Value);
+                            spriteCount = Convert.ToInt32(xn["sprite"].Attributes["count"].Value);
+                            atlasSize.Width = Convert.ToInt32(xn["atlas"].Attributes["width"].Value);
+                            atlasSize.Height = Convert.ToInt32(xn["atlas"].Attributes["height"].Value);
+                        }
+
+                        xnList = xmldoc.SelectNodes("animation/resource"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            int index;
+                            Point p = new Point();
+                            Size s = new Size();
+                            int r, t;
+
+                            index = Convert.ToInt32(xn["frame"].Attributes["index"].Value);
+                            spriteIndex.Add(Convert.ToInt32(xn["frame"].Attributes["spriteIndex"].Value));
+                            p.X = Convert.ToInt32(xn["frame"].Attributes["X"].Value);
+                            p.Y = Convert.ToInt32(xn["frame"].Attributes["Y"].Value);
+                            s.Width = Convert.ToInt32(xn["frame"].Attributes["Width"].Value);
+                            s.Height = Convert.ToInt32(xn["frame"].Attributes["Height"].Value);
+                            r = Convert.ToInt32(xn["frame"].Attributes["Rotate"].Value);
+                            t = Convert.ToInt32(xn["frame"].Attributes["Time"].Value);
+
+                            frames.Add(new frameInfo(p, s, r, t));
+                        }
+                    }
+                    else
+                        spriteAdd(a.FileName);
+
+                    ms.Dispose();
+                }
+            } 
+            for (int i = 0; i < frameCount; ++i)
+            {
+                Bitmap temp = new Bitmap(frames[i].size.Width, frames[i].size.Height);
+                Graphics.FromImage(temp).DrawImage(originalSprites[spriteIndex[i]], new Rectangle(0, 0, frames[i].size.Width, frames[i].size.Height));
+                frames[i].sprite = temp;
+            }
+            updateTimeline();
+            updateImageList();
+
+
+            /*
+            int usedTileSetCount = 0;
+            string zipToUnpack = FileName;
+            MemoryStream ms;
+
+            TileList.Clear();
+            using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+            {
+                foreach (ZipEntry a in zip1)
+                {
+                    ms = new MemoryStream();
+                    a.Extract(ms);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    // XML
+                    if (a.FileName.ToLower().IndexOf(".xml") > 0)
+                    {
+                        XmlDocument xmldoc = new XmlDocument();
+                        xmldoc.Load(ms);
+
+                        XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            mainMap.MapSize.Width = Convert.ToInt32(xn["size"].Attributes["width"].Value);
+                            mainMap.MapSize.Height = Convert.ToInt32(xn["size"].Attributes["height"].Value);
+                            usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
+                        }
+                        mainMap_init(mainMap.MapSize.Width, mainMap.MapSize.Height);
+
+                        for (int i = 0; i < mainMap.MapSize.Width; ++i)
+                        {
+                            for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                            {
+                                xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+                                mainMap.grid[i, j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
+
+                                if (!mainMap.grid[i, j].isFull)
+                                    continue;
+
+                                foreach (XmlNode xn in xnList)
+                                {
+                                    //mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(xn["TileImageInfo"].Attributes["Index"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(xn["TileImageInfo"].Attributes["X"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
+                                    mainMap.grid[i, j].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
+                                    mainMap.grid[i, j].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
+                                }
+                            }
+                        }
+                    }
+                    else
+                        TileList.Add(new BitmapList(bitmapID++, new Bitmap(ms)));
+
+                    ms.Dispose();
+                }
+
+            }
+            for (int i = 0; i < mainMap.MapSize.Width; ++i)
+            {
+                for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                {
+                    if (mainMap.grid[i, j].isFull)
+                        mainMap.grid[i, j].tile = TileList[mainMap.grid[i, j].TIleSetID].image.Clone(new Rectangle(new Point(mainMap.grid[i, j].TileLocation.X, mainMap.grid[i, j].TileLocation.Y), new Size(TileSize, TileSize)), TileList[mainMap.grid[i, j].TIleSetID].image.PixelFormat);
+                }
+            }
+
+            TileSelectWindow.changeImage(TileList.Count - 1);
+            mainMap.refresh();
+            Minimap_update();*/
         }
         private Bitmap createSpriteAtlas()
         {
@@ -526,7 +676,7 @@ namespace Animation_Tool
 
             textWriter.WriteStartElement("animation");
             {
-                textWriter.WriteStartElement("resource");
+                textWriter.WriteStartElement("Info");
                 {
                     textWriter.WriteStartElement("frame");
                     {
@@ -558,44 +708,48 @@ namespace Animation_Tool
                 }
                 textWriter.WriteEndElement();
 
-                for (int i = 0; i < frames.Count; ++i)
+                textWriter.WriteStartElement("resource");
                 {
-                    textWriter.WriteStartElement("frame");
+                    for (int i = 0; i < frames.Count; ++i)
                     {
-                        textWriter.WriteStartAttribute("index");
-                        textWriter.WriteString(i.ToString());
-                        textWriter.WriteEndAttribute();
+                        textWriter.WriteStartElement("frame");
+                        {
+                            textWriter.WriteStartAttribute("index");
+                            textWriter.WriteString(i.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("spriteIndex");
-                        textWriter.WriteString(findSpriteIndex(frames[i].oriSprite).ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("spriteIndex");
+                            textWriter.WriteString(findSpriteIndex(frames[i].oriSprite).ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("X");
-                        textWriter.WriteString(frames[i].point.X.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("X");
+                            textWriter.WriteString(frames[i].point.X.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("Y");
-                        textWriter.WriteString(frames[i].point.Y.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("Y");
+                            textWriter.WriteString(frames[i].point.Y.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("Width");
-                        textWriter.WriteString(frames[i].sprite.Size.Width.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("Width");
+                            textWriter.WriteString(frames[i].sprite.Size.Width.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("Height");
-                        textWriter.WriteString(frames[i].sprite.Size.Height.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("Height");
+                            textWriter.WriteString(frames[i].sprite.Size.Height.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("Rotate");
-                        textWriter.WriteString(frames[i].rotate.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("Rotate");
+                            textWriter.WriteString(frames[i].rotate.ToString());
+                            textWriter.WriteEndAttribute();
 
-                        textWriter.WriteStartAttribute("Time");
-                        textWriter.WriteString(frames[i].time.ToString());
-                        textWriter.WriteEndAttribute();
+                            textWriter.WriteStartAttribute("Time");
+                            textWriter.WriteString(frames[i].time.ToString());
+                            textWriter.WriteEndAttribute();
+                        }
+                        textWriter.WriteEndElement();
                     }
-                    textWriter.WriteEndElement();
-                } 
+                }
+                textWriter.WriteEndElement();
             }
             textWriter.WriteEndElement();
 
@@ -613,20 +767,7 @@ namespace Animation_Tool
 
             Bitmap atlas = createSpriteAtlas();
             atlas.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-
-//             DirectoryInfo DI = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
-//             FileInfo[] fi = new FileInfo[originalSprites.Count + 2];
-//             String[] files = new String[fi.Length];
-
-            /*
-            files[0] = "animation.xml";
-            files[1] = "atlas";
-            for (int i = 0; i < fi.Length - 2; i++)
-            {
-                files[i + 2] = "sprite" + i.ToString();
-                originalSprites[i].Save(files[i + 2]);
-            }*/
-
+ 
             using (ZipFile tmp = new ZipFile())
             {
                 tmp.AddEntry("TEST.xml", "", XMLCreate(atlas.Size));
@@ -634,26 +775,13 @@ namespace Animation_Tool
 
                 for (int i = 0; i < originalSprites.Count; ++i)
                 {
-                    ms.Seek(0, 0);
+                    ms.Seek(0, SeekOrigin.Begin);
                     originalSprites[i].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 
                     tmp.AddEntry("sprite" + i.ToString(), "", ms.ToArray());
                 }
                 tmp.Save(FileName);
             }
-
-            
-//             
-//             using (ZipFile zip = new ZipFile())
-//             {
-//                 zip.AddFileFromStream("TEST.txt","", bbb);
-// 
-//                 foreach (string file in files)
-//                     zip.AddFile(file);
-//                 zip.Save(FileName);
-//             }
-//             foreach (string file in files)
-//                 File.Delete(file);
         }
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -667,16 +795,6 @@ namespace Animation_Tool
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 CSMCreate(saveFileDialog1.FileName);
-//                 if (saveFileDialog1.FileName.ToLower().IndexOf(".ani") > 0)
-//                 {
-// 
-//                 }
-//                 else if (saveFileDialog1.FileName.ToLower().IndexOf(".") > 0)
-//                 {
-// 
-//                 }
-//                 createSpriteAtlas().Save("a.png");
-                //String fileName = saveFileDialog1.FileName;
             }
         }
 //         private void Frame_DoubleClick(object sender, EventArgs e)
