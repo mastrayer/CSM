@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.IO.Compression;
+using System.IO;
+using Ionic.Zip;
+using System.Collections.Specialized;
 
 namespace Animation_Tool
 {
@@ -15,7 +20,10 @@ namespace Animation_Tool
         public main()
         {            
             InitializeComponent();
-
+            init();
+        }
+        private void init()
+        {
             workSpace.Width = 2000;
             workSpace.Height = 2000;
 
@@ -33,6 +41,7 @@ namespace Animation_Tool
             public int rotate { get; set; }
             public int time { get; set; }
             public Bitmap sprite { get; set; }
+            public Bitmap oriSprite { get; set; }
 
             public frameInfo(Point p, Size s, int r, int t)
             {
@@ -54,6 +63,17 @@ namespace Animation_Tool
         int selectedFrame = 0;
 
         // Sprite load
+        private void spriteAdd(string FileName)
+        {
+            PictureBox a = new PictureBox();
+
+            originalSprites.Add(new Bitmap(FileName));
+
+            sprites.Add(a);
+            a.Click += new System.EventHandler(this.sprite_Click);
+            a.DoubleClick += new System.EventHandler(this.sprite_DoubleClick);
+            spritePanel.Controls.Add(a);
+        }
         private void ButtonSpriteAdd_Click(object sender, EventArgs e)
         {
             OpenFileDialog openImage = new OpenFileDialog();
@@ -68,14 +88,7 @@ namespace Animation_Tool
             {
                 foreach (string filename in openImage.FileNames)
                 {
-                    PictureBox a = new PictureBox();
-
-                    originalSprites.Add(new Bitmap(filename));
-
-                    sprites.Add(a);
-                    a.Click += new System.EventHandler(this.sprite_Click);
-                    a.DoubleClick += new System.EventHandler(this.sprite_DoubleClick);
-                    spritePanel.Controls.Add(a);
+                    spriteAdd(filename);
                 }
                 updateImageList();                
             }
@@ -111,6 +124,7 @@ namespace Animation_Tool
             }
 
             allocatedSprite = selectedSprite;
+            frames[allocatedSprite].oriSprite = originalSprites[selectedSprite];
             ResetFrameImage(originalSprites[selectedSprite], new Point((workSpace.Size.Width - originalSprites[selectedSprite].Size.Width) / 2, (workSpace.Size.Height - originalSprites[selectedSprite].Size.Height) / 2));
             updateAttribute();
         }
@@ -423,6 +437,365 @@ namespace Animation_Tool
         {
             PlayWindow.Show();
             PlayWindow.playAnimation(frames);
+        }
+
+        private void applicationReset()
+        {
+            foreach (Bitmap temp in originalSprites)
+                temp.Dispose();
+            foreach (PictureBox temp in sprites)
+                temp.Dispose();
+            foreach (PictureBox temp in timelineImage)
+                temp.Dispose();
+
+            originalSprites.Clear();
+            sprites.Clear();
+            frames.Clear();
+            timelineImage.Clear();
+
+            frameImage.Dispose();
+            frameImage = new PictureBox();
+
+            selectedSprite = allocatedSprite = selectedFrame = 0;
+            System.GC.Collect();
+
+            PlayWindow.Init();
+            init();
+        }
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            applicationReset();
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Animation files|*.ani";
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                openAniFile(openFileDialog1.FileName);
+                //OpenCSMFile(openFileDialog1.FileName);
+            }
+        }
+        private int findSpriteIndex(Bitmap src)
+        {
+            int result = originalSprites.FindIndex(delegate(Bitmap s)
+               {
+                   return s.GetHashCode() == src.GetHashCode();
+               });
+
+            return result;
+        }
+        private void openAniFile(string FileName)
+        {
+            applicationReset();
+
+            int frameCount = 0, spriteCount = 0;
+            Size atlasSize = new Size();
+            List<int> spriteIndex = new List<int>();
+
+            string zipToUnpack = FileName;
+            MemoryStream ms;
+
+            using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+            {
+                foreach (ZipEntry a in zip1)
+                {
+                    ms = new MemoryStream();
+                    a.Extract(ms);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    // XML
+                    if (a.FileName.ToLower().IndexOf(".xml") > 0)
+                    {
+                        XmlDocument xmldoc = new XmlDocument();
+                        xmldoc.Load(ms);
+
+                        XmlNodeList xnList = xmldoc.SelectNodes("animation/Info"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            frameCount = Convert.ToInt32(xn["frame"].Attributes["count"].Value);
+                            spriteCount = Convert.ToInt32(xn["sprite"].Attributes["count"].Value);
+                            atlasSize.Width = Convert.ToInt32(xn["atlas"].Attributes["width"].Value);
+                            atlasSize.Height = Convert.ToInt32(xn["atlas"].Attributes["height"].Value);
+                        }
+
+                        xnList = xmldoc.SelectNodes("animation/resource"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            int index;
+                            Point p = new Point();
+                            Size s = new Size();
+                            int r, t;
+
+                            index = Convert.ToInt32(xn["frame"].Attributes["index"].Value);
+                            spriteIndex.Add(Convert.ToInt32(xn["frame"].Attributes["spriteIndex"].Value));
+                            p.X = Convert.ToInt32(xn["frame"].Attributes["X"].Value);
+                            p.Y = Convert.ToInt32(xn["frame"].Attributes["Y"].Value);
+                            s.Width = Convert.ToInt32(xn["frame"].Attributes["Width"].Value);
+                            s.Height = Convert.ToInt32(xn["frame"].Attributes["Height"].Value);
+                            r = Convert.ToInt32(xn["frame"].Attributes["Rotate"].Value);
+                            t = Convert.ToInt32(xn["frame"].Attributes["Time"].Value);
+
+                            frames.Add(new frameInfo(p, s, r, t));
+                        }
+                    }
+                    else
+                        spriteAdd(a.FileName);
+
+                    ms.Dispose();
+                }
+            } 
+            for (int i = 0; i < frameCount; ++i)
+            {
+                Bitmap temp = new Bitmap(frames[i].size.Width, frames[i].size.Height);
+                Graphics.FromImage(temp).DrawImage(originalSprites[spriteIndex[i]], new Rectangle(0, 0, frames[i].size.Width, frames[i].size.Height));
+                frames[i].sprite = temp;
+            }
+            updateTimeline();
+            updateImageList();
+
+
+            /*
+            int usedTileSetCount = 0;
+            string zipToUnpack = FileName;
+            MemoryStream ms;
+
+            TileList.Clear();
+            using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
+            {
+                foreach (ZipEntry a in zip1)
+                {
+                    ms = new MemoryStream();
+                    a.Extract(ms);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    // XML
+                    if (a.FileName.ToLower().IndexOf(".xml") > 0)
+                    {
+                        XmlDocument xmldoc = new XmlDocument();
+                        xmldoc.Load(ms);
+
+                        XmlNodeList xnList = xmldoc.SelectNodes("map/mapInfo"); //접근할 노드
+                        foreach (XmlNode xn in xnList)
+                        {
+                            mainMap.MapSize.Width = Convert.ToInt32(xn["size"].Attributes["width"].Value);
+                            mainMap.MapSize.Height = Convert.ToInt32(xn["size"].Attributes["height"].Value);
+                            usedTileSetCount = Convert.ToInt32(xn["usedTileSet"].Attributes["count"].Value);
+                        }
+                        mainMap_init(mainMap.MapSize.Width, mainMap.MapSize.Height);
+
+                        for (int i = 0; i < mainMap.MapSize.Width; ++i)
+                        {
+                            for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                            {
+                                xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+                                mainMap.grid[i, j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
+
+                                if (!mainMap.grid[i, j].isFull)
+                                    continue;
+
+                                foreach (XmlNode xn in xnList)
+                                {
+                                    //mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(xn["TileImageInfo"].Attributes["Index"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(xn["TileImageInfo"].Attributes["X"].InnerText);
+                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
+                                    mainMap.grid[i, j].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
+                                    mainMap.grid[i, j].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
+                                }
+                            }
+                        }
+                    }
+                    else
+                        TileList.Add(new BitmapList(bitmapID++, new Bitmap(ms)));
+
+                    ms.Dispose();
+                }
+
+            }
+            for (int i = 0; i < mainMap.MapSize.Width; ++i)
+            {
+                for (int j = 0; j < mainMap.MapSize.Height; ++j)
+                {
+                    if (mainMap.grid[i, j].isFull)
+                        mainMap.grid[i, j].tile = TileList[mainMap.grid[i, j].TIleSetID].image.Clone(new Rectangle(new Point(mainMap.grid[i, j].TileLocation.X, mainMap.grid[i, j].TileLocation.Y), new Size(TileSize, TileSize)), TileList[mainMap.grid[i, j].TIleSetID].image.PixelFormat);
+                }
+            }
+
+            TileSelectWindow.changeImage(TileList.Count - 1);
+            mainMap.refresh();
+            Minimap_update();*/
+        }
+        private Bitmap createSpriteAtlas()
+        {
+            int totalWidth = 0;
+            int maxHeight = 0;
+
+            foreach (frameInfo frame in frames)
+            {
+                totalWidth += frame.size.Width;
+                maxHeight = frame.size.Height > maxHeight ? frame.size.Height : maxHeight;
+            }
+
+            Bitmap result = new Bitmap(totalWidth, maxHeight);
+            Graphics g = Graphics.FromImage(result);
+            totalWidth = 0;
+
+            foreach (frameInfo frame in frames)
+            {
+                g.DrawImage(frame.sprite, new Point(totalWidth, 0));
+                totalWidth += frame.size.Width;
+            }
+
+            return result;
+        }
+        private byte[] XMLCreate(Size atlasSize)
+        {
+            MemoryStream ms = new MemoryStream();
+            //XmlTextWriter textWriter = new XmlTextWriter(@"animation.xml", Encoding.UTF8);
+            XmlTextWriter textWriter = new XmlTextWriter(ms, Encoding.UTF8);
+
+            textWriter.Formatting = Formatting.Indented;
+            textWriter.WriteStartDocument();
+
+            //                    <animation>
+            //              	    <resource>
+            //                 		    <frame count="2"/>
+            //                          <sprite count="4"/>
+            //                  		<atlas width="100" height="100"/>                  		
+            //                  	</resource>
+            //                  	<frame index="0" spriteIndex="0" X="0" Y="0" Width="10" Height="10" Rotate="100" Time="100">
+            //                  	<frame index="1" spriteIndex="1" X="0" Y="0" Width="10" Height="10" Rotate="100" Time="100">
+            //                    </animation>
+
+            textWriter.WriteStartElement("animation");
+            {
+                textWriter.WriteStartElement("Info");
+                {
+                    textWriter.WriteStartElement("frame");
+                    {
+                        textWriter.WriteStartAttribute("count");
+                        textWriter.WriteString(frames.Count.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+
+                    textWriter.WriteStartElement("sprite");
+                    {
+                        textWriter.WriteStartAttribute("count");
+                        textWriter.WriteString(sprites.Count.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+
+                    textWriter.WriteStartElement("atlas");
+                    {
+                        textWriter.WriteStartAttribute("width");
+                        textWriter.WriteString(atlasSize.Width.ToString());
+                        textWriter.WriteEndAttribute();
+
+                        textWriter.WriteStartAttribute("height");
+                        textWriter.WriteString(atlasSize.Height.ToString());
+                        textWriter.WriteEndAttribute();
+                    }
+                    textWriter.WriteEndElement();
+                }
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("resource");
+                {
+                    for (int i = 0; i < frames.Count; ++i)
+                    {
+                        textWriter.WriteStartElement("frame");
+                        {
+                            textWriter.WriteStartAttribute("index");
+                            textWriter.WriteString(i.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("spriteIndex");
+                            textWriter.WriteString(findSpriteIndex(frames[i].oriSprite).ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("X");
+                            textWriter.WriteString(frames[i].point.X.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("Y");
+                            textWriter.WriteString(frames[i].point.Y.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("Width");
+                            textWriter.WriteString(frames[i].sprite.Size.Width.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("Height");
+                            textWriter.WriteString(frames[i].sprite.Size.Height.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("Rotate");
+                            textWriter.WriteString(frames[i].rotate.ToString());
+                            textWriter.WriteEndAttribute();
+
+                            textWriter.WriteStartAttribute("Time");
+                            textWriter.WriteString(frames[i].time.ToString());
+                            textWriter.WriteEndAttribute();
+                        }
+                        textWriter.WriteEndElement();
+                    }
+                }
+                textWriter.WriteEndElement();
+            }
+            textWriter.WriteEndElement();
+
+            textWriter.WriteEndDocument();
+            textWriter.Close();
+
+            byte[] bytes = ms.ToArray();
+            ms.Close();
+
+            return bytes;
+        }
+        private void CSMCreate(string FileName)
+        {
+            MemoryStream ms = new MemoryStream();
+
+            Bitmap atlas = createSpriteAtlas();
+            atlas.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+ 
+            using (ZipFile tmp = new ZipFile())
+            {
+                tmp.AddEntry("TEST.xml", "", XMLCreate(atlas.Size));
+                tmp.AddEntry("atlas", "", ms.ToArray());
+
+                for (int i = 0; i < originalSprites.Count; ++i)
+                {
+                    ms.Seek(0, SeekOrigin.Begin);
+                    originalSprites[i].Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+                    tmp.AddEntry("sprite" + i.ToString(), "", ms.ToArray());
+                }
+                tmp.Save(FileName);
+            }
+        }
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "Animation files|*.ani";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                CSMCreate(saveFileDialog1.FileName);
+            }
         }
 //         private void Frame_DoubleClick(object sender, EventArgs e)
 //         {

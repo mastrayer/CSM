@@ -203,6 +203,7 @@
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(23, 22);
             this.newButton.Text = "toolStripButton1";
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // loadButton
             // 
@@ -212,6 +213,7 @@
             this.loadButton.Name = "loadButton";
             this.loadButton.Size = new System.Drawing.Size(23, 22);
             this.loadButton.Text = "toolStripButton2";
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // saveButton
             // 
@@ -221,6 +223,7 @@
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(23, 22);
             this.saveButton.Text = "toolStripButton3";
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // mainPanel
             // 
@@ -245,7 +248,7 @@
             this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.spritePanel);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip2);
-            this.splitContainer1.Panel1MinSize = 120;
+            this.splitContainer1.Panel1MinSize = 150;
             // 
             // splitContainer1.Panel2
             // 
@@ -253,7 +256,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.workSpace);
             this.splitContainer1.Panel2MinSize = 300;
             this.splitContainer1.Size = new System.Drawing.Size(672, 420);
-            this.splitContainer1.SplitterDistance = 120;
+            this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
@@ -263,7 +266,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.spritePanel.Location = new System.Drawing.Point(3, 26);
             this.spritePanel.Name = "spritePanel";
-            this.spritePanel.Size = new System.Drawing.Size(98, 336);
+            this.spritePanel.Size = new System.Drawing.Size(128, 336);
             this.spritePanel.TabIndex = 2;
             // 
             // toolStrip2
@@ -277,7 +280,7 @@
             this.toolStripSeparator3});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(118, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(148, 25);
             this.toolStrip2.TabIndex = 1;
             // 
             // toolStripLabel1
@@ -324,7 +327,7 @@
             // 
             this.workSpace.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.workSpace.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.workSpace.Location = new System.Drawing.Point(76, 26);
+            this.workSpace.Location = new System.Drawing.Point(61, 26);
             this.workSpace.Margin = new System.Windows.Forms.Padding(0);
             this.workSpace.Name = "workSpace";
             this.workSpace.Size = new System.Drawing.Size(408, 370);

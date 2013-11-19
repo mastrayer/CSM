@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Animation_Tool
 {
@@ -16,43 +18,38 @@ namespace Animation_Tool
         {
             InitializeComponent();        
         }
+        public void Init()
+        {
+            playScene.Image = null;
+        }
         private void play_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
         }
         public void playAnimation(List<main.frameInfo> frames)
         {
+            // Create new stopwatch
+            Stopwatch stopwatch = new Stopwatch();
+
+            // Write result
             foreach (main.frameInfo frame in frames)
             {
-                Timer timer = new System.Windows.Forms.Timer();
-                timer.Interval = 1000;//frame.time;
-                timer.Tick += new EventHandler(timer_Tick);
-                timer.Start();
+                playScene.Image = frame.sprite;
+                // Begin timing
+                stopwatch.Reset();
+                stopwatch.Start();
 
-                playScene.Image = new Bitmap(frame.sprite);
-                while (flag == false)
+                while (true)
+                {
                     Application.DoEvents();
 
-                timer.Dispose();
-                //playScene.Image.Dispose();
-            }
-            
-            MessageBox.Show("A");
-            
-            //foreach (main.frameInfo frame in frames)
-            {
-                
+                    if (stopwatch.ElapsedMilliseconds >= frame.time)
+                        break;
+                }
+
+                // Stop timing
+                stopwatch.Stop();
             }
         }
-        bool flag = false;
-        void timer_Tick(object sender, EventArgs e)
-        {
-            flag = true;
-            
-            ((Timer)sender).Enabled = false;
-            ((Timer)sender).Stop();
-
-        }
-
     }
 }
