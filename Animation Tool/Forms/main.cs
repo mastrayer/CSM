@@ -350,7 +350,7 @@ namespace Animation_Tool
         // timeline
         private void NewFrame(object sender, EventArgs e)
         {
-            updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
+            updateFrameInfo(new Point(frameImage.Location.X - workSpace.Size.Width / 2, frameImage.Location.Y - workSpace.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
             //frames.Add(new frameInfo(new Point(0, 0), new Size(0, 0), 100, 0));
             ResetFrame();
             //selectedFrame = frames.Count - 1;
@@ -388,7 +388,7 @@ namespace Animation_Tool
             if (!frameImage.IsDisposed)
                 frameImage.Dispose();
             frameImage = new PictureBox();
-            frameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            //frameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             frameImage.Image = img;
             frameImage.Size = img.Size;
             frameImage.Location = location;
@@ -407,15 +407,17 @@ namespace Animation_Tool
         private void FrameChange(object sender, EventArgs e)
         {
             if(e!=null)
-                updateFrameInfo(new Point(frameImage.Location.X - frameImage.Size.Width / 2, frameImage.Location.Y - frameImage.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
+                updateFrameInfo(new Point(frameImage.Location.X - workSpace.Size.Width / 2, frameImage.Location.Y - workSpace.Size.Height / 2), new Size(frameImage.Size.Width, frameImage.Size.Height), selectedFrame);
 
             PictureBox a = (PictureBox)sender;
             selectedFrame = timelineImage.FindIndex(delegate(PictureBox s)
             {
                 return s.GetHashCode() == a.GetHashCode();
             });
+            //(frameImage.Location.X - workSpace.Width / 2)
 
-            ResetFrameImage(frames[selectedFrame].sprite, new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2));
+            //ResetFrameImage(frames[selectedFrame].sprite, new Point((workSpace.Size.Width - frames[selectedFrame].sprite.Size.Width) / 2, (workSpace.Size.Height - frames[selectedFrame].sprite.Size.Height) / 2));
+            ResetFrameImage(frames[selectedFrame].sprite, new Point(frames[selectedFrame].point.X  + workSpace.Width / 2, frames[selectedFrame].point.Y + workSpace.Height / 2));
 
             updateTimeline();
             updateAttribute();
