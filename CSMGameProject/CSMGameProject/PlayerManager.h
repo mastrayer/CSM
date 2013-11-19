@@ -1,8 +1,11 @@
 #pragma once
+
 #include "Player.h"
+
 #define SINGLETON(type) \
 	public:\
 	static type* GetInstance() {static type instance; return &instance;}
+
 class CPlayerManager
 {
 	SINGLETON(CPlayerManager);
