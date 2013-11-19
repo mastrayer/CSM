@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Animation_Tool
 {
@@ -22,6 +24,29 @@ namespace Animation_Tool
         }
         public void playAnimation(List<main.frameInfo> frames)
         {
+            // Create new stopwatch
+            Stopwatch stopwatch = new Stopwatch();
+
+            // Write result
+            foreach (main.frameInfo frame in frames)
+            {
+                playScene.Image = frame.sprite;
+                // Begin timing
+                stopwatch.Reset();
+                stopwatch.Start();
+
+                while (true)
+                {
+                    Application.DoEvents();
+
+                    if (stopwatch.ElapsedMilliseconds >= frame.time)
+                        break;
+                }
+
+                // Stop timing
+                stopwatch.Stop();
+            }
+            /*
             foreach (main.frameInfo frame in frames)
             {
                 Timer timer = new System.Windows.Forms.Timer();
@@ -37,7 +62,7 @@ namespace Animation_Tool
                 //playScene.Image.Dispose();
             }
             
-            MessageBox.Show("A");
+            MessageBox.Show("A");*/
             
             //foreach (main.frameInfo frame in frames)
             {
@@ -47,10 +72,6 @@ namespace Animation_Tool
         bool flag = false;
         void timer_Tick(object sender, EventArgs e)
         {
-            flag = true;
-            
-            ((Timer)sender).Enabled = false;
-            ((Timer)sender).Stop();
 
         }
 
