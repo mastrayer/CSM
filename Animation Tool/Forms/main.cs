@@ -430,10 +430,9 @@ namespace Animation_Tool
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            //PlayWindow.Dispose();
-            //PlayWindow = new play();
-            PlayWindow.Init();
 
+            foreach (Bitmap temp in originalSprites)
+                temp.Dispose();
             foreach (PictureBox temp in sprites)
                 temp.Dispose();
             foreach (PictureBox temp in timelineImage)
@@ -449,18 +448,39 @@ namespace Animation_Tool
 
             selectedSprite = allocatedSprite = selectedFrame = 0;
             System.GC.Collect();
-
+            
+            PlayWindow.Init();
             init();
         }
 
         private void loadButton_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
+            openFileDialog1.Filter = "Animation files|*.ani";
+            openFileDialog1.FilterIndex = 0;
+            openFileDialog1.RestoreDirectory = true;
+            openFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //OpenCSMFile(openFileDialog1.FileName);
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
+            saveFileDialog1.Filter = "Animation files|*.ani";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //String fileName = saveFileDialog1.FileName;
+            }
         }
 //         private void Frame_DoubleClick(object sender, EventArgs e)
 //         {
