@@ -26,7 +26,26 @@ public:
 
 	LoginRequest m_LoginRequestPacket;
 	LoginResult m_LoginResultPacket;
-	LoginBroadcastResult m_LoginBroadcastResultPacket;
-	LogoutResult m_LogoutResultPacket;
+};
 
+class LoginBroadcastHandler : public NNBaseHandler
+{
+public:
+	LoginBroadcastHandler();
+	virtual ~LoginBroadcastHandler();
+
+	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
+
+	LoginBroadcastResult m_LoginBroadcastResultPacket;
+};
+
+class LogoutHandler : public NNBaseHandler
+{
+public:
+	LogoutHandler();
+	virtual ~LogoutHandler();
+
+	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
+
+	LogoutResult m_LogoutResultPacket;
 };

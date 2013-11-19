@@ -82,7 +82,9 @@
     <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="CameraSample.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
+    <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
+    <ClCompile Include="LogoutHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="FMODSoundSample.cpp" />
     <ClCompile Include="GameMap.cpp" />

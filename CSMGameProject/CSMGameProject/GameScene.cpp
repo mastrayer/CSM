@@ -18,7 +18,9 @@ CGameScene::CGameScene(void):m_NowGameKeyStates()
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_KEYSTATE,m_GameKeyStatesUpdateHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN,m_LoginHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN_BROADCAST,m_LoginHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN_BROADCAST,m_LoginBroadcastHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGOUT,m_LogoutHandler);
+
 
 	NNNetworkSystem::GetInstance()->Connect("10.73.44.30",9001);
 

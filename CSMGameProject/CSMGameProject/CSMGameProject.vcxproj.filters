@@ -76,6 +76,12 @@
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp">
       <Filter>Game\Packet</Filter>
     </ClCompile>
+    <ClCompile Include="LoginBroadcastHandler.cpp">
+      <Filter>Game\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoutHandler.cpp">
+      <Filter>Game\Packet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMap.h">

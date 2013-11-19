@@ -44,45 +44,4 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 			}
 		}
 		break;
-	case PKT_SC_LOGIN_BROADCAST:
-		{
-			if ( circularBuffer->Read((char*)&m_LoginBroadcastResultPacket, header->m_Size) )
-			{
-				// 패킷처리
-				if ( m_LoginBroadcastResultPacket.m_MyPlayerInfo.m_PlayerId == -1  )
-				{
-					/// 여기 걸리면 로그인 실패다.
-					//내 로그인 아니니까 일단은 그냥 무시할것
-				}
-				CPlayerManager::GetInstance()->NewPlayer( m_LoginBroadcastResultPacket.m_MyPlayerInfo.m_PlayerId );
-				CPlayerManager::GetInstance()->UpdatePlayerInfo( m_LoginBroadcastResultPacket.m_MyPlayerInfo );
-				printf("NEW LOGIN SUCCESS ClientId[%d] \n", m_LoginBroadcastResultPacket.m_MyPlayerInfo.m_PlayerId) ;
-			}
-			else
-			{
-				assert(false) ;
-			}
-		}
-		break;
-	case PKT_SC_LOGOUT:
-		{
-			if ( circularBuffer->Read((char*)&m_LogoutResultPacket, header->m_Size) )
-			{
-				// 패킷처리
-				if ( m_LogoutResultPacket.m_PlayerId == -1  )
-				{
-					/// 잘못된 로그아웃.
-					//내 로그아웃 아니니까 일단은 그냥 무시할것
-				}
-				CPlayerManager::GetInstance()->DeletePlayer( m_LogoutResultPacket.m_PlayerId );
-				printf("NEW LOGIN SUCCESS ClientId[%d] \n", m_LoginBroadcastResultPacket.m_MyPlayerInfo.m_PlayerId) ;
-			}
-			else
-			{
-				assert(false) ;
-			}
-		}
-		break;
-		
-	}
 }

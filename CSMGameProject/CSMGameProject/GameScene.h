@@ -18,6 +18,8 @@ private:
 	GameKeyStates m_NowGameKeyStates;
 	GameKeyStatesUpdateHandler* m_GameKeyStatesUpdateHandler;
 	LoginHandler* m_LoginHandler;
+	LoginBroadcastHandler* m_LoginbroadcastHandler;
+	LogoutHandler* m_LogoutHandler;
 	
 public:
 	CGameScene(void);
