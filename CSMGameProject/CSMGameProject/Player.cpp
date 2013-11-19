@@ -22,7 +22,7 @@ void CPlayer::TransState( PlayerState state )
 	m_PlayerSprite = NNSprite::Create( L"Sprite/walk_0.png" );
 	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 	AddChild( m_PlayerSprite );
-
+	 
 	SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 
 	m_HpBar = NNSprite::Create( L"Sprite/hpbar.png" );
