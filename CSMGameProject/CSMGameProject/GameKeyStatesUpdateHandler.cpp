@@ -5,7 +5,6 @@
 #include <assert.h>
 #include "PlayerManager.h"
 
-//여기 왜 에러뜨나요?//
 GameKeyStatesUpdateHandler::GameKeyStatesUpdateHandler()
 {
 
