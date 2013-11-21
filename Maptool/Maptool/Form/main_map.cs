@@ -70,8 +70,8 @@ namespace Maptool
         }
         private void cellClick(MouseEventArgs e)
         {
-            if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
-                return;
+//             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
+//                 return;
 
             int x = (e.X / TileSize) * TileSize;
             int y = (e.Y / TileSize) * TileSize;
@@ -80,7 +80,6 @@ namespace Maptool
 
             Graphics g = Graphics.FromImage(flag);
             g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
-            refresh();
 
             mainForm.updateAttributePanel(x / TileSize, y / TileSize);
 
@@ -92,13 +91,11 @@ namespace Maptool
         }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
-            if (isDrag)
-            {
-                cellClick(e);
-                //return;
-            }
             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
                 return;
+
+            if (isDrag)
+                cellClick(e);
 
             Bitmap temp = new Bitmap(flag);
             int HighlightBrush = brush + 2;
@@ -120,10 +117,6 @@ namespace Maptool
             tile.attributeMove = cell.attributeMove;
 
             return tile;
-        }
-        private void GridCellClick(object sender, EventArgs e)
-        {
-
         }
         private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
