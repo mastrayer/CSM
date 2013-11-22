@@ -16,13 +16,6 @@ enum PlayerState
 	DIE,
 };
 
-struct AnimationImageInfo
-{
-	int totalFrameCount;
-	std::wstring imagePrefix;
-	float frameDelay[1024];
-};
-
 class CPlayer : public NNObject
 {
 public:
@@ -47,9 +40,6 @@ private:
 	NNSprite* m_HpBarFrame;
 
 	PlayerState m_PlayerState;
-	std::map<PlayerState,AnimationImageInfo> m_AnimationImageInfo; 
-	float m_AnimationFrameTime; // init when Animation Type Change.
-	int m_NowFrame;
 	GameKeyStates m_GameKeyStates;
 };
 
