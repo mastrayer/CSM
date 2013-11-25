@@ -1,116 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="CircularBuffer.cpp">
-      <Filter>CircularBuffer</Filter>
+      <Filter>Framework\Util\CircularBuffer</Filter>
     </ClCompile>
     <ClCompile Include="ClientManager.cpp">
-      <Filter>ClientManager</Filter>
+      <Filter>Framework\Client\ClientManager</Filter>
     </ClCompile>
     <ClCompile Include="ClientSession.cpp">
-      <Filter>ClientSession</Filter>
+      <Filter>Framework\Client\ClientSession</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseJobContext.cpp">
-      <Filter>DatabaseJobContext</Filter>
+      <Filter>Framework\Database\DatabaseJobContext</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseJobManager.cpp">
-      <Filter>DatabaseJobManager</Filter>
+      <Filter>Framework\Database\DatabaseJobManager</Filter>
     </ClCompile>
     <ClCompile Include="DbHelper.cpp">
-      <Filter>DbHelper</Filter>
+      <Filter>Framework\Database\DbHelper</Filter>
     </ClCompile>
     <ClCompile Include="EasyServer.cpp">
-      <Filter>EasyServer</Filter>
+      <Filter>Framework\EasyServer</Filter>
     </ClCompile>
     <ClCompile Include="Exception.cpp">
-      <Filter>Exception</Filter>
+      <Filter>Framework\Util\Exception</Filter>
     </ClCompile>
     <ClCompile Include="sqlite3.c">
-      <Filter>sqlite3</Filter>
+      <Filter>Framework\Util\sqlite3</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\PlayerManager</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>PreCompile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="ObjectPool.h" />
-    <ClInclude Include="SPSCQueue.h" />
-    <ClInclude Include="SQLStatement.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="PacketType.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="CircularBuffer.h">
-      <Filter>CircularBuffer</Filter>
+      <Filter>Framework\Util\CircularBuffer</Filter>
     </ClInclude>
     <ClInclude Include="ClientManager.h">
-      <Filter>ClientManager</Filter>
+      <Filter>Framework\Client\ClientManager</Filter>
     </ClInclude>
     <ClInclude Include="ClientSession.h">
-      <Filter>ClientSession</Filter>
+      <Filter>Framework\Client\ClientSession</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseJobContext.h">
-      <Filter>DatabaseJobContext</Filter>
+      <Filter>Framework\Database\DatabaseJobContext</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseJobManager.h">
-      <Filter>DatabaseJobManager</Filter>
+      <Filter>Framework\Database\DatabaseJobManager</Filter>
     </ClInclude>
     <ClInclude Include="DbHelper.h">
-      <Filter>DbHelper</Filter>
+      <Filter>Framework\Database\DbHelper</Filter>
     </ClInclude>
     <ClInclude Include="EasyServer.h">
-      <Filter>EasyServer</Filter>
+      <Filter>Framework\EasyServer</Filter>
     </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>Exception</Filter>
+      <Filter>Framework\Util\Exception</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3ext.h">
-      <Filter>sqlite3</Filter>
+      <Filter>Framework\Util\sqlite3</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3.h">
-      <Filter>sqlite3</Filter>
+      <Filter>Framework\Util\sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLStatement.h">
+      <Filter>Framework\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="SPSCQueue.h">
+      <Filter>Framework\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketType.h">
+      <Filter>Game\Packet</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Game</Filter>
+      <Filter>Game\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Game</Filter>
+      <Filter>Game\PlayerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPool.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>PreCompile</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>PreCompile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="CircularBuffer">
-      <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientManager">
-      <UniqueIdentifier>{77506c68-9f8a-4607-bc16-914cff7de7e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClientSession">
-      <UniqueIdentifier>{a3a8d734-b3f3-4c83-adfb-f8e9b5fa826d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DatabaseJobContext">
-      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DatabaseJobManager">
-      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DbHelper">
-      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EasyServer">
-      <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Exception">
-      <UniqueIdentifier>{dba7c159-fd26-486e-a0d1-c134f124ed96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sqlite3">
-      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{ebc28d19-ca52-48c6-b372-80b54fe1d764}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{bd5dda4b-2249-48a5-bd29-886e66e4770b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Database">
+      <UniqueIdentifier>{21383708-b675-4659-8cb3-acc2da6a9002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Database\DatabaseJobContext">
+      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Database\DatabaseJobManager">
+      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Database\DbHelper">
+      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\EasyServer">
+      <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Client">
+      <UniqueIdentifier>{06e6fe4a-cb04-4953-8565-cbe9321ca52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Client\ClientSession">
+      <UniqueIdentifier>{a3a8d734-b3f3-4c83-adfb-f8e9b5fa826d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Client\ClientManager">
+      <UniqueIdentifier>{77506c68-9f8a-4607-bc16-914cff7de7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util">
+      <UniqueIdentifier>{52940f35-d8c9-4189-92ce-b616749ab805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util\sqlite3">
+      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util\CircularBuffer">
+      <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Util\Exception">
+      <UniqueIdentifier>{dba7c159-fd26-486e-a0d1-c134f124ed96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet">
+      <UniqueIdentifier>{f6d2e639-0556-45e0-a143-8692d18dead0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player">
+      <UniqueIdentifier>{53b8d721-df4d-4645-9b3a-65178ef23d68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\PlayerManager">
+      <UniqueIdentifier>{11c1c52d-96b6-45ae-a94d-5c2d6abb922e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreCompile">
+      <UniqueIdentifier>{09292146-0953-43c3-a5d8-5b0c2e42d2c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

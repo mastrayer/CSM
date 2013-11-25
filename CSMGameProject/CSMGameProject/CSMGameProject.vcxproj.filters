@@ -31,15 +31,36 @@
     <Filter Include="Game\Packet">
       <UniqueIdentifier>{d70a5eb2-6595-4b07-b909-2563bc511657}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{ac582ca9-46ee-4c18-8957-93d37e4e6364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{ccb01694-9494-4242-b02c-c71a71f6615f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Map">
+      <UniqueIdentifier>{d2a149d7-980f-464f-907f-90fc30516291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Player">
+      <UniqueIdentifier>{fd566671-25a6-4859-8b77-edbba2cd0e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\PlayerManager">
+      <UniqueIdentifier>{6593cd22-9563-46cf-8c50-20bc7d2e332f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene">
+      <UniqueIdentifier>{1d736eb5-3dd7-4637-ad1a-c1bcebf8ce6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\UserSession">
+      <UniqueIdentifier>{686e86b0-6788-4ab1-ba51-d6c4e0c84f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\Default">
+      <UniqueIdentifier>{f905fb61-8172-4ac1-ac55-941446c21afe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\KeyState">
+      <UniqueIdentifier>{d412ab81-16ec-448c-8ad1-2a2234522e3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="GameMap.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationSample.cpp">
       <Filter>Sample\AnimationSample</Filter>
     </ClCompile>
@@ -64,32 +85,32 @@
     <ClCompile Include="NetworkSample.cpp">
       <Filter>Sample\NetworkSample</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerManager.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Game</Filter>
+      <Filter>Game\Object\Player</Filter>
     </ClCompile>
-    <ClCompile Include="LoginHandler.cpp">
-      <Filter>Game\Packet</Filter>
+    <ClCompile Include="PlayerManager.cpp">
+      <Filter>Game\Object\PlayerManager</Filter>
     </ClCompile>
-    <ClCompile Include="GameKeyStatesUpdateHandler.cpp">
-      <Filter>Game\Packet</Filter>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Game\Object\Map</Filter>
     </ClCompile>
-    <ClCompile Include="LoginBroadcastHandler.cpp">
-      <Filter>Game\Packet</Filter>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Game\Scene\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="LogoutHandler.cpp">
-      <Filter>Game\Packet</Filter>
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginBroadcastHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="GameKeyStatesUpdateHandler.cpp">
+      <Filter>Game\Packet\KeyState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameMap.h">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="AnimationSample.h">
       <Filter>Sample\AnimationSample</Filter>
     </ClInclude>
@@ -114,17 +135,23 @@
     <ClInclude Include="NetworkSample.h">
       <Filter>Sample\NetworkSample</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerManager.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Game</Filter>
+      <Filter>Game\Object\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandler.h">
-      <Filter>Game\Packet</Filter>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Game\Object\PlayerManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Game\Object\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Game\Scene\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="PacketType.h">
-      <Filter>Game\Packet</Filter>
+      <Filter>Game\Packet\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler.h">
+      <Filter>Game\Packet\Default</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
