@@ -19,32 +19,25 @@ enum PacketTypes
 	PKT_SC_LOGOUT	= 6,
 };
 
-enum KeyState
-{
-	KEY_DOWN,
-	KEY_PRESSED,
-	KEY_UP,
-	KEY_NOTPRESSED,
-};
 struct GameKeyStates
 {
 	GameKeyStates()
 	{
-		upDirectKey = KEY_NOTPRESSED;
-		downDirectKey = KEY_NOTPRESSED;
-		leftDirectKey = KEY_NOTPRESSED;
-		rightDirectKey = KEY_NOTPRESSED;
-		attackKey = KEY_NOTPRESSED;
-		userActiveSkillKey = KEY_NOTPRESSED;
-		typeActiveSkillKey = KEY_NOTPRESSED;
+		upDirectKey = 0;
+		downDirectKey = 0;
+		leftDirectKey = 0;
+		rightDirectKey = 0;
+		attackKey = 0;
+		userActiveSkillKey = 0;
+		typeActiveSkillKey = 0;
 	}
-	KeyState upDirectKey;
-	KeyState downDirectKey;
-	KeyState leftDirectKey;
-	KeyState rightDirectKey;
-	KeyState attackKey;
-	KeyState userActiveSkillKey;
-	KeyState typeActiveSkillKey;
+	short upDirectKey;
+	short downDirectKey;
+	short leftDirectKey;
+	short rightDirectKey;
+	short attackKey;
+	short userActiveSkillKey;
+	short typeActiveSkillKey;
 };
 
 struct PlayerInfo
@@ -61,7 +54,6 @@ struct PacketHeader
 	short mSize ;
 	short mType ;
 } ;
-
 
 struct LoginRequest : public PacketHeader
 {

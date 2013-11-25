@@ -18,7 +18,7 @@ bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 	::setsockopt(mSocket, IPPROTO_TCP, TCP_NODELAY, (const char*)&opt, sizeof(int)) ;
 
 	printf("[DEBUG] Client Connected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port)) ;
-	
+
 	mConnected = true ;
 
 	return PostRecv() ;
@@ -111,7 +111,7 @@ void ClientSession::OnRead(size_t len)
 				}
 				if(!Send(&outPacket) )
 					return;
-				
+
 				LoginBroadcastResult outPacketBroadCast;
 				outPacketBroadCast.mMyPlayerInfo = GPlayerManager->GetPlayer(id)->GetPlayerInfo();
 				if(!BroadcastWithoutSelf(&outPacketBroadCast) )
@@ -119,23 +119,24 @@ void ClientSession::OnRead(size_t len)
 			}
 			break ;
 
-		/*case PKT_CS_CHAT:
+			/*case PKT_CS_CHAT:
 			{
-				ChatBroadcastRequest inPacket ;
-				mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
-				
-				ChatBroadcastResult outPacket ;
-				outPacket.mPlayerId = inPacket.mPlayerId ;
-				strcpy_s(outPacket.mName, mPlayerName) ;
-				strcpy_s(outPacket.mChat, inPacket.mChat) ;
-		
-				/// 채팅은 바로 방송 하면 끝
-				if ( !Broadcast(&outPacket) )
-					return ;
- 
+			ChatBroadcastRequest inPacket ;
+			mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
+
+			ChatBroadcastResult outPacket ;
+			outPacket.mPlayerId = inPacket.mPlayerId ;
+			strcpy_s(outPacket.mName, mPlayerName) ;
+			strcpy_s(outPacket.mChat, inPacket.mChat) ;
+
+			/// 채팅은 바로 방송 하면 끝
+			if ( !Broadcast(&outPacket) )
+			return ;
+
 			}
 			break ;
-		*/case PKT_CS_KEYSTATE:
+			*/case
+PKT_CS_KEYSTATE:
 			{
 				GameKeyStatesUpdateRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize);
@@ -146,18 +147,18 @@ void ClientSession::OnRead(size_t len)
 
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = _player->GetPlayerInfo();
-				
+
 				if( !BroadcastWithoutSelf(&outPacket) )
 					return;
 			}
 			break ;
-		default:
-			{
-				/// 여기 들어오면 이상한 패킷 보낸거다.
-				Disconnect() ;
-				return ;
-			}
-			break ;
+			default:
+				{
+					/// 여기 들어오면 이상한 패킷 보낸거다.
+					Disconnect() ;
+					return ;
+				}
+				break ;
 		}
 	}
 }
@@ -182,14 +183,14 @@ bool ClientSession::Send(PacketHeader* pkt)
 		Disconnect() ;
 		return false ;
 	}
-		
+
 	DWORD sendbytes = 0 ;
 	DWORD flags = 0 ;
 
 	WSABUF buf ;
 	buf.len = (ULONG)mSendBuffer.GetContiguiousBytes() ;
 	buf.buf = (char*)mSendBuffer.GetBufferStart() ;
-	
+
 	memset(&mOverlappedSend, 0, sizeof(OverlappedIO)) ;
 	mOverlappedSend.mObject = this ;
 
@@ -251,13 +252,13 @@ void ClientSession::OnTick()
 		//strcpy_s(updatePlayer->mComment, "updated_test") ; ///< 일단은 테스트를 위해
 		GDatabaseJobManager->PushDatabaseJobRequest(updatePlayer) ;
 	}
-	
+
 }
 
 void ClientSession::DatabaseJobDone(DatabaseJobContext* result)
 {
 	CRASH_ASSERT( mSocket == result->mSockKey ) ;
-	
+
 
 	const type_info& typeInfo = typeid(*result) ;
 
@@ -266,7 +267,7 @@ void ClientSession::DatabaseJobDone(DatabaseJobContext* result)
 		LoadPlayerDataContext* login = dynamic_cast<LoadPlayerDataContext*>(result) ;
 
 		//LoginDone(login->mPlayerId, login->mPosX, login->mPosY, login->mPosZ, login->mPlayerName) ;
-	
+
 	}
 	else if ( typeInfo == typeid(UpdatePlayerDataContext) )
 	{
@@ -289,7 +290,7 @@ void ClientSession::UpdateDone()
 
 void ClientSession::LoginDone(int pid, double x, double y, double z, const char* name)
 {
-/*	LoginResult outPacket ;
+	/*	LoginResult outPacket ;
 
 	outPacket.mPlayerId = mPlayerId = pid ;
 	outPacket.mPosX = mPosX = x ;
@@ -299,7 +300,7 @@ void ClientSession::LoginDone(int pid, double x, double y, double z, const char*
 	strcpy_s(outPacket.mName, name) ;
 
 	Send(&outPacket) ;
-*/
+	*/
 	mLogon = true ;
 }
 
@@ -310,7 +311,7 @@ void ClientSession::LoginDone(int pid, double x, double y, double z, const char*
 void CALLBACK RecvCompletion(DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED lpOverlapped, DWORD dwFlags)
 {
 	ClientSession* fromClient = static_cast<OverlappedIO*>(lpOverlapped)->mObject ;
-	
+
 	fromClient->DecOverlappedRequest() ;
 
 	if ( !fromClient->IsConnected() )
