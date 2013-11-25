@@ -1,12 +1,10 @@
 #pragma once
+
 #include "Player.h"
 #include <map>
-#define SINGLETON(type) \
-	public:\
-	static type* GetInstance() {static type instance; return &instance;}
+
 class PlayerManager
 {
-	SINGLETON(PlayerManager);
 public:
 	PlayerManager(void);
 	~PlayerManager(void);
@@ -32,3 +30,5 @@ private:
 	int nowTime;
 	
 };
+
+extern PlayerManager* GPlayerManager;

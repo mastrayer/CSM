@@ -57,7 +57,7 @@ void ClientSession::Disconnect()
 
 	LogoutResult outPacket;
 	outPacket.mPlayerId = mPlayerId;
-	PlayerManager::GetInstance()->DeletePlayer(mPlayerId);
+	GPlayerManager->DeletePlayer(mPlayerId);
 	BroadcastWithoutSelf(&outPacket);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port)) ;
 
@@ -92,17 +92,17 @@ void ClientSession::OnRead(size_t len)
 				LoginRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize) ;
 
-				int id = mPlayerId = PlayerManager::GetInstance()->GetNewPlayerId();
-				PlayerManager::GetInstance()->NewPlayer(id);
+				int id = mPlayerId = GPlayerManager->GetNewPlayerId();
+				GPlayerManager->NewPlayer(id);
 
 				/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.
 				LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(mSocket, id);
 				GDatabaseJobManager->PushDatabaseJobRequest(newDbJob) ;
 
 				LoginResult outPacket ;
-				outPacket.mMyPlayerInfo = PlayerManager::GetInstance()->GetPlayer(id)->GetPlayerInfo();
-				outPacket.mNowPlayersLength = PlayerManager::GetInstance()->GetPlayersLength();
-				std::map<int,Player*> players = PlayerManager::GetInstance()->GetPlayers();
+				outPacket.mMyPlayerInfo = GPlayerManager->GetPlayer(id)->GetPlayerInfo();
+				outPacket.mNowPlayersLength = GPlayerManager->GetPlayersLength();
+				std::map<int,Player*> players = GPlayerManager->GetPlayers();
 				int i=0;
 				for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 				{
@@ -113,7 +113,7 @@ void ClientSession::OnRead(size_t len)
 					return;
 				
 				LoginBroadcastResult outPacketBroadCast;
-				outPacketBroadCast.mMyPlayerInfo = PlayerManager::GetInstance()->GetPlayer(id)->GetPlayerInfo();
+				outPacketBroadCast.mMyPlayerInfo = GPlayerManager->GetPlayer(id)->GetPlayerInfo();
 				if(!BroadcastWithoutSelf(&outPacketBroadCast) )
 					return;
 			}
@@ -140,7 +140,7 @@ void ClientSession::OnRead(size_t len)
 				GameKeyStatesUpdateRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize);
 
-				Player* _player = PlayerManager::GetInstance()->GetPlayer(inPacket.mMyPlayerInfo.mPlayerId);
+				Player* _player = GPlayerManager->GetPlayer(inPacket.mMyPlayerInfo.mPlayerId);
 				_player->SetGameKeyStates(inPacket.mMyPlayerInfo.mGameKeyStates);
 				_player->SetPosition(Point(inPacket.mMyPlayerInfo.mX, inPacket.mMyPlayerInfo.mY));
 

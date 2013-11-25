@@ -1,11 +1,12 @@
+
 #include "stdafx.h"
 #include "PlayerManager.h"
 #include <Windows.h>
+
 PlayerManager::PlayerManager(void):mPlayersLength(0)
 {
 	nowTime = prevTime = timeGetTime();
 }
-
 
 PlayerManager::~PlayerManager(void)
 {
@@ -31,6 +32,7 @@ void PlayerManager::UpdatePlayerPosition(int _playerId, Point point)
 		player->SetPosition(point);
 	}
 }
+
 Player* PlayerManager::NewPlayer(int id)
 {
 	Player* newPlayer = NULL;
@@ -45,6 +47,7 @@ Player* PlayerManager::NewPlayer(int id)
 		newPlayer = mPlayers.find(id)->second;
 	return newPlayer;
 }
+
 void PlayerManager::DeletePlayer(int id)
 {
 	std::map<int,Player*>::iterator itor = mPlayers.find(id);
@@ -72,10 +75,12 @@ int PlayerManager::GetNewPlayerId()
 void PlayerManager::UpdatePlayers()
 {
 	nowTime = timeGetTime();
-	std::map<int,Player*> players = PlayerManager::GetInstance()->GetPlayers();
+	std::map<int,Player*> players = GPlayerManager->GetPlayers();
 	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 	{
 		it->second->Update((static_cast<float>(nowTime - prevTime))/1000.f);
 	}
 	prevTime = nowTime;
 }
+
+PlayerManager* GPlayerManager = nullptr;
