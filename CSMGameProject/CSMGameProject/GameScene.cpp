@@ -64,9 +64,9 @@ void CGameScene::Update( float dTime )
 			NNNetworkSystem::GetInstance()->Write( (const char*)&m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest,
 				m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_Size );
 		}
-		
+
 		/// above is... before Update Game Key States
-		
+
 		m_NowGameKeyStates = GetNowGameKeyStates();
 
 		/// under is... After Update Game Key States
@@ -76,13 +76,27 @@ void CGameScene::Update( float dTime )
 GameKeyStates CGameScene::GetNowGameKeyStates()
 {
 	GameKeyStates nowGameKeyState;
-	nowGameKeyState.upDirectKey = NNInputSystem::GetInstance()->GetKeyState('W');
-	nowGameKeyState.downDirectKey = NNInputSystem::GetInstance()->GetKeyState('S');
-	nowGameKeyState.leftDirectKey = NNInputSystem::GetInstance()->GetKeyState('D');
-	nowGameKeyState.rightDirectKey = NNInputSystem::GetInstance()->GetKeyState('A');
-	nowGameKeyState.attackKey = NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON);
-	nowGameKeyState.typeActiveSkillKey = NNInputSystem::GetInstance()->GetKeyState(VK_RBUTTON);
-	nowGameKeyState.userActiveSkillKey = NNInputSystem::GetInstance()->GetKeyState(VK_SPACE);
+	if( NNInputSystem::GetInstance()->GetKeyState('W') == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState('W') == KEY_DOWN )
+		nowGameKeyState.upDirectKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState('S') == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState('S') == KEY_DOWN )
+		nowGameKeyState.downDirectKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState('A') == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState('A') == KEY_DOWN )
+		nowGameKeyState.leftDirectKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState('D') == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState('D') == KEY_DOWN )
+		nowGameKeyState.rightDirectKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_DOWN )
+		nowGameKeyState.attackKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_RBUTTON) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_RBUTTON) == KEY_DOWN )
+		nowGameKeyState.typeActiveSkillKey = KEYSTATE_PRESSED;
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN )
+		nowGameKeyState.userActiveSkillKey = KEYSTATE_PRESSED;
 	return nowGameKeyState;
 }
 bool CGameScene::isChangedGameKeyStates()

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <map>
-#include <WinSock2.h>
+#include <winsock2.h>
 
 class ClientSession ;
 struct PacketHeader ;

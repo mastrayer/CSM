@@ -4,7 +4,7 @@
 #include "PacketType.h"
 #include "CircularBuffer.h"
 #include <map>
-#include <WinSock2.h>
+#include <winsock2.h>
 #include "PlayerManager.h"
 
 #define BUFSIZE	(1024*10)

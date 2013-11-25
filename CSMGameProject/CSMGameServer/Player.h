@@ -1,12 +1,10 @@
 #pragma once
 #include "PacketType.h"
-enum PlayerState
-{
-	IDLE,
-	WALK,
-	ATTACK,
-	DIE,
-};
+
+#define PLAYER_STATE_IDLE 0
+#define PLAYER_STATE_WALK 1
+#define PLAYER_STATE_ATTACK 2
+#define PLAYER_STATE_DIE 3
 
 struct Point
 {
@@ -33,7 +31,7 @@ struct Point
 class Player
 {
 private:
-	PlayerState mPlayerState;
+	short mPlayerState;
 	GameKeyStates mGameKeyStates;
 	Point mPosition;
 	int mPlayerId;
@@ -42,7 +40,7 @@ public:
 	Player(void);
 	Player(int id);
 	virtual ~Player(void);
-	void TransState(PlayerState state);
+	void TransState(short state);
 	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; };
 	void SetPosition(Point position) { mPosition = position; };
 	Point GetPosition() { return mPosition; };

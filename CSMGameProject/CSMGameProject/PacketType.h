@@ -2,7 +2,6 @@
 #pragma once
 
 #include "NNPacketHeader.h"
-#include "NNInputSystem.h"
 
 #define MAX_CHAT_LEN	1024
 
@@ -10,36 +9,36 @@
 #define MAX_COMMENT_LEN	40
 #define MAX_PLAYER_LEN 20
 
-enum PacketTypes
-{
-	PKT_NONE		= 0,
-	PKT_CS_LOGIN	= 1,
-	PKT_SC_LOGIN	= 2,
-	PKT_SC_LOGIN_BROADCAST	= 3,
-	PKT_CS_KEYSTATE = 4,
-	PKT_SC_KEYSTATE = 5,
-	PKT_SC_LOGOUT	= 6,
-};
+#define KEYSTATE_NOTPRESSED 0
+#define KEYSTATE_PRESSED 1
+
+#define PKT_NONE 0
+#define PKT_CS_LOGIN 1
+#define PKT_SC_LOGIN 2
+#define PKT_SC_LOGIN_BROADCAST 3
+#define PKT_CS_KEYSTATE 4
+#define PKT_SC_KEYSTATE 5
+#define PKT_SC_LOGOUT 6
 
 struct GameKeyStates
 {
 	GameKeyStates()
 	{
-		upDirectKey = KEY_NOTPRESSED;
-		downDirectKey = KEY_NOTPRESSED;
-		leftDirectKey = KEY_NOTPRESSED;
-		rightDirectKey = KEY_NOTPRESSED;
-		attackKey = KEY_NOTPRESSED;
-		userActiveSkillKey = KEY_NOTPRESSED;
-		typeActiveSkillKey = KEY_NOTPRESSED;
+		upDirectKey = KEYSTATE_NOTPRESSED;
+		downDirectKey = KEYSTATE_NOTPRESSED;
+		leftDirectKey = KEYSTATE_NOTPRESSED;
+		rightDirectKey = KEYSTATE_NOTPRESSED;
+		attackKey = KEYSTATE_NOTPRESSED;
+		userActiveSkillKey = KEYSTATE_NOTPRESSED;
+		typeActiveSkillKey = KEYSTATE_NOTPRESSED;
 	}
-	KeyState upDirectKey;
-	KeyState downDirectKey;
-	KeyState leftDirectKey;
-	KeyState rightDirectKey;
-	KeyState attackKey;
-	KeyState userActiveSkillKey;
-	KeyState typeActiveSkillKey;
+	short upDirectKey;
+	short downDirectKey;
+	short leftDirectKey;
+	short rightDirectKey;
+	short attackKey;
+	short userActiveSkillKey;
+	short typeActiveSkillKey;
 };
 struct PlayerInfo
 {
@@ -116,11 +115,9 @@ struct GameKeyStatesUpdateRequest : public NNPacketHeader
 		m_Size = sizeof(GameKeyStatesUpdateRequest) ;
 		m_Type = PKT_CS_KEYSTATE ;
 		m_MyPlayerInfo.m_PlayerId = -1 ;
-		time_t m_TimeStamp = time(NULL);
 	}
 	
 	PlayerInfo m_MyPlayerInfo;
-	int m_TimeStamp;
 } ;
 
 struct GameKeyStatesUpdateResult : public NNPacketHeader

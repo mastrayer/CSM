@@ -8,28 +8,30 @@
 
 #define MAX_PLAYER_LEN 20
 
-enum PacketTypes
-{
-	PKT_NONE		= 0,
-	PKT_CS_LOGIN	= 1,
-	PKT_SC_LOGIN	= 2,
-	PKT_SC_LOGIN_BROADCAST	= 3,
-	PKT_CS_KEYSTATE = 4,
-	PKT_SC_KEYSTATE = 5,
-	PKT_SC_LOGOUT	= 6,
-};
+
+#define KEYSTATE_NOTPRESSED 0
+#define KEYSTATE_PRESSED 1
+
+
+#define PKT_NONE 0
+#define PKT_CS_LOGIN 1
+#define PKT_SC_LOGIN 2
+#define PKT_SC_LOGIN_BROADCAST 3
+#define PKT_CS_KEYSTATE 4
+#define PKT_SC_KEYSTATE 5
+#define PKT_SC_LOGOUT 6
 
 struct GameKeyStates
 {
 	GameKeyStates()
 	{
-		upDirectKey = 0;
-		downDirectKey = 0;
-		leftDirectKey = 0;
-		rightDirectKey = 0;
-		attackKey = 0;
-		userActiveSkillKey = 0;
-		typeActiveSkillKey = 0;
+		upDirectKey = KEYSTATE_NOTPRESSED;
+		downDirectKey = KEYSTATE_NOTPRESSED;
+		leftDirectKey = KEYSTATE_NOTPRESSED;
+		rightDirectKey = KEYSTATE_NOTPRESSED;
+		attackKey = KEYSTATE_NOTPRESSED;
+		userActiveSkillKey = KEYSTATE_NOTPRESSED;
+		typeActiveSkillKey = KEYSTATE_NOTPRESSED;
 	}
 	short upDirectKey;
 	short downDirectKey;

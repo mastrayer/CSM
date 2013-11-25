@@ -8,13 +8,10 @@
 #include "PacketType.h"
 #include "NNNetworkSystem.h"
 
-enum PlayerState
-{
-	IDLE,
-	WALK,
-	ATTACK,
-	DIE,
-};
+#define PLAYER_STATE_IDLE 0
+#define PLAYER_STATE_WALK 1
+#define PLAYER_STATE_ATTACK 2
+#define PLAYER_STATE_DIE 3
 
 class CPlayer : public NNObject
 {
@@ -22,12 +19,11 @@ public:
 	CPlayer(void);
 	virtual ~CPlayer(void);
 
-	void TransState( PlayerState state );
+	void TransState( short state );
 	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
 	void SetPlayerGameKeyStates( GameKeyStates gameKeySates) { m_GameKeyStates = gameKeySates; }
 	void UpdatePlayerPosition( NNPoint position ) { SetPosition(position); }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
-
 	NNCREATE_FUNC(CPlayer);
 
 private:
@@ -39,7 +35,7 @@ private:
 	NNSprite* m_HpBar;
 	NNSprite* m_HpBarFrame;
 
-	PlayerState m_PlayerState;
+	short m_PlayerState;
 	GameKeyStates m_GameKeyStates;
 };
 
