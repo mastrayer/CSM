@@ -70,8 +70,6 @@ void CGameScene::Update( float dTime )
 		m_NowGameKeyStates = GetNowGameKeyStates();
 
 		/// under is... After Update Game Key States
-
-		CPlayerManager::GetInstance()->UpdateMyPlayerGameKeyStates(m_NowGameKeyStates);
 	}
 }
 

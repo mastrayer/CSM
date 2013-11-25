@@ -135,8 +135,8 @@ void ClientSession::OnRead(size_t len)
 
 			}
 			break ;
-			*/case
-PKT_CS_KEYSTATE:
+			*/
+			case PKT_CS_KEYSTATE:
 			{
 				GameKeyStatesUpdateRequest inPacket ;
 				mRecvBuffer.Read((char*)&inPacket, header.mSize);
@@ -148,7 +148,7 @@ PKT_CS_KEYSTATE:
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = _player->GetPlayerInfo();
 
-				if( !BroadcastWithoutSelf(&outPacket) )
+				if( !Broadcast(&outPacket) )
 					return;
 			}
 			break ;
