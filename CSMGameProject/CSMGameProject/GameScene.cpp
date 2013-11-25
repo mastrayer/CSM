@@ -54,22 +54,21 @@ void CGameScene::Update( float dTime )
 			CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
 			,0.99f));
 
-		if( isChangedGameKeyStates() == true )
+		if( isChangedGameKeyStates() == true || isChangedAngle() == true)
 		{
+			m_LastAngleChangedTime = time(NULL);
+			m_NowGameKeyStates = GetNowGameKeyStates();
+			m_Angle = GetNowAngle();
+
 			//send packet
 			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_GameKeyStates = GetNowGameKeyStates();
 			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_PlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
 			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_X = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX();
 			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_Y = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY();
+			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_Angle = m_Angle;
 			NNNetworkSystem::GetInstance()->Write( (const char*)&m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest,
 				m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_Size );
 		}
-
-		/// above is... before Update Game Key States
-
-		m_NowGameKeyStates = GetNowGameKeyStates();
-
-		/// under is... After Update Game Key States
 	}
 }
 
@@ -110,5 +109,26 @@ bool CGameScene::isChangedGameKeyStates()
 		||nowGameKeyState.upDirectKey != m_NowGameKeyStates.upDirectKey
 		||nowGameKeyState.userActiveSkillKey != m_NowGameKeyStates.userActiveSkillKey)
 		return true;
+	return false;
+}
+
+float CGameScene::GetNowAngle()
+{
+	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
+	// characterPositionByWC, WC -> window center. 화면 가운데를 0,0으로 했을때의 캐릭터 좌표
+	NNPoint characterPositionByWC = GetCamera().GetPosition() -	CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition();
+	NNPoint referencePointForMouse = NNPoint(GetCamera().GetScreenWidth()/2,GetCamera().GetScreenHeight()/2) + characterPositionByWC;
+	return atan2f( NNPoint(mousePoint-referencePointForMouse).GetY() , NNPoint(mousePoint-referencePointForMouse).GetX() )*180.0f/3.14f ;
+}
+bool CGameScene::isChangedAngle()
+{
+	if( (time(NULL) - m_LastAngleChangedTime ) > 100 )
+	{
+		//100 밀리세컨드마다 마우스 방향 변경.
+		if( m_Angle != GetNowAngle() )
+		{
+			return true;
+		}
+	}
 	return false;
 }

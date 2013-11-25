@@ -42,7 +42,7 @@ struct GameKeyStates
 };
 struct PlayerInfo
 {
-	float m_X, m_Y;
+	float m_X, m_Y, m_Angle;
 	int m_PlayerId;
 	GameKeyStates m_GameKeyStates;
 };

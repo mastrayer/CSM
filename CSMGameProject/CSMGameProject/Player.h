@@ -23,6 +23,7 @@ public:
 	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
 	void SetPlayerGameKeyStates( GameKeyStates gameKeySates) { m_GameKeyStates = gameKeySates; }
 	void UpdatePlayerPosition( NNPoint position ) { SetPosition(position); }
+	void UpdatePlayerRotation( float angle ) { m_PlayerSprite->SetRotation(angle); }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	NNCREATE_FUNC(CPlayer);
 

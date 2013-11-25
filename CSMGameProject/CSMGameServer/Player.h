@@ -35,15 +35,17 @@ private:
 	GameKeyStates mGameKeyStates;
 	Point mPosition;
 	int mPlayerId;
+	float mRotation;
 
 public:
 	Player(void);
 	Player(int id);
 	virtual ~Player(void);
 	void TransState(short state);
-	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; };
-	void SetPosition(Point position) { mPosition = position; };
-	Point GetPosition() { return mPosition; };
+	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; }
+	void SetPosition(Point position) { mPosition = position; }
+	void SetRotation(float angle) { mRotation = angle; }
+	Point GetPosition() { return mPosition; }
 	PlayerInfo GetPlayerInfo();
 	void Update( float dTime );
 };

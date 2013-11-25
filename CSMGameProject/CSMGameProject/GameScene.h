@@ -20,7 +20,8 @@
 		LoginHandler* m_LoginHandler;
 		LoginBroadcastHandler* m_LoginBroadcastHandler;
 		LogoutHandler* m_LogoutHandler;
-	
+		float m_Angle;
+		time_t m_LastAngleChangedTime;
 	public:
 		CGameScene(void);
 		virtual ~CGameScene(void);
@@ -35,5 +36,7 @@
 	
 		GameKeyStates GetNowGameKeyStates();
 		bool isChangedGameKeyStates();
+		float GetNowAngle();
+		bool isChangedAngle();
 	};
 

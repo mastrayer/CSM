@@ -37,10 +37,21 @@ void CPlayerManager::UpdatePlayerPosition(int _playerId, NNPoint point)
 	}
 }
 
+void CPlayerManager::UpdatePlayerRotation(int _playerId, float angle )
+{
+	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
+	if( itor != m_Players.end() ) 
+	{
+		CPlayer* player = m_Players.find(_playerId)->second;
+		player->SetRotation(angle);
+	}
+}
+
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 {
 	UpdatePlayerGameKeyStates(info.m_PlayerId, info.m_GameKeyStates);
 	UpdatePlayerPosition(info.m_PlayerId, NNPoint( info.m_X, info.m_Y ) );
+	UpdatePlayerRotation(info.m_PlayerId, info.m_Angle);
 }
 
 void CPlayerManager::SetMyPlayerId(int id)

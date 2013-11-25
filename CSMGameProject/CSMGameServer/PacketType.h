@@ -44,7 +44,7 @@ struct GameKeyStates
 
 struct PlayerInfo
 {
-	float mX, mY;
+	float mX, mY, mAngle;
 	int mPlayerId;
 	GameKeyStates mGameKeyStates;
 };
@@ -92,11 +92,9 @@ struct GameKeyStatesUpdateRequest : public PacketHeader
 		mSize = sizeof(GameKeyStatesUpdateRequest) ;
 		mType = PKT_CS_KEYSTATE ;
 		mMyPlayerInfo.mPlayerId = -1 ;
-		time_t mTimeStamp = time(NULL);
 	}
 
 	PlayerInfo mMyPlayerInfo;
-	int mTimeStamp;
 } ;
 
 struct GameKeyStatesUpdateResult : public PacketHeader

@@ -33,6 +33,17 @@ void PlayerManager::UpdatePlayerPosition(int _playerId, Point point)
 	}
 }
 
+void PlayerManager::UpdatePlayerRotation(int _playerId, float angle)
+{
+	
+	std::map<int,Player*>::iterator itor = mPlayers.find(_playerId);
+	if( itor != mPlayers.end() ) 
+	{
+		Player* player = mPlayers.find(_playerId)->second;
+		player->SetRotation(angle);
+	}
+}
+
 Player* PlayerManager::NewPlayer(int id)
 {
 	Player* newPlayer = NULL;

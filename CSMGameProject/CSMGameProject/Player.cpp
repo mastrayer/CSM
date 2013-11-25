@@ -59,8 +59,7 @@ void CPlayer::Update( float dTime )
 	}
 	//Change Image By now Frame.
 
-	//NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
-	//m_PlayerSprite->SetRotation( atan2f( mousePoint.GetY()-300.f, mousePoint.GetX()-400.f )*180.0f/3.14f );
+	
 }
 void CPlayer::Render()
 {

@@ -24,6 +24,7 @@ public:
 	void UpdateMyPlayerGameKeyStates(GameKeyStates _gameKeyStates);
 	void UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets);
 	void UpdatePlayerPosition(int _playerId, NNPoint point);
+	void UpdatePlayerRotation(int _playerId, float angle);
 	void UpdatePlayerInfo(PlayerInfo info);
 
 	int GetMyPlayerId() { return m_MyPlayerId; };
