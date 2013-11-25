@@ -31,12 +31,12 @@ void Player::Update( float dTime)
 	if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )
 	{
 		//Left
-		SetPosition( GetPosition() + Point( 1.f, 0.f ) * dTime * 100.f );
+		SetPosition( GetPosition() + Point( -1.f, 0.f ) * dTime * 100.f );
 	}
 	if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )
 	{
 		//Right
-		SetPosition( GetPosition() + Point( -1.f, 0.f ) * dTime * 100.f );
+		SetPosition( GetPosition() + Point( 1.f, 0.f ) * dTime * 100.f );
 	}
 	if (mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )
 	{

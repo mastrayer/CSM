@@ -43,11 +43,11 @@ void CPlayer::Update( float dTime )
 	//Check Moving Input, and set Position to d
 	if ( m_GameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )
 	{   //Left
-		SetPosition( GetPosition() + NNPoint( 1.f, 0.f) * dTime * 100.f );
+		SetPosition( GetPosition() + NNPoint( -1.f, 0.f) * dTime * 100.f );
 	}
 	if ( m_GameKeyStates.rightDirectKey == KEYSTATE_PRESSED )
 	{   //Right
-		SetPosition( GetPosition() + NNPoint( -1.f, 0.f) * dTime * 100.f );
+		SetPosition( GetPosition() + NNPoint( 1.f, 0.f) * dTime * 100.f );
 	}
 	if (m_GameKeyStates.upDirectKey == KEYSTATE_PRESSED )
 	{   //UP
