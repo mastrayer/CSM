@@ -25,7 +25,6 @@ public:
 	std::map<int,Player*> GetPlayers() { return mPlayers; };
 private:
 	std::map<int,Player*> mPlayers;
-	Player* mMyPlayer;
 	int mPlayersLength;
 	int prevTime;
 	int nowTime;
