@@ -29,6 +29,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	/// Manager Init
 	GClientManager = new ClientManager ;
 	GDatabaseJobManager = new DatabaseJobManager ;
+	GPlayerManager = new PlayerManager;
 
 	/// DB Helper √ ±‚»≠
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
