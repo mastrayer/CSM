@@ -4,9 +4,9 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 #include "NNLabel.h"
-#include "NNAudioSystem.h"
 #include "PacketType.h"
-#include "NNNetworkSystem.h"
+
+#include "PlayerUI.h"
 
 enum PlayerState
 {
@@ -36,9 +36,8 @@ private:
 
 private:
 	NNSprite* m_PlayerSprite;
-	NNSprite* m_HpBar;
-	NNSprite* m_HpBarFrame;
 
+	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
 	GameKeyStates m_GameKeyStates;
 
