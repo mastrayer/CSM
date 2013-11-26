@@ -34,18 +34,6 @@
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{ac582ca9-46ee-4c18-8957-93d37e4e6364}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Object">
-      <UniqueIdentifier>{ccb01694-9494-4242-b02c-c71a71f6615f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Map">
-      <UniqueIdentifier>{d2a149d7-980f-464f-907f-90fc30516291}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\Player">
-      <UniqueIdentifier>{fd566671-25a6-4859-8b77-edbba2cd0e83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Object\PlayerManager">
-      <UniqueIdentifier>{6593cd22-9563-46cf-8c50-20bc7d2e332f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\GameScene">
       <UniqueIdentifier>{1d736eb5-3dd7-4637-ad1a-c1bcebf8ce6b}</UniqueIdentifier>
     </Filter>
@@ -57,6 +45,33 @@
     </Filter>
     <Filter Include="Game\Packet\KeyState">
       <UniqueIdentifier>{d412ab81-16ec-448c-8ad1-2a2234522e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene">
+      <UniqueIdentifier>{1a663b57-cc6c-4270-92fa-1ff8c2d43ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object">
+      <UniqueIdentifier>{ccb01694-9494-4242-b02c-c71a71f6615f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\Map">
+      <UniqueIdentifier>{d2a149d7-980f-464f-907f-90fc30516291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\Player">
+      <UniqueIdentifier>{fd566671-25a6-4859-8b77-edbba2cd0e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\PlayerManager">
+      <UniqueIdentifier>{6593cd22-9563-46cf-8c50-20bc7d2e332f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object">
+      <UniqueIdentifier>{759f7009-aa0a-4e94-80b2-ce93a1000eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut">
+      <UniqueIdentifier>{572f77ef-553c-43eb-88ac-5baf241838f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\FirstCut">
+      <UniqueIdentifier>{8dc7f054-bd56-448d-a17b-ab8f11f3e5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\SecondCut">
+      <UniqueIdentifier>{d3ea04be-6e64-40a2-a3b5-e02af84495d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,13 +101,13 @@
       <Filter>Sample\NetworkSample</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game\Scene\GameScene\Object\Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Game\Object\PlayerManager</Filter>
+      <Filter>Game\Scene\GameScene\Object\PlayerManager</Filter>
     </ClCompile>
     <ClCompile Include="GameMap.cpp">
-      <Filter>Game\Object\Map</Filter>
+      <Filter>Game\Scene\GameScene\Object\Map</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>Game\Scene\GameScene</Filter>
@@ -111,6 +126,15 @@
     </ClCompile>
     <ClCompile Include="MouseAngleUpdateHandler.cpp">
       <Filter>Game\Packet\KeyState</Filter>
+    </ClCompile>
+    <ClCompile Include="StoryScene.cpp">
+      <Filter>Game\Scene\StoryScene</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstCut.cpp">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FirstCut</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondCut.cpp">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\SecondCut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,13 +163,13 @@
       <Filter>Sample\NetworkSample</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Game\Object\Player</Filter>
+      <Filter>Game\Scene\GameScene\Object\Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Game\Object\PlayerManager</Filter>
+      <Filter>Game\Scene\GameScene\Object\PlayerManager</Filter>
     </ClInclude>
     <ClInclude Include="GameMap.h">
-      <Filter>Game\Object\Map</Filter>
+      <Filter>Game\Scene\GameScene\Object\Map</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>Game\Scene\GameScene</Filter>
@@ -155,6 +179,18 @@
     </ClInclude>
     <ClInclude Include="PacketHandler.h">
       <Filter>Game\Packet\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryScene.h">
+      <Filter>Game\Scene\StoryScene</Filter>
+    </ClInclude>
+    <ClInclude Include="StoryCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FirstCut</Filter>
+    </ClInclude>
+    <ClInclude Include="SecondCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\SecondCut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
