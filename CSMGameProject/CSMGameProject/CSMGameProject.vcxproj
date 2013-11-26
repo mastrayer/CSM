@@ -97,12 +97,14 @@
     <ClCompile Include="ParticleSample.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SampleScene.cpp" />
+    <ClCompile Include="MainMuneScene.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="XMLSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="FMODSoundSample.h" />

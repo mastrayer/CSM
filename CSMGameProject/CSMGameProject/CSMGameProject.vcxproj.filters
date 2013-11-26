@@ -58,6 +58,9 @@
     <Filter Include="Game\Packet\KeyState">
       <UniqueIdentifier>{d412ab81-16ec-448c-8ad1-2a2234522e3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\MainMenuScene">
+      <UniqueIdentifier>{fb60ef72-a0b7-4f59-b4c0-35e304e53032}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -112,6 +115,9 @@
     <ClCompile Include="MouseAngleUpdateHandler.cpp">
       <Filter>Game\Packet\KeyState</Filter>
     </ClCompile>
+    <ClCompile Include="MainMuneScene.cpp">
+      <Filter>Game\Scene\MainMenuScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -155,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="PacketHandler.h">
       <Filter>Game\Packet\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Game\Scene\MainMenuScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
