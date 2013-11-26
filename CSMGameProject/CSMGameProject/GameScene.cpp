@@ -7,31 +7,18 @@
 
 CGameScene::CGameScene(void) : 
 	m_NowGameKeyStates(), m_Angle(0), m_LastAngleChangedTime(timeGetTime())
-{
-	m_LoginHandler = new LoginHandler();
-	m_LoginBroadcastHandler = new LoginBroadcastHandler();
-	m_GameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
-	m_LogoutHandler = new LogoutHandler();
-	m_MouseAngleUpdateHandler = new MouseAngleUpdateHandler();
+{	
+	// UI Setting
+	SetUISet( GameUISet::Create() );
+
+	// Camera Setting
+	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
+
+	// GameMap Create
 	m_GameMap = CGameMap::Create();
 	AddChild( m_GameMap );
 
-	m_FPSLabel = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
-	AddChild( m_FPSLabel );
-
-	NNNetworkSystem::GetInstance()->Init();
-
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_KEYSTATE,m_GameKeyStatesUpdateHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN,m_LoginHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGIN_BROADCAST,m_LoginBroadcastHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGOUT,m_LogoutHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_MOUSEANGLE,m_MouseAngleUpdateHandler);
-
-	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);//10.73.44.30",9001);
-
-	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
-
-	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
+	InitNetworkSetting();
 }
 
 CGameScene::~CGameScene(void)
@@ -46,9 +33,6 @@ void CGameScene::Render()
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
-
-	swprintf_s(m_FPSLabelBuff,L"%d",(int)NNApplication::GetInstance()->GetFPS());
-	m_FPSLabel->SetString(m_FPSLabelBuff);
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
@@ -81,6 +65,27 @@ void CGameScene::Update( float dTime )
 				m_MouseAngleUpdateHandler->m_MouseAngleUpdateRequest.m_Size );
 		}
 	}
+}
+
+void CGameScene::InitNetworkSetting()
+{
+	m_LoginHandler = new LoginHandler();
+	m_LoginBroadcastHandler = new LoginBroadcastHandler();
+	m_GameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
+	m_LogoutHandler = new LogoutHandler();
+	m_MouseAngleUpdateHandler = new MouseAngleUpdateHandler();
+
+	NNNetworkSystem::GetInstance()->Init();
+
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, m_GameKeyStatesUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN, m_LoginHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN_BROADCAST, m_LoginBroadcastHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGOUT, m_LogoutHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, m_MouseAngleUpdateHandler );
+
+	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );//10.73.44.30",9001);
+
+	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 }
 
 GameKeyStates CGameScene::GetNowGameKeyStates()

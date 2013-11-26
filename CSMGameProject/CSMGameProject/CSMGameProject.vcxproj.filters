@@ -79,6 +79,9 @@
     <Filter Include="Game\Scene\MainMenuScene">
       <UniqueIdentifier>{96248d79-1519-44dd-98eb-d2c32d98fb84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\GameScene\UI">
+      <UniqueIdentifier>{79ffcc91-c04f-4c4f-9c9e-9c8db75f4648}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -148,6 +151,9 @@
     <ClCompile Include="MainMenuScene.cpp">
       <Filter>Game\Scene\MainMenuScene</Filter>
     </ClCompile>
+    <ClCompile Include="GameUISet.cpp">
+      <Filter>Game\Scene\GameScene\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -209,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="MainMenuScene.h">
       <Filter>Game\Scene\MainMenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUISet.h">
+      <Filter>Game\Scene\GameScene\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

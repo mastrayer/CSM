@@ -1,8 +1,10 @@
+
 #include "PlayerManager.h"
 #include "PacketType.h"
 #include "NNApplication.h"
 
-CPlayerManager::CPlayerManager(void):m_MyPlayerId(-1), m_MyPlayer(nullptr)
+CPlayerManager::CPlayerManager(void)
+	: m_MyPlayerId(-1), m_MyPlayer(nullptr)
 {
 
 }
