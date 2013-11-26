@@ -1,6 +1,8 @@
+
 #include "Player.h"
 
-
+#include "NNAudioSystem.h"
+#include "NNNetworkSystem.h"
 
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL)
@@ -28,13 +30,8 @@ void CPlayer::TransState( PlayerState state )
 	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 	/* // */
 
-	m_HpBar = NNSprite::Create( L"Sprite/hpbar.png" );
-	//m_HpBarFrame = NNSprite::Create( L"Sprite/hpbar_frame.png" );
-	m_HpBar->SetCenter( m_HpBar->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
-	m_HpBar->SetPosition( 0.f, -15.f );
-	//m_HpBarFrame->SetPosition( 0.f, -30.f );
-	AddChild( m_HpBar );
-	//AddChild( m_HpBarFrame );
+	m_PlayerUI = PlayerUI::Create();
+	AddChild( m_PlayerUI );
 }
 
 
