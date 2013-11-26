@@ -1,8 +1,9 @@
 #include "MainMenuScene.h"
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
-#include "GameScene.h"
 #include "NNApplication.h"
+
+#include "StoryScene.h"
 
 MainMenuScene::MainMenuScene()
 	: m_MainMenuImage(nullptr)
@@ -41,7 +42,7 @@ void MainMenuScene::Update( float dTime )
 
 	if ( NNInputSystem::GetInstance()->GetKeyState( VK_RETURN ) == KEY_UP )
 	{
-		NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
+		NNSceneDirector::GetInstance()->ChangeScene( StoryScene::Create() );
 		return;
 	}
 }
