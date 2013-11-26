@@ -31,8 +31,9 @@ void Player::TransState(short state)
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 			mClient->Broadcast(&outPacket);
-			break;
+			
 		}
+		break;
 	case PLAYER_STATE_WALK:
 		{
 			if(mPlayerState == PLAYER_STATE_IDLE)
@@ -43,8 +44,8 @@ void Player::TransState(short state)
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
 			}
-			break;
 		}
+		break;
 	case PLAYER_STATE_ATTACK:
 		{
 			if(mPlayerState == PLAYER_STATE_IDLE ||
@@ -57,8 +58,8 @@ void Player::TransState(short state)
 				mClient->Broadcast(&outPacket);
 			}
 
-			break;
 		}
+		break;
 	case PLAYER_STATE_DIE:
 		{
 			mResponTime = 5.f;
@@ -67,8 +68,8 @@ void Player::TransState(short state)
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 			mClient->Broadcast(&outPacket);
-			break;
 		}
+		break;
 	default:
 		break;
 	}
@@ -94,8 +95,8 @@ void Player::Update( float dTime)
 			{
 				TransState(PLAYER_STATE_WALK);
 			}
-			break;
 		}
+		break;
 	case PLAYER_STATE_WALK:
 		{
 			//우선순위대로
@@ -126,8 +127,8 @@ void Player::Update( float dTime)
 				//Down
 				SetPosition( GetPosition() + Point( 0.f, 1.f ) * dTime * 100.f );
 			}
-			break;
 		}
+		break;
 	case PLAYER_STATE_ATTACK:
 		{
 			 Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
@@ -146,6 +147,7 @@ void Player::Update( float dTime)
 			TransState(PLAYER_STATE_IDLE);
 			break;
 		}
+		break;
 		
 	case PLAYER_STATE_DIE:
 		{
@@ -158,8 +160,8 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_IDLE);
 				break;
 			}
-			break;
 		}
+		break;
 	default:
 		break;
 	}
