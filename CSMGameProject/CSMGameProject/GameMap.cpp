@@ -1,6 +1,5 @@
 #include "GameMap.h"
 
-
 CGameMap::CGameMap(void)
 {
 	m_MapSprite = NNSprite::Create( L"Sprite/map.png" );
@@ -8,15 +7,15 @@ CGameMap::CGameMap(void)
 	AddChild( m_MapSprite );
 }
 
-
 CGameMap::~CGameMap(void)
 {
 }
 
-void CGameMap::Update( float dTime)
+void CGameMap::Update( float dTime )
 {
-
+	NNObject::Update( dTime );
 }
+
 void CGameMap::Render()
 {
 	NNObject::Render();
