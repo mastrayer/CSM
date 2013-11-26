@@ -4,7 +4,7 @@
 #include "NNNetworkSystem.h"
 #include "PacketHandler.h"
 
-CGameScene::CGameScene(void):m_NowGameKeyStates()
+CGameScene::CGameScene(void):m_NowGameKeyStates(),m_Angle(0),m_LastAngleChangedTime(timeGetTime())
 {
 	m_LoginHandler = new LoginHandler();
 	m_LoginBroadcastHandler = new LoginBroadcastHandler();
@@ -24,7 +24,7 @@ CGameScene::CGameScene(void):m_NowGameKeyStates()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGOUT,m_LogoutHandler);
 
 
-	NNNetworkSystem::GetInstance()->Connect("10.73.44.30",9001);
+	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);//10.73.44.30",9001);
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 
@@ -56,7 +56,7 @@ void CGameScene::Update( float dTime )
 
 		if( isChangedGameKeyStates() == true || isChangedAngle() == true)
 		{
-			m_LastAngleChangedTime = time(NULL);
+			m_LastAngleChangedTime = timeGetTime();
 			m_NowGameKeyStates = GetNowGameKeyStates();
 			m_Angle = GetNowAngle();
 
@@ -122,9 +122,10 @@ float CGameScene::GetNowAngle()
 }
 bool CGameScene::isChangedAngle()
 {
-	if( (time(NULL) - m_LastAngleChangedTime ) > 100 )
+	DWORD time_A = timeGetTime();
+	if( (timeGetTime() - m_LastAngleChangedTime ) > 20 )
 	{
-		//100 밀리세컨드마다 마우스 방향 변경.
+		//20 밀리세컨드마다 마우스 방향 변경.
 		if( m_Angle != GetNowAngle() )
 		{
 			return true;
