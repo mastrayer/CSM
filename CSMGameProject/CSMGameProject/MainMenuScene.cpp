@@ -38,7 +38,6 @@ MainMenuScene::MainMenuScene()
 	m_MianMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
 	AddChild( m_MianMenuLable[MENU_EXIT] );
 
-
 }
 
 MainMenuScene::~MainMenuScene()
