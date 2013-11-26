@@ -86,6 +86,7 @@
     <ClCompile Include="FirstCut.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
     <ClCompile Include="GameUISet.cpp" />
+    <ClCompile Include="HPUpdateHandler.cpp" />
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />

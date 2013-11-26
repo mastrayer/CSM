@@ -5,6 +5,17 @@
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
 
+class HPUpdateHandler : public NNBaseHandler
+{
+public:
+	HPUpdateHandler();
+	virtual ~HPUpdateHandler();
+	
+	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
+
+	HPUpdateResult m_HPUpdateResult;
+};
+
 class MouseAngleUpdateHandler : public NNBaseHandler
 {
 public:

@@ -27,7 +27,8 @@ public:
 	void UpdatePlayerPosition(int _playerId, NNPoint point);
 	void UpdatePlayerRotation(int _playerId, float angle);
 	void UpdatePlayerInfo(PlayerInfo info);
-
+	void UpdatePlayerHP(int _playerId, int hp);
+	void UpdatePlayerState(int _playerId, short state );
 	int GetMyPlayerId() { return m_MyPlayerId; };
 
 private:

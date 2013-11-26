@@ -35,7 +35,27 @@ void CPlayerManager::UpdatePlayerPosition(int _playerId, NNPoint point)
 	if( itor != m_Players.end() ) 
 	{
 		CPlayer* player = m_Players.find(_playerId)->second;
-		player->SetPosition(point);
+		player->SetPlayerPosition(point);
+	}
+}
+
+void CPlayerManager::UpdatePlayerHP(int _playerId, int hp )
+{
+	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
+	if( itor != m_Players.end() ) 
+	{
+		CPlayer* player = m_Players.find(_playerId)->second;
+		player->SetPlayerHP(hp);
+	}
+}
+
+void CPlayerManager::UpdatePlayerState(int _playerId, short state )
+{
+	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
+	if( itor != m_Players.end() ) 
+	{
+		CPlayer* player = m_Players.find(_playerId)->second;
+		player->TransState((PlayerState)state);
 	}
 }
 
@@ -45,7 +65,7 @@ void CPlayerManager::UpdatePlayerRotation(int _playerId, float angle )
 	if( itor != m_Players.end() ) 
 	{
 		CPlayer* player = m_Players.find(_playerId)->second;
-		player->SetRotation(angle);
+		player->SetPlayerRotation(angle);
 	}
 }
 
@@ -54,6 +74,7 @@ void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 	UpdatePlayerGameKeyStates(info.m_PlayerId, info.m_GameKeyStates);
 	UpdatePlayerPosition(info.m_PlayerId, NNPoint( info.m_X, info.m_Y ) );
 	UpdatePlayerRotation(info.m_PlayerId, info.m_Angle);
+	UpdatePlayerState(info.m_PlayerId, info.m_PlayerState);
 }
 
 void CPlayerManager::SetMyPlayerId(int id)

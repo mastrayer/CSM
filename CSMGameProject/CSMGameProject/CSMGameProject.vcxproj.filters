@@ -154,6 +154,9 @@
     <ClCompile Include="GameUISet.cpp">
       <Filter>Game\Scene\GameScene\UI</Filter>
     </ClCompile>
+    <ClCompile Include="HPUpdateHandler.cpp">
+      <Filter>Game\Packet\KeyState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">

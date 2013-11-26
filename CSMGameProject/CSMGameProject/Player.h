@@ -25,9 +25,10 @@ public:
 	void TransState( PlayerState state );
 	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
 	void SetPlayerGameKeyStates( GameKeyStates gameKeySates) { m_GameKeyStates = gameKeySates; }
-	void UpdatePlayerPosition( NNPoint position ) { SetPosition(position); }
-	void UpdatePlayerRotation( float angle ) { m_PlayerSprite->SetRotation(angle); }
+	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
+	void SetPlayerRotation( float angle ) { m_PlayerSprite->SetRotation(angle); }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
+	void SetPlayerHP(int hp);
 	NNCREATE_FUNC(CPlayer);
 
 private:

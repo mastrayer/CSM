@@ -74,7 +74,7 @@ void CGameScene::InitNetworkSetting()
 	m_GameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
 	m_LogoutHandler = new LogoutHandler();
 	m_MouseAngleUpdateHandler = new MouseAngleUpdateHandler();
-
+	m_HPUpdateHandler = new HPUpdateHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, m_GameKeyStatesUpdateHandler );
@@ -82,6 +82,7 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN_BROADCAST, m_LoginBroadcastHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGOUT, m_LogoutHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, m_MouseAngleUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, m_HPUpdateHandler );
 
 	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );//10.73.44.30",9001);
 

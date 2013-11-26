@@ -21,6 +21,7 @@ private:
 	LoginBroadcastHandler* m_LoginBroadcastHandler;
 	LogoutHandler* m_LogoutHandler;
 	MouseAngleUpdateHandler* m_MouseAngleUpdateHandler;
+	HPUpdateHandler* m_HPUpdateHandler;
 	float m_Angle;
 	DWORD m_LastAngleChangedTime;
 
