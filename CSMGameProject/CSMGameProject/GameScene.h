@@ -1,4 +1,5 @@
 #pragma once
+
 #include "NNScene.h"
 #include "GameMap.h"
 #include "Player.h"
@@ -8,8 +9,16 @@
 #include "PlayerManager.h"
 #include "PacketHandler.h"
 
-class CGameScene :
-	public NNScene
+#include "NNScene.h"
+#include "GameMap.h"
+#include "Player.h"
+#include "NNLabel.h"
+#include "NNInputSystem.h"
+#include "PacketType.h"
+#include "PlayerManager.h"
+#include "PacketHandler.h"
+
+class CGameScene : public NNScene
 {
 private:
 	CGameMap* m_GameMap;
@@ -27,15 +36,13 @@ private:
 public:
 	CGameScene(void);
 	virtual ~CGameScene(void);
-	
+
 	void Render();
 	void Update( float dTime );
 	NNCREATE_FUNC(CGameScene);
-
 private:
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();
 	float GetNowAngle();
 	bool isChangedAngle();
 };
-

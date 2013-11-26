@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "EasyServer.h"
+#include "Main.h"
 
 #include "Config.h"
 #include "PacketType.h"

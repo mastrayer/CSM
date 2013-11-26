@@ -2,31 +2,28 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="CircularBuffer.cpp">
-      <Filter>Framework\Util\CircularBuffer</Filter>
+      <Filter>Core\Util\CircularBuffer</Filter>
     </ClCompile>
     <ClCompile Include="ClientManager.cpp">
-      <Filter>Framework\Client\ClientManager</Filter>
+      <Filter>Core\Client\ClientManager</Filter>
     </ClCompile>
     <ClCompile Include="ClientSession.cpp">
-      <Filter>Framework\Client\ClientSession</Filter>
+      <Filter>Core\Client\ClientSession</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseJobContext.cpp">
-      <Filter>Framework\Database\DatabaseJobContext</Filter>
+      <Filter>Core\Database\DatabaseJobContext</Filter>
     </ClCompile>
     <ClCompile Include="DatabaseJobManager.cpp">
-      <Filter>Framework\Database\DatabaseJobManager</Filter>
+      <Filter>Core\Database\DatabaseJobManager</Filter>
     </ClCompile>
     <ClCompile Include="DbHelper.cpp">
-      <Filter>Framework\Database\DbHelper</Filter>
-    </ClCompile>
-    <ClCompile Include="EasyServer.cpp">
-      <Filter>Framework\EasyServer</Filter>
+      <Filter>Core\Database\DbHelper</Filter>
     </ClCompile>
     <ClCompile Include="Exception.cpp">
-      <Filter>Framework\Util\Exception</Filter>
+      <Filter>Core\Util\Exception</Filter>
     </ClCompile>
     <ClCompile Include="sqlite3.c">
-      <Filter>Framework\Util\sqlite3</Filter>
+      <Filter>Core\Util\sqlite3</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Game\Player</Filter>
@@ -37,43 +34,49 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
+    <ClCompile Include="UserSession.cpp">
+      <Filter>Game\Packet\PacketProcess\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Game\Packet\PacketProcess\PlayerInput</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
-      <Filter>Framework\Util\CircularBuffer</Filter>
+      <Filter>Core\Util\CircularBuffer</Filter>
     </ClInclude>
     <ClInclude Include="ClientManager.h">
-      <Filter>Framework\Client\ClientManager</Filter>
+      <Filter>Core\Client\ClientManager</Filter>
     </ClInclude>
     <ClInclude Include="ClientSession.h">
-      <Filter>Framework\Client\ClientSession</Filter>
+      <Filter>Core\Client\ClientSession</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseJobContext.h">
-      <Filter>Framework\Database\DatabaseJobContext</Filter>
+      <Filter>Core\Database\DatabaseJobContext</Filter>
     </ClInclude>
     <ClInclude Include="DatabaseJobManager.h">
-      <Filter>Framework\Database\DatabaseJobManager</Filter>
+      <Filter>Core\Database\DatabaseJobManager</Filter>
     </ClInclude>
     <ClInclude Include="DbHelper.h">
-      <Filter>Framework\Database\DbHelper</Filter>
-    </ClInclude>
-    <ClInclude Include="EasyServer.h">
-      <Filter>Framework\EasyServer</Filter>
+      <Filter>Core\Database\DbHelper</Filter>
     </ClInclude>
     <ClInclude Include="Exception.h">
-      <Filter>Framework\Util\Exception</Filter>
+      <Filter>Core\Util\Exception</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3ext.h">
-      <Filter>Framework\Util\sqlite3</Filter>
+      <Filter>Core\Util\sqlite3</Filter>
     </ClInclude>
     <ClInclude Include="sqlite3.h">
-      <Filter>Framework\Util\sqlite3</Filter>
+      <Filter>Core\Util\sqlite3</Filter>
     </ClInclude>
     <ClInclude Include="SQLStatement.h">
-      <Filter>Framework\Database</Filter>
+      <Filter>Core\Database</Filter>
     </ClInclude>
     <ClInclude Include="SPSCQueue.h">
-      <Filter>Framework\Util</Filter>
+      <Filter>Core\Util</Filter>
     </ClInclude>
     <ClInclude Include="PacketType.h">
       <Filter>Game\Packet</Filter>
@@ -85,10 +88,10 @@
       <Filter>Game\PlayerManager</Filter>
     </ClInclude>
     <ClInclude Include="Config.h">
-      <Filter>Framework</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="ObjectPool.h">
-      <Filter>Framework</Filter>
+      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>PreCompile</Filter>
@@ -96,49 +99,19 @@
     <ClInclude Include="targetver.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerInput.h">
+      <Filter>Game\Packet\PacketProcess\PlayerInput</Filter>
+    </ClInclude>
+    <ClInclude Include="UserSession.h">
+      <Filter>Game\Packet\PacketProcess\UserSession</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
       <UniqueIdentifier>{ebc28d19-ca52-48c6-b372-80b54fe1d764}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{bd5dda4b-2249-48a5-bd29-886e66e4770b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Database">
-      <UniqueIdentifier>{21383708-b675-4659-8cb3-acc2da6a9002}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Database\DatabaseJobContext">
-      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Database\DatabaseJobManager">
-      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Database\DbHelper">
-      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\EasyServer">
-      <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Client">
-      <UniqueIdentifier>{06e6fe4a-cb04-4953-8565-cbe9321ca52d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Client\ClientSession">
-      <UniqueIdentifier>{a3a8d734-b3f3-4c83-adfb-f8e9b5fa826d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Client\ClientManager">
-      <UniqueIdentifier>{77506c68-9f8a-4607-bc16-914cff7de7e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util">
-      <UniqueIdentifier>{52940f35-d8c9-4189-92ce-b616749ab805}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util\sqlite3">
-      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util\CircularBuffer">
-      <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Util\Exception">
-      <UniqueIdentifier>{dba7c159-fd26-486e-a0d1-c134f124ed96}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Packet">
       <UniqueIdentifier>{f6d2e639-0556-45e0-a143-8692d18dead0}</UniqueIdentifier>
@@ -151,6 +124,54 @@
     </Filter>
     <Filter Include="PreCompile">
       <UniqueIdentifier>{09292146-0953-43c3-a5d8-5b0c2e42d2c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{bd5dda4b-2249-48a5-bd29-886e66e4770b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Database">
+      <UniqueIdentifier>{21383708-b675-4659-8cb3-acc2da6a9002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Database\DatabaseJobContext">
+      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Database\DatabaseJobManager">
+      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Database\DbHelper">
+      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Client">
+      <UniqueIdentifier>{06e6fe4a-cb04-4953-8565-cbe9321ca52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Client\ClientSession">
+      <UniqueIdentifier>{a3a8d734-b3f3-4c83-adfb-f8e9b5fa826d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Client\ClientManager">
+      <UniqueIdentifier>{77506c68-9f8a-4607-bc16-914cff7de7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util">
+      <UniqueIdentifier>{52940f35-d8c9-4189-92ce-b616749ab805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util\sqlite3">
+      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util\CircularBuffer">
+      <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util\Exception">
+      <UniqueIdentifier>{dba7c159-fd26-486e-a0d1-c134f124ed96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\PacketProcess">
+      <UniqueIdentifier>{fc448b86-c160-4813-91ca-3e08e45f9358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\PacketProcess\UserSession">
+      <UniqueIdentifier>{418204c7-1d48-41dd-9529-5d6205235ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\PacketProcess\PlayerInput">
+      <UniqueIdentifier>{8adfdb53-1d6f-4fd6-9f20-9a28f23ba1da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
