@@ -22,6 +22,7 @@ bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 
 	printf( "[DEBUG] Client Connected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port) );
 
+	/// 패킷 핸들링
 	mPacketHandler[PKT_CS_LOGIN] = ClientLoginPacket;
 	mPacketHandler[PKT_CS_KEYSTATE] = ClientKeyStatePacket;
 	mPacketHandler[PKT_CS_MOUSEANGLE] = ClientMouseAnglePacket;
