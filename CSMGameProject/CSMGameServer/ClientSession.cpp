@@ -7,6 +7,7 @@
 
 #include "PlayerInput.h"
 #include "UserSession.h"
+#include "PlayerManager.h"
 
 bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 {

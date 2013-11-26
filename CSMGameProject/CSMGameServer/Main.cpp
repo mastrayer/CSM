@@ -10,6 +10,7 @@
 #include "DatabaseJobManager.h"
 #include "DbHelper.h"
 
+#include "PlayerManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
 

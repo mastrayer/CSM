@@ -44,14 +44,14 @@ void PlayerManager::UpdatePlayerRotation(int _playerId, float angle)
 	}
 }
 
-Player* PlayerManager::NewPlayer(int id)
+Player* PlayerManager::NewPlayer(int id, ClientSession* client)
 {
 	Player* newPlayer = NULL;
 	std::map<int,Player*>::iterator itor = mPlayers.find(id);
 	if( itor == mPlayers.end() ) 
 	{
 		mPlayersLength++;
-		newPlayer = new Player(id);
+		newPlayer = new Player(id, client);
 		mPlayers.insert(std::map<int,Player*>::value_type(id,newPlayer));
 	}
 	else
@@ -86,8 +86,7 @@ int PlayerManager::GetNewPlayerId()
 void PlayerManager::UpdatePlayers()
 {
 	nowTime = timeGetTime();
-	std::map<int,Player*> players = GPlayerManager->GetPlayers();
-	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+	for( std::map<int,Player*>::iterator it = mPlayers.begin(); it != mPlayers.end(); ++it ) 
 	{
 		it->second->Update((static_cast<float>(nowTime - prevTime))/1000.f);
 	}

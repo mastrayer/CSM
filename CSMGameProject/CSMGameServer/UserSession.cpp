@@ -11,13 +11,7 @@ void ClientKeyStatePacket( ClientSession* client, PacketHeader* header, Circular
 
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mMyPlayerInfo.mPlayerId);
 	_player->SetGameKeyStates(inPacket.mMyPlayerInfo.mGameKeyStates);
-	//_player->SetPosition(Point(inPacket.mMyPlayerInfo.mX, inPacket.mMyPlayerInfo.mY));
 	_player->SetRotation(inPacket.mMyPlayerInfo.mAngle);
-	GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
-	outPacket.mMyPlayerInfo = _player->GetPlayerInfo();
-
-	if( !client->Broadcast(&outPacket) )
-		return;
 }
 
 void ClientMouseAnglePacket( ClientSession* client, PacketHeader* header, CircularBuffer* buffer )

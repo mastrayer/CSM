@@ -22,6 +22,7 @@
 #define PKT_SC_LOGOUT 6
 #define PKT_CS_MOUSEANGLE 7
 #define PKT_SC_MOUSEANGLE 8
+#define PKT_SC_HP 9
 
 struct GameKeyStates
 {
@@ -49,6 +50,8 @@ struct PlayerInfo
 	float mX, mY, mAngle;
 	int mPlayerId;
 	GameKeyStates mGameKeyStates;
+	short mPlayerState;
+	int mHP;
 };
 #pragma pack(push, 1)
 
@@ -139,5 +142,16 @@ struct MouseAngleUpdateResult : public PacketHeader
 	}
 	int mPlayerId;
 	float mAngle;
+};
+
+struct HPUpdateResult : public PacketHeader
+{
+	HPUpdateResult()
+	{
+		mSize = sizeof(HPUpdateResult);
+		mType = PKT_SC_HP;
+	}
+	int mPlayerId;
+	int mHP;
 };
 #pragma pack(pop)

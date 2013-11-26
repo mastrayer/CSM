@@ -5,6 +5,7 @@
 #include "ClientManager.h"
 #include "DatabaseJobContext.h"
 #include "DatabaseJobManager.h"
+#include "PlayerManager.h"
 
 ClientManager* GClientManager = nullptr ;
 

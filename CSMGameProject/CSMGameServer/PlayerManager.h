@@ -9,7 +9,7 @@ public:
 	PlayerManager(void);
 	~PlayerManager(void);
 	
-	Player* NewPlayer(int id);
+	Player* NewPlayer(int id, ClientSession* client);
 	void DeletePlayer(int id);
 	
 	void UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets);

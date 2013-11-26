@@ -5,7 +5,6 @@
 #include "CircularBuffer.h"
 #include <map>
 #include <winsock2.h>
-#include "PlayerManager.h"
 
 #define BUFSIZE	(1024*10)
 
