@@ -31,7 +31,7 @@ void GameKeyStatesUpdateHandler::HandlingPacket( short packetType, NNCircularBuf
 				CPlayerManager::GetInstance()->NewPlayer( m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId );
 				
 				CPlayerManager::GetInstance()->UpdatePlayerInfo( m_GameKeyStatesUpdateResult.m_MyPlayerInfo );
-				printf("Key State Changed[%d] Pos : %4d, %4d \n", m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId,
+				printf("Key State Changed[%d] Pos : %.1f, %.1f \n", m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId,
 					m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_X, m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_Y) ;
 			}
 			else
