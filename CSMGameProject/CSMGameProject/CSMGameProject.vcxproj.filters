@@ -46,8 +46,6 @@
     <Filter Include="Game\Packet\KeyState">
       <UniqueIdentifier>{d412ab81-16ec-448c-8ad1-2a2234522e3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\MainMenuScene">
-      <UniqueIdentifier>{fb60ef72-a0b7-4f59-b4c0-35e304e53032}</UniqueIdentifier>
     <Filter Include="Game\Scene\StoryScene">
       <UniqueIdentifier>{1a663b57-cc6c-4270-92fa-1ff8c2d43ee7}</UniqueIdentifier>
     </Filter>
@@ -74,6 +72,12 @@
     </Filter>
     <Filter Include="Game\Scene\StoryScene\Object\StoryCut\SecondCut">
       <UniqueIdentifier>{d3ea04be-6e64-40a2-a3b5-e02af84495d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\Player\PlayerUI">
+      <UniqueIdentifier>{cf02cf55-c6ec-4a6f-b586-47b26fd632f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\MainMenuScene">
+      <UniqueIdentifier>{96248d79-1519-44dd-98eb-d2c32d98fb84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +142,12 @@
     <ClCompile Include="SecondCut.cpp">
       <Filter>Game\Scene\StoryScene\Object\StoryCut\SecondCut</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Game\Scene\GameScene\Object\Player\PlayerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>Game\Scene\MainMenuScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -182,8 +192,6 @@
     <ClInclude Include="PacketHandler.h">
       <Filter>Game\Packet\Default</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuScene.h">
-      <Filter>Game\Scene\MainMenuScene</Filter>
     <ClInclude Include="StoryScene.h">
       <Filter>Game\Scene\StoryScene</Filter>
     </ClInclude>
@@ -195,6 +203,12 @@
     </ClInclude>
     <ClInclude Include="SecondCut.h">
       <Filter>Game\Scene\StoryScene\Object\StoryCut\SecondCut</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Game\Scene\GameScene\Object\Player\PlayerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Game\Scene\MainMenuScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
