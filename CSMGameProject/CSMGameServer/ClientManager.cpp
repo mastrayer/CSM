@@ -96,6 +96,7 @@ void ClientManager::ClientPeriodWork()
 void ClientManager::DispatchDatabaseJobResults()
 {
 	/// 쌓여 있는 DB 작업 처리 결과들을 각각의 클라에게 넘긴다
+
 	DatabaseJobContext* dbResult = nullptr ;
 	while ( GDatabaseJobManager->PopDatabaseJobResult(dbResult) )
 	{

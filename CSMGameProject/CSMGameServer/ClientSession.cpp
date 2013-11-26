@@ -14,6 +14,7 @@ bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 	memcpy( &mClientAddr, addr, sizeof(SOCKADDR_IN) );
 
 	/// 소켓을 넌블러킹으로 바꾸고
+
 	u_long arg = 1 ;
 	::ioctlsocket( mSocket, FIONBIO, &arg );
 

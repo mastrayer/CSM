@@ -4,14 +4,13 @@
 #include "PlayerManager.h"
 
 
-Player::Player(void):mPosition(0,0)
+Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
-	TransState(PLAYER_STATE_IDLE);
 }
 
-Player::Player(int id, ClientSession* client):mPosition(0,0),mHP(100),mDamage(5)
+Player::Player(int id, ClientSession* client):mPosition(0,0),mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE)
 {
-	TransState(PLAYER_STATE_IDLE);
+	
 	mPlayerId = id;
 	mClient = client;
 }
