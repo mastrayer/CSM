@@ -23,7 +23,7 @@ void CPlayer::TransState( short state )
 	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 	AddChild( m_PlayerSprite );
 	 
-	SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
+	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 
 	m_HpBar = NNSprite::Create( L"Sprite/hpbar.png" );
 	//m_HpBarFrame = NNSprite::Create( L"Sprite/hpbar_frame.png" );
@@ -37,6 +37,7 @@ void CPlayer::TransState( short state )
 
 void CPlayer::Update( float dTime )
 {
+	
 	NNObject::Update( dTime );
 
 	//Move myPlayer with Game Key States.
@@ -57,8 +58,7 @@ void CPlayer::Update( float dTime )
 	{   //Down
 		SetPosition( GetPosition() + NNPoint( 0.f, 1.f) * dTime * 100.f );
 	}
-	//Change Image By now Frame.
-
+	
 	
 }
 void CPlayer::Render()
