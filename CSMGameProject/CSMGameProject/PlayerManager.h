@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include "Player.h"
@@ -28,14 +29,10 @@ public:
 	void UpdatePlayerInfo(PlayerInfo info);
 
 	int GetMyPlayerId() { return m_MyPlayerId; };
-private:
-	
-public:
 
 private:
-	std::map<int,CPlayer*>m_Players;
+	std::map<int,CPlayer*> m_Players;
 	CPlayer* m_MyPlayer;
 	int m_MyPlayerId; // init : -1
-	
 };
 
