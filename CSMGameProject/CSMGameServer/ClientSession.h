@@ -8,17 +8,17 @@
 #include "PlayerManager.h"
 
 #define BUFSIZE	(1024*10)
-class ClientSession ;
-class ClientManager ;
-struct DatabaseJobContext ;
+
+class ClientSession;
+class ClientManager;
+struct DatabaseJobContext;
 
 struct OverlappedIO : public OVERLAPPED
 {
-	OverlappedIO() :mObject(nullptr)
-	{}
-
-	ClientSession* mObject ;
-} ;
+	OverlappedIO() 
+		: mObject(nullptr) {}
+	ClientSession* mObject;
+};
 
 class ClientSession
 {
@@ -27,64 +27,64 @@ public:
 		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedRequested(0)
 		, mDbUpdateCount(0)
 	{
-		memset(&mClientAddr, 0, sizeof(SOCKADDR_IN)) ;
+		memset( &mClientAddr, 0, sizeof(SOCKADDR_IN) );
 	}
 	~ClientSession() {}
 
 
+	void	OnRead( size_t len );
+	void	OnWriteComplete( size_t len );
+
+	bool	OnConnect( SOCKADDR_IN* addr );
 	
-	void	OnRead(size_t len) ;
-	void	OnWriteComplete(size_t len) ;
+	bool	PostRecv();
 
-	bool	OnConnect(SOCKADDR_IN* addr) ;
-	
-	bool	PostRecv() ;
+	bool	Send( PacketHeader* pkt );
+	bool	Broadcast( PacketHeader* pkt );
+	bool	BroadcastWithoutSelf( PacketHeader* pkt );
 
-	bool	Send(PacketHeader* pkt) ;
-	bool	Broadcast(PacketHeader* pkt) ;
-	bool	BroadcastWithoutSelf(PacketHeader* pkt) ;
+	void	Disconnect();
 
-	void	Disconnect() ;
+	bool	IsConnected() const { return mConnected; }
 
-	bool	IsConnected() const { return mConnected ; }
-
-	void	DatabaseJobDone(DatabaseJobContext* result) ;
+	void	DatabaseJobDone( DatabaseJobContext* result );
 
 
 	/// 현재 Send/Recv 요청 중인 상태인지 검사하기 위함
-	void	IncOverlappedRequest()		{ ++mOverlappedRequested ; }
-	void	DecOverlappedRequest()		{ --mOverlappedRequested ; }
+	void	IncOverlappedRequest()		{ ++mOverlappedRequested; }
+	void	DecOverlappedRequest()		{ --mOverlappedRequested; }
 	bool	DoingOverlappedOperation() const { return mOverlappedRequested > 0 ; }
 
 private:
-	void	OnTick() ;
+	void	OnTick();
 
-	void	LoginDone(int pid, double x, double y, double z, const char* name) ;
-	void	UpdateDone() ;
-
-
-private:
-	bool			mConnected ;
-	bool			mLogon ;
-	SOCKET			mSocket ;
-
-	int				mPlayerId ;
-	SOCKADDR_IN		mClientAddr ;
-
-	CircularBuffer	mSendBuffer ;
-	CircularBuffer	mRecvBuffer ;
-
-	OverlappedIO	mOverlappedSend ;
-	OverlappedIO	mOverlappedRecv ;
-	int				mOverlappedRequested ;
-
-	int				mDbUpdateCount ; ///< DB에 주기적으로 업데이트 하기 위한 변수
-
-	friend class ClientManager ;
-} ;
+	void	LoginDone( int pid, double x, double y, double z, const char* name );
+	void	UpdateDone();
 
 
+public:
+	std::map<short,void(*)(ClientSession* client, PacketHeader* header, CircularBuffer* buffer)> mPacketHandler;
+	bool			mConnected;
+	bool			mLogon;
+	SOCKET			mSocket;
+
+	int				mPlayerId;
+	SOCKADDR_IN		mClientAddr;
+
+	CircularBuffer	mSendBuffer;
+	CircularBuffer	mRecvBuffer;
+
+	OverlappedIO	mOverlappedSend;
+	OverlappedIO	mOverlappedRecv;
+	int				mOverlappedRequested;
+
+	int				mDbUpdateCount; ///< DB에 주기적으로 업데이트 하기 위한 변수
+
+	friend class ClientManager;
+};
 
 
-void CALLBACK RecvCompletion(DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED lpOverlapped, DWORD dwFlags) ;
-void CALLBACK SendCompletion(DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED lpOverlapped, DWORD dwFlags) ;
+
+
+void CALLBACK RecvCompletion( DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED lpOverlapped, DWORD dwFlags );
+void CALLBACK SendCompletion( DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPED lpOverlapped, DWORD dwFlags );
