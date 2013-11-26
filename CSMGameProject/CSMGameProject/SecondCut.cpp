@@ -19,9 +19,9 @@ SecondCut::~SecondCut()
 
 void SecondCut::Render()
 {
-	SecondCut::Render();
+	StoryCut::Render();
 }
 void SecondCut::Update( float dTime )
 {
-	SecondCut::Update( dTime );
+	StoryCut::Update( dTime );
 }
