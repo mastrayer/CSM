@@ -85,6 +85,7 @@
     <ClCompile Include="CameraSample.cpp" />
     <ClCompile Include="FirstCut.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
+    <ClCompile Include="GameUISet.cpp" />
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
     <ClInclude Include="FirstCut.h" />
+    <ClInclude Include="GameUISet.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Player.h" />
