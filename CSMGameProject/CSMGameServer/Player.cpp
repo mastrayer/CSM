@@ -27,6 +27,10 @@ void Player::TransState(short state)
 	case PLAYER_STATE_IDLE:
 		{
 			mPlayerState = state;
+
+			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+			mClient->Broadcast(&outPacket);
 			break;
 		}
 	case PLAYER_STATE_WALK:
@@ -59,6 +63,10 @@ void Player::TransState(short state)
 		{
 			mResponTime = 5.f;
 			mPlayerState = state;
+
+			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+			mClient->Broadcast(&outPacket);
 			break;
 		}
 	default:
