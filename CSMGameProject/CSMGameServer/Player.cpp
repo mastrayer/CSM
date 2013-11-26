@@ -56,5 +56,6 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mX = mPosition.x;
 	mPlayerInfo.mY = mPosition.y;
 	mPlayerInfo.mPlayerId = mPlayerId;
+	mPlayerInfo.mAngle = mRotation;
 	return mPlayerInfo;
 }
