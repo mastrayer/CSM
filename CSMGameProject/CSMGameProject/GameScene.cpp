@@ -1,10 +1,12 @@
+
 #include "GameScene.h"
 #include "NNApplication.h"
 #include "PacketType.h"
 #include "NNNetworkSystem.h"
 #include "PacketHandler.h"
 
-CGameScene::CGameScene(void):m_NowGameKeyStates(),m_Angle(0),m_LastAngleChangedTime(timeGetTime())
+CGameScene::CGameScene(void) : 
+	m_NowGameKeyStates(), m_Angle(0), m_LastAngleChangedTime(timeGetTime())
 {
 	m_LoginHandler = new LoginHandler();
 	m_LoginBroadcastHandler = new LoginBroadcastHandler();
@@ -31,7 +33,6 @@ CGameScene::CGameScene(void):m_NowGameKeyStates(),m_Angle(0),m_LastAngleChangedT
 	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
-
 }
 
 
