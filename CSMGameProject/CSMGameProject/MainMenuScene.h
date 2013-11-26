@@ -24,7 +24,10 @@ public:
 
 private:
 	NNSprite * m_MainMenuImage;
+	NNSprite * m_MainMenuSellcetionBar;
 	NNLabel *m_MianMenuLable[2];
+
+	unsigned int m_MenuSellction;
 	//NNLabel * m_StartLabel;
 	//NNLabel * m_ExitLabel;
 };
