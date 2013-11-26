@@ -14,10 +14,10 @@ CGameScene::CGameScene(void) :
 	m_LogoutHandler = new LogoutHandler();
 	m_MouseAngleUpdateHandler = new MouseAngleUpdateHandler();
 	m_GameMap = CGameMap::Create();
-	AddChild(m_GameMap);
+	AddChild( m_GameMap );
 
-	m_FPSLbael = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
-	AddChild(m_FPSLbael);
+	m_FPSLabel = NNLabel::Create( L"Normal Label", L"¸¼Àº °íµñ", 35.f );
+	AddChild( m_FPSLabel );
 
 	NNNetworkSystem::GetInstance()->Init();
 
@@ -27,14 +27,12 @@ CGameScene::CGameScene(void) :
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_LOGOUT,m_LogoutHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_MOUSEANGLE,m_MouseAngleUpdateHandler);
 
-
 	NNNetworkSystem::GetInstance()->Connect("127.0.0.1",9001);//10.73.44.30",9001);
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 }
-
 
 CGameScene::~CGameScene(void)
 {
@@ -44,20 +42,21 @@ void CGameScene::Render()
 {
 	NNScene::Render();
 }
+
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
 	swprintf_s(m_FPSLabelBuff,L"%d",(int)NNApplication::GetInstance()->GetFPS());
-	m_FPSLbael->SetString(m_FPSLabelBuff);
+	m_FPSLabel->SetString(m_FPSLabelBuff);
 
-	if(CPlayerManager::GetInstance()->IsLogin() == true)
+	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
 		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 			CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
 			,0.99f));
 
-		if( isChangedGameKeyStates() == true)
+		if( isChangedGameKeyStates() == true )
 		{
 			m_LastAngleChangedTime = timeGetTime();
 			m_Angle = GetNowAngle();

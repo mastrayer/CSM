@@ -106,6 +106,7 @@
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="FirstCut.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Player.h" />

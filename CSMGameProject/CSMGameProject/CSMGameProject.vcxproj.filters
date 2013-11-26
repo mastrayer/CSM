@@ -46,6 +46,8 @@
     <Filter Include="Game\Packet\KeyState">
       <UniqueIdentifier>{d412ab81-16ec-448c-8ad1-2a2234522e3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\MainMenuScene">
+      <UniqueIdentifier>{fb60ef72-a0b7-4f59-b4c0-35e304e53032}</UniqueIdentifier>
     <Filter Include="Game\Scene\StoryScene">
       <UniqueIdentifier>{1a663b57-cc6c-4270-92fa-1ff8c2d43ee7}</UniqueIdentifier>
     </Filter>
@@ -180,6 +182,8 @@
     <ClInclude Include="PacketHandler.h">
       <Filter>Game\Packet\Default</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Game\Scene\MainMenuScene</Filter>
     <ClInclude Include="StoryScene.h">
       <Filter>Game\Scene\StoryScene</Filter>
     </ClInclude>
