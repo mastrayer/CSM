@@ -87,6 +87,7 @@
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />
+    <ClCompile Include="MouseAngleUpdateHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="FMODSoundSample.cpp" />
     <ClCompile Include="GameMap.cpp" />

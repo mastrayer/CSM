@@ -5,6 +5,18 @@
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
 
+class MouseAngleUpdateHandler : public NNBaseHandler
+{
+public:
+	MouseAngleUpdateHandler();
+	virtual ~MouseAngleUpdateHandler();
+	
+	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
+
+	MouseAngleUpdateRequest m_MouseAngleUpdateRequest;
+	MouseAngleUpdateResult m_MouseAngleUpdateResult;
+};
+
 class GameKeyStatesUpdateHandler : public NNBaseHandler
 {
 public:

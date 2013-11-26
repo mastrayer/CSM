@@ -19,6 +19,8 @@
 #define PKT_CS_KEYSTATE 4
 #define PKT_SC_KEYSTATE 5
 #define PKT_SC_LOGOUT 6
+#define PKT_CS_MOUSEANGLE 7
+#define PKT_SC_MOUSEANGLE 8
 
 struct GameKeyStates
 {
@@ -141,4 +143,25 @@ struct LogoutResult : public NNPacketHeader
 	int m_PlayerId;
 };
 
+struct MouseAngleUpdateRequest : public NNPacketHeader
+{
+	MouseAngleUpdateRequest()
+	{
+		m_Size = sizeof(MouseAngleUpdateRequest);
+		m_Type = PKT_CS_MOUSEANGLE;
+	}
+	int m_PlayerId;
+	float m_Angle;
+};
+
+struct MouseAngleUpdateResult : public NNPacketHeader
+{
+	MouseAngleUpdateResult()
+	{
+		m_Size = sizeof(MouseAngleUpdateResult);
+		m_Type = PKT_SC_MOUSEANGLE;
+	}
+	int m_PlayerId;
+	float m_Angle;
+};
 #pragma pack(pop)

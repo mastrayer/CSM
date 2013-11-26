@@ -152,6 +152,21 @@ void ClientSession::OnRead(size_t len)
 					return;
 			}
 			break ;
+			case PKT_CS_MOUSEANGLE:
+			{
+				MouseAngleUpdateRequest inPacket ;
+				mRecvBuffer.Read((char*)&inPacket, header.mSize);
+
+				Player* _player = GPlayerManager->GetPlayer(inPacket.mPlayerId);
+				_player->SetRotation(inPacket.mAngle);
+				MouseAngleUpdateResult outPacket = MouseAngleUpdateResult();
+				outPacket.mPlayerId = inPacket.mPlayerId;
+				outPacket.mAngle = inPacket.mAngle;
+
+				if( !Broadcast(&outPacket) )
+					return;
+			}
+			break ;
 			default:
 				{
 					/// 여기 들어오면 이상한 패킷 보낸거다.

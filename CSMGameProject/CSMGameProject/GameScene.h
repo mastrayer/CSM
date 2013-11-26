@@ -20,6 +20,7 @@
 		LoginHandler* m_LoginHandler;
 		LoginBroadcastHandler* m_LoginBroadcastHandler;
 		LogoutHandler* m_LogoutHandler;
+		MouseAngleUpdateHandler* m_MouseAngleUpdateHandler;
 		float m_Angle;
 		DWORD m_LastAngleChangedTime;
 	public:

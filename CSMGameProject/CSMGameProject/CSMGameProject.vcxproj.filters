@@ -109,6 +109,9 @@
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp">
       <Filter>Game\Packet\KeyState</Filter>
     </ClCompile>
+    <ClCompile Include="MouseAngleUpdateHandler.cpp">
+      <Filter>Game\Packet\KeyState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
