@@ -29,13 +29,13 @@ MainMenuScene::MainMenuScene()
 	m_MainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
 	AddChild( m_MainMenuSellcetionBar ) ;
 
-	m_MianMenuLable[MENU_PLAY] = NNLabel::Create( L"Play", L"¸¼Àº °íµñ", 35.f );
-	m_MianMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
-	AddChild( m_MianMenuLable[MENU_PLAY] );
+	m_MainMenuLable[MENU_PLAY] = NNLabel::Create( L"Play", L"¸¼Àº °íµñ", 35.f );
+	m_MainMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
+	AddChild( m_MainMenuLable[MENU_PLAY] );
 
-	m_MianMenuLable[MENU_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
-	m_MianMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
-	AddChild( m_MianMenuLable[MENU_EXIT] );
+	m_MainMenuLable[MENU_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
+	m_MainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
+	AddChild( m_MainMenuLable[MENU_EXIT] );
 
 }
 
