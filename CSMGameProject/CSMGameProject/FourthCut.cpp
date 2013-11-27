@@ -16,7 +16,7 @@ FourthCut::FourthCut()
 	m_StoryTextBox->SetCenter( m_StoryTextBox->GetImageWidth()/2.f, m_StoryTextBox->GetImageHeight()/2.f );
 	AddChild( m_StoryTextBox );
 
-	m_Text = NNLabel::Create( L"하지만 신틸리케는 흑화되어 다음 정령왕에게 왕좌를 주지 않으려 음모를 꾸밉니다.", L"맑은 고딕", 20.f );
+	m_Text = NNLabel::Create( L"하지만 신틸리케는 흑화되어\n 다음 정령왕에게 왕좌를 주지 않으려 음모를 꾸밉니다.", L"맑은 고딕", 20.f );
 	AddChild( m_Text );
 
 	m_Text->SetPosition( 100.f, 460.f );

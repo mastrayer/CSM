@@ -16,7 +16,7 @@ FifthCut::FifthCut()
 	m_StoryTextBox->SetCenter( m_StoryTextBox->GetImageWidth()/2.f, m_StoryTextBox->GetImageHeight()/2.f );
 	AddChild( m_StoryTextBox );
 
-	m_Text = NNLabel::Create( L"다음 정령왕이 되어 악의 정령왕 신틸리케를 무찔러주세요. 일어나세요, 용사여...", L"맑은 고딕", 20.f );
+	m_Text = NNLabel::Create( L"다음 정령왕이 되어 악의 정령왕 신틸리케를 무찔러주세요.\n일어나세요, 용사여...", L"맑은 고딕", 20.f );
 	AddChild( m_Text );
 
 	m_Text->SetPosition( 100.f, 460.f );
@@ -24,7 +24,6 @@ FifthCut::FifthCut()
 }
 FifthCut::~FifthCut()
 {
-
 }
 
 void FifthCut::Render()
