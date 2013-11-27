@@ -5,8 +5,10 @@
 #include "NNNetworkSystem.h"
 
 CPlayer::CPlayer( void )
-	: m_PlayerSprite(NULL), m_PlayerState(IDLE)
+	: m_PlayerSprite(NULL)
 {
+	TransState(PlayerState::IDLE);
+
 	m_PlayerUI = PlayerUI::Create();
 	AddChild( m_PlayerUI );
 }
