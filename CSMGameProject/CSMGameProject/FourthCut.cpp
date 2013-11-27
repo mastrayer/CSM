@@ -11,10 +11,15 @@ FourthCut::FourthCut()
 	m_Background->SetCenter( m_Background->GetImageWidth()/2.f, m_Background->GetImageHeight()/2.f );
 	AddChild( m_Background );
 
+	m_StoryTextBox = NNSprite::Create( L"Sprite/StoryTextBox.png");
+	m_StoryTextBox->SetPosition( width/2, height/2 + 200.f );
+	m_StoryTextBox->SetCenter( m_StoryTextBox->GetImageWidth()/2.f, m_StoryTextBox->GetImageHeight()/2.f );
+	AddChild( m_StoryTextBox );
+
 	m_Text = NNLabel::Create( L"하지만 신틸리케는 자신의 권한과 힘에 흑화되었습니다.", L"맑은 고딕", 20.f );
 	AddChild( m_Text );
 
-	m_Text->SetPosition( 30.f, 500.f );
+	m_Text->SetPosition( 100.f, 460.f );
 	m_Text->SetBold( true );
 }
 FourthCut::~FourthCut()

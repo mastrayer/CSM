@@ -13,7 +13,6 @@ MainMenuScene::MainMenuScene()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 	
-	
 	m_MainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
 	m_MainMenuImage->SetPosition( width/2, height/2 );
 	m_MainMenuImage->SetCenter( m_MainMenuImage->GetImageWidth()/2.f, m_MainMenuImage->GetImageHeight()/2.f + 70.f );

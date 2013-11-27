@@ -17,5 +17,7 @@ public:
 	NNCREATE_FUNC(FifthCut);
 private:
 	NNSprite* m_Background;
+	NNSprite *m_StoryTextBox;
+
 	NNLabel* m_Text;
 };
