@@ -5,9 +5,10 @@
 #include "NNNetworkSystem.h"
 
 CPlayer::CPlayer( void )
-	: m_PlayerSprite(NULL)
+	: m_PlayerSprite(NULL), m_PlayerState(IDLE)
 {
-	TransState(PlayerState::IDLE);
+	m_PlayerUI = PlayerUI::Create();
+	AddChild( m_PlayerUI );
 }
 
 CPlayer::~CPlayer( void )
@@ -55,9 +56,6 @@ void CPlayer::TransState( PlayerState state )
 
 	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
 	/* // */
-
-	m_PlayerUI = PlayerUI::Create();
-	AddChild( m_PlayerUI );
 }
 
 
