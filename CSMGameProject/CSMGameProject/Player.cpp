@@ -45,6 +45,14 @@ void CPlayer::TransState( PlayerState state )
 			imagePath = L"Sprite/die_0.png";
 		}
 		break;
+	case USER_ACTIVE_SKILL:
+		{
+			imagePath = L"Sprite/skill_0.png";
+		}
+	case TYPE_ACTIVE_SKILL:
+		{
+			imagePath = L"Sprite/skill_1.png";
+		}
 	default:
 		break;
 	}
@@ -59,7 +67,6 @@ void CPlayer::TransState( PlayerState state )
 	m_PlayerUI = PlayerUI::Create();
 	AddChild( m_PlayerUI );
 }
-
 
 void CPlayer::Update( float dTime )
 {
@@ -82,7 +89,7 @@ void CPlayer::Update( float dTime )
 			{   //Right
 				SetPosition( GetPosition() + NNPoint( 1.f, 0.f) * dTime * 100.f );
 			}
-			if (m_GameKeyStates.upDirectKey == KEYSTATE_PRESSED )
+			if ( m_GameKeyStates.upDirectKey == KEYSTATE_PRESSED )
 			{   //UP
 				SetPosition( GetPosition() + NNPoint( 0.f, -1.f) * dTime * 100.f );
 			}
@@ -90,8 +97,8 @@ void CPlayer::Update( float dTime )
 			{   //Down
 				SetPosition( GetPosition() + NNPoint( 0.f, 1.f) * dTime * 100.f );
 			}
-		}
 		break;
+		}
 	case ATTAACK:
 		{
 		}
@@ -100,14 +107,31 @@ void CPlayer::Update( float dTime )
 		{
 		}
 		break;
+		// 스킬 발동 키 추가 by mooneegee
+	case USER_ACTIVE_SKILL:
+		{
+			if ( m_GameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED )
+			{   // activeSkill 
+			}
+		}
+		break;
+	case TYPE_ACTIVE_SKILL:
+		{
+			if ( m_GameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED )
+			{   // typeSkill
+			}
+		}
+		break;
 	default:
 		break;
 	}
 }
+
 void CPlayer::SetPlayerHP(int hp)
 {
 	//not yet
 }
+
 void CPlayer::Render()
 {
 	NNObject::Render();
