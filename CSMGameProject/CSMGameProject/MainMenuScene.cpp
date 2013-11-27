@@ -16,7 +16,7 @@ MainMenuScene::MainMenuScene()
 	
 	m_MainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
 	m_MainMenuImage->SetPosition( width/2, height/2 );
-	m_MainMenuImage->SetCenter( m_MainMenuImage->GetPositionX()/2.f, m_MainMenuImage->GetPositionY()/2.f + 70.f );
+	m_MainMenuImage->SetCenter( m_MainMenuImage->GetImageWidth()/2.f, m_MainMenuImage->GetImageHeight()/2.f + 70.f );
 	AddChild( m_MainMenuImage );
 
 	/* MenuSellectionBar type
@@ -25,7 +25,7 @@ MainMenuScene::MainMenuScene()
 	AddChild( m_MainMenuSellcetionBar ) ;
 	*/
 
-	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.gif");
+	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
 	m_MainMenuSellcetionBar->SetPosition( width/2, height/2 );
 	m_MainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
 	AddChild( m_MainMenuSellcetionBar ) ;

@@ -1,7 +1,7 @@
 
 #include "NNApplication.h"
 #include "GameScene.h"
-
+#include "StoryScene.h"
 #include "MainMenuScene.h"
 
 #ifdef _DEBUG

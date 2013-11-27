@@ -16,7 +16,7 @@ public:
 	NNCREATE_FUNC(StoryScene);
 
 private:
-	StoryCut* m_StoryCut[2];
+	StoryCut* m_StoryCut[5];
 
 	int m_CutState;
 };

@@ -83,7 +83,9 @@
   <ItemGroup>
     <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="CameraSample.cpp" />
+    <ClCompile Include="FifthCut.cpp" />
     <ClCompile Include="FirstCut.cpp" />
+    <ClCompile Include="FourthCut.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
     <ClCompile Include="GameUISet.cpp" />
     <ClCompile Include="HPUpdateHandler.cpp" />
@@ -104,6 +106,7 @@
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="SecondCut.cpp" />
+    <ClCompile Include="ThirdCut.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="StoryScene.cpp" />
     <ClCompile Include="XMLSample.cpp" />
@@ -111,7 +114,9 @@
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="FifthCut.h" />
     <ClInclude Include="FirstCut.h" />
+    <ClInclude Include="FourthCut.h" />
     <ClInclude Include="GameUISet.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="MainMenuScene.h" />
@@ -130,6 +135,7 @@
     <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="StoryCut.h" />
     <ClInclude Include="StoryScene.h" />
+    <ClInclude Include="ThirdCut.h" />
     <ClInclude Include="XMLSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,12 +1,18 @@
 
 #include "FirstCut.h"
+#include "NNApplication.h"
 
 FirstCut::FirstCut()
 {
-	m_Background = NNSprite::Create( L"Sprite/map.png" );
+	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
+	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
+
+	m_Background = NNSprite::Create( L"Sprite/StoryScene_0.png" );
+	m_Background->SetPosition( width/2, height/2 );
+	m_Background->SetCenter( m_Background->GetImageWidth()/2.f, m_Background->GetImageHeight()/2.f );
 	AddChild( m_Background );
 
-	m_Text = NNLabel::Create( L"테스트 테스트\n테스트 테스트 입니다.", L"맑은 고딕", 20.f );
+	m_Text = NNLabel::Create( L"수많은 정령들이 해피해피하게 사네요.", L"맑은 고딕", 20.f );
 	AddChild( m_Text );
 
 	m_Text->SetPosition( 30.f, 500.f );

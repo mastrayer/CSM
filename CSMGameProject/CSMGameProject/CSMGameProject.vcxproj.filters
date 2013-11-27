@@ -70,9 +70,6 @@
     <Filter Include="Game\Scene\StoryScene\Object\StoryCut\FirstCut">
       <UniqueIdentifier>{8dc7f054-bd56-448d-a17b-ab8f11f3e5a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\SecondCut">
-      <UniqueIdentifier>{d3ea04be-6e64-40a2-a3b5-e02af84495d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\GameScene\Object\Player\PlayerUI">
       <UniqueIdentifier>{cf02cf55-c6ec-4a6f-b586-47b26fd632f2}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,18 @@
     </Filter>
     <Filter Include="Game\Scene\IntroSecne">
       <UniqueIdentifier>{b184ee9d-ecea-4992-b705-eb178ddd099e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\ThirdCut">
+      <UniqueIdentifier>{56998a35-258b-4398-bcbb-cbc03e5853ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\SecondCut">
+      <UniqueIdentifier>{d3ea04be-6e64-40a2-a3b5-e02af84495d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\FourthCut">
+      <UniqueIdentifier>{8bd7c032-381e-45d8-a8e9-c54378d41cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\StoryScene\Object\StoryCut\FifthCut">
+      <UniqueIdentifier>{d5d5e4da-1ef6-4461-8bd8-3ec5f686903a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +172,15 @@
     <ClCompile Include="IntroScene.cpp">
       <Filter>Game\Scene\IntroSecne</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdCut.cpp">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\ThirdCut</Filter>
+    </ClCompile>
+    <ClCompile Include="FourthCut.cpp">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FourthCut</Filter>
+    </ClCompile>
+    <ClCompile Include="FifthCut.cpp">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FifthCut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -230,6 +248,15 @@
     </ClInclude>
     <ClInclude Include="IntroScene.h">
       <Filter>Game\Scene\IntroSecne</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\ThirdCut</Filter>
+    </ClInclude>
+    <ClInclude Include="FourthCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FourthCut</Filter>
+    </ClInclude>
+    <ClInclude Include="FifthCut.h">
+      <Filter>Game\Scene\StoryScene\Object\StoryCut\FifthCut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

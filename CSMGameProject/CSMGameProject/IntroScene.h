@@ -25,7 +25,7 @@ public:
 private:
 	NNSprite * m_IntroSceneImage;
 	NNSprite * m_IntroNextSellcetionImage;
-	NNLabel *m_IntroSceneMenu[2];
+	NNLabel * m_IntroSceneMenu[2];
 
 	unsigned int m_IntroSceneIndex;
 	
