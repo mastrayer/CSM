@@ -84,7 +84,7 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, m_MouseAngleUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, m_HPUpdateHandler );
 
-	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );//10.73.44.30",9001);
+	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
 }
