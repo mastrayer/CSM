@@ -9,15 +9,36 @@ IntroScene::IntroScene()
 	: m_IntroSceneImage(nullptr)
 {
 	m_IntroSceneIndex = 0;
-
+	/*
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 	
 	
-	m_IntroSceneImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
+	m_IntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_0.png" );
 	m_IntroSceneImage->SetPosition( width/2, height/2 );
 	m_IntroSceneImage->SetCenter( m_IntroSceneImage->GetPositionX()/2.f, m_IntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( m_IntroSceneImage );
+
+	m_IntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_1.png" );
+	m_IntroSceneImage->SetPosition( width/2, height/2 );
+	m_IntroSceneImage->SetCenter( m_IntroSceneImage->GetPositionX()/2.f, m_IntroSceneImage->GetPositionY()/2.f + 70.f );
+	AddChild( m_IntroSceneImage );
+
+	m_IntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_2.png" );
+	m_IntroSceneImage->SetPosition( width/2, height/2 );
+	m_IntroSceneImage->SetCenter( m_IntroSceneImage->GetPositionX()/2.f, m_IntroSceneImage->GetPositionY()/2.f + 70.f );
+	AddChild( m_IntroSceneImage );
+
+	m_IntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_3.png" );
+	m_IntroSceneImage->SetPosition( width/2, height/2 );
+	m_IntroSceneImage->SetCenter( m_IntroSceneImage->GetPositionX()/2.f, m_IntroSceneImage->GetPositionY()/2.f + 70.f );
+	AddChild( m_IntroSceneImage );
+
+	m_IntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_4.png" );
+	m_IntroSceneImage->SetPosition( width/2, height/2 );
+	m_IntroSceneImage->SetCenter( m_IntroSceneImage->GetPositionX()/2.f, m_IntroSceneImage->GetPositionY()/2.f + 70.f );
+	AddChild( m_IntroSceneImage );
+	*/
 
 	/* MenuSellectionBar type
 	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
@@ -25,7 +46,8 @@ IntroScene::IntroScene()
 	AddChild( m_MainMenuSellcetionBar ) ;
 	*/
 
-	m_IntroNextSellcetionImage = NNSprite::Create( L"Sprite/MenuSellecter.gif");
+	/*
+	m_IntroNextSellcetionImage = NNSprite::Create( L"Sprite/MenuSellecter.png");
 	m_IntroNextSellcetionImage->SetPosition( width/2, height/2 );
 	m_IntroNextSellcetionImage->SetScale( 0.5f, 0.5f );
 	AddChild( m_IntroNextSellcetionImage ) ;
@@ -38,7 +60,7 @@ IntroScene::IntroScene()
 	m_IntroSceneMenu[MENU_INTRO_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
 	m_IntroSceneMenu[MENU_INTRO_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
 	AddChild( m_IntroSceneMenu[MENU_INTRO_EXIT] );
-
+	*/
 }
 
 IntroScene::~IntroScene()
