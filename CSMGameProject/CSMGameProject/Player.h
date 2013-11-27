@@ -14,6 +14,8 @@ enum PlayerState
 	WALK = 1,
 	ATTAACK = 2,
 	DIE = 3,
+	USER_ACTIVE_SKILL = 4,
+	TYPE_ACTIVE_SKILL = 5,
 };
 
 class CPlayer : public NNObject

@@ -82,6 +82,9 @@
     <Filter Include="Game\Scene\GameScene\UI">
       <UniqueIdentifier>{79ffcc91-c04f-4c4f-9c9e-9c8db75f4648}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\IntroSecne">
+      <UniqueIdentifier>{b184ee9d-ecea-4992-b705-eb178ddd099e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -157,6 +160,9 @@
     <ClCompile Include="HPUpdateHandler.cpp">
       <Filter>Game\Packet\KeyState</Filter>
     </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Game\Scene\IntroSecne</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -221,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="GameUISet.h">
       <Filter>Game\Scene\GameScene\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Game\Scene\IntroSecne</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
