@@ -16,7 +16,7 @@ ThirdCut::ThirdCut()
 	m_StoryTextBox->SetCenter( m_StoryTextBox->GetImageWidth()/2.f, m_StoryTextBox->GetImageHeight()/2.f );
 	AddChild( m_StoryTextBox );
 
-	m_Text = NNLabel::Create( L"이번 정령왕은 신틸리케입니다. \n신틸레케는 자신의 임무를 다할 것을 약속하였습니다.", L"맑은 고딕", 20.f );
+	m_Text = NNLabel::Create( L"현재 정령왕은 신틸리케입니다. \n신틸레케는 최선을 다해 자신의 소명을 다하였습니다.", L"맑은 고딕", 20.f );
 	AddChild( m_Text );
 
 	m_Text->SetPosition( 100.f, 460.f );
