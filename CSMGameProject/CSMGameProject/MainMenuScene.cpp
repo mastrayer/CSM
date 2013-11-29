@@ -24,6 +24,7 @@ MainMenuScene::MainMenuScene()
 	AddChild( m_MainMenuSellcetionBar ) ;
 	*/
 
+
 	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
 	m_MainMenuSellcetionBar->SetPosition( width/2, height/2 );
 	m_MainMenuSellcetionBar->SetScale( 0.5f, 0.5f );

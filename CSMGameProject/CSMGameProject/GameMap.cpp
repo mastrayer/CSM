@@ -92,10 +92,13 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 	// Tile Info
 	{
-		for(int i=0; i<m_MapInfo.mapHeight; ++i)
+		//for(int i=0; i<m_MapInfo.mapHeight; ++i)
+		for(int i=0; i<5; ++i)
 		{
-			for(int j=0; j<m_MapInfo.mapWidth; ++j)
+			//for(int j=0; j<m_MapInfo.mapWidth; ++j)
+			for(int j=0; j<5; ++j)
 			{
+				printf("[%d/%d]\n",i,j);
 				int tileSetIndex, x, y;
 
 				tile = "t" + std::to_string(i) + "-" + std::to_string(j);
@@ -111,7 +114,7 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 
 				m_Tile[i][j]->m_image = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
-				m_Tile[i][j]->m_image->SetCutSize(x,y,64.f,64.f);
+				m_Tile[i][j]->m_image->SetCutSize(x,y,x + 64.f,y + 64.f);
 				m_Tile[i][j]->m_image->SetPosition(i * 64, j * 64);
 
 				AddChild(m_Tile[i][j]->m_image);
