@@ -41,7 +41,7 @@ public:
 	void Render();
 	void Update( float dTime );
 
-	void CreateMapInfo(NNXML* xml);
+	//void CreateMap(NNXML* xml, );
 	void convertFileToMap(std::wstring path);
 
 	static CGameMap* Create(std::wstring path)
@@ -56,4 +56,5 @@ private:
 	NNSprite* m_MapSprite;
 	NNXML* m_MapXMLData;
 	MapInfo m_MapInfo;
+	CTile ***m_Tile;
 };
