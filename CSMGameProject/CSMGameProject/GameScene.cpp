@@ -16,6 +16,7 @@ CGameScene::CGameScene(void) :
 
 	// GameMap Create
 	m_GameMap = CGameMap::Create(L"map/sample.csm");
+
 	AddChild( m_GameMap );
 
 	InitNetworkSetting();

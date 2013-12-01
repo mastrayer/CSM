@@ -7,6 +7,7 @@
 #include "NNSpriteAtlas.h"
 
 #define ATTRIBUTE_MOVE 0x01
+#define TILESIZE 64
 
 class CTile : public NNObject
 {
@@ -25,19 +26,16 @@ public:
 	int m_height;
 	bool m_isFull;
 };
-struct MapInfo
-{
-	int mapWidth, mapHeight;
-	CTile **tile;
-	NNSprite *image;
-};
-
 class CGameMap : public NNObject
 {
 public:
 	CGameMap(std::wstring path);
 	virtual ~CGameMap(void);
 	
+	int GetAttribute(int i, int j) { return m_Tile[i][j]->m_attribute; }
+	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
+	bool isValidTile(NNPoint p);
+
 	void Render();
 	void Update( float dTime );
 
@@ -50,11 +48,14 @@ public:
 		return pInstance;
 	}
 	//NNCREATE_FUNC(CGameMap);
-
+	
 
 private:
 	NNSprite* m_MapSprite;
 	NNXML* m_MapXMLData;
-	MapInfo m_MapInfo;
 	CTile ***m_Tile;
+	int m_Width, m_Height;
+
+protected:
+	NNPoint positionToArrayIndex( NNPoint p );
 };
