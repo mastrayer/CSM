@@ -171,7 +171,7 @@ ORIGINAL:
 				tile = "t" + std::to_string(i) + "-" + std::to_string(j);
 				
 				a = GetTickCount();
-				m_Tile[i][j]->m_isFull = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/isFull").c_str() == "true" ? true : false;
+				m_Tile[i][j]->m_isFull = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/@isFull").c_str() == "true" ? true : false;
 				en(a);
 
 				a = GetTickCount();
