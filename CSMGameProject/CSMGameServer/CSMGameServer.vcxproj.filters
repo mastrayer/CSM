@@ -43,6 +43,75 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="NNZip.cpp">
+      <Filter>Core\Util\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="NNXML.cpp">
+      <Filter>Core\Util\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="NNResourceManager.cpp">
+      <Filter>Core\Util\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\zip\unzip.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\zip\zip.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\action_store.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\htmlutil.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\lex_util.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\node_set.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinystr.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxml.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxmlerror.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tinyxmlparser.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\tokenlist.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xml_util.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_expression.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_processor.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_stack.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_static.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_stream.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\xpath_syntax.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\MD5\md5.cpp">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Game\GameMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -108,6 +177,78 @@
     <ClInclude Include="Main.h">
       <Filter>Main</Filter>
     </ClInclude>
+    <ClInclude Include="NNZip.h">
+      <Filter>Core\Util\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="NNXML.h">
+      <Filter>Core\Util\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="NNResourceManager.h">
+      <Filter>Core\Util\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\zip\unzip.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\zip\zip.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\action_store.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\byte_stream.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\htmlutil.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\lex_token.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\lex_util.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\node_set.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinystr.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinyxml.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tinyxpath_conf.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\tokenlist.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xml_util.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_expression.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_processor.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_stack.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_static.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_stream.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\TinyXML\xpath_syntax.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\MD5\md5.h">
+      <Filter>Core\Util\XML\Library</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Game\GameMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -172,6 +313,15 @@
     </Filter>
     <Filter Include="Main">
       <UniqueIdentifier>{8a87a3d1-e1c1-4ae6-b69b-c37dd98a9c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util\XML">
+      <UniqueIdentifier>{e03b738c-cb8a-4342-b349-52b8819d1761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Util\XML\Library">
+      <UniqueIdentifier>{e637f48b-bbaa-4e63-85e7-12de5227fa33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameMap">
+      <UniqueIdentifier>{07d653ee-6b89-420c-85e8-5e82fd7f6fd3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
