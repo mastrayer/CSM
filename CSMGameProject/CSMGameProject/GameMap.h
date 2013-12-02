@@ -49,6 +49,7 @@ public:
 	}
 	//NNCREATE_FUNC(CGameMap);
 	
+	
 
 private:
 	NNSprite* m_MapSprite;

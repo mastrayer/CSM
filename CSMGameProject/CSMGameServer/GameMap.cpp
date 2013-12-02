@@ -17,7 +17,7 @@ GameMap::GameMap(std::wstring path)
 GameMap::~GameMap(void)
 {
 }
- 
+
 void en(int b)
 {
 	static int c = 0;
@@ -75,12 +75,26 @@ void GameMap::convertFileToMap( std::wstring path )
 	printf("################# TileInfo \n");
 	// Tile Info
 	{
+		TiXmlHandle docHandle( m_MapXMLData->GetDoc() );
+		TiXmlElement* child = docHandle.FirstChild( "map" ).FirstChild( "tileInfo").FirstChild("tile").ToElement();
 
+		for( child; child; child=child->NextSiblingElement() )
+		{
+			int i = atoi(child->Attribute("Y"));
+			int j = atoi(child->Attribute("X"));
+
+			m_Tile[i][j]->m_isFull = strcmp(child->Attribute("isFull"), "true") == 0 ? true : false;
+			TiXmlElement* tileAttribute = child->FirstChild("Attribute")->ToElement();
+			m_Tile[i][j]->m_attribute = strcmp(tileAttribute->Attribute("move") , "true") == 0 ? 1 : 0;
+			m_Tile[i][j]->m_height = atoi(tileAttribute->Attribute("height"));
+			printf("%d / %d\n",i,j);
+		}
+		/*
 		for(int i=0; i<m_Height; ++i)
-		//for(int i=0; i<2; ++i)
+			//for(int i=0; i<2; ++i)
 		{
 			for(int j=0; j<m_Width; ++j)
-			//for(int j=0; j<2; ++j)
+				//for(int j=0; j<2; ++j)
 			{
 				//printf("[%d/%d] ",i,j);
 				int tileSetIndex, x, y;
@@ -91,9 +105,9 @@ void GameMap::convertFileToMap( std::wstring path )
 				m_Tile[i][j]->m_attribute = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() , "true") == 0 ? 1 : 0;
 				m_Tile[i][j]->m_height = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@height").c_str());
 				printf("[%d/%d] (%0.f-%0.f)(%0.f-%0.f) \n",i,j,y + 0.f,y+64.f,x + 0.f,x+64.f);
-				
+
 			}
-		}
+		}*/
 	}
 	printf("################# / TileInfo \n");
 
@@ -118,7 +132,7 @@ bool GameMap::isValidTile( Point p )
 
 	// 이 타일이 빈 타일이거나
 	// 움직일 수 없는 타일이거나
- 	if(tile->m_isFull == false ||
+	if(tile->m_isFull == false ||
 		tile->m_attribute & ATTRIBUTE_MOVE )
 		return false;
 
