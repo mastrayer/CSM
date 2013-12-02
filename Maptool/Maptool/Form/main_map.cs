@@ -70,8 +70,8 @@ namespace Maptool
         }
         private void cellClick(MouseEventArgs e)
         {
-//             if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
-//                 return;
+           if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
+                return;
 
             int x = (e.X / TileSize) * TileSize;
             int y = (e.Y / TileSize) * TileSize;
