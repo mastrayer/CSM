@@ -25,7 +25,9 @@ void CPlayer::TransState( PlayerState state )
 	{
 		RemoveChild( m_PlayerSprite );
 	}
+
 	std::wstring imagePath = L"";
+
 	switch (state)
 	{
 	case IDLE:
@@ -52,10 +54,12 @@ void CPlayer::TransState( PlayerState state )
 		{
 			imagePath = L"Sprite/skill_0.png";
 		}
+		break;
 	case TYPE_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_1.png";
 		}
+		break;
 	default:
 		break;
 	}
