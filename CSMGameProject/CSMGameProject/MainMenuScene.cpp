@@ -2,8 +2,13 @@
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
 #include "NNApplication.h"
+#include "NNAudioSystem.h"
+
+#include "GameMap.h"
 
 #include "StoryScene.h"
+
+#include "GameScene.h"
 
 MainMenuScene::MainMenuScene()
 	: m_MainMenuImage(nullptr)
@@ -12,12 +17,11 @@ MainMenuScene::MainMenuScene()
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
-	
+
 	m_MainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
 	m_MainMenuImage->SetPosition( width/2, height/2 );
 	m_MainMenuImage->SetCenter( m_MainMenuImage->GetImageWidth()/2.f, m_MainMenuImage->GetImageHeight()/2.f + 70.f );
 	AddChild( m_MainMenuImage );
-
 	/* MenuSellectionBar type
 	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
 	m_MainMenuSellcetionBar->SetPosition( width/2 + 200.f, height/2 + 200.f + m_MenuSellction * 50 );
@@ -38,6 +42,8 @@ MainMenuScene::MainMenuScene()
 	m_MainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
 	AddChild( m_MainMenuLable[MENU_EXIT] );
 
+	m_BGM = NNSound::Create("sound/mainBGM.mp3",true,true);
+	NNAudioSystem::GetInstance()->Play( m_BGM ); 
 }
 
 MainMenuScene::~MainMenuScene()

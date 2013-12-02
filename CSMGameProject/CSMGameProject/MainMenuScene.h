@@ -4,6 +4,7 @@
 #include "NNLabel.h"
 #include "NNScene.h"
 #include "NNSprite.h"
+#include "NNSound.h"
 
 enum MENU_LIST
 {
@@ -26,6 +27,7 @@ private:
 	NNSprite * m_MainMenuImage;
 	NNSprite * m_MainMenuSellcetionBar;
 	NNLabel *m_MainMenuLable[2];
+	NNSound *m_BGM;
 
 	unsigned int m_MenuSellction;
 	//NNLabel * m_StartLabel;

@@ -86,7 +86,6 @@ int a;
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	goto ORIGINAL;
-ORIGINAL:
 
 	for(int i=0; i<m_Height; ++i)
 		//for(int i=0; i<5; ++i)
@@ -155,7 +154,7 @@ ORIGINAL:
 	}
 	return;
 
-
+ORIGINAL:
 	printf("################# TileInfo \n");
 	// Tile Info
 	{
