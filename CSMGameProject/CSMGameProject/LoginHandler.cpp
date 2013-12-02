@@ -26,6 +26,7 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 					PostQuitMessage(-1) ;
 				}
 				CPlayerManager::GetInstance()->SetMyPlayerId( m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId );
+				CPlayerManager::GetInstance()->UpdatePlayerInfo(m_LoginResultPacket.m_MyPlayerInfo);
 				//먼저 들어와있던 플레이어의 객체 만들기
 				for(int i=0; i<m_LoginResultPacket.m_NowPlayersLength; i++)
 				{
