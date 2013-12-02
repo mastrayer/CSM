@@ -119,11 +119,11 @@ bool CGameScene::isChangedGameKeyStates()
 {
 	GameKeyStates nowGameKeyState = GetNowGameKeyStates();
 	if( nowGameKeyState.attackKey != m_NowGameKeyStates.attackKey
+		||nowGameKeyState.upDirectKey != m_NowGameKeyStates.upDirectKey
 		||nowGameKeyState.downDirectKey != m_NowGameKeyStates.downDirectKey
 		||nowGameKeyState.leftDirectKey != m_NowGameKeyStates.leftDirectKey
 		||nowGameKeyState.rightDirectKey != m_NowGameKeyStates.rightDirectKey
 		||nowGameKeyState.typeActiveSkillKey != m_NowGameKeyStates.typeActiveSkillKey
-		||nowGameKeyState.upDirectKey != m_NowGameKeyStates.upDirectKey
 		||nowGameKeyState.userActiveSkillKey != m_NowGameKeyStates.userActiveSkillKey)
 		return true;
 	return false;

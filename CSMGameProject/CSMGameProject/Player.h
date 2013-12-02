@@ -44,6 +44,8 @@ private:
 	PlayerState m_PlayerState;
 	GameKeyStates m_GameKeyStates;
 
+	
+
 	friend class PlayerManager;
 };
 
