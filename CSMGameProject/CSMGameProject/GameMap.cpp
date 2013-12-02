@@ -169,29 +169,29 @@ ORIGINAL:
 				int tileSetIndex, x, y;
 
 				tile = "t" + std::to_string(i) + "-" + std::to_string(j);
-
+				
 				a = GetTickCount();
-				m_Tile[i][j]->m_isFull = m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/isFull").c_str() == "true" ? true : false;
+				m_Tile[i][j]->m_isFull = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/isFull").c_str() == "true" ? true : false;
 				en(a);
 
 				a = GetTickCount();
-				tileSetIndex = atoi(m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/TileImageInfo/@Index").c_str());
+				tileSetIndex = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Index").c_str());
 				en(a);
 
 				a = GetTickCount();
-				x = atoi(m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/TileImageInfo/@X").c_str());
+				x = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@X").c_str());
 				en(a);
 
 				a = GetTickCount();
-				y = atoi(m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/TileImageInfo/@Y").c_str());
+				y = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Y").c_str());
 				en(a);
 
 				a = GetTickCount();
-				m_Tile[i][j]->m_attribute = m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/Attribute/@move").c_str() == "true" ? 1 : 0;
+				m_Tile[i][j]->m_attribute = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() == "true" ? 1 : 0;
 				en(a);
 
 				a = GetTickCount();
-				m_Tile[i][j]->m_height = atoi(m_MapXMLData->XPathToString("/map/tileInfo/" + tile + "/Attribute/@height").c_str());
+				m_Tile[i][j]->m_height = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@height").c_str());
 				en(a);
 
 
