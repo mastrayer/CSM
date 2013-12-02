@@ -114,6 +114,8 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN )
 		nowGameKeyState.userActiveSkillKey = KEYSTATE_PRESSED;
+
+	//printf(" @@@@@@@@@@@@@@ %d \n",nowGameKeyState.typeActiveSkillKey);
 	return nowGameKeyState;
 }
 bool CGameScene::isChangedGameKeyStates()

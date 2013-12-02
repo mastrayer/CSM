@@ -69,6 +69,15 @@ void Player::TransState(short state)
 			mClient->Broadcast(&outPacket);
 		}
 		break;
+	case PLAYER_STATE_TYPE_SKILL:
+		{
+			mPlayerState = state;
+
+			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+			mClient->Broadcast(&outPacket);
+		}
+		break;
 	default:
 		break;
 	}
@@ -93,7 +102,8 @@ void Player::Update( float dTime)
 				|| mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )
 			{
 				TransState(PLAYER_STATE_WALK);
-			}
+			}else if ( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
+				TransState(PLAYER_STATE_TYPE_SKILL);
 		}
 		break;
 	case PLAYER_STATE_WALK:
