@@ -56,32 +56,56 @@ void CPlayer::TransState( PlayerState state )
 		{
 			imagePath = L"Sprite/skill_0.png";
 
-			RemoveChild(m_effect);
-			m_effect = NNParticleSystem::Create(L"Sprite/fire.jpg");
-			m_effect->SetMinStartSpeed(300.f);
-			m_effect->SetMaxStartSpeed(400.f);
-			m_effect->SetMinEndSpeed(400.f);
-			m_effect->SetMaxEndSpeed(500.f);
+			RemoveChild(m_UserEffect);
+			m_UserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
+			m_UserEffect->SetMinStartSpeed(300.f);
+			m_UserEffect->SetMaxStartSpeed(400.f);
+			m_UserEffect->SetMinEndSpeed(400.f);
+			m_UserEffect->SetMaxEndSpeed(500.f);
 
-			m_effect->SetCreateParticlePerSecond(60);
-			m_effect->SetSpreadDegree(15.f);
-			m_effect->SetMinLifeTime(0.5f);
-			m_effect->SetMaxLifeTime(0.5f);
-			m_effect->SetDirection(m_Angle);
+			m_UserEffect->SetCreateParticlePerSecond(60);
+			m_UserEffect->SetSpreadDegree(15.f);
+			m_UserEffect->SetMinLifeTime(0.5f);
+			m_UserEffect->SetMaxLifeTime(0.5f);
+			m_UserEffect->SetDirection(m_Angle);
 			
-			m_effect->SetMinStartRodiusX( 50.f );
-			m_effect->SetMinStartRodiusY( 50.f );
-			m_effect->SetMaxStartRodiusX( 100.f );
-			m_effect->SetMaxStartRodiusY( 100.f );
+			m_UserEffect->SetMinStartRodiusX( 50.f );
+			m_UserEffect->SetMinStartRodiusY( 50.f );
+			m_UserEffect->SetMaxStartRodiusX( 100.f );
+			m_UserEffect->SetMaxStartRodiusY( 100.f );
 
-			temp = GetTickCount();
-			
-			AddChild(m_effect);
+			//m_UserEffect->SetSystemLifeTime(0.5f);
+
+			AddChild(m_UserEffect);
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_1.png";
+
+			RemoveChild(m_TypeEffect);
+			
+			m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
+		
+		//	m_TypeEffect->SetCenter( m_PlayerSprite->GetCenterX(), m_PlayerSprite->GetCenterY() );
+
+			m_TypeEffect->SetMinStartSpeed(100.f);
+			m_TypeEffect->SetMaxStartSpeed(110.f);
+			m_TypeEffect->SetMinEndSpeed(120.f);
+			m_TypeEffect->SetMaxEndSpeed(130.f);
+
+			m_TypeEffect->SetCreateParticlePerSecond(60);
+			m_TypeEffect->SetSpreadDegree(360.f);
+			m_TypeEffect->SetMinLifeTime(0.5f);
+			m_TypeEffect->SetMaxLifeTime(0.5f);
+
+			m_TypeEffect->SetMinStartRodiusX( 50.f );
+			m_TypeEffect->SetMinStartRodiusY( 50.f );
+			m_TypeEffect->SetMaxStartRodiusX( 60.f );
+			m_TypeEffect->SetMaxStartRodiusY( 60.f );
+
+			AddChild(m_TypeEffect);			
+			
 		}
 		break;
 	default:
@@ -151,6 +175,7 @@ void CPlayer::Update( float dTime )
 		{
 			if ( m_GameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED )
 			{   // activeSkill 
+				
 			}
 		}
 		break;

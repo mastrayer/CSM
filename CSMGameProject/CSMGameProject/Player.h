@@ -43,8 +43,8 @@ private:
 	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
 	GameKeyStates m_GameKeyStates;
-	NNParticleSystem *m_effect;
-
+	NNParticleSystem *m_TypeEffect;
+	NNParticleSystem *m_UserEffect;
 	int temp;
 	float m_Angle;
 
