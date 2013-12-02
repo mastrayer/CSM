@@ -3,6 +3,8 @@
 
 #include "NNAudioSystem.h"
 #include "NNNetworkSystem.h"
+#include "NNParticleSystem.h"
+#include "NNInputSystem.h"
 
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL)
@@ -53,6 +55,28 @@ void CPlayer::TransState( PlayerState state )
 	case USER_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_0.png";
+
+			RemoveChild(m_effect);
+			m_effect = NNParticleSystem::Create(L"Sprite/fire.jpg");
+			m_effect->SetMinStartSpeed(300.f);
+			m_effect->SetMaxStartSpeed(400.f);
+			m_effect->SetMinEndSpeed(400.f);
+			m_effect->SetMaxEndSpeed(500.f);
+
+			m_effect->SetCreateParticlePerSecond(60);
+			m_effect->SetSpreadDegree(15.f);
+			m_effect->SetMinLifeTime(0.5f);
+			m_effect->SetMaxLifeTime(0.5f);
+			m_effect->SetDirection(m_Angle);
+			
+			m_effect->SetMinStartRodiusX( 50.f );
+			m_effect->SetMinStartRodiusY( 50.f );
+			m_effect->SetMaxStartRodiusX( 100.f );
+			m_effect->SetMaxStartRodiusY( 100.f );
+
+			temp = GetTickCount();
+			
+			AddChild(m_effect);
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
@@ -75,6 +99,9 @@ void CPlayer::TransState( PlayerState state )
 void CPlayer::Update( float dTime )
 {
 	NNObject::Update( dTime );
+	//printf(" ############## %d \n",m_GameKeyStates.typeActiveSkillKey);
+	
+
 	switch (m_PlayerState)
 	{
 	case IDLE:
@@ -115,14 +142,15 @@ void CPlayer::Update( float dTime )
 	case USER_ACTIVE_SKILL:
 		{
 			if ( m_GameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED )
-			{   // activeSkill 
+			{   
+				// activeSkill 
 			}
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
 			if ( m_GameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED )
-			{   // typeSkill
+			{   // activeSkill 
 			}
 		}
 		break;

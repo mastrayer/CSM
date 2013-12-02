@@ -5,6 +5,7 @@
 #include "NNSprite.h"
 #include "NNLabel.h"
 #include "PacketType.h"
+#include "NNParticleSystem.h"
 
 #include "PlayerUI.h"
 
@@ -14,8 +15,8 @@ enum PlayerState
 	WALK = 1,
 	ATTAACK = 2,
 	DIE = 3,
-	USER_ACTIVE_SKILL = 4,
-	TYPE_ACTIVE_SKILL = 5,
+	TYPE_ACTIVE_SKILL = 4,
+	USER_ACTIVE_SKILL = 5,	
 };
 
 class CPlayer : public NNObject
@@ -28,7 +29,7 @@ public:
 	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
 	void SetPlayerGameKeyStates( GameKeyStates gameKeySates) { m_GameKeyStates = gameKeySates; }
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
-	void SetPlayerRotation( float angle ) { m_PlayerSprite->SetRotation(angle); }
+	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	void SetPlayerHP(int hp);
 	NNCREATE_FUNC(CPlayer);
@@ -39,10 +40,14 @@ private:
 
 private:
 	NNSprite* m_PlayerSprite;
-
 	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
 	GameKeyStates m_GameKeyStates;
+	NNParticleSystem *m_effect;
+
+	int temp;
+	float m_Angle;
+
 
 	
 

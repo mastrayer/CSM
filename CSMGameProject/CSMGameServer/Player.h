@@ -6,6 +6,7 @@
 #define PLAYER_STATE_WALK 1
 #define PLAYER_STATE_ATTACK 2
 #define PLAYER_STATE_DIE 3
+#define PLAYER_STATE_TYPE_SKILL 4
 
 
 struct Point

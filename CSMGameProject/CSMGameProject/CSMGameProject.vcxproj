@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\NNGameFramework\NNGameFramework\include\library\DirectX\lib\x86;..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
     <IncludePath>..\NNGameFramework\NNGameFramework\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
