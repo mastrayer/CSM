@@ -10,10 +10,10 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 
 Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0)
 {
-	
+
 	mPlayerId = id;
 	mClient = client;
-	
+
 	while(1)
 	{
 		float x = rand() % (GGameMap->GetWidth() * 64);
@@ -23,7 +23,6 @@ Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(P
 			mPosition = Point(x,y);
 			break;
 		}
-		
 	}
 }
 
@@ -42,12 +41,11 @@ void Player::TransState(short state)
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 			mClient->Broadcast(&outPacket);
-			
+
 		}
 		break;
 	case PLAYER_STATE_WALK:
 		{
-			
 			Point willGoPosition = GetPosition();
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * 100.f;
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * 100.f;
@@ -141,7 +139,6 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_USERSKILL);
 				break;
 			}
-			//우선순위대로
 			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
 			{
 				TransState(PLAYER_STATE_ATTACK);
@@ -164,7 +161,11 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_TYPESKILL);
 				break;
 			}
-			//우선순위대로
+			if( mGameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED)
+			{
+				TransState(PLAYER_STATE_USERSKILL);
+				break;
+			}
 			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
 			{
 				TransState(PLAYER_STATE_ATTACK);
@@ -206,7 +207,7 @@ void Player::Update( float dTime)
 
 			//얘네를 위에꺼랑 같이하지 않는 이유는, 아래 SetPosition 이동하고 데이터를 보내게 되면 클라 입장에서는 끊기는 것처럼 보여서...
 			SetPosition(willGoPosition);
-			
+
 			mMovedInfo = moveInfo;
 
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
@@ -220,8 +221,8 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			 Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
-			 std::map<int,Player*> players = GPlayerManager->GetPlayers();
+			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
+			std::map<int,Player*> players = GPlayerManager->GetPlayers();
 			for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 			{
 				Player* enemy = it->second;
@@ -237,14 +238,23 @@ void Player::Update( float dTime)
 			break;
 		}
 		break;
-		
+
 	case PLAYER_STATE_DIE:
 		{
 			mResponTime -= dTime;
 			if(mResponTime < 0)
 			{
 				//살려내야합니다.
-				SetPosition(Point(0,0));
+				while(1)
+				{
+					float x = rand() % (GGameMap->GetWidth() * 64);
+					float y = rand() % (GGameMap->GetHeight() * 64);
+					if(GGameMap->isValidTile(Point(x,y)) == true)
+					{
+						mPosition = Point(x,y);
+						break;
+					}
+				}
 				SetHP(100);
 				TransState(PLAYER_STATE_IDLE);
 				break;
