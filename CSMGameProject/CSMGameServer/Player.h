@@ -24,6 +24,7 @@ private:
 	int mDamage;
 	float mResponTime;
 	int mMovedInfo;
+	float mDTime;
 
 public:
 	Player(void);

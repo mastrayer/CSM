@@ -47,6 +47,18 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_WALK:
 		{
+			
+			Point willGoPosition = GetPosition();
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * 100.f;
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * 100.f;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * 100.f;
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * mDTime * 100.f;
+
+			if ( GGameMap->isValidTile(willGoPosition) == false )
+			{
+				//못가니까 walk로 변환하지 않음.
+				break;
+			}
 			if(mPlayerState == PLAYER_STATE_IDLE)
 			{	
 				mPlayerState = state;
@@ -114,6 +126,7 @@ void Player::TransState(short state)
 
 void Player::Update( float dTime)
 {
+	mDTime = dTime;
 	switch (mPlayerState)
 	{
 	case PLAYER_STATE_IDLE:
@@ -164,7 +177,7 @@ void Player::Update( float dTime)
 			int moveInfo = 0;
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED ) moveInfo |= 4;
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED ) moveInfo |= 2;
-			if (mGameKeyStates.upDirectKey == KEYSTATE_PRESSED ) moveInfo |= 1;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED	)	moveInfo |= 1;
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	moveInfo |= 8;
 
 			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
