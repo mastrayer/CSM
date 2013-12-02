@@ -123,11 +123,11 @@
             // Title
             // 
             this.Title.Location = new System.Drawing.Point(123, 24);
-            this.Title.MaxLength = 2;
+            this.Title.MaxLength = 15;
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(89, 21);
             this.Title.TabIndex = 8;
-            this.Title.Text = "Notitled";
+            this.Title.Text = "Untitled";
             // 
             // label3
             // 

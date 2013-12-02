@@ -34,7 +34,10 @@ namespace Maptool
         private void button_ok_Click(object sender, EventArgs e)
         {
             mainForm.mainMap.Dispose();
-            mainForm.mainMap_init(Convert.ToInt32(this.width.Text), Convert.ToInt32(this.height.Text));
+
+            Main.mapInfo info = new Main.mapInfo(width.Text, height.Text, Title.Text);
+            //mainForm.mainMap_init(Convert.ToInt32(this.width.Text), Convert.ToInt32(this.height.Text));
+            mainForm.mainMap_init(info);
 
             this.Dispose();
 //             int a = Convert.ToInt32(this.width.Text) * Convert.ToInt32(this.height.Text);

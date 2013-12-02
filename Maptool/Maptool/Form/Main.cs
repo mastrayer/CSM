@@ -18,6 +18,7 @@ using System.Collections.Specialized;
 
 namespace Maptool
 {
+    
     public partial class Main : Form
     {
         // form
@@ -32,7 +33,20 @@ namespace Maptool
         public List<BitmapList> TileList = new List<BitmapList>();
         public int bitmapID = 0;
         public Point selectedPoint = new Point(0,0);
+        public mapInfo MapInfo = new mapInfo("16", "16", "Untitled");
 
+        public class mapInfo
+        {
+            public mapInfo(string w, string h, string t)
+            {
+                width = Convert.ToInt32(w);
+                height = Convert.ToInt32(h);
+                title = t;
+            }
+            public int width;
+            public int height;
+            public String title;
+        }
         public class BitmapList
         {
             public int ID;
@@ -111,10 +125,16 @@ namespace Maptool
         }
         public void mainMap_init(int width, int height)
         {
+            mapInfo info = new mapInfo(width.ToString(), height.ToString(), "Untitled");
+            mainMap_init(info);
+        }
+        public void mainMap_init(mapInfo info)
+        {
             if (mainMap != null)
                 mainMap.Dispose();
 
-            mainMap = new main_map(width, height, this);
+            //mainMap = new main_map(width, height, this);
+            mainMap = new main_map(info.width, info.height, this);
 
             mainMap.TopLevel = false;
             mainMap.TopMost = true;
@@ -159,6 +179,13 @@ namespace Maptool
                 // 기본적인 맵 정보
                 textWriter.WriteStartElement("mapInfo");
                 {
+                    // map title
+                    textWriter.WriteStartElement("title");
+                    {
+                        textWriter.WriteString(MapInfo.title);
+                    }
+                    textWriter.WriteEndElement();
+
                     // map size
                     textWriter.WriteStartElement("size");
                     {
@@ -193,39 +220,50 @@ namespace Maptool
                     {
                         for (int j = 0; j < mainMap.MapSize.Height; ++j)
                         {
-                            textWriter.WriteStartElement("t" + i.ToString() + "-" + j.ToString());
+                            //textWriter.WriteStartElement("t" + i.ToString() + "-" + j.ToString());
+                            textWriter.WriteStartElement("tile");
                             {
-                                textWriter.WriteStartAttribute("isFull");
-                                textWriter.WriteString(mainMap.grid[i, j].isFull == true ? "true" : "false");
+                                textWriter.WriteStartAttribute("X");
+                                textWriter.WriteString(i.ToString());
                                 textWriter.WriteEndAttribute();
 
-                                textWriter.WriteStartElement("TileImageInfo");
+                                textWriter.WriteStartAttribute("Y");
+                                textWriter.WriteString(j.ToString());
+                                textWriter.WriteEndAttribute();
+
                                 {
-                                    textWriter.WriteStartAttribute("Index");
-                                    textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
+                                    textWriter.WriteStartAttribute("isFull");
+                                    textWriter.WriteString(mainMap.grid[i, j].isFull == true ? "true" : "false");
                                     textWriter.WriteEndAttribute();
 
-                                    textWriter.WriteStartAttribute("X");
-                                    textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString());
-                                    textWriter.WriteEndAttribute();
+                                    textWriter.WriteStartElement("TileImageInfo");
+                                    {
+                                        textWriter.WriteStartAttribute("Index");
+                                        textWriter.WriteString(mainMap.grid[i, j].TIleSetID.ToString());
+                                        textWriter.WriteEndAttribute();
 
-                                    textWriter.WriteStartAttribute("Y");
-                                    textWriter.WriteString(mainMap.grid[i, j].TileLocation.Y.ToString());
-                                    textWriter.WriteEndAttribute();
+                                        textWriter.WriteStartAttribute("X");
+                                        textWriter.WriteString(mainMap.grid[i, j].TileLocation.X.ToString());
+                                        textWriter.WriteEndAttribute();
+
+                                        textWriter.WriteStartAttribute("Y");
+                                        textWriter.WriteString(mainMap.grid[i, j].TileLocation.Y.ToString());
+                                        textWriter.WriteEndAttribute();
+                                    }
+                                    textWriter.WriteEndElement();
+
+                                    textWriter.WriteStartElement("Attribute");
+                                    {
+                                        textWriter.WriteStartAttribute("move");
+                                        textWriter.WriteString(mainMap.grid[i, j].attributeMove == true ? "true" : "false");
+                                        textWriter.WriteEndAttribute();
+
+                                        textWriter.WriteStartAttribute("height");
+                                        textWriter.WriteString(mainMap.grid[i, j].attributeHeight.ToString());
+                                        textWriter.WriteEndAttribute();
+                                    }
+                                    textWriter.WriteEndElement();
                                 }
-                                textWriter.WriteEndElement();
-
-                                textWriter.WriteStartElement("Attribute");
-                                {
-                                    textWriter.WriteStartAttribute("move");
-                                    textWriter.WriteString(mainMap.grid[i, j].attributeMove == true ? "true" : "false");
-                                    textWriter.WriteEndAttribute();
-
-                                    textWriter.WriteStartAttribute("height");
-                                    textWriter.WriteString(mainMap.grid[i, j].attributeHeight.ToString());
-                                    textWriter.WriteEndAttribute();
-                                }
-                                textWriter.WriteEndElement();
                             }
                             textWriter.WriteEndElement();
                         }
