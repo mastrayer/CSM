@@ -81,13 +81,29 @@ void Player::TransState(short state)
 			mClient->Broadcast(&outPacket);
 		}
 		break;
-	case PLAYER_STATE_TYPE_SKILL:
+	case PLAYER_STATE_TYPESKILL:
 		{
-			mPlayerState = state;
+			if(mPlayerState == PLAYER_STATE_IDLE ||
+				mPlayerState == PLAYER_STATE_WALK)
+			{	
+				mPlayerState = state;
 
-			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
-			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
-			mClient->Broadcast(&outPacket);
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
+			}
+		}
+	case PLAYER_STATE_USERSKILL:
+		{
+			if(mPlayerState == PLAYER_STATE_IDLE ||
+				mPlayerState == PLAYER_STATE_WALK)
+			{	
+				mPlayerState = state;
+
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
+			}
 		}
 		break;
 	default:
@@ -102,6 +118,16 @@ void Player::Update( float dTime)
 	{
 	case PLAYER_STATE_IDLE:
 		{
+			if( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
+			{
+				TransState(PLAYER_STATE_TYPESKILL);
+				break;
+			}
+			if( mGameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED)
+			{
+				TransState(PLAYER_STATE_USERSKILL);
+				break;
+			}
 			//우선순위대로
 			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
 			{
@@ -115,11 +141,16 @@ void Player::Update( float dTime)
 			{
 				TransState(PLAYER_STATE_WALK);
 			}else if ( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
-				TransState(PLAYER_STATE_TYPE_SKILL);
+				TransState(PLAYER_STATE_TYPESKILL);
 		}
 		break;
 	case PLAYER_STATE_WALK:
 		{
+			if( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
+			{
+				TransState(PLAYER_STATE_TYPESKILL);
+				break;
+			}
 			//우선순위대로
 			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
 			{
@@ -205,6 +236,18 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_IDLE);
 				break;
 			}
+		}
+		break;
+	case PLAYER_STATE_TYPESKILL:
+		{
+			TransState(PLAYER_STATE_IDLE);
+			break;
+		}
+		break;
+	case PLAYER_STATE_USERSKILL:
+		{
+			TransState(PLAYER_STATE_IDLE);
+			break;
 		}
 		break;
 	default:
