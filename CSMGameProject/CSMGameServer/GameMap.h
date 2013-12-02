@@ -52,9 +52,6 @@ public:
 	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
 	bool isValidTile(Point p);
 
-	void Render();
-	void Update( float dTime );
-
 	//void CreateMap(NNXML* xml, );
 	void convertFileToMap(std::wstring path);
 
@@ -64,7 +61,8 @@ public:
 		return pInstance;
 	}
 	//NNCREATE_FUNC(GameMap);
-	
+	int GetWidth(){ return m_Width; }
+	int GetHeight(){ return m_Height; }
 
 private:
 	NNXML* m_MapXMLData;

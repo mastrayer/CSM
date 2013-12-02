@@ -8,11 +8,23 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mPosition(0,0),mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0)
+Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0)
 {
 	
 	mPlayerId = id;
 	mClient = client;
+	
+	while(1)
+	{
+		float x = rand() % (GGameMap->GetWidth() * 64);
+		float y = rand() % (GGameMap->GetHeight() * 64);
+		if(GGameMap->isValidTile(Point(x,y)) == true)
+		{
+			mPosition = Point(x,y);
+			break;
+		}
+		
+	}
 }
 
 Player::~Player(void)
@@ -124,6 +136,21 @@ void Player::Update( float dTime)
 			if (mGameKeyStates.upDirectKey == KEYSTATE_PRESSED ) moveInfo |= 1;
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	moveInfo |= 8;
 
+			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
+			Point willGoPosition = GetPosition();
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * dTime * 100.f;
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * dTime * 100.f;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * dTime * 100.f;
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * dTime * 100.f;
+
+			if ( GGameMap->isValidTile(willGoPosition) == false )
+			{
+				//못가니까 Idle상태로 만들어줌.
+				TransState(PLAYER_STATE_IDLE);
+				break;
+			}
+
+
 			//이전과 다른 방향으로 이동했니?
 			if( mMovedInfo != -1 && moveInfo != mMovedInfo)
 			{
@@ -134,26 +161,8 @@ void Player::Update( float dTime)
 			}
 
 			//얘네를 위에꺼랑 같이하지 않는 이유는, 아래 SetPosition 이동하고 데이터를 보내게 되면 클라 입장에서는 끊기는 것처럼 보여서...
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )
-			{
-				//Left
-				SetPosition( GetPosition() + Point( -1.f, 0.f ) * dTime * 100.f );
-			}
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )
-			{
-				//Right
-				SetPosition( GetPosition() + Point( 1.f, 0.f ) * dTime * 100.f );
-			}
-			if (mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )
-			{
-				//UP
-				SetPosition( GetPosition() + Point( 0.f, -1.f ) * dTime * 100.f );
-			}
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )
-			{
-				//Down
-				SetPosition( GetPosition() + Point( 0.f, 1.f ) * dTime * 100.f );
-			}
+			SetPosition(willGoPosition);
+			
 			mMovedInfo = moveInfo;
 
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
