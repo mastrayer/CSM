@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "NNResourceManager.h"
@@ -29,11 +28,11 @@ struct Point
 	}
 	float x,y;
 };
-class CTile
+class Tile
 {
 public:
-	CTile();
-	virtual ~CTile();
+	Tile();
+	virtual ~Tile();
 
 	void Render();
 	void Update( float dTime );
@@ -43,11 +42,11 @@ public:
 	int m_height;
 	bool m_isFull;
 };
-class CGameMap
+class GameMap
 {
 public:
-	CGameMap(std::wstring path);
-	virtual ~CGameMap(void);
+	GameMap(std::wstring path);
+	virtual ~GameMap(void);
 	
 	int GetAttribute(int i, int j) { return m_Tile[i][j]->m_attribute; }
 	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
@@ -59,19 +58,21 @@ public:
 	//void CreateMap(NNXML* xml, );
 	void convertFileToMap(std::wstring path);
 
-	static CGameMap* Create(std::wstring path)
+	static GameMap* Create(std::wstring path)
 	{
-		CGameMap* pInstance = new CGameMap(path);
+		GameMap* pInstance = new GameMap(path);
 		return pInstance;
 	}
-	//NNCREATE_FUNC(CGameMap);
+	//NNCREATE_FUNC(GameMap);
 	
 
 private:
 	NNXML* m_MapXMLData;
-	CTile ***m_Tile;
+	Tile ***m_Tile;
 	int m_Width, m_Height;
 
 protected:
 	Point positionToArrayIndex( Point p );
 };
+
+extern GameMap* GGameMap;

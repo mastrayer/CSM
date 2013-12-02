@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "GameMap.h"
-#include"iostream"
+#include <iostream>
 
-CGameMap::CGameMap(std::wstring path)
+GameMap::GameMap(std::wstring path)
 {
 	if(INVALID_FILE_ATTRIBUTES == GetFileAttributes(path.c_str()) && GetLastError()==ERROR_FILE_NOT_FOUND)
 	{
@@ -14,7 +14,7 @@ CGameMap::CGameMap(std::wstring path)
 
 }
 
-CGameMap::~CGameMap(void)
+GameMap::~GameMap(void)
 {
 }
  
@@ -23,7 +23,7 @@ void en(int b)
 	static int c = 0;
 	printf("%d] %d\n",c++, GetTickCount()-b);
 }
-void CGameMap::convertFileToMap( std::wstring path )
+void GameMap::convertFileToMap( std::wstring path )
 {
 	std::wstring FILENAME[2] = { L"map.xml", L"TileSet" };
 	NNZip *xmlLoad;
@@ -44,12 +44,12 @@ void CGameMap::convertFileToMap( std::wstring path )
 			m_Width = atoi(m_MapXMLData->XPathToString("/map/mapInfo/size/@width").c_str());
 			m_Height = atoi(m_MapXMLData->XPathToString("/map/mapInfo/size/@height").c_str());
 
-			m_Tile = new CTile**[m_Height];
+			m_Tile = new Tile**[m_Height];
 			for(int i=0;i<m_Height; ++i)
 			{
-				m_Tile[i] = new CTile *[m_Width];
+				m_Tile[i] = new Tile *[m_Width];
 				for( int j=0; j< m_Width; ++j)
-					m_Tile[i][j] = new CTile();
+					m_Tile[i][j] = new Tile();
 			}
 		}
 		// Used Tile Set
@@ -106,20 +106,20 @@ void CGameMap::convertFileToMap( std::wstring path )
 	delete tileSetLoad;
 }
 
-Point CGameMap::positionToArrayIndex( Point p )
+Point GameMap::positionToArrayIndex( Point p )
 {
 	p.x = ( p.x / TILESIZE );
 	p.y = ( p.y / TILESIZE );
 
 	return p;
 }
-bool CGameMap::isValidTile( Point p )
+bool GameMap::isValidTile( Point p )
 {
 	Point temp = positionToArrayIndex(p);
 	int i = (int)temp.x;
 	int j = (int)temp.y;
 
-	CTile *tile = m_Tile[i][j];
+	Tile *tile = m_Tile[i][j];
 
 	// 이 타일이 빈 타일이거나
 	// 움직일 수 없는 타일이거나
@@ -132,16 +132,19 @@ bool CGameMap::isValidTile( Point p )
 
 //////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////                            /////////////////////////////
-/////////////////////////////           CTile            /////////////////////////////
+/////////////////////////////           Tile            /////////////////////////////
 /////////////////////////////                            /////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
-CTile::CTile()
+Tile::Tile()
 	: m_attribute(0), m_height(0), m_isFull(false)
 {
 
 }
-CTile::~CTile()
+Tile::~Tile()
 {
 
 }
+
+
+GameMap* GGameMap = nullptr;
