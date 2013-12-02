@@ -171,7 +171,7 @@ ORIGINAL:
 				tile = "t" + std::to_string(i) + "-" + std::to_string(j);
 				
 				a = GetTickCount();
-				m_Tile[i][j]->m_isFull = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/@isFull").c_str() == "true" ? true : false;
+				m_Tile[i][j]->m_isFull = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/@isFull").c_str(), "true") == 0 ? true : false;
 				en(a);
 
 				a = GetTickCount();
@@ -187,7 +187,7 @@ ORIGINAL:
 				en(a);
 
 				a = GetTickCount();
-				m_Tile[i][j]->m_attribute = m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() == "true" ? 1 : 0;
+				m_Tile[i][j]->m_attribute = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() , "true") == 0 ? 1 : 0;
 				en(a);
 
 				a = GetTickCount();
