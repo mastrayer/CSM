@@ -72,9 +72,9 @@ void CPlayerManager::UpdatePlayerRotation(int _playerId, float angle )
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 {
 	UpdatePlayerGameKeyStates(info.m_PlayerId, info.m_GameKeyStates);
+	UpdatePlayerState(info.m_PlayerId, info.m_PlayerState);
 	UpdatePlayerPosition(info.m_PlayerId, NNPoint( info.m_X, info.m_Y ) );
 	UpdatePlayerRotation(info.m_PlayerId, info.m_Angle);
-	UpdatePlayerState(info.m_PlayerId, info.m_PlayerState);
 }
 
 void CPlayerManager::SetMyPlayerId(int id)

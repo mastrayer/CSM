@@ -6,8 +6,8 @@
 #define PLAYER_STATE_WALK 1
 #define PLAYER_STATE_ATTACK 2
 #define PLAYER_STATE_DIE 3
-#define PLAYER_STATE_TYPE_SKILL 4
-
+#define PLAYER_STATE_TYPESKILL 4
+#define PLAYER_STATE_USERSKILL 5
 
 
 class Player
@@ -24,6 +24,8 @@ private:
 	int mDamage;
 	float mResponTime;
 	int mMovedInfo;
+	float mDTime;
+	int mRadius;
 
 public:
 	Player(void);

@@ -21,6 +21,7 @@ CPlayer::~CPlayer( void )
 
 void CPlayer::TransState( PlayerState state )
 {
+	float rotation = m_Rotation;
 	m_PlayerState = state;
 
 	if ( m_PlayerSprite != NULL )
@@ -117,6 +118,8 @@ void CPlayer::TransState( PlayerState state )
 	AddChild( m_PlayerSprite );
 
 	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
+	//Sprite를 바꾸면 Rotation이 자동으로 0되니까 예전값으로 다시 대입
+	m_PlayerSprite->SetRotation(rotation);
 	/* // */
 }
 
