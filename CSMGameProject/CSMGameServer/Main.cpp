@@ -127,7 +127,7 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 
 	LARGE_INTEGER liDueTime ;
 	liDueTime.QuadPart = -10000000 ; ///< 1초 후부터 동작
-	if ( !SetWaitableTimer(hTimer, &liDueTime, 100, TimerProc, NULL, TRUE) )
+	if ( !SetWaitableTimer(hTimer, &liDueTime, 1, TimerProc, NULL, TRUE) )
 		return -1 ;
 		
 

@@ -42,7 +42,6 @@ void ClientManager::OnPeriodWork()
 		CollectGarbageSessions() ;
 		mLastGCTick = currTick ;
 	}
-
 	/// 접속된 클라이언트 세션별로 주기적으로 해줘야 하는 일 (주기는 알아서 정하면 됨 - 지금은 0초로 ㅎㅎ)
 	if ( currTick - mLastClientWorkTick >= 0 )
 	{

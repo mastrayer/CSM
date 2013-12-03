@@ -124,6 +124,7 @@ void Player::TransState(short state)
 
 void Player::Update( float dTime)
 {
+	printf("%f\n",dTime);
 	mDTime = dTime;
 	switch (mPlayerState)
 	{
@@ -174,6 +175,7 @@ void Player::Update( float dTime)
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
 
+
 			//방향이 바뀌었는지 체크
 			int moveInfo = 0;
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED ) moveInfo |= 4;
@@ -187,6 +189,17 @@ void Player::Update( float dTime)
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * dTime * 100.f;
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * dTime * 100.f;
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * dTime * 100.f;
+			
+			//wasd 전부 다 땠는지 확인
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
+				&& mGameKeyStates.rightDirectKey == KEYSTATE_NOTPRESSED 
+				&& mGameKeyStates.upDirectKey == KEYSTATE_NOTPRESSED 
+				&& mGameKeyStates.downDirectKey == KEYSTATE_NOTPRESSED )
+			{
+				SetPosition(willGoPosition);
+				TransState(PLAYER_STATE_IDLE);
+				break;
+			}
 
 			if ( GGameMap->isValidTile(willGoPosition) == false )
 			{
@@ -194,6 +207,9 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_IDLE);
 				break;
 			}
+			//얘네를 위에꺼랑 같이하지 않는 이유는, 아래 SetPosition 이동하고 데이터를 보내게 되면 클라 입장에서는 끊기는 것처럼 보여서...
+			SetPosition(willGoPosition);
+
 
 
 			//이전과 다른 방향으로 이동했니?
@@ -205,18 +221,8 @@ void Player::Update( float dTime)
 				mClient->Broadcast(&outPacket);
 			}
 
-			//얘네를 위에꺼랑 같이하지 않는 이유는, 아래 SetPosition 이동하고 데이터를 보내게 되면 클라 입장에서는 끊기는 것처럼 보여서...
-			SetPosition(willGoPosition);
-
 			mMovedInfo = moveInfo;
 
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
-				&& mGameKeyStates.rightDirectKey == KEYSTATE_NOTPRESSED 
-				&& mGameKeyStates.upDirectKey == KEYSTATE_NOTPRESSED 
-				&& mGameKeyStates.downDirectKey == KEYSTATE_NOTPRESSED )
-			{
-				TransState(PLAYER_STATE_IDLE);
-			}
 		}
 		break;
 	case PLAYER_STATE_ATTACK:
