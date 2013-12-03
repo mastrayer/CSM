@@ -137,7 +137,7 @@ float CGameScene::GetNowAngle()
 	NNPoint mousePoint = NNInputSystem::GetInstance()->GetMousePosition();
 	// characterPositionByWC, WC -> window center. 화면 가운데를 0,0으로 했을때의 캐릭터 좌표
 	//NNPoint characterPositionByWC = GetCamera().GetPosition() -	CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition();
-	NNPoint referencePointForMouse = NNPoint(GetCamera().GetScreenWidth()/2,GetCamera().GetScreenHeight()/2);// + characterPositionByWC;
+	NNPoint referencePointForMouse = NNPoint(GetCamera().GetScreenWidth()/2.f,GetCamera().GetScreenHeight()/2.f);// + characterPositionByWC;
 	return atan2f( NNPoint(mousePoint-referencePointForMouse).GetY() , NNPoint(mousePoint-referencePointForMouse).GetX() )*180.0f/3.14f ;
 }
 bool CGameScene::isChangedAngle()
