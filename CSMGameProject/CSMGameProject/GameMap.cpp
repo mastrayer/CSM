@@ -48,8 +48,6 @@ void CGameMap::convertFileToMap( std::wstring path )
 	std::string tile;
 	int usedTileSet = 0;
 
-	int a;
-
 	printf("################# MapInfo \n");
 	// MapInfo
 	{
@@ -113,9 +111,9 @@ void CGameMap::convertFileToMap( std::wstring path )
 			assert(x+64<=128);
 
 
-			m_Tile[i][j]->m_image->SetCutSize(y, x, y + 64, x + 64);
+			m_Tile[i][j]->m_image->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
 
-			m_Tile[i][j]->m_image->SetPosition(i*64, j*64);
+			m_Tile[i][j]->m_image->SetPosition(i*64.f, j*64.f);
 		}
 		/*
 		for(int i=0; i<m_Height; ++i)
@@ -176,16 +174,16 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 NNPoint CGameMap::positionToArrayIndex( NNPoint p )
 {
-	p.SetX( (int)p.GetX() / TILESIZE );
-	p.SetY( (int)p.GetY() / TILESIZE );
+	p.SetX( p.GetX() / TILESIZE );
+	p.SetY( p.GetY() / TILESIZE );
 
 	return p;
 }
 bool CGameMap::isValidTile( NNPoint p )
 {
 	NNPoint temp = positionToArrayIndex(p);
-	int i = temp.GetX();
-	int j = temp.GetY();
+	int i = (int)temp.GetX();
+	int j = (int)temp.GetY();
 
 	CTile *tile = m_Tile[i][j];
 
