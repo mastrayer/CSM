@@ -197,12 +197,15 @@ void Player::Update( float dTime)
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	moveInfo |= 8;
 
 			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
-			Point willGoPosition = GetPosition();
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * (mRadius + dTime * 100.f);
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * (mRadius + dTime * 100.f);
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * (mRadius + dTime * 100.f);
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * (mRadius + dTime * 100.f);
-			
+			Point willGoDirection = Point(0,0);
+
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
+					
+			Point willGoPosition = GetPosition() + willGoDirection * dTime * 100.f;
+
 			//wasd 전부 다 땠는지 확인
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
 				&& mGameKeyStates.rightDirectKey == KEYSTATE_NOTPRESSED 
@@ -213,7 +216,7 @@ void Player::Update( float dTime)
 				break;
 			}
 
-			if ( GGameMap->isValidTile(willGoPosition) == false )
+			if ( GGameMap->isValidTile(willGoPosition + willGoDirection * mRadius) == false )
 			{
 				//못가니까 Idle상태로 만들어줌.
 				TransState(PLAYER_STATE_IDLE);
