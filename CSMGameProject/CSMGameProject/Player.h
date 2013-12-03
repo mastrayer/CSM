@@ -27,9 +27,9 @@ public:
 
 	void TransState( PlayerState state );
 	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
-	void SetPlayerGameKeyStates( GameKeyStates gameKeySates) { m_GameKeyStates = gameKeySates; }
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
 	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
+	void SetPlayerMoveDirection( NNPoint direction) { m_MoveDirection = direction; }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	void SetPlayerHP(int hp);
 	NNCREATE_FUNC(CPlayer);
@@ -42,9 +42,9 @@ private:
 	NNSprite* m_PlayerSprite;
 	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
-	GameKeyStates m_GameKeyStates;
 	NNParticleSystem *m_TypeEffect;
 	NNParticleSystem *m_UserEffect;
+	NNPoint m_MoveDirection;
 	int temp;
 	float m_Angle;
 
@@ -53,4 +53,3 @@ private:
 
 	friend class PlayerManager;
 };
-

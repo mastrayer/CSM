@@ -13,17 +13,16 @@ class CPlayerManager
 public:
 	CPlayerManager(void);
 	~CPlayerManager(void);
-	
+
 	void SetMyPlayerId(int id);
 	CPlayer* NewPlayer(int id);
 	void DeletePlayer(int id);
-	
+
 	bool IsLogin() { return m_MyPlayerId==-1 ? false : true; };
 
 	CPlayer* GetMyPlayer() { return m_MyPlayer; };
 
-	void UpdateMyPlayerGameKeyStates(GameKeyStates _gameKeyStates);
-	void UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets);
+	void UpdatePlayerMoveDirection(int _playerId, NNPoint direction);
 	void UpdatePlayerPosition(int _playerId, NNPoint point);
 	void UpdatePlayerRotation(int _playerId, float angle);
 	void UpdatePlayerInfo(PlayerInfo info);

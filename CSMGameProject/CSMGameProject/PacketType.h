@@ -2,7 +2,7 @@
 #pragma once
 
 #include "NNPacketHeader.h"
-
+#include "NNPoint.h"
 #define MAX_CHAT_LEN	1024
 
 #define MAX_NAME_LEN	30
@@ -36,7 +36,7 @@ struct GameKeyStates
 	}
 	short upDirectKey;
 	short downDirectKey;
-	short leftDirectKey;
+	short leftDirectKey;	
 	short rightDirectKey;
 	short attackKey;
 	short userActiveSkillKey;
@@ -49,41 +49,10 @@ struct PlayerInfo
 	GameKeyStates m_GameKeyStates;
 	short m_PlayerState;
 	int m_HP;
+	NNPoint m_MoveDirection;
 };
 #pragma pack(push,1)
-/*
-struct ChatBroadcastRequest : public NNPacketHeader
-{
-	ChatBroadcastRequest()
-	{
-		m_Size = sizeof(ChatBroadcastRequest) ;
-		m_Type = PKT_CS_CHAT ;
-		m_PlayerId = -1 ;
-	
-		memset(m_Chat, 0, MAX_CHAT_LEN) ;
-	}
 
-	int	m_PlayerId ;
-	char m_Chat[MAX_CHAT_LEN] ;
-} ;
-
-struct ChatBroadcastResult : public NNPacketHeader
-{
-	ChatBroadcastResult()
-	{
-		m_Size = sizeof(ChatBroadcastResult) ;
-		m_Type = PKT_SC_CHAT ;
-		m_PlayerId = -1 ;
-		
-		memset(m_Name, 0, MAX_NAME_LEN) ;
-		memset(m_Chat, 0, MAX_CHAT_LEN) ;
-	}
-	
-	int	m_PlayerId ;
-	char m_Name[MAX_NAME_LEN] ;
-	char m_Chat[MAX_CHAT_LEN] ;
-} ;
-*/
 struct LoginRequest : public NNPacketHeader
 {
 	LoginRequest()
@@ -120,7 +89,7 @@ struct GameKeyStatesUpdateRequest : public NNPacketHeader
 		m_Type = PKT_CS_KEYSTATE ;
 		m_MyPlayerInfo.m_PlayerId = -1 ;
 	}
-	
+
 	PlayerInfo m_MyPlayerInfo;
 } ;
 

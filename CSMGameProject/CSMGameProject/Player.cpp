@@ -7,7 +7,7 @@
 #include "NNInputSystem.h"
 
 CPlayer::CPlayer( void )
-	: m_PlayerSprite(NULL)
+	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0))
 {
 	TransState(PlayerState::IDLE);
 
@@ -69,7 +69,7 @@ void CPlayer::TransState( PlayerState state )
 			m_UserEffect->SetMinLifeTime(0.5f);
 			m_UserEffect->SetMaxLifeTime(0.5f);
 			m_UserEffect->SetDirection(m_Angle);
-			
+
 			m_UserEffect->SetMinStartRodiusX( 50.f );
 			m_UserEffect->SetMinStartRodiusY( 50.f );
 			m_UserEffect->SetMaxStartRodiusX( 100.f );
@@ -85,10 +85,10 @@ void CPlayer::TransState( PlayerState state )
 			imagePath = L"Sprite/skill_1.png";
 
 			RemoveChild(m_TypeEffect);
-			
+
 			m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
-		
-		//	m_TypeEffect->SetCenter( m_PlayerSprite->GetCenterX(), m_PlayerSprite->GetCenterY() );
+
+			//	m_TypeEffect->SetCenter( m_PlayerSprite->GetCenterX(), m_PlayerSprite->GetCenterY() );
 
 			m_TypeEffect->SetMinStartSpeed(100.f);
 			m_TypeEffect->SetMaxStartSpeed(110.f);
@@ -106,7 +106,7 @@ void CPlayer::TransState( PlayerState state )
 			m_TypeEffect->SetMaxStartRodiusY( 60.f );
 
 			AddChild(m_TypeEffect);			
-			
+
 		}
 		break;
 	default:
@@ -125,9 +125,10 @@ void CPlayer::TransState( PlayerState state )
 
 void CPlayer::Update( float dTime )
 {
+	printf("%.f %.f\n",m_MoveDirection.GetX(),m_MoveDirection.GetY());
 	NNObject::Update( dTime );
 	//printf(" ############## %d \n",m_GameKeyStates.typeActiveSkillKey);
-	
+
 
 	switch (m_PlayerState)
 	{
@@ -139,23 +140,8 @@ void CPlayer::Update( float dTime )
 		{
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
-			if ( m_GameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )
-			{   //Left
-				SetPosition( GetPosition() + NNPoint( -1.f, 0.f) * dTime * 100.f );
-			}
-			if ( m_GameKeyStates.rightDirectKey == KEYSTATE_PRESSED )
-			{   //Right
-				SetPosition( GetPosition() + NNPoint( 1.f, 0.f) * dTime * 100.f );
-			}
-			if ( m_GameKeyStates.upDirectKey == KEYSTATE_PRESSED )
-			{   //UP
-				SetPosition( GetPosition() + NNPoint( 0.f, -1.f) * dTime * 100.f );
-			}
-			if ( m_GameKeyStates.downDirectKey == KEYSTATE_PRESSED )
-			{   //Down
-				SetPosition( GetPosition() + NNPoint( 0.f, 1.f) * dTime * 100.f );
-			}
-		break;
+			SetPosition( GetPosition() + m_MoveDirection * dTime * 100.f );
+			break;
 		}
 	case ATTAACK:
 		{
@@ -168,18 +154,12 @@ void CPlayer::Update( float dTime )
 		// 스킬 발동 키 추가 by mooneegee
 	case USER_ACTIVE_SKILL:
 		{
-			if ( m_GameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED )
-			{   
-				// activeSkill 
-			}
+
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
-			if ( m_GameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED )
-			{   // activeSkill 
-				
-			}
+
 		}
 		break;
 	default:

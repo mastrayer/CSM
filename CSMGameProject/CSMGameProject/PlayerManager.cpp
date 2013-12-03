@@ -12,23 +12,17 @@ CPlayerManager::CPlayerManager(void)
 
 CPlayerManager::~CPlayerManager(void)
 {
-}
 
-void CPlayerManager::UpdateMyPlayerGameKeyStates(GameKeyStates _gameKeyStates)
-{
-	UpdatePlayerGameKeyStates(m_MyPlayerId, _gameKeyStates);
 }
-
-void CPlayerManager::UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets)
+void CPlayerManager::UpdatePlayerMoveDirection(int _playerId, NNPoint direction)
 {
 	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
 	if( itor != m_Players.end() ) 
 	{
 		CPlayer* player = m_Players.find(_playerId)->second;
-		player->SetPlayerGameKeyStates(_gameKeyStaets);
+		player->SetPlayerMoveDirection(direction);
 	}
 }
-
 void CPlayerManager::UpdatePlayerPosition(int _playerId, NNPoint point)
 {
 	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
@@ -71,10 +65,10 @@ void CPlayerManager::UpdatePlayerRotation(int _playerId, float angle )
 
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 {
-	UpdatePlayerGameKeyStates(info.m_PlayerId, info.m_GameKeyStates);
 	UpdatePlayerState(info.m_PlayerId, info.m_PlayerState);
 	UpdatePlayerPosition(info.m_PlayerId, NNPoint( info.m_X, info.m_Y ) );
 	UpdatePlayerRotation(info.m_PlayerId, info.m_Angle);
+	UpdatePlayerMoveDirection(info.m_PlayerId, info.m_MoveDirection);
 }
 
 void CPlayerManager::SetMyPlayerId(int id)
