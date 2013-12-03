@@ -25,6 +25,7 @@ private:
 	float mResponTime;
 	int mMovedInfo;
 	float mDTime;
+	int mRadius;
 
 public:
 	Player(void);

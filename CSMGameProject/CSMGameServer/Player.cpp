@@ -8,7 +8,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0)
+Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0),mAttackRange(12),mRadius(24)
 {
 
 	mPlayerId = id;
@@ -18,7 +18,21 @@ Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(P
 	{
 		float x = rand() % (GGameMap->GetWidth() * 64);
 		float y = rand() % (GGameMap->GetHeight() * 64);
-		if(GGameMap->isValidTile(Point(x,y)) == true)
+		bool isOk = true;
+		for(float _x = x - mRadius; _x <= x + mRadius; _x += mRadius)
+		{
+			for(float _y = y - mRadius; _y <= y + mRadius; _y += mRadius)
+			{
+				if(GGameMap->isValidTile(Point(x,y)) != true)
+				{
+					isOk = false;
+					break;
+				}
+			}
+			if(isOk == false)
+				break;
+		}
+		if(isOk == true)
 		{
 			mPosition = Point(x,y);
 			break;
@@ -185,10 +199,10 @@ void Player::Update( float dTime)
 
 			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
 			Point willGoPosition = GetPosition();
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * dTime * 100.f;
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * dTime * 100.f;
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * dTime * 100.f;
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * dTime * 100.f;
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * (mRadius + dTime * 100.f);
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * (mRadius + dTime * 100.f);
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * (mRadius + dTime * 100.f);
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * (mRadius + dTime * 100.f);
 			
 			//wasd 전부 다 땠는지 확인
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
