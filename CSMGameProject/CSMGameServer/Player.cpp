@@ -138,7 +138,6 @@ void Player::TransState(short state)
 
 void Player::Update( float dTime)
 {
-	printf("%f\n",dTime);
 	mDTime = dTime;
 	switch (mPlayerState)
 	{
