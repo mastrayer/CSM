@@ -8,7 +8,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10,-10)),mAttackRange(12),mRadius(24)
+Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f)),mAttackRange(12),mRadius(24),mRotation(0)
 {
 
 	mPlayerId = id;
@@ -18,21 +18,8 @@ Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(P
 	{
 		float x = rand() % (GGameMap->GetWidth() * 64);
 		float y = rand() % (GGameMap->GetHeight() * 64);
-		bool isOk = true;
-		for(float _x = x - mRadius; _x <= x + mRadius; _x += mRadius)
-		{
-			for(float _y = y - mRadius; _y <= y + mRadius; _y += mRadius)
-			{
-				if(GGameMap->isValidTile(Point(x,y)) != true)
-				{
-					isOk = false;
-					break;
-				}
-			}
-			if(isOk == false)
-				break;
-		}
-		if(isOk == true)
+
+		if(CouldGoPosition(Point(x,y)) == true)
 		{
 			mPosition = Point(x,y);
 			break;
@@ -73,6 +60,7 @@ void Player::TransState(short state)
 			}
 			if(mPlayerState == PLAYER_STATE_IDLE)
 			{	
+				mMoveDirection = Point(-10.f,-10.f);
 				mPlayerState = state;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -188,15 +176,14 @@ void Player::Update( float dTime)
 			//Check Moving Input, and set Position to d
 
 
-			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
 			Point willGoDirection = Point(0,0);
 
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
-					
-			Point willGoPosition = GetPosition() + willGoDirection * dTime * 100.f;
+
+			Point willGoPosition;
 
 			//wasd 전부 다 땠는지 확인
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_NOTPRESSED 
@@ -208,21 +195,37 @@ void Player::Update( float dTime)
 				break;
 			}
 
-			if ( GGameMap->isValidTile(willGoPosition + willGoDirection * (float)mRadius) == true )
-				SetPosition(willGoPosition);
-
+			//지금 갈려고 하는 방향이 map에서 이동 불가능한 지역이니?
+			if ( CouldGoPosition( GetPosition() + willGoDirection * dTime * 100.f ) == false )
+			{
+				//X좌표라도 갈수있니?
+				if ( CouldGoPosition( GetPosition() + Point(willGoDirection.x,0) * dTime * 100.f ) == true )
+				{
+					willGoDirection = Point(willGoDirection.x,0);
+				}
+				//Y좌표라도 갈 수 있니?
+				else if ( CouldGoPosition( GetPosition() +  Point(0,willGoDirection.y) * dTime * 100.f ) == true )
+				{
+					willGoDirection = Point(0,willGoDirection.y);
+				}
+				else
+				{
+					willGoDirection = Point(0,0);
+				}
+			}
+			willGoPosition = GetPosition() + willGoDirection * dTime * 100.f;
+			SetPosition(willGoPosition);
 
 
 			//이전과 다른 방향으로 이동했니?
-			if( mMoveDirection != Point(-10,-10) && mMoveDirection != willGoDirection)
+			if( mMoveDirection == Point(-10.f,-10.f) || mMoveDirection != willGoDirection)
 			{
+				mMoveDirection = willGoDirection;
 				//방향바뀐 key정보를 보내야함.
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
 			}
-
-			mMoveDirection = willGoDirection;
 
 		}
 		break;
@@ -312,6 +315,30 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mAngle = mRotation;
 	mPlayerInfo.mPlayerState = mPlayerState;
 	mPlayerInfo.mHP = mHP;
-	mMoveDirection = mMoveDirection;
+	mPlayerInfo.mMoveDirection = mMoveDirection;
 	return mPlayerInfo;
+}
+
+bool Player::CouldGoPosition(Point position)
+{
+	for( int x = (position.x - mRadius)/64; x <= (position.x + mRadius)/64; x += 1 )//64 = tilesize
+	{
+		for( int y = (position.y - mRadius)/64; y <= (position.y + mRadius)/64; y += 1 )//64 = tilesize
+		{
+			if ( GGameMap->isValidTile(Point(x*64,y*64)) == false)
+				return false;
+		}
+	}	
+	std::map<int,Player*> players = GPlayerManager->GetPlayers();
+	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+	{
+		Player* enemy = it->second;
+		if(enemy == this)continue;
+
+		if( Point().GetDistance( enemy->GetPosition(), position ) < mRadius*2 )
+		{
+			return false;
+		}
+	}
+	return true;
 }

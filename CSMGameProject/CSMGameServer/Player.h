@@ -44,5 +44,7 @@ public:
 	void SetHP(int hp) {mHP = hp;}
 	PlayerInfo GetPlayerInfo();
 	void Update( float dTime );
+private:
+	bool CouldGoPosition(Point position);
 };
 

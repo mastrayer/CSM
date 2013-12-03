@@ -85,7 +85,7 @@ struct PlayerInfo
 	GameKeyStates mGameKeyStates;
 	short mPlayerState;
 	int mHP;
-	int mMoveDirection;
+	Point mMoveDirection;
 };
 #pragma pack(push, 1)
 
