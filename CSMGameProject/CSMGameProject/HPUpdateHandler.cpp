@@ -16,7 +16,7 @@ void HPUpdateHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 {
 	switch ( packetType )
 	{
-	case PKT_SC_KEYSTATE:
+	case PKT_SC_HP:
 		{
 			if ( circularBuffer->Read((char*)&m_HPUpdateResult, header->m_Size) )
 			{

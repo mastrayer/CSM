@@ -57,7 +57,6 @@ void CPlayer::TransState( PlayerState state )
 		{
 			imagePath = L"Sprite/skill_0.png";
 
-			RemoveChild(m_UserEffect);
 			m_UserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
 			m_UserEffect->SetMinStartSpeed(300.f);
 			m_UserEffect->SetMaxStartSpeed(400.f);
@@ -84,7 +83,6 @@ void CPlayer::TransState( PlayerState state )
 		{
 			imagePath = L"Sprite/skill_1.png";
 
-			RemoveChild(m_TypeEffect);
 
 			m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
 
@@ -125,7 +123,6 @@ void CPlayer::TransState( PlayerState state )
 
 void CPlayer::Update( float dTime )
 {
-	printf("%.f %.f\n",m_MoveDirection.GetX(),m_MoveDirection.GetY());
 	NNObject::Update( dTime );
 	//printf(" ############## %d \n",m_GameKeyStates.typeActiveSkillKey);
 
@@ -165,6 +162,51 @@ void CPlayer::Update( float dTime )
 	default:
 		break;
 	}
+
+	/*
+	for (const auto& node : m_ChildList )
+	{
+		NNParticleSystem* temp = dynamic_cast<NNParticleSystem*>(node);
+
+		if ( temp != NULL ) {
+
+		}
+	}
+	fof;lkJSIf;lug 0v
+	;'dlfjalfjwoefuaoiwnbSv r( */
+	/*
+	m_ParticleSystemList.push_back(* );
+	Ad-*+++++++
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	jdkdkdkdfjfdiensk,cxnxcj,zwlhfisjfsdjsdl dkldjfeineifjdkfkjdlfjflvkd6ltjsguqdls2h5g2o2d295dl95didl6di1g9h8dl18d1l8tj8sdk1wale34hg8alwerjfl;askdji;woer fjoaisjkdlfhs;adjjjjjjjjjjjjjjj m dChild(* );
+	
+	for (auto& iter=m_ParticleSystemList.begin(); iter!=m_ParticleSystemList.end(); iter++ )
+	{
+		if ((*iter)->IsAlive() == false)
+		{
+			RemoveChild( *iter );
+			iter = m_ParticleSystemList.erase( iter );
+			if ( iter == m_ParticleSystemList.end() )
+			{
+				break;
+			}
+		}
+	}*/
 }
 
 void CPlayer::SetPlayerHP(int hp)
