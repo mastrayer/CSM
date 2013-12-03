@@ -196,7 +196,6 @@ void Player::Update( float dTime)
 				&& mGameKeyStates.upDirectKey == KEYSTATE_NOTPRESSED 
 				&& mGameKeyStates.downDirectKey == KEYSTATE_NOTPRESSED )
 			{
-				SetPosition(willGoPosition);
 				TransState(PLAYER_STATE_IDLE);
 				break;
 			}
