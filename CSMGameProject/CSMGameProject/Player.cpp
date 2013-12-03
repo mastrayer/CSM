@@ -5,14 +5,17 @@
 #include "NNNetworkSystem.h"
 #include "NNParticleSystem.h"
 #include "NNInputSystem.h"
+#include "NNApplication.h"
 
 CPlayer::CPlayer( void )
-	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0))
+	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
+	m_Hp(100),m_RebirthDelayTime(10)
 {
 	TransState(PlayerState::IDLE);
 
 	m_PlayerUI = PlayerUI::Create();
-	AddChild( m_PlayerUI );
+	m_PlayerUI->SetParent(this);
+	this->AddChild( m_PlayerUI );
 }
 
 CPlayer::~CPlayer( void )
@@ -21,7 +24,10 @@ CPlayer::~CPlayer( void )
 
 void CPlayer::TransState( PlayerState state )
 {
+	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
+	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 	float rotation = m_Rotation;
+
 	m_PlayerState = state;
 
 	if ( m_PlayerSprite != NULL )
@@ -46,11 +52,17 @@ void CPlayer::TransState( PlayerState state )
 	case ATTAACK:
 		{
 			imagePath = L"Sprite/attack_0.png";
+
+			//RemoveChild(m_BuffEffect);
+
+			//m_BuffEffect = NNParticleSystem::Create()
 		}
 		break;
 	case DIE:
 		{
-			imagePath = L"Sprite/die_0.png";
+			imagePath = L"Sprite/die.png";
+			m_RebirthTimer = NNLabel::Create(L"À¸¾Ó~ Áê±Ý~ XÃÊ ¿ì¸® Á» Àß ÇØº¾½Ã´Ù", L"¸¼Àº °íµñ", 40.f);
+			m_RebirthTimer->SetCenter( width/2, height/2 - 200 );
 		}
 		break;
 	case USER_ACTIVE_SKILL:
@@ -167,10 +179,7 @@ void CPlayer::Update( float dTime )
 	}
 }
 
-void CPlayer::SetPlayerHP(int hp)
-{
-	//not yet
-}
+
 
 void CPlayer::Render()
 {

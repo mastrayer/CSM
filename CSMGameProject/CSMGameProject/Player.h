@@ -31,7 +31,8 @@ public:
 	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
 	void SetPlayerMoveDirection( NNPoint direction) { m_MoveDirection = direction; }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
-	void SetPlayerHP(int hp);
+	void SetPlayerHP(int hp) { m_Hp = hp; }
+	int GetPlayerHP() { return m_Hp; }
 	NNCREATE_FUNC(CPlayer);
 
 private:
@@ -44,12 +45,13 @@ private:
 	PlayerState m_PlayerState;
 	NNParticleSystem *m_TypeEffect;
 	NNParticleSystem *m_UserEffect;
+	// NNParticleSystem *m_BuffEffect;
 	NNPoint m_MoveDirection;
-	int temp;
-	float m_Angle;
-
-
+	NNLabel *m_RebirthTimer;
 	
+	float m_RebirthDelayTime;
+	float m_Angle;
+	int m_Hp;
 
 	friend class PlayerManager;
 };
