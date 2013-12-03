@@ -50,7 +50,7 @@ void ClientManager::OnPeriodWork()
 	}
 
 	/// 처리 완료된 DB 작업들 각각의 Client로 dispatch
-	DispatchDatabaseJobResults() ;
+	//DispatchDatabaseJobResults() ;
 		
 }
 

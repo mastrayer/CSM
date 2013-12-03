@@ -26,7 +26,10 @@ private:
 	int mHP;
 	int mDamage;
 	float mResponTime;
-	
+	float mAttackDelay;
+	float mUserSkillDelay;
+	float mTypeSkillDelay;
+
 	float mDTime;
 
 	int mRadius;

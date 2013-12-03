@@ -8,7 +8,8 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f)),mAttackRange(12),mRadius(24),mRotation(0)
+Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
+	,mAttackRange(40),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0)
 {
 
 	mPlayerId = id;
@@ -70,11 +71,12 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
+			if(mAttackDelay > 0) break;
 			if(mPlayerState == PLAYER_STATE_IDLE ||
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-
+				mAttackDelay = 1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
@@ -94,11 +96,12 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
+			if(mTypeSkillDelay > 0 )break;
 			if(mPlayerState == PLAYER_STATE_IDLE ||
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-
+				mTypeSkillDelay = 1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
@@ -106,11 +109,12 @@ void Player::TransState(short state)
 		}
 	case PLAYER_STATE_USERSKILL:
 		{
+			if(mUserSkillDelay > 0) break;
 			if(mPlayerState == PLAYER_STATE_IDLE ||
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-
+				mUserSkillDelay = 1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
@@ -126,6 +130,12 @@ void Player::TransState(short state)
 void Player::Update( float dTime)
 {
 	mDTime = dTime;
+	if(mAttackDelay > 0)
+		mAttackDelay -= dTime;
+	if(mUserSkillDelay > 0)
+		mUserSkillDelay -= dTime;
+	if(mTypeSkillDelay > 0)
+		mTypeSkillDelay -= dTime;
 	switch (mPlayerState)
 	{
 	case PLAYER_STATE_IDLE:
@@ -231,17 +241,19 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
+			
 			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
 			std::map<int,Player*> players = GPlayerManager->GetPlayers();
+			
 			for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 			{
 				Player* enemy = it->second;
 				if(enemy == this)continue;
-
-				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) < mAttackRange )
+				
+				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) - mRadius < mAttackRange )
 				{
 					//피격데스네
-					enemy->Damaged(mHP);
+					enemy->Damaged(mDamage+rand()%10);
 				}
 			}
 			TransState(PLAYER_STATE_IDLE);
@@ -259,7 +271,7 @@ void Player::Update( float dTime)
 				{
 					float x = rand() % (GGameMap->GetWidth() * 64);
 					float y = rand() % (GGameMap->GetHeight() * 64);
-					if(GGameMap->isValidTile(Point(x,y)) == true)
+					if(CouldGoPosition(Point(x,y)) == true)
 					{
 						mPosition = Point(x,y);
 						break;
