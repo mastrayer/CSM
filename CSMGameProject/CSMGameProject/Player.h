@@ -40,6 +40,7 @@ private:
 	void Update( float dTime );
 
 private:
+	std::list<NNParticleSystem*> m_ParticleSystemList;
 	NNSprite* m_PlayerSprite;
 	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
