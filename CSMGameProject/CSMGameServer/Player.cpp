@@ -8,7 +8,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMovedInfo(0),mAttackRange(12),mRadius(24)
+Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10,-10)),mAttackRange(12),mRadius(24)
 {
 
 	mPlayerId = id;
@@ -74,7 +74,6 @@ void Player::TransState(short state)
 			if(mPlayerState == PLAYER_STATE_IDLE)
 			{	
 				mPlayerState = state;
-				mMovedInfo = -1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
@@ -189,13 +188,6 @@ void Player::Update( float dTime)
 			//Check Moving Input, and set Position to d
 
 
-			//방향이 바뀌었는지 체크
-			int moveInfo = 0;
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED ) moveInfo |= 4;
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED ) moveInfo |= 2;
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED	)	moveInfo |= 1;
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	moveInfo |= 8;
-
 			//지금 갈려고 하는 방향이 map에서 이동 가능한 지역이니?
 			Point willGoDirection = Point(0,0);
 
@@ -216,19 +208,13 @@ void Player::Update( float dTime)
 				break;
 			}
 
-			if ( GGameMap->isValidTile(willGoPosition + willGoDirection * mRadius) == false )
-			{
-				//못가니까 Idle상태로 만들어줌.
-				TransState(PLAYER_STATE_IDLE);
-				break;
-			}
-			//얘네를 위에꺼랑 같이하지 않는 이유는, 아래 SetPosition 이동하고 데이터를 보내게 되면 클라 입장에서는 끊기는 것처럼 보여서...
-			SetPosition(willGoPosition);
+			if ( GGameMap->isValidTile(willGoPosition + willGoDirection * (float)mRadius) == true )
+				SetPosition(willGoPosition);
 
 
 
 			//이전과 다른 방향으로 이동했니?
-			if( mMovedInfo != -1 && moveInfo != mMovedInfo)
+			if( mMoveDirection != Point(-10,-10) && mMoveDirection != willGoDirection)
 			{
 				//방향바뀐 key정보를 보내야함.
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
@@ -236,7 +222,7 @@ void Player::Update( float dTime)
 				mClient->Broadcast(&outPacket);
 			}
 
-			mMovedInfo = moveInfo;
+			mMoveDirection = willGoDirection;
 
 		}
 		break;
@@ -326,5 +312,6 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mAngle = mRotation;
 	mPlayerInfo.mPlayerState = mPlayerState;
 	mPlayerInfo.mHP = mHP;
+	mMoveDirection = mMoveDirection;
 	return mPlayerInfo;
 }

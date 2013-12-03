@@ -13,20 +13,24 @@
 class Player
 {
 private:
+	ClientSession* mClient;
+	int mPlayerId;
+	
 	short mPlayerState;
 	GameKeyStates mGameKeyStates;
 	Point mPosition;
-	int mPlayerId;
 	float mRotation;
-	ClientSession* mClient;
+	Point mMoveDirection;
+
 	float mAttackRange;
 	int mHP;
 	int mDamage;
 	float mResponTime;
-	int mMovedInfo;
+	
 	float mDTime;
-	int mRadius;
 
+	int mRadius;
+	
 public:
 	Player(void);
 	Player(int id, ClientSession* client);

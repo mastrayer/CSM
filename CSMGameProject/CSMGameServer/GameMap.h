@@ -1,33 +1,9 @@
 #pragma once
 
 #include "NNResourceManager.h"
-
+#include "PacketType.h"
 #define ATTRIBUTE_MOVE 0x01
 #define TILESIZE 64
-struct Point
-{
-	Point()
-	{
-
-	}
-	Point(float _x, float _y)
-	{
-		x = _x , y = _y;
-	}
-	Point operator+( const Point& point ) const{
-		return Point(x+point.x,y+point.y);
-	}
-	Point operator-( const Point& point ) const{
-		return Point(x+point.x,y+point.y);
-	}
-	Point operator*( float n ) const{
-		return Point(x*n,y*n);
-	}
-	float GetDistance(const Point& aPoint, const Point& bPoint) const{
-		return (float)pow(pow(aPoint.x-bPoint.x,2) + pow(aPoint.y-bPoint.y,2),0.5);
-	}
-	float x,y;
-};
 class Tile
 {
 public:
