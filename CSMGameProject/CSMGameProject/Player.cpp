@@ -14,8 +14,7 @@ CPlayer::CPlayer( void )
 	TransState(PlayerState::IDLE);
 
 	m_PlayerUI = PlayerUI::Create();
-	m_PlayerUI->SetParent(this);
-	this->AddChild( m_PlayerUI );
+	AddChild( m_PlayerUI );
 }
 
 CPlayer::~CPlayer( void )
@@ -138,6 +137,7 @@ void CPlayer::Update( float dTime )
 	NNObject::Update( dTime );
 	//printf(" ############## %d \n",m_GameKeyStates.typeActiveSkillKey);
 
+	m_PlayerUI->SetHP( m_Hp );
 
 	switch (m_PlayerState)
 	{
