@@ -22,7 +22,7 @@ void EffectManager::Update( float dTime )
 	NNObject::Update( dTime );
 	for (auto& iter=m_EffectList.begin(); iter!=m_EffectList.end(); iter++ )
 	{
-		if ( (*iter)->m_LifeTime < (*iter)->m_NowLifeTime )
+		if ( (*iter)->m_IsEnd == true )
 		{
 			//SafeDelete( *iter );
 			RemoveChild( *iter );

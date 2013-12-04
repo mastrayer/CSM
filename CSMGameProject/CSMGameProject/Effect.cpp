@@ -2,7 +2,7 @@
 #include "Effect.h"
 
 IEffect::IEffect()
-	: m_LifeTime(0.f), m_NowLifeTime(0.f)
+	: m_LifeTime(0.f), m_NowLifeTime(0.f), m_IsEnd(false)
 {
 }
 IEffect::~IEffect()

@@ -8,8 +8,8 @@
 #include "NNApplication.h"
 
 #include "EffectManager.h"
-#include "TypeEffect.h"
-#include "UserEffect.h"
+#include "ATypeEffect.h"
+#include "AUserEffect.h"
 
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
@@ -71,7 +71,7 @@ void CPlayer::TransState( PlayerState state )
 	case USER_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_0.png";
-			EffectManager::GetInstance()->AddEffect(new UserEffect(this));
+			EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
@@ -80,7 +80,7 @@ void CPlayer::TransState( PlayerState state )
 			if( m_Check == true)
 				break;
 
-			EffectManager::GetInstance()->AddEffect(new TypeEffect(this));
+			EffectManager::GetInstance()->AddEffect(new ATypeEffect(this));
 			m_Count = 0.f;
 			m_Check = true;
 		}

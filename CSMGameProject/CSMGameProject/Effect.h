@@ -15,6 +15,7 @@ public:
 protected:
 	float m_LifeTime;
 	float m_NowLifeTime;
+	bool m_IsEnd;
 
 	friend class EffectManager;
 };
