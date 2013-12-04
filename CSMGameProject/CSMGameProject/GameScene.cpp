@@ -6,10 +6,11 @@
 #include "PacketHandler.h"
 
 CGameScene::CGameScene(void) : 
-	m_NowGameKeyStates(), m_Angle(0), m_LastAngleChangedTime(timeGetTime())
+	m_NowGameKeyStates(), m_Angle(0), m_LastAngleChangedTime(timeGetTime()),
+	m_isInit(false)
 {	
 	// UI Setting
-	SetUISet( GameUISet::Create() );
+	
 
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
@@ -37,6 +38,11 @@ void CGameScene::Update( float dTime )
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
+		if(m_isInit == false)
+		{
+			m_isInit = true;
+			SetUISet( GameUISet::Create() );
+		}
 		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 			CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
 			,0.99f));

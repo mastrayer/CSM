@@ -24,6 +24,7 @@ private:
 	HPUpdateHandler* m_HPUpdateHandler;
 	float m_Angle;
 	DWORD m_LastAngleChangedTime;
+	bool m_isInit;
 
 public:
 	CGameScene(void);

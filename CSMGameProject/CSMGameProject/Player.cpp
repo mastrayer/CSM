@@ -94,6 +94,8 @@ void CPlayer::TransState( PlayerState state )
 		{
 			imagePath = L"Sprite/skill_1.png";
 
+			if( m_Check == true)
+				break;
 
 			m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
 
@@ -114,8 +116,9 @@ void CPlayer::TransState( PlayerState state )
 			m_TypeEffect->SetMaxStartRodiusX( 60.f );
 			m_TypeEffect->SetMaxStartRodiusY( 60.f );
 
-			AddChild(m_TypeEffect);			
-
+			AddChild(m_TypeEffect);	
+			m_Count = 0.f;
+			m_Check = true;
 		}
 		break;
 	default:

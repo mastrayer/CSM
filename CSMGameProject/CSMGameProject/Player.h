@@ -54,5 +54,9 @@ private:
 	float m_Angle;
 	int m_Hp;
 
+	float m_Count;
+	bool m_Check;
+
 	friend class PlayerManager;
+	friend class GameUISet;
 };
