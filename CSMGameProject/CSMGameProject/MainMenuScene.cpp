@@ -38,8 +38,12 @@ MainMenuScene::MainMenuScene()
 	m_MainMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
 	AddChild( m_MainMenuLable[MENU_PLAY] );
 
+	m_MainMenuLable[MENU_STORY] = NNLabel::Create( L"Story", L"¸¼Àº °íµñ", 35.f );
+	m_MainMenuLable[MENU_STORY]->SetPosition( width/2 + 200.f, height/2 + 200.f );
+	AddChild( m_MainMenuLable[MENU_STORY] );
+
 	m_MainMenuLable[MENU_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
-	m_MainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 200.f);
+	m_MainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 250.f);
 	AddChild( m_MainMenuLable[MENU_EXIT] );
 
 	m_BGM = NNSound::Create("sound/mainBGM.mp3",true,true);
@@ -77,13 +81,17 @@ void MainMenuScene::Update( float dTime )
 
 	m_MainMenuSellcetionBar->SetPosition( width/2 + 150.f, height/2 + 150.f + m_MenuSellction * 50 );
 
-	m_MenuSellction = ( m_MenuSellction + MENU_EXIT + 1 ) % ( MENU_EXIT + 1);
+	m_MenuSellction = ( m_MenuSellction + MENU_EXIT + 1 ) % ( MENU_EXIT + 1 );
 
 	if ( m_MenuSellction == 0 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
 	{
+		NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
+	}
+	else if ( m_MenuSellction == 1 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
+	{
 		NNSceneDirector::GetInstance()->ChangeScene( StoryScene::Create() );
 	}
-	else if ( m_MenuSellction == 1 )
+	else if ( m_MenuSellction == 2 )
 	{
 		// exit
 	}

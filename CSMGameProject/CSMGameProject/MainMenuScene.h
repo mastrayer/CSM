@@ -9,6 +9,7 @@
 enum MENU_LIST
 {
 	MENU_PLAY,
+	MENU_STORY,
 	MENU_EXIT,
 };
 
@@ -26,7 +27,7 @@ public:
 private:
 	NNSprite * m_MainMenuImage;
 	NNSprite * m_MainMenuSellcetionBar;
-	NNLabel *m_MainMenuLable[2];
+	NNLabel *m_MainMenuLable[3];
 	NNSound *m_BGM;
 
 	unsigned int m_MenuSellction;
