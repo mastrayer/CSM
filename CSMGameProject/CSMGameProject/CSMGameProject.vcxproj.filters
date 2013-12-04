@@ -100,11 +100,14 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect">
       <UniqueIdentifier>{f53209ad-a534-4264-9209-a06208ba21b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect">
-      <UniqueIdentifier>{b6f08b70-e03a-482b-8692-b0a754098890}</UniqueIdentifier>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\A">
+      <UniqueIdentifier>{261bf71d-aab8-4d80-a60b-950b84b93ee8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect">
-      <UniqueIdentifier>{580038f1-fde1-47ba-95af-4c3d809f4cf8}</UniqueIdentifier>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\B">
+      <UniqueIdentifier>{9fe48bde-fec5-473f-baab-db1ceca78675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\C">
+      <UniqueIdentifier>{73e0ac0f-f559-407d-a627-7a081b1180d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -199,11 +202,26 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="UserEffect.cpp">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect</Filter>
+    <ClCompile Include="SkillObject.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="TypeEffect.cpp">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect</Filter>
+    <ClCompile Include="AUserEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
+    </ClCompile>
+    <ClCompile Include="ATypeEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
+    </ClCompile>
+    <ClCompile Include="BTypeEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
+    </ClCompile>
+    <ClCompile Include="CTypeEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
+    </ClCompile>
+    <ClCompile Include="BUserEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
+    </ClCompile>
+    <ClCompile Include="CUserEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -288,11 +306,26 @@
     <ClInclude Include="Effect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="UserEffect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect</Filter>
+    <ClInclude Include="SkillObject.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="TypeEffect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect</Filter>
+    <ClInclude Include="AUserEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
+    </ClInclude>
+    <ClInclude Include="ATypeEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
+    </ClInclude>
+    <ClInclude Include="BTypeEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
+    </ClInclude>
+    <ClInclude Include="BUserEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
+    </ClInclude>
+    <ClInclude Include="CTypeEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
+    </ClInclude>
+    <ClInclude Include="CUserEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

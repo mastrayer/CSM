@@ -82,7 +82,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationSample.cpp" />
+    <ClCompile Include="BTypeEffect.cpp" />
+    <ClCompile Include="BUserEffect.cpp" />
     <ClCompile Include="CameraSample.cpp" />
+    <ClCompile Include="CTypeEffect.cpp" />
+    <ClCompile Include="CUserEffect.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
@@ -108,16 +112,23 @@
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="SecondCut.cpp" />
+    <ClCompile Include="SkillObject.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ThirdCut.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="StoryScene.cpp" />
-    <ClCompile Include="TypeEffect.cpp" />
-    <ClCompile Include="UserEffect.cpp" />
+    <ClCompile Include="ATypeEffect.cpp" />
+    <ClCompile Include="AUserEffect.cpp" />
     <ClCompile Include="XMLSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
+    <ClInclude Include="BTypeEffect.h" />
+    <ClInclude Include="BUserEffect.h" />
     <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="CTypeEffect.h" />
+    <ClInclude Include="CUserEffect.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FifthCut.h" />
@@ -138,12 +149,15 @@
     <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="SampleScene.h" />
     <ClInclude Include="SecondCut.h" />
+    <ClInclude Include="SkillObject.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="StoryCut.h" />
     <ClInclude Include="StoryScene.h" />
     <ClInclude Include="ThirdCut.h" />
-    <ClInclude Include="TypeEffect.h" />
-    <ClInclude Include="UserEffect.h" />
+    <ClInclude Include="ATypeEffect.h" />
+    <ClInclude Include="AUserEffect.h" />
     <ClInclude Include="XMLSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
