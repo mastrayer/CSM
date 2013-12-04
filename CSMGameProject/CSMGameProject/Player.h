@@ -9,6 +9,7 @@
 
 #include "PlayerUI.h"
 
+
 enum PlayerState
 {
 	IDLE = 0,
@@ -31,6 +32,7 @@ public:
 	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
 	void SetPlayerMoveDirection( NNPoint direction) { m_MoveDirection = direction; }
 	NNPoint GetPlayerPosition() { return GetPosition(); }
+	float GetPlayerRotation( ) { return m_Angle; }
 	void SetPlayerHP(int hp) { m_Hp = hp; }
 	int GetPlayerHP() { return m_Hp; }
 	NNCREATE_FUNC(CPlayer);
@@ -44,7 +46,7 @@ private:
 	NNSprite* m_PlayerSprite;
 	PlayerUI* m_PlayerUI;
 	PlayerState m_PlayerState;
-	NNParticleSystem *m_TypeEffect;
+	
 	NNParticleSystem *m_UserEffect;
 	// NNParticleSystem *m_BuffEffect;
 	NNPoint m_MoveDirection;

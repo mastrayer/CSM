@@ -83,6 +83,8 @@
   <ItemGroup>
     <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="CameraSample.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
     <ClCompile Include="FirstCut.cpp" />
     <ClCompile Include="FourthCut.cpp" />
@@ -109,11 +111,15 @@
     <ClCompile Include="ThirdCut.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="StoryScene.cpp" />
+    <ClCompile Include="TypeEffect.cpp" />
+    <ClCompile Include="UserEffect.cpp" />
     <ClCompile Include="XMLSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FifthCut.h" />
     <ClInclude Include="FirstCut.h" />
     <ClInclude Include="FourthCut.h" />
@@ -136,6 +142,8 @@
     <ClInclude Include="StoryCut.h" />
     <ClInclude Include="StoryScene.h" />
     <ClInclude Include="ThirdCut.h" />
+    <ClInclude Include="TypeEffect.h" />
+    <ClInclude Include="UserEffect.h" />
     <ClInclude Include="XMLSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

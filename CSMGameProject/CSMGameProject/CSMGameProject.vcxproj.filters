@@ -94,6 +94,18 @@
     <Filter Include="Game\Scene\StoryScene\Object\StoryCut\FifthCut">
       <UniqueIdentifier>{d5d5e4da-1ef6-4461-8bd8-3ec5f686903a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager">
+      <UniqueIdentifier>{608ff5a0-8bd6-4813-9f3d-8eb5bd624b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect">
+      <UniqueIdentifier>{f53209ad-a534-4264-9209-a06208ba21b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect">
+      <UniqueIdentifier>{b6f08b70-e03a-482b-8692-b0a754098890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect">
+      <UniqueIdentifier>{580038f1-fde1-47ba-95af-4c3d809f4cf8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -181,6 +193,18 @@
     <ClCompile Include="FifthCut.cpp">
       <Filter>Game\Scene\StoryScene\Object\StoryCut\FifthCut</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="UserEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h">
@@ -257,6 +281,18 @@
     </ClInclude>
     <ClInclude Include="FifthCut.h">
       <Filter>Game\Scene\StoryScene\Object\StoryCut\FifthCut</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="UserEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\TypeEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

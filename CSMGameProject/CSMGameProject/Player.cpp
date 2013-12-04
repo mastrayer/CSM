@@ -7,6 +7,10 @@
 #include "NNInputSystem.h"
 #include "NNApplication.h"
 
+#include "EffectManager.h"
+#include "TypeEffect.h"
+#include "UserEffect.h"
+
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
 	m_Hp(100),m_RebirthDelayTime(10)
@@ -67,33 +71,16 @@ void CPlayer::TransState( PlayerState state )
 	case USER_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_0.png";
-
-			m_UserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
-			m_UserEffect->SetMinStartSpeed(300.f);
-			m_UserEffect->SetMaxStartSpeed(400.f);
-			m_UserEffect->SetMinEndSpeed(400.f);
-			m_UserEffect->SetMaxEndSpeed(500.f);
-
-			m_UserEffect->SetCreateParticlePerSecond(60);
-			m_UserEffect->SetSpreadDegree(15.f);
-			m_UserEffect->SetMinLifeTime(0.5f);
-			m_UserEffect->SetMaxLifeTime(0.5f);
-			m_UserEffect->SetDirection(m_Angle);
-
-			m_UserEffect->SetMinStartRodiusX( 50.f );
-			m_UserEffect->SetMinStartRodiusY( 50.f );
-			m_UserEffect->SetMaxStartRodiusX( 100.f );
-			m_UserEffect->SetMaxStartRodiusY( 100.f );
-
-			//m_UserEffect->SetSystemLifeTime(0.5f);
-
-			AddChild(m_UserEffect);
+			EffectManager::GetInstance()->AddEffect(new UserEffect(this));
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_1.png";
+			EffectManager::GetInstance()->AddEffect(new TypeEffect(this));
 
+<<<<<<< .mine
+=======
 			if( m_Check == true)
 				break;
 
@@ -119,6 +106,7 @@ void CPlayer::TransState( PlayerState state )
 			AddChild(m_TypeEffect);	
 			m_Count = 0.f;
 			m_Check = true;
+>>>>>>> .r500
 		}
 		break;
 	default:
