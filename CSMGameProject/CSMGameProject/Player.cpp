@@ -77,36 +77,12 @@ void CPlayer::TransState( PlayerState state )
 	case TYPE_ACTIVE_SKILL:
 		{
 			imagePath = L"Sprite/skill_1.png";
-			EffectManager::GetInstance()->AddEffect(new TypeEffect(this));
-
-<<<<<<< .mine
-=======
 			if( m_Check == true)
 				break;
 
-			m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
-
-			//	m_TypeEffect->SetCenter( m_PlayerSprite->GetCenterX(), m_PlayerSprite->GetCenterY() );
-
-			m_TypeEffect->SetMinStartSpeed(100.f);
-			m_TypeEffect->SetMaxStartSpeed(110.f);
-			m_TypeEffect->SetMinEndSpeed(120.f);
-			m_TypeEffect->SetMaxEndSpeed(130.f);
-
-			m_TypeEffect->SetCreateParticlePerSecond(60);
-			m_TypeEffect->SetSpreadDegree(360.f);
-			m_TypeEffect->SetMinLifeTime(0.5f);
-			m_TypeEffect->SetMaxLifeTime(0.5f);
-
-			m_TypeEffect->SetMinStartRodiusX( 50.f );
-			m_TypeEffect->SetMinStartRodiusY( 50.f );
-			m_TypeEffect->SetMaxStartRodiusX( 60.f );
-			m_TypeEffect->SetMaxStartRodiusY( 60.f );
-
-			AddChild(m_TypeEffect);	
+			EffectManager::GetInstance()->AddEffect(new TypeEffect(this));
 			m_Count = 0.f;
 			m_Check = true;
->>>>>>> .r500
 		}
 		break;
 	default:
