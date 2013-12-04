@@ -20,6 +20,9 @@ CGameScene::CGameScene(void) :
 
 	AddChild( m_GameMap );
 
+	// EffectManager
+	AddChild( EffectManager::GetInstance() );
+
 	InitNetworkSetting();
 }
 

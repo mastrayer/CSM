@@ -8,6 +8,7 @@
 #include "PacketType.h"
 #include "PlayerManager.h"
 #include "PacketHandler.h"
+#include "EffectManager.h"
 
 #include "GameUISet.h"
 
