@@ -92,6 +92,15 @@ void CPlayer::TransState( PlayerState state )
 		m_RebirthTimer->SetCenter(width / 2, height / 2 - 200);
 		break;
 
+	case TYPE_ACTIVE_SKILL:
+		imagePath = L"Sprite/skill_1.png";
+		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
+		{
+			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
+			CreateSkillEffect(m_PlayerType, TYPE_ACTIVE_SKILL);
+		}
+		break;
+
 	case USER_ACTIVE_SKILL:
 		imagePath = L"Sprite/skill_0.png";
 		if (GetSkillCooldown(USER_ACTIVE_SKILL) == false)
@@ -101,14 +110,6 @@ void CPlayer::TransState( PlayerState state )
 		}
 		break;
 
-	case TYPE_ACTIVE_SKILL:
-		imagePath = L"Sprite/skill_1.png";
-		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
-		{
-			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
-			CreateSkillEffect(m_PlayerType, TYPE_ACTIVE_SKILL);
-		}
-		break;
 	default:
 		break;
 	}
