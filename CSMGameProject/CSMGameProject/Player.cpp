@@ -6,6 +6,7 @@
 #include "NNParticleSystem.h"
 #include "NNInputSystem.h"
 #include "NNApplication.h"
+#include "NNAnimation.h"
 
 #include "EffectManager.h"
 #include "ATypeEffect.h"
@@ -24,7 +25,7 @@ CPlayer::CPlayer( void )
 	m_PlayerUI = PlayerUI::Create();
 	AddChild( m_PlayerUI );
 
-	m_PlayerType = TYPE_A;
+	m_PlayerType = TYPE_B;
 	memset(m_SkillCount, 0, sizeof(m_SkillCount));
 	memset(m_SkillCooldown, 0, sizeof(m_SkillCooldown));
 }
