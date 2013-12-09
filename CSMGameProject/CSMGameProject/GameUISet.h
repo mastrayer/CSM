@@ -19,11 +19,11 @@ public:
 
 	void ControlSkillUI(PlayerState skillType, float dTime);
 
-// 	float GetUserSkillCooltime() { return m_UserSkillCooltime; }
-// 	float GetTypeSkillCooltime() { return m_TypeSkillCooltime; }
-// 
-// 	void SetUserSkillCooltime(float value) { m_UserSkillCooltime = value; }
-// 	void SetTypeSkillCooltime(float value) { m_TypeSkillCooltime = value; }
+	float GetTypeSkillCooltime() { return m_SkillCooltime[0]; }
+ 	float GetUserSkillCooltime() { return m_SkillCooltime[1]; }
+ 
+	void SetTypeSkillCooltime(float value) { m_SkillCooltime[0] = value; swprintf_s(m_SkillCooltimeBuff[0], L"%d", (int)m_SkillCooltime[0]); }
+	void SetUserSkillCooltime(float value) { m_SkillCooltime[1] = value; swprintf_s(m_SkillCooltimeBuff[1], L"%d", (int)m_SkillCooltime[1]); }
 
 	NNCREATE_FUNC(GameUISet);
 
@@ -46,8 +46,6 @@ private:
 	wchar_t m_FPSLabelBuff[100];
 	wchar_t m_SkillCooltimeBuff[2][5];
 	//int m_KillCount;
-	float m_UserSkillCooltime;
-	float m_TypeSkillCooltime;
 
 	friend class Player;
 };

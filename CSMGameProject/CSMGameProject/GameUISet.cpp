@@ -5,8 +5,8 @@
 GameUISet::GameUISet()
 {
 	m_Hp = 80;
-	m_SkillCooltime[0] = 0.1f;
-	m_SkillCooltime[1] = 0.1f;
+	m_SkillCooltime[0] = 5.f;
+	m_SkillCooltime[1] = 5.f;
 	swprintf_s(m_SkillCooltimeBuff[0], L"%d", (int)m_SkillCooltime[0]);
 	swprintf_s(m_SkillCooltimeBuff[1], L"%d", (int)m_SkillCooltime[1]);
 
@@ -38,17 +38,16 @@ GameUISet::GameUISet()
 	m_SkillUI[1]->SetCenter(m_SkillUI[1]->GetImageWidth() / 2.f, m_SkillUI[1]->GetImageHeight() / 2.f);
 	m_SkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
 	
-	m_SkillTimer[0] = NNLabel::Create(m_SkillCooltimeBuff[0], L"¸¼Àº °íµñ", 40.f);
+	m_SkillTimer[0] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
 	m_SkillTimer[0]->SetCenter(m_SkillUI[0]->GetCenterX(), m_SkillUI[0]->GetCenterY());
 	m_SkillTimer[0]->SetPosition(width / 2.f - 35, height / 2.f + 250);
 	m_SkillTimer[0]->SetRGBA(255, 255, 255, 1);
 
-	m_SkillTimer[1] = NNLabel::Create(m_SkillCooltimeBuff[1], L"¸¼Àº °íµñ", 40.f);
+	m_SkillTimer[1] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
 	m_SkillTimer[1]->SetCenter(m_SkillUI[1]->GetCenterX(), m_SkillUI[1]->GetCenterY());
 	m_SkillTimer[1]->SetPosition(width / 2.f + 35, height / 2.f + 250);
 	m_SkillTimer[1]->SetRGBA(255, 255, 255, 1);
 	
-
 	AddChild(m_CharacterUIFrame);
 	AddChild(m_SkillUIFrame);
 	AddChild(m_HpBarBackground);
@@ -95,11 +94,16 @@ void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 		m_MyPlayer->SetSkillCount(m_MyPlayer->GetSkillCount(skillType) + dTime, skillType);
 		m_SkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(m_MyPlayer->GetSkillCount(skillType) / m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL]);
 
+		swprintf_s(m_SkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL], L"%.0f", m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL] - m_MyPlayer->GetSkillCount(skillType));
+		m_SkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(m_SkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL]);
+
 		if (m_MyPlayer->GetSkillCount(skillType) >= m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL])
 		{
 			m_MyPlayer->SetSkillCooldown(false, skillType);
 			m_MyPlayer->SetSkillCount(0.f, skillType);
+
+			m_SkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(1.f);
+			m_SkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(L"");
 		}
-	}else
-		m_SkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity( 1.f );
+	}
 }
