@@ -22,6 +22,8 @@
 #define PKT_CS_MOUSEANGLE 7
 #define PKT_SC_MOUSEANGLE 8
 #define PKT_SC_HP 9
+#define PKT_SC_KILLSCORE 10
+#define PKT_SC_ENDOFGAME 11
 struct GameKeyStates
 {
 	GameKeyStates()
@@ -50,6 +52,8 @@ struct PlayerInfo
 	short m_PlayerState;
 	int m_HP;
 	NNPoint m_MoveDirection;
+	int m_Team;
+	int m_Type;
 };
 #pragma pack(push,1)
 
@@ -71,6 +75,8 @@ struct LoginResult : public NNPacketHeader
 	PlayerInfo m_MyPlayerInfo;
 	int m_NowPlayersLength;
 	PlayerInfo m_PlayerInfo[MAX_PLAYER_LEN];
+	int m_KillScore[2];
+	int m_KillLimit;
 };
 struct LoginBroadcastResult : public NNPacketHeader
 {
@@ -144,5 +150,25 @@ struct HPUpdateResult : public NNPacketHeader
 	}
 	int m_PlayerId;
 	int m_HP;
+};
+struct KillScoreResult : public NNPacketHeader
+{
+	KillScoreResult()
+	{
+		m_Size = sizeof(KillScoreResult);
+		m_Type = PKT_SC_KILLSCORE;
+	}
+	int m_KillScore[2];
+	int m_KillLimit;
+};
+
+struct EndOfGameResult : public NNPacketHeader
+{
+	EndOfGameResult()
+	{
+		m_Size = sizeof(EndOfGameResult);
+		m_Type = PKT_SC_ENDOFGAME;
+	}
+	int mWinnerTeam;
 };
 #pragma pack(pop)

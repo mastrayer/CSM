@@ -32,7 +32,7 @@ public:
 	CPlayer(void);
 	virtual ~CPlayer(void);
 	void Init() {};
-
+	void InitWithType();
 	void TransState( PlayerState state );
 	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
@@ -41,7 +41,9 @@ public:
 	void SetPlayerHP(int hp) { m_Hp = hp; }
 	void SetSkillCount(float value, PlayerState skillType) { m_SkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
 	void SetSkillCooldown(bool value, PlayerState skillType) { m_SkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
-
+	void SetPlayerTeam(int team) { m_Team = team; }
+	void SetPlayerType( PlayerType type ) { m_PlayerType = type; InitWithType(); }
+	
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return m_Angle; }
 	int GetPlayerHP() { return m_Hp; }
@@ -71,6 +73,8 @@ private:
 	float m_RebirthDelayTime;
 	float m_Angle;
 	int m_Hp;
+	int m_Team;
+	int m_Speed;
 
 	float m_SkillCount[SKILL_COUNT];
 	bool m_SkillCooldown[SKILL_COUNT];

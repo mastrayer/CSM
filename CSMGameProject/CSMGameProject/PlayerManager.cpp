@@ -63,6 +63,24 @@ void CPlayerManager::UpdatePlayerRotation(int _playerId, float angle )
 	}
 }
 
+void CPlayerManager::UpdatePlayerTeam(int _playerId, int team)
+{
+	std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
+	if( itor != m_Players.end() ) 
+	{
+		CPlayer* player = m_Players.find(_playerId)->second;
+		player->SetPlayerTeam(team);
+	}
+}
+void CPlayerManager::UpdatePlayerType(int _playerId, int type)
+{
+		std::map<int,CPlayer*>::iterator itor = m_Players.find(_playerId);
+	if( itor != m_Players.end() ) 
+	{
+		CPlayer* player = m_Players.find(_playerId)->second;
+		player->SetPlayerType((PlayerType)type);
+	}
+}
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 {
 	UpdatePlayerState(info.m_PlayerId, info.m_PlayerState);
@@ -70,6 +88,8 @@ void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 	UpdatePlayerRotation(info.m_PlayerId, info.m_Angle);
 	UpdatePlayerMoveDirection(info.m_PlayerId, info.m_MoveDirection);
 	UpdatePlayerHP(info.m_PlayerId, info.m_HP);
+	UpdatePlayerTeam(info.m_PlayerId, info.m_Team);
+	UpdatePlayerType(info.m_PlayerId, info.m_Type);
 }
 
 void CPlayerManager::SetMyPlayerId(int id)

@@ -18,14 +18,13 @@
 
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
-	m_Hp(100),m_RebirthDelayTime(10)
+	m_Hp(100),m_RebirthDelayTime(10), m_Team(0)
 {
 	TransState(PlayerState::IDLE);
 
 	m_PlayerUI = PlayerUI::Create();
 	AddChild( m_PlayerUI );
 
-	m_PlayerType = TYPE_B;
 	memset(m_SkillCount, 0, sizeof(m_SkillCount));
 	memset(m_SkillCooldown, 0, sizeof(m_SkillCooldown));
 }
@@ -141,7 +140,7 @@ void CPlayer::Update( float dTime )
 		{
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
-			SetPosition( GetPosition() + m_MoveDirection * dTime * 100.f );
+			SetPosition( GetPosition() + m_MoveDirection * dTime * m_Speed );
 			break;
 		}
 	case ATTAACK:
@@ -152,7 +151,6 @@ void CPlayer::Update( float dTime )
 		{
 		}
 		break;
-		// 스킬 발동 키 추가 by mooneegee
 	case USER_ACTIVE_SKILL:
 		{
 
@@ -166,56 +164,30 @@ void CPlayer::Update( float dTime )
 	default:
 		break;
 	}
-
-	/*
-	for (const auto& node : m_ChildList )
-	{
-		NNParticleSystem* temp = dynamic_cast<NNParticleSystem*>(node);
-
-		if ( temp != NULL ) {
-
-		}
-	}
-	fof;lkJSIf;lug 0v
-	;'dlfjalfjwoefuaoiwnbSv r( */
-	/*
-	m_ParticleSystemList.push_back(* );
-	Ad-*+++++++
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	jdkdkdkdfjfdiensk,cxnxcj,zwlhfisjfsdjsdl dkldjfeineifjdkfkjdlfjflvkd6ltjsguqdls2h5g2o2d295dl95didl6di1g9h8dl18d1l8tj8sdk1wale34hg8alwerjfl;askdji;woer fjoaisjkdlfhs;adjjjjjjjjjjjjjjj m dChild(* );
-	
-	for (auto& iter=m_ParticleSystemList.begin(); iter!=m_ParticleSystemList.end(); iter++ )
-	{
-		if ((*iter)->IsAlive() == false)
-		{
-			RemoveChild( *iter );
-			iter = m_ParticleSystemList.erase( iter );
-			if ( iter == m_ParticleSystemList.end() )
-			{
-				break;
-			}
-		}
-	}*/
 }
-
-
 
 void CPlayer::Render()
 {
 	NNObject::Render();
+}
+
+void CPlayer::InitWithType()
+{
+	switch (m_PlayerType)
+	{
+	case TYPE_A:
+		{
+			m_Speed = 100;
+		}break;
+	case TYPE_B:
+		{
+			m_Speed = 110;
+		}break;
+	case TYPE_C:
+		{
+			m_Speed = 120;
+		}break;
+	default:
+		break;
+	}
 }

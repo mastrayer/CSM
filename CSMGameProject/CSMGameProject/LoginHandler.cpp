@@ -36,6 +36,8 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 						CPlayerManager::GetInstance()->UpdatePlayerInfo( m_LoginResultPacket.m_PlayerInfo[i] );
 					}
 				}
+				CPlayerManager::GetInstance()->SetKillLimit(m_LoginResultPacket.m_KillLimit);
+				CPlayerManager::GetInstance()->SetKillScore(m_LoginResultPacket.m_KillScore);
 				printf("LOGIN SUCCESS ClientId[%d] \n", m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId) ;
 			}
 			else

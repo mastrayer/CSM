@@ -41,6 +41,7 @@ void CGameScene::Update( float dTime )
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
+	//	TODO :: CPlayerManager의 Score, Limit를 표현해주세요
 		if(m_isInit == false)
 		{
 			m_isInit = true;
