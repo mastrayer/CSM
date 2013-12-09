@@ -21,6 +21,7 @@ private:
 	Point mPosition;
 	float mRotation;
 	Point mMoveDirection;
+	int mTeam;
 
 	float mAttackRange;
 	int mHP;

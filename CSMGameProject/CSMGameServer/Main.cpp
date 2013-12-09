@@ -12,6 +12,7 @@
 
 #include "GameMap.h"
 #include "PlayerManager.h"
+#include "GameManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
 
@@ -33,7 +34,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	GDatabaseJobManager = new DatabaseJobManager ;
 	GPlayerManager = new PlayerManager;
 	GGameMap = new GameMap(L"map/gamemap.csm");
-
+	GGameManager = new GameManager(10);
 	/// DB Helper √ ±‚»≠
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
 		return -1 ;

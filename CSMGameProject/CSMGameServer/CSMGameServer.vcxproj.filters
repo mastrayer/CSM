@@ -112,6 +112,9 @@
     <ClCompile Include="GameMap.cpp">
       <Filter>Game\GameMap</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Game\GameManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -249,6 +252,9 @@
     <ClInclude Include="GameMap.h">
       <Filter>Game\GameMap</Filter>
     </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Game\GameManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -322,6 +328,9 @@
     </Filter>
     <Filter Include="Game\GameMap">
       <UniqueIdentifier>{07d653ee-6b89-420c-85e8-5e82fd7f6fd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameManager">
+      <UniqueIdentifier>{d7a8d297-71b2-4b95-a7e8-fa2cd0ca4faa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

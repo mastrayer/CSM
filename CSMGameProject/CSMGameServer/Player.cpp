@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Math.h"
 #include "PlayerManager.h"
+#include "GameManager.h"
 
 
 Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
@@ -26,10 +27,13 @@ Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(P
 			break;
 		}
 	}
+	mTeam = GGameManager->GiveTeamNumber();
 }
 
 Player::~Player(void)
 {
+	//소멸자가 제대로 호출 안될 수도 있을거같은데..
+	GGameManager->LogOutPlayer(mTeam);
 }
 
 void Player::TransState(short state)
@@ -304,6 +308,7 @@ void Player::Damaged(int damage)
 	if(mHP < damage)
 	{
 		//죽었슴다
+		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);
 	}
 	else
@@ -328,6 +333,7 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mPlayerState = mPlayerState;
 	mPlayerInfo.mHP = mHP;
 	mPlayerInfo.mMoveDirection = mMoveDirection;
+	mPlayerInfo.mTeam = mTeam;
 	return mPlayerInfo;
 }
 

@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "PlayerManager.h"
 #include <Windows.h>
+#include "GameManager.h"
 
 PlayerManager::PlayerManager(void):mPlayersLength(0)
 {
@@ -67,6 +68,7 @@ void PlayerManager::DeletePlayer(int id)
 		mPlayersLength--;
 		Player* deleteTarget = mPlayers.find(id)->second;
 		mPlayers.erase( mPlayers.find(id) );
+		delete deleteTarget;
 	}
 }
 

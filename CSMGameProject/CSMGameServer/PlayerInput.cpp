@@ -5,6 +5,7 @@
 #include "PlayerManager.h"
 #include "DatabaseJobManager.h"
 #include "DatabaseJobContext.h"
+#include "GameManager.h"
 
 void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuffer* buffer )
 {
@@ -28,6 +29,9 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 		outPacket.mPlayerInfo[i] = it->second->GetPlayerInfo();
 		i++;
 	}
+	outPacket.mKillLimit = GGameManager->GetKillLimit();
+	outPacket.mKillScore[0] = GGameManager->GetKillScore()[0];
+	outPacket.mKillScore[0] = GGameManager->GetKillScore()[1];
 	if(!client->Send(&outPacket) )
 		return;
 

@@ -23,6 +23,8 @@
 #define PKT_CS_MOUSEANGLE 7
 #define PKT_SC_MOUSEANGLE 8
 #define PKT_SC_HP 9
+#define PKT_SC_KILLSCORE 10
+#define PKT_SC_ENDOFGAME 11
 struct Point
 {
 	Point()
@@ -86,6 +88,7 @@ struct PlayerInfo
 	short mPlayerState;
 	int mHP;
 	Point mMoveDirection;
+	int mTeam;
 };
 #pragma pack(push, 1)
 
@@ -114,6 +117,8 @@ struct LoginResult : public PacketHeader
 	PlayerInfo mMyPlayerInfo;
 	int mNowPlayersLength;
 	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
+	int mKillScore[2];
+	int mKillLimit;
 };
 struct LoginBroadcastResult : public PacketHeader
 {
@@ -187,5 +192,26 @@ struct HPUpdateResult : public PacketHeader
 	}
 	int mPlayerId;
 	int mHP;
+};
+
+struct KillScoreResult : public PacketHeader
+{
+	KillScoreResult()
+	{
+		mSize = sizeof(KillScoreResult);
+		mType = PKT_SC_KILLSCORE;
+	}
+	int mKillScore[2];
+	int mKillLimit;
+};
+
+struct EndOfGameResult : public PacketHeader
+{
+	EndOfGameResult()
+	{
+		mSize = sizeof(EndOfGameResult);
+		mType = PKT_SC_ENDOFGAME;
+	}
+	int mWinnerTeam;
 };
 #pragma pack(pop)
