@@ -31,6 +31,7 @@ class CPlayer : public NNObject
 public:
 	CPlayer(void);
 	virtual ~CPlayer(void);
+	void Init() {};
 
 	void TransState( PlayerState state );
 	

@@ -11,6 +11,7 @@ public:
 	FifthCut();
 	virtual ~FifthCut();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

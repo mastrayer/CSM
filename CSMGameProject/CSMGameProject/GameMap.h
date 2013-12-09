@@ -15,6 +15,7 @@ public:
 	CTile();
 	virtual ~CTile();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 
@@ -36,6 +37,7 @@ public:
 	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
 	bool isValidTile(NNPoint p);
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

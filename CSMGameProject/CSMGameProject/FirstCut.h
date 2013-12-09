@@ -11,6 +11,7 @@ public:
 	FirstCut();
 	virtual ~FirstCut();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

@@ -23,4 +23,5 @@ private:
 private:
 	EffectManager();
 	virtual ~EffectManager();
+	void Init() {};
 };

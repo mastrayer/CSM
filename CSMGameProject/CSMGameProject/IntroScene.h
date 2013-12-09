@@ -17,6 +17,7 @@ public:
 	IntroScene();
 	virtual ~IntroScene();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

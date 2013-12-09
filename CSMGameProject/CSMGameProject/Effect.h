@@ -8,6 +8,7 @@ class IEffect : public NNObject
 public:
 	IEffect();
 	virtual ~IEffect();
+	void Init() {};
 
 	void Render();
 	void Update( float dTime );

@@ -18,6 +18,8 @@ class MainMenuScene : public NNScene
 public:
 	MainMenuScene();
 	virtual ~MainMenuScene();
+	void Init() {};
+
 
 	void Render();
 	void Update( float dTime );

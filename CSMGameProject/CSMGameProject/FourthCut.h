@@ -11,6 +11,7 @@ public:
 	FourthCut();
 	virtual ~FourthCut();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

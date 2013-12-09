@@ -10,6 +10,7 @@ public:
 	StoryScene();
 	virtual ~StoryScene();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 

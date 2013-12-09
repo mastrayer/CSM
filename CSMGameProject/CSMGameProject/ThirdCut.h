@@ -11,6 +11,7 @@ public:
 	ThirdCut();
 	virtual ~ThirdCut();
 
+	void Init(){}
 	void Render();
 	void Update( float dTime );
 
