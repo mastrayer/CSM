@@ -6,7 +6,6 @@
 #include "NNSprite.h"
 #include "Player.h"
 #include "PlayerManager.h"
-#include "GameUIHighlight.h"
 #include "EffectManager.h"
 
 class GameUISet : public NNUISet
@@ -38,10 +37,13 @@ private:
 
 	NNSprite *m_UserSkillUI;
 	NNSprite *m_TypeSkillUI;
-	NNSprite *m_UserSkillBarEffect;
-	NNSprite *m_TypeSkillBarEffect;
+	//NNSprite *m_UserSkillBarEffect;
+	//NNSprite *m_TypeSkillBarEffect;
+	NNSprite *m_CharacterUIFrame;
+	NNSprite *m_SkillUIFrame;
 	NNSprite *m_CharacterFace;
 	NNSprite *m_HpBar;
+	NNSprite *m_HpBarBackground;
 	NNLabel *m_UserSkillTimer;
 	NNLabel *m_TypeSkillTimer;
 
