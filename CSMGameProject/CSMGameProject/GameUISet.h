@@ -22,8 +22,8 @@ public:
 	float GetTypeSkillCooltime() { return m_SkillCooltime[0]; }
  	float GetUserSkillCooltime() { return m_SkillCooltime[1]; }
  
-	void SetTypeSkillCooltime(float value) { m_SkillCooltime[0] = value; swprintf_s(m_SkillCooltimeBuff[0], L"%d", (int)m_SkillCooltime[0]); }
-	void SetUserSkillCooltime(float value) { m_SkillCooltime[1] = value; swprintf_s(m_SkillCooltimeBuff[1], L"%d", (int)m_SkillCooltime[1]); }
+	void SetTypeSkillCooltime(float value) { m_SkillCooltime[0] = value; }
+	void SetUserSkillCooltime(float value) { m_SkillCooltime[1] = value; }
 
 	NNCREATE_FUNC(GameUISet);
 
