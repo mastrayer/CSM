@@ -9,10 +9,11 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(100),mDamage(5),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
-	,mAttackRange(40),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0)
+Player::Player(int id, ClientSession* client):mHP(),mDamage(),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
+	,mAttackRange(40),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
 {
-
+	mType = rand()%2;
+	InitWithType();
 	mPlayerId = id;
 	mClient = client;
 
@@ -53,10 +54,10 @@ void Player::TransState(short state)
 	case PLAYER_STATE_WALK:
 		{
 			Point willGoPosition = GetPosition();
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * 100.f;
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * 100.f;
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * 100.f;
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * mDTime * 100.f;
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * mDTime * mSpeed;
 
 			if ( GGameMap->isValidTile(willGoPosition) == false )
 			{
@@ -210,15 +211,15 @@ void Player::Update( float dTime)
 			}
 
 			//지금 갈려고 하는 방향이 map에서 이동 불가능한 지역이니?
-			if ( CouldGoPosition( GetPosition() + willGoDirection * dTime * 100.f ) == false )
+			if ( CouldGoPosition( GetPosition() + willGoDirection * dTime * mSpeed ) == false )
 			{
 				//X좌표라도 갈수있니?
-				if ( CouldGoPosition( GetPosition() + Point(willGoDirection.x,0) * dTime * 100.f ) == true )
+				if ( CouldGoPosition( GetPosition() + Point(willGoDirection.x,0) * dTime * mSpeed ) == true )
 				{
 					willGoDirection = Point(willGoDirection.x,0);
 				}
 				//Y좌표라도 갈 수 있니?
-				else if ( CouldGoPosition( GetPosition() +  Point(0,willGoDirection.y) * dTime * 100.f ) == true )
+				else if ( CouldGoPosition( GetPosition() +  Point(0,willGoDirection.y) * dTime * mSpeed ) == true )
 				{
 					willGoDirection = Point(0,willGoDirection.y);
 				}
@@ -227,7 +228,7 @@ void Player::Update( float dTime)
 					willGoDirection = Point(0,0);
 				}
 			}
-			willGoPosition = GetPosition() + willGoDirection * dTime * 100.f;
+			willGoPosition = GetPosition() + willGoDirection * dTime * mSpeed;
 			SetPosition(willGoPosition);
 
 
@@ -245,19 +246,23 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			
+
 			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
 			std::map<int,Player*> players = GPlayerManager->GetPlayers();
-			
+
 			for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 			{
 				Player* enemy = it->second;
 				if(enemy == this)continue;
-				
+
 				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) - mRadius < mAttackRange )
 				{
 					//피격데스네
-					enemy->Damaged(mDamage+rand()%10);
+					if ( enemy->Damaged(mDamage+rand()%10) == true);
+					{
+						//쟤를 죽인거니까
+						ChangeType(GetTypeChangeResult(mType, enemy->mType));
+					}
 				}
 			}
 			TransState(PLAYER_STATE_IDLE);
@@ -281,7 +286,8 @@ void Player::Update( float dTime)
 						break;
 					}
 				}
-				SetHP(100);
+				mType = rand()%2;
+				InitWithType();
 				TransState(PLAYER_STATE_IDLE);
 				break;
 			}
@@ -303,13 +309,15 @@ void Player::Update( float dTime)
 		break;
 	}
 }
-void Player::Damaged(int damage)
+// return value : true - die, false - non-die
+bool Player::Damaged(int damage)
 {
 	if(mHP < damage)
 	{
 		//죽었슴다
 		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);
+		return true;
 	}
 	else
 	{
@@ -319,8 +327,8 @@ void Player::Damaged(int damage)
 		outPacket.mPlayerId = mPlayerId;
 		outPacket.mHP = mHP;
 		mClient->Broadcast(&outPacket);
+		return false;
 	}
-
 }
 PlayerInfo Player::GetPlayerInfo()
 {
@@ -334,6 +342,7 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mHP = mHP;
 	mPlayerInfo.mMoveDirection = mMoveDirection;
 	mPlayerInfo.mTeam = mTeam;
+	mPlayerInfo.mType = mType;
 	return mPlayerInfo;
 }
 
@@ -359,4 +368,131 @@ bool Player::CouldGoPosition(Point position)
 		}
 	}
 	return true;
+}
+
+void Player::ChangeType(int type)
+{
+	mType = type;
+	GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+	outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+	mClient->Broadcast(&outPacket);
+}
+
+int Player::GetTypeChangeResult(int killerType, int victimType)
+{
+	switch (killerType)
+	{
+	case TYPE_A:
+		{
+			switch (killerType)
+			{
+			case TYPE_A:
+				{
+					return TYPE_A;
+				}break;
+			case TYPE_B:
+				{
+					return TYPE_C;
+				}break;
+			case TYPE_C:
+				{
+					return TYPE_B;
+				}break;
+			default:
+				break;
+			}
+		}break;
+	case TYPE_B:
+		{
+			switch (killerType)
+			{
+			case TYPE_A:
+				{
+					TYPE_C;
+				}break;
+			case TYPE_B:
+				{
+					TYPE_B;
+				}break;
+			case TYPE_C:
+				{
+					TYPE_A;
+				}break;
+			default:
+				break;
+			}
+		}break;
+	case TYPE_C:
+		{
+			switch (killerType)
+			{
+			case TYPE_A:
+				{
+					TYPE_C;
+				}break;
+			case TYPE_B:
+				{
+					return TYPE_C;
+				}break;
+			case TYPE_C:
+				{
+					if(rand()%2 == 0)
+					{
+						return TYPE_A;
+					}
+					return TYPE_B;
+				}break;
+			default:
+				break;
+			}
+		}break;
+	default:
+		break;
+	}
+
+	/*
+	지우지마세요
+	switch (killerType)
+	{
+	case TYPE_A:
+	{
+
+	}break;
+	case TYPE_B:
+	{
+
+	}break;
+	case TYPE_C:
+	{
+
+	}break;
+	default:
+	break;
+	}*/
+}
+void Player::InitWithType()
+{
+	switch (mType)
+	{
+	case TYPE_A:
+		{
+			SetHP(50);
+			mDamage = 15;
+			mSpeed = 100;
+		}break;
+	case TYPE_B:
+		{
+			SetHP(55);
+			mDamage = 11;
+			mSpeed = 110;
+		}break;
+	case TYPE_C:
+		{
+			SetHP(35);
+			mDamage = 19;
+			mSpeed = 120;
+		}break;
+	default:
+		break;
+	}
 }

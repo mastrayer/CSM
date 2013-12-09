@@ -89,6 +89,7 @@ struct PlayerInfo
 	int mHP;
 	Point mMoveDirection;
 	int mTeam;
+	int mType;
 };
 #pragma pack(push, 1)
 

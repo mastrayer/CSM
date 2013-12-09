@@ -9,6 +9,10 @@
 #define PLAYER_STATE_TYPESKILL 4
 #define PLAYER_STATE_USERSKILL 5
 
+#define TYPE_A 0
+#define TYPE_B 1
+#define TYPE_C 2
+
 
 class Player
 {
@@ -22,10 +26,12 @@ private:
 	float mRotation;
 	Point mMoveDirection;
 	int mTeam;
+	int mType;
 
 	float mAttackRange;
 	int mHP;
 	int mDamage;
+	int mSpeed;
 	float mResponTime;
 	float mAttackDelay;
 	float mUserSkillDelay;
@@ -40,14 +46,25 @@ public:
 	Player(int id, ClientSession* client);
 	virtual ~Player(void);
 	void TransState(short state);
+
+	void InitWithType();
+
 	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; }
 	void SetPosition(Point position) { mPosition = position; }
 	void SetRotation(float angle) { mRotation = angle; }
-	Point GetPosition() { return mPosition; }
-	void Damaged(int damage);
 	void SetHP(int hp) {mHP = hp;}
+	void ChangeType(int type);
+
+	Point GetPosition() { return mPosition; }
 	PlayerInfo GetPlayerInfo();
+	int GetTypeChangeResult(int killerType, int victimType);
+	int GetType(){ return mType; }
+
+	bool Damaged(int damage); // return value : true - die, false - non-die
+
 	void Update( float dTime );
+
+
 private:
 	bool CouldGoPosition(Point position);
 };
