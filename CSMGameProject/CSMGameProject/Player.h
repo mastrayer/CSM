@@ -9,6 +9,7 @@
 
 #include "PlayerUI.h"
 
+#define SKILL_COUNT 2
 
 enum PlayerState
 {
@@ -19,7 +20,12 @@ enum PlayerState
 	TYPE_ACTIVE_SKILL = 4,
 	USER_ACTIVE_SKILL = 5,	
 };
-
+enum PlayerType
+{
+	TYPE_A = 0,
+	TYPE_B = 1,
+	TYPE_C = 2,
+};
 class CPlayer : public NNObject
 {
 public:
@@ -27,14 +33,23 @@ public:
 	virtual ~CPlayer(void);
 
 	void TransState( PlayerState state );
-	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
+	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
 	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
 	void SetPlayerMoveDirection( NNPoint direction) { m_MoveDirection = direction; }
+	void SetPlayerHP(int hp) { m_Hp = hp; }
+	void SetSkillCount(float value, PlayerState skillType) { m_SkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
+	void SetSkillCooldown(bool value, PlayerState skillType) { m_SkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
+
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return m_Angle; }
-	void SetPlayerHP(int hp) { m_Hp = hp; }
 	int GetPlayerHP() { return m_Hp; }
+	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
+	float GetSkillCount(PlayerState skillType) { return m_SkillCount[skillType - TYPE_ACTIVE_SKILL]; }
+	bool GetSkillCooldown(PlayerState skillType) { return m_SkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
+
+	void CreateSkillEffect(PlayerType type, PlayerState skillType);
+
 	NNCREATE_FUNC(CPlayer);
 
 private:
@@ -56,8 +71,10 @@ private:
 	float m_Angle;
 	int m_Hp;
 
-	float m_Count;
-	bool m_Check;
+	float m_SkillCount[SKILL_COUNT];
+	bool m_SkillCooldown[SKILL_COUNT];
+
+	PlayerType m_PlayerType;
 
 	friend class PlayerManager;
 	friend class GameUISet;

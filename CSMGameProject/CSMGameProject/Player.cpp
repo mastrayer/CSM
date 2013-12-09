@@ -10,6 +10,10 @@
 #include "EffectManager.h"
 #include "ATypeEffect.h"
 #include "AUserEffect.h"
+#include "BTypeEffect.h"
+#include "BUserEffect.h"
+#include "CTypeEffect.h"
+#include "CUserEffect.h"
 
 CPlayer::CPlayer( void )
 	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
@@ -19,12 +23,36 @@ CPlayer::CPlayer( void )
 
 	m_PlayerUI = PlayerUI::Create();
 	AddChild( m_PlayerUI );
+
+	m_PlayerType = TYPE_A;
+	memset(m_SkillCount, 0, sizeof(m_SkillCount));
+	memset(m_SkillCooldown, 0, sizeof(m_SkillCooldown));
 }
 
 CPlayer::~CPlayer( void )
 {
 }
 
+void CPlayer::CreateSkillEffect(PlayerType type, PlayerState skillType)
+{
+	switch (type)
+	{
+	case TYPE_A :
+		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new ATypeEffect(this));
+		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
+		break;
+
+	case TYPE_B :
+		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
+		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
+		break;
+
+	case TYPE_C :
+		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
+		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
+		break;
+	}
+}
 void CPlayer::TransState( PlayerState state )
 {
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
@@ -33,9 +61,9 @@ void CPlayer::TransState( PlayerState state )
 
 	m_PlayerState = state;
 
-	if ( m_PlayerSprite != NULL )
+	if (m_PlayerSprite != NULL)
 	{
-		RemoveChild( m_PlayerSprite );
+		RemoveChild(m_PlayerSprite);
 	}
 
 	std::wstring imagePath = L"";
@@ -43,46 +71,42 @@ void CPlayer::TransState( PlayerState state )
 	switch (state)
 	{
 	case IDLE:
-		{
-			imagePath = L"Sprite/idle_0.png";
-		}
+		imagePath = L"Sprite/idle_0.png";
 		break;
+
 	case WALK:
-		{
-			imagePath = L"Sprite/walk_0.png";
-		}
+		imagePath = L"Sprite/walk_0.png";
 		break;
+
 	case ATTAACK:
-		{
-			imagePath = L"Sprite/attack_0.png";
+		imagePath = L"Sprite/attack_0.png";
 
-			//RemoveChild(m_BuffEffect);
+		//RemoveChild(m_BuffEffect);
 
-			//m_BuffEffect = NNParticleSystem::Create()
-		}
+		//m_BuffEffect = NNParticleSystem::Create()
 		break;
+
 	case DIE:
-		{
-			imagePath = L"Sprite/die.png";
-			m_RebirthTimer = NNLabel::Create(L"À¸¾Ó~ Áê±Ý~ XÃÊ ¿ì¸® Á» Àß ÇØº¾½Ã´Ù", L"¸¼Àº °íµñ", 40.f);
-			m_RebirthTimer->SetCenter( width/2, height/2 - 200 );
-		}
+		imagePath = L"Sprite/die.png";
+		m_RebirthTimer = NNLabel::Create(L"À¸¾Ó~ Áê±Ý~ XÃÊ ¿ì¸® Á» Àß ÇØº¾½Ã´Ù", L"¸¼Àº °íµñ", 40.f);
+		m_RebirthTimer->SetCenter(width / 2, height / 2 - 200);
 		break;
-	case USER_ACTIVE_SKILL:
-		{
-			imagePath = L"Sprite/skill_0.png";
-			EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
-		}
-		break;
-	case TYPE_ACTIVE_SKILL:
-		{
-			imagePath = L"Sprite/skill_1.png";
-			if( m_Check == true)
-				break;
 
-			EffectManager::GetInstance()->AddEffect(new ATypeEffect(this));
-			m_Count = 0.f;
-			m_Check = true;
+	case USER_ACTIVE_SKILL:
+		imagePath = L"Sprite/skill_0.png";
+		if (GetSkillCooldown(USER_ACTIVE_SKILL) == false)
+		{
+			SetSkillCooldown(true, USER_ACTIVE_SKILL);
+			CreateSkillEffect(m_PlayerType, USER_ACTIVE_SKILL);
+		}
+		break;
+
+	case TYPE_ACTIVE_SKILL:
+		imagePath = L"Sprite/skill_1.png";
+		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
+		{
+			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
+			CreateSkillEffect(m_PlayerType, TYPE_ACTIVE_SKILL);
 		}
 		break;
 	default:
@@ -102,7 +126,6 @@ void CPlayer::TransState( PlayerState state )
 void CPlayer::Update( float dTime )
 {
 	NNObject::Update( dTime );
-	//printf(" ############## %d \n",m_GameKeyStates.typeActiveSkillKey);
 
 	m_PlayerUI->SetHP( m_Hp );
 

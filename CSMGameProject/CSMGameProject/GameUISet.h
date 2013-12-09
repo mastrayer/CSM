@@ -6,6 +6,8 @@
 #include "NNSprite.h"
 #include "Player.h"
 #include "PlayerManager.h"
+#include "GameUIHighlight.h"
+#include "EffectManager.h"
 
 class GameUISet : public NNUISet
 {
@@ -14,12 +16,26 @@ public:
 	virtual ~GameUISet();
 
 	void Render();
-	void Update( float dTime );
+	void Update(float dTime);
+
+	void ControlSkillUI(PlayerState skillType, float dTime);
+
+	float GetUserSkillCooltime() { return m_UserSkillCooltime; }
+	float GetTypeSkillCooltime() { return m_TypeSkillCooltime; }
+
+	void SetUserSkillCooltime(float value) { m_UserSkillCooltime = value; }
+	void SetTypeSkillCooltime(float value) { m_TypeSkillCooltime = value; }
 
 	NNCREATE_FUNC(GameUISet);
 
 private:
 	NNLabel* m_FPSLabel;
+
+	NNSprite *m_SkillUI[SKILL_COUNT];
+	NNSprite *m_SkillBarEffect[SKILL_COUNT];
+	NNLabel *m_SkillTimer[SKILL_COUNT];
+	float m_SkillCooltime[SKILL_COUNT];
+
 	NNSprite *m_UserSkillUI;
 	NNSprite *m_TypeSkillUI;
 	NNSprite *m_UserSkillBarEffect;
