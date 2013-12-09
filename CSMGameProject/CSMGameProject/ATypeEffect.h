@@ -15,6 +15,6 @@ public:
 	void Update( float dTime );
 
 private:
-	NNParticleSystem *m_TypeEffect;
-	CPlayer* m_Follower;
+	NNParticleSystem *mTypeEffect;
+	CPlayer* mFollower;
 };

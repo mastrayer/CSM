@@ -27,7 +27,7 @@ public:
 	NNCREATE_FUNC(NetworkSample);
 
 private:
-	float m_Time;
+	float mTime;
 };
 
 #endif

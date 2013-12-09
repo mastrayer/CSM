@@ -18,7 +18,7 @@ public:
 	NNCREATE_FUNC(AnimationSample);
 
 private:
-	NNAnimation* m_Animation;
+	NNAnimation* mAnimation;
 };
 
 #endif

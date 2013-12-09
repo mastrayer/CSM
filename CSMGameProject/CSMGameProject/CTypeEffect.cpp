@@ -3,9 +3,9 @@
 
 CTypeEffect::CTypeEffect(CPlayer* follower)
 {
-	m_Follower = follower;
-	m_LifeTime = 1.f;
-	SetPosition(m_Follower->GetPlayerPosition());
+	mFollower = follower;
+	mLifeTime = 1.f;
+	SetPosition(mFollower->GetPlayerPosition());
 }
 CTypeEffect::~CTypeEffect()
 {
@@ -18,8 +18,8 @@ void CTypeEffect::Render()
 void CTypeEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
-	SetPosition(m_Follower->GetPlayerPosition());
+	SetPosition(mFollower->GetPlayerPosition());
 
-	if (m_LifeTime < m_NowLifeTime)
-		m_IsEnd = true;
+	if (mLifeTime < mNowLifeTime)
+		mIsEnd = true;
 }

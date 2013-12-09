@@ -5,17 +5,17 @@
 
 PlayerUI::PlayerUI()
 {
-	//m_Hp = (dynamic_cast<CPlayer*>(GetParent()))->GetPlayerHP();
-	m_Hp = 1;
+	//mHp = (dynamic_cast<CPlayer*>(GetParent()))->GetPlayerHP();
+	mHp = 1;
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 	
-	m_HpBar = NNSprite::Create( L"Sprite/hpbar.png" );
-	//m_HpBarFrame = NNSprite::Create( L"Sprite/hpbar_frame.png" );
-	//m_HpBar->SetCenter( m_HpBar->GetImageWidth()/2.f, m_HpBar->GetImageHeight()/2.f );
-	m_HpBar->SetPosition( -30.f, -50.f );
-	AddChild( m_HpBar );
+	mHpBar = NNSprite::Create( L"Sprite/hpbar.png" );
+	//mHpBarFrame = NNSprite::Create( L"Sprite/hpbar_frame.png" );
+	//mHpBar->SetCenter( mHpBar->GetImageWidth()/2.f, mHpBar->GetImageHeight()/2.f );
+	mHpBar->SetPosition( -30.f, -50.f );
+	AddChild( mHpBar );
 }
 
 PlayerUI::~PlayerUI()
@@ -31,5 +31,5 @@ void PlayerUI::Update( float dTime )
 {
 	NNObject::Update( dTime );
 	
-	m_HpBar->SetScale( m_Hp/100.f, 1.f );
+	mHpBar->SetScale( mHp/100.f, 1.f );
 }

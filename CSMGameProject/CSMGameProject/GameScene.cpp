@@ -6,8 +6,8 @@
 #include "PacketHandler.h"
 
 CGameScene::CGameScene(void) : 
-	m_NowGameKeyStates(), m_Angle(0), m_LastAngleChangedTime(timeGetTime()),
-	m_isInit(false)
+	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
+	misInit(false)
 {	
 	// UI Setting
 	
@@ -16,9 +16,9 @@ CGameScene::CGameScene(void) :
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
 	// GameMap Create
-	m_GameMap = CGameMap::Create(L"map/gamemap.csm");
+	mGameMap = CGameMap::Create(L"map/gamemap.csm");
 
-	AddChild( m_GameMap );
+	AddChild( mGameMap );
 
 	// EffectManager
 	AddChild( EffectManager::GetInstance() );
@@ -42,9 +42,9 @@ void CGameScene::Update( float dTime )
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
 	//	TODO :: CPlayerManager의 Score, Limit를 표현해주세요
-		if(m_isInit == false)
+		if(misInit == false)
 		{
-			m_isInit = true;
+			misInit = true;
 			SetUISet( GameUISet::Create() );
 		}
 		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
@@ -53,51 +53,51 @@ void CGameScene::Update( float dTime )
 
 		if( isChangedGameKeyStates() == true )
 		{
-			m_LastAngleChangedTime = timeGetTime();
-			m_Angle = GetNowAngle();
-			m_NowGameKeyStates = GetNowGameKeyStates();
+			mLastAngleChangedTime = timeGetTime();
+			mAngle = GetNowAngle();
+			mNowGameKeyStates = GetNowGameKeyStates();
 			
 			//send packet
-			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_GameKeyStates = GetNowGameKeyStates();
-			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_PlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_X = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX();
-			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_Y = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY();
-			m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_MyPlayerInfo.m_Angle = m_Angle;
-			NNNetworkSystem::GetInstance()->Write( (const char*)&m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest,
-				m_GameKeyStatesUpdateHandler->m_GameKeyStatesUpdateRequest.m_Size );
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mGameKeyStates = GetNowGameKeyStates();
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mX = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX();
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mY = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY();
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mAngle = mAngle;
+			NNNetworkSystem::GetInstance()->Write( (const char*)&mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest,
+				mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mSize );
 		}
 		if( isChangedAngle() == true )
 		{
-			m_LastAngleChangedTime = timeGetTime();
-			m_Angle = GetNowAngle();
-			m_MouseAngleUpdateHandler->m_MouseAngleUpdateRequest.m_PlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-			m_MouseAngleUpdateHandler->m_MouseAngleUpdateRequest.m_Angle = m_Angle;
-			NNNetworkSystem::GetInstance()->Write( (const char*)&m_MouseAngleUpdateHandler->m_MouseAngleUpdateRequest,
-				m_MouseAngleUpdateHandler->m_MouseAngleUpdateRequest.m_Size );
+			mLastAngleChangedTime = timeGetTime();
+			mAngle = GetNowAngle();
+			mMouseAngleUpdateHandler->mMouseAngleUpdateRequest.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			mMouseAngleUpdateHandler->mMouseAngleUpdateRequest.mAngle = mAngle;
+			NNNetworkSystem::GetInstance()->Write( (const char*)&mMouseAngleUpdateHandler->mMouseAngleUpdateRequest,
+				mMouseAngleUpdateHandler->mMouseAngleUpdateRequest.mSize );
 		}
 	}
 }
 
 void CGameScene::InitNetworkSetting()
 {
-	m_LoginHandler = new LoginHandler();
-	m_LoginBroadcastHandler = new LoginBroadcastHandler();
-	m_GameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
-	m_LogoutHandler = new LogoutHandler();
-	m_MouseAngleUpdateHandler = new MouseAngleUpdateHandler();
-	m_HPUpdateHandler = new HPUpdateHandler();
+	mLoginHandler = new LoginHandler();
+	mLoginBroadcastHandler = new LoginBroadcastHandler();
+	mGameKeyStatesUpdateHandler = new GameKeyStatesUpdateHandler();
+	mLogoutHandler = new LogoutHandler();
+	mMouseAngleUpdateHandler = new MouseAngleUpdateHandler();
+	mHPUpdateHandler = new HPUpdateHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, m_GameKeyStatesUpdateHandler );
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN, m_LoginHandler );
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN_BROADCAST, m_LoginBroadcastHandler );
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGOUT, m_LogoutHandler );
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, m_MouseAngleUpdateHandler );
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, m_HPUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN, mLoginHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGIN_BROADCAST, mLoginBroadcastHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGOUT, mLogoutHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, mMouseAngleUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, mHPUpdateHandler );
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
 
-	NNNetworkSystem::GetInstance()->Write( (const char*)&m_LoginHandler->m_LoginRequestPacket, m_LoginHandler->m_LoginRequestPacket.m_Size );
+	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 
 GameKeyStates CGameScene::GetNowGameKeyStates()
@@ -131,13 +131,13 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 bool CGameScene::isChangedGameKeyStates()
 {
 	GameKeyStates nowGameKeyState = GetNowGameKeyStates();
-	if( nowGameKeyState.attackKey != m_NowGameKeyStates.attackKey
-		||nowGameKeyState.upDirectKey != m_NowGameKeyStates.upDirectKey
-		||nowGameKeyState.downDirectKey != m_NowGameKeyStates.downDirectKey
-		||nowGameKeyState.leftDirectKey != m_NowGameKeyStates.leftDirectKey
-		||nowGameKeyState.rightDirectKey != m_NowGameKeyStates.rightDirectKey
-		||nowGameKeyState.typeActiveSkillKey != m_NowGameKeyStates.typeActiveSkillKey
-		||nowGameKeyState.userActiveSkillKey != m_NowGameKeyStates.userActiveSkillKey)
+	if( nowGameKeyState.attackKey != mNowGameKeyStates.attackKey
+		||nowGameKeyState.upDirectKey != mNowGameKeyStates.upDirectKey
+		||nowGameKeyState.downDirectKey != mNowGameKeyStates.downDirectKey
+		||nowGameKeyState.leftDirectKey != mNowGameKeyStates.leftDirectKey
+		||nowGameKeyState.rightDirectKey != mNowGameKeyStates.rightDirectKey
+		||nowGameKeyState.typeActiveSkillKey != mNowGameKeyStates.typeActiveSkillKey
+		||nowGameKeyState.userActiveSkillKey != mNowGameKeyStates.userActiveSkillKey)
 		return true;
 	return false;
 }
@@ -153,10 +153,10 @@ float CGameScene::GetNowAngle()
 bool CGameScene::isChangedAngle()
 {
 	DWORD time_A = timeGetTime();
-	if( (timeGetTime() - m_LastAngleChangedTime ) > 20 )
+	if( (timeGetTime() - mLastAngleChangedTime ) > 20 )
 	{
 		//20 밀리세컨드마다 마우스 방향 변경.
-		if( m_Angle != GetNowAngle() )
+		if( mAngle != GetNowAngle() )
 		{
 			printf("Oh!!\n");
 			return true;

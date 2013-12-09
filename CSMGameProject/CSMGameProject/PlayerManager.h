@@ -18,9 +18,9 @@ public:
 	CPlayer* NewPlayer(int id);
 	void DeletePlayer(int id);
 
-	bool IsLogin() { return m_MyPlayerId==-1 ? false : true; };
+	bool IsLogin() { return mMyPlayerId==-1 ? false : true; };
 
-	CPlayer* GetMyPlayer() { return m_MyPlayer; };
+	CPlayer* GetMyPlayer() { return mMyPlayer; };
 
 	void UpdatePlayerMoveDirection(int _playerId, NNPoint direction);
 	void UpdatePlayerPosition(int _playerId, NNPoint point);
@@ -30,18 +30,18 @@ public:
 	void UpdatePlayerState(int _playerId, short state );
 	void UpdatePlayerTeam(int _playerId, int team);
 	void UpdatePlayerType(int _playerId, int type);
-	int GetMyPlayerId() { return m_MyPlayerId; };
+	int GetMyPlayerId() { return mMyPlayerId; };
 
-	void SetKillLimit(int limit) { m_KillLimit = limit; }
-	void SetKillScore(int* Score) { m_KillScore[0] = Score[0]; m_KillScore[1] = Score[1];}
+	void SetKillLimit(int limit) { mKillLimit = limit; }
+	void SetKillScore(int* Score) { mKillScore[0] = Score[0]; mKillScore[1] = Score[1];}
 
 private:
-	std::map<int,CPlayer*> m_Players;
-	CPlayer* m_MyPlayer;
-	int m_MyPlayerId; // init : -1
+	std::map<int,CPlayer*> mPlayers;
+	CPlayer* mMyPlayer;
+	int mMyPlayerId; // init : -1
 	
 	//일단 스코어 관리도 플레이어매니저가 합시다
-	int m_KillScore[2];
-	int m_KillLimit;
+	int mKillScore[2];
+	int mKillLimit;
 };
 

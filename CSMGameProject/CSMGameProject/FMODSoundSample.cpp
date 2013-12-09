@@ -7,9 +7,9 @@
 
 FMODSoundSample::FMODSoundSample()
 {
-	m_Sound = NNResourceManager::GetInstance()->LoadSoundFromFile( "Sound/effect1.mp3", true );
+	mSound = NNResourceManager::GetInstance()->LoadSoundFromFile( "Sound/effect1.mp3", true );
 
-	NNAudioSystem::GetInstance()->Play( m_Sound );
+	NNAudioSystem::GetInstance()->Play( mSound );
 }
 FMODSoundSample::~FMODSoundSample()
 {

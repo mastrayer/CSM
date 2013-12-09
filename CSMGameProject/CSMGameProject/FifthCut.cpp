@@ -6,21 +6,21 @@ FifthCut::FifthCut()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	m_Background = NNSprite::Create( L"Sprite/StoryScene_4.png" );
-	m_Background->SetPosition( width/2, height/2 );
-	m_Background->SetCenter( m_Background->GetImageWidth()/2.f, m_Background->GetImageHeight()/2.f );
-	AddChild( m_Background );
+	mBackground = NNSprite::Create( L"Sprite/StoryScene_4.png" );
+	mBackground->SetPosition( width/2, height/2 );
+	mBackground->SetCenter( mBackground->GetImageWidth()/2.f, mBackground->GetImageHeight()/2.f );
+	AddChild( mBackground );
 
-	m_StoryTextBox = NNSprite::Create( L"Sprite/StoryTextBox.png");
-	m_StoryTextBox->SetPosition( width/2, height/2 + 200.f );
-	m_StoryTextBox->SetCenter( m_StoryTextBox->GetImageWidth()/2.f, m_StoryTextBox->GetImageHeight()/2.f );
-	AddChild( m_StoryTextBox );
+	mStoryTextBox = NNSprite::Create( L"Sprite/StoryTextBox.png");
+	mStoryTextBox->SetPosition( width/2, height/2 + 200.f );
+	mStoryTextBox->SetCenter( mStoryTextBox->GetImageWidth()/2.f, mStoryTextBox->GetImageHeight()/2.f );
+	AddChild( mStoryTextBox );
 
-	m_Text = NNLabel::Create( L"다음 정령왕이 되어 악의 정령왕 신틸리케를 무찔러주세요.\n일어나세요, 용사여...", L"맑은 고딕", 20.f );
-	AddChild( m_Text );
+	mText = NNLabel::Create( L"다음 정령왕이 되어 악의 정령왕 신틸리케를 무찔러주세요.\n일어나세요, 용사여...", L"맑은 고딕", 20.f );
+	AddChild( mText );
 
-	m_Text->SetPosition( 100.f, 460.f );
-	m_Text->SetBold( true );
+	mText->SetPosition( 100.f, 460.f );
+	mText->SetBold( true );
 }
 FifthCut::~FifthCut()
 {

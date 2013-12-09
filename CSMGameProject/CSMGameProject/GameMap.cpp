@@ -11,9 +11,9 @@ CGameMap::CGameMap(std::wstring path)
 
 	convertFileToMap(path);
 
-	// 	m_MapSprite = NNSprite::Create( L"Sprite/map.png" );
-	// 	m_MapSprite->SetPosition( 0.f, 0.f );
-	//  AddChild( m_MapSprite );
+	// 	mMapSprite = NNSprite::Create( L"Sprite/map.png" );
+	// 	mMapSprite->SetPosition( 0.f, 0.f );
+	//  AddChild( mMapSprite );
 }
 
 CGameMap::~CGameMap(void)
@@ -43,7 +43,7 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 	// XML LOAD
 	xmlLoad = NNResourceManager::GetInstance()->UnzipFileToMemory(path, FILENAME[0]);
-	m_MapXMLData= NNResourceManager::GetInstance()->LoadXMLFromMemory(xmlLoad);
+	mMapXMLData= NNResourceManager::GetInstance()->LoadXMLFromMemory(xmlLoad);
 
 	std::string tile;
 	int usedTileSet = 0;
@@ -53,20 +53,20 @@ void CGameMap::convertFileToMap( std::wstring path )
 	{
 		// Map Size
 		{
-			m_Width = atoi(m_MapXMLData->XPathToString("/map/mapInfo/size/@width").c_str());
-			m_Height = atoi(m_MapXMLData->XPathToString("/map/mapInfo/size/@height").c_str());
+			mWidth = atoi(mMapXMLData->XPathToString("/map/mapInfo/size/@width").c_str());
+			mHeight = atoi(mMapXMLData->XPathToString("/map/mapInfo/size/@height").c_str());
 
-			m_Tile = new CTile**[m_Height];
-			for(int i=0;i<m_Height; ++i)
+			mTile = new CTile**[mHeight];
+			for(int i=0;i<mHeight; ++i)
 			{
-				m_Tile[i] = new CTile *[m_Width];
-				for( int j=0; j< m_Width; ++j)
-					m_Tile[i][j] = CTile::Create();
+				mTile[i] = new CTile *[mWidth];
+				for( int j=0; j< mWidth; ++j)
+					mTile[i][j] = CTile::Create();
 			}
 		}
 		// Used Tile Set
 		{
-			usedTileSet = atoi(m_MapXMLData->XPathToString("/map/mapInfo/usedTileSet/@count").c_str());
+			usedTileSet = atoi(mMapXMLData->XPathToString("/map/mapInfo/usedTileSet/@count").c_str());
 			tileSetLoad = new NNZip*[usedTileSet];
 
 			for(int i=0; i<usedTileSet; ++i)
@@ -77,16 +77,16 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 	// TILE Initialize //////////////////////////////////////////////////////////////////////////
 
-	// 	m_MapInfo.tile = new TILE *[m_MapInfo.mapHeight];
-	// 	for(int i=0;i<m_MapInfo.mapHeight; ++i)
-	// 		m_MapInfo.tile[i] = new TILE[m_MapInfo.mapWidth];
+	// 	mMapInfo.tile = new TILE *[mMapInfo.mapHeight];
+	// 	for(int i=0;i<mMapInfo.mapHeight; ++i)
+	// 		mMapInfo.tile[i] = new TILE[mMapInfo.mapWidth];
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	printf("################# TileInfo \n");
 	// Tile Info
 	{
-		TiXmlHandle docHandle( m_MapXMLData->GetDoc() );
+		TiXmlHandle docHandle( mMapXMLData->GetDoc() );
 		TiXmlElement* child = docHandle.FirstChild( "map" ).FirstChild( "tileInfo").FirstChild("tile").ToElement();
 
 		for( child; child; child=child->NextSiblingElement() )
@@ -98,28 +98,28 @@ void CGameMap::convertFileToMap( std::wstring path )
 			x = atoi(tileImageInfo->Attribute("X"));
 			y = atoi(tileImageInfo->Attribute("Y"));
 			tileSetIndex = atoi(tileImageInfo->Attribute("Index"));
-			m_Tile[i][j]->m_isFull = strcmp(child->Attribute("isFull"), "true") == 0 ? true : false;
+			mTile[i][j]->misFull = strcmp(child->Attribute("isFull"), "true") == 0 ? true : false;
 			TiXmlElement* tileAttribute = child->FirstChild("Attribute")->ToElement();
-			m_Tile[i][j]->m_attribute = strcmp(tileAttribute->Attribute("move") , "true") == 0 ? 1 : 0;
-			m_Tile[i][j]->m_height = atoi(tileAttribute->Attribute("height"));
+			mTile[i][j]->mattribute = strcmp(tileAttribute->Attribute("move") , "true") == 0 ? 1 : 0;
+			mTile[i][j]->mheight = atoi(tileAttribute->Attribute("height"));
 			printf("%d / %d\n",i,j);
 
-			m_Tile[i][j]->m_image = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
-			AddChild(m_Tile[i][j]->m_image);
+			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
+			AddChild(mTile[i][j]->mimage);
 
 			assert(y+64<=256);
 			assert(x+64<=128);
 
 
-			m_Tile[i][j]->m_image->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
+			mTile[i][j]->mimage->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
 
-			m_Tile[i][j]->m_image->SetPosition(i*64.f, j*64.f);
+			mTile[i][j]->mimage->SetPosition(i*64.f, j*64.f);
 		}
 		/*
-		for(int i=0; i<m_Height; ++i)
+		for(int i=0; i<mHeight; ++i)
 		//for(int i=0; i<2; ++i)
 		{
-		for(int j=0; j<m_Width; ++j)
+		for(int j=0; j<mWidth; ++j)
 		//for(int j=0; j<2; ++j)
 		{
 		//printf("[%d/%d] ",i,j);
@@ -128,41 +128,41 @@ void CGameMap::convertFileToMap( std::wstring path )
 		tile = "t" + std::to_string(i) + "-" + std::to_string(j);
 
 		a = GetTickCount();
-		m_Tile[i][j]->m_isFull = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/@isFull").c_str(), "true") == 0 ? true : false;
+		mTile[i][j]->misFull = strcmp(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) +"\" and @X=\"" + std::to_string(j) + "\"]/@isFull").c_str(), "true") == 0 ? true : false;
 		en(a);
 
 		a = GetTickCount();
-		tileSetIndex = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Index").c_str());
+		tileSetIndex = atoi(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Index").c_str());
 		en(a);
 
 		a = GetTickCount();
-		x = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@X").c_str());
+		x = atoi(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@X").c_str());
 		en(a);
 
 		a = GetTickCount();
-		y = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Y").c_str());
+		y = atoi(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Y").c_str());
 		en(a);
 
 		a = GetTickCount();
-		m_Tile[i][j]->m_attribute = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() , "true") == 0 ? 1 : 0;
+		mTile[i][j]->mattribute = strcmp(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() , "true") == 0 ? 1 : 0;
 		en(a);
 
 		a = GetTickCount();
-		m_Tile[i][j]->m_height = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@height").c_str());
+		mTile[i][j]->mheight = atoi(mMapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@height").c_str());
 		en(a);
 
 
 		printf("[%d/%d] (%0.f-%0.f)(%0.f-%0.f) \n",i,j,y + 0.f,y+64.f,x + 0.f,x+64.f);
-		m_Tile[i][j]->m_image = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
-		AddChild(m_Tile[i][j]->m_image);
+		mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
+		AddChild(mTile[i][j]->mimage);
 
 		assert(y+64<=256);
 		assert(x+64<=128);
 
-		m_Tile[i][j]->m_image->SetCutSize(y, x, y + 64, x + 64);
-		//m_Tile[i][j]->m_image->SetCutSize(192, 64, 192 + 64.f, 64+64.f);
+		mTile[i][j]->mimage->SetCutSize(y, x, y + 64, x + 64);
+		//mTile[i][j]->mimage->SetCutSize(192, 64, 192 + 64.f, 64+64.f);
 
-		m_Tile[i][j]->m_image->SetPosition(i*64, j*64);
+		mTile[i][j]->mimage->SetPosition(i*64, j*64);
 		}
 		}*/
 	}
@@ -185,12 +185,12 @@ bool CGameMap::isValidTile( NNPoint p )
 	int i = (int)temp.GetX();
 	int j = (int)temp.GetY();
 
-	CTile *tile = m_Tile[i][j];
+	CTile *tile = mTile[i][j];
 
 	// 이 타일이 빈 타일이거나
 	// 움직일 수 없는 타일이거나
-	if(tile->m_isFull == false ||
-		tile->m_attribute & ATTRIBUTE_MOVE )
+	if(tile->misFull == false ||
+		tile->mattribute & ATTRIBUTE_MOVE )
 		return false;
 
 	return true;
@@ -203,7 +203,7 @@ bool CGameMap::isValidTile( NNPoint p )
 //////////////////////////////////////////////////////////////////////////////////////
 
 CTile::CTile()
-	: m_attribute(0), m_height(0), m_image(nullptr), m_isFull(false)
+	: mattribute(0), mheight(0), mimage(nullptr), misFull(false)
 {
 
 }

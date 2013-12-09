@@ -13,7 +13,7 @@ public:
 	
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
 
-	HPUpdateResult m_HPUpdateResult;
+	HPUpdateResult mHPUpdateResult;
 };
 
 class MouseAngleUpdateHandler : public NNBaseHandler
@@ -24,8 +24,8 @@ public:
 	
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
 
-	MouseAngleUpdateRequest m_MouseAngleUpdateRequest;
-	MouseAngleUpdateResult m_MouseAngleUpdateResult;
+	MouseAngleUpdateRequest mMouseAngleUpdateRequest;
+	MouseAngleUpdateResult mMouseAngleUpdateResult;
 };
 
 class GameKeyStatesUpdateHandler : public NNBaseHandler
@@ -35,8 +35,8 @@ public:
 	virtual ~GameKeyStatesUpdateHandler();
 
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
-	GameKeyStatesUpdateRequest m_GameKeyStatesUpdateRequest;
-	GameKeyStatesUpdateResult m_GameKeyStatesUpdateResult;
+	GameKeyStatesUpdateRequest mGameKeyStatesUpdateRequest;
+	GameKeyStatesUpdateResult mGameKeyStatesUpdateResult;
 };
 
 class LoginHandler : public NNBaseHandler
@@ -47,8 +47,8 @@ public:
 
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
 
-	LoginRequest m_LoginRequestPacket;
-	LoginResult m_LoginResultPacket;
+	LoginRequest mLoginRequestPacket;
+	LoginResult mLoginResultPacket;
 };
 
 class LoginBroadcastHandler : public NNBaseHandler
@@ -59,7 +59,7 @@ public:
 
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
 
-	LoginBroadcastResult m_LoginBroadcastResultPacket;
+	LoginBroadcastResult mLoginBroadcastResultPacket;
 };
 
 class LogoutHandler : public NNBaseHandler
@@ -70,5 +70,5 @@ public:
 
 	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
 
-	LogoutResult m_LogoutResultPacket;
+	LogoutResult mLogoutResultPacket;
 };

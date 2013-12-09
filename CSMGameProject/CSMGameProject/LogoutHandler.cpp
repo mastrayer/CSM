@@ -17,16 +17,16 @@ void LogoutHandler::HandlingPacket( short packetType, NNCircularBuffer* circular
 	{
 	case PKT_SC_LOGOUT:
 		{
-			if ( circularBuffer->Read((char*)&m_LogoutResultPacket, header->m_Size) )
+			if ( circularBuffer->Read((char*)&mLogoutResultPacket, header->mSize) )
 			{
 				// 패킷처리
-				if ( m_LogoutResultPacket.m_PlayerId == -1  )
+				if ( mLogoutResultPacket.mPlayerId == -1  )
 				{
 					/// 잘못된 로그아웃.
 					//내 로그아웃 아니니까 일단은 그냥 무시할것
 				}
-				CPlayerManager::GetInstance()->DeletePlayer( m_LogoutResultPacket.m_PlayerId );
-				printf("Logout ClientId[%d] \n", m_LogoutResultPacket.m_PlayerId) ;
+				CPlayerManager::GetInstance()->DeletePlayer( mLogoutResultPacket.mPlayerId );
+				printf("Logout ClientId[%d] \n", mLogoutResultPacket.mPlayerId) ;
 			}
 			else
 			{

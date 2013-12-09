@@ -18,21 +18,21 @@ void HPUpdateHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 	{
 	case PKT_SC_HP:
 		{
-			if ( circularBuffer->Read((char*)&m_HPUpdateResult, header->m_Size) )
+			if ( circularBuffer->Read((char*)&mHPUpdateResult, header->mSize) )
 			{
 				// 패킷처리
-				if ( m_HPUpdateResult.m_PlayerId == -1  )
+				if ( mHPUpdateResult.mPlayerId == -1  )
 				{
 					/// 잘못된 데이터
 					/// 무시한다
 					return;
 				}
 				//로그인이 잘못되어 캐릭터가 없을 수 있으므로
-				CPlayerManager::GetInstance()->NewPlayer( m_HPUpdateResult.m_PlayerId );
+				CPlayerManager::GetInstance()->NewPlayer( mHPUpdateResult.mPlayerId );
 				
-				CPlayerManager::GetInstance()->UpdatePlayerHP( m_HPUpdateResult.m_PlayerId, m_HPUpdateResult.m_HP );
-				printf("HP Changed[%d] Pos : %d \n", m_HPUpdateResult.m_PlayerId,
-					m_HPUpdateResult.m_HP) ;
+				CPlayerManager::GetInstance()->UpdatePlayerHP( mHPUpdateResult.mPlayerId, mHPUpdateResult.mHP );
+				printf("HP Changed[%d] Pos : %d \n", mHPUpdateResult.mPlayerId,
+					mHPUpdateResult.mHP) ;
 			}
 			else
 			{

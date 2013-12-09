@@ -18,7 +18,7 @@ public:
 	NNCREATE_FUNC(XMLSample);
 
 private:
-	NNXML* m_TestXML;
+	NNXML* mTestXML;
 };
 
 #endif

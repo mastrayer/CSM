@@ -15,6 +15,6 @@ public:
 	void Update(float dTime);
 
 private:
-	NNAnimation *m_Animation;
-	CPlayer* m_Follower;
+	NNAnimation *mAnimation;
+	CPlayer* mFollower;
 };

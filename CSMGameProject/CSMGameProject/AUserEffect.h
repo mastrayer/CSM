@@ -15,8 +15,8 @@ public:
 	void Update( float dTime );
 
 private:
-	NNParticleSystem *m_UserEffect;
-	CPlayer* m_Follower;
-	float m_Direction;
-	float m_Speed;
+	NNParticleSystem *mUserEffect;
+	CPlayer* mFollower;
+	float mDirection;
+	float mSpeed;
 };

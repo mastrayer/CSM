@@ -2,35 +2,35 @@
 
 AUserEffect::AUserEffect(CPlayer* follower)
 {
-	m_Follower = follower;
-	m_LifeTime = 0.5f;
-	m_Speed = 500.f;
-	m_Direction = m_Follower->GetPlayerRotation()*3.14 / 180.f;
+	mFollower = follower;
+	mLifeTime = 0.5f;
+	mSpeed = 500.f;
+	mDirection = mFollower->GetPlayerRotation()*3.14 / 180.f;
 
 	SetPosition(follower->GetPlayerPosition());
 
 	NNSprite *image = NNSprite::Create(L"Sprite/arrow.png");
-	image->SetRotation(m_Follower->GetPlayerRotation());
+	image->SetRotation(mFollower->GetPlayerRotation());
 	AddChild(image);
 
-// 	m_UserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
-// 	m_UserEffect->SetMinStartSpeed(300.f);
-// 	m_UserEffect->SetMaxStartSpeed(400.f);
-// 	m_UserEffect->SetMinEndSpeed(400.f);
-// 	m_UserEffect->SetMaxEndSpeed(500.f);
+// 	mUserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
+// 	mUserEffect->SetMinStartSpeed(300.f);
+// 	mUserEffect->SetMaxStartSpeed(400.f);
+// 	mUserEffect->SetMinEndSpeed(400.f);
+// 	mUserEffect->SetMaxEndSpeed(500.f);
 // 
-// 	m_UserEffect->SetCreateParticlePerSecond(60);
-// 	m_UserEffect->SetSpreadDegree(15.f);
-// 	m_UserEffect->SetMinLifeTime(0.5f);
-// 	m_UserEffect->SetMaxLifeTime(0.5f);
-// 	m_UserEffect->SetDirection(m_Follower->GetPlayerRotation());
+// 	mUserEffect->SetCreateParticlePerSecond(60);
+// 	mUserEffect->SetSpreadDegree(15.f);
+// 	mUserEffect->SetMinLifeTime(0.5f);
+// 	mUserEffect->SetMaxLifeTime(0.5f);
+// 	mUserEffect->SetDirection(mFollower->GetPlayerRotation());
 // 
-// 	m_UserEffect->SetMinStartRodiusX( 50.f );
-// 	m_UserEffect->SetMinStartRodiusY( 50.f );
-// 	m_UserEffect->SetMaxStartRodiusX( 100.f );
-// 	m_UserEffect->SetMaxStartRodiusY( 100.f );
+// 	mUserEffect->SetMinStartRodiusX( 50.f );
+// 	mUserEffect->SetMinStartRodiusY( 50.f );
+// 	mUserEffect->SetMaxStartRodiusX( 100.f );
+// 	mUserEffect->SetMaxStartRodiusY( 100.f );
 	
-//	AddChild(m_UserEffect);
+//	AddChild(mUserEffect);
 	
 }
 AUserEffect::~AUserEffect()
@@ -44,14 +44,14 @@ void AUserEffect::Render()
 void AUserEffect::Update( float dTime )
 {
 	IEffect::Update( dTime );
-	//SetPosition(m_Follower->GetPlayerPosition());
+	//SetPosition(mFollower->GetPlayerPosition());
 
-	if (m_LifeTime < m_NowLifeTime)
+	if (mLifeTime < mNowLifeTime)
 	{
-		m_IsEnd = true;
+		mIsEnd = true;
 		SetVisible(false);
 	}
-	//m_speed * std::cosf(m_angle) * dTime
+	//mspeed * std::cosf(mangle) * dTime
 
-	this->SetPosition(this->GetPositionX() + m_Speed * std::cosf(m_Direction) * dTime, this->GetPositionY() + m_Speed * std::sinf(m_Direction) * dTime);
+	this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mSpeed * std::sinf(mDirection) * dTime);
 }

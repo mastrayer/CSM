@@ -11,7 +11,7 @@ public:
 
 	void Update( float dTime )
 	{
-		if ( m_Visible == false )
+		if ( mVisible == false )
 			return;
 
 		NNObject::Update( dTime );
@@ -19,7 +19,7 @@ public:
 
 	void Render()
 	{
-		if ( m_Visible == false )
+		if ( mVisible == false )
 			return;
 
 		NNObject::Render();

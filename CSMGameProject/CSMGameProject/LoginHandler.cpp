@@ -17,28 +17,28 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 	{
 	case PKT_SC_LOGIN:
 		{
-			if ( circularBuffer->Read((char*)&m_LoginResultPacket, header->m_Size) )
+			if ( circularBuffer->Read((char*)&mLoginResultPacket, header->mSize) )
 			{
 				// 패킷처리
-				if ( m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId == -1  )
+				if ( mLoginResultPacket.mMyPlayerInfo.mPlayerId == -1  )
 				{
 					/// 여기 걸리면 로그인 실패다.
 					PostQuitMessage(-1) ;
 				}
-				CPlayerManager::GetInstance()->SetMyPlayerId( m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId );
-				CPlayerManager::GetInstance()->UpdatePlayerInfo(m_LoginResultPacket.m_MyPlayerInfo);
+				CPlayerManager::GetInstance()->SetMyPlayerId( mLoginResultPacket.mMyPlayerInfo.mPlayerId );
+				CPlayerManager::GetInstance()->UpdatePlayerInfo(mLoginResultPacket.mMyPlayerInfo);
 				//먼저 들어와있던 플레이어의 객체 만들기
-				for(int i=0; i<m_LoginResultPacket.m_NowPlayersLength; i++)
+				for(int i=0; i<mLoginResultPacket.mNowPlayersLength; i++)
 				{
-					if( m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId != m_LoginResultPacket.m_PlayerInfo[i].m_PlayerId )
+					if( mLoginResultPacket.mMyPlayerInfo.mPlayerId != mLoginResultPacket.mPlayerInfo[i].mPlayerId )
 					{
-						CPlayerManager::GetInstance()->NewPlayer( m_LoginResultPacket.m_PlayerInfo[i].m_PlayerId );
-						CPlayerManager::GetInstance()->UpdatePlayerInfo( m_LoginResultPacket.m_PlayerInfo[i] );
+						CPlayerManager::GetInstance()->NewPlayer( mLoginResultPacket.mPlayerInfo[i].mPlayerId );
+						CPlayerManager::GetInstance()->UpdatePlayerInfo( mLoginResultPacket.mPlayerInfo[i] );
 					}
 				}
-				CPlayerManager::GetInstance()->SetKillLimit(m_LoginResultPacket.m_KillLimit);
-				CPlayerManager::GetInstance()->SetKillScore(m_LoginResultPacket.m_KillScore);
-				printf("LOGIN SUCCESS ClientId[%d] \n", m_LoginResultPacket.m_MyPlayerInfo.m_PlayerId) ;
+				CPlayerManager::GetInstance()->SetKillLimit(mLoginResultPacket.mKillLimit);
+				CPlayerManager::GetInstance()->SetKillScore(mLoginResultPacket.mKillScore);
+				printf("LOGIN SUCCESS ClientId[%d] \n", mLoginResultPacket.mMyPlayerInfo.mPlayerId) ;
 			}
 			else
 			{

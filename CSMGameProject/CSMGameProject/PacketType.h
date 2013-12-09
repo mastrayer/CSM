@@ -46,14 +46,14 @@ struct GameKeyStates
 };
 struct PlayerInfo
 {
-	float m_X, m_Y, m_Angle;
-	int m_PlayerId;
-	GameKeyStates m_GameKeyStates;
-	short m_PlayerState;
-	int m_HP;
-	NNPoint m_MoveDirection;
-	int m_Team;
-	int m_Type;
+	float mX, mY, mAngle;
+	int mPlayerId;
+	GameKeyStates mGameKeyStates;
+	short mPlayerState;
+	int mHP;
+	NNPoint mMoveDirection;
+	int mTeam;
+	int mType;
 };
 #pragma pack(push,1)
 
@@ -61,113 +61,113 @@ struct LoginRequest : public NNPacketHeader
 {
 	LoginRequest()
 	{
-		m_Size = sizeof(LoginRequest);
-		m_Type = PKT_CS_LOGIN;
+		mSize = sizeof(LoginRequest);
+		mType = PKT_CS_LOGIN;
 	}
 };
 struct LoginResult : public NNPacketHeader
 {
 	LoginResult()
 	{
-		m_Size = sizeof(LoginResult);
-		m_Type = PKT_SC_LOGIN;
+		mSize = sizeof(LoginResult);
+		mType = PKT_SC_LOGIN;
 	}
-	PlayerInfo m_MyPlayerInfo;
-	int m_NowPlayersLength;
-	PlayerInfo m_PlayerInfo[MAX_PLAYER_LEN];
-	int m_KillScore[2];
-	int m_KillLimit;
+	PlayerInfo mMyPlayerInfo;
+	int mNowPlayersLength;
+	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
+	int mKillScore[2];
+	int mKillLimit;
 };
 struct LoginBroadcastResult : public NNPacketHeader
 {
 	LoginBroadcastResult()
 	{
-		m_Size = sizeof(LoginBroadcastResult);
-		m_Type = PKT_SC_LOGIN_BROADCAST;
+		mSize = sizeof(LoginBroadcastResult);
+		mType = PKT_SC_LOGIN_BROADCAST;
 	}
-	PlayerInfo m_MyPlayerInfo;
+	PlayerInfo mMyPlayerInfo;
 };
 struct GameKeyStatesUpdateRequest : public NNPacketHeader
 {
 	GameKeyStatesUpdateRequest()
 	{
-		m_Size = sizeof(GameKeyStatesUpdateRequest) ;
-		m_Type = PKT_CS_KEYSTATE ;
-		m_MyPlayerInfo.m_PlayerId = -1 ;
+		mSize = sizeof(GameKeyStatesUpdateRequest) ;
+		mType = PKT_CS_KEYSTATE ;
+		mMyPlayerInfo.mPlayerId = -1 ;
 	}
 
-	PlayerInfo m_MyPlayerInfo;
+	PlayerInfo mMyPlayerInfo;
 } ;
 
 struct GameKeyStatesUpdateResult : public NNPacketHeader
 {
 	GameKeyStatesUpdateResult()
 	{
-		m_Size = sizeof(GameKeyStatesUpdateResult) ;
-		m_Type = PKT_SC_KEYSTATE ;
-		m_MyPlayerInfo.m_PlayerId = -1 ;
+		mSize = sizeof(GameKeyStatesUpdateResult) ;
+		mType = PKT_SC_KEYSTATE ;
+		mMyPlayerInfo.mPlayerId = -1 ;
 	}
-	PlayerInfo m_MyPlayerInfo;
+	PlayerInfo mMyPlayerInfo;
 } ;
 
 struct LogoutResult : public NNPacketHeader
 {
 	LogoutResult()
 	{
-		m_Size = sizeof(LogoutResult);
-		m_Type = PKT_SC_LOGOUT;
+		mSize = sizeof(LogoutResult);
+		mType = PKT_SC_LOGOUT;
 	}
-	int m_PlayerId;
+	int mPlayerId;
 };
 
 struct MouseAngleUpdateRequest : public NNPacketHeader
 {
 	MouseAngleUpdateRequest()
 	{
-		m_Size = sizeof(MouseAngleUpdateRequest);
-		m_Type = PKT_CS_MOUSEANGLE;
+		mSize = sizeof(MouseAngleUpdateRequest);
+		mType = PKT_CS_MOUSEANGLE;
 	}
-	int m_PlayerId;
-	float m_Angle;
+	int mPlayerId;
+	float mAngle;
 };
 
 struct MouseAngleUpdateResult : public NNPacketHeader
 {
 	MouseAngleUpdateResult()
 	{
-		m_Size = sizeof(MouseAngleUpdateResult);
-		m_Type = PKT_SC_MOUSEANGLE;
+		mSize = sizeof(MouseAngleUpdateResult);
+		mType = PKT_SC_MOUSEANGLE;
 	}
-	int m_PlayerId;
-	float m_Angle;
+	int mPlayerId;
+	float mAngle;
 };
 struct HPUpdateResult : public NNPacketHeader
 {
 	HPUpdateResult()
 	{
-		m_Size = sizeof(HPUpdateResult);
-		m_Type = PKT_SC_HP;
+		mSize = sizeof(HPUpdateResult);
+		mType = PKT_SC_HP;
 	}
-	int m_PlayerId;
-	int m_HP;
+	int mPlayerId;
+	int mHP;
 };
 struct KillScoreResult : public NNPacketHeader
 {
 	KillScoreResult()
 	{
-		m_Size = sizeof(KillScoreResult);
-		m_Type = PKT_SC_KILLSCORE;
+		mSize = sizeof(KillScoreResult);
+		mType = PKT_SC_KILLSCORE;
 	}
-	int m_KillScore[2];
-	int m_KillLimit;
+	int mKillScore[2];
+	int mKillLimit;
 };
 
 struct EndOfGameResult : public NNPacketHeader
 {
 	EndOfGameResult()
 	{
-		m_Size = sizeof(EndOfGameResult);
-		m_Type = PKT_SC_ENDOFGAME;
+		mSize = sizeof(EndOfGameResult);
+		mType = PKT_SC_ENDOFGAME;
 	}
 	int mWinnerTeam;
 };

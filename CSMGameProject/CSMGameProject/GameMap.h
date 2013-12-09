@@ -22,10 +22,10 @@ public:
 	NNCREATE_FUNC(CTile);
 
 //private:
-	NNSpriteAtlas *m_image;
-	int m_attribute;
-	int m_height;
-	bool m_isFull;
+	NNSpriteAtlas *mimage;
+	int mattribute;
+	int mheight;
+	bool misFull;
 };
 class CGameMap : public NNObject
 {
@@ -33,8 +33,8 @@ public:
 	CGameMap(std::wstring path);
 	virtual ~CGameMap(void);
 	
-	int GetAttribute(int i, int j) { return m_Tile[i][j]->m_attribute; }
-	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
+	int GetAttribute(int i, int j) { return mTile[i][j]->mattribute; }
+	int SetAttribute(int i, int j, int value) { mTile[i][j]->mattribute = value; }
 	bool isValidTile(NNPoint p);
 
 	void Init(){}
@@ -54,10 +54,10 @@ public:
 	
 
 private:
-	NNSprite* m_MapSprite;
-	NNXML* m_MapXMLData;
-	CTile ***m_Tile;
-	int m_Width, m_Height;
+	NNSprite* mMapSprite;
+	NNXML* mMapXMLData;
+	CTile ***mTile;
+	int mWidth, mHeight;
 
 protected:
 	NNPoint positionToArrayIndex( NNPoint p );

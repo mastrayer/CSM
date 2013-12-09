@@ -36,20 +36,20 @@ public:
 	void TransState( PlayerState state );
 	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
-	void SetPlayerRotation( float angle ) { m_Angle = angle; m_PlayerSprite->SetRotation(angle); }
-	void SetPlayerMoveDirection( NNPoint direction) { m_MoveDirection = direction; }
-	void SetPlayerHP(int hp) { m_Hp = hp; }
-	void SetSkillCount(float value, PlayerState skillType) { m_SkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
-	void SetSkillCooldown(bool value, PlayerState skillType) { m_SkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
-	void SetPlayerTeam(int team) { m_Team = team; }
-	void SetPlayerType( PlayerType type ) { m_PlayerType = type; InitWithType(); }
+	void SetPlayerRotation( float angle ) { mAngle = angle; mPlayerSprite->SetRotation(angle); }
+	void SetPlayerMoveDirection( NNPoint direction) { mMoveDirection = direction; }
+	void SetPlayerHP(int hp) { mHp = hp; }
+	void SetSkillCount(float value, PlayerState skillType) { mSkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
+	void SetSkillCooldown(bool value, PlayerState skillType) { mSkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
+	void SetPlayerTeam(int team) { mTeam = team; }
+	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
 	
 	NNPoint GetPlayerPosition() { return GetPosition(); }
-	float GetPlayerRotation( ) { return m_Angle; }
-	int GetPlayerHP() { return m_Hp; }
-	NNSprite* GetPlayerSprite() { return m_PlayerSprite; }
-	float GetSkillCount(PlayerState skillType) { return m_SkillCount[skillType - TYPE_ACTIVE_SKILL]; }
-	bool GetSkillCooldown(PlayerState skillType) { return m_SkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
+	float GetPlayerRotation( ) { return mAngle; }
+	int GetPlayerHP() { return mHp; }
+	NNSprite* GetPlayerSprite() { return mPlayerSprite; }
+	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
+	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
 
 	void CreateSkillEffect(PlayerType type, PlayerState skillType);
 
@@ -60,26 +60,26 @@ private:
 	void Update( float dTime );
 
 private:
-	std::list<NNParticleSystem*> m_ParticleSystemList;
-	NNSprite* m_PlayerSprite;
-	PlayerUI* m_PlayerUI;
-	PlayerState m_PlayerState;
+	std::list<NNParticleSystem*> mParticleSystemList;
+	NNSprite* mPlayerSprite;
+	PlayerUI* mPlayerUI;
+	PlayerState mPlayerState;
 	
-	NNParticleSystem *m_UserEffect;
-	// NNParticleSystem *m_BuffEffect;
-	NNPoint m_MoveDirection;
-	NNLabel *m_RebirthTimer;
+	NNParticleSystem *mUserEffect;
+	// NNParticleSystem *mBuffEffect;
+	NNPoint mMoveDirection;
+	NNLabel *mRebirthTimer;
 	
-	float m_RebirthDelayTime;
-	float m_Angle;
-	int m_Hp;
-	int m_Team;
-	int m_Speed;
+	float mRebirthDelayTime;
+	float mAngle;
+	int mHp;
+	int mTeam;
+	int mSpeed;
 
-	float m_SkillCount[SKILL_COUNT];
-	bool m_SkillCooldown[SKILL_COUNT];
+	float mSkillCount[SKILL_COUNT];
+	bool mSkillCooldown[SKILL_COUNT];
 
-	PlayerType m_PlayerType;
+	PlayerType mPlayerType;
 
 	friend class PlayerManager;
 	friend class GameUISet;

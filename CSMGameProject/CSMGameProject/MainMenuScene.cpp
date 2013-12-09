@@ -11,43 +11,43 @@
 #include "GameScene.h"
 
 MainMenuScene::MainMenuScene()
-	: m_MainMenuImage(nullptr)
+	: mMainMenuImage(nullptr)
 {
-	m_MenuSellction = 0;
+	mMenuSellction = 0;
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	m_MainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
-	m_MainMenuImage->SetPosition( width/2, height/2 );
-	m_MainMenuImage->SetCenter( m_MainMenuImage->GetImageWidth()/2.f, m_MainMenuImage->GetImageHeight()/2.f + 70.f );
-	AddChild( m_MainMenuImage );
+	mMainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
+	mMainMenuImage->SetPosition( width/2, height/2 );
+	mMainMenuImage->SetCenter( mMainMenuImage->GetImageWidth()/2.f, mMainMenuImage->GetImageHeight()/2.f + 70.f );
+	AddChild( mMainMenuImage );
 	/* MenuSellectionBar type
-	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
-	m_MainMenuSellcetionBar->SetPosition( width/2 + 200.f, height/2 + 200.f + m_MenuSellction * 50 );
-	AddChild( m_MainMenuSellcetionBar ) ;
+	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
+	mMainMenuSellcetionBar->SetPosition( width/2 + 200.f, height/2 + 200.f + mMenuSellction * 50 );
+	AddChild( mMainMenuSellcetionBar ) ;
 	*/
 
 
-	m_MainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
-	m_MainMenuSellcetionBar->SetPosition( width/2, height/2 );
-	m_MainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
-	AddChild( m_MainMenuSellcetionBar ) ;
+	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
+	mMainMenuSellcetionBar->SetPosition( width/2, height/2 );
+	mMainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
+	AddChild( mMainMenuSellcetionBar ) ;
 
-	m_MainMenuLable[MENU_PLAY] = NNLabel::Create( L"Play", L"¸¼Àº °íµñ", 35.f );
-	m_MainMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
-	AddChild( m_MainMenuLable[MENU_PLAY] );
+	mMainMenuLable[MENU_PLAY] = NNLabel::Create( L"Play", L"¸¼Àº °íµñ", 35.f );
+	mMainMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
+	AddChild( mMainMenuLable[MENU_PLAY] );
 
-	m_MainMenuLable[MENU_STORY] = NNLabel::Create( L"Story", L"¸¼Àº °íµñ", 35.f );
-	m_MainMenuLable[MENU_STORY]->SetPosition( width/2 + 200.f, height/2 + 200.f );
-	AddChild( m_MainMenuLable[MENU_STORY] );
+	mMainMenuLable[MENU_STORY] = NNLabel::Create( L"Story", L"¸¼Àº °íµñ", 35.f );
+	mMainMenuLable[MENU_STORY]->SetPosition( width/2 + 200.f, height/2 + 200.f );
+	AddChild( mMainMenuLable[MENU_STORY] );
 
-	m_MainMenuLable[MENU_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
-	m_MainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 250.f);
-	AddChild( m_MainMenuLable[MENU_EXIT] );
+	mMainMenuLable[MENU_EXIT] = NNLabel::Create( L"Exit", L"¸¼Àº °íµñ", 35.f );
+	mMainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 250.f);
+	AddChild( mMainMenuLable[MENU_EXIT] );
 
-	m_BGM = NNSound::Create("sound/mainBGM.mp3",true,true);
-	NNAudioSystem::GetInstance()->Play( m_BGM ); 
+	mBGM = NNSound::Create("sound/mainBGM.mp3",true,true);
+	NNAudioSystem::GetInstance()->Play( mBGM ); 
 }
 
 MainMenuScene::~MainMenuScene()
@@ -63,7 +63,7 @@ void MainMenuScene::Update( float dTime )
 {
 	NNScene::Update( dTime );
 
-	m_MainMenuImage->SetVisible( true );
+	mMainMenuImage->SetVisible( true );
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
@@ -71,27 +71,27 @@ void MainMenuScene::Update( float dTime )
 	if ( NNInputSystem::GetInstance()->GetKeyState( VK_UP ) == KEY_DOWN
 		|| NNInputSystem::GetInstance()->GetKeyState( VK_LEFT ) == KEY_DOWN )
 	{
-		--m_MenuSellction;
+		--mMenuSellction;
 	}
 	if ( NNInputSystem::GetInstance()->GetKeyState( VK_DOWN ) == KEY_DOWN
 		|| NNInputSystem::GetInstance()->GetKeyState( VK_RIGHT ) == KEY_DOWN )
 	{
-		++m_MenuSellction;
+		++mMenuSellction;
 	}
 
-	m_MainMenuSellcetionBar->SetPosition( width/2 + 150.f, height/2 + 150.f + m_MenuSellction * 50 );
+	mMainMenuSellcetionBar->SetPosition( width/2 + 150.f, height/2 + 150.f + mMenuSellction * 50 );
 
-	m_MenuSellction = ( m_MenuSellction + MENU_EXIT + 1 ) % ( MENU_EXIT + 1 );
+	mMenuSellction = ( mMenuSellction + MENU_EXIT + 1 ) % ( MENU_EXIT + 1 );
 
-	if ( m_MenuSellction == 0 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
+	if ( mMenuSellction == 0 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
 	{
 		NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
 	}
-	else if ( m_MenuSellction == 1 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
+	else if ( mMenuSellction == 1 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
 	{
 		NNSceneDirector::GetInstance()->ChangeScene( StoryScene::Create() );
 	}
-	else if ( m_MenuSellction == 2 )
+	else if ( mMenuSellction == 2 )
 	{
 		// exit
 	}

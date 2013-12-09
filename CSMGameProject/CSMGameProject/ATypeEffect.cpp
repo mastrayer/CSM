@@ -3,28 +3,28 @@
 
 ATypeEffect::ATypeEffect(CPlayer* follower)
 {
-	m_Follower = follower;
-	m_LifeTime = 1.f;
-	SetPosition(m_Follower->GetPlayerPosition());
+	mFollower = follower;
+	mLifeTime = 1.f;
+	SetPosition(mFollower->GetPlayerPosition());
 
-	m_TypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
+	mTypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
 
-	m_TypeEffect->SetMinStartSpeed(100.f);
-	m_TypeEffect->SetMaxStartSpeed(110.f);
-	m_TypeEffect->SetMinEndSpeed(120.f);
-	m_TypeEffect->SetMaxEndSpeed(130.f);
+	mTypeEffect->SetMinStartSpeed(100.f);
+	mTypeEffect->SetMaxStartSpeed(110.f);
+	mTypeEffect->SetMinEndSpeed(120.f);
+	mTypeEffect->SetMaxEndSpeed(130.f);
 
-	m_TypeEffect->SetCreateParticlePerSecond(60);
-	m_TypeEffect->SetSpreadDegree(360.f);
-	m_TypeEffect->SetMinLifeTime(0.5f);
-	m_TypeEffect->SetMaxLifeTime(0.5f);
+	mTypeEffect->SetCreateParticlePerSecond(60);
+	mTypeEffect->SetSpreadDegree(360.f);
+	mTypeEffect->SetMinLifeTime(0.5f);
+	mTypeEffect->SetMaxLifeTime(0.5f);
 
-	m_TypeEffect->SetMinStartRodiusX( 50.f );
-	m_TypeEffect->SetMinStartRodiusY( 50.f );
-	m_TypeEffect->SetMaxStartRodiusX( 60.f );
-	m_TypeEffect->SetMaxStartRodiusY( 60.f );
+	mTypeEffect->SetMinStartRodiusX( 50.f );
+	mTypeEffect->SetMinStartRodiusY( 50.f );
+	mTypeEffect->SetMaxStartRodiusX( 60.f );
+	mTypeEffect->SetMaxStartRodiusY( 60.f );
 
-	AddChild(m_TypeEffect);
+	AddChild(mTypeEffect);
 }
 ATypeEffect::~ATypeEffect()
 {
@@ -37,13 +37,13 @@ void ATypeEffect::Render()
 void ATypeEffect::Update( float dTime )
 {
 	IEffect::Update( dTime );
-	SetPosition(m_Follower->GetPlayerPosition());
+	SetPosition(mFollower->GetPlayerPosition());
 
-	if (m_LifeTime < m_NowLifeTime)
+	if (mLifeTime < mNowLifeTime)
 	{	
-		m_TypeEffect->SetCreate(false);
+		mTypeEffect->SetCreate(false);
 
-		if (m_TypeEffect->GetCount() == 0)
-			m_IsEnd = true;
+		if (mTypeEffect->GetCount() == 0)
+			mIsEnd = true;
 	}
 }

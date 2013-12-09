@@ -17,8 +17,8 @@ public:
 
 	NNCREATE_FUNC(ThirdCut);
 private:
-	NNSprite* m_Background;
-	NNSprite *m_StoryTextBox;
+	NNSprite* mBackground;
+	NNSprite *mStoryTextBox;
 
-	NNLabel* m_Text;
+	NNLabel* mText;
 };

@@ -3,11 +3,11 @@
 
 BTypeEffect::BTypeEffect(CPlayer* follower)
 {
-	m_Follower = follower;
-	m_LifeTime = 6.f;
-	SetPosition(m_Follower->GetPlayerPosition());
+	mFollower = follower;
+	mLifeTime = 6.f;
+	SetPosition(mFollower->GetPlayerPosition());
 
-	m_Animation = NNAnimation::Create(30, L"Sprite/WaterSkill/water_005_001.png", 
+	mAnimation = NNAnimation::Create(30, L"Sprite/WaterSkill/water_005_001.png", 
 		L"Sprite/WaterSkill/water_005_002.png", 
 		L"Sprite/WaterSkill/water_005_003.png", 
 		L"Sprite/WaterSkill/water_005_004.png", 
@@ -38,7 +38,7 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 		L"Sprite/WaterSkill/water_005_029.png", 
 		L"Sprite/WaterSkill/water_005_030.png" );
 
-		AddChild(m_Animation);
+		AddChild(mAnimation);
 }
 BTypeEffect::~BTypeEffect()
 {
@@ -51,9 +51,9 @@ void BTypeEffect::Render()
 void BTypeEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
-	SetPosition(m_Follower->GetPlayerPosition());
+	SetPosition(mFollower->GetPlayerPosition());
 
-	if (m_LifeTime < m_NowLifeTime)
+	if (mLifeTime < mNowLifeTime)
 		
-		m_IsEnd = true;
+		mIsEnd = true;
 }

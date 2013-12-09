@@ -17,16 +17,16 @@
 #include "CUserEffect.h"
 
 CPlayer::CPlayer( void )
-	: m_PlayerSprite(NULL),m_MoveDirection(NNPoint(0,0)),
-	m_Hp(100),m_RebirthDelayTime(10), m_Team(0)
+	: mPlayerSprite(NULL),mMoveDirection(NNPoint(0,0)),
+	mHp(100),mRebirthDelayTime(10), mTeam(0)
 {
 	TransState(PlayerState::IDLE);
 
-	m_PlayerUI = PlayerUI::Create();
-	AddChild( m_PlayerUI );
+	mPlayerUI = PlayerUI::Create();
+	AddChild( mPlayerUI );
 
-	memset(m_SkillCount, 0, sizeof(m_SkillCount));
-	memset(m_SkillCooldown, 0, sizeof(m_SkillCooldown));
+	memset(mSkillCount, 0, sizeof(mSkillCount));
+	memset(mSkillCooldown, 0, sizeof(mSkillCooldown));
 }
 
 CPlayer::~CPlayer( void )
@@ -57,13 +57,13 @@ void CPlayer::TransState( PlayerState state )
 {
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
-	float rotation = m_Rotation;
+	float rotation = mRotation;
 
-	m_PlayerState = state;
+	mPlayerState = state;
 
-	if (m_PlayerSprite != NULL)
+	if (mPlayerSprite != NULL)
 	{
-		RemoveChild(m_PlayerSprite);
+		RemoveChild(mPlayerSprite);
 	}
 
 	std::wstring imagePath = L"";
@@ -81,15 +81,15 @@ void CPlayer::TransState( PlayerState state )
 	case ATTAACK:
 		imagePath = L"Sprite/attack_0.png";
 
-		//RemoveChild(m_BuffEffect);
+		//RemoveChild(mBuffEffect);
 
-		//m_BuffEffect = NNParticleSystem::Create()
+		//mBuffEffect = NNParticleSystem::Create()
 		break;
 
 	case DIE:
 		imagePath = L"Sprite/die.png";
-		m_RebirthTimer = NNLabel::Create(L"으앙~ 쥬금~ X초 우리 좀 잘 해봅시다", L"맑은 고딕", 40.f);
-		m_RebirthTimer->SetCenter(width / 2, height / 2 - 200);
+		mRebirthTimer = NNLabel::Create(L"으앙~ 쥬금~ X초 우리 좀 잘 해봅시다", L"맑은 고딕", 40.f);
+		mRebirthTimer->SetCenter(width / 2, height / 2 - 200);
 		break;
 
 	case TYPE_ACTIVE_SKILL:
@@ -97,7 +97,7 @@ void CPlayer::TransState( PlayerState state )
 		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
 		{
 			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
-			CreateSkillEffect(m_PlayerType, TYPE_ACTIVE_SKILL);
+			CreateSkillEffect(mPlayerType, TYPE_ACTIVE_SKILL);
 		}
 		break;
 
@@ -106,7 +106,7 @@ void CPlayer::TransState( PlayerState state )
 		if (GetSkillCooldown(USER_ACTIVE_SKILL) == false)
 		{
 			SetSkillCooldown(true, USER_ACTIVE_SKILL);
-			CreateSkillEffect(m_PlayerType, USER_ACTIVE_SKILL);
+			CreateSkillEffect(mPlayerType, USER_ACTIVE_SKILL);
 		}
 		break;
 
@@ -115,12 +115,12 @@ void CPlayer::TransState( PlayerState state )
 	}
 
 	/* Player Sprite Setting */
-	m_PlayerSprite = NNSprite::Create( imagePath );
-	AddChild( m_PlayerSprite );
+	mPlayerSprite = NNSprite::Create( imagePath );
+	AddChild( mPlayerSprite );
 
-	m_PlayerSprite->SetCenter( m_PlayerSprite->GetImageWidth()/2.f, m_PlayerSprite->GetImageHeight()/2.f );
+	mPlayerSprite->SetCenter( mPlayerSprite->GetImageWidth()/2.f, mPlayerSprite->GetImageHeight()/2.f );
 	//Sprite를 바꾸면 Rotation이 자동으로 0되니까 예전값으로 다시 대입
-	m_PlayerSprite->SetRotation(rotation);
+	mPlayerSprite->SetRotation(rotation);
 	/* // */
 }
 
@@ -128,9 +128,9 @@ void CPlayer::Update( float dTime )
 {
 	NNObject::Update( dTime );
 
-	m_PlayerUI->SetHP( m_Hp );
+	mPlayerUI->SetHP( mHp );
 
-	switch (m_PlayerState)
+	switch (mPlayerState)
 	{
 	case IDLE:
 		{
@@ -140,7 +140,7 @@ void CPlayer::Update( float dTime )
 		{
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
-			SetPosition( GetPosition() + m_MoveDirection * dTime * m_Speed );
+			SetPosition( GetPosition() + mMoveDirection * dTime * mSpeed );
 			break;
 		}
 	case ATTAACK:
@@ -173,19 +173,19 @@ void CPlayer::Render()
 
 void CPlayer::InitWithType()
 {
-	switch (m_PlayerType)
+	switch (mPlayerType)
 	{
 	case TYPE_A:
 		{
-			m_Speed = 100;
+			mSpeed = 100;
 		}break;
 	case TYPE_B:
 		{
-			m_Speed = 110;
+			mSpeed = 110;
 		}break;
 	case TYPE_C:
 		{
-			m_Speed = 120;
+			mSpeed = 120;
 		}break;
 	default:
 		break;

@@ -6,11 +6,11 @@ EffectManager::EffectManager()
 }
 EffectManager::~EffectManager()
 {
-	for (auto& iter=m_EffectList.begin(); iter!=m_EffectList.end(); iter++ )
+	for (auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
 	{
 		SafeDelete( *iter );
 	}
-	m_EffectList.clear();
+	mEffectList.clear();
 }
 
 void EffectManager::Render()
@@ -20,14 +20,14 @@ void EffectManager::Render()
 void EffectManager::Update( float dTime )
 {
 	NNObject::Update( dTime );
-	for (auto& iter=m_EffectList.begin(); iter!=m_EffectList.end(); iter++ )
+	for (auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
 	{
-		if ( (*iter)->m_IsEnd == true )
+		if ( (*iter)->mIsEnd == true )
 		{
 			//SafeDelete( *iter );
 			RemoveChild( *iter );
-			iter = m_EffectList.erase( iter );
-			if ( iter == m_EffectList.end() )
+			iter = mEffectList.erase( iter );
+			if ( iter == mEffectList.end() )
 			{
 				break;
 			}
@@ -37,6 +37,6 @@ void EffectManager::Update( float dTime )
 
 void EffectManager::AddEffect( IEffect* effect )
 {
-	m_EffectList.push_back( effect );
+	mEffectList.push_back( effect );
 	AddChild( effect );
 }

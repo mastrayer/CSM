@@ -4,66 +4,66 @@
 
 GameUISet::GameUISet()
 {
-	m_Hp = 80;
-	m_SkillCooltime[0] = 5.f;
-	m_SkillCooltime[1] = 5.f;
-	swprintf_s(m_SkillCooltimeBuff[0], L"%d", (int)m_SkillCooltime[0]);
-	swprintf_s(m_SkillCooltimeBuff[1], L"%d", (int)m_SkillCooltime[1]);
+	mHp = 80;
+	mSkillCooltime[0] = 5.f;
+	mSkillCooltime[1] = 5.f;
+	swprintf_s(mSkillCooltimeBuff[0], L"%d", (int)mSkillCooltime[0]);
+	swprintf_s(mSkillCooltimeBuff[1], L"%d", (int)mSkillCooltime[1]);
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	m_FPSLabel = NNLabel::Create( L"", L"¸¼Àº °íµñ", 20 );
-	AddChild( m_FPSLabel );
+	mFPSLabel = NNLabel::Create( L"", L"¸¼Àº °íµñ", 20 );
+	AddChild( mFPSLabel );
 
-	m_CharacterUIFrame = NNSprite::Create(L"Sprite/CharacterUIFrame.png");
-	m_CharacterUIFrame->SetPosition(0.f, 450.f);
+	mCharacterUIFrame = NNSprite::Create(L"Sprite/CharacterUIFrame.png");
+	mCharacterUIFrame->SetPosition(0.f, 450.f);
 
-	m_SkillUIFrame = NNSprite::Create(L"Sprite/SkillUIFrame.png");
-	m_SkillUIFrame->SetCenter(m_SkillUIFrame->GetImageWidth() / 2.f, m_SkillUIFrame->GetImageHeight() / 2.f);
-	m_SkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
+	mSkillUIFrame = NNSprite::Create(L"Sprite/SkillUIFrame.png");
+	mSkillUIFrame->SetCenter(mSkillUIFrame->GetImageWidth() / 2.f, mSkillUIFrame->GetImageHeight() / 2.f);
+	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
 
-	m_HpBarBackground = NNSprite::Create(L"Sprite/GameHpBar_BackGround.png");
-	m_HpBarBackground->SetCenter(m_HpBarBackground->GetImageWidth() / 2.f, m_HpBarBackground->GetImageHeight() / 2.f);
-	m_HpBarBackground->SetPosition(width / 2.f, height / 2.f + 280);
+	mHpBarBackground = NNSprite::Create(L"Sprite/GameHpBar_BackGround.png");
+	mHpBarBackground->SetCenter(mHpBarBackground->GetImageWidth() / 2.f, mHpBarBackground->GetImageHeight() / 2.f);
+	mHpBarBackground->SetPosition(width / 2.f, height / 2.f + 280);
 
-	m_HpBar = NNSprite::Create(L"Sprite/GameHpBar.png");
-	m_HpBar->SetPosition(340.f, 570.f);
+	mHpBar = NNSprite::Create(L"Sprite/GameHpBar.png");
+	mHpBar->SetPosition(340.f, 570.f);
 	
-	m_SkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI_0.png");
-	m_SkillUI[0]->SetCenter(m_SkillUI[0]->GetImageWidth() / 2.f, m_SkillUI[0]->GetImageHeight() / 2.f);
-	m_SkillUI[0]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI_0.png");
+	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
+	mSkillUI[0]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	m_SkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI_0.png");
-	m_SkillUI[1]->SetCenter(m_SkillUI[1]->GetImageWidth() / 2.f, m_SkillUI[1]->GetImageHeight() / 2.f);
-	m_SkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
+	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI_0.png");
+	mSkillUI[1]->SetCenter(mSkillUI[1]->GetImageWidth() / 2.f, mSkillUI[1]->GetImageHeight() / 2.f);
+	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
 	
-	m_SkillTimer[0] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
-	m_SkillTimer[0]->SetCenter(m_SkillUI[0]->GetCenterX(), m_SkillUI[0]->GetCenterY());
-	m_SkillTimer[0]->SetPosition(width / 2.f - 35, height / 2.f + 250);
-	m_SkillTimer[0]->SetRGBA(255, 255, 255, 1);
+	mSkillTimer[0] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mSkillTimer[0]->SetCenter(mSkillUI[0]->GetCenterX(), mSkillUI[0]->GetCenterY());
+	mSkillTimer[0]->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mSkillTimer[0]->SetRGBA(255, 255, 255, 1);
 
-	m_SkillTimer[1] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
-	m_SkillTimer[1]->SetCenter(m_SkillUI[1]->GetCenterX(), m_SkillUI[1]->GetCenterY());
-	m_SkillTimer[1]->SetPosition(width / 2.f + 35, height / 2.f + 250);
-	m_SkillTimer[1]->SetRGBA(255, 255, 255, 1);
+	mSkillTimer[1] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mSkillTimer[1]->SetCenter(mSkillUI[1]->GetCenterX(), mSkillUI[1]->GetCenterY());
+	mSkillTimer[1]->SetPosition(width / 2.f + 35, height / 2.f + 250);
+	mSkillTimer[1]->SetRGBA(255, 255, 255, 1);
 	
-	AddChild(m_CharacterUIFrame);
-	AddChild(m_SkillUIFrame);
-	AddChild(m_HpBarBackground);
-	AddChild(m_HpBar);
-	AddChild(m_SkillUI[0]);
-	AddChild(m_SkillUI[1]);
-	AddChild(m_SkillTimer[0]);
-	AddChild(m_SkillTimer[1]);
+	AddChild(mCharacterUIFrame);
+	AddChild(mSkillUIFrame);
+	AddChild(mHpBarBackground);
+	AddChild(mHpBar);
+	AddChild(mSkillUI[0]);
+	AddChild(mSkillUI[1]);
+	AddChild(mSkillTimer[0]);
+	AddChild(mSkillTimer[1]);
 	
-	m_CharacterFace = NNSprite::Create( L"Sprite/BlueSlime.png" );
-	m_CharacterFace->SetCenter( m_CharacterFace->GetImageWidth()/2.f, m_CharacterFace->GetImageHeight()/2.f );
-	m_CharacterFace->SetPosition( 60.f, 60.f );
-	AddChild( m_CharacterFace );
+	mCharacterFace = NNSprite::Create( L"Sprite/BlueSlime.png" );
+	mCharacterFace->SetCenter( mCharacterFace->GetImageWidth()/2.f, mCharacterFace->GetImageHeight()/2.f );
+	mCharacterFace->SetPosition( 60.f, 60.f );
+	AddChild( mCharacterFace );
 	
-	m_MyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
-	ZeroMemory( m_FPSLabelBuff, sizeof(m_FPSLabelBuff) );
+	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
+	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
 }
 GameUISet::~GameUISet()
 {
@@ -78,10 +78,10 @@ void GameUISet::Update( float dTime )
 {
 	NNUISet::Update( dTime );
 
-	swprintf_s( m_FPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS() );
+	swprintf_s( mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS() );
 
-	m_FPSLabel->SetString( m_FPSLabelBuff );
-	m_HpBar->SetScale( m_Hp/100.f, 1.f );
+	mFPSLabel->SetString( mFPSLabelBuff );
+	mHpBar->SetScale( mHp/100.f, 1.f );
 
 	for (int i = 0; i < SKILL_COUNT; ++i)
 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
@@ -89,21 +89,21 @@ void GameUISet::Update( float dTime )
 
 void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 {
-	if (m_MyPlayer->GetSkillCooldown(skillType) == true)
+	if (mMyPlayer->GetSkillCooldown(skillType) == true)
 	{
-		m_MyPlayer->SetSkillCount(m_MyPlayer->GetSkillCount(skillType) + dTime, skillType);
-		m_SkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(m_MyPlayer->GetSkillCount(skillType) / m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL]);
+		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(skillType) + dTime, skillType);
+		mSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(mMyPlayer->GetSkillCount(skillType) / mSkillCooltime[skillType - TYPE_ACTIVE_SKILL]);
 
-		swprintf_s(m_SkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL], L"%.0f", m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL] - m_MyPlayer->GetSkillCount(skillType));
-		m_SkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(m_SkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL]);
+		swprintf_s(mSkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL], L"%.0f", mSkillCooltime[skillType - TYPE_ACTIVE_SKILL] - mMyPlayer->GetSkillCount(skillType));
+		mSkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(mSkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL]);
 
-		if (m_MyPlayer->GetSkillCount(skillType) >= m_SkillCooltime[skillType - TYPE_ACTIVE_SKILL])
+		if (mMyPlayer->GetSkillCount(skillType) >= mSkillCooltime[skillType - TYPE_ACTIVE_SKILL])
 		{
-			m_MyPlayer->SetSkillCooldown(false, skillType);
-			m_MyPlayer->SetSkillCount(0.f, skillType);
+			mMyPlayer->SetSkillCooldown(false, skillType);
+			mMyPlayer->SetSkillCount(0.f, skillType);
 
-			m_SkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(1.f);
-			m_SkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(L"");
+			mSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(1.f);
+			mSkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(L"");
 		}
 	}
 }

@@ -14,9 +14,9 @@ public:
 	void Update( float dTime );
 
 protected:
-	float m_LifeTime;
-	float m_NowLifeTime;
-	bool m_IsEnd;
+	float mLifeTime;
+	float mNowLifeTime;
+	bool mIsEnd;
 
 	friend class EffectManager;
 };

@@ -18,21 +18,21 @@ void GameKeyStatesUpdateHandler::HandlingPacket( short packetType, NNCircularBuf
 	{
 	case PKT_SC_KEYSTATE:
 		{
-			if ( circularBuffer->Read((char*)&m_GameKeyStatesUpdateResult, header->m_Size) )
+			if ( circularBuffer->Read((char*)&mGameKeyStatesUpdateResult, header->mSize) )
 			{
 				// 패킷처리
-				if ( m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId == -1  )
+				if ( mGameKeyStatesUpdateResult.mMyPlayerInfo.mPlayerId == -1  )
 				{
 					/// 잘못된 데이터
 					/// 무시한다
 					return;
 				}
 				//로그인이 잘못되어 캐릭터가 없을 수 있으므로
-				CPlayerManager::GetInstance()->NewPlayer( m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId );
+				CPlayerManager::GetInstance()->NewPlayer( mGameKeyStatesUpdateResult.mMyPlayerInfo.mPlayerId );
 				
-				CPlayerManager::GetInstance()->UpdatePlayerInfo( m_GameKeyStatesUpdateResult.m_MyPlayerInfo );
-				printf("Key State Changed[%d] Pos : %.1f, %.1f\n", m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_PlayerId,
-					m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_X, m_GameKeyStatesUpdateResult.m_MyPlayerInfo.m_Y) ;
+				CPlayerManager::GetInstance()->UpdatePlayerInfo( mGameKeyStatesUpdateResult.mMyPlayerInfo );
+				printf("Key State Changed[%d] Pos : %.1f, %.1f\n", mGameKeyStatesUpdateResult.mMyPlayerInfo.mPlayerId,
+					mGameKeyStatesUpdateResult.mMyPlayerInfo.mX, mGameKeyStatesUpdateResult.mMyPlayerInfo.mY) ;
 			}
 			else
 			{

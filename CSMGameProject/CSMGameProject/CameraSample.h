@@ -17,7 +17,7 @@ public:
 	NNCREATE_FUNC(CameraSample);
 
 private:
-	NNSprite* m_Sprite;
+	NNSprite* mSprite;
 };
 
 #endif

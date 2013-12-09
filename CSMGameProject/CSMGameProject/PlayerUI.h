@@ -15,11 +15,11 @@ public:
 	void Render();
 	void Update( float dTime );
 
-	void SetHP(int hp) { m_Hp = hp; }
+	void SetHP(int hp) { mHp = hp; }
 
 	NNCREATE_FUNC(PlayerUI);
 private:
-	NNSprite* m_HpBar;
-	NNSprite* m_HpBarFrame;
-	int m_Hp;
+	NNSprite* mHpBar;
+	NNSprite* mHpBarFrame;
+	int mHp;
 };

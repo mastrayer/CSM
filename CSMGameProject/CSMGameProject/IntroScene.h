@@ -24,10 +24,10 @@ public:
 	NNCREATE_FUNC(IntroScene);
 
 private:
-	NNSprite * m_IntroSceneImage;
-	NNSprite * m_IntroNextSellcetionImage;
-	NNLabel * m_IntroSceneMenu[2];
+	NNSprite * mIntroSceneImage;
+	NNSprite * mIntroNextSellcetionImage;
+	NNLabel * mIntroSceneMenu[2];
 
-	unsigned int m_IntroSceneIndex;
+	unsigned int mIntroSceneIndex;
 	
 };

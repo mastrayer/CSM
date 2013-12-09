@@ -16,8 +16,8 @@ public:
 	NNCREATE_FUNC(FMODSoundSample);
 
 private:
-	NNSound* m_Sound;
-	NNSound* m_Background;
+	NNSound* mSound;
+	NNSound* mBackground;
 };
 
 #endif

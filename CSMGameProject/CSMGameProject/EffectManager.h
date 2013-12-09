@@ -18,7 +18,7 @@ public:
 		return pInstance;
 	}
 private:
-	std::list<IEffect*> m_EffectList;
+	std::list<IEffect*> mEffectList;
 
 private:
 	EffectManager();

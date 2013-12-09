@@ -27,12 +27,12 @@ public:
 	NNCREATE_FUNC(MainMenuScene);
 
 private:
-	NNSprite * m_MainMenuImage;
-	NNSprite * m_MainMenuSellcetionBar;
-	NNLabel *m_MainMenuLable[3];
-	NNSound *m_BGM;
+	NNSprite * mMainMenuImage;
+	NNSprite * mMainMenuSellcetionBar;
+	NNLabel *mMainMenuLable[3];
+	NNSound *mBGM;
 
-	unsigned int m_MenuSellction;
-	//NNLabel * m_StartLabel;
-	//NNLabel * m_ExitLabel;
+	unsigned int mMenuSellction;
+	//NNLabel * mStartLabel;
+	//NNLabel * mExitLabel;
 };

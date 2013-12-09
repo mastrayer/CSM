@@ -17,7 +17,7 @@ public:
 	NNCREATE_FUNC(SpriteAtlasSample);
 
 private:
-	NNSpriteAtlas* m_SpriteAtlas;
+	NNSpriteAtlas* mSpriteAtlas;
 };
 
 #endif

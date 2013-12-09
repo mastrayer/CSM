@@ -15,17 +15,17 @@
 class CGameScene : public NNScene
 {
 private:
-	CGameMap* m_GameMap;
-	GameKeyStates m_NowGameKeyStates;
-	GameKeyStatesUpdateHandler* m_GameKeyStatesUpdateHandler;
-	LoginHandler* m_LoginHandler;
-	LoginBroadcastHandler* m_LoginBroadcastHandler;
-	LogoutHandler* m_LogoutHandler;
-	MouseAngleUpdateHandler* m_MouseAngleUpdateHandler;
-	HPUpdateHandler* m_HPUpdateHandler;
-	float m_Angle;
-	DWORD m_LastAngleChangedTime;
-	bool m_isInit;
+	CGameMap* mGameMap;
+	GameKeyStates mNowGameKeyStates;
+	GameKeyStatesUpdateHandler* mGameKeyStatesUpdateHandler;
+	LoginHandler* mLoginHandler;
+	LoginBroadcastHandler* mLoginBroadcastHandler;
+	LogoutHandler* mLogoutHandler;
+	MouseAngleUpdateHandler* mMouseAngleUpdateHandler;
+	HPUpdateHandler* mHPUpdateHandler;
+	float mAngle;
+	DWORD mLastAngleChangedTime;
+	bool misInit;
 
 public:
 	CGameScene(void);

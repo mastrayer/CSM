@@ -15,5 +15,5 @@ public:
 	void Update(float dTime);
 
 private:
-	CPlayer* m_Follower;
+	CPlayer* mFollower;
 };
