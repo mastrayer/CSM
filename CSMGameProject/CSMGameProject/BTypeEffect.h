@@ -15,6 +15,10 @@ public:
 	void Update(float dTime);
 
 private:
+	float mTime;
+	float mMoveTerm;
+	float mMoveSpeedX, mMoveSpeedY;
+	float mDirection;
 	NNAnimation *mAnimation;
 	CPlayer* mFollower;
 };

@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Effect.h"
-#include "NNParticleSystem.h"
+#include "NNAnimation.h"
 #include "Player.h"
 
 class BUserEffect : public IEffect
@@ -15,5 +15,6 @@ public:
 	void Update(float dTime);
 
 private:
+	NNAnimation *mAnimation;
 	CPlayer* mFollower;
 };
