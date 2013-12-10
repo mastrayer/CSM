@@ -35,8 +35,8 @@ void EffectManager::Update( float dTime )
 	}
 }
 
-void EffectManager::AddEffect( IEffect* effect )
+void EffectManager::AddEffect( IEffect* effect , int zIndex)
 {
 	mEffectList.push_back( effect );
-	AddChild( effect );
+	AddChild( effect , zIndex );
 }

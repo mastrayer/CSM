@@ -21,7 +21,7 @@ CGameScene::CGameScene(void) :
 	AddChild( mGameMap );
 
 	// EffectManager
-	AddChild( EffectManager::GetInstance() );
+	AddChild( EffectManager::GetInstance() , 1);
 
 	InitNetworkSetting();
 }
@@ -125,7 +125,6 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 		NNInputSystem::GetInstance()->GetKeyState(VK_SPACE) == KEY_DOWN )
 		nowGameKeyState.userActiveSkillKey = KEYSTATE_PRESSED;
 
-	//printf(" @@@@@@@@@@@@@@ %d \n",nowGameKeyState.typeActiveSkillKey);
 	return nowGameKeyState;
 }
 bool CGameScene::isChangedGameKeyStates()

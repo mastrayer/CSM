@@ -4,8 +4,8 @@
 
 GameUISet::GameUISet()
 {
-	mSkillCooltime[0] = 5.f;
-	mSkillCooltime[1] = 5.f;
+	mSkillCooltime[0] = 0.1f;
+	mSkillCooltime[1] = 0.1f;
 	//mKillCount = 25;
 	//mRedKillCount = 40;
 	//mHp = 80;
@@ -136,7 +136,7 @@ void GameUISet::Update(float dTime)
 	mFPSLabel->SetString(mFPSLabelBuff);
 	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
 	//temp1 = CPlayerManager::GetInstance()->GetKillScore(BLUE);
-	mKillBar[BLUE]->SetScale(-CPlayerManager::GetInstance()->GetKillScore(BLUE) / 50.f, 1.f);
+	mKillBar[BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(BLUE) / 50.f, 1.f);
 	mKillPoint[BLUE]->SetPosition(width / 2.f - 5 * (CPlayerManager::GetInstance()->GetKillScore(BLUE)) - 60, 20);
 	//temp2 = CPlayerManager::GetInstance()->GetKillScore(RED);
 	//mKillBar[RED]->SetScale(CPlayerManager::GetInstance()->GetKillScore(RED) / 50.f, 1.f);

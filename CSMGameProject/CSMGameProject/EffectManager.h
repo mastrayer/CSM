@@ -10,7 +10,7 @@ public:
 	void Render();
 	void Update( float dTime );
 
-	void AddEffect( IEffect* effect );
+	void AddEffect( IEffect* effect , int zIndex=0);
 
 	static EffectManager* GetInstance()
 	{

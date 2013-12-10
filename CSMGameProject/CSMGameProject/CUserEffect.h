@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Effect.h"
-#include "NNParticleSystem.h"
+#include "NNAnimation.h"
 #include "Player.h"
 
 class CUserEffect : public IEffect
@@ -15,5 +15,11 @@ public:
 	void Update(float dTime);
 
 private:
+	NNAnimation *mSrcAnimation;
+	NNAnimation *mDstAnimation;
+	bool mDstAnimationStart;
+	float mDirection;
+	float mDistance;
+	NNPoint mDstPoint;
 	CPlayer* mFollower;
 };
