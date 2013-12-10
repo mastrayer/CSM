@@ -91,29 +91,22 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mKillPoint[RED]);
 
-	mType = NNLabel::Create(L"", L"¸¼Àº °íµñ", 50.f);
-	mType->SetPosition(60.f, 60.f);
+	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
+	mType->SetPosition(60.f, 60.f); 
 	AddChild(mType);
-
+	
  	mTypeFace[FIRE] = NNSprite::Create(L"Sprite/SheSlime.png");
  	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
-	mTypeFace[FIRE]->SetVisible(false);
- 	AddChild(mTypeFace[FIRE]);
-// 
-// 	mTypeFace[WATER] = NNSprite::Create(L"Sprite/BlueSlime.png");
-// 	mTypeFace[WATER]->SetPosition(5.f, 505.f);
-// 	float x1 = mTypeFace[WATER]->GetPositionX();
-// 	float y1 = mTypeFace[WATER]->GetPositionY();
-// 	mTypeFace[WATER]->SetVisible(false);
-// 	AddChild(mTypeFace[WATER]);
-
-// 	mTypeFace[WIND] = NNSprite::Create(L"Sprite/MetalSlime.png");
-// 	//mTypeFace[WIND]->SetPosition(5.f, 505.f);
-// 	mTypeFace[WIND]->SetPosition(100.f, 105.f);
-// 	float x = mTypeFace[WIND]->GetPositionX();
-// 	float y = mTypeFace[WIND]->GetPositionY();
-// 	mTypeFace[WIND]->SetVisible(false);
-// 	AddChild(mTypeFace[WIND]);
+	AddChild(mTypeFace[FIRE]);
+ 
+ 	mTypeFace[WATER] = NNSprite::Create(L"Sprite/BlueSlime.png");
+ 	mTypeFace[WATER]->SetPosition(5.f, 505.f);
+	AddChild(mTypeFace[WATER]);
+	
+ 	mTypeFace[WIND] = NNSprite::Create(L"Sprite/MetalSlime.png");
+ 	mTypeFace[WIND]->SetPosition(5.f, 505.f);
+	AddChild(mTypeFace[WIND]);
+	
 	
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
 	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
@@ -134,26 +127,24 @@ void GameUISet::Update(float dTime)
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	NNUISet::Update(dTime);
+ 	for (int i = 0; i < 2; ++i)
+ 		mTypeFace[i]->SetVisible(false);
 
-// 	for (int i = 0; i < 2; ++i)
-// 		mTypeFace[i]->SetVisible(false);
-
-// 	switch (mMyPlayer->GetPlayerType())
-// 	{
-// 	case PlayerType::TYPE_A:
-// 		mType->SetString(L"ºÒ");
-// 		mTypeFace[FIRE]->SetVisible(true);
-// 		break;
-// 	case PlayerType::TYPE_B:
-// 		mType->SetString(L"¹°");
-// 		mTypeFace[WATER]->SetVisible(true);
-// 		break;
-// 	case PlayerType::TYPE_C:
-// 		mType->SetString(L"¼öÁõ±â");
-// 		mTypeFace[WIND]->SetVisible(true);
-// 		break;
-// 	}
+ 	switch (mMyPlayer->GetPlayerType())
+ 	{
+ 	case PlayerType::TYPE_A:
+ 		mType->SetString(L"ºÒ");
+ 		mTypeFace[FIRE]->SetVisible(true);
+ 		break;
+ 	case PlayerType::TYPE_B:
+ 		mType->SetString(L"¹°");
+ 		mTypeFace[WATER]->SetVisible(true);
+ 		break;
+ 	case PlayerType::TYPE_C:
+ 		mType->SetString(L"¼öÁõ±â");
+ 		mTypeFace[WIND]->SetVisible(true);
+ 		break;
+ 	}
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);
