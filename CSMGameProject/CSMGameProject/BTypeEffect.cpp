@@ -7,7 +7,8 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 	mLifeTime = 6.f;
 	SetPosition(mFollower->GetPlayerPosition());
 
-	mAnimation = NNAnimation::Create(30, 0.1f, L"Sprite/WaterSkill/water_005_001.png", 
+	mAnimation = NNAnimation::Create(30, 0.03f, 
+		L"Sprite/WaterSkill/water_005_001.png", 
 		L"Sprite/WaterSkill/water_005_002.png", 
 		L"Sprite/WaterSkill/water_005_003.png", 
 		L"Sprite/WaterSkill/water_005_004.png", 
@@ -37,6 +38,8 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 		L"Sprite/WaterSkill/water_005_028.png", 
 		L"Sprite/WaterSkill/water_005_029.png", 
 		L"Sprite/WaterSkill/water_005_030.png" );
+
+	mAnimation->SetLoop(false);
 
 		AddChild(mAnimation);
 }

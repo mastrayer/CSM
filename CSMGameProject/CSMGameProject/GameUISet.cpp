@@ -38,15 +38,15 @@ GameUISet::GameUISet()
 	mSkillUI[1]->SetCenter(mSkillUI[1]->GetImageWidth() / 2.f, mSkillUI[1]->GetImageHeight() / 2.f);
 	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
 	
-	mSkillTimer[0] = NNLabel::Create(L"50", L"¸¼Àº °íµñ", 40.f);
+	mSkillTimer[0] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
 	mSkillTimer[0]->SetCenter(mSkillUI[0]->GetCenterX(), mSkillUI[0]->GetCenterY());
 	mSkillTimer[0]->SetPosition(width / 2.f - 35, height / 2.f + 250);
-	mSkillTimer[0]->SetRGBA(255, 255, 255, 1);
+	mSkillTimer[0]->SetRGBA(255, 255, 255, 255);
 
-	mSkillTimer[1] = NNLabel::Create(L"5", L"¸¼Àº °íµñ", 40.f);
+	mSkillTimer[1] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
 	mSkillTimer[1]->SetCenter(mSkillUI[1]->GetCenterX(), mSkillUI[1]->GetCenterY());
 	mSkillTimer[1]->SetPosition(width / 2.f + 35, height / 2.f + 250);
-	mSkillTimer[1]->SetRGBA(255, 255, 255, 1);
+	mSkillTimer[1]->SetRGBA(255, 255, 255, 255);
 	
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
