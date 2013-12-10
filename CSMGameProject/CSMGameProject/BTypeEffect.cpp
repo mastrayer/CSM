@@ -4,7 +4,7 @@
 BTypeEffect::BTypeEffect(CPlayer* follower)
 {
 	mFollower = follower;
-	mDirection = mFollower->GetPlayerRotation() * 3.14f / 180.f;
+	mDirection = mFollower->GetPlayerRotation();
 	SetCenter(mFollower->GetCenter());
 	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 80.f);
 

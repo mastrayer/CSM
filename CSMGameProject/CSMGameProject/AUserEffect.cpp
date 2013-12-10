@@ -5,7 +5,7 @@ AUserEffect::AUserEffect(CPlayer* follower)
 	mFollower = follower;
 	mLifeTime = 0.5f;
 	mSpeed = 500.f;
-	mDirection = mFollower->GetPlayerRotation()*3.14 / 180.f;
+	mDirection = mFollower->GetPlayerRotation();
 
 	SetPosition(follower->GetPlayerPosition());
 

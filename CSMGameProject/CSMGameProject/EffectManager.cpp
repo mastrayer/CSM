@@ -29,7 +29,7 @@ void EffectManager::Update( float dTime )
 			iter = mEffectList.erase( iter );
 			if ( iter == mEffectList.end() )
 			{
-				break;
+				break;   
 			}
 		}
 	}
