@@ -13,6 +13,8 @@
 #include "GameMap.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
+#include "BulletManager.h"
+#include "SkillManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
 
@@ -35,6 +37,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	GPlayerManager = new PlayerManager;
 	GGameMap = new GameMap(L"map/gamemap.csm");
 	GGameManager = new GameManager(10);
+	GBulletManager = new BulletManager();
+	GSkillManager = new SkillManager();
 	/// DB Helper √ ±‚»≠
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
 		return -1 ;
