@@ -94,55 +94,76 @@ GameUISet::GameUISet()
 	mType = NNLabel::Create(L"", L"맑은 고딕", 50.f);
 	mType->SetPosition(60.f, 60.f);
 	AddChild(mType);
-	/*mCharacterFace = NNSprite::Create( L"Sprite/BlueSlime.png" );
-	mCharacterFace->SetCenter( mCharacterFace->GetImageWidth()/2.f, mCharacterFace->GetImageHeight()/2.f );
-	mCharacterFace->SetPosition( 60.f, 60.f );
-	AddChild( mCharacterFace );*/
+
+ 	mTypeFace[FIRE] = NNSprite::Create(L"Sprite/SheSlime.png");
+ 	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
+	mTypeFace[FIRE]->SetVisible(false);
+ 	AddChild(mTypeFace[FIRE]);
+// 
+// 	mTypeFace[WATER] = NNSprite::Create(L"Sprite/BlueSlime.png");
+// 	mTypeFace[WATER]->SetPosition(5.f, 505.f);
+// 	float x1 = mTypeFace[WATER]->GetPositionX();
+// 	float y1 = mTypeFace[WATER]->GetPositionY();
+// 	mTypeFace[WATER]->SetVisible(false);
+// 	AddChild(mTypeFace[WATER]);
+
+// 	mTypeFace[WIND] = NNSprite::Create(L"Sprite/MetalSlime.png");
+// 	//mTypeFace[WIND]->SetPosition(5.f, 505.f);
+// 	mTypeFace[WIND]->SetPosition(100.f, 105.f);
+// 	float x = mTypeFace[WIND]->GetPositionX();
+// 	float y = mTypeFace[WIND]->GetPositionY();
+// 	mTypeFace[WIND]->SetVisible(false);
+// 	AddChild(mTypeFace[WIND]);
 	
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
 	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
 }
+
 GameUISet::~GameUISet()
 {
-
 }
 
 void GameUISet::Render()
 {
 	NNUISet::Render();
 }
+
 void GameUISet::Update(float dTime)
 {
-	//int temp1, temp2;
+	int temp1, temp2;
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
 	NNUISet::Update(dTime);
 
-	switch (mMyPlayer->GetPlayerType())
-	{
-	case PlayerType::TYPE_A:
-		mType->SetString(L"불");
-		break;
-	case PlayerType::TYPE_B:
-		mType->SetString(L"물");
-		break;
-	case PlayerType::TYPE_C:
-		mType->SetString(L"수증기");
-		break;
-	}
+// 	for (int i = 0; i < 2; ++i)
+// 		mTypeFace[i]->SetVisible(false);
+
+// 	switch (mMyPlayer->GetPlayerType())
+// 	{
+// 	case PlayerType::TYPE_A:
+// 		mType->SetString(L"불");
+// 		mTypeFace[FIRE]->SetVisible(true);
+// 		break;
+// 	case PlayerType::TYPE_B:
+// 		mType->SetString(L"물");
+// 		mTypeFace[WATER]->SetVisible(true);
+// 		break;
+// 	case PlayerType::TYPE_C:
+// 		mType->SetString(L"수증기");
+// 		mTypeFace[WIND]->SetVisible(true);
+// 		break;
+// 	}
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);
 	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
-	//temp1 = CPlayerManager::GetInstance()->GetKillScore(BLUE);
-	mKillBar[BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(BLUE) / 50.f, 1.f);
-	mKillPoint[BLUE]->SetPosition(width / 2.f - 5 * (CPlayerManager::GetInstance()->GetKillScore(BLUE)) - 60, 20);
-	//temp2 = CPlayerManager::GetInstance()->GetKillScore(RED);
-	//mKillBar[RED]->SetScale(CPlayerManager::GetInstance()->GetKillScore(RED) / 50.f, 1.f);
-	mKillBar[RED]->SetScale(40 / 50.f, 1.f);
-	//mKillPoint[RED]->SetPosition(width / 2.f + 5 * CPlayerManager::GetInstance()->GetKillScore(RED) + 40, 20);
-	mKillPoint[RED]->SetPosition(width / 2.f + 40, 20);
+	temp1 = CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE);
+	mKillBar[TeamColor::BLUE]->SetScale(temp1 / 50.f, 1.f);
+	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE)) - 60, 20);
+	temp2 = CPlayerManager::GetInstance()->GetKillScore(TeamColor::RED);
+	mKillBar[TeamColor::RED]->SetScale(temp2 / 50.f, 1.f);
+	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * CPlayerManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 
 	for (int i = 0; i < SKILL_COUNT; ++i)
 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);

@@ -10,14 +10,13 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 	mAnimation = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 49; i++)
 	{
-		wsprintf(temp, L"Sprite/WaterSkill/%d.png", i);
+		wsprintf(temp, L"Sprite/WaterMissile/%d.png", i);
 
 		mAnimation->AddFrameNode(temp);
 	}
-	mAnimation->SetFrameTimeInSection(0.03f, 0, 29);
-	
+	mAnimation->SetFrameTimeInSection(0.03f, 0, 48);
 	mLifeTime = mAnimation->GetPlayTime();
 
 	AddChild(mAnimation);

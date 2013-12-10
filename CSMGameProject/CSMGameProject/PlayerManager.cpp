@@ -3,17 +3,32 @@
 #include "PacketType.h"
 #include "NNApplication.h"
 
+CPlayerManager* CPlayerManager::m_Instance = nullptr;
+
 CPlayerManager::CPlayerManager(void)
 	: mMyPlayerId(-1), mMyPlayer(nullptr)
 {
-
+	mKillScore[0] = 0;
+	mKillScore[1] = 0;
 }
 
 
 CPlayerManager::~CPlayerManager(void)
 {
-
 }
+
+CPlayerManager* CPlayerManager::GetInstance()
+{
+	if (m_Instance == nullptr)
+		m_Instance = new CPlayerManager();
+	return m_Instance;
+}
+void CPlayerManager::ReleaseInstance()
+{
+	if (m_Instance != nullptr)
+		delete m_Instance;
+}
+
 void CPlayerManager::UpdatePlayerMoveDirection(int _playerId, NNPoint direction)
 {
 	std::map<int,CPlayer*>::iterator itor = mPlayers.find(_playerId);

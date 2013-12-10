@@ -3,34 +3,43 @@
 AUserEffect::AUserEffect(CPlayer* follower)
 {
 	mFollower = follower;
-	mLifeTime = 0.5f;
-	mSpeed = 500.f;
-	mDirection = mFollower->GetPlayerRotation();
+	mLifeTime = 0.7f;
 
 	SetPosition(follower->GetPlayerPosition());
 
-	NNSprite *image = NNSprite::Create(L"Sprite/arrow.png");
-	image->SetRotation(mFollower->GetPlayerRotation());
-	AddChild(image);
+ 	mPaticleEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
+	mPaticleEffect->SetMinStartSpeed(10.f);
+	mPaticleEffect->SetMaxStartSpeed(10.f);
+	mPaticleEffect->SetMinEndSpeed(10.f);
+	mPaticleEffect->SetMaxEndSpeed(10.f);
+ 
+	mPaticleEffect->SetCreateParticlePerSecond(120);
 
-// 	mUserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");
-// 	mUserEffect->SetMinStartSpeed(300.f);
-// 	mUserEffect->SetMaxStartSpeed(400.f);
-// 	mUserEffect->SetMinEndSpeed(400.f);
-// 	mUserEffect->SetMaxEndSpeed(500.f);
-// 
-// 	mUserEffect->SetCreateParticlePerSecond(60);
-// 	mUserEffect->SetSpreadDegree(15.f);
-// 	mUserEffect->SetMinLifeTime(0.5f);
-// 	mUserEffect->SetMaxLifeTime(0.5f);
-// 	mUserEffect->SetDirection(mFollower->GetPlayerRotation());
-// 
-// 	mUserEffect->SetMinStartRodiusX( 50.f );
-// 	mUserEffect->SetMinStartRodiusY( 50.f );
-// 	mUserEffect->SetMaxStartRodiusX( 100.f );
-// 	mUserEffect->SetMaxStartRodiusY( 100.f );
+	mPaticleEffect->SetMinStartScaleX(1.f);
+	mPaticleEffect->SetMaxStartScaleX(1.f);
+	mPaticleEffect->SetMinStartScaleY(1.f);
+	mPaticleEffect->SetMaxStartScaleY(1.f);
+
+	mPaticleEffect->SetMinEndScaleX(0.f);
+	mPaticleEffect->SetMaxEndScaleX(0.f);
+	mPaticleEffect->SetMinEndScaleY(0.f);
+	mPaticleEffect->SetMaxEndScaleY(0.f);
+
+	mPaticleEffect->SetMinStartRotationSpeed(0.f);
+	mPaticleEffect->SetMaxStartRotationSpeed(0.f);
+	mPaticleEffect->SetMinEndRotationSpeed(0.f);
+	mPaticleEffect->SetMaxEndRotationSpeed(0.f);
+
+	mPaticleEffect->SetMinLifeTime(0.4f);
+	mPaticleEffect->SetMaxLifeTime(0.7f);
+ 
+	mPaticleEffect->SetMinStartRodiusX(50.f);
+	mPaticleEffect->SetMinStartRodiusY(50.f);
+	mPaticleEffect->SetMaxStartRodiusX(50.f);
+	mPaticleEffect->SetMaxStartRodiusY(50.f);
 	
-//	AddChild(mUserEffect);
+	mPaticleEffect->SetPosition(0.f, -10.f);
+	AddChild(mPaticleEffect);
 	
 }
 AUserEffect::~AUserEffect()
@@ -44,14 +53,13 @@ void AUserEffect::Render()
 void AUserEffect::Update( float dTime )
 {
 	IEffect::Update( dTime );
-	//SetPosition(mFollower->GetPlayerPosition());
+	SetPosition(mFollower->GetPlayerPosition());
 
 	if (mLifeTime < mNowLifeTime)
 	{
-		mIsEnd = true;
-		SetVisible(false);
+		mPaticleEffect->SetCreate(false);
+		
+		if (mPaticleEffect->GetCount() == 0)
+			mIsEnd = true;
 	}
-	//mspeed * std::cosf(mangle) * dTime
-
-	this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mSpeed * std::sinf(mDirection) * dTime);
 }

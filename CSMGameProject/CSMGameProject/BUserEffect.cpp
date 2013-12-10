@@ -6,18 +6,19 @@ BUserEffect::BUserEffect(CPlayer* follower)
 	mAnimation = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < 25; i++)
 	{
-		wsprintf(temp, L"Sprite/FireSkill/%d.png", i);
+		wsprintf(temp, L"Sprite/HealSkill/%d.png", i);
 
 		mAnimation->AddFrameNode(temp);
 	}
-	mAnimation->SetFrameTimeInSection(0.05f, 0, 39);
-	mAnimation->SetFrameTimeInSection(0.1f, 0, 20);
+	mAnimation->SetFrameTimeInSection(0.05f, 0, 24);
 
 	mFollower = follower;
 	mLifeTime = mAnimation->GetPlayTime();
 	SetPosition(mFollower->GetPlayerPosition());
+
+	mAnimation->SetPosition(-65.f, -65.f);
 
 	AddChild(mAnimation);
 }
@@ -32,6 +33,7 @@ void BUserEffect::Render()
 void BUserEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
+	SetPosition(mFollower->GetPlayerPosition());
 
 	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;

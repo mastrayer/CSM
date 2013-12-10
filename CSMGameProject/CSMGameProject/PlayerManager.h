@@ -3,10 +3,11 @@
 
 #include "Player.h"
 
+/*
 #define SINGLETON(type) \
 	public:\
 	static type* GetInstance() {static type instance; return &instance;}
-
+*/
 enum TeamColor
 {
 	BLUE = 0,
@@ -15,10 +16,16 @@ enum TeamColor
 
 class CPlayerManager
 {
-	SINGLETON(CPlayerManager);
-public:
+private:
+	//SINGLETON(CPlayerManager);
+	static CPlayerManager* m_Instance;
+
 	CPlayerManager(void);
 	~CPlayerManager(void);
+
+public:
+	static CPlayerManager* GetInstance();
+	static void ReleaseInstance();
 
 	void SetMyPlayerId(int id);
 	CPlayer* NewPlayer(int id);
