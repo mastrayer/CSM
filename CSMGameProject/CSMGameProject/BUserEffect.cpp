@@ -46,7 +46,7 @@ BUserEffect::BUserEffect(CPlayer* follower)
 		L"Sprite/FireSkill/fire_003_040.png");
 
 	mFollower = follower;
-	mAnimation->SetFrameRate(0.1f, 0, 20);
+	mAnimation->SetFrameTimeInSection(0.1f, 0, 20);
 	mLifeTime = mAnimation->GetPlayTime();
 	SetPosition(mFollower->GetPlayerPosition());
 
