@@ -5,8 +5,8 @@
 GameUISet::GameUISet()
 {
 	mHp = 80;
-	mSkillCooltime[0] = 5.f;
-	mSkillCooltime[1] = 5.f;
+	mSkillCooltime[0] = 0.1f;
+	mSkillCooltime[1] = 0.1f;
 	swprintf_s(mSkillCooltimeBuff[0], L"%d", (int)mSkillCooltime[0]);
 	swprintf_s(mSkillCooltimeBuff[1], L"%d", (int)mSkillCooltime[1]);
 
@@ -30,11 +30,11 @@ GameUISet::GameUISet()
 	mHpBar = NNSprite::Create(L"Sprite/GameHpBar.png");
 	mHpBar->SetPosition(340.f, 570.f);
 	
-	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI_0.png");
+	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI.png");
 	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
 	mSkillUI[0]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI_0.png");
+	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI.png");
 	mSkillUI[1]->SetCenter(mSkillUI[1]->GetImageWidth() / 2.f, mSkillUI[1]->GetImageHeight() / 2.f);
 	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
 	
