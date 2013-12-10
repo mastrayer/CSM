@@ -3,7 +3,7 @@
 #include "Math.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
-
+#include "Skills.h"
 
 Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
@@ -106,10 +106,6 @@ void Player::TransState(short state)
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-				mTypeSkillDelay = 0.1;
-				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
-				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
-				mClient->Broadcast(&outPacket);
 			}
 		}
 		break;
@@ -120,10 +116,6 @@ void Player::TransState(short state)
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-				mUserSkillDelay = 0.1;
-				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
-				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
-				mClient->Broadcast(&outPacket);
 			}
 		}
 		break;
@@ -308,20 +300,34 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-
+					mTypeSkillDelay = 3.f;
+					ATypeSkill(mRotation,mPosition);
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
+					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_B:
 				{
-
+					
+					mTypeSkillDelay = 3.f;
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
+					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_C:
 				{
-
+					
+					mTypeSkillDelay = 3.f;
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
+					TransState(PLAYER_STATE_IDLE);
 				}break;
 			default:
 				break;
 			}
-			TransState(PLAYER_STATE_IDLE);
 			break;
 		}
 		break;
@@ -331,15 +337,25 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-
+					
+					mUserSkillDelay = 5.f;
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
 				}break;
 			case TYPE_B:
 				{
-
+					mUserSkillDelay = 10.f;
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
 				}break;
 			case TYPE_C:
 				{
-
+					mUserSkillDelay = 5.f;
+					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+					mClient->Broadcast(&outPacket);
 				}break;
 			default:
 				break;

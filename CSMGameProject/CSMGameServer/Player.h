@@ -59,6 +59,8 @@ public:
 	PlayerInfo GetPlayerInfo();
 	int GetTypeChangeResult(int killerType, int victimType);
 	int GetType(){ return mType; }
+	int GetTeam(){ return mTeam; }
+	int GetRadius(){ return mRadius; }
 
 	bool Damaged(int damage); // return value : true - die, false - non-die
 
