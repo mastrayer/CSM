@@ -10,9 +10,8 @@ CUserEffect::CUserEffect(CPlayer* follower)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 25; i++)
 	{
-		if (i + 1 < 10) wsprintf(temp, L"Sprite/FlashSkill/light_004_00%d.png", i + 1);
-		else if (i + 1 >= 10) wsprintf(temp, L"Sprite/FlashSkill/light_004_0%d.png", i + 1);
-
+		wsprintf(temp, L"Sprite/FlashSkill/%d.png", i);
+		
 		mSrcAnimation->AddFrameNode(temp);
 		mDstAnimation->AddFrameNode(temp);
 	}
