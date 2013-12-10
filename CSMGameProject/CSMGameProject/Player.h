@@ -50,6 +50,8 @@ public:
 	NNSprite* GetPlayerSprite() { return mPlayerSprite; }
 	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
 	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
+	PlayerType GetPlayerType() { return mPlayerType; }
+
 
 	void CreateSkillEffect(PlayerType type, PlayerState skillType);
 
