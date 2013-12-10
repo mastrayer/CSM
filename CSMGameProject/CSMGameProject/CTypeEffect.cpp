@@ -40,7 +40,7 @@ CTypeEffect::CTypeEffect(CPlayer* follower)
 		L"Sprite/WindSkill/wind_003_029.png",
 		L"Sprite/WindSkill/wind_003_030.png");
 
-	mMoveSpeed = 00.0f;
+	mMoveSpeed = 0.0f;
 	mLifeTime = mAnimation->GetPlayTime();
 
 	AddChild(mAnimation);
@@ -56,7 +56,6 @@ void CTypeEffect::Render()
 void CTypeEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
-	SetPosition(mFollower->GetPlayerPosition());
 
 	mMoveSpeed += 600.f * dTime;
 	this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);

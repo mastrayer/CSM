@@ -91,6 +91,9 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mKillPoint[RED]);
 
+	mType = NNLabel::Create(L"", L"¸¼Àº °íµñ", 50.f);
+	mType->SetPosition(60.f, 60.f);
+	AddChild(mType);
 	/*mCharacterFace = NNSprite::Create( L"Sprite/BlueSlime.png" );
 	mCharacterFace->SetCenter( mCharacterFace->GetImageWidth()/2.f, mCharacterFace->GetImageHeight()/2.f );
 	mCharacterFace->SetPosition( 60.f, 60.f );
@@ -116,6 +119,18 @@ void GameUISet::Update(float dTime)
 
 	NNUISet::Update(dTime);
 
+	switch (mMyPlayer->GetPlayerType())
+	{
+	case PlayerType::TYPE_A:
+		mType->SetString(L"ºÒ");
+		break;
+	case PlayerType::TYPE_B:
+		mType->SetString(L"¹°");
+		break;
+	case PlayerType::TYPE_C:
+		mType->SetString(L"¼öÁõ±â");
+		break;
+	}
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);

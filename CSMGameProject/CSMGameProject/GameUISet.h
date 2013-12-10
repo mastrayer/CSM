@@ -55,6 +55,7 @@ private:
 	NNSprite *mCrown;
 
 	NNLabel *mKillPoint[2];
+	NNLabel *mType;
 	
 	CPlayer *mMyPlayer;
 	wchar_t mFPSLabelBuff[100];
