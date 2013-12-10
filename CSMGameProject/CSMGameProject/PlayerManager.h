@@ -7,6 +7,12 @@
 	public:\
 	static type* GetInstance() {static type instance; return &instance;}
 
+enum TeamColor
+{
+	BLUE = 0,
+	RED = 1
+};
+
 class CPlayerManager
 {
 	SINGLETON(CPlayerManager);
@@ -34,6 +40,7 @@ public:
 
 	void SetKillLimit(int limit) { mKillLimit = limit; }
 	void SetKillScore(int* Score) { mKillScore[0] = Score[0]; mKillScore[1] = Score[1];}
+	int GetKillScore(TeamColor color) { return mKillScore[color]; }
 
 private:
 	std::map<int,CPlayer*> mPlayers;
