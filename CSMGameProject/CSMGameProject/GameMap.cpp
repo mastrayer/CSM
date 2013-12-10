@@ -18,8 +18,9 @@ CGameMap::CGameMap(std::wstring path)
 
 CGameMap::~CGameMap(void)
 {
-	for (int i=0; i<=mHeight; i++ )
+	for (int i=0; i<mHeight; i++ )
 		delete[] mTile[i];
+	delete[] mTile;
 }
 
 void CGameMap::Update( float dTime )
