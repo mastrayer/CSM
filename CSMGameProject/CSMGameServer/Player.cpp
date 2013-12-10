@@ -54,10 +54,10 @@ void Player::TransState(short state)
 	case PLAYER_STATE_WALK:
 		{
 			Point willGoPosition = GetPosition();
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( 1.f, 0.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, 1.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * mSpeed;
 
 			if ( GGameMap->isValidTile(willGoPosition) == false )
 			{
@@ -193,14 +193,18 @@ void Player::Update( float dTime)
 
 			Point willGoDirection = Point(0,0);
 
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
 
 			float d = pow( pow(willGoDirection.x , 2) + pow( willGoDirection.y, 2) , 0.5);
-			willGoDirection.x = willGoDirection.x / d * mSpeed;
-			willGoDirection.y = willGoDirection.y / d * mSpeed;
+			if(d != 0.f)
+			{
+				willGoDirection.x = willGoDirection.x / d;
+				willGoDirection.y = willGoDirection.y / d;
+			}
+			willGoDirection = willGoDirection * mSpeed;
 
 			Point willGoPosition;
 
