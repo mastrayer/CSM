@@ -198,6 +198,10 @@ void Player::Update( float dTime)
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
 
+			float d = pow( pow(willGoDirection.x , 2) + pow( willGoDirection.y, 2) , 0.5);
+			willGoDirection.x = willGoDirection.x / d * mSpeed;
+			willGoDirection.y = willGoDirection.y / d * mSpeed;
+
 			Point willGoPosition;
 
 			//wasd 전부 다 땠는지 확인
@@ -211,15 +215,15 @@ void Player::Update( float dTime)
 			}
 
 			//지금 갈려고 하는 방향이 map에서 이동 불가능한 지역이니?
-			if ( CouldGoPosition( GetPosition() + willGoDirection * dTime * mSpeed ) == false )
+			if ( CouldGoPosition( GetPosition() + willGoDirection * dTime ) == false )
 			{
 				//X좌표라도 갈수있니?
-				if ( CouldGoPosition( GetPosition() + Point(willGoDirection.x,0) * dTime * mSpeed ) == true )
+				if ( CouldGoPosition( GetPosition() + Point(willGoDirection.x,0) * dTime ) == true )
 				{
 					willGoDirection = Point(willGoDirection.x,0);
 				}
 				//Y좌표라도 갈 수 있니?
-				else if ( CouldGoPosition( GetPosition() +  Point(0,willGoDirection.y) * dTime * mSpeed ) == true )
+				else if ( CouldGoPosition( GetPosition() +  Point(0,willGoDirection.y) * dTime ) == true )
 				{
 					willGoDirection = Point(0,willGoDirection.y);
 				}
@@ -228,11 +232,12 @@ void Player::Update( float dTime)
 					willGoDirection = Point(0,0);
 				}
 			}
-			willGoPosition = GetPosition() + willGoDirection * dTime * mSpeed;
+			willGoPosition = GetPosition() + willGoDirection * dTime;
 			SetPosition(willGoPosition);
 
 
 			//이전과 다른 방향으로 이동했니?
+			// -10, -10 이거 그냥 bool함수로 빼내서 초기화 다시 해줄것.
 			if( mMoveDirection == Point(-10.f,-10.f) || mMoveDirection != willGoDirection)
 			{
 				mMoveDirection = willGoDirection;
@@ -246,7 +251,6 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-
 			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
 			std::map<int,Player*> players = GPlayerManager->GetPlayers();
 
@@ -295,12 +299,46 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
+			switch (mType)
+			{
+			case TYPE_A:
+				{
+
+				}break;
+			case TYPE_B:
+				{
+
+				}break;
+			case TYPE_C:
+				{
+
+				}break;
+			default:
+				break;
+			}
 			TransState(PLAYER_STATE_IDLE);
 			break;
 		}
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
+			switch (mType)
+			{
+			case TYPE_A:
+				{
+
+				}break;
+			case TYPE_B:
+				{
+
+				}break;
+			case TYPE_C:
+				{
+
+				}break;
+			default:
+				break;
+			}
 			TransState(PLAYER_STATE_IDLE);
 			break;
 		}

@@ -86,7 +86,7 @@ void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 	UpdatePlayerState(info.mPlayerId, info.mPlayerState);
 	UpdatePlayerPosition(info.mPlayerId, NNPoint( info.mX, info.mY ) );
 	UpdatePlayerRotation(info.mPlayerId, info.mAngle);
-	UpdatePlayerMoveDirection(info.mPlayerId, info.mMoveDirection);
+	UpdatePlayerMoveDirection(info.mPlayerId, info.mMoveVelocity);
 	UpdatePlayerHP(info.mPlayerId, info.mHP);
 	UpdatePlayerTeam(info.mPlayerId, info.mTeam);
 	UpdatePlayerType(info.mPlayerId, info.mType);

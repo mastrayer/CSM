@@ -51,7 +51,7 @@ struct PlayerInfo
 	GameKeyStates mGameKeyStates;
 	short mPlayerState;
 	int mHP;
-	NNPoint mMoveDirection;
+	NNPoint mMoveVelocity;
 	int mTeam;
 	int mType;
 };

@@ -37,7 +37,7 @@ public:
 	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
 	void SetPlayerRotation( float angle ) { mAngle = angle; mPlayerSprite->SetRotation(angle); }
-	void SetPlayerMoveDirection( NNPoint direction) { mMoveDirection = direction; }
+	void SetPlayerMoveDirection( NNPoint direction) { mMoveVelocity = direction; }
 	void SetPlayerHP(int hp) { mHp = hp; }
 	void SetSkillCount(float value, PlayerState skillType) { mSkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
 	void SetSkillCooldown(bool value, PlayerState skillType) { mSkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
@@ -67,7 +67,7 @@ private:
 	
 	NNParticleSystem *mUserEffect;
 	// NNParticleSystem *mBuffEffect;
-	NNPoint mMoveDirection;
+	NNPoint mMoveVelocity;
 	NNLabel *mRebirthTimer;
 	
 	float mRebirthDelayTime;

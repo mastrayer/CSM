@@ -17,7 +17,7 @@
 #include "CUserEffect.h"
 
 CPlayer::CPlayer( void )
-	: mPlayerSprite(NULL),mMoveDirection(NNPoint(0,0)),
+	: mPlayerSprite(NULL),mMoveVelocity(NNPoint(0,0)),
 	mHp(100),mRebirthDelayTime(10), mTeam(0)
 {
 	TransState(PlayerState::IDLE);
@@ -140,7 +140,7 @@ void CPlayer::Update( float dTime )
 		{
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
-			SetPosition( GetPosition() + mMoveDirection * dTime * mSpeed );
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 			break;
 		}
 	case ATTAACK:
@@ -177,15 +177,12 @@ void CPlayer::InitWithType()
 	{
 	case TYPE_A:
 		{
-			mSpeed = 100;
 		}break;
 	case TYPE_B:
 		{
-			mSpeed = 110;
 		}break;
 	case TYPE_C:
 		{
-			mSpeed = 120;
 		}break;
 	default:
 		break;
