@@ -4,6 +4,7 @@
 #include "Effect.h"
 #include "NNAnimation.h"
 #include "Player.h"
+#include "PlayerManager.h"
 
 class BTypeEffect : public IEffect
 {
@@ -13,10 +14,16 @@ public:
 
 	void Render();
 	void Update(float dTime);
+	NNPoint FindTarget();
+	void Explosion();
 
 private:
+	bool mIsCrash;
 	float mMoveSpeed;
 	float mDirection;
-	NNAnimation *mAnimation;
+	NNPoint mSource;
+	NNPoint mDestination;
+	NNAnimation *mFlyAnimation;
+	NNAnimation *mExplosionAnimation;
 	CPlayer* mFollower;
 };

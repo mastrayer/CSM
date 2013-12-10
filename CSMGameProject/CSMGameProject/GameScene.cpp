@@ -151,7 +151,6 @@ float CGameScene::GetNowAngle()
 	// characterPositionByWC, WC -> window center. 화면 가운데를 0,0으로 했을때의 캐릭터 좌표
 	//NNPoint characterPositionByWC = GetCamera().GetPosition() -	CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition();
 	NNPoint referencePointForMouse = NNPoint(GetCamera().GetScreenWidth()/2.f,GetCamera().GetScreenHeight()/2.f);// + characterPositionByWC;
-	printf("%.1f\n",atan2f( NNPoint(mousePoint-referencePointForMouse).GetY() , NNPoint(mousePoint-referencePointForMouse).GetX() ));
 	return atan2f( NNPoint(mousePoint-referencePointForMouse).GetY() , NNPoint(mousePoint-referencePointForMouse).GetX() );
 }
 bool CGameScene::isChangedAngle()
@@ -161,10 +160,7 @@ bool CGameScene::isChangedAngle()
 	{
 		//20 밀리세컨드마다 마우스 방향 변경.
 		if( mAngle != GetNowAngle() )
-		{
-			printf("Oh!!\n");
 			return true;
-		}
 	}
 	return false;
 }

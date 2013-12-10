@@ -14,10 +14,19 @@ GameManager::~GameManager(void)
 
 void GameManager::DiePlayer(int team)
 {
+
 	mKillScore[team] ++;
 	if(mKillScore[team] > mKillLimit)
 	{
 		EndOfGame(team);
+	}
+	else
+	{
+		KillScoreResult outPacket = KillScoreResult();
+		outPacket.mKillLimit = mKillLimit;
+		outPacket.mKillScore[0] = mKillScore[0];
+		outPacket.mKillScore[1] = mKillScore[1];
+		GClientManager->BroadcastPacket(nullptr,&outPacket);
 	}
 }
 
