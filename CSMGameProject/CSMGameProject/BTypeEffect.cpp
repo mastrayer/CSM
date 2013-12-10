@@ -8,7 +8,7 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 	SetCenter(mFollower->GetCenter());
 	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 80.f);
 
-	mAnimation = NNAnimation::Create(30, 0.06f, 
+	mAnimation = NNAnimation::Create(30, 0.03f, 
 		L"Sprite/WindSkill/wind_003_001.png",
 		L"Sprite/WindSkill/wind_003_002.png",
 		L"Sprite/WindSkill/wind_003_003.png", 
@@ -72,10 +72,7 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 // 		L"Sprite/WaterSkill/water_005_029.png", 
 // 		L"Sprite/WaterSkill/water_005_030.png" );
 	
-	mTime = 0.f;
-	mMoveTerm = 0.03f;
-	mMoveSpeedX = 5000.0f;
-	mMoveSpeedY = 5000.0f;
+	mMoveSpeed = 00.0f;
 	mLifeTime = mAnimation->GetPlayTime();
 
 	AddChild(mAnimation);
@@ -92,12 +89,9 @@ void BTypeEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 
-	mTime += dTime;
-	if (mTime >= mMoveTerm)
-	{
-		mTime -= mMoveTerm;
-		this->SetPosition(this->GetPositionX() + mMoveSpeedX * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeedY * std::sinf(mDirection) * dTime);
-	}
+	mMoveSpeed += 600.f * dTime;
+	this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);
+
 	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;
 }
