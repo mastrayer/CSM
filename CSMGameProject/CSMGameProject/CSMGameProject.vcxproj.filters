@@ -175,6 +175,9 @@
     <ClCompile Include="CUserEffect.cpp">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClCompile>
+    <ClCompile Include="KillScoreHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

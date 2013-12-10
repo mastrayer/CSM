@@ -94,6 +94,7 @@
     <ClCompile Include="GameUISet.cpp" />
     <ClCompile Include="HPUpdateHandler.cpp" />
     <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="KillScoreHandler.cpp" />
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />
