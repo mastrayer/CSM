@@ -6,7 +6,7 @@
 #include "NNSprite.h"
 #include "NNSound.h"
 
-enum MENU_LIST
+enum MenuList
 {
 	MENU_PLAY,
 	MENU_STORY,
