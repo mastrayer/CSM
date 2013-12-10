@@ -81,10 +81,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="BTypeEffect.cpp" />
     <ClCompile Include="BUserEffect.cpp" />
-    <ClCompile Include="CameraSample.cpp" />
     <ClCompile Include="CTypeEffect.cpp" />
     <ClCompile Include="CUserEffect.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -102,31 +100,23 @@
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MouseAngleUpdateHandler.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="FMODSoundSample.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="NetworkSample.cpp" />
-    <ClCompile Include="ParticleSample.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
-    <ClCompile Include="SampleScene.cpp" />
     <ClCompile Include="SecondCut.cpp" />
     <ClCompile Include="SkillObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ThirdCut.cpp" />
-    <ClCompile Include="SpriteAtlasSample.cpp" />
     <ClCompile Include="StoryScene.cpp" />
     <ClCompile Include="ATypeEffect.cpp" />
     <ClCompile Include="AUserEffect.cpp" />
-    <ClCompile Include="XMLSample.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="BTypeEffect.h" />
     <ClInclude Include="BUserEffect.h" />
-    <ClInclude Include="CameraSample.h" />
     <ClInclude Include="CTypeEffect.h" />
     <ClInclude Include="CUserEffect.h" />
     <ClInclude Include="Effect.h" />
@@ -139,26 +129,20 @@
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="FMODSoundSample.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="NetworkSample.h" />
     <ClInclude Include="PacketType.h" />
-    <ClInclude Include="ParticleSample.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerUI.h" />
-    <ClInclude Include="SampleScene.h" />
     <ClInclude Include="SecondCut.h" />
     <ClInclude Include="SkillObject.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="StoryCut.h" />
     <ClInclude Include="StoryScene.h" />
     <ClInclude Include="ThirdCut.h" />
     <ClInclude Include="ATypeEffect.h" />
     <ClInclude Include="AUserEffect.h" />
-    <ClInclude Include="XMLSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

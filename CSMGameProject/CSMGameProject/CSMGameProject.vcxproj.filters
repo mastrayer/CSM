@@ -4,30 +4,6 @@
     <Filter Include="Game">
       <UniqueIdentifier>{68ddafa6-4182-4db2-8421-e164f09beebe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sample">
-      <UniqueIdentifier>{2df9a5cf-c77a-4ba9-9673-d1997b45c669}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\AnimationSample">
-      <UniqueIdentifier>{846747f4-d180-47c6-bccc-ee5d610fdf9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\XMLSample">
-      <UniqueIdentifier>{b26bc4e7-441d-41c1-a3e9-7274887b8b9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\SpriteAtlasSample">
-      <UniqueIdentifier>{70c18ecf-4e44-44f3-96b0-994a9bba1472}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\CameraSample">
-      <UniqueIdentifier>{c93dd7c7-2beb-40be-a5e9-aae482e87701}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\FMODSoundSample">
-      <UniqueIdentifier>{087f1e9d-685d-453d-8d4f-c4e2d6197c9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\ParticleSample">
-      <UniqueIdentifier>{de20fdae-17fb-4ab0-b6cc-3829145f30df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sample\NetworkSample">
-      <UniqueIdentifier>{7a560de2-6167-4807-b446-266770bb61a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Packet">
       <UniqueIdentifier>{d70a5eb2-6595-4b07-b909-2563bc511657}</UniqueIdentifier>
     </Filter>
@@ -112,30 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="AnimationSample.cpp">
-      <Filter>Sample\AnimationSample</Filter>
-    </ClCompile>
-    <ClCompile Include="SampleScene.cpp">
-      <Filter>Sample</Filter>
-    </ClCompile>
-    <ClCompile Include="XMLSample.cpp">
-      <Filter>Sample\XMLSample</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteAtlasSample.cpp">
-      <Filter>Sample\SpriteAtlasSample</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraSample.cpp">
-      <Filter>Sample\CameraSample</Filter>
-    </ClCompile>
-    <ClCompile Include="FMODSoundSample.cpp">
-      <Filter>Sample\FMODSoundSample</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSample.cpp">
-      <Filter>Sample\ParticleSample</Filter>
-    </ClCompile>
-    <ClCompile Include="NetworkSample.cpp">
-      <Filter>Sample\NetworkSample</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Game\Scene\GameScene\Object\Player</Filter>
     </ClCompile>
@@ -225,30 +177,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationSample.h">
-      <Filter>Sample\AnimationSample</Filter>
-    </ClInclude>
-    <ClInclude Include="SampleScene.h">
-      <Filter>Sample</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLSample.h">
-      <Filter>Sample\XMLSample</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteAtlasSample.h">
-      <Filter>Sample\SpriteAtlasSample</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraSample.h">
-      <Filter>Sample\CameraSample</Filter>
-    </ClInclude>
-    <ClInclude Include="FMODSoundSample.h">
-      <Filter>Sample\FMODSoundSample</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSample.h">
-      <Filter>Sample\ParticleSample</Filter>
-    </ClInclude>
-    <ClInclude Include="NetworkSample.h">
-      <Filter>Sample\NetworkSample</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Game\Scene\GameScene\Object\Player</Filter>
     </ClInclude>
