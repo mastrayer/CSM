@@ -8,7 +8,7 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 	SetCenter(mFollower->GetCenter());
 	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 80.f);
 
-	mAnimation = NNAnimation::Create(30, 0.03f, 
+	mAnimation = NNAnimation::Create(30, 0.06f, 
 		L"Sprite/WindSkill/wind_003_001.png",
 		L"Sprite/WindSkill/wind_003_002.png",
 		L"Sprite/WindSkill/wind_003_003.png", 
