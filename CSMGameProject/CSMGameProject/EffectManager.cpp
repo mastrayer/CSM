@@ -6,10 +6,6 @@ EffectManager::EffectManager()
 }
 EffectManager::~EffectManager()
 {
-	for (auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
-	{
-		SafeDelete( *iter );
-	}
 	mEffectList.clear();
 }
 
