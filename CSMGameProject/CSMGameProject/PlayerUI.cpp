@@ -6,7 +6,7 @@
 PlayerUI::PlayerUI()
 {
 	//mHp = (dynamic_cast<CPlayer*>(GetParent()))->GetPlayerHP();
-	mHp = 1;
+	//mHp = 1;
 
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
@@ -31,5 +31,5 @@ void PlayerUI::Update( float dTime )
 {
 	NNObject::Update( dTime );
 	
-	mHpBar->SetScale( mHp/100.f, 1.f );
+	mHpBar->SetScale( mHp / 50.f, 1.f);
 }
