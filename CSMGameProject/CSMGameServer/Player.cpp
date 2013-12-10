@@ -106,12 +106,13 @@ void Player::TransState(short state)
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-				mTypeSkillDelay = 1;
+				mTypeSkillDelay = 0.1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
 			}
 		}
+		break;
 	case PLAYER_STATE_USERSKILL:
 		{
 			if(mUserSkillDelay > 0) break;
@@ -119,7 +120,7 @@ void Player::TransState(short state)
 				mPlayerState == PLAYER_STATE_WALK)
 			{	
 				mPlayerState = state;
-				mUserSkillDelay = 1;
+				mUserSkillDelay = 0.1;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
@@ -188,7 +189,7 @@ void Player::Update( float dTime)
 				break;
 			}
 			//Move myPlayer with Game Key States.
-			//Check Moving Input, and set Position to d
+			//Check Moving Input, and sしししじじしet Position to d
 
 
 			Point willGoDirection = Point(0,0);
@@ -263,12 +264,12 @@ void Player::Update( float dTime)
 				Player* enemy = it->second;
 				if(enemy == this)continue;
 
-				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) - mRadius < mAttackRange )
+				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) < mRadius )
 				{
 					//杷維汽什革
 					if ( enemy->Damaged(mDamage+rand()%10) == true);
 					{
-						//染研 宋昔暗艦猿
+						//染研 宋昔暗艦猿	
 						ChangeType(GetTypeChangeResult(mType, enemy->mType));
 					}
 				}
