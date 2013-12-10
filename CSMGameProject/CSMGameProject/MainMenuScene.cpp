@@ -46,7 +46,7 @@ MainMenuScene::MainMenuScene()
 	mMainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 250.f);
 	AddChild( mMainMenuLable[MENU_EXIT] );
 
-	mBGM = NNSound::Create("sound/mainBGM.mp3",true,true);
+	mBGM = NNResourceManager::GetInstance()->LoadSoundFromFile( "sound/mainBGM.mp3", true );//NNSound::Create("sound/mainBGM.mp3",true,true);
 	NNAudioSystem::GetInstance()->Play( mBGM ); 
 }
 
