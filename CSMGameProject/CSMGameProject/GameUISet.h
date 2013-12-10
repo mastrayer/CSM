@@ -8,13 +8,13 @@
 #include "PlayerManager.h"
 #include "EffectManager.h"
 
-/*
-enum KILLPOINT
+
+enum SlimeType
 {
-	BLUE = 0,
-	RED = 1,
+	FIRE = 0,
+	WATER = 1,
+	WIND = 2
 };
-*/
 
 
 class GameUISet : public NNUISet
@@ -47,7 +47,7 @@ private:
 
 	NNSprite *mCharacterUIFrame;
 	NNSprite *mSkillUIFrame;
-	NNSprite *mCharacterFace;
+	NNSprite *mTypeFace[3];
 	NNSprite *mHpBar;
 	NNSprite *mHpBarBackground;
 	NNSprite *mKillBar[2];
