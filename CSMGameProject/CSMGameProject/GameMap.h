@@ -21,11 +21,13 @@ public:
 
 	NNCREATE_FUNC(CTile);
 
-//private:
+private:
 	NNSpriteAtlas *mimage;
 	int mattribute;
 	int mheight;
 	bool misFull;
+
+	friend class CGameMap;
 };
 class CGameMap : public NNObject
 {
