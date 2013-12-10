@@ -8,6 +8,15 @@
 #include "PlayerManager.h"
 #include "EffectManager.h"
 
+/*
+enum KILLPOINT
+{
+	BLUE = 0,
+	RED = 1,
+};
+*/
+
+
 class GameUISet : public NNUISet
 {
 public:
@@ -41,12 +50,15 @@ private:
 	NNSprite *mCharacterFace;
 	NNSprite *mHpBar;
 	NNSprite *mHpBarBackground;
+	NNSprite *mKillBar[2];
+	
+	NNSprite *mCrown;
 
-	int mHp;
+	NNLabel *mKillPoint[2];
+	
 	CPlayer *mMyPlayer;
 	wchar_t mFPSLabelBuff[100];
 	wchar_t mSkillCooltimeBuff[2][5];
-	//int mKillCount;
-
+	
 	friend class Player;
 };
