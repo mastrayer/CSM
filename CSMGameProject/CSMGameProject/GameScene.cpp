@@ -9,14 +9,6 @@ CGameScene::CGameScene(void) :
 	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 	misInit(false)
 {
-}
-
-CGameScene::~CGameScene(void)
-{
-}
-
-void CGameScene::Init()
-{
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
@@ -29,6 +21,14 @@ void CGameScene::Init()
 	AddChild( EffectManager::GetInstance() , 1);
 
 	InitNetworkSetting();
+}
+
+CGameScene::~CGameScene(void)
+{
+}
+
+void CGameScene::Init()
+{
 }
 
 void CGameScene::Render()
