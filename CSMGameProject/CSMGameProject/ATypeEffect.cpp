@@ -19,12 +19,11 @@ ATypeEffect::ATypeEffect(CPlayer* follower)
 
 	mFollower = follower;
 	mDirection = mFollower->GetPlayerRotation();
-	mDistance = 100.f;
+	mDistance = 80.f;
 	mIndex = 0;
 	mExplosionTerm = 0.3f;
 	mTimeCount = 0.f;
 	mLifeTime = mExplosion[0]->GetPlayTime() + mExplosionTerm * 3;
-	mLifeTime = 4.f;
 
 	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
 	mNextExplosionPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
