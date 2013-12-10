@@ -25,6 +25,7 @@
 #define PKT_SC_HP 9
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
+#define PKT_SC_A_TYPESKILL_SHOOT 12
 struct Point
 {
 	Point()
@@ -214,5 +215,15 @@ struct EndOfGameResult : public PacketHeader
 		mType = PKT_SC_ENDOFGAME;
 	}
 	int mWinnerTeam;
+};
+struct ATypeSkillShootResult : public PacketHeader
+{
+	ATypeSkillShootResult()
+	{
+		mSize = sizeof(ATypeSkillShootResult);
+		mType = PKT_SC_ENDOFGAME;
+	}
+	Point mStartPosition;
+	float mAngle;
 };
 #pragma pack(pop)
