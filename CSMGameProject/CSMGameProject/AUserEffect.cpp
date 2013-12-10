@@ -10,7 +10,7 @@ AUserEffect::AUserEffect(CPlayer* follower)
 	SetPosition(follower->GetPlayerPosition());
 
 	NNSprite *image = NNSprite::Create(L"Sprite/arrow.png");
-	image->SetRotation(-mFollower->GetPlayerRotation());
+	image->SetRotation(mFollower->GetPlayerRotation());
 	AddChild(image);
 
 // 	mUserEffect = NNParticleSystem::Create(L"Sprite/fire.jpg");

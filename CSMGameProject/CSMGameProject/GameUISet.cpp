@@ -8,6 +8,8 @@ GameUISet::GameUISet()
 	mSkillCooltime[1] = 5.f;
 	//mKillCount = 25;
 	//mRedKillCount = 40;
+	//mHp = 80;
+
 	swprintf_s(mSkillCooltimeBuff[0], L"%d", (int)mSkillCooltime[0]);
 	swprintf_s(mSkillCooltimeBuff[1], L"%d", (int)mSkillCooltime[1]);
 
@@ -45,11 +47,12 @@ GameUISet::GameUISet()
 	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
 	//mRedKillBar->SetScaleX(-1.f);
 
-	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI_0.png");
+
+	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI.png");
 	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
 	mSkillUI[0]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI_0.png");
+	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI.png");
 	mSkillUI[1]->SetCenter(mSkillUI[1]->GetImageWidth() / 2.f, mSkillUI[1]->GetImageHeight() / 2.f);
 	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
 
