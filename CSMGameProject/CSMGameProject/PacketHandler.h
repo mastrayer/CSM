@@ -5,6 +5,17 @@
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
 
+class KillScoreHandler : public NNBaseHandler
+{
+public:
+	KillScoreHandler();
+	virtual ~KillScoreHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	KillScoreResult mKillScoreResult;
+};
+
 class HPUpdateHandler : public NNBaseHandler
 {
 public:

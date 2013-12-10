@@ -96,6 +96,8 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_LOGOUT, mLogoutHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, mMouseAngleUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, mHPUpdateHandler );
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_KILLSCORE, mKillScoreHandler);
+
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
 

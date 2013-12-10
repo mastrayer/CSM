@@ -23,6 +23,7 @@ private:
 	LogoutHandler* mLogoutHandler;
 	MouseAngleUpdateHandler* mMouseAngleUpdateHandler;
 	HPUpdateHandler* mHPUpdateHandler;
+	KillScoreHandler* mKillScoreHandler;
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
