@@ -15,19 +15,21 @@ ATypeEffect::ATypeEffect(CPlayer* follower)
 	}
 	
 	for (int i = 0; i < 3; ++i)
-		mExplosion[i]->SetFrameTimeInSection(0.05f, 0, 39);
+		mExplosion[i]->SetFrameTimeInSection(0.02f, 0, 39);
 
 	mFollower = follower;
-	mLifeTime = mExplosion[0]->GetPlayTime() * 3;
 	mDirection = mFollower->GetPlayerRotation();
 	mDistance = 100.f;
 	mIndex = 0;
-	mExplosionTerm = 0.5f;
+	mExplosionTerm = 0.3f;
 	mTimeCount = 0.f;
+	mLifeTime = mExplosion[0]->GetPlayTime() + mExplosionTerm * 3;
+	mLifeTime = 4.f;
 
-	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 40.f);
+	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
 	mNextExplosionPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
 
+	mExplosion[0]->SetPosition(mNextExplosionPoint.GetX(), mNextExplosionPoint.GetY());
 	for (int i = 0; i < 3; ++i)
 	{
 		mExplosion[i]->SetLoop(false);
@@ -40,7 +42,7 @@ ATypeEffect::ATypeEffect(CPlayer* follower)
 	}
 
 
-	mExplosion[mIndex++]->SetVisible(true);
+	mExplosion[mIndex]->SetVisible(true);
 
 // 	mTypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
 // 
@@ -75,11 +77,10 @@ void ATypeEffect::Update( float dTime )
 
 	mTimeCount += dTime;
 
-	if (mTimeCount >= mExplosionTerm)
+	if (mIndex < 2 && mTimeCount >= mExplosionTerm)
 	{
 		mTimeCount -= mExplosionTerm;
-		mExplosion[mIndex++]->SetVisible(false);
-		mExplosion[mIndex]->SetVisible(true);
+		mExplosion[++mIndex]->SetVisible(true);
 	}
 	if (mLifeTime < mNowLifeTime)
 	{	
