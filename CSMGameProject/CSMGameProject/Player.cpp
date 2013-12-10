@@ -44,12 +44,12 @@ void CPlayer::CreateSkillEffect(PlayerType type, PlayerState skillType)
 
 	case TYPE_B :
 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
-		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
+		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BUserEffect(this));
 		break;
 
 	case TYPE_C :
 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
-		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
+		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CUserEffect(this));
 		break;
 	}
 }
