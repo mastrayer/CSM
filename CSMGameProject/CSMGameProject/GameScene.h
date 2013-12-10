@@ -30,7 +30,7 @@ private:
 public:
 	CGameScene(void);
 	virtual ~CGameScene(void);
-	void Init() {};
+	void Init();
 
 	void Render();
 	void Update( float dTime );
