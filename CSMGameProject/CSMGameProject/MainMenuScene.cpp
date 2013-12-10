@@ -18,22 +18,19 @@ MainMenuScene::MainMenuScene()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
+	////////// Main Menu Background //////////
 	mMainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
 	mMainMenuImage->SetPosition( width/2, height/2 );
 	mMainMenuImage->SetCenter( mMainMenuImage->GetImageWidth()/2.f, mMainMenuImage->GetImageHeight()/2.f + 70.f );
 	AddChild( mMainMenuImage );
-	/* MenuSellectionBar type
-	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
-	mMainMenuSellcetionBar->SetPosition( width/2 + 200.f, height/2 + 200.f + mMenuSellction * 50 );
-	AddChild( mMainMenuSellcetionBar ) ;
-	*/
 
-
+	////////// Main Menu SellcetionBar //////////
 	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
 	mMainMenuSellcetionBar->SetPosition( width/2, height/2 );
 	mMainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
 	AddChild( mMainMenuSellcetionBar ) ;
 
+	////////// Main Menu Labels //////////
 	mMainMenuLable[MENU_PLAY] = NNLabel::Create( L"Play", L"¸¼Àº °íµñ", 35.f );
 	mMainMenuLable[MENU_PLAY]->SetPosition( width/2 + 200.f, height/2 + 150.f );
 	AddChild( mMainMenuLable[MENU_PLAY] );
@@ -46,7 +43,8 @@ MainMenuScene::MainMenuScene()
 	mMainMenuLable[MENU_EXIT]->SetPosition( width/2 + 200.f, height/2 + 250.f);
 	AddChild( mMainMenuLable[MENU_EXIT] );
 
-	mBGM = NNSound::Create("sound/mainBGM.mp3",true,true);
+	////////// Background Music //////////
+	mBGM = NNResourceManager::GetInstance()->LoadSoundFromFile( "sound/mainBGM.mp3", true );
 	NNAudioSystem::GetInstance()->Play( mBGM ); 
 }
 
@@ -83,15 +81,15 @@ void MainMenuScene::Update( float dTime )
 
 	mMenuSellction = ( mMenuSellction + MENU_EXIT + 1 ) % ( MENU_EXIT + 1 );
 
-	if ( mMenuSellction == 0 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
+	if ( mMenuSellction == MenuList::MENU_PLAY && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
 	{
 		NNSceneDirector::GetInstance()->ChangeScene( CGameScene::Create() );
 	}
-	else if ( mMenuSellction == 1 && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
+	else if ( mMenuSellction == MenuList::MENU_STORY && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_UP )
 	{
 		NNSceneDirector::GetInstance()->ChangeScene( StoryScene::Create() );
 	}
-	else if ( mMenuSellction == 2 )
+	else if ( mMenuSellction == MenuList::MENU_EXIT )
 	{
 		// exit
 	}

@@ -1,30 +1,66 @@
-
 #include "ATypeEffect.h"
 
 ATypeEffect::ATypeEffect(CPlayer* follower)
 {
+	for (int i = 0; i < 3;++i)
+		mExplosion[i] = NNAnimation::Create();
+
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 40; i++)
+	{
+		wsprintf(temp, L"Sprite/FireSkill/%d.png", i);
+
+		for (int j = 0; j < 3; ++j)
+			mExplosion[j]->AddFrameNode(temp);
+	}
+	
+	for (int i = 0; i < 3; ++i)
+		mExplosion[i]->SetFrameTimeInSection(0.02f, 0, 39);
+
 	mFollower = follower;
-	mLifeTime = 1.f;
-	SetPosition(mFollower->GetPlayerPosition());
+	mDirection = mFollower->GetPlayerRotation();
+	mDistance = 80.f;
+	mIndex = 0;
+	mExplosionTerm = 0.3f;
+	mTimeCount = 0.f;
+	mLifeTime = mExplosion[0]->GetPlayTime() + mExplosionTerm * 3;
 
-	mTypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
+	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
+	mNextExplosionPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
 
-	mTypeEffect->SetMinStartSpeed(100.f);
-	mTypeEffect->SetMaxStartSpeed(110.f);
-	mTypeEffect->SetMinEndSpeed(120.f);
-	mTypeEffect->SetMaxEndSpeed(130.f);
+	mExplosion[0]->SetPosition(mNextExplosionPoint.GetX(), mNextExplosionPoint.GetY());
+	for (int i = 0; i < 3; ++i)
+	{
+		mExplosion[i]->SetLoop(false);
+		mExplosion[i]->SetVisible(false);
 
-	mTypeEffect->SetCreateParticlePerSecond(60);
-	mTypeEffect->SetSpreadDegree(360.f);
-	mTypeEffect->SetMinLifeTime(0.5f);
-	mTypeEffect->SetMaxLifeTime(0.5f);
+		if (i>0)
+			mExplosion[i]->SetPosition(mExplosion[i-1]->GetPositionX() + mNextExplosionPoint.GetX(), mExplosion[i-1]->GetPositionY() + mNextExplosionPoint.GetY());
 
-	mTypeEffect->SetMinStartRodiusX( 50.f );
-	mTypeEffect->SetMinStartRodiusY( 50.f );
-	mTypeEffect->SetMaxStartRodiusX( 60.f );
-	mTypeEffect->SetMaxStartRodiusY( 60.f );
+		AddChild(mExplosion[i]);
+	}
 
-	AddChild(mTypeEffect);
+
+	mExplosion[mIndex]->SetVisible(true);
+
+// 	mTypeEffect = NNParticleSystem::Create(L"Sprite/FlashEffect.png");
+// 
+// 	mTypeEffect->SetMinStartSpeed(100.f);
+// 	mTypeEffect->SetMaxStartSpeed(110.f);
+// 	mTypeEffect->SetMinEndSpeed(120.f);
+// 	mTypeEffect->SetMaxEndSpeed(130.f);
+// 
+// 	mTypeEffect->SetCreateParticlePerSecond(60);
+// 	mTypeEffect->SetSpreadDegree(360.f);
+// 	mTypeEffect->SetMinLifeTime(0.5f);
+// 	mTypeEffect->SetMaxLifeTime(0.5f);
+// 
+// 	mTypeEffect->SetMinStartRodiusX( 50.f );
+// 	mTypeEffect->SetMinStartRodiusY( 50.f );
+// 	mTypeEffect->SetMaxStartRodiusX( 60.f );
+// 	mTypeEffect->SetMaxStartRodiusY( 60.f );
+// 
+// 	AddChild(mTypeEffect);
 }
 ATypeEffect::~ATypeEffect()
 {
@@ -37,13 +73,20 @@ void ATypeEffect::Render()
 void ATypeEffect::Update( float dTime )
 {
 	IEffect::Update( dTime );
-	SetPosition(mFollower->GetPlayerPosition());
 
+	mTimeCount += dTime;
+
+	if (mIndex < 2 && mTimeCount >= mExplosionTerm)
+	{
+		mTimeCount -= mExplosionTerm;
+		mExplosion[++mIndex]->SetVisible(true);
+	}
 	if (mLifeTime < mNowLifeTime)
 	{	
-		mTypeEffect->SetCreate(false);
-
-		if (mTypeEffect->GetCount() == 0)
-			mIsEnd = true;
+		mIsEnd = true;
+// 		mTypeEffect->SetCreate(false);
+// 
+// 		if (mTypeEffect->GetCount() == 0)
+// 			
 	}
 }

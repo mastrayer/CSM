@@ -120,7 +120,7 @@ CPlayer* CPlayerManager::NewPlayer(int id)
 	{
 		newPlayer = new CPlayer();
 		mPlayers.insert(std::map<int,CPlayer*>::value_type(id,newPlayer));
-		NNSceneDirector::GetInstance()->GetNowScene()->AddChild(newPlayer);
+		NNSceneDirector::GetInstance()->GetNowScene()->AddChild(newPlayer, 0);
 	}
 	else
 		newPlayer = mPlayers.find(id)->second;

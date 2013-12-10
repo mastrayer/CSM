@@ -18,6 +18,9 @@ CGameMap::CGameMap(std::wstring path)
 
 CGameMap::~CGameMap(void)
 {
+	for (int i=0; i<mHeight; i++ )
+		delete[] mTile[i];
+	delete[] mTile;
 }
 
 void CGameMap::Update( float dTime )
@@ -105,7 +108,8 @@ void CGameMap::convertFileToMap( std::wstring path )
 			printf("%d / %d\n",i,j);
 
 			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
-			AddChild(mTile[i][j]->mimage);
+			mTile[i][j]->AddChild(mTile[i][j]->mimage);
+			AddChild(mTile[i][j]);
 
 			assert(y+64<=256);
 			assert(x+64<=128);

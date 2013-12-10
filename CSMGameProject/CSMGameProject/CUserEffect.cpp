@@ -3,70 +3,33 @@
 
 CUserEffect::CUserEffect(CPlayer* follower)
 {
-	mSrcAnimation = NNAnimation::Create(25, 0.03f,
-		L"Sprite/FlashSkill/light_004_001.png",
-		L"Sprite/FlashSkill/light_004_002.png",
-		L"Sprite/FlashSkill/light_004_003.png",
-		L"Sprite/FlashSkill/light_004_004.png",
-		L"Sprite/FlashSkill/light_004_005.png",
-		L"Sprite/FlashSkill/light_004_006.png",
-		L"Sprite/FlashSkill/light_004_007.png",
-		L"Sprite/FlashSkill/light_004_008.png",
-		L"Sprite/FlashSkill/light_004_009.png",
-		L"Sprite/FlashSkill/light_004_010.png",
-		L"Sprite/FlashSkill/light_004_011.png",
-		L"Sprite/FlashSkill/light_004_012.png",
-		L"Sprite/FlashSkill/light_004_013.png",
-		L"Sprite/FlashSkill/light_004_014.png",
-		L"Sprite/FlashSkill/light_004_015.png",
-		L"Sprite/FlashSkill/light_004_016.png",
-		L"Sprite/FlashSkill/light_004_017.png",
-		L"Sprite/FlashSkill/light_004_018.png",
-		L"Sprite/FlashSkill/light_004_019.png",
-		L"Sprite/FlashSkill/light_004_020.png",
-		L"Sprite/FlashSkill/light_004_021.png",
-		L"Sprite/FlashSkill/light_004_022.png",
-		L"Sprite/FlashSkill/light_004_023.png",
-		L"Sprite/FlashSkill/light_004_024.png",
-		L"Sprite/FlashSkill/light_004_025.png");
+	////////////////////// Set Animation ///////////////////////
+	mSrcAnimation = NNAnimation::Create();
+	mDstAnimation = NNAnimation::Create();
 
-	mDstAnimation = NNAnimation::Create(25, 0.03f,
-		L"Sprite/FlashSkill/light_004_001.png",
-		L"Sprite/FlashSkill/light_004_002.png",
-		L"Sprite/FlashSkill/light_004_003.png",
-		L"Sprite/FlashSkill/light_004_004.png",
-		L"Sprite/FlashSkill/light_004_005.png",
-		L"Sprite/FlashSkill/light_004_006.png",
-		L"Sprite/FlashSkill/light_004_007.png",
-		L"Sprite/FlashSkill/light_004_008.png",
-		L"Sprite/FlashSkill/light_004_009.png",
-		L"Sprite/FlashSkill/light_004_010.png",
-		L"Sprite/FlashSkill/light_004_011.png",
-		L"Sprite/FlashSkill/light_004_012.png",
-		L"Sprite/FlashSkill/light_004_013.png",
-		L"Sprite/FlashSkill/light_004_014.png",
-		L"Sprite/FlashSkill/light_004_015.png",
-		L"Sprite/FlashSkill/light_004_016.png",
-		L"Sprite/FlashSkill/light_004_017.png",
-		L"Sprite/FlashSkill/light_004_018.png",
-		L"Sprite/FlashSkill/light_004_019.png",
-		L"Sprite/FlashSkill/light_004_020.png",
-		L"Sprite/FlashSkill/light_004_021.png",
-		L"Sprite/FlashSkill/light_004_022.png",
-		L"Sprite/FlashSkill/light_004_023.png",
-		L"Sprite/FlashSkill/light_004_024.png",
-		L"Sprite/FlashSkill/light_004_025.png");
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 25; i++)
+	{
+		wsprintf(temp, L"Sprite/FlashSkill/%d.png", i);
+		
+		mSrcAnimation->AddFrameNode(temp);
+		mDstAnimation->AddFrameNode(temp);
+	}
+	mSrcAnimation->SetFrameTimeInSection(0.02f, 0, 24);
+	mDstAnimation->SetFrameTimeInSection(0.02f, 0, 24);
 
+
+	////////////////////// Set Settings ///////////////////////
 	mFollower = follower;
 	mLifeTime = mSrcAnimation->GetPlayTime() * 1.3f;
 	mDirection = mFollower->GetPlayerRotation();
-	mDistance = 100.f;
+	mDistance = 200.f;
 	mDstAnimationStart = false;
 	mDstAnimation->SetVisible(false);
 	mSrcAnimation->SetLoop(false);
 
 	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
-	mDstPoint.SetPoint(mFollower->GetPlayerPosition().GetX() + mDistance * std::cosf(mDirection), mFollower->GetPlayerPosition().GetY() + mDirection * std::sinf(mDirection));
+	mDstPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
 
 	AddChild(mSrcAnimation);
 	AddChild(mDstAnimation);
