@@ -48,6 +48,7 @@ public:
 	void SetKillLimit(int limit) { mKillLimit = limit; }
 	void SetKillScore(int* Score) { mKillScore[0] = Score[0]; mKillScore[1] = Score[1];}
 	int GetKillScore(TeamColor color) { return mKillScore[color]; }
+	std::map<int, CPlayer*> GetPlayerList() { return mPlayers; }
 
 private:
 	std::map<int,CPlayer*> mPlayers;
