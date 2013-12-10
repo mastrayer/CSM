@@ -20,13 +20,13 @@ GameUISet::GameUISet()
 	AddChild(mFPSLabel);
 
 	mCharacterUIFrame = NNSprite::Create(L"Sprite/CharacterUIFrame.png");
-	mCharacterUIFrame->SetPosition(0.f, 450.f);
-	mCharacterUIFrame->SetOpacity(0.8f);
+	mCharacterUIFrame->SetPosition(0.f, 500.f);
+	mCharacterUIFrame->SetOpacity(0.9f);
 
 	mSkillUIFrame = NNSprite::Create(L"Sprite/SkillUIFrame.png");
 	mSkillUIFrame->SetCenter(mSkillUIFrame->GetImageWidth() / 2.f, mSkillUIFrame->GetImageHeight() / 2.f);
 	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
-	mSkillUIFrame->SetOpacity(0.8f);
+	mSkillUIFrame->SetOpacity(0.9f);
 
 	mHpBarBackground = NNSprite::Create(L"Sprite/GameHpBar_BackGround.png");
 	mHpBarBackground->SetCenter(mHpBarBackground->GetImageWidth() / 2.f, mHpBarBackground->GetImageHeight() / 2.f);
@@ -68,13 +68,13 @@ GameUISet::GameUISet()
 
 	mKillPoint[BLUE] = NNLabel::Create(L"40", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[BLUE]->SetCenter(mKillPoint[BLUE]->GetCenterX(), mKillPoint[BLUE]->GetCenterY());
-	mKillPoint[BLUE]->SetPosition(width / 2.f - 250 - 20, 20);
-	mKillPoint[BLUE]->SetRGBA(255, 255, 255, 255);
+	mKillPoint[BLUE]->SetPosition(width / 2.f - 270, 20);
+	mKillPoint[BLUE]->SetRGBA(0, 0, 0, 255);
 
 	mKillPoint[RED] = NNLabel::Create(L"25", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[RED]->SetCenter(mKillPoint[RED]->GetCenterX(), mKillPoint[RED]->GetCenterY());
 	mKillPoint[RED]->SetPosition(width / 2.f + 250, 20);
-	mKillPoint[RED]->SetRGBA(255, 255, 255, 255);
+	mKillPoint[RED]->SetRGBA(0, 0, 0, 255);
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
 	AddChild(mCharacterUIFrame);
@@ -110,16 +110,24 @@ void GameUISet::Render()
 }
 void GameUISet::Update(float dTime)
 {
+	//int temp1, temp2;
+	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
+	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
+
 	NNUISet::Update(dTime);
 
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);
 	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
-	//mKillBar[BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(BLUE) / 50.f, 1.f);
-	mKillBar[BLUE]->SetScale(25 / 50.f, 1.f);
+	//temp1 = CPlayerManager::GetInstance()->GetKillScore(BLUE);
+	mKillBar[BLUE]->SetScale(-CPlayerManager::GetInstance()->GetKillScore(BLUE) / 50.f, 1.f);
+	mKillPoint[BLUE]->SetPosition(width / 2.f - 5 * (CPlayerManager::GetInstance()->GetKillScore(BLUE)) - 60, 20);
+	//temp2 = CPlayerManager::GetInstance()->GetKillScore(RED);
 	//mKillBar[RED]->SetScale(CPlayerManager::GetInstance()->GetKillScore(RED) / 50.f, 1.f);
 	mKillBar[RED]->SetScale(40 / 50.f, 1.f);
+	//mKillPoint[RED]->SetPosition(width / 2.f + 5 * CPlayerManager::GetInstance()->GetKillScore(RED) + 40, 20);
+	mKillPoint[RED]->SetPosition(width / 2.f + 40, 20);
 
 	for (int i = 0; i < SKILL_COUNT; ++i)
 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
