@@ -33,7 +33,14 @@ void GameManager::DiePlayer(int team)
 int GameManager::GiveTeamNumber()
 {
 	//딱히 밸런스 알고리즘은 없음
-	if(mPlayerCount[1] < mPlayerCount[0])
+	if(mPlayerCount[1] == mPlayerCount[1])
+	{
+		int team = rand()%2;
+		
+		mPlayerCount[team]++;
+		return team;
+	}
+	else if(mPlayerCount[1] < mPlayerCount[0])
 	{
 		mPlayerCount[1]++;
 		return 1;
