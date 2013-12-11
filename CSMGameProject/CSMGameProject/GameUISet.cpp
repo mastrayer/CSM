@@ -4,8 +4,8 @@
 
 GameUISet::GameUISet()
 {
-	mSkillCooltime[0] = 0.1f;
-	mSkillCooltime[1] = 0.1f;
+	mSkillCooltime[0] = 3.0f;
+	mSkillCooltime[1] = 5.0f;
 	//mKillCount = 25;
 	//mRedKillCount = 40;
 	//mHp = 80;

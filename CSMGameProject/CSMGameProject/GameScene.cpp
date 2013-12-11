@@ -88,6 +88,7 @@ void CGameScene::InitNetworkSetting()
 	mLogoutHandler = new LogoutHandler();
 	mMouseAngleUpdateHandler = new MouseAngleUpdateHandler();
 	mHPUpdateHandler = new HPUpdateHandler();
+	mKillScoreHandler = new KillScoreHandler();
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
