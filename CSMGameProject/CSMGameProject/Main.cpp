@@ -9,7 +9,7 @@
 #else
 #pragma comment(lib, "NNGameFramework.lib")
 #endif
-
+#define _CRT_SECURE_NO_WARNINGS
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
 #ifdef _DEBUG

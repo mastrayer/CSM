@@ -24,6 +24,7 @@ private:
 	MouseAngleUpdateHandler* mMouseAngleUpdateHandler;
 	HPUpdateHandler* mHPUpdateHandler;
 	KillScoreHandler* mKillScoreHandler;
+	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
