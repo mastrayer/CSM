@@ -95,8 +95,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			printf("accept: invalid socket\n") ;
 			continue ;
-		}
-
+		}/*
+		SOCKADDR_IN clientaddr ;
+		int addrlen = sizeof(clientaddr) ;
+		getpeername(g_AcceptedSocket, (SOCKADDR*)&clientaddr, &addrlen) ;
+		if( ntohs(clientaddr.sin_port) > 50000)
+		{
+			printf("port : %d is wrong!\n",clientaddr.sin_port);
+			continue;
+		}*/
 		/// accept event fire!
 		if ( !SetEvent(hEvent) )
 		{
