@@ -256,7 +256,7 @@ void Player::Update( float dTime)
 				Player* enemy = it->second;
 				if(enemy == this)continue;
 
-				if( Point().GetDistance( enemy->GetPosition(), AttackPoint ) < mRadius )
+				if(enemy->GetTeam() != GetTeam() && Point().GetDistance( enemy->GetPosition(), AttackPoint ) < mRadius )
 				{
 					//피격데스네
 					if ( enemy->Damaged(mDamage+rand()%10) == true);
