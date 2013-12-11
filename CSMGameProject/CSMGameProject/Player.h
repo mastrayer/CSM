@@ -4,6 +4,7 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 #include "NNLabel.h"
+#include "NNAnimationAtlas.h"
 #include "PacketType.h"
 #include "NNParticleSystem.h"
 
@@ -36,7 +37,7 @@ public:
 	void TransState( PlayerState state );
 	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
-	void SetPlayerRotation( float angle ) { mAngle = angle; mPlayerSprite->SetRotation(angle); }
+	void SetPlayerRotation( float angle ) { mAngle = angle; mMove->SetRotation(angle); mStop->SetRotation(angle); }
 	void SetPlayerMoveDirection( NNPoint direction) { mMoveVelocity = direction; }
 	void SetPlayerHP(int hp) { mHp = hp; }
 	void SetSkillCount(float value, PlayerState skillType) { mSkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
@@ -47,7 +48,7 @@ public:
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mAngle; }
 	int GetPlayerHP() { return mHp; }
-	NNSprite* GetPlayerSprite() { return mPlayerSprite; }
+	//NNSprite* GetPlayerSprite() { return mPlayerSprite; }
 	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
 	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
 	PlayerType GetPlayerType() { return mPlayerType; }
@@ -62,8 +63,13 @@ private:
 	void Update( float dTime );
 
 private:
+	NNSprite* mDie;
+	NNAnimationAtlas* mMove;
+	NNSpriteAtlas* mStop;
+
+private:
 	std::list<NNParticleSystem*> mParticleSystemList;
-	NNSprite* mPlayerSprite;
+	//NNSprite* mPlayerSprite;
 	PlayerUI* mPlayerUI;
 	PlayerState mPlayerState;
 	
