@@ -1,6 +1,6 @@
 #include "ATypeEffect.h"
 
-ATypeEffect::ATypeEffect(CPlayer* follower)
+ATypeEffect::ATypeEffect(float angle, NNPoint startPosition)
 {
 	for (int i = 0; i < 3;++i)
 		mExplosion[i] = NNAnimation::Create();
@@ -17,15 +17,15 @@ ATypeEffect::ATypeEffect(CPlayer* follower)
 	for (int i = 0; i < 3; ++i)
 		mExplosion[i]->SetFrameTimeInSection(0.02f, 0, 39);
 
-	mFollower = follower;
-	mDirection = mFollower->GetPlayerRotation();
+	mDirection = angle;
 	mDistance = 80.f;
 	mIndex = 0;
 	mExplosionTerm = 0.3f;
 	mTimeCount = 0.f;
 	mLifeTime = mExplosion[0]->GetPlayTime() + mExplosionTerm * 3;
 
-	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
+	SetPosition(startPosition);
+	SetCenter(65.f,65.f);
 	mNextExplosionPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
 
 	mExplosion[0]->SetPosition(mNextExplosionPoint.GetX(), mNextExplosionPoint.GetY());

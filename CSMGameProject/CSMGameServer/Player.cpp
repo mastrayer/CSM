@@ -10,7 +10,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 }
 
 Player::Player(int id, ClientSession* client):mHP(),mDamage(),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
-	,mAttackRange(40),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
+	,mAttackRange(64),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
 {
 	mType = rand()%2;
 	InitWithType();

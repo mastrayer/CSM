@@ -9,7 +9,7 @@
 class ATypeEffect : public IEffect
 {
 public:
-	ATypeEffect(CPlayer* follower);
+	ATypeEffect(float angle, NNPoint startPosition);
 	virtual ~ATypeEffect();
 
 	void Render();
@@ -23,6 +23,4 @@ private:
 	float mTimeCount;
 	NNPoint mNextExplosionPoint;
 	int mIndex;
-	//NNParticleSystem *mTypeEffect;
-	CPlayer* mFollower;
 };

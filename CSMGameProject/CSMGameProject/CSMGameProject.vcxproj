@@ -54,7 +54,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ATypeSkillShootHandler.cpp" />
     <ClCompile Include="BTypeEffect.cpp" />
     <ClCompile Include="BUserEffect.cpp" />
     <ClCompile Include="CTypeEffect.cpp" />
@@ -98,12 +99,12 @@
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MouseAngleUpdateHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="SecondCut.cpp" />

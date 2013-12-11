@@ -24,6 +24,7 @@
 #define PKT_SC_HP 9
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
+#define PKT_SC_A_TYPESKILL_SHOOT 12
 struct GameKeyStates
 {
 	GameKeyStates()
@@ -170,5 +171,15 @@ struct EndOfGameResult : public NNPacketHeader
 		mType = PKT_SC_ENDOFGAME;
 	}
 	int mWinnerTeam;
+};
+struct ATypeSkillShootResult : public NNPacketHeader
+{
+	ATypeSkillShootResult()
+	{
+		mSize = sizeof(ATypeSkillShootResult);
+		mType = PKT_SC_A_TYPESKILL_SHOOT;
+	}
+	NNPoint mStartPosition;
+	float mAngle;
 };
 #pragma pack(pop)

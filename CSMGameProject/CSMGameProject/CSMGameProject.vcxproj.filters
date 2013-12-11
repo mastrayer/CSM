@@ -85,9 +85,14 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\C">
       <UniqueIdentifier>{73e0ac0f-f559-407d-a627-7a081b1180d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Packet\Skill">
+      <UniqueIdentifier>{e553e621-4fcc-486a-b768-bfac3bd689ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\Skill\A">
+      <UniqueIdentifier>{36077ab8-27f8-4c1a-8722-9c9c141632fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp">
       <Filter>Game\Scene\GameScene\Object\Player</Filter>
     </ClCompile>
@@ -178,6 +183,10 @@
     <ClCompile Include="KillScoreHandler.cpp">
       <Filter>Game\Packet\UserSession</Filter>
     </ClCompile>
+    <ClCompile Include="ATypeSkillShootHandler.cpp">
+      <Filter>Game\Packet\Skill\A</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

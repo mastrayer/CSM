@@ -5,6 +5,17 @@
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
 
+class ATypeSkillShootHandler : public NNBaseHandler
+{
+public:
+	ATypeSkillShootHandler();
+	virtual ~ATypeSkillShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	ATypeSkillShootResult mATypeSkillShootResult;
+};
+
 class KillScoreHandler : public NNBaseHandler
 {
 public:
