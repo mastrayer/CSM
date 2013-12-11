@@ -301,7 +301,7 @@ void Player::Update( float dTime)
 			case TYPE_A:
 				{
 					mTypeSkillDelay = 3.f;
-					ATypeSkill(mRotation,mPosition);
+					new ATypeSkill(mRotation,mPosition);
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 					mClient->Broadcast(&outPacket);
@@ -337,7 +337,6 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-					
 					mUserSkillDelay = 5.f;
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -373,6 +372,10 @@ bool Player::Damaged(int damage)
 {
 	if(mHP < damage)
 	{
+		HPUpdateResult outPacket = HPUpdateResult();
+		outPacket.mPlayerId = mPlayerId;
+		outPacket.mHP = 0;
+		mClient->Broadcast(&outPacket);
 		//ав╬З╫©╢ы
 		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);

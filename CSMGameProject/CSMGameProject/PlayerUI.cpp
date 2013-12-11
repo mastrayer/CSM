@@ -5,17 +5,17 @@
 
 PlayerUI::PlayerUI()
 {
-	//mHp = (dynamic_cast<CPlayer*>(GetParent()))->GetPlayerHP();
-	//mHp = 1;
-
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
-	
-	mHpBar = NNSprite::Create( L"Sprite/hpbar.png" );
-	//mHpBarFrame = NNSprite::Create( L"Sprite/hpbar_frame.png" );
-	//mHpBar->SetCenter( mHpBar->GetImageWidth()/2.f, mHpBar->GetImageHeight()/2.f );
-	mHpBar->SetPosition( -30.f, -50.f );
-	AddChild( mHpBar );
+		
+	mHpBar[BLUE] = NNSprite::Create( L"Sprite/BlueHpBar.png" );
+	mHpBar[RED] = NNSprite::Create(L"Sprite/RedHpBar.png");
+		
+	mHpBar[BLUE]->SetPosition( -30.f, -50.f );
+	mHpBar[RED]->SetPosition(-30.f, -50.f);
+
+	AddChild(mHpBar[BLUE]);
+	AddChild(mHpBar[RED]);
 }
 
 PlayerUI::~PlayerUI()
@@ -30,6 +30,12 @@ void PlayerUI::Render()
 void PlayerUI::Update( float dTime )
 {
 	NNObject::Update( dTime );
+
+	mHpBar[BLUE]->SetVisible(false);
+	mHpBar[RED]->SetVisible(false);
+
+	TeamColor result = (TeamColor)(dynamic_cast<CPlayer*>(GetParent())->GetTeam());
 	
-	mHpBar->SetScale( mHp / 50.f, 1.f);
+	mHpBar[result]->SetVisible(true);
+	mHpBar[result]->SetScale(mHp / 50.f, 1.f);
 }

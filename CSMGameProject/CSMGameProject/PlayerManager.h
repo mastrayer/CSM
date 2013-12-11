@@ -8,12 +8,6 @@
 	public:\
 	static type* GetInstance() {static type instance; return &instance;}
 */
-enum TeamColor
-{
-	BLUE = 0,
-	RED = 1
-};
-
 class CPlayerManager
 {
 private:
