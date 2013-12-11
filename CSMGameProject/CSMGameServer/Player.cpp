@@ -373,6 +373,10 @@ bool Player::Damaged(int damage)
 {
 	if(mHP < damage)
 	{
+		HPUpdateResult outPacket = HPUpdateResult();
+		outPacket.mPlayerId = mPlayerId;
+		outPacket.mHP = 0;
+		mClient->Broadcast(&outPacket);
 		//ав╬З╫©╢ы
 		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);
