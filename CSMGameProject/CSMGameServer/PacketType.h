@@ -221,7 +221,7 @@ struct ATypeSkillShootResult : public PacketHeader
 	ATypeSkillShootResult()
 	{
 		mSize = sizeof(ATypeSkillShootResult);
-		mType = PKT_SC_ENDOFGAME;
+		mType = PKT_SC_A_TYPESKILL_SHOOT;
 	}
 	Point mStartPosition;
 	float mAngle;
