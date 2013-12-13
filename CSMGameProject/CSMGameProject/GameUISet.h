@@ -22,7 +22,7 @@ class GameUISet : public NNUISet
 public:
 	GameUISet();
 	virtual ~GameUISet();
-	void Init() {};
+	void Init();
 
 	void Render();
 	void Update(float dTime);

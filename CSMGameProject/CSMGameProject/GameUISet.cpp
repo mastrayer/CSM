@@ -107,13 +107,19 @@ GameUISet::GameUISet()
  	mTypeFace[WIND]->SetPosition(5.f, 505.f);
 	AddChild(mTypeFace[WIND]);
 	
-	
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
 	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
 }
 
 GameUISet::~GameUISet()
 {
+}
+
+void GameUISet::Init()
+{
+	mTypeFace[FIRE]->SetVisible(false);
+	mTypeFace[WATER]->SetVisible(false);
+	mTypeFace[WIND]->SetVisible(false);
 }
 
 void GameUISet::Render()
