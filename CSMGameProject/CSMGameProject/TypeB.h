@@ -9,12 +9,12 @@
 class BTypeEffect : public IEffect
 {
 public:
-	BTypeEffect(CPlayer* follower);
+	BTypeEffect(NNPoint startPosition, NNPoint targetPosition);
 	virtual ~BTypeEffect();
 
 	void Render();
 	void Update(float dTime);
-	NNPoint FindTarget();
+	NNPoint FindTarget(NNPoint startPosition);
 	void Explosion();
 
 private:

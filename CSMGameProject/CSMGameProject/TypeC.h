@@ -8,7 +8,7 @@
 class CTypeEffect : public IEffect
 {
 public:
-	CTypeEffect(CPlayer* follower);
+	CTypeEffect(NNPoint startPosition, float angle);
 	virtual ~CTypeEffect();
 
 	void Render();

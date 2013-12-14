@@ -82,6 +82,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ATypeSkillShootHandler.cpp" />
+    <ClCompile Include="BTypeSkillShootHandler.cpp" />
+    <ClCompile Include="CTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
@@ -104,9 +106,6 @@
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="SecondCut.cpp" />
-    <ClCompile Include="SkillObject.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="ThirdCut.cpp" />
     <ClCompile Include="StoryScene.cpp" />
     <ClCompile Include="TypeA.cpp">
@@ -137,9 +136,6 @@
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="SecondCut.h" />
-    <ClInclude Include="SkillObject.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="StoryCut.h" />
     <ClInclude Include="StoryScene.h" />
     <ClInclude Include="ThirdCut.h" />

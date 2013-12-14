@@ -195,7 +195,7 @@ struct BTypeSkillShootResult : public NNPacketHeader
 		mType = PKT_SC_B_TYPESKILL_SHOOT;
 	}
 	NNPoint mStartPosition;
-	float mAngle;
+	NNPoint mTargetPosition;
 };
 struct CTypeSkillShootResult : public NNPacketHeader
 {

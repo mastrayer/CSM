@@ -1,10 +1,11 @@
 
 #include "TypeB.h"
 
-BTypeEffect::BTypeEffect(CPlayer* follower)
+BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition)
 {
-	mFollower = follower;
-	SetPosition(mFollower->GetPlayerPosition());
+	//mFollower = follower;
+	//SetPosition(mFollower->GetPlayerPosition());
+	SetPosition(startPosition);
 
 	mFlyAnimation = NNAnimation::Create();
 
@@ -17,10 +18,11 @@ BTypeEffect::BTypeEffect(CPlayer* follower)
 	}
 	mFlyAnimation->SetFrameTimeInSection(0.03f, 0, 7);
 
-	mSource.SetPoint(mFollower->GetPosition());
+	//mSource.SetPoint(mFollower->GetPosition());
+	mSource.SetPoint(startPosition);
 	mLifeTime = mFlyAnimation->GetPlayTime() * 5;
 	mFlyAnimation->SetCenter(30.f, 65.f);
-	mDestination.SetPoint(FindTarget());
+	mDestination.SetPoint(FindTarget(mSource));
 	mDirection = std::atan2f(mDestination.GetY() - mFollower->GetPositionY(), mDestination.GetX() - mFollower->GetPositionX());
 	mMoveSpeed = 100.f;
 
@@ -48,13 +50,12 @@ void BTypeEffect::Update(float dTime)
 	if (mIsCrash && mLifeTime < mNowLifeTime)
 		mIsEnd = true;
 }
-NNPoint BTypeEffect::FindTarget()
+NNPoint BTypeEffect::FindTarget(NNPoint startPosition)
 {
 	std::map<int, CPlayer*> list;
-	NNPoint target;
+	NNPoint target = startPosition;
 	float distance = 999999.f;
 
-	target.SetPoint(mSource);
 	list = CPlayerManager::GetInstance()->GetPlayerList();
 	for (std::map<int, CPlayer*>::iterator iter = list.begin(); iter != list.end(); ++iter)
 	{
@@ -62,7 +63,7 @@ NNPoint BTypeEffect::FindTarget()
 			continue;
 
 		NNPoint targetPosition = iter->second->GetPlayerPosition();
-		float result = std::abs(std::sqrtf(std::powf(targetPosition.GetX() - mSource.GetX(), 2.f) + std::powf(targetPosition.GetY() - mSource.GetY(), 2.f)));
+		float result = std::abs(std::sqrtf(std::powf(targetPosition.GetX() - startPosition.GetX(), 2.f) + std::powf(targetPosition.GetY() - startPosition.GetY(), 2.f)));
 
 		if (result <= distance)
 		{

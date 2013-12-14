@@ -1,11 +1,15 @@
 
 #include "TypeC.h"
 
-CTypeEffect::CTypeEffect(CPlayer* follower)
+CTypeEffect::CTypeEffect(NNPoint startPosition, float angle)
 {
-	mFollower = follower;
-	mDirection = mFollower->GetPlayerRotation();
-	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 80.f);
+	//mFollower = follower;
+	//mDirection = mFollower->GetPlayerRotation();
+	//SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 80.f);
+
+	mDirection = angle;
+	SetPosition(startPosition);
+	SetCenter(65.f, 80.f);
 
 	mAnimation = NNAnimation::Create();
 
