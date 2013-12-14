@@ -190,11 +190,14 @@
       <Filter>Game\Packet\Skill\A</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="DTypeEffect.cpp">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
+    <ClCompile Include="TypeA.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
     </ClCompile>
-    <ClCompile Include="DUserEffect.cpp">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
+    <ClCompile Include="TypeB.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeC.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -276,11 +279,14 @@
     <ClInclude Include="CUserEffect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClInclude>
-    <ClInclude Include="DTypeEffect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
+    <ClInclude Include="TypeB.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
     </ClInclude>
-    <ClInclude Include="DUserEffect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
+    <ClInclude Include="TypeA.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\A</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeC.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\C</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

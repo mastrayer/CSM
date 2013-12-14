@@ -86,7 +86,6 @@
     <ClCompile Include="BUserEffect.cpp" />
     <ClCompile Include="CTypeEffect.cpp" />
     <ClCompile Include="CUserEffect.cpp" />
-    <ClCompile Include="DUserEffect.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
@@ -112,25 +111,25 @@
     <ClCompile Include="SkillObject.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="DTypeEffect.cpp" />
     <ClCompile Include="ThirdCut.cpp" />
     <ClCompile Include="StoryScene.cpp" />
     <ClCompile Include="ATypeEffect.cpp" />
     <ClCompile Include="AUserEffect.cpp" />
+    <ClCompile Include="TypeA.cpp" />
+    <ClCompile Include="TypeB.cpp" />
+    <ClCompile Include="TypeC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BTypeEffect.h" />
     <ClInclude Include="BUserEffect.h" />
     <ClInclude Include="CTypeEffect.h" />
     <ClInclude Include="CUserEffect.h" />
-    <ClInclude Include="DUserEffect.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FifthCut.h" />
     <ClInclude Include="FirstCut.h" />
     <ClInclude Include="FourthCut.h" />
     <ClInclude Include="GameUISet.h" />
-    <ClInclude Include="DTypeEffect.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PacketHandler.h" />
@@ -149,6 +148,9 @@
     <ClInclude Include="ThirdCut.h" />
     <ClInclude Include="ATypeEffect.h" />
     <ClInclude Include="AUserEffect.h" />
+    <ClInclude Include="TypeA.h" />
+    <ClInclude Include="TypeB.h" />
+    <ClInclude Include="TypeC.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
