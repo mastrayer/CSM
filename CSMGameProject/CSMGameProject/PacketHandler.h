@@ -15,6 +15,26 @@ public:
 
 	ATypeSkillShootResult mATypeSkillShootResult;
 };
+class BTypeSkillShootHandler : public NNBaseHandler
+{
+public:
+	BTypeSkillShootHandler();
+	virtual ~BTypeSkillShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	BTypeSkillShootResult mBTypeSkillShootResult;
+};
+class CTypeSkillShootHandler : public NNBaseHandler
+{
+public:
+	CTypeSkillShootHandler();
+	virtual ~CTypeSkillShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	CTypeSkillShootResult mCTypeSkillShootResult;
+};
 
 class KillScoreHandler : public NNBaseHandler
 {

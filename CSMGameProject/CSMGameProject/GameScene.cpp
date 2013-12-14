@@ -90,6 +90,8 @@ void CGameScene::InitNetworkSetting()
 	mHPUpdateHandler = new HPUpdateHandler();
 	mKillScoreHandler = new KillScoreHandler();
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
+	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
+	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -99,8 +101,9 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, mMouseAngleUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, mHPUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KILLSCORE, mKillScoreHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_A_TYPESKILL_SHOOT, mATypeSkillShootHandler);
-
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPESKILL_SHOOT, mATypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
 	
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);

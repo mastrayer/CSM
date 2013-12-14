@@ -41,4 +41,32 @@ namespace USER_SKILL
 		NNPoint mDstPoint;
 		CPlayer* mFollower;
 	};
+
+	class Heal : public IEffect
+	{
+	public :
+		Heal(CPlayer *follower);
+		virtual ~Heal();
+
+		void Render();
+		void Update(float dTime);
+
+	private:
+		NNAnimation *mAnimation;
+		CPlayer* mFollower;
+	};
+
+	class Immolation : public IEffect
+	{
+	public:
+		Immolation(CPlayer* follower);
+		virtual ~Immolation();
+
+		void Render();
+		void Update(float dTime);
+
+	private:
+		NNParticleSystem *mPaticleEffect;
+		CPlayer* mFollower;
+	};
 }

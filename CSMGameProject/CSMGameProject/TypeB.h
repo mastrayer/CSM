@@ -27,17 +27,3 @@ private:
 	NNAnimation *mExplosionAnimation;
 	CPlayer* mFollower;
 };
-
-class BUserEffect : public IEffect
-{
-public:
-	BUserEffect(CPlayer* follower);
-	virtual ~BUserEffect();
-
-	void Render();
-	void Update(float dTime);
-
-private:
-	NNAnimation *mAnimation;
-	CPlayer* mFollower;
-};

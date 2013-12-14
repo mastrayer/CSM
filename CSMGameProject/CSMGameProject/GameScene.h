@@ -25,6 +25,8 @@ private:
 	HPUpdateHandler* mHPUpdateHandler;
 	KillScoreHandler* mKillScoreHandler;
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
+	BTypeSkillShootHandler* mBTypeSkillShootHandler;
+	CTypeSkillShootHandler* mCTypeSkillShootHandler;
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;

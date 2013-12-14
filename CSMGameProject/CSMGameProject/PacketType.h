@@ -25,6 +25,11 @@
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
 #define PKT_SC_A_TYPESKILL_SHOOT 12
+#define PKT_SC_B_TYPESKILL_SHOOT 13
+#define PKT_SC_C_TYPESKILL_SHOOT 14
+#define PKT_SC_USERSKILL_FLASH 15
+#define PKT_SC_USERSKILL_DASH 16
+
 struct GameKeyStates
 {
 	GameKeyStates()
@@ -178,6 +183,26 @@ struct ATypeSkillShootResult : public NNPacketHeader
 	{
 		mSize = sizeof(ATypeSkillShootResult);
 		mType = PKT_SC_A_TYPESKILL_SHOOT;
+	}
+	NNPoint mStartPosition;
+	float mAngle;
+};
+struct BTypeSkillShootResult : public NNPacketHeader
+{
+	BTypeSkillShootResult()
+	{
+		mSize = sizeof(BTypeSkillShootResult);
+		mType = PKT_SC_B_TYPESKILL_SHOOT;
+	}
+	NNPoint mStartPosition;
+	float mAngle;
+};
+struct CTypeSkillShootResult : public NNPacketHeader
+{
+	CTypeSkillShootResult()
+	{
+		mSize = sizeof(CTypeSkillShootResult);
+		mType = PKT_SC_C_TYPESKILL_SHOOT;
 	}
 	NNPoint mStartPosition;
 	float mAngle;

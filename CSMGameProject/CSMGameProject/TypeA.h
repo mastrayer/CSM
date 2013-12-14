@@ -23,17 +23,3 @@ private:
 	NNPoint mNextExplosionPoint;
 	int mIndex;
 };
-
-class AUserEffect : public IEffect
-{
-public:
-	AUserEffect(CPlayer* follower);
-	virtual ~AUserEffect();
-
-	void Render();
-	void Update(float dTime);
-
-private:
-	NNParticleSystem *mPaticleEffect;
-	CPlayer* mFollower;
-};

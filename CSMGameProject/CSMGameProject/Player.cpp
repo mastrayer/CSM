@@ -12,6 +12,7 @@
 #include "TypeA.h"
 #include "TypeB.h"
 #include "TypeC.h"
+#include "UserSkillEffect.h"
 
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)),
@@ -45,23 +46,40 @@ CPlayer::~CPlayer( void )
 
 void CPlayer::CreateSkillEffect(PlayerType type, PlayerState skillType)
 {
-	switch (type)
+	switch (skillType)
 	{
-	case TYPE_A :
-		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
+	case TYPE_ACTIVE_SKILL:
+		
+		//if (type == TYPE_A) EffectManager::GetInstance()->AddEffect();
+		//else if (type == TYPE_B) EffectManager::GetInstance()->AddEffect();
+		//else if (type == TYPE_C) EffectManager::GetInstance()->AddEffect();
+
 		break;
+	case USER_ACTIVE_SKILL:
 
-	case TYPE_B :
-		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
-		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BUserEffect(this));
-		break;
-
-	case TYPE_C :
-
-		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
-		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CUserEffect(this));
 		break;
 	}
+
+// 	switch (type)
+// 	{
+// 	case TYPE_A :
+// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
+// 		break;
+// 
+// 	case TYPE_B :
+// 		//if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
+// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BUserEffect(this));
+// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Dash(this));
+// 		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Flash(this));
+// 		break;
+// 
+// 	case TYPE_C :
+// 
+// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
+// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CUserEffect(this));
+// 		break;
+// 	}
+
 }
 void CPlayer::TransState( PlayerState state )
 {
