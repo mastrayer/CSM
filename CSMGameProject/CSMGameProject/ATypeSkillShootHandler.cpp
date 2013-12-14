@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "EffectManager.h"
-#include "ATypeEffect.h";
+#include "TypeA.h"
 
 ATypeSkillShootHandler::ATypeSkillShootHandler()
 {

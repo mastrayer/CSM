@@ -9,12 +9,9 @@
 #include "NNAnimation.h"
 
 #include "EffectManager.h"
-#include "ATypeEffect.h"
-#include "AUserEffect.h"
-#include "BTypeEffect.h"
-#include "BUserEffect.h"
-#include "CTypeEffect.h"
-#include "CUserEffect.h"
+#include "TypeA.h"
+#include "TypeB.h"
+#include "TypeC.h"
 
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)),
