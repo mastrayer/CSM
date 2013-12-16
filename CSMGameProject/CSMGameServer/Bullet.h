@@ -10,7 +10,7 @@ enum SHAPE
 class Bullet
 {
 public:
-	Bullet(void);
+	Bullet(Player* ownerPlayer);
 	~Bullet(void);
 
 	void SetPosition(Point point){ mPosition = point; }

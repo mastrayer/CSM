@@ -38,6 +38,7 @@ private:
 
 	DWORD		mLastGCTick ;
 	DWORD		mLastClientWorkTick ;
+	int			mLastTime;
 } ;
 
 extern ClientManager* GClientManager ;

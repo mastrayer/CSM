@@ -4,7 +4,7 @@
 class ATypeSkill : public Skill
 {
 public:
-	ATypeSkill();
+	ATypeSkill(float angle, Point startPosition, Player* ownerPlayer);
 	ATypeSkill(float angle, Point startPosition);
 	virtual ~ATypeSkill(void);
 	virtual void Update(float dTime);
@@ -20,5 +20,6 @@ private:
 	bool didFirstBoomFinish;
 	bool didSecondBoomFinish;
 	bool didThirdBoomFinish;
+	Player* mOwnerPlayer;
 };
 
