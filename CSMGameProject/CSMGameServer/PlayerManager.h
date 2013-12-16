@@ -22,7 +22,7 @@ public:
 	int GetNewPlayerId();
 	int GetPlayersLength() { return mPlayersLength; };
 
-	std::map<int,Player*> GetPlayers() { return mPlayers; };
+	std::map<int,Player*>& GetPlayers() { return mPlayers; };
 private:
 	std::map<int,Player*> mPlayers;
 	int mPlayersLength;

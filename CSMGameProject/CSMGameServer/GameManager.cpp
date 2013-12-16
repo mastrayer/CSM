@@ -14,7 +14,6 @@ GameManager::~GameManager(void)
 
 void GameManager::DiePlayer(int team)
 {
-
 	mKillScore[team] ++;
 	if(mKillScore[team] > mKillLimit)
 	{

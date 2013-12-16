@@ -8,6 +8,8 @@ struct DetectPlatePoint
 {
 	int x, y;
 };
+bool operator < (const DetectPlatePoint &l, const DetectPlatePoint &r);
+
 class BulletManager
 {
 public:

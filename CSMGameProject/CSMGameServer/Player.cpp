@@ -12,7 +12,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 Player::Player(int id, ClientSession* client):mHP(),mDamage(),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
 	,mAttackRange(64),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
 {
-	mType = rand()%2;
+	mType = 0;
 	InitWithType();
 	mPlayerId = id;
 	mClient = client;
@@ -309,7 +309,6 @@ void Player::Update( float dTime)
 				}break;
 			case TYPE_B:
 				{
-					
 					mTypeSkillDelay = 3.f;
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -317,8 +316,7 @@ void Player::Update( float dTime)
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_C:
-				{
-					
+				{	
 					mTypeSkillDelay = 3.f;
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
