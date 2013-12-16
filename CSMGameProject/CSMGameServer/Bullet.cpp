@@ -90,7 +90,7 @@ void Bullet::JudgeCollision(Player* player)
 }
 bool Bullet::isLive()
 {
-	if(mLifeTime < 0) return true;
+	if(mLifeTime >= 0) return true;
 	return false;
 }
 

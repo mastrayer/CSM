@@ -17,7 +17,6 @@ public:
 	~BulletManager(void);
 
 	void AddBullet(Bullet* bullet);
-	void DeleteBullet(Bullet* bullet);
 	void Update(float dTime);
 
 private:
