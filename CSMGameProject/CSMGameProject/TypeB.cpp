@@ -12,7 +12,7 @@ BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 8; i++)
 	{
-		wsprintf(temp, L"Sprite/WaterMissile/Fly/%d.png", i);
+		wsprintf(temp, L"Sprite/SkillEffect/B/TypeSkill/Fly/%d.png", i);
 
 		mFlyAnimation->AddFrameNode(temp);
 	}
@@ -82,7 +82,7 @@ void BTypeEffect::Explosion()
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 41; i++)
 	{
-		wsprintf(temp, L"Sprite/WaterMissile/Explosion/%d.png", i);
+		wsprintf(temp, L"Sprite/SkillEffect/B/TypeSkill/Explosion/%d.png", i);
 
 		mExplosionAnimation->AddFrameNode(temp);
 	}

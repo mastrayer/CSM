@@ -26,22 +26,6 @@ namespace USER_SKILL
 		CPlayer* mFollower;
 	};
 
-	class Dash : public IEffect
-	{
-	public:
-		Dash(CPlayer* follower);
-		virtual ~Dash();
-
-		void Render();
-		void Update(float dTime);
-
-	private:
-		float mDirection;
-		float mDistance;
-		NNPoint mDstPoint;
-		CPlayer* mFollower;
-	};
-
 	class Heal : public IEffect
 	{
 	public :

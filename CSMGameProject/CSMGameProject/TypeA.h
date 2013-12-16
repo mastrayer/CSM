@@ -23,3 +23,15 @@ private:
 	NNPoint mNextExplosionPoint;
 	int mIndex;
 };
+class ATypeAttackEffect : public IEffect
+{
+public :
+	ATypeAttackEffect(float angle, NNPoint startPosition);
+	virtual ~ATypeAttackEffect();
+
+	void Render();
+	void Update(float dTime);
+
+private :
+	NNAnimation *mAnimation;
+};

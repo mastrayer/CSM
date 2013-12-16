@@ -20,3 +20,15 @@ private:
 	NNAnimation *mAnimation;
 	CPlayer* mFollower;
 };
+class CTypeAttackEffect : public IEffect
+{
+public:
+	CTypeAttackEffect(float angle, NNPoint startPosition);
+	virtual ~CTypeAttackEffect();
+
+	void Render();
+	void Update(float dTime);
+
+private:
+	NNAnimation *mAnimation;
+};

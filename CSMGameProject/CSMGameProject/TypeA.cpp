@@ -10,7 +10,7 @@ ATypeEffect::ATypeEffect(float angle, NNPoint startPosition)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 40; i++)
 	{
-		wsprintf(temp, L"Sprite/FireSkill/%d.png", i);
+		wsprintf(temp, L"Sprite/SkillEffect/A/TypeSkill/%d.png", i);
 
 		for (int j = 0; j < 3; ++j)
 			mExplosion[j]->AddFrameNode(temp);

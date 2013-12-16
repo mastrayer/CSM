@@ -27,3 +27,15 @@ private:
 	NNAnimation *mExplosionAnimation;
 	CPlayer* mFollower;
 };
+class BTypeAttackEffect : public IEffect
+{
+public:
+	BTypeAttackEffect(float angle, NNPoint startPosition);
+	virtual ~BTypeAttackEffect();
+
+	void Render();
+	void Update(float dTime);
+
+private:
+	NNAnimation *mAnimation;
+};
