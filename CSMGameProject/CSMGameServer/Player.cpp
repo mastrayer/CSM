@@ -301,7 +301,7 @@ void Player::Update( float dTime)
 			case TYPE_A:
 				{
 					mTypeSkillDelay = 3.f;
-					new ATypeSkill(mRotation,mPosition);
+					new ATypeSkill(mRotation,mPosition,this);
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 					mClient->Broadcast(&outPacket);

@@ -5,7 +5,6 @@ class ATypeSkill : public Skill
 {
 public:
 	ATypeSkill(float angle, Point startPosition, Player* ownerPlayer);
-	ATypeSkill(float angle, Point startPosition);
 	virtual ~ATypeSkill(void);
 	virtual void Update(float dTime);
 	virtual bool IsLive();
