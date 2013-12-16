@@ -26,6 +26,11 @@
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
 #define PKT_SC_A_TYPESKILL_SHOOT 12
+#define PKT_SC_B_TYPESKILL_SHOOT 13
+#define PKT_SC_B_TYPESKILL_END 14
+#define PKT_SC_C_TYPESKILL_SHOOT 15
+#define PKT_SC_USERSKILL_FLASH 16
+#define PKT_SC_USERSKILL_DASH 17
 
 struct Point
 {
@@ -227,6 +232,37 @@ struct ATypeSkillShootResult : public PacketHeader
 	{
 		mSize = sizeof(ATypeSkillShootResult);
 		mType = PKT_SC_A_TYPESKILL_SHOOT;
+	}
+	Point mStartPosition;
+	float mAngle;
+};
+struct BTypeSkillShootResult : public PacketHeader
+{
+	BTypeSkillShootResult()
+	{
+		mSize = sizeof(BTypeSkillShootResult);
+		mType = PKT_SC_B_TYPESKILL_SHOOT;
+	}
+	Point mStartPosition;
+	Point mTargetPosition;
+	int mIndex;
+};
+struct BTypeSkillEndResult : public PacketHeader
+{
+	BTypeSkillEndResult()
+	{
+		mSize = sizeof(BTypeSkillEndResult);
+		mType = PKT_SC_B_TYPESKILL_END;
+	}
+	Point mBoomPosition;
+	int mIndex;
+};
+struct CTypeSkillShootResult : public PacketHeader
+{
+	CTypeSkillShootResult()
+	{
+		mSize = sizeof(CTypeSkillShootResult);
+		mType = PKT_SC_C_TYPESKILL_SHOOT;
 	}
 	Point mStartPosition;
 	float mAngle;
