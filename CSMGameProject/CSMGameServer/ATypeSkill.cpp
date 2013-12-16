@@ -28,6 +28,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle) * mExploseDistance));
 		boom->SetShape(CIRCLE);
 		boom->SetRadius(mExploseRadius);
+		boom->SetDamage(18);
 		didFirstBoomFinish = true;
 	}
 	if(didSecondBoomFinish == false && mLifeTime <= 0.6f)
@@ -36,6 +37,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle) * mExploseDistance * 2));
 		boom->SetShape(CIRCLE);
 		boom->SetRadius(mExploseRadius);
+		boom->SetDamage(18);
 		didSecondBoomFinish = true;
 	}
 	if(didThirdBoomFinish == false && mLifeTime <= 0.3f)
@@ -44,6 +46,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle) * mExploseDistance * 3));
 		boom->SetShape(CIRCLE);
 		boom->SetRadius(mExploseRadius);
+		boom->SetDamage(18);
 		didSecondBoomFinish = true;
 	}
 }
