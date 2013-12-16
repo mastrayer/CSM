@@ -39,6 +39,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	GGameManager = new GameManager(10);
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
+
 	/// DB Helper √ ±‚»≠
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
 		return -1 ;

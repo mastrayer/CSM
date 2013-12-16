@@ -127,6 +127,9 @@
     <ClCompile Include="SkillManager.cpp">
       <Filter>Game\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="EllipseCollisionTest.h">
+      <Filter>Game\Skill\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">

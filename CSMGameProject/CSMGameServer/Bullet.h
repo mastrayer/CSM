@@ -1,11 +1,11 @@
 #pragma once
 #include "Player.h"
-
 enum SHAPE
 {
 	CIRCLE = 0,
 	ELLIPSE = 1,
 	RECTANGLE = 2,
+	POLY = 3,
 };
 class Bullet
 {
@@ -24,6 +24,7 @@ public:
 	void SetEllipseRadius(float xR, float yR){ mXRadius = xR, mYRadius = yR; }
 	void SetRect(float width, float height, Point center){ mWidth = width, mHeight = height, mCenter = center; }
 	void SetBulletNumber(int number){ mNumber = number; } 
+	void SetPoly(Point* points, int counts){ memcpy(mPoints, points,counts), mPointCount = counts; }
 
 	void Update(float dTime);
 	void JudgeCollision(Player* player);
@@ -39,7 +40,13 @@ public:
 	float GetWidth(){ return mWidth; }
 	float GetHeight(){ return mHeight; }
 	int GetBulletNumber(){ return mNumber; }
+
+	
+	bool PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int BCounts);
+
 private:
+	Point mPoints[64];
+	int mPointCount;
 	SHAPE mShape;
 	int mNumber;
 

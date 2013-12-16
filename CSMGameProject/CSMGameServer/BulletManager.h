@@ -24,7 +24,6 @@ private:
 private:
 	int mTime;
 	std::map<int, Bullet*>mBullets;
-	std::map<DetectPlatePoint,Player*>mDetectPlate;
 };
 
 extern BulletManager* GBulletManager;

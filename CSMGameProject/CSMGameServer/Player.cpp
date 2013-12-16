@@ -256,7 +256,7 @@ void Player::Update( float dTime)
 				Player* enemy = it->second;
 				if(enemy == this)continue;
 
-				if(enemy->GetTeam() != GetTeam() && Point().GetDistance( enemy->GetPosition(), AttackPoint ) < mRadius )
+				if(enemy->GetTeam() != GetTeam() && Point().Distance( enemy->GetPosition(), AttackPoint ) < mRadius )
 				{
 					//피격데스네
 					if ( enemy->Damaged(mDamage+rand()%10) == true);
@@ -424,7 +424,7 @@ bool Player::CouldGoPosition(Point position)
 		Player* enemy = it->second;
 		if(enemy == this)continue;
 
-		if( Point().GetDistance( enemy->GetPosition(), position ) < mRadius*2 )
+		if( Point().Distance( enemy->GetPosition(), position ) < mRadius*2 )
 		{
 			return false;
 		}

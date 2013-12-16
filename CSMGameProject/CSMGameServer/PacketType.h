@@ -26,6 +26,7 @@
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
 #define PKT_SC_A_TYPESKILL_SHOOT 12
+
 struct Point
 {
 	Point()
@@ -55,8 +56,12 @@ struct Point
 			return true;
 		return false;
 	}
-	float GetDistance(const Point& aPoint, const Point& bPoint) const{
+	float Distance(const Point& aPoint, const Point& bPoint) const {
 		return (float)pow(pow(aPoint.x-bPoint.x,2) + pow(aPoint.y-bPoint.y,2),0.5);
+	}
+	Point Rotate(Point point, float angle) const {
+	return Point(point.x * cos(angle) - point.y * sin(angle),
+		point.x * sin(angle) + point.y * cos(angle));
 	}
 	float x,y;
 };
