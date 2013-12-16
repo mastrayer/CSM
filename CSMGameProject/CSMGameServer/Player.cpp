@@ -368,7 +368,7 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage)
 {
-	if(mHP < damage)
+	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
 		HPUpdateResult outPacket = HPUpdateResult();
 		outPacket.mPlayerId = mPlayerId;

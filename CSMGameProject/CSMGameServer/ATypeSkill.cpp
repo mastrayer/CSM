@@ -22,10 +22,9 @@ void ATypeSkill::Update(float dTime)
 {
 	mLifeTime -= dTime;
 
-	if(didFirstBoomFinish == false && mLifeTime <= 0.9f)
+	if(didFirstBoomFinish == false && mLifeTime <= 0.85f)
 	{
 		Bullet* boom = new Bullet(mOwnerPlayer);
-		Point a = Point(cos(mAngle),sin(mAngle)) * mExploseDistance;
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance);
 		boom->SetShape(CIRCLE);
 		boom->SetRadius(mExploseRadius);
@@ -33,7 +32,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetLifeTime(0);
 		didFirstBoomFinish = true;
 	}
-	if(didSecondBoomFinish == false && mLifeTime <= 0.6f)
+	if(didSecondBoomFinish == false && mLifeTime <= 0.55f)
 	{
 		Bullet* boom = new Bullet(mOwnerPlayer);
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 2);
@@ -43,7 +42,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetLifeTime(0);
 		didSecondBoomFinish = true;
 	}
-	if(didThirdBoomFinish == false && mLifeTime <= 0.3f)
+	if(didThirdBoomFinish == false && mLifeTime <= 0.25f)
 	{
 		Bullet* boom = new Bullet(mOwnerPlayer);
 		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 3);
@@ -51,7 +50,7 @@ void ATypeSkill::Update(float dTime)
 		boom->SetRadius(mExploseRadius);
 		boom->SetDamage(18);
 		boom->SetLifeTime(0);
-		didSecondBoomFinish = true;
+		didThirdBoomFinish = true;
 	}
 }
 bool ATypeSkill::IsLive()
