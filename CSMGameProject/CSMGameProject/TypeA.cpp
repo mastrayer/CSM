@@ -66,3 +66,35 @@ void ATypeEffect::Update(float dTime)
 	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;	
 }
+
+
+ATypeAttackEffect::ATypeAttackEffect(CPlayer *follower)
+{
+	mAnimation = NNAnimationAtlas::Create(L"Sprite/SkillEffect/A/Attack/0.png", 9, 0.03f, 
+		NNSize(0, 0, 42, 48), NNSize(0, 48, 42, 96), NNSize(0, 96, 42, 144), NNSize(0, 144, 42, 192), NNSize(0, 192, 42, 240),
+		NNSize(0, 144, 42, 192), NNSize(0, 96, 42, 144), NNSize(0, 48, 42, 96), NNSize(0, 0, 42, 48) );
+
+	mLifeTime = mAnimation->GetPlayTime();
+	mFollower = follower;
+	SetRotation(mFollower->GetPlayerRotation());
+	SetPosition(mFollower->GetPlayerPosition());
+	SetCenter(-30.f, 20.f);
+
+	AddChild(mAnimation);
+}
+ATypeAttackEffect::~ATypeAttackEffect()
+{
+}
+void ATypeAttackEffect::Render()
+{
+	IEffect::Render();
+}
+void ATypeAttackEffect::Update(float dTime)
+{
+	IEffect::Update(dTime);
+	
+	SetRotation(mFollower->GetPlayerRotation());
+	SetPosition(mFollower->GetPlayerPosition());
+	if (mLifeTime < mNowLifeTime)
+		mIsEnd = true;
+}
