@@ -20,7 +20,6 @@ void EffectManager::Update( float dTime )
 	{
 		if ( (*iter)->mIsEnd == true )
 		{
-			//SafeDelete( *iter );
 			RemoveChild( *iter );
 			iter = mEffectList.erase( iter );
 			if ( iter == mEffectList.end() )
@@ -35,4 +34,16 @@ void EffectManager::AddEffect( IEffect* effect , int zIndex)
 {
 	mEffectList.push_back( effect );
 	AddChild( effect , zIndex );
+}
+BTypeEffect* EffectManager::GetTypeBEffect(int index)
+{
+	for(auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
+	{
+		BTypeEffect* bTypeEffect = dynamic_cast<BTypeEffect*>(*iter);
+		if(bTypeEffect != nullptr && bTypeEffect->GetIndex() == index)
+		{
+			return bTypeEffect;
+		}
+	}
+	return nullptr;
 }

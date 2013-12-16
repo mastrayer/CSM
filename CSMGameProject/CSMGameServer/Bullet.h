@@ -25,7 +25,7 @@ public:
 	void SetRect(float width, float height, Point center){ mWidth = width, mHeight = height, mCenter = center; }
 	void SetBulletNumber(int number){ mNumber = number; } 
 	void SetPoly(Point* points, int counts){ memcpy(mPoints, points,counts), mPointCount = counts; }
-
+	void SetDamage(int damage){ mDamage = damage; }
 	void Update(float dTime);
 	void JudgeCollision(Player* player);
 	bool isLive();

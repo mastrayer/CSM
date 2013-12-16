@@ -3,8 +3,10 @@
 #include "ClientManager.h"
 #include "PacketType.h"
 
-GameManager::GameManager(int killLimit):mKillLimit(killLimit), mKillScore(), mPlayerCount()
+GameManager::GameManager(int killLimit):mKillLimit(killLimit)
 {
+	mKillScore[0] = mKillScore[1] = 0;
+	mPlayerCount[0] = mPlayerCount[1] = 0;
 }
 
 

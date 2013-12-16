@@ -85,11 +85,11 @@ void ClientManager::CollectGarbageSessions()
 void ClientManager::ClientPeriodWork()
 {
 	GPlayerManager->UpdatePlayers();
-	//int nowTime = timeGetTime();
-	//float dTime = (static_cast<float>(nowTime - mLastTime))/1000.f;
-	//mLastTime = nowTime;
-	//GBulletManager->Update(dTime);
-	//GSkillManager->Update(dTime);
+	int nowTime = timeGetTime();
+	float dTime = (static_cast<float>(nowTime - mLastTime))/1000.f;
+	mLastTime = nowTime;
+	GBulletManager->Update(dTime);
+	GSkillManager->Update(dTime);
 	
 	/// FYI: C++ 11 스타일의 루프
 	for (auto& it : mClientList)

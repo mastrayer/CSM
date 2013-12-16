@@ -1,10 +1,8 @@
 
 #include "TypeB.h"
 
-BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition)
+BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition,int index):mIndex(index)
 {
-	//mFollower = follower;
-	//SetPosition(mFollower->GetPlayerPosition());
 	SetPosition(startPosition);
 
 	mFlyAnimation = NNAnimation::Create();
@@ -18,16 +16,12 @@ BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition)
 	}
 	mFlyAnimation->SetFrameTimeInSection(0.03f, 0, 7);
 
-	//mSource.SetPoint(mFollower->GetPosition());
-	mSource.SetPoint(startPosition);
-	mLifeTime = mFlyAnimation->GetPlayTime() * 5;
+	mLifeTime = 1024*1024;
 	mFlyAnimation->SetCenter(30.f, 65.f);
-	mDestination.SetPoint(FindTarget(mSource));
-	mDirection = std::atan2f(mDestination.GetY() - mFollower->GetPositionY(), mDestination.GetX() - mFollower->GetPositionX());
+	mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
 	mMoveSpeed = 100.f;
 
 	mFlyAnimation->SetRotation(mDirection);
-	mIsCrash = false;
 
 	AddChild(mFlyAnimation);
 }
@@ -42,37 +36,7 @@ void BTypeEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 
-	//mMoveSpeed += 100.f * dTime;
 	this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);
-
-	if (!mIsCrash && mLifeTime < mNowLifeTime)
-		Explosion();
-	if (mIsCrash && mLifeTime < mNowLifeTime)
-		mIsEnd = true;
-}
-NNPoint BTypeEffect::FindTarget(NNPoint startPosition)
-{
-	std::map<int, CPlayer*> list;
-	NNPoint target = startPosition;
-	float distance = 999999.f;
-
-	list = CPlayerManager::GetInstance()->GetPlayerList();
-	for (std::map<int, CPlayer*>::iterator iter = list.begin(); iter != list.end(); ++iter)
-	{
-		if (iter->first == CPlayerManager::GetInstance()->GetMyPlayerId())
-			continue;
-
-		NNPoint targetPosition = iter->second->GetPlayerPosition();
-		float result = std::abs(std::sqrtf(std::powf(targetPosition.GetX() - startPosition.GetX(), 2.f) + std::powf(targetPosition.GetY() - startPosition.GetY(), 2.f)));
-
-		if (result <= distance)
-		{
-			distance = result;
-			target = targetPosition;
-		}
-	}
-
-	return target;
 }
 void BTypeEffect::Explosion()
 {
@@ -94,6 +58,7 @@ void BTypeEffect::Explosion()
 
 	mNowLifeTime = 0.f;
 	mLifeTime = mExplosionAnimation->GetPlayTime();
-	mIsCrash = true;
+
+	mIsEnd = true;
 }
 

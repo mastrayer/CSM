@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ATypeSkillShootHandler.cpp" />
+    <ClCompile Include="BTypeSkillEndHandler.cpp" />
     <ClCompile Include="BTypeSkillShootHandler.cpp" />
     <ClCompile Include="CTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />

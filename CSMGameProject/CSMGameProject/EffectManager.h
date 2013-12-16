@@ -3,6 +3,7 @@
 
 #include "Effect.h"
 #include <list>
+#include "TypeB.h"
 
 class EffectManager : public NNObject
 {
@@ -17,6 +18,7 @@ public:
 		static EffectManager* pInstance = new EffectManager();
 		return pInstance;
 	}
+	BTypeEffect* GetTypeBEffect(int index);
 private:
 	std::list<IEffect*> mEffectList;
 

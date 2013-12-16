@@ -17,18 +17,18 @@ void BTypeSkillShootHandler::HandlingPacket(short packetType, NNCircularBuffer* 
 	switch (packetType)
 	{
 	case PKT_SC_B_TYPESKILL_SHOOT:
-	{
-									 if (circularBuffer->Read((char*)&mBTypeSkillShootResult, header->mSize))
-									 {
+		{
+			if (circularBuffer->Read((char*)&mBTypeSkillShootResult, header->mSize))
+			{
 
-										 //로그인이 잘못되어 캐릭터가 없을 수 있으므로
-										 EffectManager::GetInstance()->AddEffect(new BTypeEffect(mBTypeSkillShootResult.mStartPosition, mBTypeSkillShootResult.mTargetPosition));
-									 }
-									 else
-									 {
-										 assert(false);
-									 }
-	}
+				//로그인이 잘못되어 캐릭터가 없을 수 있으므로
+				EffectManager::GetInstance()->AddEffect(new BTypeEffect(mBTypeSkillShootResult.mStartPosition, mBTypeSkillShootResult.mTargetPosition,mBTypeSkillShootResult.mIndex));
+			}
+			else
+			{
+				assert(false);
+			}
+		}
 		break;
 	}
 }

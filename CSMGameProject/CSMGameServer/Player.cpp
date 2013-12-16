@@ -301,7 +301,7 @@ void Player::Update( float dTime)
 			case TYPE_A:
 				{
 					mTypeSkillDelay = 3.f;
-					new ATypeSkill(mRotation,mPosition);
+					new ATypeSkill(mRotation,mPosition,this);
 					GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 					outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 					mClient->Broadcast(&outPacket);
@@ -368,7 +368,7 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage)
 {
-	if(mHP < damage)
+	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
 		HPUpdateResult outPacket = HPUpdateResult();
 		outPacket.mPlayerId = mPlayerId;
