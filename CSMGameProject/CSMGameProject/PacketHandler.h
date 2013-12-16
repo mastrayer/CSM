@@ -5,6 +5,16 @@
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
 
+class BTypeSkillEndHandler : public NNBaseHandler
+{
+public:
+	BTypeSkillEndHandler();
+	virtual ~BTypeSkillEndHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	BTypeSkillEndResult mBTypeSkillEndResult;
+};
 class ATypeSkillShootHandler : public NNBaseHandler
 {
 public:

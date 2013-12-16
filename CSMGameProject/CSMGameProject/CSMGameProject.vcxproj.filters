@@ -187,6 +187,9 @@
     <ClCompile Include="CTypeSkillShootHandler.cpp">
       <Filter>Game\Packet\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="BTypeSkillEndHandler.cpp">
+      <Filter>Game\Packet\Skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

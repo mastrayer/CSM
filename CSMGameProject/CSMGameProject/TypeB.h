@@ -9,7 +9,7 @@
 class BTypeEffect : public IEffect
 {
 public:
-	BTypeEffect(NNPoint startPosition, NNPoint targetPosition);
+	BTypeEffect(NNPoint startPosition, NNPoint targetPosition, int index);
 	virtual ~BTypeEffect();
 
 	void Render();
@@ -17,8 +17,10 @@ public:
 	NNPoint FindTarget(NNPoint startPosition);
 	void Explosion();
 
+	int GetIndex(){ return mIndex; }
+
 private:
-	bool mIsCrash;
+	int mIndex;
 	float mMoveSpeed;
 	float mDirection;
 	NNPoint mSource;
