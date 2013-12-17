@@ -78,15 +78,20 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			if(mAttackDelay > 0) break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mAttackDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
-				mPlayerState = state;
-				mAttackDelay = 1;
+				mPreDelay = 0.1f;
+
+				mMoveDirection = Point(0,0);
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
+
+				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.attackKey = KEYSTATE_NOTPRESSED;
 			}
 
 		}
@@ -95,7 +100,8 @@ void Player::TransState(short state)
 		{
 			mResponTime = 5.f;
 			mPlayerState = state;
-
+			
+			mMoveDirection = Point(0,0);
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 			mClient->Broadcast(&outPacket);
@@ -103,21 +109,35 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
-			if(mTypeSkillDelay > 0 )break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mTypeSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
+				mPreDelay = 0.1f;
+				mMoveDirection = Point(0,0);
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
 				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.typeActiveSkillKey = KEYSTATE_NOTPRESSED;
 			}
 		}
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
-			if(mUserSkillDelay > 0) break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mUserSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
+				mPreDelay = 0.1f;
+				mMoveDirection = Point(0,0);
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
 				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.userActiveSkillKey = KEYSTATE_NOTPRESSED;
 			}
 		}
 		break;
@@ -136,6 +156,8 @@ void Player::Update( float dTime)
 		mUserSkillDelay -= dTime;
 	if(mTypeSkillDelay > 0)
 		mTypeSkillDelay -= dTime;
+	if(mPreDelay > 0)
+		mPreDelay -= dTime;
 	switch (mPlayerState)
 	{
 	case PLAYER_STATE_IDLE:
@@ -167,6 +189,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_WALK:
 		{
+			Point willGoDirection = Point(0,0);
 			if( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
 			{
 				TransState(PLAYER_STATE_TYPESKILL);
@@ -185,8 +208,6 @@ void Player::Update( float dTime)
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and sしししじじしet Position to d
 
-
-			Point willGoDirection = Point(0,0);
 
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
@@ -250,6 +271,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -305,6 +327,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -337,6 +360,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:

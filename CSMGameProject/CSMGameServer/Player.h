@@ -42,6 +42,7 @@ private:
 	float mAttackDelay;
 	float mUserSkillDelay;
 	float mTypeSkillDelay;
+	float mPreDelay;
 
 	float mDTime;
 
