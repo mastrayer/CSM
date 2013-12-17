@@ -94,13 +94,17 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 			std::string temp = tileObject->Attribute("Type");
 			if ( temp == "tile" )
-			{
 				mTile[i][j]->mType = TILE;
-			}
-			else if ( temp == "barrack" )
-			{
-				mTile[i][j]->mType = BARRACK;
-			}
+			else if ( temp == "abarrack" )
+				mTile[i][j]->mType = BARRACK_A;
+			else if ( temp == "bbarrack" )
+				mTile[i][j]->mType = BARRACK_B;
+			else if ( temp == "cbarrack" )
+				mTile[i][j]->mType = BARRACK_C;
+			else if ( temp == "dbarrack" )
+				mTile[i][j]->mType = BARRACK_D;
+			else if ( temp == "starting point" )
+				mTile[i][j]->mType = STARTING_POINT;
 
 			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
 			mTile[i][j]->AddChild(mTile[i][j]->mimage);

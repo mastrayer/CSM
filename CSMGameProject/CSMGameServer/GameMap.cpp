@@ -102,13 +102,17 @@ void GameMap::convertFileToMap( std::wstring path )
 			
 			std::string temp = tileObject->Attribute("Type");
 			if ( temp == "tile" )
-			{
 				m_Tile[i][j]->m_Type = TILE;
-			}
-			else if ( temp == "barrack" )
-			{
-				m_Tile[i][j]->m_Type = BARRACK;
-			}
+			else if ( temp == "abarrack" )
+				m_Tile[i][j]->m_Type = BARRACK_A;
+			else if ( temp == "bbarrack" )
+				m_Tile[i][j]->m_Type = BARRACK_B;
+			else if ( temp == "cbarrack" )
+				m_Tile[i][j]->m_Type = BARRACK_C;
+			else if ( temp == "dbarrack" )
+				m_Tile[i][j]->m_Type = BARRACK_D;
+			else if ( temp == "starting point" )
+				m_Tile[i][j]->m_Type = STARTING_POINT;
 			
 			printf("%d / %d : %d\n",j,i,m_Tile[i][j]->m_attribute);
 		}

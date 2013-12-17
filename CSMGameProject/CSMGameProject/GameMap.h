@@ -12,7 +12,11 @@
 enum TileType
 {
 	TILE,
-	BARRACK,
+	BARRACK_A,
+	BARRACK_B,
+	BARRACK_C,
+	BARRACK_D,
+	STARTING_POINT,
 };
 
 class CTile : public NNObject
@@ -41,6 +45,8 @@ class CGameMap : public NNObject
 public:
 	CGameMap(std::wstring path);
 	virtual ~CGameMap(void);
+
+	TileType GetTileType( int x, int y ) { return mTile[y][x]->mType; }
 	
 	int GetAttribute(int i, int j) { return mTile[i][j]->mattribute; }
 	int SetAttribute(int i, int j, int value) { mTile[i][j]->mattribute = value; }

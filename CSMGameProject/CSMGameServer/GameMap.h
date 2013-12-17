@@ -8,7 +8,11 @@
 enum TileType
 {
 	TILE,
-	BARRACK,
+	BARRACK_A,
+	BARRACK_B,
+	BARRACK_C,
+	BARRACK_D,
+	STARTING_POINT,
 };
 
 class Tile
