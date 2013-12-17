@@ -83,7 +83,7 @@ ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition, int ind
 	mIsCrash = false;
 	mAngle = angle;
 	mSpeed = 500.f;
-	mLifeTime = 0.8f;
+	mLifeTime = 0.5f;
 
 	SetPosition(startPosition);
 	SetRotation(angle);

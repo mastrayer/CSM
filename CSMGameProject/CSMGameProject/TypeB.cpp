@@ -83,7 +83,7 @@ BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition, int ind
 	mIsCrash = false;
 	mAngle = angle;
 	mSpeed = 500.f;
-	mLifeTime = 1.0f;
+	mLifeTime = 0.6f;
 
 	SetPosition(startPosition);
 	SetRotation(angle);
