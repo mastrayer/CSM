@@ -10,11 +10,11 @@
 
 class NNResourceManager
 {
-private:
+public:
 	NNResourceManager();
 	~NNResourceManager();
 
-private:
+public:
 	std::map<std::string,NNXML*> m_XMLTable;
 	std::map<std::wstring,NNZip*> m_ZipTable;
 
