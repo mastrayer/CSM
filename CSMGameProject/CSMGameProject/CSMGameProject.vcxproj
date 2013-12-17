@@ -122,7 +122,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="TypeD.cpp" />
-    <ClCompile Include="TypeChangeHandler.cpp" />
     <ClCompile Include="UserSkillEffect.cpp" />
   </ItemGroup>
   <ItemGroup>

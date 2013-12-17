@@ -7,7 +7,6 @@
 
 #include "PlayerInput.h"
 #include "UserSession.h"
-#include "PlayerState.h"
 #include "PlayerManager.h"
 
 bool ClientSession::OnConnect(SOCKADDR_IN* addr)
@@ -29,11 +28,6 @@ bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 	mPacketHandler[PKT_CS_LOGIN] = ClientLoginPacket;
 	mPacketHandler[PKT_CS_KEYSTATE] = ClientKeyStatePacket;
 	mPacketHandler[PKT_CS_MOUSEANGLE] = ClientMouseAnglePacket;
-
-	mPacketHandler[PKT_CS_TYPE_CHANGE_A] = PlayerTypeChangeA;
-	mPacketHandler[PKT_CS_TYPE_CHANGE_B] = PlayerTypeChangeB;
-	mPacketHandler[PKT_CS_TYPE_CHANGE_C] = PlayerTypeChangeC;
-	mPacketHandler[PKT_CS_TYPE_CHANGE_D] = PlayerTypeChangeD;
 
 	mConnected = true;
 
