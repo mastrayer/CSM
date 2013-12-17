@@ -27,7 +27,10 @@ private:
 	BTypeSkillShootHandler* mBTypeSkillShootHandler;
 	CTypeSkillShootHandler* mCTypeSkillShootHandler;
 
-	TypeChangeHandler* mTypeChangeHandler;
+	TypeChangeHandler* mTypeChangeAHandler;
+	TypeChangeHandler* mTypeChangeBHandler;
+	TypeChangeHandler* mTypeChangeCHandler;
+	TypeChangeHandler* mTypeChangeDHandler;
 
 
 	float mAngle;

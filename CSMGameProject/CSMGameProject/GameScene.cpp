@@ -102,27 +102,27 @@ void CGameScene::Update( float dTime )
 			{
 				NNLogger::TraceLog( "In Barrack A" );
 				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_A );
-				mTypeChangeHandler->mTypeChangeToARequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToARequestPacket,
-					mTypeChangeHandler->mTypeChangeToARequestPacket.mSize );
+				mTypeChangeAHandler->mTypeChangeToARequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeAHandler->mTypeChangeToARequestPacket,
+					mTypeChangeAHandler->mTypeChangeToARequestPacket.mSize );
 			}
 			break;
 		case BARRACK_B:
 			{
 				NNLogger::TraceLog( "In Barrack B" );
 				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_B );
-				mTypeChangeHandler->mTypeChangeToBRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToBRequestPacket,
-					mTypeChangeHandler->mTypeChangeToBRequestPacket.mSize );
+				mTypeChangeBHandler->mTypeChangeToBRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeBHandler->mTypeChangeToBRequestPacket,
+					mTypeChangeBHandler->mTypeChangeToBRequestPacket.mSize );
 			}
 			break;
 		case BARRACK_C:
 			{
 				NNLogger::TraceLog( "In Barrack C" );
 				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_C );
-				mTypeChangeHandler->mTypeChangeToCRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToCRequestPacket,
-					mTypeChangeHandler->mTypeChangeToCRequestPacket.mSize );
+				mTypeChangeCHandler->mTypeChangeToCRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeCHandler->mTypeChangeToCRequestPacket,
+					mTypeChangeCHandler->mTypeChangeToCRequestPacket.mSize );
 			}
 			break;
 		case BARRACK_D:
@@ -149,7 +149,13 @@ void CGameScene::InitNetworkSetting()
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
 	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
 	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
-	mTypeChangeHandler = new TypeChangeHandler();
+
+	/* TypeHandler */
+	mTypeChangeAHandler = new TypeChangeHandler();
+	mTypeChangeBHandler = new TypeChangeHandler();
+	mTypeChangeCHandler = new TypeChangeHandler();
+	mTypeChangeDHandler = new TypeChangeHandler();
+
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -164,10 +170,11 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
 
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_A, mTypeChangeHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_B, mTypeChangeHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_C, mTypeChangeHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_D, mTypeChangeHandler);
+	/* TypeHandler Setting */
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_A, mTypeChangeAHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_B, mTypeChangeBHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_C, mTypeChangeCHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_D, mTypeChangeDHandler);
 	
 
 	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
