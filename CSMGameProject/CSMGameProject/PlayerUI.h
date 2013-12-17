@@ -16,7 +16,7 @@ public:
 	PlayerUI();
 	virtual ~PlayerUI();
 
-	void Init(){}
+	void Init();
 	void Render();
 	void Update( float dTime );
 

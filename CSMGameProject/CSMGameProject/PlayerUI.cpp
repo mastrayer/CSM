@@ -5,21 +5,27 @@
 
 PlayerUI::PlayerUI()
 {
-	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
-	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
-		
-	mHpBar[BLUE] = NNSprite::Create( L"Sprite/BlueHpBar.png" );
-	mHpBar[RED] = NNSprite::Create(L"Sprite/RedHpBar.png");
-		
-	mHpBar[BLUE]->SetPosition( -30.f, -50.f );
-	mHpBar[RED]->SetPosition(-30.f, -50.f);
-
-	AddChild(mHpBar[BLUE]);
-	AddChild(mHpBar[RED]);
 }
 
 PlayerUI::~PlayerUI()
 {
+}
+
+void PlayerUI::Init()
+{
+	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
+	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
+
+	mHpBar[BLUE] = NNSprite::Create( L"Sprite/BlueHpBar.png" );
+	mHpBar[RED] = NNSprite::Create(L"Sprite/RedHpBar.png");
+
+	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
+	mHpBar[RED]->SetPosition( 0.f, -40.f );
+
+	AddChild(mHpBar[BLUE]);
+	AddChild(mHpBar[RED]);
+
+	SetCenter( mHpBar[BLUE]->GetImageWidth()/2.f, mHpBar[BLUE]->GetImageHeight()/2.f );
 }
 
 void PlayerUI::Render()

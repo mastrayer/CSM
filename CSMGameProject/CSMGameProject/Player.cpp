@@ -15,8 +15,7 @@
 #include "UserSkillEffect.h"
 
 CPlayer::CPlayer( void )
-	: mMoveVelocity(NNPoint(0,0)),
-	mHp(100),mRebirthDelayTime(10), mTeam(0)
+	: mMoveVelocity(NNPoint(0,0)), mHp(100),mRebirthDelayTime(10), mTeam(0)
 {
 	mDie = NNSprite::Create( L"Sprite/die.png" );
 	mStop = NNSpriteAtlas::Create( L"Sprite/Player/player.png" );
@@ -34,10 +33,13 @@ CPlayer::CPlayer( void )
 
 	mPlayerUI = PlayerUI::Create();
 	mPlayerUI->SetParent( this );
+	mPlayerUI->SetPosition( 21.f, 24.f );
 	AddChild( mPlayerUI );
 
-	memset(mSkillCount, 0, sizeof(mSkillCount));
-	memset(mSkillCooldown, 0, sizeof(mSkillCooldown));
+	//memset(mSkillCount, 0, sizeof(mSkillCount));
+	//memset(mSkillCooldown, 0, sizeof(mSkillCooldown));
+	ZeroMemory( mSkillCount, sizeof(mSkillCount) );
+	ZeroMemory( mSkillCooldown, sizeof(mSkillCooldown) );
 }
 
 CPlayer::~CPlayer( void )
@@ -89,39 +91,30 @@ void CPlayer::TransState( PlayerState state )
 
 	mPlayerState = state;
 
-	/*if (mPlayerSprite != NULL)
-	{
-		RemoveChild(mPlayerSprite);
-	}*/
+	//mDie->SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
+	//mMove->SetCenter( 21.f, 24.f );
+	//mStop->SetCenter( 21.f, 24.f );
 
-	//std::wstring imagePath = L"";
+	SetCenter( 21.f, 24.f );
 
 	switch (state)
 	{
 	case IDLE:
-		//imagePath = L"Sprite/idle_0.png";
 		break;
 
 	case WALK:
-		//imagePath = L"Sprite/walk_0.png";
 		break;
 
 	case ATTAACK:
-		//imagePath = L"Sprite/attack_0.png";
-
-		//RemoveChild(mBuffEffect);
-
-		//mBuffEffect = NNParticleSystem::Create()
 		break;
 
 	case DIE:
-		//imagePath = L"Sprite/die.png";
-		mRebirthTimer = NNLabel::Create(L"으앙~ 쥬금~ X초 우리 좀 잘 해봅시다", L"맑은 고딕", 40.f);
-		mRebirthTimer->SetCenter(width / 2, height / 2 - 200);
+		SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
+		//mRebirthTimer = NNLabel::Create(L"으앙~ 쥬금~ X초 우리 좀 잘 해봅시다", L"맑은 고딕", 40.f);
+		//mRebirthTimer->SetCenter(width / 2, height / 2 - 200);
 		break;
 
 	case TYPE_ACTIVE_SKILL:
-		//imagePath = L"Sprite/skill_1.png";
 		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
 		{
 			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
@@ -141,25 +134,13 @@ void CPlayer::TransState( PlayerState state )
 	default:
 		break;
 	}
-
-	mDie->SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
-	mMove->SetCenter( 21.f, 24.f );
-	mStop->SetCenter( 21.f, 24.f );
-
-	/* Player Sprite Setting */
-	//mPlayerSprite = NNSprite::Create( imagePath );
-	//AddChild( mPlayerSprite );
-
-	//mPlayerSprite->SetCenter( mPlayerSprite->GetImageWidth()/2.f, mPlayerSprite->GetImageHeight()/2.f );
-	//Sprite를 바꾸면 Rotation이 자동으로 0되니까 예전값으로 다시 대입
-	//mPlayerSprite->SetRotation(rotation);
-	/* // */
 }
 
 void CPlayer::Update( float dTime )
 {
 	NNObject::Update( dTime );
 
+	mPlayerUI->SetRotation( -this->GetRotation() );
 	mPlayerUI->SetHP( mHp );
 
 	switch (mPlayerState)

@@ -37,7 +37,7 @@ public:
 	void TransState( PlayerState state );
 	
 	void SetPlayerPosition( NNPoint position ) { SetPosition(position); }
-	void SetPlayerRotation( float angle ) { mAngle = angle; mMove->SetRotation(angle); mStop->SetRotation(angle); }
+	void SetPlayerRotation( float angle ) { SetRotation(angle); /*mAngle = angle; mMove->SetRotation(angle); mStop->SetRotation(angle);*/ }
 	void SetPlayerMoveDirection( NNPoint direction) { mMoveVelocity = direction; }
 	void SetPlayerHP(int hp) { mHp = hp; }
 	void SetSkillCount(float value, PlayerState skillType) { mSkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
@@ -46,7 +46,7 @@ public:
 	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
 	
 	NNPoint GetPlayerPosition() { return GetPosition(); }
-	float GetPlayerRotation( ) { return mAngle; }
+	float GetPlayerRotation( ) { return mRotation; }
 	int GetPlayerHP() { return mHp; }
 	//NNSprite* GetPlayerSprite() { return mPlayerSprite; }
 	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
@@ -70,17 +70,15 @@ private:
 
 private:
 	std::list<NNParticleSystem*> mParticleSystemList;
-	//NNSprite* mPlayerSprite;
 	PlayerUI* mPlayerUI;
 	PlayerState mPlayerState;
 	
 	NNParticleSystem *mUserEffect;
-	// NNParticleSystem *mBuffEffect;
 	NNPoint mMoveVelocity;
 	NNLabel *mRebirthTimer;
 	
 	float mRebirthDelayTime;
-	float mAngle;
+	//float mAngle;
 	int mHp;
 	int mTeam;
 	int mSpeed;
