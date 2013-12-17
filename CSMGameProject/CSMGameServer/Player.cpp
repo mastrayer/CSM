@@ -248,26 +248,27 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
-			std::map<int,Player*> players = GPlayerManager->GetPlayers();
-
-			for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+			switch (mType)
 			{
-				Player* enemy = it->second;
-				if(enemy == this)continue;
-
-				if(enemy->GetTeam() != GetTeam() && Point().Distance( enemy->GetPosition(), AttackPoint ) < mRadius )
+			case TYPE_A:
 				{
-					//피격데스네
-					if ( enemy->Damaged(mDamage+rand()%10) == true);
-					{
-						//쟤를 죽인거니까	
-						ChangeType(GetTypeChangeResult(mType, enemy->mType));
-					}
-				}
+					mAttackDelay = 1.f;
+					new ATypeAttack(mRotation,mPosition,this);
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			case TYPE_B:
+				{
+					mAttackDelay = 1.f;
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			case TYPE_C:
+				{	
+					mAttackDelay = 1.f;
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			default:
+				break;
 			}
-			TransState(PLAYER_STATE_IDLE);
-			break;
 		}
 		break;
 
@@ -368,6 +369,7 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage)
 {
+	//ChangeType(GetTypeChangeResult(mType, enemy->mType));
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
 		HPUpdateResult outPacket = HPUpdateResult();
