@@ -94,6 +94,9 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\UserSkillEffect">
       <UniqueIdentifier>{5da6a401-3c85-4695-b3c8-72f3cd60807e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\GameManager">
+      <UniqueIdentifier>{2482913d-357a-4915-a382-5df2b11ef321}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -190,6 +193,9 @@
     <ClCompile Include="BTypeSkillEndHandler.cpp">
       <Filter>Game\Packet\Skill</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Game\Scene\GameScene\Object\GameManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -260,6 +266,9 @@
     </ClInclude>
     <ClInclude Include="UserSkillEffect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserSkillEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Game\Scene\GameScene\Object\GameManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
