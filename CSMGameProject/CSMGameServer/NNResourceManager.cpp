@@ -1,6 +1,6 @@
+
 #include "stdafx.h"
 #include "NNResourceManager.h"
-NNResourceManager* NNResourceManager::m_pInstance = nullptr;
 
 NNResourceManager::NNResourceManager()
 {
@@ -27,22 +27,6 @@ NNResourceManager::~NNResourceManager()
 			}
 			m_ZipTable.clear();
 		}
-	}
-}
-NNResourceManager* NNResourceManager::GetInstance()
-{
-	if( m_pInstance == nullptr )
-	{
-		m_pInstance = new NNResourceManager();
-	}
-	return m_pInstance;
-}
-void NNResourceManager::ReleaseInstance()
-{
-	if( m_pInstance != nullptr )
-	{
-		delete m_pInstance;
-		m_pInstance = nullptr;
 	}
 }
 NNXML* NNResourceManager::LoadXMLFromFIle( std::string path )
@@ -104,3 +88,5 @@ NNXML* NNResourceManager::LoadXMLFromMemory( NNZip *buf )
 
 	return m_XMLTable[result];
 }
+
+NNResourceManager* GResourceManager;
