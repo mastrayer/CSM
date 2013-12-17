@@ -101,18 +101,28 @@ void GameMap::convertFileToMap( std::wstring path )
 			TiXmlElement* tileObject = child->FirstChild("Object")->ToElement();
 			
 			std::string temp = tileObject->Attribute("Type");
-			if ( temp == "tile" )
+			if ( temp == "Tile" )
 				m_Tile[i][j]->m_Type = TILE;
-			else if ( temp == "abarrack" )
+			else if ( temp == "Barrack A In" )
 				m_Tile[i][j]->m_Type = BARRACK_A;
-			else if ( temp == "bbarrack" )
+			else if ( temp == "Barrack B In" )
 				m_Tile[i][j]->m_Type = BARRACK_B;
-			else if ( temp == "cbarrack" )
+			else if ( temp == "Barrack C In" )
 				m_Tile[i][j]->m_Type = BARRACK_C;
-			else if ( temp == "dbarrack" )
+			else if ( temp == "Barrack D In" )
 				m_Tile[i][j]->m_Type = BARRACK_D;
-			else if ( temp == "starting point" )
-				m_Tile[i][j]->m_Type = STARTING_POINT;
+			else if ( temp == "A Team Starting Point" )
+			{
+				m_Tile[i][j]->m_Type = STARTING_POINT_A;
+				m_StartingPointAY = i * 64.f;
+				m_StartingPointAX = j * 64.f;
+			}
+			else if ( temp == "B Team Starting Point" )
+			{
+				m_Tile[i][j]->m_Type = STARTING_POINT_B;
+				m_StartingPointBY = i * 64.f;
+				m_StartingPointBX = j * 64.f;
+			}
 			
 			printf("%d / %d : %d\n",j,i,m_Tile[i][j]->m_attribute);
 		}

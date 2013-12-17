@@ -12,7 +12,8 @@ enum TileType
 	BARRACK_B,
 	BARRACK_C,
 	BARRACK_D,
-	STARTING_POINT,
+	STARTING_POINT_A,
+	STARTING_POINT_B,
 };
 
 class Tile
@@ -51,10 +52,17 @@ public:
 	int GetWidth(){ return m_Width; }
 	int GetHeight(){ return m_Height; }
 
+	float GetStartingPointAX() const { return m_StartingPointAX; }
+	float GetStartingPointAY() const { return m_StartingPointAY; }
+	float GetStartingPointBX() const { return m_StartingPointBX; }
+	float GetStartingPointBY() const { return m_StartingPointBY; }
+
 private:
 	NNXML* m_MapXMLData;
 	Tile ***m_Tile;
 	int m_Width, m_Height;
+	float m_StartingPointAX, m_StartingPointAY;
+	float m_StartingPointBX, m_StartingPointBY;
 
 protected:
 	Point positionToArrayIndex( Point p );
