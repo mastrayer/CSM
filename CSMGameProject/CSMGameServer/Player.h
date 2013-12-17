@@ -9,10 +9,11 @@
 #define PLAYER_STATE_TYPESKILL 4
 #define PLAYER_STATE_USERSKILL 5
 
-#define TYPE_A 0
-#define TYPE_B 1
-#define TYPE_C 2
-#define TYPE_D 3
+#define TYPE_ZERO 0
+#define TYPE_A 1
+#define TYPE_B 2
+#define TYPE_C 3
+#define TYPE_D 4
 
 #define TYPE_A_MAXHP 50
 #define TYPE_B_MAXHP 50

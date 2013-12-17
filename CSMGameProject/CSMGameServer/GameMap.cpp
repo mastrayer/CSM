@@ -111,8 +111,8 @@ void GameMap::convertFileToMap( std::wstring path )
 				m_Tile[i][j]->m_Type = BARRACK_C;
 			else if ( temp == "Barrack D In" )
 				m_Tile[i][j]->m_Type = BARRACK_D;
-			else if ( temp == "Barrack Out" )
-				m_Tile[i][j]->m_Type = BARRACK_OUT;
+            else if ( temp == "Barrack Out" )
+                m_Tile[i][j]->m_Type = BARRACK_OUT;
 			else if ( temp == "A Team Starting Point" )
 			{
 				m_Tile[i][j]->m_Type = STARTING_POINT_A;
@@ -125,7 +125,6 @@ void GameMap::convertFileToMap( std::wstring path )
 				m_StartingPointBY = i * 64.f;
 				m_StartingPointBX = j * 64.f;
 			}
-			
 			printf("%d / %d : %d\n",j,i,m_Tile[i][j]->m_attribute);
 		}
 		/*
@@ -178,6 +177,14 @@ bool GameMap::isValidTile( Point p )
 	return true;
 }
 
+TileType GameMap::GetTileType( Point p )
+{
+	Point temp = positionToArrayIndex(p);
+	int i = (int)temp.y;
+	int j = (int)temp.x;
+
+	return m_Tile[i][j]->m_Type;
+}
 //////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////                            /////////////////////////////
 /////////////////////////////           Tile            /////////////////////////////

@@ -40,7 +40,7 @@ public:
 	int GetAttribute(int i, int j) { return m_Tile[i][j]->m_attribute; }
 	int SetAttribute(int i, int j, int value) { m_Tile[i][j]->m_attribute = value; }
 	bool isValidTile(Point p);
-
+	TileType GetTileType(Point p);
 	//void CreateMap(NNXML* xml, );
 	void convertFileToMap(std::wstring path);
 
@@ -64,7 +64,6 @@ private:
 	int m_Width, m_Height;
 	float m_StartingPointAX, m_StartingPointAY;
 	float m_StartingPointBX, m_StartingPointBY;
-
 protected:
 	Point positionToArrayIndex( Point p );
 };

@@ -114,6 +114,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
+	if(mPlayerState == TYPE_ZERO) break;
 			if(mAttackDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				mPreDelay = 0.1f;
@@ -134,6 +135,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_DIE:
 		{
+	if(mPlayerState == TYPE_ZERO) break;
 			mResponTime = 5.f;
 			mPlayerState = state;
 			
@@ -145,6 +147,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
+	if(mPlayerState == TYPE_ZERO) break;
 			if(mTypeSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				mPreDelay = 0.1f;
@@ -162,6 +165,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
+	if(mPlayerState == TYPE_ZERO) break;
 			if(mUserSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				mPreDelay = 0.1f;
@@ -289,6 +293,33 @@ void Player::Update( float dTime)
 				}
 			}
 			willGoPosition = GetPosition() + willGoDirection * dTime;
+			if(  mPlayerState == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
+				||GGameMap->GetTileType(GetPosition()) == BARRACK_B
+				||GGameMap->GetTileType(GetPosition()) == BARRACK_C
+				||GGameMap->GetTileType(GetPosition()) == BARRACK_C)
+				&& GGameMap->GetTileType(willGoPosition) == BARRACK_OUT)
+			{
+				TileType tileType = GGameMap->GetTileType(GetPosition());
+				int changeType = 0;
+				switch (tileType)
+				{
+				case BARRACK_A:
+					changeType = TYPE_A;
+					break;
+				case BARRACK_B:
+					changeType = TYPE_B;
+					break;
+				case BARRACK_C:
+					changeType = TYPE_C;
+					break;
+				case BARRACK_D:
+					changeType = TYPE_D;
+					break;
+				default:
+					break;
+				}
+				ChangeType(changeType);
+			}
 			SetPosition(willGoPosition);
 
 
@@ -425,6 +456,7 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage, Player* player)
 {
+	if(mPlayerState == TYPE_ZERO) return false;
 	//ChangeType(GetTypeChangeResult(mType, enemy->mType));
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
@@ -458,6 +490,7 @@ bool Player::Damaged(int damage, Player* player)
 }
 void Player::Heal(int dHP)
 {
+	if(mPlayerState == TYPE_ZERO) return;
 	if(mPlayerState == PLAYER_STATE_DIE) return;
 
 	if(mHP + dHP > mMaxHP)
@@ -494,6 +527,11 @@ bool Player::CouldGoPosition(Point position)
 		{
 			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
+			else
+			{
+				if(mPlayerState != TYPE_ZERO && GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_OUT)
+					return false;
+			}
 		}
 	}	
 	std::map<int,Player*> players = GPlayerManager->GetPlayers();
