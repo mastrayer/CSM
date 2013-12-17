@@ -26,6 +26,7 @@ enum PlayerType
 	TYPE_A = 0,
 	TYPE_B = 1,
 	TYPE_C = 2,
+	TYPE_D = 3,
 };
 class CPlayer : public NNObject
 {
