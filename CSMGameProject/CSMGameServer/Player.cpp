@@ -527,16 +527,15 @@ bool Player::CouldGoPosition(Point position)
 		{
 			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
-			else
-			{
-				if(mType != TYPE_ZERO && (GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_A
-					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_B
-					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_C
-					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_D))
-					return false;
-			}
 		}
-	}	
+	}
+
+	if(mType != TYPE_ZERO && (GGameMap->GetTileType(position) == BARRACK_A
+					||GGameMap->GetTileType(position) == BARRACK_B
+					||GGameMap->GetTileType(position) == BARRACK_C
+					||GGameMap->GetTileType(position) == BARRACK_D))
+					return false;
+	
 	std::map<int,Player*> players = GPlayerManager->GetPlayers();
 	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 	{

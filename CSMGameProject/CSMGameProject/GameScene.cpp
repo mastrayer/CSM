@@ -114,11 +114,6 @@ void CGameScene::InitNetworkSetting()
 	mBTypeAttackEndHandler = new BTypeAttackEndHandler();
 	mBTypeAttackShootHandler = new BTypeAttackShootHandler();
 
-	/* TypeHandler */
-	mTypeChangeAHandler = new TypeChangeHandler();
-	mTypeChangeBHandler = new TypeChangeHandler();
-	mTypeChangeCHandler = new TypeChangeHandler();
-	mTypeChangeDHandler = new TypeChangeHandler();
 
 	NNNetworkSystem::GetInstance()->Init();
 
@@ -138,12 +133,7 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_SHOOT, mBTypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_END, mBTypeAttackEndHandler);
 
-	/* TypeHandler Setting */
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_A, mTypeChangeAHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_B, mTypeChangeBHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_C, mTypeChangeCHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_D, mTypeChangeDHandler);
-	
+
 
 	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
