@@ -328,26 +328,31 @@ namespace Maptool
                         }
                         mainMap_init(mainMap.MapSize.Width, mainMap.MapSize.Height);
 
-                        for (int i = 0; i < mainMap.MapSize.Width; ++i)
+                        //xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
+                        //mainMap.grid[i,j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
+
+                        xnList = xmldoc.SelectNodes("map/tileInfo/tile");
+
+                        //if (!mainMap.grid[i, j].isFull)
+                        //    continue;
+
+                        foreach (XmlNode xn in xnList)
                         {
-                            for (int j = 0; j < mainMap.MapSize.Height; ++j)
-                            {
-                                xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
-                                mainMap.grid[i,j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
+                            int xidx, yidx;
 
-                                if (!mainMap.grid[i, j].isFull)
-                                    continue;
+                            xidx = Convert.ToInt32(xn.Attributes["X"].InnerText);
+                            yidx = Convert.ToInt32(xn.Attributes["Y"].InnerText);
 
-                                foreach (XmlNode xn in xnList)
-                                {
-                                    //mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
-                                    mainMap.grid[i, j].TIleSetID = Convert.ToInt32(xn["TileImageInfo"].Attributes["Index"].InnerText);
-                                    mainMap.grid[i, j].TileLocation.X = Convert.ToInt32(xn["TileImageInfo"].Attributes["X"].InnerText);
-                                    mainMap.grid[i, j].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
-                                    mainMap.grid[i, j].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
-                                    mainMap.grid[i, j].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
-                                }
-                            }
+                            mainMap.grid[xidx, yidx].isFull = xn.Attributes["isFull"].InnerText == "true" ? true : false;
+                            if (mainMap.grid[xidx, yidx].isFull == false)
+                                continue;
+
+                            //mainMap.grid[i, j].Attribute = Convert.ToInt32(attribute);
+                            mainMap.grid[xidx, yidx].TIleSetID = Convert.ToInt32(xn["TileImageInfo"].Attributes["Index"].InnerText);
+                            mainMap.grid[xidx, yidx].TileLocation.X = Convert.ToInt32(xn["TileImageInfo"].Attributes["X"].InnerText);
+                            mainMap.grid[xidx, yidx].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
+                            mainMap.grid[xidx, yidx].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
+                            mainMap.grid[xidx, yidx].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
                         }
                     }
                     else

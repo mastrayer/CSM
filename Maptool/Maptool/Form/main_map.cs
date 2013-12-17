@@ -109,6 +109,7 @@ namespace Maptool
             work_map.Image = temp;
 
             highlightPen.Dispose();
+            System.GC.Collect();
             //temp.Dispose();
         }
         private Tile returnSelectedTile(Tile cell, Tile tile)
