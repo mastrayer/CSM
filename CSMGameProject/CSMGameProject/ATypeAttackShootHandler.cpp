@@ -16,7 +16,7 @@ void ATypeAttackShootHandler::HandlingPacket( short packetType, NNCircularBuffer
 {
 	switch ( packetType )
 	{
-	case PKT_SC_A_TYPESKILL_SHOOT:
+	case PKT_SC_A_TYPEATTACK_SHOOT:
 		{
 			if ( circularBuffer->Read((char*)&mATypeAttackShootResult, header->mSize) )
 			{
