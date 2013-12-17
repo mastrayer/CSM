@@ -31,6 +31,7 @@ namespace Maptool
 
             public bool attributeMove;
             public int attributeHeight;
+            public ObjectType type;
         };
         public main_map(int width, int height, Main Form)
         {
@@ -58,8 +59,24 @@ namespace Maptool
                 for (int j = 0; j < MapSize.Height; ++j)
                 {
                     if (grid[i, j].isFull)
+                    {
                         g.DrawImage(grid[i, j].tile, new Point(i * TileSize, j * TileSize));
-                    else
+
+                        switch (grid[i, j].type)
+                        {
+                            case ObjectType.TILE:
+                                break;
+                            case ObjectType.STARTING_POINT:
+                                g.DrawImage(Properties.Resources.StartingPoint, new Point(i * TileSize, j * TileSize));
+                                break;
+                            case ObjectType.CROWN:
+                                g.DrawImage(Properties.Resources.Crown, new Point(i * TileSize, j * TileSize));
+                                break;
+                            case ObjectType.BARRACK:
+                                g.DrawImage(Properties.Resources.Barrack, new Point(i * TileSize, j * TileSize));
+                                break;
+                        }
+                    }else
                         g.DrawImage(temp, new Point(i * TileSize, j * TileSize));
                 }
             }
@@ -101,9 +118,9 @@ namespace Maptool
                    break;
 
                 case LAYER_TYPE.OBJECT_LAYER :
-
-
-                    break;
+                   grid[x / TileSize, y / TileSize].type = mainForm.type;
+                   refresh();
+                   break;
 
             }
             mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);

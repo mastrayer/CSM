@@ -24,12 +24,20 @@ namespace Maptool
         ATTRIBUTE_LAYER = 1,
         OBJECT_LAYER = 2,
     };
+    public enum ObjectType
+    {
+        TILE = 0,
+        STARTING_POINT = 1,
+        CROWN = 2,
+        BARRACK = 3,
+    };
     public partial class Main : Form
     {
         // form
         public main_map mainMap;
         public TileSelectForm TileSelectWindow = null;
         public AttributeSettingForm attributeSettingWindow = null;
+        public HelpForm helpWindow = null;
 
         // values
         Bitmap minimapImage;
@@ -41,6 +49,7 @@ namespace Maptool
         public int bitmapID = 0;
         public Point selectedPoint = new Point(0,0);
         public mapInfo MapInfo = new mapInfo("16", "16", "Untitled");
+        public ObjectType type = ObjectType.TILE;
 
         public class mapInfo
         {
@@ -144,6 +153,7 @@ namespace Maptool
 
             //mainMap = new main_map(width, height, this);
             mainMap = new main_map(info.width, info.height, this);
+            helpWindow = new HelpForm();
 
             mainMap.TopLevel = false;
             mainMap.TopMost = true;
@@ -161,13 +171,8 @@ namespace Maptool
         }
         public Main()
         {
-            this.MouseWheel += new MouseEventHandler(test);
             InitializeComponent();
             init();
-        }
-        void test(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show("휠");
         }
         private void menu_item_new_Click(object sender, EventArgs e)
         {
@@ -272,6 +277,29 @@ namespace Maptool
                                         textWriter.WriteEndAttribute();
                                     }
                                     textWriter.WriteEndElement();
+
+                                    textWriter.WriteStartElement("Object");
+                                    {
+                                        textWriter.WriteStartAttribute("Type");
+
+                                        switch (mainMap.grid[i, j].type)
+                                        {
+                                            case ObjectType.TILE:
+                                                textWriter.WriteString("tile");
+                                                break;
+                                            case ObjectType.STARTING_POINT:
+                                                textWriter.WriteString("starting point");
+                                                break;
+                                            case ObjectType.CROWN:
+                                                textWriter.WriteString("crown");
+                                                break;
+                                            case ObjectType.BARRACK:
+                                                textWriter.WriteString("barrack");
+                                                break;
+                                        }
+                                        textWriter.WriteEndAttribute();
+                                    }
+                                    textWriter.WriteEndElement();
                                 }
                             }
                             textWriter.WriteEndElement();
@@ -352,6 +380,16 @@ namespace Maptool
                             mainMap.grid[xidx, yidx].TileLocation.Y = Convert.ToInt32(xn["TileImageInfo"].Attributes["Y"].InnerText);
                             mainMap.grid[xidx, yidx].attributeMove = xn["Attribute"].Attributes["move"].InnerText == "true" ? true : false;
                             mainMap.grid[xidx, yidx].attributeHeight = Convert.ToInt32(xn["Attribute"].Attributes["height"].InnerText);
+
+                            ObjectType loadType = ObjectType.TILE;
+                            String loadTypeString = xn["Object"].Attributes["Type"].InnerText;
+
+                            if (loadTypeString == "tile") loadType = ObjectType.TILE;
+                            else if (loadTypeString == "starting point") loadType = ObjectType.STARTING_POINT;
+                            else if (loadTypeString == "crown") loadType = ObjectType.CROWN;
+                            else if (loadTypeString == "barrack") loadType = ObjectType.BARRACK;
+
+                            mainMap.grid[xidx, yidx].type = loadType;
                         }
                     }
                     else
@@ -463,6 +501,22 @@ namespace Maptool
 
              attribute_height.Text = mainMap.grid[x, y].attributeHeight.ToString();
              attribute_index.Text = x.ToString() + "/" + y.ToString();
+
+            switch(mainMap.grid[x,y].type)
+            {
+                case ObjectType.TILE:
+                    attribute_ObjectType.Text = "Tile";
+                    break;
+                case ObjectType.STARTING_POINT:
+                    attribute_ObjectType.Text = "Starting Point";
+                    break;
+                case ObjectType.CROWN:
+                    attribute_ObjectType.Text = "Crown";
+                    break;
+                case ObjectType.BARRACK:
+                    attribute_ObjectType.Text = "Barrack";
+                    break;
+            }
         }
         private void attribute_OK_Click(object sender, EventArgs e)
         {
@@ -498,10 +552,19 @@ namespace Maptool
                 contents.Enabled = true;
             }
         }
-
-        private void attribute_move_CheckStateChanged(object sender, EventArgs e)
+        private void ShowHelpPage(object sender, EventArgs e)
         {
+            helpWindow.Show();
+        }
 
+        private void SelectObject(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Text == "Starting Point")
+                type = ObjectType.STARTING_POINT;
+            else if (e.Node.Text == "Crown")
+                type = ObjectType.CROWN;
+            else if (e.Node.Text == "barrack")
+                type = ObjectType.BARRACK;
         }
     }
 }
