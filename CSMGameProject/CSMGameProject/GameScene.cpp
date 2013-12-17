@@ -9,6 +9,8 @@
 #include "PlayerManager.h"
 #include "GameManager.h"
 
+#include "NNLogger.h"
+
 CGameScene::CGameScene(void) : 
 	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 	misInit(false)
@@ -90,6 +92,47 @@ void CGameScene::Update( float dTime )
 			NNNetworkSystem::GetInstance()->Write( (const char*)&mMouseAngleUpdateHandler->mMouseAngleUpdateRequest,
 				mMouseAngleUpdateHandler->mMouseAngleUpdateRequest.mSize );
 		}
+
+		/* 플레이어 위치의 타일 타입을 확인 */
+		switch ( mGameMap->GetTileType((int)CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX()/64, 
+			(int)CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY()/64) )
+		{
+			/* 타일 타입이 배럭일 경우 형태 변환 패킷 전송 */
+		case BARRACK_A:
+			{
+				NNLogger::TraceLog( "In Barrack A" );
+				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_A );
+				mTypeChangeHandler->mTypeChangeToARequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToARequestPacket,
+					mTypeChangeHandler->mTypeChangeToARequestPacket.mSize );
+			}
+			break;
+		case BARRACK_B:
+			{
+				NNLogger::TraceLog( "In Barrack B" );
+				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_B );
+				mTypeChangeHandler->mTypeChangeToBRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToBRequestPacket,
+					mTypeChangeHandler->mTypeChangeToBRequestPacket.mSize );
+			}
+			break;
+		case BARRACK_C:
+			{
+				NNLogger::TraceLog( "In Barrack C" );
+				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_C );
+				mTypeChangeHandler->mTypeChangeToCRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeHandler->mTypeChangeToCRequestPacket,
+					mTypeChangeHandler->mTypeChangeToCRequestPacket.mSize );
+			}
+			break;
+		case BARRACK_D:
+			{
+				NNLogger::TraceLog( "In Barrack D" );
+			}
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -106,6 +149,7 @@ void CGameScene::InitNetworkSetting()
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
 	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
 	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
+	mTypeChangeHandler = new TypeChangeHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -119,6 +163,11 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPESKILL_SHOOT, mATypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
+
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_A, mTypeChangeHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_B, mTypeChangeHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_C, mTypeChangeHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_TYPE_CHANGE_D, mTypeChangeHandler);
 	
 
 	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);

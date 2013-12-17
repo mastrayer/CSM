@@ -26,6 +26,10 @@ private:
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	BTypeSkillShootHandler* mBTypeSkillShootHandler;
 	CTypeSkillShootHandler* mCTypeSkillShootHandler;
+
+	TypeChangeHandler* mTypeChangeHandler;
+
+
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
