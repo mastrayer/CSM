@@ -43,7 +43,7 @@ private:
 
 	NNSprite *mTypeSkillUI[4];
 	NNSprite *mUserSkillUI;
-	NNLabel *mTypeSKillTimer[4];
+	NNLabel *mTypeSKillTimer;
 	NNLabel *mUserSkillTimer;
 	float mSkillCooltime[SKILL_COUNT];
 
