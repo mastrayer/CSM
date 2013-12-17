@@ -3,15 +3,9 @@
 
 #include "Player.h"
 
-/*
-#define SINGLETON(type) \
-	public:\
-	static type* GetInstance() {static type instance; return &instance;}
-*/
 class CPlayerManager
 {
 private:
-	//SINGLETON(CPlayerManager);
 	static CPlayerManager* m_Instance;
 
 	CPlayerManager(void);
@@ -53,4 +47,3 @@ private:
 	int mKillScore[2];
 	int mKillLimit;
 };
-
