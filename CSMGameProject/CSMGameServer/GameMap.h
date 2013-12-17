@@ -4,6 +4,17 @@
 #include "PacketType.h"
 #define ATTRIBUTE_MOVE 0x01
 #define TILESIZE 64
+
+enum TileType
+{
+	TILE,
+	BARRACK_A,
+	BARRACK_B,
+	BARRACK_C,
+	BARRACK_D,
+	STARTING_POINT,
+};
+
 class Tile
 {
 public:
@@ -13,7 +24,7 @@ public:
 	void Render();
 	void Update( float dTime );
 
-
+	TileType m_Type;
 	int m_attribute;
 	int m_height;
 	bool m_isFull;

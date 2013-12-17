@@ -10,7 +10,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 }
 
 Player::Player(int id, ClientSession* client)
-	: mHP(), mDamage(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
+	: mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
 	  mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
 	  mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
@@ -56,10 +56,10 @@ void Player::TransState(short state)
 	case PLAYER_STATE_WALK:
 		{
 			Point willGoPosition = GetPosition();
-			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * mSpeed;
-			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, +1.f ) * mDTime * mSpeed;
+			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( -1.f, 0.f ) * mDTime * (float)mSpeed;
+			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoPosition = willGoPosition + Point( +1.f, 0.f ) * mDTime * (float)mSpeed;
+			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * (float)mSpeed;
+			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, +1.f ) * mDTime * (float)mSpeed;
 
 			if ( GGameMap->isValidTile(willGoPosition) == false )
 			{
@@ -78,15 +78,20 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			if(mAttackDelay > 0) break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mAttackDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
-				mPlayerState = state;
-				mAttackDelay = 1;
+				mPreDelay = 0.1f;
+
+				mMoveDirection = Point(0,0);
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
+
+				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.attackKey = KEYSTATE_NOTPRESSED;
 			}
 
 		}
@@ -95,7 +100,8 @@ void Player::TransState(short state)
 		{
 			mResponTime = 5.f;
 			mPlayerState = state;
-
+			
+			mMoveDirection = Point(0,0);
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 			mClient->Broadcast(&outPacket);
@@ -103,21 +109,35 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
-			if(mTypeSkillDelay > 0 )break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mTypeSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
+				mPreDelay = 0.1f;
+				mMoveDirection = Point(0,0);
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
 				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.typeActiveSkillKey = KEYSTATE_NOTPRESSED;
 			}
 		}
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
-			if(mUserSkillDelay > 0) break;
-			if(mPlayerState == PLAYER_STATE_IDLE ||
-				mPlayerState == PLAYER_STATE_WALK)
+			if(mUserSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
+				mPreDelay = 0.1f;
+				mMoveDirection = Point(0,0);
+				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
+				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
+				mClient->Broadcast(&outPacket);
 				mPlayerState = state;
+			}
+			else 
+			{	
+				mGameKeyStates.userActiveSkillKey = KEYSTATE_NOTPRESSED;
 			}
 		}
 		break;
@@ -136,6 +156,8 @@ void Player::Update( float dTime)
 		mUserSkillDelay -= dTime;
 	if(mTypeSkillDelay > 0)
 		mTypeSkillDelay -= dTime;
+	if(mPreDelay > 0)
+		mPreDelay -= dTime;
 	switch (mPlayerState)
 	{
 	case PLAYER_STATE_IDLE:
@@ -167,6 +189,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_WALK:
 		{
+			Point willGoDirection = Point(0,0);
 			if( mGameKeyStates.typeActiveSkillKey == KEYSTATE_PRESSED)
 			{
 				TransState(PLAYER_STATE_TYPESKILL);
@@ -186,8 +209,6 @@ void Player::Update( float dTime)
 			//Check Moving Input, and sしししじじしet Position to d
 
 
-			Point willGoDirection = Point(0,0);
-
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
@@ -199,7 +220,7 @@ void Player::Update( float dTime)
 				willGoDirection.x = willGoDirection.x / d;
 				willGoDirection.y = willGoDirection.y / d;
 			}
-			willGoDirection = willGoDirection * mSpeed;
+			willGoDirection = willGoDirection * (float)mSpeed;
 
 			Point willGoPosition;
 
@@ -250,6 +271,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -261,6 +283,7 @@ void Player::Update( float dTime)
 			case TYPE_B:
 				{
 					mAttackDelay = 0.6f;
+					new BTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_C:
@@ -304,6 +327,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -315,6 +339,7 @@ void Player::Update( float dTime)
 			case TYPE_B:
 				{
 					mTypeSkillDelay = 15.f;
+					new BTypeSkill(this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_C:
@@ -335,6 +360,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
+			if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -394,6 +420,20 @@ bool Player::Damaged(int damage, Player* player)
 		return false;
 	}
 }
+void Player::Heal(int dHP)
+{
+	if(mPlayerState == PLAYER_STATE_DIE) return;
+
+	if(mHP + dHP > mMaxHP)
+		mHP = mMaxHP;
+	else
+		mHP += dHP;
+
+	HPUpdateResult outPacket = HPUpdateResult();
+		outPacket.mPlayerId = mPlayerId;
+		outPacket.mHP = mHP;
+		mClient->Broadcast(&outPacket);
+}
 PlayerInfo Player::GetPlayerInfo()
 {
 	PlayerInfo mPlayerInfo;
@@ -441,122 +481,33 @@ void Player::ChangeType(int type)
 	outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 	mClient->Broadcast(&outPacket);
 }
-
-int Player::GetTypeChangeResult(int killerType, int victimType)
-{
-	switch (killerType)
-	{
-	case TYPE_A:
-		{
-			switch (killerType)
-			{
-			case TYPE_A:
-				{
-					return TYPE_A;
-				}break;
-			case TYPE_B:
-				{
-					return TYPE_C;
-				}break;
-			case TYPE_C:
-				{
-					return TYPE_B;
-				}break;
-			default:
-				break;
-			}
-		}break;
-	case TYPE_B:
-		{
-			switch (killerType)
-			{
-			case TYPE_A:
-				{
-					TYPE_C;
-				}break;
-			case TYPE_B:
-				{
-					TYPE_B;
-				}break;
-			case TYPE_C:
-				{
-					TYPE_A;
-				}break;
-			default:
-				break;
-			}
-		}break;
-	case TYPE_C:
-		{
-			switch (killerType)
-			{
-			case TYPE_A:
-				{
-					TYPE_C;
-				}break;
-			case TYPE_B:
-				{
-					return TYPE_C;
-				}break;
-			case TYPE_C:
-				{
-					if(rand()%2 == 0)
-					{
-						return TYPE_A;
-					}
-					return TYPE_B;
-				}break;
-			default:
-				break;
-			}
-		}break;
-	default:
-		break;
-	}
-
-	/*
-	走酔走原室推
-	switch (killerType)
-	{
-	case TYPE_A:
-	{
-
-	}break;
-	case TYPE_B:
-	{
-
-	}break;
-	case TYPE_C:
-	{
-
-	}break;
-	default:
-	break;
-	}*/
-
-	return NULL;
-}
 void Player::InitWithType()
 {
 	switch (mType)
 	{
 	case TYPE_A:
 		{
-			SetHP(50);
-			mDamage = 15;
-			mSpeed = 100;
+			mMaxHP = TYPE_A_MAXHP;
+			SetHP(mMaxHP);
+			mSpeed = 150;
 		}break;
 	case TYPE_B:
 		{
-			SetHP(55);
-			mDamage = 11;
-			mSpeed = 110;
+			mMaxHP = TYPE_B_MAXHP;
+			SetHP(mMaxHP);
+			mSpeed = 150;
 		}break;
 	case TYPE_C:
 		{
-			SetHP(35);
-			mDamage = 19;
-			mSpeed = 120;
+			mMaxHP = TYPE_C_MAXHP;
+			SetHP(mMaxHP);
+			mSpeed = 150;
+		}break;
+	case TYPE_D:
+		{
+			mMaxHP = TYPE_D_MAXHP;
+			SetHP(mMaxHP);
+			mSpeed = 150;
 		}break;
 	default:
 		break;

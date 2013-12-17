@@ -90,6 +90,22 @@ void CGameMap::convertFileToMap( std::wstring path )
 			mTile[i][j]->mheight = atoi(tileAttribute->Attribute("height"));
 			printf("%d / %d\n",i,j);
 
+			TiXmlElement* tileObject = child->FirstChild("Object")->ToElement();
+
+			std::string temp = tileObject->Attribute("Type");
+			if ( temp == "tile" )
+				mTile[i][j]->mType = TILE;
+			else if ( temp == "abarrack" )
+				mTile[i][j]->mType = BARRACK_A;
+			else if ( temp == "bbarrack" )
+				mTile[i][j]->mType = BARRACK_B;
+			else if ( temp == "cbarrack" )
+				mTile[i][j]->mType = BARRACK_C;
+			else if ( temp == "dbarrack" )
+				mTile[i][j]->mType = BARRACK_D;
+			else if ( temp == "starting point" )
+				mTile[i][j]->mType = STARTING_POINT;
+
 			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
 			mTile[i][j]->AddChild(mTile[i][j]->mimage);
 			AddChild(mTile[i][j]);

@@ -134,7 +134,7 @@ void GameUISet::Update(float dTime)
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
- 	for (int i = 0; i < 2; ++i)
+ 	for (int i = 0; i < 3; ++i)
  		mTypeFace[i]->SetVisible(false);
 
  	switch (mMyPlayer->GetPlayerType())

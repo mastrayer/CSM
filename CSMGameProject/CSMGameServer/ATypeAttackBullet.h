@@ -1,10 +1,10 @@
 #pragma once
 #include "Bullet.h"
-class BTypeSkillBullet : public Bullet
+class ATypeAttackBullet : public Bullet
 {
 public:
-	BTypeSkillBullet(Player* ownerPlayer, Point position);
-	virtual ~BTypeSkillBullet(void);
+	ATypeAttackBullet(Player* ownerPlayer, Point position, float angle);
+	virtual ~ATypeAttackBullet(void);
 
 	virtual bool isLive(void);
 	virtual void Update(float dTime);
@@ -12,6 +12,5 @@ public:
 
 private:
 	bool mDidExplosed;
-	int mHeal;
 };
 

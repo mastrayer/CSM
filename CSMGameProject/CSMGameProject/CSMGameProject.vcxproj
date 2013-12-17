@@ -81,10 +81,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ATypeAttackEndHandler.cpp" />
+    <ClCompile Include="ATypeAttackShootHandler.cpp" />
     <ClCompile Include="ATypeSkillShootHandler.cpp" />
-    <ClCompile Include="BTypeSkillEndHandler.cpp" />
+    <ClCompile Include="BTypeAttackEndHandler.cpp" />
+    <ClCompile Include="BTypeAttackShootHandler.cpp" />
     <ClCompile Include="BTypeSkillShootHandler.cpp" />
-    <ClCompile Include="CTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
@@ -120,6 +122,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="TypeD.cpp" />
+    <ClCompile Include="TypeChangeHandler.cpp" />
     <ClCompile Include="UserSkillEffect.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -85,6 +85,7 @@ void CPlayerManager::UpdatePlayerTeam(int _playerId, int team)
 		player->SetPlayerTeam(team);
 	}
 }
+/*
 void CPlayerManager::UpdatePlayerType(int _playerId, int type)
 {
 	std::map<int,CPlayer*>::iterator itor = mPlayers.find(_playerId);
@@ -93,7 +94,7 @@ void CPlayerManager::UpdatePlayerType(int _playerId, int type)
 		CPlayer* player = mPlayers.find(_playerId)->second;
 		player->SetPlayerType((PlayerType)type);
 	}
-}
+}*/
 void CPlayerManager::UpdatePlayerKillScore( int playerId, int killScore )
 {
 	std::map<int,CPlayer*>::iterator itor = mPlayers.find(playerId);
@@ -101,6 +102,15 @@ void CPlayerManager::UpdatePlayerKillScore( int playerId, int killScore )
 	{
 		CPlayer* player = mPlayers.find(playerId)->second;
 		player->SetKillScore( killScore );
+	}
+}
+void CPlayerManager::UpdatePlayerType( int playerId, PlayerType type )
+{
+	std::map<int,CPlayer*>::iterator itor = mPlayers.find(playerId);
+	if( itor != mPlayers.end() ) 
+	{
+		CPlayer* player = mPlayers.find(playerId)->second;
+		player->SetPlayerType( type );
 	}
 }
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
@@ -111,7 +121,7 @@ void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 	UpdatePlayerMoveDirection(info.mPlayerId, info.mMoveVelocity);
 	UpdatePlayerHP(info.mPlayerId, info.mHP);
 	UpdatePlayerTeam(info.mPlayerId, info.mTeam);
-	UpdatePlayerType(info.mPlayerId, info.mType);
+	UpdatePlayerType(info.mPlayerId, (PlayerType)info.mType);
 	UpdatePlayerKillScore( info.mPlayerId, info.mKillScore );
 }
 
