@@ -23,10 +23,11 @@ enum PlayerState
 };
 enum PlayerType
 {
-	TYPE_A = 0,
-	TYPE_B = 1,
-	TYPE_C = 2,
-	TYPE_D = 3,
+	TYPE_ZERO = 0,
+	TYPE_A = 1,
+	TYPE_B = 2,
+	TYPE_C = 3,
+	TYPE_D = 4,
 };
 class CPlayer : public NNObject
 {
