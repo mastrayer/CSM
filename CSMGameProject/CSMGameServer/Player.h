@@ -40,6 +40,8 @@ private:
 	float mDTime;
 
 	int mRadius;
+
+	int mKillScore;
 	
 public:
 	Player(void);

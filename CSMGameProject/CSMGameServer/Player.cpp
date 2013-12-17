@@ -9,8 +9,10 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(),mDamage(),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
-	,mAttackRange(64),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
+Player::Player(int id, ClientSession* client)
+	: mHP(), mDamage(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
+	  mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
+	  mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
 	mType = 0;
 	InitWithType();
@@ -259,10 +261,16 @@ void Player::Update( float dTime)
 				if(enemy->GetTeam() != GetTeam() && Point().Distance( enemy->GetPosition(), AttackPoint ) < mRadius )
 				{
 					//피격데스네
-					if ( enemy->Damaged(mDamage+rand()%10) == true);
+					if ( enemy->Damaged(mDamage+rand()%10) == true)
 					{
 						//쟤를 죽인거니까	
 						ChangeType(GetTypeChangeResult(mType, enemy->mType));
+						++mKillScore;
+
+						PlayerKillScoreUpdateResult outPacket;
+						outPacket.mPlayerId = this->mPlayerId;
+						outPacket.mKillScore = mKillScore;
+						mClient->Broadcast(&outPacket);
 					}
 				}
 			}

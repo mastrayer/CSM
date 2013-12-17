@@ -32,6 +32,8 @@
 #define PKT_SC_USERSKILL_FLASH 16
 #define PKT_SC_USERSKILL_DASH 17
 
+#define PKT_SC_PLAYER_KILLSCORE_UPDATE 18
+
 struct Point
 {
 	Point()
@@ -101,6 +103,7 @@ struct PlayerInfo
 	Point mMoveDirection;
 	int mTeam;
 	int mType;
+	int mKillScore;
 };
 #pragma pack(push, 1)
 
@@ -182,6 +185,17 @@ struct MouseAngleUpdateRequest : public PacketHeader
 	}
 	int mPlayerId;
 	float mAngle;
+};
+
+struct PlayerKillScoreUpdateResult : public PacketHeader
+{
+	PlayerKillScoreUpdateResult()
+	{
+		mSize = sizeof(PlayerKillScoreUpdateResult);
+		mType = PKT_SC_PLAYER_KILLSCORE_UPDATE;
+	}
+	int mPlayerId;
+	int mKillScore;
 };
 
 struct MouseAngleUpdateResult : public PacketHeader
