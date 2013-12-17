@@ -1,7 +1,7 @@
 
 #include "TypeC.h"
 
-CTypeEffect::CTypeEffect(NNPoint startPosition, float angle)
+CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 {
 	//mFollower = follower;
 	//mDirection = mFollower->GetPlayerRotation();
@@ -27,14 +27,14 @@ CTypeEffect::CTypeEffect(NNPoint startPosition, float angle)
 
 	AddChild(mAnimation);
 }
-CTypeEffect::~CTypeEffect()
+CTypeSkillEffect::~CTypeSkillEffect()
 {
 }
-void CTypeEffect::Render()
+void CTypeSkillEffect::Render()
 {
 	IEffect::Render();
 }
-void CTypeEffect::Update(float dTime)
+void CTypeSkillEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 

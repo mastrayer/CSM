@@ -5,11 +5,11 @@
 #include "NNAnimation.h"
 #include "Player.h"
 
-class ATypeEffect : public IEffect
+class ATypeSkillEffect : public IEffect
 {
 public:
-	ATypeEffect(float angle, NNPoint startPosition);
-	virtual ~ATypeEffect();
+	ATypeSkillEffect(float angle, NNPoint startPosition);
+	virtual ~ATypeSkillEffect();
 
 	void Render();
 	void Update(float dTime);

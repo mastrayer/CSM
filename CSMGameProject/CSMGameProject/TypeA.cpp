@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-ATypeEffect::ATypeEffect(float angle, NNPoint startPosition)
+ATypeSkillEffect::ATypeSkillEffect(float angle, NNPoint startPosition)
 {
 	for (int i = 0; i < 3; ++i)
 		mExplosion[i] = NNAnimation::Create();
@@ -45,14 +45,14 @@ ATypeEffect::ATypeEffect(float angle, NNPoint startPosition)
 
 	mExplosion[mIndex]->SetVisible(true);
 }
-ATypeEffect::~ATypeEffect()
+ATypeSkillEffect::~ATypeSkillEffect()
 {
 }
-void ATypeEffect::Render()
+void ATypeSkillEffect::Render()
 {
 	IEffect::Render();
 }
-void ATypeEffect::Update(float dTime)
+void ATypeSkillEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 

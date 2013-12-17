@@ -5,11 +5,11 @@
 #include "NNAnimation.h"
 #include "Player.h"
 
-class CTypeEffect : public IEffect
+class CTypeSkillEffect : public IEffect
 {
 public:
-	CTypeEffect(NNPoint startPosition, float angle);
-	virtual ~CTypeEffect();
+	CTypeSkillEffect(NNPoint startPosition, float angle);
+	virtual ~CTypeSkillEffect();
 
 	void Render();
 	void Update(float dTime);

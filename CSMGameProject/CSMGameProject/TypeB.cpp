@@ -1,7 +1,7 @@
 
 #include "TypeB.h"
 
-BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition,int index):mIndex(index)
+BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition, NNPoint targetPosition,int index):mIndex(index)
 {
 	SetPosition(startPosition);
 
@@ -26,14 +26,14 @@ BTypeEffect::BTypeEffect(NNPoint startPosition, NNPoint targetPosition,int index
 
 	AddChild(mFlyAnimation);
 }
-BTypeEffect::~BTypeEffect()
+BTypeSkillEffect::~BTypeSkillEffect()
 {
 }
-void BTypeEffect::Render()
+void BTypeSkillEffect::Render()
 {
 	IEffect::Render();
 }
-void BTypeEffect::Update(float dTime)
+void BTypeSkillEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 
@@ -44,7 +44,7 @@ void BTypeEffect::Update(float dTime)
 	if (mIsCrash && mLifeTime < mNowLifeTime)
 		mIsEnd = true;
 }
-void BTypeEffect::Explose()
+void BTypeSkillEffect::Explose()
 {
 	mFlyAnimation->SetVisible(false);
 	mExplosionAnimation = NNAnimation::Create();
@@ -70,22 +70,30 @@ void BTypeEffect::Explose()
 
 BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition)
 {
-	mSprite = NNSprite::Create(L"sprite/SkillEffect/B/Attack/0.png");
+	mBullet = NNAnimation::Create();
 
-	SetRotation(angle);
-	SetPosition(startPosition);
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 8; i++)
+	{
+		wsprintf(temp, L"Sprite/SkillEffect/B/Attack/Bullet/%d.png", i);
+		mBullet->AddFrameNode(temp);
+	}
+	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
 
+	mIsCrash = false;
 	mAngle = angle;
 	mSpeed = 500.f;
-	mLifeTime = 0.3f;
-	//SetCenter(-30.f, 20.f);
+	mLifeTime = 1.0f;
 
-	AddChild(mSprite);
+	SetPosition(startPosition);
+	SetRotation(angle);
+	SetCenter(65.f, 65.f);
+
+	AddChild(mBullet);
 }
 BTypeAttackEffect::~BTypeAttackEffect()
 {
 }
-
 void BTypeAttackEffect::Render()
 {
 	IEffect::Render();
@@ -94,8 +102,37 @@ void BTypeAttackEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 
-	this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mAngle) * dTime, this->GetPositionY() + mSpeed * std::sinf(mAngle) * dTime);
+	if (mIsCrash == false)
+		this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mAngle) * dTime, this->GetPositionY() + mSpeed * std::sinf(mAngle) * dTime);
 
 	if (mLifeTime < mNowLifeTime)
-		mIsEnd = true;
+	{
+		if (mIsCrash == false)
+			Explose();
+		else
+			mIsEnd = true;
+	}
+
+}
+void BTypeAttackEffect::Explose()
+{
+	mBullet->SetVisible(false);
+	mExplosion = NNAnimation::Create();
+
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 41; i++)
+	{
+		wsprintf(temp, L"Sprite/SkillEffect/B/Attack/Explosion/%d.png", i);
+
+		mExplosion->AddFrameNode(temp);
+	}
+	mExplosion->SetFrameTimeInSection(0.02f, 0, 40);
+
+	AddChild(mExplosion);
+
+	SetCenter(15.f, 15.f);
+	mNowLifeTime = 0.f;
+	mLifeTime = mExplosion->GetPlayTime();
+
+	mIsCrash = true;
 }

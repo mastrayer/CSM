@@ -18,7 +18,7 @@ public:
 		static EffectManager* pInstance = new EffectManager();
 		return pInstance;
 	}
-	BTypeEffect* GetTypeBEffect(int index);
+	BTypeSkillEffect* GetTypeBEffect(int index);
 private:
 	std::list<IEffect*> mEffectList;
 
