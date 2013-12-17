@@ -87,4 +87,4 @@ NNXML* NNResourceManager::LoadXMLFromMemory( NNZip *buf )
 	return m_XMLTable[result];
 }
 
-NNResourceManager* GResourceManager = new NNResourceManager();
+NNResourceManager* GResourceManager;
