@@ -179,20 +179,13 @@ void GameUISet::Update(float dTime)
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-<<<<<<< HEAD
 	for (int i = 0; i < 4; ++i)
 	{
 		mTypeFace[i]->SetVisible(false);
 		mTypeSkillUI[i]->SetVisible(false);
 	}
  	
-	switch (mMyPlayer->GetPlayerType())
-=======
- 	for (int i = 0; i < 3; ++i)
- 		mTypeFace[i]->SetVisible(false);
-
  	switch (mMyPlayer->GetPlayerType())
->>>>>>> 636f2375a355408bc98a4f2ffd4ece72ed813dae
  	{
  	case PlayerType::TYPE_A:
  		mType->SetString(L"Fire");
