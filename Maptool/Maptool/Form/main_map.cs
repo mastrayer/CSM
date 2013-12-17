@@ -74,6 +74,12 @@ namespace Maptool
             int x = (e.X / TileSize) * TileSize;
             int y = (e.Y / TileSize) * TileSize;
 
+            if(SelectMode == true)
+            {
+                mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);
+                return;
+            }
+                
             switch(mainForm.layerType)
             {
                 case LAYER_TYPE.TILE_LAYER:
@@ -83,8 +89,6 @@ namespace Maptool
                    Graphics g = Graphics.FromImage(flag);
                    g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
 
-                   mainForm.updateAttributePanel(x / TileSize, y / TileSize);
-
                    work_map.Image = flag;
                    mainForm.Minimap_update();
                    refresh();
@@ -92,9 +96,9 @@ namespace Maptool
                    break;
 
                 case LAYER_TYPE.ATTRIBUTE_LAYER :
-
-
-                    break;
+                   grid[x / TileSize, y / TileSize].attributeHeight = mainForm.attributeSettingWindow.height;
+                   grid[x / TileSize, y / TileSize].attributeMove = mainForm.attributeSettingWindow.move;
+                   break;
 
                 case LAYER_TYPE.OBJECT_LAYER :
 
@@ -102,7 +106,7 @@ namespace Maptool
                     break;
 
             }
-            
+            mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);
         }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
@@ -148,18 +152,16 @@ namespace Maptool
 
             if(e.Button == MouseButtons.Left)
             {
-                if(SelectMode == true)
-                {
-                    mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);
-                }else
-                {
-                    cellClick(e);
-                    isDrag = true;
-                }
+                cellClick(e);
+                isDrag = true;
             }else if (e.Button == MouseButtons.Right)
             {
-                this.Cursor = Cursors.Help;
-                SelectMode = true;
+                if(SelectMode == false)
+                    this.Cursor = Cursors.Help;
+                else
+                    this.Cursor = Cursors.Default;
+
+                SelectMode = !SelectMode;
                 return;
             }
             
