@@ -42,7 +42,6 @@ namespace Maptool
                 return;
             }
 
-            this.label2.Text = mainForm.TileList[idx].ID.ToString();
             this.Size = new Size(mainForm.TileList[idx].image.Width + 5, mainForm.TileList[idx].image.Height + 95);
             this.ImageLoadPanel.Location = new Point(0, 64);
             this.ImageLoadPanel.Size = new Size(mainForm.TileList[idx].image.Width, mainForm.TileList[idx].image.Height);
@@ -180,6 +179,15 @@ namespace Maptool
             }
             mainForm.TileList.RemoveAt(index);
             changeImage(index-1 < 0 ? 0 : index-1);
+        }
+
+        Bitmap temp = new Bitmap(64, 64);
+        private void SelectEmptyTile_Click(object sender, EventArgs e)
+        {
+            SelectedTile.isFull = false;
+            SelectedTile.tile = temp;
+            SelectedTile.attributeMove = false;
+            Selected.Image = temp;
         }
     }
 }

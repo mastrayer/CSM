@@ -149,10 +149,6 @@ namespace Maptool
                 isDrag = true;
             }else if (e.Button == MouseButtons.Right)
             {
-                mainForm.TileSelectWindow.SelectedTile.isFull = false;
-                mainForm.TileSelectWindow.SelectedTile.tile = temp;
-                mainForm.TileSelectWindow.SelectedTile.attributeMove = false;
-
                 return;
             }
             

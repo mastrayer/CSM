@@ -35,7 +35,7 @@
             this.Selected = new System.Windows.Forms.PictureBox();
             this.OpenTileSet = new System.Windows.Forms.Button();
             this.DelTileSet = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.SelectEmptyTile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ImageLoadPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Selected)).BeginInit();
             this.SuspendLayout();
@@ -111,14 +111,16 @@
             this.DelTileSet.UseVisualStyleBackColor = false;
             this.DelTileSet.Click += new System.EventHandler(this.DelTileSet_Click);
             // 
-            // label2
+            // SelectEmptyTile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 12);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "label2";
+            this.SelectEmptyTile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SelectEmptyTile.Location = new System.Drawing.Point(227, 5);
+            this.SelectEmptyTile.Name = "SelectEmptyTile";
+            this.SelectEmptyTile.Size = new System.Drawing.Size(62, 57);
+            this.SelectEmptyTile.TabIndex = 8;
+            this.SelectEmptyTile.Text = "Empty Tile";
+            this.SelectEmptyTile.UseVisualStyleBackColor = true;
+            this.SelectEmptyTile.Click += new System.EventHandler(this.SelectEmptyTile_Click);
             // 
             // TileSelectForm
             // 
@@ -126,7 +128,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(292, 469);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.SelectEmptyTile);
             this.Controls.Add(this.DelTileSet);
             this.Controls.Add(this.OpenTileSet);
             this.Controls.Add(this.Selected);
@@ -156,6 +158,6 @@
         private System.Windows.Forms.PictureBox Selected;
         private System.Windows.Forms.Button OpenTileSet;
         private System.Windows.Forms.Button DelTileSet;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button SelectEmptyTile;
     }
 }
