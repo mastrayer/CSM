@@ -128,8 +128,8 @@ namespace Maptool
         }
         private Tile returnSelectedTile(Tile cell, Tile tile)
         {
-            tile.attributeHeight = cell.attributeHeight;
-            tile.attributeMove = cell.attributeMove;
+            cell.attributeHeight = tile.attributeHeight;
+            cell.attributeMove = tile.attributeMove;
 
             return tile;
         }
