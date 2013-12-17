@@ -14,6 +14,11 @@
 #define TYPE_C 2
 #define TYPE_D 3
 
+#define TYPE_A_MAXHP 50
+#define TYPE_B_MAXHP 50
+#define TYPE_C_MAXHP 50
+#define TYPE_D_MAXHP 50
+
 
 class Player
 {
@@ -31,7 +36,7 @@ private:
 
 	float mAttackRange;
 	int mHP;
-	int mDamage;
+	int mMaxHP;
 	float mSpeed;
 	float mResponTime;
 	float mAttackDelay;
@@ -56,6 +61,7 @@ public:
 	void SetPosition(Point position) { mPosition = position; }
 	void SetRotation(float angle) { mRotation = angle; }
 	void SetHP(int hp) {mHP = hp;}
+	void SetType( int type ) { mType = type; }
 	void ChangeType(int type);
 
 	Point GetPosition() { return mPosition; }
@@ -66,6 +72,7 @@ public:
 	int GetRadius(){ return mRadius; }
 
 	bool Damaged(int damage, Player* player); // return value : true - die, false - non-die
+	void Heal(int dHP);
 
 	void Update( float dTime );
 

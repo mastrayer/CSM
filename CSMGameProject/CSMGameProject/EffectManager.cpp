@@ -35,14 +35,26 @@ void EffectManager::AddEffect( IEffect* effect , int zIndex)
 	mEffectList.push_back( effect );
 	AddChild( effect , zIndex );
 }
-BTypeEffect* EffectManager::GetTypeBEffect(int index)
+ATypeAttackEffect* EffectManager::GetATypeAttackEffect(int index)
 {
 	for(auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
 	{
-		BTypeEffect* bTypeEffect = dynamic_cast<BTypeEffect*>(*iter);
-		if(bTypeEffect != nullptr && bTypeEffect->GetIndex() == index)
+		ATypeAttackEffect* pATypeAttackEffect = dynamic_cast<ATypeAttackEffect*>(*iter);
+		if(pATypeAttackEffect != nullptr && pATypeAttackEffect->GetIndex() == index)
 		{
-			return bTypeEffect;
+			return pATypeAttackEffect;
+		}
+	}
+	return nullptr;
+}
+BTypeAttackEffect* EffectManager::GetBTypeAttackEffect(int index)
+{
+	for(auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
+	{
+		BTypeAttackEffect* pBTypeAttackEffect = dynamic_cast<BTypeAttackEffect*>(*iter);
+		if(pBTypeAttackEffect != nullptr && pBTypeAttackEffect->GetIndex() == index)
+		{
+			return pBTypeAttackEffect;
 		}
 	}
 	return nullptr;

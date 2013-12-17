@@ -4,16 +4,25 @@
 #include "NNBaseHandler.h"
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
-
-class BTypeSkillEndHandler : public NNBaseHandler
+class ATypeAttackShootHandler : public NNBaseHandler
 {
 public:
-	BTypeSkillEndHandler();
-	virtual ~BTypeSkillEndHandler();
+	ATypeAttackShootHandler();
+	virtual ~ATypeAttackShootHandler();
 
 	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
 
-	BTypeSkillEndResult mBTypeSkillEndResult;
+	ATypeAttackShootResult mATypeAttackShootResult;
+};
+class ATypeAttackEndHandler : public NNBaseHandler
+{
+public:
+	ATypeAttackEndHandler();
+	virtual ~ATypeAttackEndHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	ATypeAttackEndResult mATypeAttackEndResult;
 };
 class ATypeSkillShootHandler : public NNBaseHandler
 {
@@ -25,6 +34,7 @@ public:
 
 	ATypeSkillShootResult mATypeSkillShootResult;
 };
+
 class BTypeSkillShootHandler : public NNBaseHandler
 {
 public:
@@ -35,15 +45,25 @@ public:
 
 	BTypeSkillShootResult mBTypeSkillShootResult;
 };
-class CTypeSkillShootHandler : public NNBaseHandler
+class BTypeAttackShootHandler : public NNBaseHandler
 {
 public:
-	CTypeSkillShootHandler();
-	virtual ~CTypeSkillShootHandler();
+	BTypeAttackShootHandler();
+	virtual ~BTypeAttackShootHandler();
 
 	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
 
-	CTypeSkillShootResult mCTypeSkillShootResult;
+	BTypeAttackShootResult mBTypeAttackShootResult;
+};
+class BTypeAttackEndHandler : public NNBaseHandler
+{
+public:
+	BTypeAttackEndHandler();
+	virtual ~BTypeAttackEndHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	BTypeAttackEndResult mBTypeAttackEndResult;
 };
 
 class KillScoreHandler : public NNBaseHandler

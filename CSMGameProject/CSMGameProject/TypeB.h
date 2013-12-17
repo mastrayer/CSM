@@ -6,21 +6,20 @@
 #include "Player.h"
 #include "PlayerManager.h"
 
-class BTypeEffect : public IEffect
+class BTypeSkillEffect : public IEffect
 {
 public:
-	BTypeEffect(NNPoint startPosition, NNPoint targetPosition, int index);
-	virtual ~BTypeEffect();
+	BTypeSkillEffect(NNPoint startPosition);
+	virtual ~BTypeSkillEffect();
 
 	void Render();
 	void Update(float dTime);
 	NNPoint FindTarget(NNPoint startPosition);
-	void Explosion();
+	void Explose();
 
-	int GetIndex(){ return mIndex; }
 
 private:
-	int mIndex;
+	bool mIsCrash;
 	float mMoveSpeed;
 	float mDirection;
 	NNPoint mSource;
@@ -32,12 +31,20 @@ private:
 class BTypeAttackEffect : public IEffect
 {
 public:
-	BTypeAttackEffect(float angle, NNPoint startPosition);
+	BTypeAttackEffect(float angle, NNPoint startPosition, int index);
 	virtual ~BTypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
-
+	
+	int GetIndex(){ return mIndex; }
+	void Explose();
 private:
-	NNAnimation *mAnimation;
+	bool mIsCrash;
+	NNAnimation *mBullet;
+	NNAnimation *mExplosion;
+	int mIndex;
+	float mAngle;
+	float mSpeed;
+	CPlayer *mFollower;
 };

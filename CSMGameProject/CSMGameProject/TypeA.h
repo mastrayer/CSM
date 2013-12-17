@@ -5,11 +5,11 @@
 #include "NNAnimation.h"
 #include "Player.h"
 
-class ATypeEffect : public IEffect
+class ATypeSkillEffect : public IEffect
 {
 public:
-	ATypeEffect(float angle, NNPoint startPosition);
-	virtual ~ATypeEffect();
+	ATypeSkillEffect(float angle, NNPoint startPosition);
+	virtual ~ATypeSkillEffect();
 
 	void Render();
 	void Update(float dTime);
@@ -26,13 +26,20 @@ private:
 class ATypeAttackEffect : public IEffect
 {
 public :
-	ATypeAttackEffect(CPlayer *follower);
+	ATypeAttackEffect(float angle, NNPoint startPoint, int index);
 	virtual ~ATypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
-
+	void Explose();
+	
+	int GetIndex(){ return mIndex; }
 private :
-	NNAnimationAtlas *mAnimation;
+	bool mIsCrash;
+	int mIndex;
+	NNAnimation *mBullet;
+	NNAnimation *mExplosion;
+	float mAngle;
+	float mSpeed;
 	CPlayer *mFollower;
 };

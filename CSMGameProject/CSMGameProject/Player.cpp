@@ -175,7 +175,7 @@ void CPlayer::Update( float dTime )
 			mDie->SetVisible( true );
 			mStop->SetVisible( false );
 			mMove->SetVisible( false );
-			mPlayerUI->SetHP( 0.f );
+			mPlayerUI->SetHP( 0 );
 		}
 		break;
 	case USER_ACTIVE_SKILL:

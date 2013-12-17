@@ -44,6 +44,7 @@ public:
 
 	virtual void Update(float dTime);
 	virtual bool isLive();
+	virtual void Hit(Player* victimPlayer, Player* attackerPlayer);
 
 protected:
 	Point mPoints[64];

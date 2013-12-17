@@ -29,7 +29,7 @@ void TypeChangeHandler::HandlingPacket( short packetType, NNCircularBuffer* circ
 		{
 			if ( circularBuffer->Read((char*)&mTypeChangeToBResultPacket, header->mSize) )
 			{
-				CPlayerManager::GetInstance()->UpdatePlayerType( mTypeChangeToAResultPacket.mPlayerId, TYPE_B );
+				CPlayerManager::GetInstance()->UpdatePlayerType( mTypeChangeToBResultPacket.mPlayerId, TYPE_B );
 			}
 		}
 		break;
@@ -37,7 +37,7 @@ void TypeChangeHandler::HandlingPacket( short packetType, NNCircularBuffer* circ
 		{
 			if ( circularBuffer->Read((char*)&mTypeChangeToCResultPacket, header->mSize) )
 			{
-				CPlayerManager::GetInstance()->UpdatePlayerType( mTypeChangeToAResultPacket.mPlayerId, TYPE_C );
+				CPlayerManager::GetInstance()->UpdatePlayerType( mTypeChangeToCResultPacket.mPlayerId, TYPE_C );
 			}
 		}
 		break;

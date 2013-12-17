@@ -10,12 +10,13 @@ void PlayerTypeChangeA( ClientSession* client, PacketHeader* header, CircularBuf
 
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mPlayerId);
 	_player->ChangeType( TYPE_A );
-
+	/*
 	TypeChangeToAResult outPacket;
 	outPacket.mPlayerId = inPacket.mPlayerId;
 	
 	if( !client->Broadcast(&outPacket) )
 		return;
+	*/
 }
 void PlayerTypeChangeB( ClientSession* client, PacketHeader* header, CircularBuffer* buffer )
 {
@@ -24,12 +25,13 @@ void PlayerTypeChangeB( ClientSession* client, PacketHeader* header, CircularBuf
 
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mPlayerId);
 	_player->ChangeType( TYPE_B );
-
+	/*
 	TypeChangeToBResult outPacket;
 	outPacket.mPlayerId = inPacket.mPlayerId;
 
 	if( !client->Broadcast(&outPacket) )
 		return;
+	*/
 }
 void PlayerTypeChangeC( ClientSession* client, PacketHeader* header, CircularBuffer* buffer )
 {
@@ -37,13 +39,14 @@ void PlayerTypeChangeC( ClientSession* client, PacketHeader* header, CircularBuf
 	buffer->Read((char*)&inPacket, header->mSize);
 
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mPlayerId);
-	_player->ChangeType( TYPE_D );
-
+	_player->ChangeType( TYPE_C );
+	/*
 	TypeChangeToCResult outPacket;
 	outPacket.mPlayerId = inPacket.mPlayerId;
 
 	if( !client->Broadcast(&outPacket) )
 		return;
+	*/
 }
 void PlayerTypeChangeD( ClientSession* client, PacketHeader* header, CircularBuffer* buffer )
 {
@@ -51,11 +54,12 @@ void PlayerTypeChangeD( ClientSession* client, PacketHeader* header, CircularBuf
 	buffer->Read((char*)&inPacket, header->mSize);
 
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mPlayerId);
-	_player->ChangeType( TYPE_A );
-
+	_player->ChangeType( TYPE_D );
+	/*
 	TypeChangeToDResult outPacket;
 	outPacket.mPlayerId = inPacket.mPlayerId;
 
 	if( !client->Broadcast(&outPacket) )
 		return;
+		*/
 }
