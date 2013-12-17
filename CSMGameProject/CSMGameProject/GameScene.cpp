@@ -55,9 +55,16 @@ void CGameScene::Update( float dTime )
 			// UI Setting
 			SetUISet( GameUISet::Create() );
 		}
-		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
-			CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-			,0.99f));
+		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
+		{
+			GetCamera().SetPosition( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() );
+		}
+		else
+		{
+			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
+				,0.99f));
+		}
 
 		if( isChangedGameKeyStates() == true )
 		{
