@@ -97,7 +97,7 @@ void GameMap::convertFileToMap( std::wstring path )
 			TiXmlElement* tileAttribute = child->FirstChild("Attribute")->ToElement();
 			m_Tile[i][j]->m_attribute = strcmp(tileAttribute->Attribute("move") , "true") == 0 ? 1 : 0;
 			m_Tile[i][j]->m_height = atoi(tileAttribute->Attribute("height"));
-			printf("%d / %d\n",i,j);
+			printf("%d / %d : %d\n",j,i,m_Tile[i][j]->m_attribute);
 		}
 		/*
 		for(int i=0; i<m_Height; ++i)
@@ -135,15 +135,15 @@ Point GameMap::positionToArrayIndex( Point p )
 bool GameMap::isValidTile( Point p )
 {
 	Point temp = positionToArrayIndex(p);
-	int i = (int)temp.x;
-	int j = (int)temp.y;
+	int i = (int)temp.y;
+	int j = (int)temp.x;
 
 	Tile *tile = m_Tile[i][j];
 
 	// 이 타일이 빈 타일이거나
 	// 움직일 수 없는 타일이거나
 	if(tile->m_isFull == false ||
-		tile->m_attribute & ATTRIBUTE_MOVE )
+		tile->m_attribute  == 0 )
 		return false;
 
 	return true;
