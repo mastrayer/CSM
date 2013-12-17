@@ -16,7 +16,9 @@ enum TileType
 	BARRACK_B,
 	BARRACK_C,
 	BARRACK_D,
-	STARTING_POINT,
+	BARRACK_OUT,
+	STARTING_POINT_A,
+	STARTING_POINT_B,
 };
 
 class CTile : public NNObject

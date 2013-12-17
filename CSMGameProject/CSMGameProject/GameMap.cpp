@@ -93,18 +93,22 @@ void CGameMap::convertFileToMap( std::wstring path )
 			TiXmlElement* tileObject = child->FirstChild("Object")->ToElement();
 
 			std::string temp = tileObject->Attribute("Type");
-			if ( temp == "tile" )
+			if ( temp == "Tile" )
 				mTile[i][j]->mType = TILE;
-			else if ( temp == "abarrack" )
+			else if ( temp == "Barrack A In" )
 				mTile[i][j]->mType = BARRACK_A;
-			else if ( temp == "bbarrack" )
+			else if ( temp == "Barrack B In" )
 				mTile[i][j]->mType = BARRACK_B;
-			else if ( temp == "cbarrack" )
+			else if ( temp == "Barrack C In" )
 				mTile[i][j]->mType = BARRACK_C;
-			else if ( temp == "dbarrack" )
+			else if ( temp == "Barrack D In" )
 				mTile[i][j]->mType = BARRACK_D;
-			else if ( temp == "starting point" )
-				mTile[i][j]->mType = STARTING_POINT;
+			else if ( temp == "Barrack Out" )
+				mTile[i][j]->mType = BARRACK_OUT;
+			else if ( temp == "A Team Starting Point" )
+				mTile[i][j]->mType = STARTING_POINT_A;
+			else if ( temp == "B Team Starting Point" )
+				mTile[i][j]->mType = STARTING_POINT_B;
 
 			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
 			mTile[i][j]->AddChild(mTile[i][j]->mimage);

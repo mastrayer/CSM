@@ -111,6 +111,8 @@ void GameMap::convertFileToMap( std::wstring path )
 				m_Tile[i][j]->m_Type = BARRACK_C;
 			else if ( temp == "Barrack D In" )
 				m_Tile[i][j]->m_Type = BARRACK_D;
+			else if ( temp == "Barrack Out" )
+				m_Tile[i][j]->m_Type = BARRACK_OUT;
 			else if ( temp == "A Team Starting Point" )
 			{
 				m_Tile[i][j]->m_Type = STARTING_POINT_A;
