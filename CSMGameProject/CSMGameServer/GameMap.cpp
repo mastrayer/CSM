@@ -16,6 +16,16 @@ GameMap::GameMap(std::wstring path)
 
 GameMap::~GameMap(void)
 {
+	for (int i=0; i<m_Height; ++i )
+	{
+		for (int j=0; j<m_Width; ++j )
+		{
+			delete m_Tile[i][j];
+		}
+		delete[] m_Tile[i];
+	}
+
+	delete[] m_Tile;
 }
 
 void en(int b)
