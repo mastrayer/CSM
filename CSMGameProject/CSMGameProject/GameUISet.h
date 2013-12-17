@@ -13,7 +13,8 @@ enum SlimeType
 {
 	FIRE = 0,
 	WATER = 1,
-	WIND = 2
+	WIND = 2,
+	EARTH = 3
 };
 
 
@@ -40,14 +41,15 @@ public:
 private:
 	NNLabel* mFPSLabel;
 
-	NNSprite *mSkillUI[SKILL_COUNT];
-	NNSprite *mSkillBarEffect[SKILL_COUNT];
-	NNLabel *mSkillTimer[SKILL_COUNT];
+	NNSprite *mTypeSkillUI[4];
+	NNSprite *mUserSkillUI;
+	NNLabel *mTypeSKillTimer[4];
+	NNLabel *mUserSkillTimer;
 	float mSkillCooltime[SKILL_COUNT];
 
 	NNSprite *mCharacterUIFrame;
 	NNSprite *mSkillUIFrame;
-	NNSprite *mTypeFace[3];
+	NNSprite *mTypeFace[4];
 	NNSprite *mHpBar;
 	NNSprite *mHpBarBackground;
 	NNSprite *mKillBar[2];
