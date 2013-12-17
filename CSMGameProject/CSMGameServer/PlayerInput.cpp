@@ -16,8 +16,8 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 	GPlayerManager->NewPlayer(id, client);
 
 	/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.
-	LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(client->mSocket, id);
-	GDatabaseJobManager->PushDatabaseJobRequest(newDbJob) ;
+	//LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(client->mSocket, id);
+	//GDatabaseJobManager->PushDatabaseJobRequest(newDbJob) ;
 
 	LoginResult outPacket ;
 	outPacket.mMyPlayerInfo = GPlayerManager->GetPlayer(id)->GetPlayerInfo();
