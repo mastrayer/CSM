@@ -141,4 +141,16 @@
   <data name="NewTileSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\newtileset.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Barrack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Barrack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Crown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartingPoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartingPoint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Move" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Move.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

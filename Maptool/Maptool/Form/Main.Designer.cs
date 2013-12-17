@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Starting Point");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Crown");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("barrack");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Starting Point");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Crown");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("barrack");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode6,
+            treeNode7});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +100,8 @@
             this.attribute_height = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.attribute_move = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.attribute_ObjectType = new System.Windows.Forms.Label();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -328,6 +330,7 @@
             this.menu_item_view_help.Name = "menu_item_view_help";
             this.menu_item_view_help.Size = new System.Drawing.Size(138, 22);
             this.menu_item_view_help.Text = "도움말 보기";
+            this.menu_item_view_help.Click += new System.EventHandler(this.ShowHelpPage);
             // 
             // menu_item_report_a_bug
             // 
@@ -351,18 +354,19 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 396);
             this.contents.Name = "contents";
-            treeNode17.Name = "노드1";
-            treeNode17.Text = "Starting Point";
-            treeNode18.Name = "노드3";
-            treeNode18.Text = "Crown";
-            treeNode19.Name = "노드4";
-            treeNode19.Text = "barrack";
-            treeNode20.Name = "TreeNodeObject";
-            treeNode20.Text = "Object";
+            treeNode5.Name = "노드1";
+            treeNode5.Text = "Starting Point";
+            treeNode6.Name = "노드3";
+            treeNode6.Text = "Crown";
+            treeNode7.Name = "노드4";
+            treeNode7.Text = "barrack";
+            treeNode8.Name = "TreeNodeObject";
+            treeNode8.Text = "Object";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode20});
+            treeNode8});
             this.contents.Size = new System.Drawing.Size(192, 323);
             this.contents.TabIndex = 3;
+            this.contents.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.SelectObject);
             // 
             // minimap
             // 
@@ -654,6 +658,8 @@
             // 
             // Attribute_panel
             // 
+            this.Attribute_panel.Controls.Add(this.attribute_ObjectType);
+            this.Attribute_panel.Controls.Add(this.label19);
             this.Attribute_panel.Controls.Add(this.CurrentTileInfo_Position);
             this.Attribute_panel.Controls.Add(this.attribute_index);
             this.Attribute_panel.Controls.Add(this.attribute_height);
@@ -687,7 +693,7 @@
             // attribute_height
             // 
             this.attribute_height.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.attribute_height.Location = new System.Drawing.Point(50, 41);
+            this.attribute_height.Location = new System.Drawing.Point(52, 44);
             this.attribute_height.MaxLength = 1;
             this.attribute_height.Name = "attribute_height";
             this.attribute_height.ReadOnly = true;
@@ -699,7 +705,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(9, 44);
+            this.label18.Location = new System.Drawing.Point(11, 44);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(39, 12);
             this.label18.TabIndex = 1;
@@ -710,12 +716,32 @@
             this.attribute_move.AutoCheck = false;
             this.attribute_move.AutoSize = true;
             this.attribute_move.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.attribute_move.Location = new System.Drawing.Point(9, 25);
+            this.attribute_move.Location = new System.Drawing.Point(11, 25);
             this.attribute_move.Name = "attribute_move";
             this.attribute_move.Size = new System.Drawing.Size(55, 16);
             this.attribute_move.TabIndex = 0;
             this.attribute_move.Text = "move";
             this.attribute_move.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(9, 68);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(74, 12);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Object Type";
+            // 
+            // attribute_ObjectType
+            // 
+            this.attribute_ObjectType.AutoEllipsis = true;
+            this.attribute_ObjectType.AutoSize = true;
+            this.attribute_ObjectType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.attribute_ObjectType.Location = new System.Drawing.Point(86, 68);
+            this.attribute_ObjectType.Name = "attribute_ObjectType";
+            this.attribute_ObjectType.Size = new System.Drawing.Size(11, 14);
+            this.attribute_ObjectType.TabIndex = 6;
+            this.attribute_ObjectType.Text = " ";
             // 
             // Main
             // 
@@ -817,6 +843,8 @@
         private System.Windows.Forms.TextBox attribute_height;
         private System.Windows.Forms.Label attribute_index;
         private System.Windows.Forms.Label CurrentTileInfo_Position;
+        private System.Windows.Forms.Label attribute_ObjectType;
+        private System.Windows.Forms.Label label19;
 
     }
 }
