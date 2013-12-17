@@ -32,7 +32,7 @@ class CPlayer : public NNObject
 public:
 	CPlayer(void);
 	virtual ~CPlayer(void);
-	void Init() {};
+	void Init();
 	void InitWithType();
 	void TransState( PlayerState state );
 	
@@ -48,7 +48,6 @@ public:
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mRotation; }
 	int GetPlayerHP() { return mHp; }
-	//NNSprite* GetPlayerSprite() { return mPlayerSprite; }
 	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
 	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
 	PlayerType GetPlayerType() { return mPlayerType; }
@@ -78,7 +77,6 @@ private:
 	NNLabel *mRebirthTimer;
 	
 	float mRebirthDelayTime;
-	//float mAngle;
 	int mHp;
 	int mTeam;
 	int mSpeed;

@@ -17,6 +17,15 @@
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),mRebirthDelayTime(10), mTeam(0)
 {
+}
+
+CPlayer::~CPlayer( void )
+{
+}
+
+void CPlayer::Init()
+{
+	/* Player Animation, Sprite Init */
 	mDie = NNSprite::Create( L"Sprite/die.png" );
 	mStop = NNSpriteAtlas::Create( L"Sprite/Player/player.png" );
 	mStop->SetCutSize( NNSize(0,41,65,83) );
@@ -36,14 +45,8 @@ CPlayer::CPlayer( void )
 	mPlayerUI->SetPosition( 21.f, 24.f );
 	AddChild( mPlayerUI );
 
-	//memset(mSkillCount, 0, sizeof(mSkillCount));
-	//memset(mSkillCooldown, 0, sizeof(mSkillCooldown));
 	ZeroMemory( mSkillCount, sizeof(mSkillCount) );
 	ZeroMemory( mSkillCooldown, sizeof(mSkillCooldown) );
-}
-
-CPlayer::~CPlayer( void )
-{
 }
 
 void CPlayer::CreateSkillEffect(PlayerType type, PlayerState skillType)
@@ -123,7 +126,6 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case USER_ACTIVE_SKILL:
-		//imagePath = L"Sprite/skill_0.png";
 		if (GetSkillCooldown(USER_ACTIVE_SKILL) == false)
 		{
 			SetSkillCooldown(true, USER_ACTIVE_SKILL);
@@ -199,13 +201,16 @@ void CPlayer::InitWithType()
 	{
 	case TYPE_A:
 		{
-		}break;
+		}
+		break;
 	case TYPE_B:
 		{
-		}break;
+		}
+		break;
 	case TYPE_C:
 		{
-		}break;
+		}
+		break;
 	default:
 		break;
 	}
