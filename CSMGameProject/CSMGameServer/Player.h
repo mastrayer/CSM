@@ -40,6 +40,8 @@ private:
 	float mDTime;
 
 	int mRadius;
+
+	int mKillScore;
 	
 public:
 	Player(void);
@@ -62,7 +64,7 @@ public:
 	int GetTeam(){ return mTeam; }
 	int GetRadius(){ return mRadius; }
 
-	bool Damaged(int damage); // return value : true - die, false - non-die
+	bool Damaged(int damage, Player* player); // return value : true - die, false - non-die
 
 	void Update( float dTime );
 

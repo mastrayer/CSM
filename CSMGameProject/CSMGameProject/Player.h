@@ -44,6 +44,7 @@ public:
 	void SetSkillCooldown(bool value, PlayerState skillType) { mSkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
 	void SetPlayerTeam(int team) { mTeam = team; }
 	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
+	void SetKillScore( int killScore ) { mKillScore = killScore; }
 	
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mRotation; }
@@ -52,7 +53,7 @@ public:
 	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
 	PlayerType GetPlayerType() { return mPlayerType; }
 	int GetTeam() { return mTeam; }
-
+	int GetKillScore() const { return mKillScore; }
 
 	void CreateSkillEffect(PlayerType type, PlayerState skillType);
 
@@ -80,6 +81,8 @@ private:
 	int mHp;
 	int mTeam;
 	int mSpeed;
+
+	int mKillScore;
 
 	float mSkillCount[SKILL_COUNT];
 	bool mSkillCooldown[SKILL_COUNT];

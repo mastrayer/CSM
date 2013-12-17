@@ -26,12 +26,16 @@
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
 #define PKT_SC_A_TYPESKILL_SHOOT 12
-#define PKT_SC_B_TYPESKILL_SHOOT 13
-#define PKT_SC_B_TYPESKILL_END 14
-#define PKT_SC_C_TYPESKILL_SHOOT 15
-#define PKT_SC_USERSKILL_FLASH 16
-#define PKT_SC_USERSKILL_DASH 17
 
+#define PKT_SC_A_TYPEATTACK_SHOOT 13
+#define PKT_SC_B_TYPESKILL_SHOOT 14
+#define PKT_SC_B_TYPESKILL_END 15
+#define PKT_SC_B_TYPEATTACK_SHOOT 16
+#define PKT_SC_C_TYPESKILL_SHOOT 17
+#define PKT_SC_USERSKILL_FLASH 18
+#define PKT_SC_USERSKILL_DASH 19
+
+#define PKT_SC_PLAYER_KILLSCORE_UPDATE 18
 struct Point
 {
 	Point()
@@ -101,6 +105,7 @@ struct PlayerInfo
 	Point mMoveDirection;
 	int mTeam;
 	int mType;
+	int mKillScore;
 };
 #pragma pack(push, 1)
 
@@ -184,6 +189,17 @@ struct MouseAngleUpdateRequest : public PacketHeader
 	float mAngle;
 };
 
+struct PlayerKillScoreUpdateResult : public PacketHeader
+{
+	PlayerKillScoreUpdateResult()
+	{
+		mSize = sizeof(PlayerKillScoreUpdateResult);
+		mType = PKT_SC_PLAYER_KILLSCORE_UPDATE;
+	}
+	int mPlayerId;
+	int mKillScore;
+};
+
 struct MouseAngleUpdateResult : public PacketHeader
 {
 	MouseAngleUpdateResult()
@@ -236,6 +252,16 @@ struct ATypeSkillShootResult : public PacketHeader
 	Point mStartPosition;
 	float mAngle;
 };
+struct ATypeAttackShootResult : public PacketHeader
+{
+	ATypeAttackShootResult()
+	{
+		mSize = sizeof(ATypeAttackShootResult);
+		mType = PKT_SC_A_TYPEATTACK_SHOOT;
+	}
+	Point mStartPosition;
+	float mAngle;
+};
 struct BTypeSkillShootResult : public PacketHeader
 {
 	BTypeSkillShootResult()
@@ -244,7 +270,7 @@ struct BTypeSkillShootResult : public PacketHeader
 		mType = PKT_SC_B_TYPESKILL_SHOOT;
 	}
 	Point mStartPosition;
-	Point mTargetPosition;
+	float mAngle;
 	int mIndex;
 };
 struct BTypeSkillEndResult : public PacketHeader
@@ -257,6 +283,16 @@ struct BTypeSkillEndResult : public PacketHeader
 	Point mBoomPosition;
 	int mIndex;
 };
+struct BTypeAttackShootResult : public PacketHeader
+{
+	BTypeAttackShootResult()
+	{
+		mSize = sizeof(BTypeAttackShootResult);
+		mType = PKT_SC_B_TYPEATTACK_SHOOT;
+	}
+	Point mStartPosition;
+	float mAngle;
+};
 struct CTypeSkillShootResult : public PacketHeader
 {
 	CTypeSkillShootResult()
@@ -267,4 +303,6 @@ struct CTypeSkillShootResult : public PacketHeader
 	Point mStartPosition;
 	float mAngle;
 };
+
+
 #pragma pack(pop)

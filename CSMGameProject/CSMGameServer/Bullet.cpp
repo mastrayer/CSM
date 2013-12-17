@@ -33,7 +33,7 @@ void Bullet::JudgeCollision(Player* player)
 				{
 					if( Point().Distance(mPosition,player->GetPosition()) < mRadius + player->GetRadius() )
 					{
-						player->Damaged(mDamage);
+						player->Damaged(mDamage, mOnwerPlayer);
 						mLifeTime = -1;
 					}
 				}
@@ -44,7 +44,7 @@ void Bullet::JudgeCollision(Player* player)
 					if(ellipseCollisionTest.collide(mPosition.x, mPosition.y, cos(mRotation) * mXRadius, sin(mRotation) * mXRadius, mYRadius,
 						player->GetPosition().x, player->GetPosition().y,player->GetRadius(),0,player->GetRadius() ) == true)
 					{
-						player->Damaged(mDamage);
+						player->Damaged(mDamage, mOnwerPlayer);
 						mLifeTime = -1;
 					}
 				}
@@ -63,7 +63,7 @@ void Bullet::JudgeCollision(Player* player)
 					rectanglePoints[3] = Point( mPosition.x - mCenter.x + mWidth, mPosition.y + mCenter.y );
 					if(PolyCollisionTest(circlePoints,32,rectanglePoints,4) == true)
 					{
-						player->Damaged(mDamage);
+						player->Damaged(mDamage, mOnwerPlayer);
 						mLifeTime = -1;
 					}
 				}
@@ -77,7 +77,7 @@ void Bullet::JudgeCollision(Player* player)
 					}
 					if(PolyCollisionTest(circlePoints,32,mPoints,mPointCount) == true)
 					{
-						player->Damaged(mDamage);
+						player->Damaged(mDamage, mOnwerPlayer);
 						mLifeTime = -1;
 					}
 				}

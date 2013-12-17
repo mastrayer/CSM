@@ -31,6 +31,7 @@ public:
 	void UpdatePlayerState(int _playerId, short state );
 	void UpdatePlayerTeam(int _playerId, int team);
 	void UpdatePlayerType(int _playerId, int type);
+	void UpdatePlayerKillScore( int playerId, int killScore );
 	int GetMyPlayerId() { return mMyPlayerId; };
 
 	std::map<int, CPlayer*> GetPlayerList() { return mPlayers; }

@@ -17,8 +17,7 @@ CGameScene::CGameScene(void) :
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
 	// GameMap Create
-	//mGameMap = CGameMap::Create(L"map/gamemap.csm");
-	mGameMap = CGameMap::Create(L"map/sample2.csm");
+	mGameMap = CGameMap::Create(L"map/gamemap.csm");
 
 	AddChild( mGameMap );
 
@@ -96,6 +95,7 @@ void CGameScene::InitNetworkSetting()
 	mMouseAngleUpdateHandler = new MouseAngleUpdateHandler();
 	mHPUpdateHandler = new HPUpdateHandler();
 	mKillScoreHandler = new KillScoreHandler();
+	mPlayerKillScoreHandler = new KillScoreHandler();
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
 	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
 	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
@@ -108,12 +108,14 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_MOUSEANGLE, mMouseAngleUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_HP, mHPUpdateHandler );
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KILLSCORE, mKillScoreHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_PLAYER_KILLSCORE_UPDATE, mPlayerKillScoreHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPESKILL_SHOOT, mATypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
 	
 
-	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
+	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
+	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }

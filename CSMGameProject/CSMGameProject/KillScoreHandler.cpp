@@ -4,6 +4,7 @@
 
 #include "PacketHandler.h"
 #include "GameManager.h"
+#include "PlayerManager.h"
 
 KillScoreHandler::KillScoreHandler()
 {
@@ -30,6 +31,19 @@ void KillScoreHandler::HandlingPacket(short packetType, NNCircularBuffer* circul
 				GameManager::GetInstance()->SetKillScore( mKillScoreResult.mKillScore );
 
 				printf("NEW Score %d / %d for %d[%d] \n", mKillScoreResult.mKillScore[0], mKillScoreResult.mKillScore[1], mKillScoreResult.mKillLimit);
+			}
+			else
+			{
+				assert(false);
+			}
+		}
+		break;
+
+	case PKT_SC_PLAYER_KILLSCORE_UPDATE:
+		{
+			if (circularBuffer->Read((char*)&mPlayerKillScoreResult, header->mSize))
+ 			{
+				CPlayerManager::GetInstance()->UpdatePlayerKillScore( mPlayerKillScoreResult.mPlayerId, mPlayerKillScoreResult.mKillScore );
 			}
 			else
 			{

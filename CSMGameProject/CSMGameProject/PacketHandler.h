@@ -55,6 +55,7 @@ public:
 	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
 
 	KillScoreResult mKillScoreResult;
+	PlayerKillScoreUpdateResult mPlayerKillScoreResult;
 };
 
 class HPUpdateHandler : public NNBaseHandler

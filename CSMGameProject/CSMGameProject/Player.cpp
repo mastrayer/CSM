@@ -15,7 +15,8 @@
 #include "UserSkillEffect.h"
 
 CPlayer::CPlayer( void )
-	: mMoveVelocity(NNPoint(0,0)), mHp(100),mRebirthDelayTime(10), mTeam(0)
+	: mMoveVelocity(NNPoint(0,0)), mHp(100),
+	  mRebirthDelayTime(10), mTeam(0), mKillScore(0)
 {
 }
 
@@ -112,6 +113,7 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case DIE:
+		
 		SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
 		//mRebirthTimer = NNLabel::Create(L"À¸¾Ó~ Áê±Ý~ XÃÊ ¿ì¸® Á» Àß ÇØº¾½Ã´Ù", L"¸¼Àº °íµñ", 40.f);
 		//mRebirthTimer->SetCenter(width / 2, height / 2 - 200);
@@ -173,6 +175,7 @@ void CPlayer::Update( float dTime )
 			mDie->SetVisible( true );
 			mStop->SetVisible( false );
 			mMove->SetVisible( false );
+			mPlayerUI->SetHP( 0.f );
 		}
 		break;
 	case USER_ACTIVE_SKILL:

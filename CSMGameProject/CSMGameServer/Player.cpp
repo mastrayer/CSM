@@ -9,8 +9,10 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client):mHP(),mDamage(),mPlayerState(PLAYER_STATE_IDLE),mMoveDirection(Point(-10.f,-10.f))
-	,mAttackRange(64),mRadius(24),mRotation(0),mAttackDelay(0),mUserSkillDelay(0),mTypeSkillDelay(0),mSpeed(0)
+Player::Player(int id, ClientSession* client)
+	: mHP(), mDamage(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
+	  mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
+	  mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
 	mType = 0;
 	InitWithType();
@@ -248,26 +250,27 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			Point AttackPoint = mPosition + Point(cos(mRotation) * mAttackRange,sin(mRotation) * mAttackRange);
-			std::map<int,Player*> players = GPlayerManager->GetPlayers();
-
-			for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+			switch (mType)
 			{
-				Player* enemy = it->second;
-				if(enemy == this)continue;
-
-				if(enemy->GetTeam() != GetTeam() && Point().Distance( enemy->GetPosition(), AttackPoint ) < mRadius )
+			case TYPE_A:
 				{
-					//ÇÇ°Ýµ¥½º³×
-					if ( enemy->Damaged(mDamage+rand()%10) == true);
-					{
-						//À÷¸¦ Á×ÀÎ°Å´Ï±î	
-						ChangeType(GetTypeChangeResult(mType, enemy->mType));
-					}
-				}
+					mAttackDelay = 1.f;
+					new ATypeAttack(mRotation,mPosition,this);
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			case TYPE_B:
+				{
+					mAttackDelay = 1.f;
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			case TYPE_C:
+				{	
+					mAttackDelay = 1.f;
+					TransState(PLAYER_STATE_IDLE);
+				}break;
+			default:
+				break;
 			}
-			TransState(PLAYER_STATE_IDLE);
-			break;
 		}
 		break;
 
@@ -366,8 +369,9 @@ void Player::Update( float dTime)
 	}
 }
 // return value : true - die, false - non-die
-bool Player::Damaged(int damage)
+bool Player::Damaged(int damage, Player* player)
 {
+	//ChangeType(GetTypeChangeResult(mType, enemy->mType));
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
 		HPUpdateResult outPacket = HPUpdateResult();
@@ -377,6 +381,14 @@ bool Player::Damaged(int damage)
 		//Á×¾ú½¿´Ù
 		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);
+
+		++player->mKillScore;
+
+		PlayerKillScoreUpdateResult outPlayerKillScoreUpdatePacket;
+		outPlayerKillScoreUpdatePacket.mPlayerId = player->mPlayerId;
+		outPlayerKillScoreUpdatePacket.mKillScore = player->mKillScore;
+		mClient->Broadcast(&outPlayerKillScoreUpdatePacket);
+
 		return true;
 	}
 	else
