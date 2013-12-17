@@ -26,6 +26,11 @@ __declspec(thread) int LThreadType = -1 ;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+#ifdef _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc( 155 );
+#endif
+
 	/// crash 발생시 dump 남기기 위해서
 	SetUnhandledExceptionFilter(ExceptionFilter) ;
 
