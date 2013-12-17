@@ -8,8 +8,6 @@ CPlayerManager* CPlayerManager::m_Instance = nullptr;
 CPlayerManager::CPlayerManager(void)
 	: mMyPlayerId(-1), mMyPlayer(nullptr)
 {
-	mKillScore[0] = 0;
-	mKillScore[1] = 0;
 }
 
 
@@ -118,7 +116,7 @@ CPlayer* CPlayerManager::NewPlayer(int id)
 	std::map<int,CPlayer*>::iterator itor = mPlayers.find(id);
 	if( itor == mPlayers.end() ) 
 	{
-		newPlayer = new CPlayer();
+		newPlayer = CPlayer::Create();//new CPlayer();
 		mPlayers.insert(std::map<int,CPlayer*>::value_type(id,newPlayer));
 		NNSceneDirector::GetInstance()->GetNowScene()->AddChild(newPlayer, 0);
 	}
