@@ -4,8 +4,7 @@
 
 #include "PacketHandler.h"
 #include "GameManager.h"
-
-#include "NNLogger.h"
+#include "PlayerManager.h"
 
 KillScoreHandler::KillScoreHandler()
 {
@@ -42,10 +41,9 @@ void KillScoreHandler::HandlingPacket(short packetType, NNCircularBuffer* circul
 
 	case PKT_SC_PLAYER_KILLSCORE_UPDATE:
 		{
-			if (circularBuffer->Read((char*)&mKillScoreResult, header->mSize))
+			if (circularBuffer->Read((char*)&mPlayerKillScoreResult, header->mSize))
  			{
-				// 패킷처리
-				NNLogger::DebugLog("DEBUG");
+				CPlayerManager::GetInstance()->UpdatePlayerKillScore( mPlayerKillScoreResult.mPlayerId, mPlayerKillScoreResult.mKillScore );
 			}
 			else
 			{
