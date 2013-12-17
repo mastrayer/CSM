@@ -1,7 +1,10 @@
-#include "PacketHandler.h"
+
 #include <stdio.h>
 #include <assert.h>
-#include "PlayerManager.h"
+
+#include "PacketHandler.h"
+#include "GameManager.h"
+
 KillScoreHandler::KillScoreHandler()
 {
 
@@ -20,8 +23,11 @@ void KillScoreHandler::HandlingPacket(short packetType, NNCircularBuffer* circul
 			{
 				// 패킷처리
 
-				CPlayerManager::GetInstance()->SetKillLimit(mKillScoreResult.mKillLimit);
-				CPlayerManager::GetInstance()->SetKillScore(mKillScoreResult.mKillScore);
+				//CPlayerManager::GetInstance()->SetKillLimit(mKillScoreResult.mKillLimit);
+				//CPlayerManager::GetInstance()->SetKillScore(mKillScoreResult.mKillScore);
+
+				GameManager::GetInstance()->SetKillLimit( mKillScoreResult.mKillLimit );
+				GameManager::GetInstance()->SetKillScore( mKillScoreResult.mKillScore );
 
 				printf("NEW Score %d / %d for %d[%d] \n", mKillScoreResult.mKillScore[0], mKillScoreResult.mKillScore[1], mKillScoreResult.mKillLimit);
 			}

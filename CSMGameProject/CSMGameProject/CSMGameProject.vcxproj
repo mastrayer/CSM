@@ -91,6 +91,7 @@
     <ClCompile Include="FirstCut.cpp" />
     <ClCompile Include="FourthCut.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameUISet.cpp" />
     <ClCompile Include="HPUpdateHandler.cpp" />
     <ClCompile Include="IntroScene.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="FifthCut.h" />
     <ClInclude Include="FirstCut.h" />
     <ClInclude Include="FourthCut.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameUISet.h" />
     <ClInclude Include="IntroScene.h" />
     <ClInclude Include="MainMenuScene.h" />

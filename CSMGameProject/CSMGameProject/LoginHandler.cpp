@@ -1,8 +1,11 @@
 
-#include "PacketHandler.h"
 #include <stdio.h>
 #include <assert.h>
+
+#include "PacketHandler.h"
 #include "PlayerManager.h"
+#include "GameManager.h"
+
 LoginHandler::LoginHandler()
 {
 
@@ -36,8 +39,11 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 						CPlayerManager::GetInstance()->UpdatePlayerInfo( mLoginResultPacket.mPlayerInfo[i] );
 					}
 				}
-				CPlayerManager::GetInstance()->SetKillLimit(mLoginResultPacket.mKillLimit);
-				CPlayerManager::GetInstance()->SetKillScore(mLoginResultPacket.mKillScore);
+				//CPlayerManager::GetInstance()->SetKillLimit(mLoginResultPacket.mKillLimit);
+				//CPlayerManager::GetInstance()->SetKillScore(mLoginResultPacket.mKillScore);
+				GameManager::GetInstance()->SetKillLimit( mLoginResultPacket.mKillLimit );
+				GameManager::GetInstance()->SetKillScore( mLoginResultPacket.mKillScore );
+
 				printf("LOGIN SUCCESS ClientId[%d] \n", mLoginResultPacket.mMyPlayerInfo.mPlayerId) ;
 			}
 			else

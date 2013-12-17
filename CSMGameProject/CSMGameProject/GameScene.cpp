@@ -4,6 +4,10 @@
 #include "PacketType.h"
 #include "NNNetworkSystem.h"
 #include "PacketHandler.h"
+#include "EffectManager.h"
+
+#include "PlayerManager.h"
+#include "GameManager.h"
 
 CGameScene::CGameScene(void) : 
 	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
@@ -25,6 +29,8 @@ CGameScene::CGameScene(void) :
 
 CGameScene::~CGameScene(void)
 {
+	CPlayerManager::ReleaseInstance();
+	GameManager::ReleaseInstance();
 }
 
 void CGameScene::Init()
