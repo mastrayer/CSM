@@ -196,6 +196,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Game\Scene\GameScene\Object\GameManager</Filter>
     </ClCompile>
+    <ClCompile Include="TypeChangeHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">

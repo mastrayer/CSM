@@ -148,6 +148,9 @@
     <ClCompile Include="BulletManager.cpp">
       <Filter>Game\Bullet\BulletManager</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Game\Packet\PacketProcess\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -324,6 +327,9 @@
     <ClInclude Include="BulletManager.h">
       <Filter>Game\Bullet\BulletManager</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Game\Packet\PacketProcess\PlayerState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -430,6 +436,9 @@
     </Filter>
     <Filter Include="Game\Bullet\BulletManager">
       <UniqueIdentifier>{36e41141-1390-485e-951c-4223ff637c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\PacketProcess\PlayerState">
+      <UniqueIdentifier>{7cc25137-be53-43bc-9298-28fd2ac478f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
