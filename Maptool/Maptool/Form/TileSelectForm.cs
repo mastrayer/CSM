@@ -126,6 +126,7 @@ namespace Maptool
             SelectedTile.tile = new Bitmap(TileSize, TileSize);
             SelectedTile.tile = mainForm.TileList[index].image.Clone(new Rectangle(new Point(x,y),new Size(TileSize, TileSize)), mainForm.TileList[index].image.PixelFormat);
             Selected.Image = SelectedTile.tile;
+            mainForm.mainMap.SelectMode = false;
         }
 
         private void OpenTileSet_Click(object sender, EventArgs e)

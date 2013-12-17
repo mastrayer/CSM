@@ -18,6 +18,7 @@ namespace Maptool
         public Point highlight;
         int brush = Convert.ToInt32(Maptool.Properties.Resources.GRID_CELL_WIDTH);
         public Bitmap flag;
+        public bool SelectMode = false;
         Main mainForm;
 
         public struct Tile
@@ -145,10 +146,17 @@ namespace Maptool
         {
             if(e.Button == MouseButtons.Left)
             {
-                cellClick(e);
-                isDrag = true;
+                if(SelectMode == true)
+                {
+                    mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);
+                }else
+                {
+                    cellClick(e);
+                    isDrag = true;
+                }
             }else if (e.Button == MouseButtons.Right)
             {
+                SelectMode = true;
                 return;
             }
             
