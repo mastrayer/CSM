@@ -144,6 +144,8 @@ namespace Maptool
         bool isDrag = false;
         private void main_map_MouseDown(object sender, MouseEventArgs e)
         {
+            if (SelectMode == false) this.Cursor = Cursors.Default;
+
             if(e.Button == MouseButtons.Left)
             {
                 if(SelectMode == true)
@@ -156,6 +158,7 @@ namespace Maptool
                 }
             }else if (e.Button == MouseButtons.Right)
             {
+                this.Cursor = Cursors.Help;
                 SelectMode = true;
                 return;
             }

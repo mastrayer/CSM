@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Starting Point");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Crown");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("barrack");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Starting Point");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Crown");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("barrack");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -351,16 +351,16 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 396);
             this.contents.Name = "contents";
-            treeNode9.Name = "노드1";
-            treeNode9.Text = "Starting Point";
-            treeNode10.Name = "노드3";
-            treeNode10.Text = "Crown";
-            treeNode11.Name = "노드4";
-            treeNode11.Text = "barrack";
-            treeNode12.Name = "TreeNodeObject";
-            treeNode12.Text = "Object";
+            treeNode17.Name = "노드1";
+            treeNode17.Text = "Starting Point";
+            treeNode18.Name = "노드3";
+            treeNode18.Text = "Crown";
+            treeNode19.Name = "노드4";
+            treeNode19.Text = "barrack";
+            treeNode20.Name = "TreeNodeObject";
+            treeNode20.Text = "Object";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode20});
             this.contents.Size = new System.Drawing.Size(192, 323);
             this.contents.TabIndex = 3;
             // 
@@ -686,12 +686,14 @@
             // 
             // attribute_height
             // 
+            this.attribute_height.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.attribute_height.Location = new System.Drawing.Point(50, 41);
             this.attribute_height.MaxLength = 1;
             this.attribute_height.Name = "attribute_height";
+            this.attribute_height.ReadOnly = true;
             this.attribute_height.Size = new System.Drawing.Size(14, 21);
             this.attribute_height.TabIndex = 2;
-            this.attribute_height.Text = "0";
+            this.attribute_height.Text = " ";
             this.attribute_height.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.isNumber);
             // 
             // label18

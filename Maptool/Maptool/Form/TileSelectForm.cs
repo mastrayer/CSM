@@ -42,7 +42,9 @@ namespace Maptool
                 return;
             }
 
-            this.Size = new Size(mainForm.TileList[idx].image.Width + 5, mainForm.TileList[idx].image.Height + 95);
+            if (mainForm.TileList[idx].image.Width < 240) this.Size = new Size(240, mainForm.TileList[idx].image.Height + 100);
+            else this.Size = new Size(mainForm.TileList[idx].image.Width + 15, mainForm.TileList[idx].image.Height + 100);
+
             this.ImageLoadPanel.Location = new Point(0, 64);
             this.ImageLoadPanel.Size = new Size(mainForm.TileList[idx].image.Width, mainForm.TileList[idx].image.Height);
             //this.pictureBox1.Image = mainForm.TileList[idx];
@@ -147,7 +149,15 @@ namespace Maptool
                     {
                         using (myStream)
                         {
-                            mainForm.TileList.Add(new Main.BitmapList(mainForm.bitmapID++, new Bitmap(openFileDialog1.FileName)));
+                            Bitmap loadImage = new Bitmap(openFileDialog1.FileName);
+                            if( loadImage.Width < 64 || loadImage.Height < 64)
+                            {
+                                MessageBox.Show("이미지 사이즈는 최소 64x64입니다.");
+                                loadImage.Dispose();
+                                return;
+                            }
+
+                            mainForm.TileList.Add(new Main.BitmapList(mainForm.bitmapID++, loadImage));
                             mainForm.TileSelectWindow.Show();
 
                             mainForm.TileSelectWindow.changeImage(mainForm.TileList.Count - 1);

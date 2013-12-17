@@ -114,7 +114,7 @@
             // SelectEmptyTile
             // 
             this.SelectEmptyTile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SelectEmptyTile.Location = new System.Drawing.Point(227, 5);
+            this.SelectEmptyTile.Location = new System.Drawing.Point(228, 5);
             this.SelectEmptyTile.Name = "SelectEmptyTile";
             this.SelectEmptyTile.Size = new System.Drawing.Size(62, 57);
             this.SelectEmptyTile.TabIndex = 8;

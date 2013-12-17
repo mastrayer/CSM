@@ -29,6 +29,7 @@ namespace Maptool
         // form
         public main_map mainMap;
         public TileSelectForm TileSelectWindow = null;
+        public AttributeSettingForm attributeSettingWindow = null;
 
         // values
         Bitmap minimapImage;
@@ -118,16 +119,18 @@ namespace Maptool
         }
         public void init()
         {
-            layers.SelectedIndex = 0;
             magnification.Text = "100%";
             Zoom = Convert.ToDouble(magnification.Text.Remove(magnification.Text.Length - 1)) / 100;
 
             TileSelectWindow = new TileSelectForm(this);
+            attributeSettingWindow = new AttributeSettingForm(this);
 
             mainMap_init(16, 16);
             Minimap_update();
 
             TileSelectWindow.Show();
+            attributeSettingWindow.Show();
+            layers.SelectedIndex = 0;
         }
         public void mainMap_init(int width, int height)
         {
@@ -471,17 +474,12 @@ namespace Maptool
         {
             e.Handled = true;
             return;
-            if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != Convert.ToChar(Keys.Back))
-            {
-                //숫자입력만 받도록 한다.
-                e.Handled = true;
-            }
         }
         private void layers_TextChanged(object sender, EventArgs e)
         {
-            //Attribute_panel.Enabled = false;
             contents.Enabled = false;
             if(TileSelectWindow != null) TileSelectWindow.ImageLoadPanel.Enabled = false;
+            if (attributeSettingWindow != null) attributeSettingWindow.Hide();
 
             String text = ((ComboBox)sender).Text;
             if (text == "Tile Layer")
@@ -492,7 +490,7 @@ namespace Maptool
             else if (text == "Attribute Layer")
             {
                 layerType = LAYER_TYPE.ATTRIBUTE_LAYER;
-                Attribute_panel.Enabled = true;
+                if (attributeSettingWindow != null) attributeSettingWindow.Show();
             }
             else if (text == "Object Layer")
             {
