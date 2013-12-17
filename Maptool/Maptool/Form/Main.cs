@@ -452,10 +452,12 @@ namespace Maptool
         }
         public void updateAttributePanel(int x, int y)
         {
-             selectedPoint.X = x;
-             selectedPoint.Y = y;
+              CurrentTileInfo_Position.Text = x.ToString() + " / " + y.ToString();
+              selectedPoint.X = x;
+              selectedPoint.Y = y;
  
              attribute_move.Checked = mainMap.grid[x, y].attributeMove;
+
              attribute_height.Text = mainMap.grid[x, y].attributeHeight.ToString();
              attribute_index.Text = x.ToString() + "/" + y.ToString();
         }
@@ -467,6 +469,8 @@ namespace Maptool
 
         private void isNumber(object sender, KeyPressEventArgs e)
         {
+            e.Handled = true;
+            return;
             if (!(Char.IsDigit(e.KeyChar)) && e.KeyChar != Convert.ToChar(Keys.Back))
             {
                 //숫자입력만 받도록 한다.
@@ -475,10 +479,31 @@ namespace Maptool
         }
         private void layers_TextChanged(object sender, EventArgs e)
         {
+            //Attribute_panel.Enabled = false;
+            contents.Enabled = false;
+            if(TileSelectWindow != null) TileSelectWindow.ImageLoadPanel.Enabled = false;
+
             String text = ((ComboBox)sender).Text;
-            if (text == "Tile Layer") layerType = LAYER_TYPE.TILE_LAYER;
-            else if (text == "Attribute Layer") layerType = LAYER_TYPE.ATTRIBUTE_LAYER;
-            else if (text == "Object Layer") layerType = LAYER_TYPE.OBJECT_LAYER;
+            if (text == "Tile Layer")
+            {
+                layerType = LAYER_TYPE.TILE_LAYER;
+                if (TileSelectWindow != null) TileSelectWindow.ImageLoadPanel.Enabled = true;
+            }
+            else if (text == "Attribute Layer")
+            {
+                layerType = LAYER_TYPE.ATTRIBUTE_LAYER;
+                Attribute_panel.Enabled = true;
+            }
+            else if (text == "Object Layer")
+            {
+                layerType = LAYER_TYPE.OBJECT_LAYER;
+                contents.Enabled = true;
+            }
+        }
+
+        private void attribute_move_CheckStateChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

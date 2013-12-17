@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\AttributeSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\AttributeSettingForm.Designer.cs">
+      <DependentUpon>AttributeSettingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="Form\TileSelectForm.Designer.cs">
       <DependentUpon>TileSelectForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form\AttributeSettingForm.resx">
+      <DependentUpon>AttributeSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

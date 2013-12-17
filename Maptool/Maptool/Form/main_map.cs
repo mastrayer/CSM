@@ -70,9 +70,6 @@ namespace Maptool
         }
         private void cellClick(MouseEventArgs e)
         {
-           if (highlight.X == e.X / TileSize && highlight.Y == e.Y / TileSize)
-                return;
-
             int x = (e.X / TileSize) * TileSize;
             int y = (e.Y / TileSize) * TileSize;
 
@@ -146,7 +143,11 @@ namespace Maptool
         bool isDrag = false;
         private void main_map_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if(e.Button == MouseButtons.Left)
+            {
+                cellClick(e);
+                isDrag = true;
+            }else if (e.Button == MouseButtons.Right)
             {
                 mainForm.TileSelectWindow.SelectedTile.isFull = false;
                 mainForm.TileSelectWindow.SelectedTile.tile = temp;
@@ -154,8 +155,7 @@ namespace Maptool
 
                 return;
             }
-            isDrag = true;
-            cellClick(e);
+            
         }
 
         private void work_map_MouseUp(object sender, MouseEventArgs e)
