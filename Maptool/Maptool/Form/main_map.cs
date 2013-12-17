@@ -150,6 +150,7 @@ namespace Maptool
             {
                 mainForm.TileSelectWindow.SelectedTile.isFull = false;
                 mainForm.TileSelectWindow.SelectedTile.tile = temp;
+                mainForm.TileSelectWindow.SelectedTile.attributeMove = false;
 
                 return;
             }

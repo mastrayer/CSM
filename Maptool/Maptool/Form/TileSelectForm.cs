@@ -121,6 +121,7 @@ namespace Maptool
                 return;
 
             SelectedTile.isFull = true;
+            SelectedTile.attributeMove = true;
             SelectedTile.TileLocation = new Point(x, y);
             SelectedTile.TIleSetID = mainForm.TileList[index].ID;
             SelectedTile.tile = new Bitmap(TileSize, TileSize);
