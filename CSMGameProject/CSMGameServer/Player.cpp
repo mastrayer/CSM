@@ -114,7 +114,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-	if(mPlayerState == TYPE_ZERO) break;
+	if(mType == TYPE_ZERO) break;
 			if(mAttackDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				mPreDelay = 0.1f;
@@ -135,7 +135,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_DIE:
 		{
-	if(mPlayerState == TYPE_ZERO) break;
+	if(mType == TYPE_ZERO) break;
 			mResponTime = 5.f;
 			mPlayerState = state;
 			
@@ -147,10 +147,10 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
-	if(mPlayerState == TYPE_ZERO) break;
+	if(mType == TYPE_ZERO) break;
 			if(mTypeSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
-				mPreDelay = 0.1f;
+				//mPreDelay = 0.1f;
 				mMoveDirection = Point(0,0);
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -165,10 +165,10 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
-	if(mPlayerState == TYPE_ZERO) break;
+	if(mType == TYPE_ZERO) break;
 			if(mUserSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
-				mPreDelay = 0.1f;
+				//mPreDelay = 0.1f;
 				mMoveDirection = Point(0,0);
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -338,7 +338,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-			if(mPreDelay > 0) break;
+			//if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -394,7 +394,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
-			if(mPreDelay > 0) break;
+			//if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:
@@ -427,7 +427,7 @@ void Player::Update( float dTime)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
-			if(mPreDelay > 0) break;
+			//if(mPreDelay > 0) break;
 			switch (mType)
 			{
 			case TYPE_A:

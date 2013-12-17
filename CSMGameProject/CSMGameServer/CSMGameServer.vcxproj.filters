@@ -154,6 +154,15 @@
     <ClCompile Include="BTypeSkillBullet.cpp">
       <Filter>Game\TypeAttack&amp;Skill\B\BTypeSkillBullet</Filter>
     </ClCompile>
+    <ClCompile Include="CTypeAttackBullet.cpp">
+      <Filter>Game\TypeAttack&amp;Skill\C\CTypeAttackBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="DTypeAttack.cpp">
+      <Filter>Game\TypeAttack&amp;Skill\D</Filter>
+    </ClCompile>
+    <ClCompile Include="DTypeSkill.cpp">
+      <Filter>Game\TypeAttack&amp;Skill\D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -336,6 +345,15 @@
     <ClInclude Include="BTypeSkillBullet.h">
       <Filter>Game\TypeAttack&amp;Skill\B\BTypeSkillBullet</Filter>
     </ClInclude>
+    <ClInclude Include="CTypeAttackBullet.h">
+      <Filter>Game\TypeAttack&amp;Skill\C\CTypeAttackBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="DTypeAttack.h">
+      <Filter>Game\TypeAttack&amp;Skill\D</Filter>
+    </ClInclude>
+    <ClInclude Include="DTypeSkill.h">
+      <Filter>Game\TypeAttack&amp;Skill\D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -448,6 +466,12 @@
     </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill\B\BTypeSkillBullet">
       <UniqueIdentifier>{16740a50-0750-492f-a2e1-8533fa788931}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\TypeAttack&amp;Skill\C\CTypeAttackBullet">
+      <UniqueIdentifier>{f8239af7-9197-4d12-ace7-e1b940e26e45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\TypeAttack&amp;Skill\D">
+      <UniqueIdentifier>{e0cbe3c4-0bb4-4201-91f8-a6a8f35a43eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

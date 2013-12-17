@@ -24,9 +24,12 @@
     <ClCompile Include="ClientManager.cpp" />
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="CTypeAttack.cpp" />
+    <ClCompile Include="CTypeAttackBullet.cpp" />
     <ClCompile Include="DatabaseJobContext.cpp" />
     <ClCompile Include="DatabaseJobManager.cpp" />
     <ClCompile Include="DbHelper.cpp" />
+    <ClCompile Include="DTypeAttack.cpp" />
+    <ClCompile Include="DTypeSkill.cpp" />
     <ClCompile Include="EllipseCollisionTest.h" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
@@ -82,9 +85,12 @@
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="CTypeAttack.h" />
+    <ClInclude Include="CTypeAttackBullet.h" />
     <ClInclude Include="DatabaseJobContext.h" />
     <ClInclude Include="DatabaseJobManager.h" />
     <ClInclude Include="DbHelper.h" />
+    <ClInclude Include="DTypeAttack.h" />
+    <ClInclude Include="DTypeSkill.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="Library\MD5\md5.h" />

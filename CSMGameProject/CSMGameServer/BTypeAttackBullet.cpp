@@ -12,6 +12,7 @@ BTypeAttackBullet::BTypeAttackBullet(Player* ownerPlayer, Point position, float 
 	SetRadius(20);
 	SetDamage(5);
 	mHeal = 10;
+	mDidExplosed = false;
 	SetLifeTime(1.0f);
 }
 
@@ -27,7 +28,7 @@ void BTypeAttackBullet::Update(float dTime)
 
 bool BTypeAttackBullet::isLive()
 {
-	return !mDidExplosed;
+	return !mDidExplosed && mLifeTime >= 0;
 }
 
 void BTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
@@ -41,6 +42,7 @@ void BTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 		victimPlayer->Heal(mHeal);
 	}
 	mLifeTime = -1;
+	mDidExplosed = true;
 	BTypeAttackEndResult outPacket = BTypeAttackEndResult();
 	outPacket.mIndex = GetBulletNumber();
 	GClientManager->BroadcastPacket(nullptr,&outPacket);

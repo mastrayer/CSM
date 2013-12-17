@@ -25,6 +25,7 @@
 #define PKT_SC_HP 9
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
+
 #define PKT_SC_A_TYPESKILL_SHOOT 12
 
 #define PKT_SC_A_TYPEATTACK_SHOOT 13
@@ -35,19 +36,20 @@
 #define PKT_SC_B_TYPEATTACK_SHOOT 16
 #define PKT_SC_B_TYPEATTACK_END 17
 
-#define PKT_SC_USERSKILL_FLASH 18
-#define PKT_SC_USERSKILL_DASH 19
+#define PKT_SC_C_TYPESKILL_SHOOT 18
 
-#define PKT_CS_TYPE_CHANGE_A 30
-#define PKT_CS_TYPE_CHANGE_B 31
-#define PKT_CS_TYPE_CHANGE_C 32
-#define PKT_CS_TYPE_CHANGE_D 33
-#define PKT_SC_TYPE_CHANGE_A 34
-#define PKT_SC_TYPE_CHANGE_B 35
-#define PKT_SC_TYPE_CHANGE_C 36
-#define PKT_SC_TYPE_CHANGE_D 37
+#define PKT_SC_C_TYPEATTACK_SHOOT 19
+#define PKT_SC_C_TYPEATTACK_END 20
 
-#define PKT_SC_PLAYER_KILLSCORE_UPDATE 20
+#define PKT_SC_D_TYPESKILL_SHOOT 21
+#define PKT_SC_D_TYPESKILL_END 22
+
+#define PKT_SC_D_TYPEATTACK_SHOOT 23
+
+#define PKT_SC_USERSKILL_FLASH 24
+#define PKT_SC_USERSKILL_DASH 25
+
+#define PKT_SC_PLAYER_KILLSCORE_UPDATE 26
 
 struct Point
 {
@@ -315,79 +317,65 @@ struct BTypeAttackEndResult : public PacketHeader
 	int mIndex;
 };
 
-struct TypeChangeToARequest : public PacketHeader
+struct CTypeAttackShootResult : public PacketHeader
 {
-	TypeChangeToARequest()
+	CTypeAttackShootResult()
 	{
-		mSize = sizeof(TypeChangeToARequest);
-		mType = PKT_CS_TYPE_CHANGE_A;
+		mSize = sizeof(CTypeAttackShootResult);
+		mType = PKT_SC_C_TYPEATTACK_SHOOT;
 	}
-	int mPlayerId;
+	Point mStartPosition;
+	float mAngle;
+	int mIndex;
 };
-struct TypeChangeToBRequest : public PacketHeader
+struct CTypeAttackEndResult : public PacketHeader
 {
-	TypeChangeToBRequest()
+	CTypeAttackEndResult()
 	{
-		mSize = sizeof(TypeChangeToARequest);
-		mType = PKT_CS_TYPE_CHANGE_B;
+		mSize = sizeof(CTypeAttackEndResult);
+		mType = PKT_SC_C_TYPEATTACK_END;
 	}
-	int mPlayerId;
+	int mIndex;
 };
-struct TypeChangeToCRequest : public PacketHeader
+struct CTypeSkillShootResult : public PacketHeader
 {
-	TypeChangeToCRequest()
+	CTypeSkillShootResult()
 	{
-		mSize = sizeof(TypeChangeToARequest);
-		mType = PKT_CS_TYPE_CHANGE_C;
+		mSize = sizeof(CTypeSkillShootResult);
+		mType = PKT_SC_C_TYPESKILL_SHOOT;
 	}
-	int mPlayerId;
-};
-struct TypeChangeToDRequest : public PacketHeader
-{
-	TypeChangeToDRequest()
-	{
-		mSize = sizeof(TypeChangeToDRequest);
-		mType = PKT_CS_TYPE_CHANGE_D;
-	}
-	int mPlayerId;
+	Point mStartPosition;
+	float mAngle;
 };
 
-
-struct TypeChangeToAResult : public PacketHeader
+struct DTypeAttackShootResult : public PacketHeader
 {
-	TypeChangeToAResult()
+	DTypeAttackShootResult()
 	{
-		mSize = sizeof(TypeChangeToAResult);
-		mType = PKT_SC_TYPE_CHANGE_A;
+		mSize = sizeof(DTypeAttackShootResult);
+		mType = PKT_SC_D_TYPEATTACK_SHOOT;
 	}
-	int mPlayerId;
+	Point mStartPosition;
+	float mAngle;
 };
-struct TypeChangeToBResult : public PacketHeader
+struct DTypeSkillShootResult : public PacketHeader
 {
-	TypeChangeToBResult()
+	DTypeSkillShootResult()
 	{
-		mSize = sizeof(TypeChangeToBResult);
-		mType = PKT_SC_TYPE_CHANGE_B;
+		mSize = sizeof(DTypeSkillShootResult);
+		mType = PKT_SC_D_TYPESKILL_SHOOT;
 	}
-	int mPlayerId;
+	Point mStartPosition;
+	float mAngle;
+	int mIndex;
 };
-struct TypeChangeToCResult : public PacketHeader
+struct DTypeSkillEndResult : public PacketHeader
 {
-	TypeChangeToCResult()
+	DTypeSkillEndResult()
 	{
-		mSize = sizeof(TypeChangeToCResult);
-		mType = PKT_SC_TYPE_CHANGE_C;
+		mSize = sizeof(DTypeSkillEndResult);
+		mType = PKT_SC_D_TYPESKILL_END;
 	}
-	int mPlayerId;
+	int mIndex;
 };
-struct TypeChangeToDResult : public PacketHeader
-{
-	TypeChangeToDResult()
-	{
-		mSize = sizeof(TypeChangeToDResult);
-		mType = PKT_SC_TYPE_CHANGE_D;
-	}
-	int mPlayerId;
-};
-
 #pragma pack(pop)

@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "ATypeAttackBullet.h"
+#include "CTypeAttackBullet.h"
 #include "ClientManager.h"
 
 
-ATypeAttackBullet::ATypeAttackBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
+CTypeAttackBullet::CTypeAttackBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
 	mVelocity = 500;
 	SetPosition(position);
@@ -16,26 +16,26 @@ ATypeAttackBullet::ATypeAttackBullet(Player* ownerPlayer, Point position, float 
 }
 
 
-ATypeAttackBullet::~ATypeAttackBullet(void)
+CTypeAttackBullet::~CTypeAttackBullet(void)
 {
 }
 
-void ATypeAttackBullet::Update(float dTime)
+void CTypeAttackBullet::Update(float dTime)
 {
 	Bullet::Update(dTime);
 }
 
-bool ATypeAttackBullet::isLive()
+bool CTypeAttackBullet::isLive()
 {
 	return !mDidExplosed && mLifeTime >= 0;
 }
 
-void ATypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
+void CTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
 	victimPlayer->Damaged(mDamage, attackerPlayer);
-	mDidExplosed = true;
+	mDidExplosed = false;
 	mLifeTime = -1;
-	ATypeAttackEndResult outPacket = ATypeAttackEndResult();
+	CTypeAttackEndResult outPacket = CTypeAttackEndResult();
 	outPacket.mIndex = GetBulletNumber();
 	GClientManager->BroadcastPacket(nullptr,&outPacket);
 }

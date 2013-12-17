@@ -146,23 +146,3 @@ public:
 	LogoutResult mLogoutResultPacket;
 };
 
-class TypeChangeHandler : public NNBaseHandler
-{
-public:
-	TypeChangeHandler();
-	virtual ~TypeChangeHandler();
-
-	void HandlingPacket( short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header );
-
-	TypeChangeToARequest mTypeChangeToARequestPacket;
-	TypeChangeToAResult mTypeChangeToAResultPacket;
-
-	TypeChangeToBRequest mTypeChangeToBRequestPacket;
-	TypeChangeToBResult mTypeChangeToBResultPacket;
-
-	TypeChangeToCRequest mTypeChangeToCRequestPacket;
-	TypeChangeToCResult mTypeChangeToCResultPacket;
-
-	TypeChangeToDRequest mTypeChangeToDRequestPacket;
-	TypeChangeToDResult mTypeChangeToDResultPacket;
-};

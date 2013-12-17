@@ -29,10 +29,6 @@ private:
 	BTypeSkillShootHandler* mBTypeSkillShootHandler;
 	//CTypeSkillShootHandler* mCTypeSkillShootHandler;
 
-	TypeChangeHandler* mTypeChangeAHandler;
-	TypeChangeHandler* mTypeChangeBHandler;
-	TypeChangeHandler* mTypeChangeCHandler;
-	TypeChangeHandler* mTypeChangeDHandler;
 
 
 	BTypeAttackEndHandler* mBTypeAttackEndHandler;
