@@ -155,6 +155,7 @@
     <None Include="Resources\DelTileSet.bmp" />
     <None Include="Resources\Crown.png" />
     <None Include="Resources\Barrack.png" />
+    <None Include="Resources\Move.png" />
     <Content Include="Resources\save.bmp" />
   </ItemGroup>
   <ItemGroup>

@@ -60,22 +60,27 @@ namespace Maptool
                 {
                     if (grid[i, j].isFull)
                     {
-                        g.DrawImage(grid[i, j].tile, new Point(i * TileSize, j * TileSize));
+                        Point DrawPoint = new Point(i * TileSize, j * TileSize);
+                        g.DrawImage(grid[i, j].tile, DrawPoint);
 
                         switch (grid[i, j].type)
                         {
                             case ObjectType.TILE:
                                 break;
                             case ObjectType.STARTING_POINT:
-                                g.DrawImage(Properties.Resources.StartingPoint, new Point(i * TileSize, j * TileSize));
+                                g.DrawImage(Properties.Resources.StartingPoint, DrawPoint);
                                 break;
                             case ObjectType.CROWN:
-                                g.DrawImage(Properties.Resources.Crown, new Point(i * TileSize, j * TileSize));
+                                g.DrawImage(Properties.Resources.Crown, DrawPoint);
                                 break;
                             case ObjectType.BARRACK:
-                                g.DrawImage(Properties.Resources.Barrack, new Point(i * TileSize, j * TileSize));
+                                g.DrawImage(Properties.Resources.Barrack, DrawPoint);
                                 break;
                         }
+
+                        if(grid[i,j].attributeMove == true)
+                            g.DrawImage(Properties.Resources.Move, DrawPoint);
+
                     }else
                         g.DrawImage(temp, new Point(i * TileSize, j * TileSize));
                 }
@@ -101,29 +106,33 @@ namespace Maptool
             {
                 case LAYER_TYPE.TILE_LAYER:
 
-                   grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
+                   //grid[x / TileSize, y / TileSize] = returnSelectedTile(ref grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
+                   returnSelectedTile(ref grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
 
                    Graphics g = Graphics.FromImage(flag);
                    g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
 
                    work_map.Image = flag;
                    mainForm.Minimap_update();
-                   refresh();
                    g.Dispose();
                    break;
 
                 case LAYER_TYPE.ATTRIBUTE_LAYER :
-                   grid[x / TileSize, y / TileSize].attributeHeight = mainForm.attributeSettingWindow.height;
-                   grid[x / TileSize, y / TileSize].attributeMove = mainForm.attributeSettingWindow.move;
+                   if (grid[x / TileSize, y / TileSize].isFull == true)
+                   {
+                       grid[x / TileSize, y / TileSize].attributeHeight = mainForm.attributeSettingWindow.height;
+                       grid[x / TileSize, y / TileSize].attributeMove = mainForm.attributeSettingWindow.move;
+                   }
                    break;
 
                 case LAYER_TYPE.OBJECT_LAYER :
-                   grid[x / TileSize, y / TileSize].type = mainForm.type;
-                   refresh();
+                   if (grid[x / TileSize, y / TileSize].isFull == true)
+                        grid[x / TileSize, y / TileSize].type = mainForm.type;
                    break;
 
             }
             mainForm.updateAttributePanel(e.X / TileSize, e.Y / TileSize);
+            refresh();
         }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
@@ -148,12 +157,13 @@ namespace Maptool
             System.GC.Collect();
             //temp.Dispose();
         }
-        private Tile returnSelectedTile(Tile cell, Tile tile)
+        private void returnSelectedTile(ref Tile cell, Tile tile)
         {
-            cell.attributeHeight = tile.attributeHeight;
-            cell.attributeMove = tile.attributeMove;
-
-            return tile;
+            cell.TileLocation = tile.TileLocation;
+            cell.isFull = tile.isFull;
+            cell.tile = tile.tile;
+            cell.TileLocation = tile.TileLocation;
+            cell.TIleSetID = tile.TIleSetID;
         }
         private void main_map_Scroll(object sender, ScrollEventArgs e)
         {
