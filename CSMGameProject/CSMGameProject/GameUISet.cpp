@@ -49,25 +49,62 @@ GameUISet::GameUISet()
 	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
 	//mRedKillBar->SetScaleX(-1.f);
 
+	mTypeSkillUI[FIRE] = NNSprite::Create(L"Sprite/TypeSkillUI/FireTypeSkillUI.png");
+	mTypeSkillUI[FIRE]->SetCenter(mTypeSkillUI[FIRE]->GetImageWidth() / 2.f, mTypeSkillUI[FIRE]->GetImageHeight() / 2.f);
+	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI.png");
+	mTypeSkillUI[WATER] = NNSprite::Create(L"Sprite/TypeSkillUI/WaterTypeSkillUI.png");
+	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
+	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+
+	mTypeSkillUI[WIND] = NNSprite::Create(L"Sprite/TypeSkillUI/WindTypeSkillUI.png");
+	mTypeSkillUI[WIND]->SetCenter(mTypeSkillUI[WIND]->GetImageWidth() / 2.f, mTypeSkillUI[WIND]->GetImageHeight() / 2.f);
+	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+
+	mTypeSkillUI[EARTH] = NNSprite::Create(L"Sprite/TypeSkillUI/EarthTypeSkillUI.png");
+	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
+	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+
+	mUserSkillUI = NNSprite::Create(L"Sprite/UserSkillUI/Dash.png");
+	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
+	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 235);
+
+	/*mSkillUI[0] = NNSprite::Create(L"Sprite/TypeSkillUI.png");
 	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
 	mSkillUI[0]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mSkillUI[1] = NNSprite::Create(L"Sprite/UserSkillUI.png");
 	mSkillUI[1]->SetCenter(mSkillUI[1]->GetImageWidth() / 2.f, mSkillUI[1]->GetImageHeight() / 2.f);
-	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);
+	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);*/
 
-	mSkillTimer[0] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
-	mSkillTimer[0]->SetCenter(mSkillUI[0]->GetCenterX(), mSkillUI[0]->GetCenterY());
-	mSkillTimer[0]->SetPosition(width / 2.f - 35, height / 2.f + 250);
-	mSkillTimer[0]->SetRGBA(255, 255, 255, 255);
+	//TypeSKill icon cooltime count label
+	mTypeSKillTimer[FIRE] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mTypeSKillTimer[FIRE]->SetCenter(mTypeSKillTimer[FIRE]->GetCenterX(), mTypeSKillTimer[FIRE]->GetCenterY());
+	mTypeSKillTimer[FIRE]->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mTypeSKillTimer[FIRE]->SetRGBA(255, 255, 255, 255);
 
-	mSkillTimer[1] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
-	mSkillTimer[1]->SetCenter(mSkillUI[1]->GetCenterX(), mSkillUI[1]->GetCenterY());
-	mSkillTimer[1]->SetPosition(width / 2.f + 35, height / 2.f + 250);
-	mSkillTimer[1]->SetRGBA(255, 255, 255, 255);
+	mTypeSKillTimer[WATER] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mTypeSKillTimer[WATER]->SetCenter(mTypeSKillTimer[WATER]->GetCenterX(), mTypeSKillTimer[WATER]->GetCenterY());
+	mTypeSKillTimer[WATER]->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mTypeSKillTimer[WATER]->SetRGBA(255, 255, 255, 255);
 
+	mTypeSKillTimer[WIND] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mTypeSKillTimer[WIND]->SetCenter(mTypeSKillTimer[WIND]->GetCenterX(), mTypeSKillTimer[WIND]->GetCenterY());
+	mTypeSKillTimer[WIND]->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mTypeSKillTimer[WIND]->SetRGBA(255, 255, 255, 255);
+
+	mTypeSKillTimer[EARTH] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mTypeSKillTimer[EARTH]->SetCenter(mTypeSKillTimer[EARTH]->GetCenterX(), mTypeSKillTimer[EARTH]->GetCenterY());
+	mTypeSKillTimer[EARTH]->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mTypeSKillTimer[EARTH]->SetRGBA(255, 255, 255, 255);
+
+	//UserSKill icon cooltime count label
+	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
+	mUserSkillTimer->SetPosition(width / 2.f + 35, height / 2.f + 250);
+	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
+
+	//KillPoint count label
 	mKillPoint[BLUE] = NNLabel::Create(L"40", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[BLUE]->SetCenter(mKillPoint[BLUE]->GetCenterX(), mKillPoint[BLUE]->GetCenterY());
 	mKillPoint[BLUE]->SetPosition(width / 2.f - 270, 20);
@@ -77,6 +114,20 @@ GameUISet::GameUISet()
 	mKillPoint[RED]->SetCenter(mKillPoint[RED]->GetCenterX(), mKillPoint[RED]->GetCenterY());
 	mKillPoint[RED]->SetPosition(width / 2.f + 250, 20);
 	mKillPoint[RED]->SetRGBA(0, 0, 0, 255);
+
+	//Character Face Sprite
+	mTypeFace[FIRE] = NNSprite::Create(L"Sprite/CharacterFace/EarthSlime.png");
+	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
+
+	mTypeFace[WATER] = NNSprite::Create(L"Sprite/CharacterFace/BlueSlime.png");
+	mTypeFace[WATER]->SetPosition(5.f, 505.f);
+
+	mTypeFace[WIND] = NNSprite::Create(L"Sprite/CharacterFace/MetalSlime.png");
+	mTypeFace[WIND]->SetPosition(5.f, 505.f);
+
+	mTypeFace[EARTH] = NNSprite::Create(L"Sprite/CharacterFace/EarthSlime.png");
+	mTypeFace[EARTH]->SetPosition(5.f, 505.f);
+
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
 	AddChild(mCharacterUIFrame);
@@ -86,29 +137,22 @@ GameUISet::GameUISet()
 	AddChild(mKillBar[BLUE]);
 	AddChild(mKillBar[RED]);
 	AddChild(mCrown);
-	AddChild(mSkillUI[0]);
-	AddChild(mSkillUI[1]);
-	AddChild(mSkillTimer[0]);
-	AddChild(mSkillTimer[1]);
- 	AddChild(mKillPoint[BLUE]);
+	AddChild(mUserSkillTimer);
+	AddChild(mKillPoint[BLUE]);
 	AddChild(mKillPoint[RED]);
-
+	AddChild(mUserSkillUI);
+	
+	for (int i = 0; i <= EARTH; ++i)
+	{
+		AddChild(mTypeSkillUI[i]);
+		AddChild(mTypeSKillTimer[i]);
+		AddChild(mTypeFace[i]);
+	}
+	
 	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
 	mType->SetPosition(60.f, 60.f); 
 	AddChild(mType);
-	
- 	mTypeFace[FIRE] = NNSprite::Create(L"Sprite/SheSlime.png");
- 	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
-	AddChild(mTypeFace[FIRE]);
- 
- 	mTypeFace[WATER] = NNSprite::Create(L"Sprite/BlueSlime.png");
- 	mTypeFace[WATER]->SetPosition(5.f, 505.f);
-	AddChild(mTypeFace[WATER]);
-	
- 	mTypeFace[WIND] = NNSprite::Create(L"Sprite/MetalSlime.png");
- 	mTypeFace[WIND]->SetPosition(5.f, 505.f);
-	AddChild(mTypeFace[WIND]);
-	
+	 		
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
 	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
 }
@@ -122,6 +166,7 @@ void GameUISet::Init()
 	mTypeFace[FIRE]->SetVisible(false);
 	mTypeFace[WATER]->SetVisible(false);
 	mTypeFace[WIND]->SetVisible(false);
+	mTypeFace[EARTH]->SetVisible(false);
 }
 
 void GameUISet::Render()
@@ -134,24 +179,42 @@ void GameUISet::Update(float dTime)
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
+<<<<<<< HEAD
+	for (int i = 0; i < 4; ++i)
+	{
+		mTypeFace[i]->SetVisible(false);
+		mTypeSkillUI[i]->SetVisible(false);
+	}
+ 	
+	switch (mMyPlayer->GetPlayerType())
+=======
  	for (int i = 0; i < 3; ++i)
  		mTypeFace[i]->SetVisible(false);
 
  	switch (mMyPlayer->GetPlayerType())
+>>>>>>> 636f2375a355408bc98a4f2ffd4ece72ed813dae
  	{
  	case PlayerType::TYPE_A:
- 		mType->SetString(L"ºÒ");
- 		mTypeFace[FIRE]->SetVisible(true);
+ 		mType->SetString(L"Fire");
+		mTypeFace[FIRE]->SetVisible(true);
+		mTypeSkillUI[FIRE]->SetVisible(true);
  		break;
  	case PlayerType::TYPE_B:
- 		mType->SetString(L"¹°");
+ 		mType->SetString(L"Water");
  		mTypeFace[WATER]->SetVisible(true);
+		mTypeSkillUI[WATER]->SetVisible(true);
  		break;
  	case PlayerType::TYPE_C:
- 		mType->SetString(L"¼öÁõ±â");
+ 		mType->SetString(L"Wind");
  		mTypeFace[WIND]->SetVisible(true);
+		mTypeSkillUI[WIND]->SetVisible(true);
+	case PlayerType::TYPE_D:
+		mType->SetString(L"Earth");
+		mTypeFace[EARTH]->SetVisible(true);
+		mTypeSkillUI[EARTH]->SetVisible(true);
  		break;
  	}
+
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);
@@ -174,7 +237,7 @@ void GameUISet::Update(float dTime)
 
 void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 {
-	if (mMyPlayer->GetSkillCooldown(skillType) == true)
+	/*if (mMyPlayer->GetSkillCooldown(skillType) == true)
 	{
 		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(skillType) + dTime, skillType);
 		mSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(mMyPlayer->GetSkillCount(skillType) / mSkillCooltime[skillType - TYPE_ACTIVE_SKILL]);
@@ -190,5 +253,5 @@ void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 			mSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(1.f);
 			mSkillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(L"");
 		}
-	}
+	}*/
 }
