@@ -147,6 +147,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\StartingPointA.png" />
+    <None Include="Resources\StartingPointB.png" />
+    <None Include="Resources\StartingPoint1.png" />
     <None Include="Resources\StartingPoint.png" />
     <None Include="Resources\StartingPoint.bmp" />
     <None Include="Resources\new.bmp" />
@@ -156,6 +159,15 @@
     <None Include="Resources\Crown.png" />
     <None Include="Resources\Barrack.png" />
     <None Include="Resources\Move.png" />
+    <None Include="Resources\Barrack1.png" />
+    <None Include="Resources\Barrack2.png" />
+    <None Include="Resources\Barrack3.png" />
+    <None Include="Resources\BarrackOut.bmp" />
+    <None Include="Resources\BarrackOut.png" />
+    <None Include="Resources\BarrackDIn.png" />
+    <None Include="Resources\BarrackAIn.png" />
+    <None Include="Resources\BarrackBIn.png" />
+    <None Include="Resources\BarrackCIn.png" />
     <Content Include="Resources\save.bmp" />
   </ItemGroup>
   <ItemGroup>

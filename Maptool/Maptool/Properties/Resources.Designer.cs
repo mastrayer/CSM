@@ -73,9 +73,49 @@ namespace Maptool.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap Barrack {
+        internal static System.Drawing.Bitmap BarrackAIn {
             get {
-                object obj = ResourceManager.GetObject("Barrack", resourceCulture);
+                object obj = ResourceManager.GetObject("BarrackAIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap BarrackBIn {
+            get {
+                object obj = ResourceManager.GetObject("BarrackBIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap BarrackCIn {
+            get {
+                object obj = ResourceManager.GetObject("BarrackCIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap BarrackDIn {
+            get {
+                object obj = ResourceManager.GetObject("BarrackDIn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap BarrackOut {
+            get {
+                object obj = ResourceManager.GetObject("BarrackOut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -152,9 +192,19 @@ namespace Maptool.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap StartingPoint {
+        internal static System.Drawing.Bitmap StartingPointA {
             get {
-                object obj = ResourceManager.GetObject("StartingPoint", resourceCulture);
+                object obj = ResourceManager.GetObject("StartingPointA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap StartingPointB {
+            get {
+                object obj = ResourceManager.GetObject("StartingPointB", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

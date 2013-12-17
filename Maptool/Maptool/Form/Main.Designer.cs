@@ -29,13 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Starting Point");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Crown");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("barrack");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("A Team");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("B Team");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Starting Point", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("A In");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("B In");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("C In");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("D In");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Out");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("barrack", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
             treeNode5,
             treeNode6,
-            treeNode7});
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Crown");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Object", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode9,
+            treeNode10});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,13 +109,13 @@
             this.label17 = new System.Windows.Forms.Label();
             this.status_panel = new System.Windows.Forms.Panel();
             this.Attribute_panel = new System.Windows.Forms.Panel();
+            this.attribute_ObjectType = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.CurrentTileInfo_Position = new System.Windows.Forms.Label();
             this.attribute_index = new System.Windows.Forms.Label();
             this.attribute_height = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.attribute_move = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.attribute_ObjectType = new System.Windows.Forms.Label();
             this.메뉴.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimap)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -354,16 +368,30 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 396);
             this.contents.Name = "contents";
-            treeNode5.Name = "노드1";
-            treeNode5.Text = "Starting Point";
-            treeNode6.Name = "노드3";
-            treeNode6.Text = "Crown";
-            treeNode7.Name = "노드4";
-            treeNode7.Text = "barrack";
-            treeNode8.Name = "TreeNodeObject";
-            treeNode8.Text = "Object";
+            treeNode1.Name = "노드1";
+            treeNode1.Text = "A Team";
+            treeNode2.Name = "노드2";
+            treeNode2.Text = "B Team";
+            treeNode3.Name = "노드1";
+            treeNode3.Text = "Starting Point";
+            treeNode4.Name = "노드3";
+            treeNode4.Text = "A In";
+            treeNode5.Name = "노드4";
+            treeNode5.Text = "B In";
+            treeNode6.Name = "노드5";
+            treeNode6.Text = "C In";
+            treeNode7.Name = "노드6";
+            treeNode7.Text = "D In";
+            treeNode8.Name = "노드8";
+            treeNode8.Text = "Out";
+            treeNode9.Name = "노드4";
+            treeNode9.Text = "barrack";
+            treeNode10.Name = "노드3";
+            treeNode10.Text = "Crown";
+            treeNode11.Name = "TreeNodeObject";
+            treeNode11.Text = "Object";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode8});
+            treeNode11});
             this.contents.Size = new System.Drawing.Size(192, 323);
             this.contents.TabIndex = 3;
             this.contents.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.SelectObject);
@@ -671,6 +699,26 @@
             this.Attribute_panel.Size = new System.Drawing.Size(191, 118);
             this.Attribute_panel.TabIndex = 0;
             // 
+            // attribute_ObjectType
+            // 
+            this.attribute_ObjectType.AutoEllipsis = true;
+            this.attribute_ObjectType.AutoSize = true;
+            this.attribute_ObjectType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.attribute_ObjectType.Location = new System.Drawing.Point(86, 68);
+            this.attribute_ObjectType.Name = "attribute_ObjectType";
+            this.attribute_ObjectType.Size = new System.Drawing.Size(11, 14);
+            this.attribute_ObjectType.TabIndex = 6;
+            this.attribute_ObjectType.Text = " ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(9, 68);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(74, 12);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Object Type";
+            // 
             // CurrentTileInfo_Position
             // 
             this.CurrentTileInfo_Position.AutoEllipsis = true;
@@ -722,26 +770,6 @@
             this.attribute_move.TabIndex = 0;
             this.attribute_move.Text = "move";
             this.attribute_move.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(9, 68);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(74, 12);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "Object Type";
-            // 
-            // attribute_ObjectType
-            // 
-            this.attribute_ObjectType.AutoEllipsis = true;
-            this.attribute_ObjectType.AutoSize = true;
-            this.attribute_ObjectType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.attribute_ObjectType.Location = new System.Drawing.Point(86, 68);
-            this.attribute_ObjectType.Name = "attribute_ObjectType";
-            this.attribute_ObjectType.Size = new System.Drawing.Size(11, 14);
-            this.attribute_ObjectType.TabIndex = 6;
-            this.attribute_ObjectType.Text = " ";
             // 
             // Main
             // 

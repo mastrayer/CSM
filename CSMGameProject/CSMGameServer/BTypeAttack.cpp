@@ -3,13 +3,16 @@
 #include "Bullet.h"
 #include "SkillManager.h"
 #include "ClientManager.h"
+#include "BTypeAttackBullet.h"
 
-BTypeAttack::BTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.9f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10),mExploseDistance(80)
+BTypeAttack::BTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10),mExploseDistance(80)
 {
 	GSkillManager->AddSkill(this);
+	BTypeAttackBullet* bullet = new BTypeAttackBullet(mOwnerPlayer,mStartPosition,mAngle);
 	BTypeAttackShootResult outPacket = BTypeAttackShootResult();
 	outPacket.mAngle = mAngle;
 	outPacket.mStartPosition = mStartPosition;
+	outPacket.mIndex = bullet->GetBulletNumber();
 	GClientManager->BroadcastPacket(nullptr,&outPacket);
 }
 
@@ -21,11 +24,6 @@ BTypeAttack::~BTypeAttack(void)
 void BTypeAttack::Update(float dTime)
 {
 	mLifeTime -= dTime;
-	Bullet* boom = new Bullet(mOwnerPlayer);
-	boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance);
-	boom->SetShape(CIRCLE);
-	boom->SetRadius(mExploseRadius);
-	boom->SetDamage(mDamage);
 }
 bool BTypeAttack::IsLive()
 {

@@ -1,7 +1,7 @@
 
 #include "TypeB.h"
 
-BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition, NNPoint targetPosition,int index):mIndex(index)
+BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 {
 	SetPosition(startPosition);
 
@@ -18,7 +18,7 @@ BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition, NNPoint targetPosition
 
 	mLifeTime = 1024*1024;
 	mFlyAnimation->SetCenter(30.f, 65.f);
-	mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
+	//mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
 	mMoveSpeed = 100.f;
 	mIsCrash = false;
 
@@ -68,7 +68,7 @@ void BTypeSkillEffect::Explose()
 	mIsCrash = true;
 }
 
-BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition)
+BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition, int index):mIndex(index)
 {
 	mBullet = NNAnimation::Create();
 

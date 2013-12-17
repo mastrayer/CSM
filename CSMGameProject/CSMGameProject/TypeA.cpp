@@ -68,7 +68,7 @@ void ATypeSkillEffect::Update(float dTime)
 }
 
 
-ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition)
+ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition, int index):mIndex(index)
 {
 	mBullet = NNAnimation::Create();
 

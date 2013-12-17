@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ATypeAttack.cpp" />
+    <ClCompile Include="ATypeAttackBullet.cpp" />
     <ClCompile Include="ATypeSkill.cpp" />
     <ClCompile Include="BTypeAttack.cpp" />
     <ClCompile Include="BTypeSkill.cpp" />
+    <ClCompile Include="BTypeAttackBullet.cpp" />
     <ClCompile Include="BTypeSkillBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -55,6 +57,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="SkillManager.cpp" />
     <ClCompile Include="sqlite3.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -67,9 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ATypeAttack.h" />
+    <ClInclude Include="ATypeAttackBullet.h" />
     <ClInclude Include="ATypeSkill.h" />
     <ClInclude Include="BTypeAttack.h" />
     <ClInclude Include="BTypeSkill.h" />
+    <ClInclude Include="BTypeAttackBullet.h" />
     <ClInclude Include="BTypeSkillBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
@@ -113,6 +118,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="SkillManager.h" />
     <ClInclude Include="Skills.h" />

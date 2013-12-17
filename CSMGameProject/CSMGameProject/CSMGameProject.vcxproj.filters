@@ -85,9 +85,6 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\C">
       <UniqueIdentifier>{73e0ac0f-f559-407d-a627-7a081b1180d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Packet\Skill">
-      <UniqueIdentifier>{e553e621-4fcc-486a-b768-bfac3bd689ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\D">
       <UniqueIdentifier>{a5021e63-9ce9-4dfd-9ea9-bd817d8f57f3}</UniqueIdentifier>
     </Filter>
@@ -96,6 +93,9 @@
     </Filter>
     <Filter Include="Game\Scene\GameScene\Object\GameManager">
       <UniqueIdentifier>{2482913d-357a-4915-a382-5df2b11ef321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Packet\Attack&amp;Skill">
+      <UniqueIdentifier>{e553e621-4fcc-486a-b768-bfac3bd689ba}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -182,19 +182,31 @@
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\UserSkillEffect</Filter>
     </ClCompile>
     <ClCompile Include="ATypeSkillShootHandler.cpp">
-      <Filter>Game\Packet\Skill</Filter>
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
     </ClCompile>
     <ClCompile Include="BTypeSkillShootHandler.cpp">
-      <Filter>Game\Packet\Skill</Filter>
-    </ClCompile>
-    <ClCompile Include="CTypeSkillShootHandler.cpp">
-      <Filter>Game\Packet\Skill</Filter>
-    </ClCompile>
-    <ClCompile Include="BTypeSkillEndHandler.cpp">
-      <Filter>Game\Packet\Skill</Filter>
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Game\Scene\GameScene\Object\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeChangeHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+	</ClCompile>
+    <ClCompile Include="ATypeAttackShootHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="ATypeAttackEndHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="BTypeAttackShootHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="BTypeAttackEndHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeD.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +281,9 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Game\Scene\GameScene\Object\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeD.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
