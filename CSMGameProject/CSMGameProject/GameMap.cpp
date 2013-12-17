@@ -81,8 +81,8 @@ void CGameMap::convertFileToMap( std::wstring path )
 			int j = atoi(child->Attribute("X"));
 			int tileSetIndex, x, y;
 			TiXmlElement* tileImageInfo = child->FirstChild("TileImageInfo")->ToElement();
-			x = atoi(tileImageInfo->Attribute("X"));
-			y = atoi(tileImageInfo->Attribute("Y"));
+			x = atoi(tileImageInfo->Attribute("Y"));
+			y = atoi(tileImageInfo->Attribute("X"));
 			tileSetIndex = atoi(tileImageInfo->Attribute("Index"));
 			mTile[i][j]->misFull = strcmp(child->Attribute("isFull"), "true") == 0 ? true : false;
 			TiXmlElement* tileAttribute = child->FirstChild("Attribute")->ToElement();
@@ -94,13 +94,9 @@ void CGameMap::convertFileToMap( std::wstring path )
 			mTile[i][j]->AddChild(mTile[i][j]->mimage);
 			AddChild(mTile[i][j]);
 
-			assert(y+64<=256);
-			assert(x+64<=128);
-
-
 			mTile[i][j]->mimage->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
 
-			mTile[i][j]->mimage->SetPosition(i*64.f, j*64.f);
+			mTile[i][j]->mimage->SetPosition(j*64.f, i*64.f);
 		}
 	}
 

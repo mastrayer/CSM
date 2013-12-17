@@ -11,7 +11,7 @@ class Bullet
 {
 public:
 	Bullet(Player* ownerPlayer);
-	~Bullet(void);
+	virtual ~Bullet(void);
 
 	void SetPosition(Point point){ mPosition = point; }
 	void SetVelocity(float velo){ mVelocity = velo; }
@@ -26,10 +26,8 @@ public:
 	void SetBulletNumber(int number){ mNumber = number; } 
 	void SetPoly(Point* points, int counts){ memcpy(mPoints, points,counts), mPointCount = counts; }
 	void SetDamage(int damage){ mDamage = damage; }
-	void Update(float dTime);
 	void JudgeCollision(Player* player);
-	bool isLive();
-
+	
 	SHAPE GetShape(){ return mShape; }
 	Point GetPosition(){ return mPosition; }
 	Point GetCenter(){ return mCenter; }
@@ -44,7 +42,10 @@ public:
 	
 	bool PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int BCounts);
 
-private:
+	virtual void Update(float dTime);
+	virtual bool isLive();
+
+protected:
 	Point mPoints[64];
 	int mPointCount;
 	SHAPE mShape;

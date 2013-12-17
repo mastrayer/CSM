@@ -11,12 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ATypeAttack.cpp" />
     <ClCompile Include="ATypeSkill.cpp" />
+    <ClCompile Include="BTypeAttack.cpp" />
+    <ClCompile Include="BTypeSkill.cpp" />
+    <ClCompile Include="BTypeSkillBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="CircularBuffer.cpp" />
     <ClCompile Include="ClientManager.cpp" />
     <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="CTypeAttack.cpp" />
     <ClCompile Include="DatabaseJobContext.cpp" />
     <ClCompile Include="DatabaseJobManager.cpp" />
     <ClCompile Include="DbHelper.cpp" />
@@ -57,16 +62,22 @@
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="CTypeSkill.cpp" />
     <ClCompile Include="UserSession.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ATypeAttack.h" />
     <ClInclude Include="ATypeSkill.h" />
+    <ClInclude Include="BTypeAttack.h" />
+    <ClInclude Include="BTypeSkill.h" />
+    <ClInclude Include="BTypeSkillBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="CircularBuffer.h" />
     <ClInclude Include="ClientManager.h" />
     <ClInclude Include="ClientSession.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="CTypeAttack.h" />
     <ClInclude Include="DatabaseJobContext.h" />
     <ClInclude Include="DatabaseJobManager.h" />
     <ClInclude Include="DbHelper.h" />
@@ -111,6 +122,7 @@
     <ClInclude Include="SQLStatement.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="CTypeSkill.h" />
     <ClInclude Include="UserSession.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
