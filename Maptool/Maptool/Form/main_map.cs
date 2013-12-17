@@ -67,14 +67,29 @@ namespace Maptool
                         {
                             case ObjectType.TILE:
                                 break;
-                            case ObjectType.STARTING_POINT:
-                                g.DrawImage(Properties.Resources.StartingPoint, DrawPoint);
+                            case ObjectType.STARTING_POINT_A:
+                                g.DrawImage(Properties.Resources.StartingPointA, DrawPoint);
+                                break;
+                            case ObjectType.STARTING_POINT_B:
+                                g.DrawImage(Properties.Resources.StartingPointA, DrawPoint);
+                                break;
+                            case ObjectType.BARRACK_A_IN:
+                                g.DrawImage(Properties.Resources.BarrackAIn, DrawPoint);
+                                break;
+                            case ObjectType.BARRACK_B_IN:
+                                g.DrawImage(Properties.Resources.BarrackAIn, DrawPoint);
+                                break;
+                            case ObjectType.BARRACK_C_IN:
+                                g.DrawImage(Properties.Resources.BarrackAIn, DrawPoint);
+                                break;
+                            case ObjectType.BARRACK_D_IN:
+                                g.DrawImage(Properties.Resources.BarrackAIn, DrawPoint);
+                                break;
+                            case ObjectType.BARRACK_OUT:
+                                g.DrawImage(Properties.Resources.BarrackAIn, DrawPoint);
                                 break;
                             case ObjectType.CROWN:
                                 g.DrawImage(Properties.Resources.Crown, DrawPoint);
-                                break;
-                            case ObjectType.BARRACK:
-                                g.DrawImage(Properties.Resources.Barrack, DrawPoint);
                                 break;
                         }
 

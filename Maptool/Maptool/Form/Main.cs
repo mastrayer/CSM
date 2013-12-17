@@ -27,9 +27,14 @@ namespace Maptool
     public enum ObjectType
     {
         TILE = 0,
-        STARTING_POINT = 1,
-        CROWN = 2,
-        BARRACK = 3,
+        STARTING_POINT_A = 1,
+        STARTING_POINT_B = 2,
+        BARRACK_A_IN = 3,
+        BARRACK_B_IN = 4,
+        BARRACK_C_IN = 5,
+        BARRACK_D_IN = 6,
+        BARRACK_OUT = 7,
+        CROWN = 8,
     };
     public partial class Main : Form
     {
@@ -285,16 +290,31 @@ namespace Maptool
                                         switch (mainMap.grid[i, j].type)
                                         {
                                             case ObjectType.TILE:
-                                                textWriter.WriteString("tile");
+                                                textWriter.WriteString("Tile");
                                                 break;
-                                            case ObjectType.STARTING_POINT:
-                                                textWriter.WriteString("starting point");
+                                            case ObjectType.STARTING_POINT_A:
+                                                textWriter.WriteString("A Team Starting Point");
+                                                break;
+                                            case ObjectType.STARTING_POINT_B:
+                                                textWriter.WriteString("B Team Starting Point");
+                                                break;
+                                            case ObjectType.BARRACK_A_IN:
+                                                textWriter.WriteString("Barrack A In");
+                                                break;
+                                            case ObjectType.BARRACK_B_IN:
+                                                textWriter.WriteString("Barrack B In");
+                                                break;
+                                            case ObjectType.BARRACK_C_IN:
+                                                textWriter.WriteString("Barrack C In");
+                                                break;
+                                            case ObjectType.BARRACK_D_IN:
+                                                textWriter.WriteString("Barrack D In");
+                                                break;
+                                            case ObjectType.BARRACK_OUT:
+                                                textWriter.WriteString("Barrack Out");
                                                 break;
                                             case ObjectType.CROWN:
-                                                textWriter.WriteString("crown");
-                                                break;
-                                            case ObjectType.BARRACK:
-                                                textWriter.WriteString("barrack");
+                                                textWriter.WriteString("Crown");
                                                 break;
                                         }
                                         textWriter.WriteEndAttribute();
@@ -384,10 +404,15 @@ namespace Maptool
                             ObjectType loadType = ObjectType.TILE;
                             String loadTypeString = xn["Object"].Attributes["Type"].InnerText;
 
-                            if (loadTypeString == "tile") loadType = ObjectType.TILE;
-                            else if (loadTypeString == "starting point") loadType = ObjectType.STARTING_POINT;
-                            else if (loadTypeString == "crown") loadType = ObjectType.CROWN;
-                            else if (loadTypeString == "barrack") loadType = ObjectType.BARRACK;
+                            if (loadTypeString == "Tile") loadType = ObjectType.TILE;
+                            else if (loadTypeString == "A Team Starting Point") loadType = ObjectType.STARTING_POINT_A;
+                            else if (loadTypeString == "B Team Starting Point") loadType = ObjectType.STARTING_POINT_B;
+                            else if (loadTypeString == "Barrack A In") loadType = ObjectType.BARRACK_A_IN;
+                            else if (loadTypeString == "Barrack B In") loadType = ObjectType.BARRACK_B_IN;
+                            else if (loadTypeString == "Barrack C In") loadType = ObjectType.BARRACK_C_IN;
+                            else if (loadTypeString == "Barrack D In") loadType = ObjectType.BARRACK_D_IN;
+                            else if (loadTypeString == "Barrack Out") loadType = ObjectType.BARRACK_OUT;
+                            else if (loadTypeString == "Crown") loadType = ObjectType.CROWN;
 
                             mainMap.grid[xidx, yidx].type = loadType;
                         }
@@ -507,14 +532,29 @@ namespace Maptool
                 case ObjectType.TILE:
                     attribute_ObjectType.Text = "Tile";
                     break;
-                case ObjectType.STARTING_POINT:
-                    attribute_ObjectType.Text = "Starting Point";
+                case ObjectType.STARTING_POINT_A:
+                    attribute_ObjectType.Text = "A Team Starting Point";
+                    break;
+                case ObjectType.STARTING_POINT_B:
+                    attribute_ObjectType.Text = "B Team Starting Point";
+                    break;
+                case ObjectType.BARRACK_A_IN:
+                    attribute_ObjectType.Text = "Barrack A In";
+                    break;
+                case ObjectType.BARRACK_B_IN:
+                    attribute_ObjectType.Text = "Barrack B In";
+                    break;
+                case ObjectType.BARRACK_C_IN:
+                    attribute_ObjectType.Text = "Barrack C In";
+                    break;
+                case ObjectType.BARRACK_D_IN:
+                    attribute_ObjectType.Text = "Barrack D In";
+                    break;
+                case ObjectType.BARRACK_OUT:
+                    attribute_ObjectType.Text = "Barrack Out";
                     break;
                 case ObjectType.CROWN:
                     attribute_ObjectType.Text = "Crown";
-                    break;
-                case ObjectType.BARRACK:
-                    attribute_ObjectType.Text = "Barrack";
                     break;
             }
         }
@@ -559,12 +599,22 @@ namespace Maptool
 
         private void SelectObject(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node.Text == "Starting Point")
-                type = ObjectType.STARTING_POINT;
+            if (e.Node.Text == "A Team")
+                type = ObjectType.STARTING_POINT_A;
+            else if (e.Node.Text == "B Team")
+                type = ObjectType.STARTING_POINT_B;
+            else if (e.Node.Text == "A In")
+                type = ObjectType.BARRACK_A_IN;
+            else if (e.Node.Text == "B In")
+                type = ObjectType.BARRACK_B_IN;
+            else if (e.Node.Text == "C In")
+                type = ObjectType.BARRACK_C_IN;
+            else if (e.Node.Text == "D In")
+                type = ObjectType.BARRACK_D_IN;
+            else if (e.Node.Text == "Out")
+                type = ObjectType.BARRACK_OUT;
             else if (e.Node.Text == "Crown")
                 type = ObjectType.CROWN;
-            else if (e.Node.Text == "barrack")
-                type = ObjectType.BARRACK;
         }
     }
 }
