@@ -38,22 +38,25 @@ Player::Player(int id, ClientSession* client)
 			y = GGameMap->GetStartingPointBY() + 32.f;
 		}
 
-		switch ( cnt%4 ) 
+		if ( cnt != 0 )
 		{
-		case 0:
-			y -= int(cnt/4+1) * 64.f;
-			break;
-		case 1:
-			x += int(cnt/4+1) * 64.f;
-			break;
-		case 2:
-			y += int(cnt/4+1) * 64.f;
-			break;
-		case 3:
-			x -= int(cnt/4+1) * 64.f;
-			break;
-		default:
-			break;
+			switch ( cnt%4 ) 
+			{
+			case 0:
+				y -= int(cnt/4+1) * 64.f;
+				break;
+			case 1:
+				x += int(cnt/4+1) * 64.f;
+				break;
+			case 2:
+				y += int(cnt/4+1) * 64.f;
+				break;
+			case 3:
+				x -= int(cnt/4+1) * 64.f;
+				break;
+			default:
+				break;
+			}
 		}
 
 		if(CouldGoPosition(Point(x,y)) == true)
