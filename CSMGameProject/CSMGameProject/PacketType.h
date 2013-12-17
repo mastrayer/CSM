@@ -33,6 +33,15 @@
 
 #define PKT_SC_PLAYER_KILLSCORE_UPDATE 18
 
+#define PKT_CS_TYPE_CHANGE_A 30
+#define PKT_CS_TYPE_CHANGE_B 31
+#define PKT_CS_TYPE_CHANGE_C 32
+#define PKT_CS_TYPE_CHANGE_D 33
+#define PKT_SC_TYPE_CHANGE_A 34
+#define PKT_SC_TYPE_CHANGE_B 35
+#define PKT_SC_TYPE_CHANGE_C 36
+#define PKT_SC_TYPE_CHANGE_D 37
+
 struct GameKeyStates
 {
 	GameKeyStates()
@@ -233,4 +242,81 @@ struct CTypeSkillShootResult : public NNPacketHeader
 	NNPoint mStartPosition;
 	float mAngle;
 };
+
+
+struct TypeChangeToARequest : public NNPacketHeader
+{
+	TypeChangeToARequest()
+	{
+		mSize = sizeof(TypeChangeToARequest);
+		mType = PKT_CS_TYPE_CHANGE_A;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToBRequest : public NNPacketHeader
+{
+	TypeChangeToBRequest()
+	{
+		mSize = sizeof(TypeChangeToARequest);
+		mType = PKT_CS_TYPE_CHANGE_B;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToCRequest : public NNPacketHeader
+{
+	TypeChangeToCRequest()
+	{
+		mSize = sizeof(TypeChangeToARequest);
+		mType = PKT_CS_TYPE_CHANGE_C;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToDRequest : public NNPacketHeader
+{
+	TypeChangeToDRequest()
+	{
+		mSize = sizeof(TypeChangeToDRequest);
+		mType = PKT_CS_TYPE_CHANGE_D;
+	}
+	int mPlayerId;
+};
+
+
+struct TypeChangeToAResult : public NNPacketHeader
+{
+	TypeChangeToAResult()
+	{
+		mSize = sizeof(TypeChangeToAResult);
+		mType = PKT_SC_TYPE_CHANGE_A;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToBResult : public NNPacketHeader
+{
+	TypeChangeToBResult()
+	{
+		mSize = sizeof(TypeChangeToBResult);
+		mType = PKT_SC_TYPE_CHANGE_B;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToCResult : public NNPacketHeader
+{
+	TypeChangeToCResult()
+	{
+		mSize = sizeof(TypeChangeToCResult);
+		mType = PKT_SC_TYPE_CHANGE_C;
+	}
+	int mPlayerId;
+};
+struct TypeChangeToDResult : public NNPacketHeader
+{
+	TypeChangeToDResult()
+	{
+		mSize = sizeof(TypeChangeToDResult);
+		mType = PKT_SC_TYPE_CHANGE_D;
+	}
+	int mPlayerId;
+};
+
 #pragma pack(pop)
