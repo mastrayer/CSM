@@ -11,7 +11,11 @@ PlayerManager::PlayerManager(void):mPlayersLength(0)
 
 PlayerManager::~PlayerManager(void)
 {
-
+	for (auto iter=mPlayers.begin(); iter!=mPlayers.end(); iter++ )
+	{
+		delete iter->second;
+	}
+	mPlayers.clear();
 }
 
 void PlayerManager::UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets)
