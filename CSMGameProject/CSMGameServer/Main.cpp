@@ -26,6 +26,11 @@ __declspec(thread) int LThreadType = -1 ;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+#ifdef _DEBUG
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc( 3651 );
+#endif
+
 	/// crash 발생시 dump 남기기 위해서
 	SetUnhandledExceptionFilter(ExceptionFilter) ;
 
@@ -120,10 +125,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	// 윈속 종료
 	WSACleanup() ;
 
+	delete GGameMap;
+	delete GGameManager;
+	delete GPlayerManager;
+	delete GBulletManager;
+	delete GSkillManager;
+
+	delete GResourceManager;
+
 	DbHelper::Finalize() ;
 
 	delete GClientManager ;
 	delete GDatabaseJobManager ;
+
 	return 0 ;
 }
 

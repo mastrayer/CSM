@@ -1,13 +1,12 @@
+
 #include "stdafx.h"
 #include "NNResourceManager.h"
-NNResourceManager* NNResourceManager::m_pInstance = nullptr;
 
 NNResourceManager::NNResourceManager()
 {
 }
 NNResourceManager::~NNResourceManager()
 {
-
 	for (auto& iter=m_XMLTable.begin(); iter!=m_XMLTable.end(); iter++ )
 	{
 		if ( iter->second != nullptr )
@@ -15,35 +14,18 @@ NNResourceManager::~NNResourceManager()
 			delete iter->second;
 			iter->second = nullptr;
 		}
-		m_XMLTable.clear();
+	}
+	m_XMLTable.clear();
 
-
-		for (auto& iter=m_ZipTable.begin(); iter!=m_ZipTable.end(); iter++ )
-		{	
-			if ( iter->second != nullptr )
-			{
-				delete iter->second;
-				iter->second = nullptr;
-			}
-			m_ZipTable.clear();
+	for (auto& iter=m_ZipTable.begin(); iter!=m_ZipTable.end(); iter++ )
+	{	
+		if ( iter->second != nullptr )
+		{
+			delete iter->second;
+			iter->second = nullptr;
 		}
 	}
-}
-NNResourceManager* NNResourceManager::GetInstance()
-{
-	if( m_pInstance == nullptr )
-	{
-		m_pInstance = new NNResourceManager();
-	}
-	return m_pInstance;
-}
-void NNResourceManager::ReleaseInstance()
-{
-	if( m_pInstance != nullptr )
-	{
-		delete m_pInstance;
-		m_pInstance = nullptr;
-	}
+	m_ZipTable.clear();
 }
 NNXML* NNResourceManager::LoadXMLFromFIle( std::string path )
 {
@@ -104,3 +86,5 @@ NNXML* NNResourceManager::LoadXMLFromMemory( NNZip *buf )
 
 	return m_XMLTable[result];
 }
+
+NNResourceManager* GResourceManager = new NNResourceManager();

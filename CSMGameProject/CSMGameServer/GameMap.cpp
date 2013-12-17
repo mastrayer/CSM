@@ -16,6 +16,16 @@ GameMap::GameMap(std::wstring path)
 
 GameMap::~GameMap(void)
 {
+	for (int i=0; i<m_Height; ++i )
+	{
+		for (int j=0; j<m_Width; ++j )
+		{
+			delete m_Tile[i][j];
+		}
+		delete[] m_Tile[i];
+	}
+
+	delete[] m_Tile;
 }
 
 void en(int b)
@@ -30,8 +40,8 @@ void GameMap::convertFileToMap( std::wstring path )
 	NNZip **tileSetLoad;
 
 	// XML LOAD
-	xmlLoad = NNResourceManager::GetInstance()->UnzipFileToMemory(path, FILENAME[0]);
-	m_MapXMLData= NNResourceManager::GetInstance()->LoadXMLFromMemory(xmlLoad);
+	xmlLoad = GResourceManager->UnzipFileToMemory(path, FILENAME[0]);
+	m_MapXMLData= GResourceManager->LoadXMLFromMemory(xmlLoad);
 
 	std::string tile;
 	int usedTileSet = 0;
@@ -58,7 +68,7 @@ void GameMap::convertFileToMap( std::wstring path )
 			tileSetLoad = new NNZip*[usedTileSet];
 
 			for(int i=0; i<usedTileSet; ++i)
-				tileSetLoad[i] = NNResourceManager::GetInstance()->UnzipFileToMemory(path, FILENAME[1] + std::to_wstring(i));
+				tileSetLoad[i] = GResourceManager->UnzipFileToMemory(path, FILENAME[1] + std::to_wstring(i));
 		}
 	}
 	printf("################# /MapInfo \n");
