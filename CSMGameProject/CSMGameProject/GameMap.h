@@ -9,6 +9,12 @@
 #define ATTRIBUTE_MOVE 0x01
 #define TILESIZE 64
 
+enum TileType
+{
+	TILE,
+	BARRACK,
+};
+
 class CTile : public NNObject
 {
 public:
@@ -26,6 +32,7 @@ private:
 	int mattribute;
 	int mheight;
 	bool misFull;
+	TileType mType;
 
 	friend class CGameMap;
 };
