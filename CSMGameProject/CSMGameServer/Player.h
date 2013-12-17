@@ -12,6 +12,7 @@
 #define TYPE_A 0
 #define TYPE_B 1
 #define TYPE_C 2
+#define TYPE_D 3
 
 
 class Player
