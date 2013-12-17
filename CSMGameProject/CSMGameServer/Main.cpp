@@ -39,8 +39,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	/// Manager Init
 	GClientManager = new ClientManager ;
 	GDatabaseJobManager = new DatabaseJobManager ;
+	GResourceManager = new NNResourceManager;
 	GPlayerManager = new PlayerManager;
-	GGameMap = new GameMap(L"map/gamemap.csm");
+	GGameMap = new GameMap(L"map/sample2.csm");
 	GGameManager = new GameManager(10);
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
