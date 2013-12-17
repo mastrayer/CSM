@@ -49,6 +49,10 @@ GameUISet::GameUISet()
 	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
 	//mRedKillBar->SetScaleX(-1.f);
 
+	mTypeSkillUI[ZERO] = NNSprite::Create(L"Sprite/TypeSkillUI/ZeroTypeSkillUI.png");
+	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
+	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+
 	mTypeSkillUI[FIRE] = NNSprite::Create(L"Sprite/TypeSkillUI/FireTypeSkillUI.png");
 	mTypeSkillUI[FIRE]->SetCenter(mTypeSkillUI[FIRE]->GetImageWidth() / 2.f, mTypeSkillUI[FIRE]->GetImageHeight() / 2.f);
 	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
@@ -116,6 +120,9 @@ GameUISet::GameUISet()
 	mKillPoint[RED]->SetRGBA(0, 0, 0, 255);
 
 	//Character Face Sprite
+	mTypeFace[ZERO] = NNSprite::Create(L"Sprite/CharacterFace/ZeroSlime.png");
+	mTypeFace[ZERO]->SetPosition(5.f, 505.f);
+
 	mTypeFace[FIRE] = NNSprite::Create(L"Sprite/CharacterFace/EarthSlime.png");
 	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
 
@@ -163,6 +170,7 @@ GameUISet::~GameUISet()
 
 void GameUISet::Init()
 {
+	mTypeFace[ZERO]->SetVisible(false);
 	mTypeFace[FIRE]->SetVisible(false);
 	mTypeFace[WATER]->SetVisible(false);
 	mTypeFace[WIND]->SetVisible(false);
@@ -179,7 +187,7 @@ void GameUISet::Update(float dTime)
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i <= EARTH; ++i)
 	{
 		mTypeFace[i]->SetVisible(false);
 		mTypeSkillUI[i]->SetVisible(false);
@@ -187,6 +195,11 @@ void GameUISet::Update(float dTime)
  	
  	switch (mMyPlayer->GetPlayerType())
  	{
+	case PlayerType::TYPE_ZERO:
+		mType->SetString(L"Zero");
+		mTypeFace[ZERO]->SetVisible(true);
+		mTypeSkillUI[ZERO]->SetVisible(true);
+		break;
  	case PlayerType::TYPE_A:
  		mType->SetString(L"Fire");
 		mTypeFace[FIRE]->SetVisible(true);

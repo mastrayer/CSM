@@ -9,7 +9,7 @@ FirstCut::FirstCut()
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
 	////////// Background Image //////////
-	mBackground = NNSprite::Create( L"Sprite/StoryScene_0.png" );
+	mBackground = NNSprite::Create( L"Sprite/StoryScene/StoryScene_0.png" );
 	mBackground->SetPosition( width/2, height/2 );
 	mBackground->SetCenter( mBackground->GetImageWidth()/2.f, mBackground->GetImageHeight()/2.f );
 	AddChild( mBackground );

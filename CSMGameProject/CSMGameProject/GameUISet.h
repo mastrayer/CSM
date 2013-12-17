@@ -11,10 +11,11 @@
 
 enum SlimeType
 {
-	FIRE = 0,
-	WATER = 1,
-	WIND = 2,
-	EARTH = 3
+	ZERO = 0,
+	FIRE = 1,
+	WATER = 2,
+	WIND = 3,
+	EARTH = 4
 };
 
 
@@ -41,7 +42,7 @@ public:
 private:
 	NNLabel* mFPSLabel;
 
-	NNSprite *mTypeSkillUI[4];
+	NNSprite *mTypeSkillUI[5];
 	NNSprite *mUserSkillUI;
 	NNLabel *mTypeSKillTimer;
 	NNLabel *mUserSkillTimer;
@@ -49,7 +50,7 @@ private:
 
 	NNSprite *mCharacterUIFrame;
 	NNSprite *mSkillUIFrame;
-	NNSprite *mTypeFace[4];
+	NNSprite *mTypeFace[5];
 	NNSprite *mHpBar;
 	NNSprite *mHpBarBackground;
 	NNSprite *mKillBar[2];
