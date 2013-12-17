@@ -5,6 +5,8 @@
 #include "GameManager.h"
 #include "Skills.h"
 
+#include "GameMap.h"
+
 Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
@@ -19,18 +21,49 @@ Player::Player(int id, ClientSession* client)
 	mPlayerId = id;
 	mClient = client;
 
+	mTeam = GGameManager->GiveTeamNumber();
+
+	int cnt = 0;
 	while(1)
 	{
-		float x = float(rand() % int(GGameMap->GetWidth() * 64));
-		float y = float(rand() % int(GGameMap->GetHeight() * 64));
+		float x, y;
+		if ( mTeam == 0 )
+		{
+			x = GGameMap->GetStartingPointAX() + 32.f;
+			y = GGameMap->GetStartingPointAY() + 32.f;
+		}
+		else
+		{
+			x = GGameMap->GetStartingPointBX() + 32.f;
+			y = GGameMap->GetStartingPointBY() + 32.f;
+		}
+
+		switch ( cnt%4 ) 
+		{
+		case 0:
+			y -= int(cnt/4+1) * 64.f;
+			break;
+		case 1:
+			x += int(cnt/4+1) * 64.f;
+			break;
+		case 2:
+			y += int(cnt/4+1) * 64.f;
+			break;
+		case 3:
+			x -= int(cnt/4+1) * 64.f;
+			break;
+		default:
+			break;
+		}
 
 		if(CouldGoPosition(Point(x,y)) == true)
 		{
 			mPosition = Point(x,y);
 			break;
 		}
+
+		++cnt;
 	}
-	mTeam = GGameManager->GiveTeamNumber();
 }
 
 Player::~Player(void)
