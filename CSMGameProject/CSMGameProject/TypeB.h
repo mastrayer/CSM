@@ -15,11 +15,12 @@ public:
 	void Render();
 	void Update(float dTime);
 	NNPoint FindTarget(NNPoint startPosition);
-	void Explosion();
+	void Explose();
 
 	int GetIndex(){ return mIndex; }
 
 private:
+	bool mIsCrash;
 	int mIndex;
 	float mMoveSpeed;
 	float mDirection;
@@ -39,5 +40,7 @@ public:
 	void Update(float dTime);
 
 private:
-	NNAnimation *mAnimation;
+	NNSprite *mSprite;
+	float mAngle;
+	float mSpeed;
 };

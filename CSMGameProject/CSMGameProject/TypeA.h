@@ -26,13 +26,18 @@ private:
 class ATypeAttackEffect : public IEffect
 {
 public :
-	ATypeAttackEffect(CPlayer *follower);
+	ATypeAttackEffect(float angle, NNPoint startPoint);
 	virtual ~ATypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
+	void Explose();
 
 private :
-	NNAnimationAtlas *mAnimation;
+	bool mIsCrash;
+	NNAnimation *mBullet;
+	NNAnimation *mExplosion;
+	float mAngle;
+	float mSpeed;
 	CPlayer *mFollower;
 };

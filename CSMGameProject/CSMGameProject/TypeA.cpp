@@ -68,19 +68,28 @@ void ATypeEffect::Update(float dTime)
 }
 
 
-ATypeAttackEffect::ATypeAttackEffect(CPlayer *follower)
+ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition)
 {
-	mAnimation = NNAnimationAtlas::Create(L"Sprite/SkillEffect/A/Attack/0.png", 9, 0.03f, 
-		NNSize(0, 0, 42, 48), NNSize(0, 48, 42, 96), NNSize(0, 96, 42, 144), NNSize(0, 144, 42, 192), NNSize(0, 192, 42, 240),
-		NNSize(0, 144, 42, 192), NNSize(0, 96, 42, 144), NNSize(0, 48, 42, 96), NNSize(0, 0, 42, 48) );
+	mBullet = NNAnimation::Create();
 
-	mLifeTime = mAnimation->GetPlayTime();
-	mFollower = follower;
-	SetRotation(mFollower->GetPlayerRotation());
-	SetPosition(mFollower->GetPlayerPosition());
-	SetCenter(-30.f, 20.f);
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 6; i++)
+	{
+		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
+		mBullet->AddFrameNode(temp);
+	}
+	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
 
-	AddChild(mAnimation);
+	mIsCrash = false;
+	mAngle = angle;
+	mSpeed = 500.f;
+	mLifeTime = 0.8f;
+
+	SetPosition(startPosition);
+	SetRotation(angle);
+	SetCenter(65.f, 65.f);
+	
+	AddChild(mBullet);
 }
 ATypeAttackEffect::~ATypeAttackEffect()
 {
@@ -93,8 +102,36 @@ void ATypeAttackEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 	
-	SetRotation(mFollower->GetPlayerRotation());
-	SetPosition(mFollower->GetPlayerPosition());
+	if (mIsCrash == false)
+		this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mAngle) * dTime, this->GetPositionY() + mSpeed * std::sinf(mAngle) * dTime);
+
 	if (mLifeTime < mNowLifeTime)
-		mIsEnd = true;
+	{
+		if (mIsCrash == false)
+			Explose();
+		else
+			mIsEnd = true;
+	}
+		
+}
+void ATypeAttackEffect::Explose()
+{
+	mBullet->SetVisible(false);
+	mExplosion = NNAnimation::Create();
+
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 18; i++)
+	{
+		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
+
+		mExplosion->AddFrameNode(temp);
+	}
+	mExplosion->SetFrameTimeInSection(0.02f, 0, 17);
+
+	AddChild(mExplosion);
+
+	mNowLifeTime = 0.f;
+	mLifeTime = mExplosion->GetPlayTime();
+
+	mIsCrash = true;
 }
