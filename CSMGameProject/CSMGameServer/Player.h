@@ -32,7 +32,7 @@ private:
 	float mAttackRange;
 	int mHP;
 	int mDamage;
-	int mSpeed;
+	float mSpeed;
 	float mResponTime;
 	float mAttackDelay;
 	float mUserSkillDelay;

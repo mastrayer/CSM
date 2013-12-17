@@ -21,8 +21,8 @@ Player::Player(int id, ClientSession* client)
 
 	while(1)
 	{
-		float x = rand() % (GGameMap->GetWidth() * 64);
-		float y = rand() % (GGameMap->GetHeight() * 64);
+		float x = float(rand() % int(GGameMap->GetWidth() * 64));
+		float y = float(rand() % int(GGameMap->GetHeight() * 64));
 
 		if(CouldGoPosition(Point(x,y)) == true)
 		{
@@ -193,7 +193,7 @@ void Player::Update( float dTime)
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, -1.f );
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoDirection = willGoDirection + Point( 0.f, +1.f );
 
-			float d = pow( pow(willGoDirection.x , 2) + pow( willGoDirection.y, 2) , 0.5);
+			float d = pow( pow(willGoDirection.x , 2) + pow( willGoDirection.y, 2) , 0.5f);
 			if(d != 0.f)
 			{
 				willGoDirection.x = willGoDirection.x / d;
@@ -287,8 +287,8 @@ void Player::Update( float dTime)
 				//살려내야합니다.
 				while(1)
 				{
-					float x = rand() % (GGameMap->GetWidth() * 64);
-					float y = rand() % (GGameMap->GetHeight() * 64);
+					float x = float(rand() % int(GGameMap->GetWidth() * 64));
+					float y = float(rand() % int(GGameMap->GetHeight() * 64));
 					if(CouldGoPosition(Point(x,y)) == true)
 					{
 						mPosition = Point(x,y);
@@ -412,11 +412,11 @@ PlayerInfo Player::GetPlayerInfo()
 
 bool Player::CouldGoPosition(Point position)
 {
-	for( int x = (position.x - mRadius)/64; x <= (position.x + mRadius)/64; x += 1 )//64 = tilesize
+	for( int x = int(position.x - mRadius)/64; x <= int(position.x + mRadius)/64; x += 1 )//64 = tilesize
 	{
-		for( int y = (position.y - mRadius)/64; y <= (position.y + mRadius)/64; y += 1 )//64 = tilesize
+		for( int y = int(position.y - mRadius)/64; y <= int(position.y + mRadius)/64; y += 1 )//64 = tilesize
 		{
-			if ( GGameMap->isValidTile(Point(x*64,y*64)) == false)
+			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
 		}
 	}	
@@ -533,6 +533,8 @@ int Player::GetTypeChangeResult(int killerType, int victimType)
 	default:
 	break;
 	}*/
+
+	return NULL;
 }
 void Player::InitWithType()
 {
