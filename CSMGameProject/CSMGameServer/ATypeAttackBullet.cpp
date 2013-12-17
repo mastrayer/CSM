@@ -5,13 +5,13 @@
 
 ATypeAttackBullet::ATypeAttackBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
-	mVelocity = 10;
+	mVelocity = 500;
 	SetPosition(position);
 	SetAngle(angle);
 	SetShape(CIRCLE);
-	SetRadius(20);
+	SetRadius(10);
 	SetDamage(10);
-	SetLifeTime(0.8f);
+	SetLifeTime(0.5f);
 }
 
 
