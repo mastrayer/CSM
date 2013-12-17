@@ -103,6 +103,15 @@ void CPlayerManager::UpdatePlayerKillScore( int playerId, int killScore )
 		player->SetKillScore( killScore );
 	}
 }
+void CPlayerManager::UpdatePlayerType( int playerId, PlayerType type )
+{
+	std::map<int,CPlayer*>::iterator itor = mPlayers.find(playerId);
+	if( itor != mPlayers.end() ) 
+	{
+		CPlayer* player = mPlayers.find(playerId)->second;
+		player->SetPlayerType( type );
+	}
+}
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 {
 	UpdatePlayerState(info.mPlayerId, info.mPlayerState);
