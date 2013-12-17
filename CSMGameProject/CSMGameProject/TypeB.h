@@ -9,7 +9,7 @@
 class BTypeSkillEffect : public IEffect
 {
 public:
-	BTypeSkillEffect(NNPoint startPosition, NNPoint targetPosition, int index);
+	BTypeSkillEffect(NNPoint startPosition);
 	virtual ~BTypeSkillEffect();
 
 	void Render();
@@ -17,11 +17,9 @@ public:
 	NNPoint FindTarget(NNPoint startPosition);
 	void Explose();
 
-	int GetIndex(){ return mIndex; }
 
 private:
 	bool mIsCrash;
-	int mIndex;
 	float mMoveSpeed;
 	float mDirection;
 	NNPoint mSource;
@@ -33,17 +31,19 @@ private:
 class BTypeAttackEffect : public IEffect
 {
 public:
-	BTypeAttackEffect(float angle, NNPoint startPoint);
+	BTypeAttackEffect(float angle, NNPoint startPosition, int index);
 	virtual ~BTypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
+	
+	int GetIndex(){ return mIndex; }
 	void Explose();
-
 private:
 	bool mIsCrash;
 	NNAnimation *mBullet;
 	NNAnimation *mExplosion;
+	int mIndex;
 	float mAngle;
 	float mSpeed;
 	CPlayer *mFollower;

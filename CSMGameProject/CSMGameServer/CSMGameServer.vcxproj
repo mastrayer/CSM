@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ATypeAttack.cpp" />
+    <ClCompile Include="ATypeAttackBullet.cpp" />
     <ClCompile Include="ATypeSkill.cpp" />
     <ClCompile Include="BTypeAttack.cpp" />
     <ClCompile Include="BTypeSkill.cpp" />
+    <ClCompile Include="BTypeAttackBullet.cpp" />
     <ClCompile Include="BTypeSkillBullet.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
@@ -67,9 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ATypeAttack.h" />
+    <ClInclude Include="ATypeAttackBullet.h" />
     <ClInclude Include="ATypeSkill.h" />
     <ClInclude Include="BTypeAttack.h" />
     <ClInclude Include="BTypeSkill.h" />
+    <ClInclude Include="BTypeAttackBullet.h" />
     <ClInclude Include="BTypeSkillBullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />

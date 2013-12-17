@@ -4,17 +4,14 @@
 class BTypeSkill : public Skill
 {
 public:
-	BTypeSkill(float angle, Point startPosition, Player* ownerPlayer);
+	BTypeSkill(Player* ownerPlayer);
 	virtual ~BTypeSkill(void);
 	virtual void Update(float dTime);
 	virtual bool IsLive();
 private:
 	float mLifeTime;
-	float mAngle;
 	Point mStartPosition;
-	float mExploseRadius;
-	float mDamage;
-	float mExploseDistance;
-	float mBoomTimeDistance;
+	float mHealRadius;
+	float mHeal;
 	Player* mOwnerPlayer;
 };

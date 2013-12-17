@@ -12,6 +12,7 @@
 #define KEYSTATE_NOTPRESSED 0
 #define KEYSTATE_PRESSED 1
 
+
 #define PKT_NONE 0
 #define PKT_CS_LOGIN 1
 #define PKT_SC_LOGIN 2
@@ -25,13 +26,19 @@
 #define PKT_SC_KILLSCORE 10
 #define PKT_SC_ENDOFGAME 11
 #define PKT_SC_A_TYPESKILL_SHOOT 12
-#define PKT_SC_B_TYPESKILL_SHOOT 13
-#define PKT_SC_B_TYPESKILL_END 14
-#define PKT_SC_C_TYPESKILL_SHOOT 15
-#define PKT_SC_USERSKILL_FLASH 16
-#define PKT_SC_USERSKILL_DASH 17
 
-#define PKT_SC_PLAYER_KILLSCORE_UPDATE 18
+#define PKT_SC_A_TYPEATTACK_SHOOT 13
+#define PKT_SC_A_TYPEATTACK_END 14
+
+#define PKT_SC_B_TYPESKILL_SHOOT 15
+
+#define PKT_SC_B_TYPEATTACK_SHOOT 16
+#define PKT_SC_B_TYPEATTACK_END 17
+
+#define PKT_SC_USERSKILL_FLASH 18
+#define PKT_SC_USERSKILL_DASH 19
+
+#define PKT_SC_PLAYER_KILLSCORE_UPDATE 20
 
 struct GameKeyStates
 {
@@ -141,17 +148,6 @@ struct MouseAngleUpdateRequest : public NNPacketHeader
 	float mAngle;
 };
 
-struct PlayerKillScoreUpdateResult : public NNPacketHeader
-{
-	PlayerKillScoreUpdateResult()
-	{
-		mSize = sizeof(PlayerKillScoreUpdateResult);
-		mType = PKT_SC_PLAYER_KILLSCORE_UPDATE;
-	}
-	int mPlayerId;
-	int mKillScore;
-};
-
 struct MouseAngleUpdateResult : public NNPacketHeader
 {
 	MouseAngleUpdateResult()
@@ -161,6 +157,16 @@ struct MouseAngleUpdateResult : public NNPacketHeader
 	}
 	int mPlayerId;
 	float mAngle;
+};
+struct PlayerKillScoreUpdateResult : public NNPacketHeader
+{
+        PlayerKillScoreUpdateResult()
+        {
+                mSize = sizeof(PlayerKillScoreUpdateResult);
+                mType = PKT_SC_PLAYER_KILLSCORE_UPDATE;
+        }
+        int mPlayerId;
+        int mKillScore;
 };
 struct HPUpdateResult : public NNPacketHeader
 {
@@ -202,6 +208,26 @@ struct ATypeSkillShootResult : public NNPacketHeader
 	NNPoint mStartPosition;
 	float mAngle;
 };
+struct ATypeAttackShootResult : public NNPacketHeader
+{
+	ATypeAttackShootResult()
+	{
+		mSize = sizeof(ATypeAttackShootResult);
+		mType = PKT_SC_A_TYPEATTACK_SHOOT;
+	}
+	NNPoint mStartPosition;
+	float mAngle;
+	int mIndex;
+};
+struct ATypeAttackEndResult : public NNPacketHeader
+{
+	ATypeAttackEndResult()
+	{
+		mSize = sizeof(ATypeAttackEndResult);
+		mType = PKT_SC_A_TYPEATTACK_END;
+	}
+	int mIndex;
+};
 struct BTypeSkillShootResult : public NNPacketHeader
 {
 	BTypeSkillShootResult()
@@ -210,27 +236,26 @@ struct BTypeSkillShootResult : public NNPacketHeader
 		mType = PKT_SC_B_TYPESKILL_SHOOT;
 	}
 	NNPoint mStartPosition;
-	NNPoint mTargetPosition;
-	int mIndex;
 };
-struct BTypeSkillEndResult : public NNPacketHeader
+struct BTypeAttackShootResult : public NNPacketHeader
 {
-	BTypeSkillEndResult()
+	BTypeAttackShootResult()
 	{
-		mSize = sizeof(BTypeSkillEndResult);
-		mType = PKT_SC_B_TYPESKILL_END;
-	}
-	NNPoint mBoomPosition;
-	int mIndex;
-};
-struct CTypeSkillShootResult : public NNPacketHeader
-{
-	CTypeSkillShootResult()
-	{
-		mSize = sizeof(CTypeSkillShootResult);
-		mType = PKT_SC_C_TYPESKILL_SHOOT;
+		mSize = sizeof(BTypeAttackShootResult);
+		mType = PKT_SC_B_TYPEATTACK_SHOOT;
 	}
 	NNPoint mStartPosition;
 	float mAngle;
+	int mIndex;
 };
+struct BTypeAttackEndResult : public NNPacketHeader
+{
+	BTypeAttackEndResult()
+	{
+		mSize = sizeof(BTypeAttackEndResult);
+		mType = PKT_SC_B_TYPEATTACK_END;
+	}
+	int mIndex;
+};
+
 #pragma pack(pop)

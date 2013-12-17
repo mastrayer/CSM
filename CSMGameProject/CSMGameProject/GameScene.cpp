@@ -97,8 +97,12 @@ void CGameScene::InitNetworkSetting()
 	mKillScoreHandler = new KillScoreHandler();
 	mPlayerKillScoreHandler = new KillScoreHandler();
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
+	mATypeAttackEndHandler = new ATypeAttackEndHandler();
+	mATypeAttackShootHandler = new ATypeAttackShootHandler();
 	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
-	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
+	mBTypeAttackEndHandler = new BTypeAttackEndHandler();
+	mBTypeAttackShootHandler = new BTypeAttackShootHandler();
+
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -110,12 +114,14 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KILLSCORE, mKillScoreHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_PLAYER_KILLSCORE_UPDATE, mPlayerKillScoreHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPESKILL_SHOOT, mATypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPEATTACK_SHOOT, mATypeAttackShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPEATTACK_END, mATypeAttackEndHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_SHOOT, mBTypeAttackShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_END, mBTypeAttackEndHandler);
 	
 
-	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
-	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
+	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30",9001);
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }

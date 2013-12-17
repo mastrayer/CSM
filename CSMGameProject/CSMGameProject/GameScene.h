@@ -24,8 +24,11 @@ private:
 	KillScoreHandler* mKillScoreHandler;
 	KillScoreHandler* mPlayerKillScoreHandler;
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
+	ATypeAttackEndHandler* mATypeAttackEndHandler;
+	ATypeAttackShootHandler* mATypeAttackShootHandler;
 	BTypeSkillShootHandler* mBTypeSkillShootHandler;
-	CTypeSkillShootHandler* mCTypeSkillShootHandler;
+	BTypeAttackEndHandler* mBTypeAttackEndHandler;
+	BTypeAttackShootHandler* mBTypeAttackShootHandler;
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
