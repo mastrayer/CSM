@@ -92,47 +92,6 @@ void CGameScene::Update( float dTime )
 			NNNetworkSystem::GetInstance()->Write( (const char*)&mMouseAngleUpdateHandler->mMouseAngleUpdateRequest,
 				mMouseAngleUpdateHandler->mMouseAngleUpdateRequest.mSize );
 		}
-
-		/* 플레이어 위치의 타일 타입을 확인 */
-		switch ( mGameMap->GetTileType((int)CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX()/64, 
-			(int)CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY()/64) )
-		{
-			/* 타일 타입이 배럭일 경우 형태 변환 패킷 전송 */
-		case BARRACK_A:
-			{
-				NNLogger::TraceLog( "In Barrack A" );
-				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_A );
-				mTypeChangeAHandler->mTypeChangeToARequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeAHandler->mTypeChangeToARequestPacket,
-					mTypeChangeAHandler->mTypeChangeToARequestPacket.mSize );
-			}
-			break;
-		case BARRACK_B:
-			{
-				NNLogger::TraceLog( "In Barrack B" );
-				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_B );
-				mTypeChangeBHandler->mTypeChangeToBRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeBHandler->mTypeChangeToBRequestPacket,
-					mTypeChangeBHandler->mTypeChangeToBRequestPacket.mSize );
-			}
-			break;
-		case BARRACK_C:
-			{
-				NNLogger::TraceLog( "In Barrack C" );
-				//CPlayerManager::GetInstance()->GetMyPlayer()->SetPlayerType( TYPE_C );
-				mTypeChangeCHandler->mTypeChangeToCRequestPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
-				NNNetworkSystem::GetInstance()->Write( (const char*)&mTypeChangeCHandler->mTypeChangeToCRequestPacket,
-					mTypeChangeCHandler->mTypeChangeToCRequestPacket.mSize );
-			}
-			break;
-		case BARRACK_D:
-			{
-				NNLogger::TraceLog( "In Barrack D" );
-			}
-			break;
-		default:
-			break;
-		}
 	}
 }
 

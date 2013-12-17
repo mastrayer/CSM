@@ -292,8 +292,8 @@ void Player::Update( float dTime)
 					willGoDirection = Point(0,0);
 				}
 			}
-			willGoPosition = GetPosition() + willGoDirection * dTime;
-			if(  mPlayerState == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
+ 			willGoPosition = GetPosition() + willGoDirection * dTime;
+			if(  mType == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_B
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_C
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_C)
@@ -529,7 +529,10 @@ bool Player::CouldGoPosition(Point position)
 				return false;
 			else
 			{
-				if(mPlayerState != TYPE_ZERO && GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_OUT)
+				if(mType != TYPE_ZERO && (GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_A
+					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_B
+					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_C
+					||GGameMap->GetTileType(Point(x*64.f,y*64.f)) == BARRACK_D))
 					return false;
 			}
 		}
@@ -559,6 +562,11 @@ void Player::InitWithType()
 {
 	switch (mType)
 	{
+	case TYPE_ZERO:
+		{
+
+			mSpeed = 150;
+		}
 	case TYPE_A:
 		{
 			mMaxHP = TYPE_A_MAXHP;
