@@ -18,7 +18,12 @@ using System.Collections.Specialized;
 
 namespace Maptool
 {
-    
+    public enum LAYER_TYPE
+    {
+        TILE_LAYER = 0,
+        ATTRIBUTE_LAYER = 1,
+        OBJECT_LAYER = 2,
+    };
     public partial class Main : Form
     {
         // form
@@ -28,6 +33,7 @@ namespace Maptool
         // values
         Bitmap minimapImage;
         public double Zoom;
+        public LAYER_TYPE layerType = LAYER_TYPE.TILE_LAYER;
         public int TileSize = Convert.ToInt32(Maptool.Properties.Resources.TILESIZE);
         public main_map.Tile SelectedTileInfo;
         public List<BitmapList> TileList = new List<BitmapList>();
@@ -286,9 +292,6 @@ namespace Maptool
             for (int i = 0; i < fi.Length - 1; i++)
                 files[i + 1] = "TileSet" + i.ToString();
 
-            byte[] b = null;
-            string d = null;
-
             using (ZipFile zip = new ZipFile())
             {
                 foreach (string file in files)
@@ -328,14 +331,7 @@ namespace Maptool
                         }
                         mainMap_init(mainMap.MapSize.Width, mainMap.MapSize.Height);
 
-                        //xnList = xmldoc.SelectNodes("map/tileInfo/t" + i.ToString() + "-" + j.ToString());
-                        //mainMap.grid[i,j].isFull = xmldoc.SelectSingleNode("map/tileInfo/t" + i.ToString() + "-" + j.ToString()).Attributes["isFull"].InnerText == "true" ? true : false;
-
                         xnList = xmldoc.SelectNodes("map/tileInfo/tile");
-
-                        //if (!mainMap.grid[i, j].isFull)
-                        //    continue;
-
                         foreach (XmlNode xn in xnList)
                         {
                             int xidx, yidx;
@@ -403,68 +399,6 @@ namespace Maptool
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 OpenCSMFile(openFileDialog1.FileName);
-                //                 string zipToUnpack = "c:\\test\\1000.zip";
-                //                 string unpackDirectory = "c:\\test\\temp\\";
-                // 
-                //                 string f = string.Empty;
-                //                 Bitmap bm = null;
-                //                 MemoryStream ms;
-                // 
-                //                 using (ZipFile zip = ZipFile.Read(zipToUnpack))
-                //                 {
-                //                     foreach (ZipEntry E in zip)
-                //                     {
-                //                         if (E.FileName.ToLower().IndexOf(".jpg") > 0)
-                //                         {
-                //                             ms = new MemoryStream();
-                //                             E.Extract(ms);
-                //                             try
-                //                             {
-                //                                 bm = new Bitmap(ms);
-                //                                 //f = unpackDirectory + E.FileName.ToLower().Replace(".bmp", ".jpg");
-                //                                 //bm.Save(f, System.Drawing.Imaging.ImageFormat.Jpeg);
-                //                             }
-                //                             catch (Exception ex)
-                //                             {
-                //                                 Console.WriteLine("File: " + E.FileName + " " + ex.ToString());
-                //                             }
-                //                             ms.Dispose();
-                //                         }
-                //                     }
-                //                 }
-
-                //string sDirPath = Application.StartupPath + "\\temp";
-                //DirectoryInfo di = new DirectoryInfo(sDirPath);
-                //if (di.Exists == false)
-                //   di.Create();
-
-                //                 string zipToUnpack = openFileDialog1.FileName;
-                //                 MemoryStream ms;
-                //                 //string unpackDirectory = "temp\\";
-                // 
-                //                 using (ZipFile zip1 = ZipFile.Read(zipToUnpack))
-                //                 {
-                //                     foreach (ZipEntry a in zip1)
-                //                     {
-                //                         ms = new MemoryStream();
-                //                         a.Extract(ms);
-                // 
-                //                         // XML
-                //                         if (a.FileName.ToLower().IndexOf(".xml") > 0)
-                //                         {
-                //                             XmlDocument b = new XmlDocument();
-                //                             b.Load(ms);
-                // 
-                //                             XMLRead(b);
-                //                         }
-                //                         else
-                //                         {
-                //                             //a.Extract(unpackDirectory, ExtractExistingFileAction.OverwriteSilently);
-                //                         }
-                //                     }
-                //                 }
-                //XMLRead(@"temp\\map.xml");
-                //Directory.Delete("temp\\", true);
             }
         }
         private void menu_item_exit_Click(object sender, EventArgs e)
@@ -525,17 +459,6 @@ namespace Maptool
              attribute_height.Text = mainMap.grid[x, y].attributeHeight.ToString();
              attribute_index.Text = x.ToString() + "/" + y.ToString();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            String test = mainMap.grid[0, 0].attributeMove.ToString() + "." + mainMap.grid[0, 0].attributeHeight.ToString() + " : " + "0/0\n";
-
-            test += mainMap.grid[0, 1].attributeMove.ToString() + "." + mainMap.grid[0, 1].attributeHeight.ToString() + " : " + "0/1\n";
-            test += mainMap.grid[1, 0].attributeMove.ToString() + "." + mainMap.grid[1, 0].attributeHeight.ToString() + " : " + "1/0\n";
-            test += mainMap.grid[1, 1].attributeMove.ToString() + "." + mainMap.grid[1, 1].attributeHeight.ToString() + " : " + "1/1\n";
-            MessageBox.Show(test);
-        }
-
         private void attribute_OK_Click(object sender, EventArgs e)
         {
             mainMap.grid[selectedPoint.X, selectedPoint.Y].attributeMove = attribute_move.Checked;
@@ -549,6 +472,13 @@ namespace Maptool
                 //숫자입력만 받도록 한다.
                 e.Handled = true;
             }
+        }
+        private void layers_TextChanged(object sender, EventArgs e)
+        {
+            String text = ((ComboBox)sender).Text;
+            if (text == "Tile Layer") layerType = LAYER_TYPE.TILE_LAYER;
+            else if (text == "Attribute Layer") layerType = LAYER_TYPE.ATTRIBUTE_LAYER;
+            else if (text == "Object Layer") layerType = LAYER_TYPE.OBJECT_LAYER;
         }
     }
 }

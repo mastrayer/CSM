@@ -29,78 +29,78 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("empty");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("water");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("soil");
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("노드0");
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("노드1");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("노드2");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("노드3");
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("노드4");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("노드6");
-            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("노드7");
-            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("노드8");
-            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("노드9");
-            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("노드10");
-            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("노드11");
-            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("노드12");
-            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("노드13");
-            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("노드14");
-            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("노드15");
-            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("노드16");
-            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("노드17");
-            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("노드18");
-            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("노드19");
-            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("노드20");
-            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("노드21");
-            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("노드22");
-            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("노드23");
-            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("노드24");
-            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("노드25");
-            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("노드26");
-            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("노드27");
-            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("노드28");
-            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("노드29");
-            System.Windows.Forms.TreeNode treeNode109 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
-            treeNode75,
-            treeNode76,
-            treeNode77,
-            treeNode78,
-            treeNode79,
-            treeNode80,
-            treeNode81,
-            treeNode82,
-            treeNode83,
-            treeNode84,
-            treeNode85,
-            treeNode86,
-            treeNode87,
-            treeNode88,
-            treeNode89,
-            treeNode90,
-            treeNode91,
-            treeNode92,
-            treeNode93,
-            treeNode94,
-            treeNode95,
-            treeNode96,
-            treeNode97,
-            treeNode98,
-            treeNode99,
-            treeNode100,
-            treeNode101,
-            treeNode102,
-            treeNode103,
-            treeNode104,
-            treeNode105,
-            treeNode106,
-            treeNode107,
-            treeNode108});
-            System.Windows.Forms.TreeNode treeNode110 = new System.Windows.Forms.TreeNode("노드5");
-            System.Windows.Forms.TreeNode treeNode111 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
-            treeNode110});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("empty");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("water");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("soil");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("노드0");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("노드1");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("노드2");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("노드3");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("노드4");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("노드6");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("노드7");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("노드8");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("노드9");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("노드10");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("노드11");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("노드12");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("노드13");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("노드14");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("노드15");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("노드16");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("노드17");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("노드18");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("노드19");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("노드20");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("노드21");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("노드22");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("노드23");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("노드24");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("노드25");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("노드26");
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("노드27");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("노드28");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("노드29");
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("tile", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode29,
+            treeNode30,
+            treeNode31,
+            treeNode32,
+            treeNode33,
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("노드5");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("structure", new System.Windows.Forms.TreeNode[] {
+            treeNode36});
             this.메뉴 = new System.Windows.Forms.MenuStrip();
             this.menu_file = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_item_new = new System.Windows.Forms.ToolStripMenuItem();
@@ -417,83 +417,83 @@
             this.contents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.contents.Location = new System.Drawing.Point(0, 396);
             this.contents.Name = "contents";
-            treeNode75.Name = "tile_empty";
-            treeNode75.Text = "empty";
-            treeNode76.Name = "tile_water";
-            treeNode76.Text = "water";
-            treeNode77.Name = "tile_soil";
-            treeNode77.Text = "soil";
-            treeNode78.Name = "노드0";
-            treeNode78.Text = "노드0";
-            treeNode79.Name = "노드0";
-            treeNode79.Text = "노드0";
-            treeNode80.Name = "노드1";
-            treeNode80.Text = "노드1";
-            treeNode81.Name = "노드2";
-            treeNode81.Text = "노드2";
-            treeNode82.Name = "노드3";
-            treeNode82.Text = "노드3";
-            treeNode83.Name = "노드4";
-            treeNode83.Text = "노드4";
-            treeNode84.Name = "노드5";
-            treeNode84.Text = "노드5";
-            treeNode85.Name = "노드6";
-            treeNode85.Text = "노드6";
-            treeNode86.Name = "노드7";
-            treeNode86.Text = "노드7";
-            treeNode87.Name = "노드8";
-            treeNode87.Text = "노드8";
-            treeNode88.Name = "노드9";
-            treeNode88.Text = "노드9";
-            treeNode89.Name = "노드10";
-            treeNode89.Text = "노드10";
-            treeNode90.Name = "노드11";
-            treeNode90.Text = "노드11";
-            treeNode91.Name = "노드12";
-            treeNode91.Text = "노드12";
-            treeNode92.Name = "노드13";
-            treeNode92.Text = "노드13";
-            treeNode93.Name = "노드14";
-            treeNode93.Text = "노드14";
-            treeNode94.Name = "노드15";
-            treeNode94.Text = "노드15";
-            treeNode95.Name = "노드16";
-            treeNode95.Text = "노드16";
-            treeNode96.Name = "노드17";
-            treeNode96.Text = "노드17";
-            treeNode97.Name = "노드18";
-            treeNode97.Text = "노드18";
-            treeNode98.Name = "노드19";
-            treeNode98.Text = "노드19";
-            treeNode99.Name = "노드20";
-            treeNode99.Text = "노드20";
-            treeNode100.Name = "노드21";
-            treeNode100.Text = "노드21";
-            treeNode101.Name = "노드22";
-            treeNode101.Text = "노드22";
-            treeNode102.Name = "노드23";
-            treeNode102.Text = "노드23";
-            treeNode103.Name = "노드24";
-            treeNode103.Text = "노드24";
-            treeNode104.Name = "노드25";
-            treeNode104.Text = "노드25";
-            treeNode105.Name = "노드26";
-            treeNode105.Text = "노드26";
-            treeNode106.Name = "노드27";
-            treeNode106.Text = "노드27";
-            treeNode107.Name = "노드28";
-            treeNode107.Text = "노드28";
-            treeNode108.Name = "노드29";
-            treeNode108.Text = "노드29";
-            treeNode109.Name = "tile";
-            treeNode109.Text = "tile";
-            treeNode110.Name = "structure_";
-            treeNode110.Text = "노드5";
-            treeNode111.Name = "structure";
-            treeNode111.Text = "structure";
+            treeNode1.Name = "tile_empty";
+            treeNode1.Text = "empty";
+            treeNode2.Name = "tile_water";
+            treeNode2.Text = "water";
+            treeNode3.Name = "tile_soil";
+            treeNode3.Text = "soil";
+            treeNode4.Name = "노드0";
+            treeNode4.Text = "노드0";
+            treeNode5.Name = "노드0";
+            treeNode5.Text = "노드0";
+            treeNode6.Name = "노드1";
+            treeNode6.Text = "노드1";
+            treeNode7.Name = "노드2";
+            treeNode7.Text = "노드2";
+            treeNode8.Name = "노드3";
+            treeNode8.Text = "노드3";
+            treeNode9.Name = "노드4";
+            treeNode9.Text = "노드4";
+            treeNode10.Name = "노드5";
+            treeNode10.Text = "노드5";
+            treeNode11.Name = "노드6";
+            treeNode11.Text = "노드6";
+            treeNode12.Name = "노드7";
+            treeNode12.Text = "노드7";
+            treeNode13.Name = "노드8";
+            treeNode13.Text = "노드8";
+            treeNode14.Name = "노드9";
+            treeNode14.Text = "노드9";
+            treeNode15.Name = "노드10";
+            treeNode15.Text = "노드10";
+            treeNode16.Name = "노드11";
+            treeNode16.Text = "노드11";
+            treeNode17.Name = "노드12";
+            treeNode17.Text = "노드12";
+            treeNode18.Name = "노드13";
+            treeNode18.Text = "노드13";
+            treeNode19.Name = "노드14";
+            treeNode19.Text = "노드14";
+            treeNode20.Name = "노드15";
+            treeNode20.Text = "노드15";
+            treeNode21.Name = "노드16";
+            treeNode21.Text = "노드16";
+            treeNode22.Name = "노드17";
+            treeNode22.Text = "노드17";
+            treeNode23.Name = "노드18";
+            treeNode23.Text = "노드18";
+            treeNode24.Name = "노드19";
+            treeNode24.Text = "노드19";
+            treeNode25.Name = "노드20";
+            treeNode25.Text = "노드20";
+            treeNode26.Name = "노드21";
+            treeNode26.Text = "노드21";
+            treeNode27.Name = "노드22";
+            treeNode27.Text = "노드22";
+            treeNode28.Name = "노드23";
+            treeNode28.Text = "노드23";
+            treeNode29.Name = "노드24";
+            treeNode29.Text = "노드24";
+            treeNode30.Name = "노드25";
+            treeNode30.Text = "노드25";
+            treeNode31.Name = "노드26";
+            treeNode31.Text = "노드26";
+            treeNode32.Name = "노드27";
+            treeNode32.Text = "노드27";
+            treeNode33.Name = "노드28";
+            treeNode33.Text = "노드28";
+            treeNode34.Name = "노드29";
+            treeNode34.Text = "노드29";
+            treeNode35.Name = "tile";
+            treeNode35.Text = "tile";
+            treeNode36.Name = "structure_";
+            treeNode36.Text = "노드5";
+            treeNode37.Name = "structure";
+            treeNode37.Text = "structure";
             this.contents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode109,
-            treeNode111});
+            treeNode35,
+            treeNode37});
             this.contents.Size = new System.Drawing.Size(192, 323);
             this.contents.TabIndex = 3;
             // 
@@ -516,13 +516,14 @@
             this.layers.FormattingEnabled = true;
             this.layers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.layers.Items.AddRange(new object[] {
-            "Layer 1",
-            "Layer 2",
-            "Layer 3"});
+            "Tile Layer",
+            "Attribute Layer",
+            "Object Layer"});
             this.layers.Location = new System.Drawing.Point(218, 47);
             this.layers.Name = "layers";
             this.layers.Size = new System.Drawing.Size(129, 20);
             this.layers.TabIndex = 9;
+            this.layers.TextChanged += new System.EventHandler(this.layers_TextChanged);
             // 
             // button_load
             // 
@@ -848,13 +849,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(658, 53);
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.TabIndex = 0;
             // 
             // Main
             // 

@@ -76,18 +76,35 @@ namespace Maptool
             int x = (e.X / TileSize) * TileSize;
             int y = (e.Y / TileSize) * TileSize;
 
-            grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
+            switch(mainForm.layerType)
+            {
+                case LAYER_TYPE.TILE_LAYER:
 
-            Graphics g = Graphics.FromImage(flag);
-            g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
+                   grid[x / TileSize, y / TileSize] = returnSelectedTile(grid[x / TileSize, y / TileSize], mainForm.TileSelectWindow.SelectedTile);
 
-            mainForm.updateAttributePanel(x / TileSize, y / TileSize);
+                   Graphics g = Graphics.FromImage(flag);
+                   g.DrawImage(mainForm.TileSelectWindow.SelectedTile.tile, new Point(x, y));
 
-            work_map.Image = flag;
-            mainForm.Minimap_update();
-            refresh();
+                   mainForm.updateAttributePanel(x / TileSize, y / TileSize);
 
-            g.Dispose();
+                   work_map.Image = flag;
+                   mainForm.Minimap_update();
+                   refresh();
+                   g.Dispose();
+                   break;
+
+                case LAYER_TYPE.ATTRIBUTE_LAYER :
+
+
+                    break;
+
+                case LAYER_TYPE.OBJECT_LAYER :
+
+
+                    break;
+
+            }
+            
         }
         private void GridCellHighlight(object sender, MouseEventArgs e)
         {
