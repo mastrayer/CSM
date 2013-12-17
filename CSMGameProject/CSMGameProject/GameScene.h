@@ -22,6 +22,7 @@ private:
 	MouseAngleUpdateHandler* mMouseAngleUpdateHandler;
 	HPUpdateHandler* mHPUpdateHandler;
 	KillScoreHandler* mKillScoreHandler;
+	KillScoreHandler* mPlayerKillScoreHandler;
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	BTypeSkillShootHandler* mBTypeSkillShootHandler;
 	CTypeSkillShootHandler* mCTypeSkillShootHandler;
