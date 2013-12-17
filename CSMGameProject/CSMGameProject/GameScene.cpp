@@ -25,6 +25,7 @@ CGameScene::CGameScene(void) :
 
 CGameScene::~CGameScene(void)
 {
+	CPlayerManager::ReleaseInstance();
 }
 
 void CGameScene::Init()
