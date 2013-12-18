@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ATypeAttack.cpp" />
+    <ClCompile Include="ATypeAttackBullet.cpp" />
+    <ClCompile Include="ATypeSkill.cpp" />
+    <ClCompile Include="BTypeAttack.cpp" />
+    <ClCompile Include="BTypeSkill.cpp" />
+    <ClCompile Include="BTypeAttackBullet.cpp" />
+    <ClCompile Include="BTypeSkillBullet.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
+    <ClCompile Include="CircularBuffer.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
+    <ClCompile Include="ClientSession.cpp" />
+    <ClCompile Include="CTypeAttack.cpp" />
+    <ClCompile Include="CTypeAttackBullet.cpp" />
+    <ClCompile Include="DatabaseJobContext.cpp" />
+    <ClCompile Include="DatabaseJobManager.cpp" />
+    <ClCompile Include="DbHelper.cpp" />
+    <ClCompile Include="DTypeAttack.cpp" />
+    <ClCompile Include="DTypeSkill.cpp" />
+    <ClCompile Include="EllipseCollisionTest.h" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="Library\MD5\md5.cpp" />
+    <ClCompile Include="Library\TinyXML\action_store.cpp" />
+    <ClCompile Include="Library\TinyXML\htmlutil.cpp" />
+    <ClCompile Include="Library\TinyXML\lex_util.cpp" />
+    <ClCompile Include="Library\TinyXML\node_set.cpp" />
+    <ClCompile Include="Library\TinyXML\tinystr.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxml.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="Library\TinyXML\tokenlist.cpp" />
+    <ClCompile Include="Library\TinyXML\xml_util.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_expression.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_processor.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_stack.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_static.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_stream.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_syntax.cpp" />
+    <ClCompile Include="Library\zip\unzip.cpp" />
+    <ClCompile Include="Library\zip\zip.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="NNResourceManager.cpp" />
+    <ClCompile Include="NNXML.cpp" />
+    <ClCompile Include="NNZip.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="SkillManager.cpp" />
+    <ClCompile Include="sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CTypeSkill.cpp" />
+    <ClCompile Include="UserSession.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ATypeAttack.h" />
+    <ClInclude Include="ATypeAttackBullet.h" />
+    <ClInclude Include="ATypeSkill.h" />
+    <ClInclude Include="BTypeAttack.h" />
+    <ClInclude Include="BTypeSkill.h" />
+    <ClInclude Include="BTypeAttackBullet.h" />
+    <ClInclude Include="BTypeSkillBullet.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="CircularBuffer.h" />
+    <ClInclude Include="ClientManager.h" />
+    <ClInclude Include="ClientSession.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="CTypeAttack.h" />
+    <ClInclude Include="CTypeAttackBullet.h" />
+    <ClInclude Include="DatabaseJobContext.h" />
+    <ClInclude Include="DatabaseJobManager.h" />
+    <ClInclude Include="DbHelper.h" />
+    <ClInclude Include="DTypeAttack.h" />
+    <ClInclude Include="DTypeSkill.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="Library\MD5\md5.h" />
+    <ClInclude Include="Library\TinyXML\action_store.h" />
+    <ClInclude Include="Library\TinyXML\byte_stream.h" />
+    <ClInclude Include="Library\TinyXML\htmlutil.h" />
+    <ClInclude Include="Library\TinyXML\lex_token.h" />
+    <ClInclude Include="Library\TinyXML\lex_util.h" />
+    <ClInclude Include="Library\TinyXML\node_set.h" />
+    <ClInclude Include="Library\TinyXML\tinystr.h" />
+    <ClInclude Include="Library\TinyXML\tinyxml.h" />
+    <ClInclude Include="Library\TinyXML\tinyxpath_conf.h" />
+    <ClInclude Include="Library\TinyXML\tokenlist.h" />
+    <ClInclude Include="Library\TinyXML\xml_util.h" />
+    <ClInclude Include="Library\TinyXML\xpath_expression.h" />
+    <ClInclude Include="Library\TinyXML\xpath_processor.h" />
+    <ClInclude Include="Library\TinyXML\xpath_stack.h" />
+    <ClInclude Include="Library\TinyXML\xpath_static.h" />
+    <ClInclude Include="Library\TinyXML\xpath_stream.h" />
+    <ClInclude Include="Library\TinyXML\xpath_syntax.h" />
+    <ClInclude Include="Library\zip\unzip.h" />
+    <ClInclude Include="Library\zip\zip.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Exception.h" />
+    <ClInclude Include="NNResourceManager.h" />
+    <ClInclude Include="NNXML.h" />
+    <ClInclude Include="NNZip.h" />
+    <ClInclude Include="ObjectPool.h" />
+    <ClInclude Include="PacketType.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerInput.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="SkillManager.h" />
+    <ClInclude Include="Skills.h" />
+    <ClInclude Include="SPSCQueue.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
+    <ClInclude Include="SQLStatement.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="CTypeSkill.h" />
+    <ClInclude Include="UserSession.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C2D19F49-C4E5-4C62-A9E1-A39ADA1071D0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CSMGameServer</RootNamespace>
+    <ProjectName>CSMGameServer</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);Library/zip;Library/MD5;Library/TinyXML;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;DbgHelp.lib;%(AdditionalDependencies);winmm.lib</AdditionalDependencies>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AA607A84-CAB9-4458-B4BD-92827FEC6101}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CSMGameProject</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>..\NNGameFramework\NNGameFramework\include\library\DirectX\lib\x86;..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\NNGameFramework\NNGameFramework\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\NNGameFramework\NNGameFramework\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ATypeAttackEndHandler.cpp" />
+    <ClCompile Include="ATypeAttackShootHandler.cpp" />
+    <ClCompile Include="ATypeSkillShootHandler.cpp" />
+    <ClCompile Include="BTypeAttackEndHandler.cpp" />
+    <ClCompile Include="BTypeAttackShootHandler.cpp" />
+    <ClCompile Include="BTypeSkillShootHandler.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="FifthCut.cpp" />
+    <ClCompile Include="FirstCut.cpp" />
+    <ClCompile Include="FourthCut.cpp" />
+    <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameUISet.cpp" />
+    <ClCompile Include="HPUpdateHandler.cpp" />
+    <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="KillScoreHandler.cpp" />
+    <ClCompile Include="LoginBroadcastHandler.cpp" />
+    <ClCompile Include="LoginHandler.cpp" />
+    <ClCompile Include="LogoutHandler.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MouseAngleUpdateHandler.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
+    <ClCompile Include="PlayerUI.cpp" />
+    <ClCompile Include="SecondCut.cpp" />
+    <ClCompile Include="ThirdCut.cpp" />
+    <ClCompile Include="StoryScene.cpp" />
+    <ClCompile Include="TypeA.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="TypeB.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="TypeC.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="TypeD.cpp" />
+    <ClCompile Include="UserSkillEffect.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="FifthCut.h" />
+    <ClInclude Include="FirstCut.h" />
+    <ClInclude Include="FourthCut.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameUISet.h" />
+    <ClInclude Include="IntroScene.h" />
+    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="PacketHandler.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="GameMap.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="PacketType.h" />
+    <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="PlayerUI.h" />
+    <ClInclude Include="SecondCut.h" />
+    <ClInclude Include="StoryCut.h" />
+    <ClInclude Include="StoryScene.h" />
+    <ClInclude Include="ThirdCut.h" />
+    <ClInclude Include="TypeA.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="TypeB.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="TypeC.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="TypeD.h" />
+    <ClInclude Include="UserSkillEffect.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
