@@ -141,12 +141,12 @@ GameUISet::GameUISet()
 	AddChild(mSkillUIFrame);
 	AddChild(mHpBarBackground);
 	AddChild(mHpBar);
-	AddChild(mKillBar[BLUE]);
 	AddChild(mKillBar[RED]);
+	AddChild(mKillBar[BLUE]);
 	AddChild(mCrown);
 	AddChild(mUserSkillTimer);
-	AddChild(mKillPoint[BLUE]);
 	AddChild(mKillPoint[RED]);
+	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
 	AddChild(mTypeSKillTimer);
 	
@@ -157,7 +157,7 @@ GameUISet::GameUISet()
 	}
 	
 	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
-	mType->SetPosition(60.f, 60.f); 
+	mType->SetPosition(0.f, 450.f); 
 	AddChild(mType);
 	 		
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
@@ -232,7 +232,7 @@ void GameUISet::Update(float dTime)
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * CPlayerManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 	*/
 	mKillBar[TeamColor::BLUE]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
-	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::BLUE)) - 60, 20);
+	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::RED)) - 60, 20);
 	mKillBar[TeamColor::RED]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 
