@@ -13,8 +13,8 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 
 Player::Player(int id, ClientSession* client)
 	: mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
-	  mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
-	  mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
+	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
+	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
 	mType = 0;
 	InitWithType();
@@ -114,7 +114,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_ATTACK:
 		{
-	if(mType == TYPE_ZERO) break;
+			if(mType == TYPE_ZERO) break;
 			if(mAttackDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				mPreDelay = 0.1f;
@@ -135,10 +135,10 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_DIE:
 		{
-	if(mType == TYPE_ZERO) break;
+			if(mType == TYPE_ZERO) break;
 			mResponTime = 5.f;
 			mPlayerState = state;
-			
+
 			mMoveDirection = Point(0,0);
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 			outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -147,7 +147,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_TYPESKILL:
 		{
-	if(mType == TYPE_ZERO) break;
+			if(mType == TYPE_ZERO) break;
 			if(mTypeSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				//mPreDelay = 0.1f;
@@ -165,7 +165,7 @@ void Player::TransState(short state)
 		break;
 	case PLAYER_STATE_USERSKILL:
 		{
-	if(mType == TYPE_ZERO) break;
+			if(mType == TYPE_ZERO) break;
 			if(mUserSkillDelay <= 0 && (mPlayerState == PLAYER_STATE_IDLE || mPlayerState == PLAYER_STATE_WALK))
 			{	
 				//mPreDelay = 0.1f;
@@ -292,7 +292,7 @@ void Player::Update( float dTime)
 					willGoDirection = Point(0,0);
 				}
 			}
- 			willGoPosition = GetPosition() + willGoDirection * dTime;
+			willGoPosition = GetPosition() + willGoDirection * dTime;
 			if(  mType == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_B
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_C
@@ -375,17 +375,51 @@ void Player::Update( float dTime)
 			if(mResponTime < 0)
 			{
 				//살려내야합니다.
+				int cnt = 0;
 				while(1)
 				{
-					float x = float(rand() % int(GGameMap->GetWidth() * 64));
-					float y = float(rand() % int(GGameMap->GetHeight() * 64));
+					float x, y;
+					if ( mTeam == 0 )
+					{
+						x = GGameMap->GetStartingPointAX() + 32.f;
+						y = GGameMap->GetStartingPointAY() + 32.f;
+					}
+					else
+					{
+						x = GGameMap->GetStartingPointBX() + 32.f;
+						y = GGameMap->GetStartingPointBY() + 32.f;
+					}
+
+					if ( cnt != 0 )
+					{
+						switch ( cnt%4 ) 
+						{
+						case 0:
+							y -= int(cnt/4+1) * 64.f;
+							break;
+						case 1:
+							x += int(cnt/4+1) * 64.f;
+							break;
+						case 2:
+							y += int(cnt/4+1) * 64.f;
+							break;
+						case 3:
+							x -= int(cnt/4+1) * 64.f;
+							break;
+						default:
+							break;
+						}
+					}
+
 					if(CouldGoPosition(Point(x,y)) == true)
 					{
 						mPosition = Point(x,y);
 						break;
 					}
+
+					++cnt;
 				}
-				mType = rand()%2;
+				mType = 0;
 				InitWithType();
 				TransState(PLAYER_STATE_IDLE);
 				break;
@@ -499,9 +533,9 @@ void Player::Heal(int dHP)
 		mHP += dHP;
 
 	HPUpdateResult outPacket = HPUpdateResult();
-		outPacket.mPlayerId = mPlayerId;
-		outPacket.mHP = mHP;
-		mClient->Broadcast(&outPacket);
+	outPacket.mPlayerId = mPlayerId;
+	outPacket.mHP = mHP;
+	mClient->Broadcast(&outPacket);
 }
 PlayerInfo Player::GetPlayerInfo()
 {
@@ -531,11 +565,11 @@ bool Player::CouldGoPosition(Point position)
 	}
 
 	if(mType != TYPE_ZERO && (GGameMap->GetTileType(position) == BARRACK_A
-					||GGameMap->GetTileType(position) == BARRACK_B
-					||GGameMap->GetTileType(position) == BARRACK_C
-					||GGameMap->GetTileType(position) == BARRACK_D))
-					return false;
-	
+		||GGameMap->GetTileType(position) == BARRACK_B
+		||GGameMap->GetTileType(position) == BARRACK_C
+		||GGameMap->GetTileType(position) == BARRACK_D))
+		return false;
+
 	std::map<int,Player*> players = GPlayerManager->GetPlayers();
 	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 	{

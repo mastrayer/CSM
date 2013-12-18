@@ -185,24 +185,13 @@ void ClientSession::OnRead(size_t len)
 	}
 }
 
-bool ClientSession::Send(PacketHeader* pkt)
+bool ClientSession::Send()
 {
 	if ( !IsConnected() )
 		return false;
-
-	/// 버퍼 용량 부족인 경우는 끊어버림
-	if ( false == mSendBuffer.Write((char*)pkt, pkt->mSize) )
-	{
-		Disconnect();
-		return false;
-	}
-
 	/// 보낼 데이터가 있는지 검사
 	if ( mSendBuffer.GetContiguiousBytes() == 0 )
 	{
-		/// 방금전에 write 했는데, 데이터가 없다면 뭔가 잘못된 것
-		assert(false);
-		Disconnect();
 		return false;
 	}
 
@@ -222,7 +211,6 @@ bool ClientSession::Send(PacketHeader* pkt)
 		if ( WSAGetLastError() != WSA_IO_PENDING )
 			return false;
 	}
-
 	IncOverlappedRequest();
 	return true;
 }
@@ -239,11 +227,23 @@ void ClientSession::OnWriteComplete( size_t len )
 	}
 
 }
-
+bool ClientSession::Write( PacketHeader* pkt )
+{
+	if ( false == mSendBuffer.Write((char*)pkt, pkt->mSize) )
+	{
+		Disconnect();
+		return false;
+	}
+	return true;
+}
 bool ClientSession::Broadcast( PacketHeader* pkt  )
 {
-	if ( !Send(pkt) )
+	/// 버퍼 용량 부족인 경우는 끊어버림
+	if ( false == mSendBuffer.Write((char*)pkt, pkt->mSize) )
+	{
+		Disconnect();
 		return false;
+	}
 
 	if ( !IsConnected() )
 		return false;

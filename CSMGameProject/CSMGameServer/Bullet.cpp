@@ -20,6 +20,7 @@ void Bullet::Update(float dTime)
 	mPosition = mPosition + Point( cos(mAngle) * mVelocity , sin(mAngle) * mVelocity ) * dTime;
 
 	mVelocity = mVelocity + mAcceleraction * dTime;
+	printf("%.f %.f\n",mPosition.x,mPosition.y);
 }
 
 void Bullet::JudgeCollision(Player* player)

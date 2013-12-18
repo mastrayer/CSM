@@ -32,7 +32,7 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 	outPacket.mKillLimit = 0;//GGameManager->GetKillLimit();
 	outPacket.mKillScore[0] = 0;//GGameManager->GetKillScore()[0];
 	outPacket.mKillScore[1] = 0;//GGameManager->GetKillScore()[1];
-	if(!client->Send(&outPacket) )
+	if(!client->Write(&outPacket) )
 		return;
 
 	LoginBroadcastResult outPacketBroadCast;

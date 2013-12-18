@@ -31,7 +31,7 @@ void ClientManager::BroadcastPacket(ClientSession* from, PacketHeader* pkt)
 		if ( from == client )
 			continue ;
 		
-		client->Send(pkt) ;
+		client->Write(pkt) ;
 	}
 }
 
@@ -96,6 +96,7 @@ void ClientManager::ClientPeriodWork()
 	{
 		ClientSession* client = it.second ;
 		client->OnTick() ;
+		client->Send();
 	}
 }
 
