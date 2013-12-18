@@ -9,26 +9,10 @@
 #include "NNParticleSystem.h"
 
 #include "PlayerUI.h"
+#include "config.h"
 
 #define SKILL_COUNT 2
 
-enum PlayerState
-{
-	IDLE = 0,
-	WALK = 1,
-	ATTAACK = 2,
-	DIE = 3,
-	TYPE_ACTIVE_SKILL = 4,
-	USER_ACTIVE_SKILL = 5,	
-};
-enum PlayerType
-{
-	TYPE_ZERO = 0,
-	TYPE_A = 1,
-	TYPE_B = 2,
-	TYPE_C = 3,
-	TYPE_D = 4,
-};
 class CPlayer : public NNObject
 {
 public:
@@ -42,8 +26,8 @@ public:
 	void SetPlayerRotation( float angle ) { SetRotation(angle); /*mAngle = angle; mMove->SetRotation(angle); mStop->SetRotation(angle);*/ }
 	void SetPlayerMoveDirection( NNPoint direction) { mMoveVelocity = direction; }
 	void SetPlayerHP(int hp) { mHp = hp; }
-	void SetSkillCount(float value, PlayerState skillType) { mSkillCount[skillType - TYPE_ACTIVE_SKILL] = value; }
-	void SetSkillCooldown(bool value, PlayerState skillType) { mSkillCooldown[skillType - TYPE_ACTIVE_SKILL] = value; }
+	void SetSkillCount(float value, SkillType type) { mSkillCount[type] = value; }
+	void SetSkillCooldown(bool value, SkillType type) { mSkillCooldown[type] = value; }
 	void SetPlayerTeam(int team) { mTeam = team; }
 	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
 	void SetKillScore( int killScore ) { mKillScore = killScore; }
@@ -51,13 +35,13 @@ public:
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mRotation; }
 	int GetPlayerHP() { return mHp; }
-	float GetSkillCount(PlayerState skillType) { return mSkillCount[skillType - TYPE_ACTIVE_SKILL]; }
-	bool GetSkillCooldown(PlayerState skillType) { return mSkillCooldown[skillType - TYPE_ACTIVE_SKILL]; }
+	float GetSkillCount(SkillType type) { return mSkillCount[type]; }
+	bool GetSkillCooldown(SkillType type) { return mSkillCooldown[type]; }
 	PlayerType GetPlayerType() { return mPlayerType; }
 	int GetTeam() { return mTeam; }
 	int GetKillScore() const { return mKillScore; }
 
-	void CreateSkillEffect(PlayerType type, PlayerState skillType);
+	void CreateSkillEffect(PlayerType type, SkillType skillType);
 
 	NNCREATE_FUNC(CPlayer);
 

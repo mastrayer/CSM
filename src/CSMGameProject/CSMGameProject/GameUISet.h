@@ -7,17 +7,7 @@
 #include "Player.h"
 #include "PlayerManager.h"
 #include "EffectManager.h"
-
-
-enum SlimeType
-{
-	ZERO = 0,
-	FIRE = 1,
-	WATER = 2,
-	WIND = 3,
-	EARTH = 4
-};
-
+#include "config.h"
 
 class GameUISet : public NNUISet
 {

@@ -5,7 +5,7 @@
 #include "NNAnimation.h"
 #include "Player.h"
 
-namespace USER_SKILL
+namespace USER_SKILL_EFFECT
 {
 	class Flash : public IEffect
 	{

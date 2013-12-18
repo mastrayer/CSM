@@ -50,18 +50,18 @@ void CPlayer::Init()
 	ZeroMemory( mSkillCooldown, sizeof(mSkillCooldown) );
 }
 
-void CPlayer::CreateSkillEffect(PlayerType type, PlayerState skillType)
+void CPlayer::CreateSkillEffect(PlayerType type, SkillType skillType)
 {
 	switch (skillType)
 	{
-	case TYPE_ACTIVE_SKILL:
+	case SkillType::TYPE_SKILL:
 		
 		//if (type == TYPE_A) EffectManager::GetInstance()->AddEffect();
 		//else if (type == TYPE_B) EffectManager::GetInstance()->AddEffect();
 		//else if (type == TYPE_C) EffectManager::GetInstance()->AddEffect();
 
 		break;
-	case USER_ACTIVE_SKILL:
+	case SkillType::USER_SKILL:
 
 		break;
 	}
@@ -120,18 +120,18 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case TYPE_ACTIVE_SKILL:
-		if (GetSkillCooldown(TYPE_ACTIVE_SKILL) == false)
+		if (GetSkillCooldown(SkillType::TYPE_SKILL) == false)
 		{
-			SetSkillCooldown(true, TYPE_ACTIVE_SKILL);
-			CreateSkillEffect(mPlayerType, TYPE_ACTIVE_SKILL);
+			SetSkillCooldown(true, SkillType::TYPE_SKILL);
+			CreateSkillEffect(mPlayerType, SkillType::TYPE_SKILL);
 		}
 		break;
 
 	case USER_ACTIVE_SKILL:
-		if (GetSkillCooldown(USER_ACTIVE_SKILL) == false)
+		if (GetSkillCooldown(SkillType::USER_SKILL) == false)
 		{
-			SetSkillCooldown(true, USER_ACTIVE_SKILL);
-			CreateSkillEffect(mPlayerType, USER_ACTIVE_SKILL);
+			SetSkillCooldown(true, SkillType::USER_SKILL);
+			CreateSkillEffect(mPlayerType, SkillType::USER_SKILL);
 		}
 		break;
 

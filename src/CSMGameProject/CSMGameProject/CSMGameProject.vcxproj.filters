@@ -282,5 +282,8 @@
     <ClInclude Include="TypeD.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\D</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

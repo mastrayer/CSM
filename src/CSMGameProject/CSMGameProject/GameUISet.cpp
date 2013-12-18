@@ -58,7 +58,8 @@ GameUISet::GameUISet()
 	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
-	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
+	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER
+	]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
 	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
@@ -242,21 +243,23 @@ void GameUISet::Update(float dTime)
 
 void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 {
-	/*if (mMyPlayer->GetSkillCooldown(skillType) == true)
+	SkillType type = (SkillType)(skillType - TYPE_ACTIVE_SKILL);
+
+	if (mMyPlayer->GetSkillCooldown(type) == true)
 	{
-		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(skillType) + dTime, skillType);
-		mTypeSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(mMyPlayer->GetSkillCount(skillType) / mSkillCooltime[skillType - TYPE_ACTIVE_SKILL]);
+		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
+		mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
 
-		swprintf_s(mSkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL], L"%.0f", mSkillCooltime[skillType - TYPE_ACTIVE_SKILL] - mMyPlayer->GetSkillCount(skillType));
-		mTypeSKillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(mSkillCooltimeBuff[skillType - TYPE_ACTIVE_SKILL]);
+		swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
+		mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
 
-		if (mMyPlayer->GetSkillCount(skillType) >= mSkillCooltime[skillType - TYPE_ACTIVE_SKILL])
+		if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
 		{
-			mMyPlayer->SetSkillCooldown(false, skillType);
-			mMyPlayer->SetSkillCount(0.f, skillType);
+			mMyPlayer->SetSkillCooldown(false, type);
+			mMyPlayer->SetSkillCount(0.f, type);
 
-			mTypeSkillUI[skillType - TYPE_ACTIVE_SKILL]->SetOpacity(1.f);
-			mTypeSKillTimer[skillType - TYPE_ACTIVE_SKILL]->SetString(L"");
+			mTypeSkillUI[type]->SetOpacity(1.f);
+			mTypeSKillTimer[type].SetString(L"");
 		}
-	}*/
+	}
 }

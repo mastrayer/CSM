@@ -125,6 +125,7 @@
     <ClCompile Include="UserSkillEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="config.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="FifthCut.h" />

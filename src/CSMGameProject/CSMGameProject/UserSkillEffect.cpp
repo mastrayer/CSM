@@ -1,5 +1,5 @@
 #include "UserSkillEffect.h"
-using namespace USER_SKILL;
+using namespace USER_SKILL_EFFECT;
 
 Flash::Flash(CPlayer* follower)
 {
