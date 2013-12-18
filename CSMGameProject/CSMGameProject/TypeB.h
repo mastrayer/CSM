@@ -15,16 +15,16 @@ public:
 	void Render();
 	void Update(float dTime);
 	NNPoint FindTarget(NNPoint startPosition);
-	void Explose();
+	//void Explose();
 
 
 private:
 	bool mIsCrash;
-	float mMoveSpeed;
-	float mDirection;
+	//float mMoveSpeed;
+	//float mDirection;
 	NNPoint mSource;
-	NNPoint mDestination;
-	NNAnimation *mFlyAnimation;
+	//NNPoint mDestination;
+	NNAnimation *mHealAnimation;
 	NNAnimation *mExplosionAnimation;
 	CPlayer* mFollower;
 };

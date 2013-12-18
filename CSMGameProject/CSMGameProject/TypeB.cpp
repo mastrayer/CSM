@@ -4,27 +4,26 @@
 BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 {
 	SetPosition(startPosition);
-
-	mFlyAnimation = NNAnimation::Create();
+	
+	mHealAnimation = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 24; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/B/TypeSkill/Fly/%d.png", i);
+		wsprintf(temp, L"Sprite/SkillEffect/B/TypeSkill/%d.png", i);
 
-		mFlyAnimation->AddFrameNode(temp);
+		mHealAnimation->AddFrameNode(temp);
 	}
-	mFlyAnimation->SetFrameTimeInSection(0.03f, 0, 7);
+	mHealAnimation->SetFrameTimeInSection(0.03f, 0, 23);
 
-	mLifeTime = 1024*1024;
-	mFlyAnimation->SetCenter(30.f, 65.f);
+	mLifeTime = mHealAnimation->GetPlayTime();
+	mHealAnimation->SetCenter(128.f, 128.f);
 	//mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
-	mMoveSpeed = 100.f;
-	mIsCrash = false;
+	//mMoveSpeed = 100.f;
+	//mIsCrash = false;
 
-	mFlyAnimation->SetRotation(mDirection);
-
-	AddChild(mFlyAnimation);
+	//mHealAnimation->SetRotation(mDirection);
+	AddChild(mHealAnimation);
 }
 BTypeSkillEffect::~BTypeSkillEffect()
 {
@@ -37,16 +36,19 @@ void BTypeSkillEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
 
-	this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);
+	//this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);
 
-	if (!mIsCrash && mLifeTime < mNowLifeTime)
-		Explose();
-	if (mIsCrash && mLifeTime < mNowLifeTime)
+	/*if (!mIsCrash && mLifeTime < mNowLifeTime)
+		Explose();*/
+	/*if (mIsCrash && mLifeTime < mNowLifeTime)
+		mIsEnd = true;*/
+	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;
 }
+/*
 void BTypeSkillEffect::Explose()
 {
-	mFlyAnimation->SetVisible(false);
+	mHealAnimation->SetVisible(false);
 	mExplosionAnimation = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
@@ -67,6 +69,7 @@ void BTypeSkillEffect::Explose()
 
 	mIsCrash = true;
 }
+*/
 
 BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition, int index):mIndex(index)
 {
