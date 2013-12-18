@@ -7,8 +7,8 @@
 
 enum TeamColor
 {
-	BLUE = 0,
-	RED = 1
+	RED = 0,
+	BLUE = 1
 };
 class PlayerUI : public NNObject
 {
