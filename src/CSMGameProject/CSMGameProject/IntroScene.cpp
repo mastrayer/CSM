@@ -14,40 +14,40 @@ IntroScene::IntroScene()
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 	
 	
-	mIntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_0.png" );
+	mIntroSceneImage = NNSprite::Create( L"Resource/Sprite/IntroImage_0.png" );
 	mIntroSceneImage->SetPosition( width/2, height/2 );
 	mIntroSceneImage->SetCenter( mIntroSceneImage->GetPositionX()/2.f, mIntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( mIntroSceneImage );
 
-	mIntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_1.png" );
+	mIntroSceneImage = NNSprite::Create( L"Resource/Sprite/IntroImage_1.png" );
 	mIntroSceneImage->SetPosition( width/2, height/2 );
 	mIntroSceneImage->SetCenter( mIntroSceneImage->GetPositionX()/2.f, mIntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( mIntroSceneImage );
 
-	mIntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_2.png" );
+	mIntroSceneImage = NNSprite::Create( L"Resource/Sprite/IntroImage_2.png" );
 	mIntroSceneImage->SetPosition( width/2, height/2 );
 	mIntroSceneImage->SetCenter( mIntroSceneImage->GetPositionX()/2.f, mIntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( mIntroSceneImage );
 
-	mIntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_3.png" );
+	mIntroSceneImage = NNSprite::Create( L"Resource/Sprite/IntroImage_3.png" );
 	mIntroSceneImage->SetPosition( width/2, height/2 );
 	mIntroSceneImage->SetCenter( mIntroSceneImage->GetPositionX()/2.f, mIntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( mIntroSceneImage );
 
-	mIntroSceneImage = NNSprite::Create( L"Sprite/IntroImage_4.png" );
+	mIntroSceneImage = NNSprite::Create( L"Resource/Sprite/IntroImage_4.png" );
 	mIntroSceneImage->SetPosition( width/2, height/2 );
 	mIntroSceneImage->SetCenter( mIntroSceneImage->GetPositionX()/2.f, mIntroSceneImage->GetPositionY()/2.f + 70.f );
 	AddChild( mIntroSceneImage );
 	*/
 
 	/* MenuSellectionBar type
-	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellectionBar.png");
+	mMainMenuSellcetionBar = NNSprite::Create( L"Resource/Sprite/MenuSellectionBar.png");
 	mMainMenuSellcetionBar->SetPosition( width/2 + 200.f, height/2 + 200.f + mMenuSellction * 50 );
 	AddChild( mMainMenuSellcetionBar ) ;
 	*/
 
 	/*
-	mIntroNextSellcetionImage = NNSprite::Create( L"Sprite/MenuSellecter.png");
+	mIntroNextSellcetionImage = NNSprite::Create( L"Resource/Sprite/StoryScene/MenuSellecter.png");
 	mIntroNextSellcetionImage->SetPosition( width/2, height/2 );
 	mIntroNextSellcetionImage->SetScale( 0.5f, 0.5f );
 	AddChild( mIntroNextSellcetionImage ) ;

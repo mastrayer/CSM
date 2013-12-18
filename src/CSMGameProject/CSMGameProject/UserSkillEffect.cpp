@@ -10,7 +10,7 @@ Flash::Flash(CPlayer* follower)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 25; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/UserSkill/Flash/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/UserSkill/Flash/%d.png", i);
 
 		mSrcAnimation->AddFrameNode(temp);
 		mDstAnimation->AddFrameNode(temp);
@@ -62,7 +62,7 @@ Heal::Heal(CPlayer* follower)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 25; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/UserSkill/Heal/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/UserSkill/Heal/%d.png", i);
 
 		mAnimation->AddFrameNode(temp);
 	}
@@ -99,7 +99,7 @@ Immolation::Immolation(CPlayer* follower)
 
 	SetPosition(follower->GetPlayerPosition());
 
-	mPaticleEffect = NNParticleSystem::Create(L"Sprite/SkillEffect/UserSkill/Immolation/0.png");
+	mPaticleEffect = NNParticleSystem::Create(L"Resource/Sprite/SkillEffect/UserSkill/Immolation/0.png");
 	mPaticleEffect->SetMinStartSpeed(10.f);
 	mPaticleEffect->SetMaxStartSpeed(10.f);
 	mPaticleEffect->SetMinEndSpeed(10.f);

@@ -27,10 +27,10 @@ CPlayer::~CPlayer( void )
 void CPlayer::Init()
 {
 	/* Player Animation, Sprite Init */
-	mDie = NNSprite::Create( L"Sprite/die.png" );
-	mStop = NNSpriteAtlas::Create( L"Sprite/Player/player.png" );
+	mDie = NNSprite::Create( L"Resource/Sprite/Player/die.png" );
+	mStop = NNSpriteAtlas::Create( L"Resource/Sprite/Player/player.png" );
 	mStop->SetCutSize( NNSize(0,41,65,83) );
-	mMove = NNAnimationAtlas::Create( L"Sprite/Player/player.png", 3, 0.05f, NNSize(0,0,65,41), NNSize(0,41,65,83), NNSize(0,83,65,125) );
+	mMove = NNAnimationAtlas::Create( L"Resource/Sprite/Player/player.png", 3, 0.05f, NNSize(0,0,65,41), NNSize(0,41,65,83), NNSize(0,83,65,125) );
 	AddChild( mDie );
 	AddChild( mStop );
 	AddChild( mMove );

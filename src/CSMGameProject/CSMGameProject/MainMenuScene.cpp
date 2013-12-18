@@ -19,13 +19,13 @@ MainMenuScene::MainMenuScene()
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
 	////////// Main Menu Background //////////
-	mMainMenuImage = NNSprite::Create( L"Sprite/MainMenu.jpg" );
+	mMainMenuImage = NNSprite::Create( L"Resource/Sprite/StoryScene/MainMenu.jpg" );
 	mMainMenuImage->SetPosition( width/2, height/2 );
 	mMainMenuImage->SetCenter( mMainMenuImage->GetImageWidth()/2.f, mMainMenuImage->GetImageHeight()/2.f + 70.f );
 	AddChild( mMainMenuImage );
 
 	////////// Main Menu SellcetionBar //////////
-	mMainMenuSellcetionBar = NNSprite::Create( L"Sprite/MenuSellecter.png");
+	mMainMenuSellcetionBar = NNSprite::Create( L"Resource/Sprite/StoryScene/MenuSellecter.png");
 	mMainMenuSellcetionBar->SetPosition( width/2, height/2 );
 	mMainMenuSellcetionBar->SetScale( 0.5f, 0.5f );
 	AddChild( mMainMenuSellcetionBar ) ;
@@ -44,7 +44,7 @@ MainMenuScene::MainMenuScene()
 	AddChild( mMainMenuLable[MENU_EXIT] );
 
 	////////// Background Music //////////
-	mBGM = NNResourceManager::GetInstance()->LoadSoundFromFile( "sound/mainBGM.mp3", true );
+	mBGM = NNResourceManager::GetInstance()->LoadSoundFromFile( "Resource/Sound/mainBGM.mp3", true );
 	NNAudioSystem::GetInstance()->Play( mBGM ); 
 }
 
