@@ -47,7 +47,7 @@ IntroScene::IntroScene()
 	*/
 
 	/*
-	mIntroNextSellcetionImage = NNSprite::Create( L"Resource/Sprite/MenuSellecter.png");
+	mIntroNextSellcetionImage = NNSprite::Create( L"Resource/Sprite/StoryScene/MenuSellecter.png");
 	mIntroNextSellcetionImage->SetPosition( width/2, height/2 );
 	mIntroNextSellcetionImage->SetScale( 0.5f, 0.5f );
 	AddChild( mIntroNextSellcetionImage ) ;

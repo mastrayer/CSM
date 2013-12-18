@@ -21,55 +21,55 @@ GameUISet::GameUISet()
 	mFPSLabel = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20);
 	AddChild(mFPSLabel);
 
-	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/CharacterUIFrame.png");
+	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/UI/GameUI/CharacterUIFrame.png");
 	mCharacterUIFrame->SetPosition(0.f, 500.f);
 	mCharacterUIFrame->SetOpacity(0.9f);
 
-	mSkillUIFrame = NNSprite::Create(L"Resource/Sprite/SkillUIFrame.png");
+	mSkillUIFrame = NNSprite::Create(L"Resource/Sprite/UI/Skill/SkillUIFrame.png");
 	mSkillUIFrame->SetCenter(mSkillUIFrame->GetImageWidth() / 2.f, mSkillUIFrame->GetImageHeight() / 2.f);
 	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
 	mSkillUIFrame->SetOpacity(0.9f);
 
-	mHpBarBackground = NNSprite::Create(L"Resource/Sprite/GameHpBar_BackGround.png");
+	mHpBarBackground = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar_BackGround.png");
 	mHpBarBackground->SetCenter(mHpBarBackground->GetImageWidth() / 2.f, mHpBarBackground->GetImageHeight() / 2.f);
 	mHpBarBackground->SetPosition(width / 2.f, height / 2.f + 280);
 
-	mHpBar = NNSprite::Create(L"Resource/Sprite/GameHpBar.png");
+	mHpBar = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar.png");
 	mHpBar->SetPosition(340.f, 570.f);
 
-	mCrown = NNSprite::Create(L"Resource/Sprite/Crown.png");
+	mCrown = NNSprite::Create(L"Resource/Sprite/Object/Crown.png");
 	mCrown->SetCenter(mCrown->GetImageWidth() / 2.f, mCrown->GetImageHeight() / 2.f);
 	mCrown->SetPosition(width / 2.f, 30);
 
-	mKillBar[BLUE] = NNSprite::Create(L"Resource/Sprite/KillPointBlueBar.png");
+	mKillBar[BLUE] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointBlueBar.png");
 	mKillBar[BLUE]->SetPosition(width / 2.f - 32, 20);
 	mKillBar[BLUE]->SetScaleX(-1.f);
 
-	mKillBar[RED] = NNSprite::Create(L"Resource/Sprite/KillPointRedBar.png");
+	mKillBar[RED] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointRedBar.png");
 	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
 	//mRedKillBar->SetScaleX(-1.f);
 
-	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI/ZeroTypeSkillUI.png");
+	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/ZeroTypeSkillUI.png");
 	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
 	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mTypeSkillUI[FIRE] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI/FireTypeSkillUI.png");
+	mTypeSkillUI[FIRE] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/FireTypeSkillUI.png");
 	mTypeSkillUI[FIRE]->SetCenter(mTypeSkillUI[FIRE]->GetImageWidth() / 2.f, mTypeSkillUI[FIRE]->GetImageHeight() / 2.f);
 	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI/WaterTypeSkillUI.png");
+	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
 	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
 	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI/WindTypeSkillUI.png");
+	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
 	mTypeSkillUI[WIND]->SetCenter(mTypeSkillUI[WIND]->GetImageWidth() / 2.f, mTypeSkillUI[WIND]->GetImageHeight() / 2.f);
 	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mTypeSkillUI[EARTH] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI/EarthTypeSkillUI.png");
+	mTypeSkillUI[EARTH] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/EarthTypeSkillUI.png");
 	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
 	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UserSkillUI/Dash.png");
+	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.png");
 	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
 	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 235);
 
