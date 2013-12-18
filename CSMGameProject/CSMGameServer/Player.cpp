@@ -490,7 +490,7 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage, Player* player)
 {
-	if(mPlayerState == TYPE_ZERO) return false;
+	if(mType == TYPE_ZERO) return false;
 	//ChangeType(GetTypeChangeResult(mType, enemy->mType));
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
 	{
@@ -524,7 +524,7 @@ bool Player::Damaged(int damage, Player* player)
 }
 void Player::Heal(int dHP)
 {
-	if(mPlayerState == TYPE_ZERO) return;
+	if(mType == TYPE_ZERO) return;
 	if(mPlayerState == PLAYER_STATE_DIE) return;
 
 	if(mHP + dHP > mMaxHP)
