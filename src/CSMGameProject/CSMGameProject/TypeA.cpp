@@ -10,7 +10,7 @@ ATypeSkillEffect::ATypeSkillEffect(float angle, NNPoint startPosition)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 40; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/A/TypeSkill/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/TypeSkill/%d.png", i);
 
 		for (int j = 0; j < 3; ++j)
 			mExplosion[j]->AddFrameNode(temp);
@@ -75,7 +75,7 @@ ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition, int ind
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 6; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
 		mBullet->AddFrameNode(temp);
 	}
 	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
@@ -122,7 +122,7 @@ void ATypeAttackEffect::Explose()
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 18; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
 
 		mExplosion->AddFrameNode(temp);
 	}

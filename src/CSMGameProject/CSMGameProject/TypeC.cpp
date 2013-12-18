@@ -16,7 +16,7 @@ CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 30; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/C/TypeSkill/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/C/TypeSkill/%d.png", i);
 
 		mAnimation->AddFrameNode(temp);
 	}

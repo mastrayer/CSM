@@ -19,7 +19,7 @@ CGameScene::CGameScene(void) :
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
 	// GameMap Create
-	mGameMap = CGameMap::Create(L"map/sample2.csm");
+	mGameMap = CGameMap::Create(L"Resource/map/sample2.csm");
 
 	AddChild( mGameMap );
 

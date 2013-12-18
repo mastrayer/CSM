@@ -10,12 +10,12 @@ DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 16; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/D/TypeSkill/Dash/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/D/TypeSkill/Dash/%d.png", i);
 		mDashEffect->AddFrameNode(temp);
 	}
 	for (int i = 0; i < 16; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/D/TypeSkill/Explosion/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/D/TypeSkill/Explosion/%d.png", i);
 		mExplosionEffect->AddFrameNode(temp);
 	}
 
@@ -79,7 +79,7 @@ void DTypeSkillEffect::CreateDustEffect()
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 16; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/D/TypeSkill/Dash/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/D/TypeSkill/Dash/%d.png", i);
 		Dust->AddFrameNode(temp);
 	}
 	Dust->SetFrameTimeInSection(0.02f, 0, 15);
@@ -109,7 +109,7 @@ DTypeAttackEffect::DTypeAttackEffect(float angle, NNPoint startPosition)
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 6; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
 		mBullet->AddFrameNode(temp);
 	}
 	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
@@ -156,7 +156,7 @@ void DTypeAttackEffect::Explose()
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 18; i++)
 	{
-		wsprintf(temp, L"Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
 
 		mExplosion->AddFrameNode(temp);
 	}

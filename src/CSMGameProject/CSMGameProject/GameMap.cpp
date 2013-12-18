@@ -11,7 +11,7 @@ CGameMap::CGameMap(std::wstring path)
 
 	convertFileToMap(path);
 
-	// 	mMapSprite = NNSprite::Create( L"Sprite/map.png" );
+	// 	mMapSprite = NNSprite::Create( L"Resource/Sprite/map.png" );
 	// 	mMapSprite->SetPosition( 0.f, 0.f );
 	//  AddChild( mMapSprite );
 }
@@ -81,7 +81,7 @@ void CGameMap::convertFileToMap( std::wstring path )
 			int j = atoi(child->Attribute("X"));
 			int tileSetIndex, x, y;
 			TiXmlElement* tileImageInfo = child->FirstChild("TileImageInfo")->ToElement();
-			x = atoi(tileImageInfo->Attribute("Y"));
+			x = atoi(tileImageInfo->Attribute("Y")); 
 			y = atoi(tileImageInfo->Attribute("X"));
 			tileSetIndex = atoi(tileImageInfo->Attribute("Index"));
 			mTile[i][j]->misFull = strcmp(child->Attribute("isFull"), "true") == 0 ? true : false;

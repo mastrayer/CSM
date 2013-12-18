@@ -16,8 +16,8 @@ void PlayerUI::Init()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	mHpBar[BLUE] = NNSprite::Create( L"Sprite/BlueHpBar.png" );
-	mHpBar[RED] = NNSprite::Create(L"Sprite/RedHpBar.png");
+	mHpBar[BLUE] = NNSprite::Create( L"Resource/Sprite/BlueHpBar.png" );
+	mHpBar[RED] = NNSprite::Create(L"Resource/Sprite/RedHpBar.png");
 
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
 	mHpBar[RED]->SetPosition( 0.f, -40.f );
