@@ -223,7 +223,7 @@ void ClientSession::OnWriteComplete( size_t len )
 	/// 얼래? 덜 보낸 경우도 있나? (커널의 send queue가 꽉찼거나, Send Completion이전에 또 send 한 경우?)
 	if ( mSendBuffer.GetContiguiousBytes() > 0 )
 	{
-		assert(false);
+		//assert(false);
 	}
 
 }
@@ -238,20 +238,12 @@ bool ClientSession::Write( PacketHeader* pkt )
 }
 bool ClientSession::Broadcast( PacketHeader* pkt  )
 {
-	/// 버퍼 용량 부족인 경우는 끊어버림
-	if ( false == mSendBuffer.Write((char*)pkt, pkt->mSize) )
-	{
-		Disconnect();
-		return false;
-	}
-
-	if ( !IsConnected() )
+	if( !Write(pkt) )
 		return false;
 
-	GClientManager->BroadcastPacket(this, pkt);
-
-	return true;
+	return BroadcastWithoutSelf(pkt);
 }
+
 bool ClientSession::BroadcastWithoutSelf( PacketHeader* pkt )
 {
 	if ( !IsConnected() )

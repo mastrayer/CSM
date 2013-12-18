@@ -5,11 +5,12 @@
 
 BTypeAttackBullet::BTypeAttackBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
-	mVelocity = 10;
+	mIsTeamKill = true;
+	mVelocity = 500;
 	SetPosition(position);
 	SetAngle(angle);
 	SetShape(CIRCLE);
-	SetRadius(20);
+	SetRadius(10);
 	SetDamage(5);
 	mHeal = 10;
 	mDidExplosed = false;
@@ -33,6 +34,7 @@ bool BTypeAttackBullet::isLive()
 
 void BTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
+	printf("%d -> %d\n",victimPlayer->GetTeam(), attackerPlayer->GetTeam());
 	if(victimPlayer->GetTeam() != attackerPlayer->GetTeam())
 	{
 		victimPlayer->Damaged(mDamage, attackerPlayer);

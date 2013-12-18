@@ -47,6 +47,7 @@ public:
 	virtual void Hit(Player* victimPlayer, Player* attackerPlayer);
 
 protected:
+	bool mIsTeamKill;
 	Point mPoints[64];
 	int mPointCount;
 	SHAPE mShape;

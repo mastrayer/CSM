@@ -2,7 +2,7 @@
 #include "Bullet.h"
 #include "BulletManager.h"
 #include "EllipseCollisionTest.h"
-Bullet::Bullet(Player* ownerPlayer):mShape(CIRCLE),mVelocity(0),mAcceleraction(0),mAngle(0),mLifeTime(-1),mRotation(0),mPosition(Point()),mOnwerPlayer(ownerPlayer),mDamage(0),mRadius(0),mXRadius(0),mYRadius(0),mWidth(0),mHeight(0),mCenter(Point(0,0)),mNumber(-1)
+Bullet::Bullet(Player* ownerPlayer):mShape(CIRCLE),mVelocity(0),mAcceleraction(0),mAngle(0),mLifeTime(-1),mRotation(0),mPosition(Point()),mOnwerPlayer(ownerPlayer),mDamage(0),mRadius(0),mXRadius(0),mYRadius(0),mWidth(0),mHeight(0),mCenter(Point(0,0)),mNumber(-1),mIsTeamKill(false)
 {
 	GBulletManager->AddBullet(this);
 	printf("oh\n");
@@ -27,7 +27,7 @@ void Bullet::JudgeCollision(Player* player)
 {
 	if( isLive() == true )
 	{
-		if(player->GetTeam() != mOnwerPlayer->GetTeam())
+		if(mOnwerPlayer != player && (mIsTeamKill == true || player->GetTeam() != mOnwerPlayer->GetTeam()))
 		{
 			switch (mShape)
 			{
