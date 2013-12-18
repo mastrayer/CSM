@@ -16,6 +16,8 @@
 #include "BulletManager.h"
 #include "SkillManager.h"
 #pragma comment(lib,"ws2_32.lib")
+#pragma comment(lib,"winmm.lib")
+#pragma comment(lib,"DbgHelp.lib")
 
 
 

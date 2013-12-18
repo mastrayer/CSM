@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "NNResourceManager.h"
 
+#pragma warning(disable:4996)
+
 NNResourceManager::NNResourceManager()
 {
 }

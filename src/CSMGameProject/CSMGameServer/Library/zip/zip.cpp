@@ -4,6 +4,7 @@
 #include <tchar.h>
 #include "zip.h"
 
+#pragma warning(disable:4996)
 
 // THIS FILE is almost entirely based upon code by info-zip.
 // It has been modified by Lucian Wischik. The modifications

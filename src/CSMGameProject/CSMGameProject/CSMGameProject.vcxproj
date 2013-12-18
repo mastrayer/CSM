@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>..\NNGameFramework\NNGameFramework\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\NNGameFramework\NNGameFramework\include\library\DirectX\lib\x86;..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

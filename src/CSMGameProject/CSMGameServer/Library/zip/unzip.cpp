@@ -6,6 +6,8 @@
 #include <tchar.h>
 #include "unzip.h"
 
+#pragma warning(disable:4996)
+
 // THIS FILE is almost entirely based upon code by Jean-loup Gailly
 // and Mark Adler. It has been modified by Lucian Wischik.
 // The modifications were: incorporate the bugfixes of 1.1.4, allow
