@@ -1,3 +1,3 @@
-[submodule "CSMGameProject/NNGameFramework"]
-	path = CSMGameProject/NNGameFramework
-	url = https://github.com/kciter/NNGameFramework
+[submodule "src/CSMGameProject/NNGameFramework"]
+	path = src/CSMGameProject/NNGameFramework
+	url = https://github.com/kciter/NNGameFramework.git
