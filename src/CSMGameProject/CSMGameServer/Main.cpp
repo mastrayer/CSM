@@ -16,8 +16,6 @@
 #include "BulletManager.h"
 #include "SkillManager.h"
 #pragma comment(lib,"ws2_32.lib")
-#pragma comment(lib,"winmm.lib")
-#pragma comment(lib,"DbgHelp.lib")
 
 
 
@@ -157,17 +155,23 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 
 	LARGE_INTEGER liDueTime ;
 	liDueTime.QuadPart = -10000000 ; ///< 1초 후부터 동작
-	if ( !SetWaitableTimer(hTimer, &liDueTime, 1, TimerProc, NULL, TRUE) )
-		return -1 ;
+	//if ( !SetWaitableTimer(hTimer, &liDueTime, 1, TimerProc, NULL, TRUE) )
+	//	return -1 ;
 		
+	MSG msg;
+	ZeroMemory( &msg, sizeof(msg) );
 
 	while ( true )
 	{
 		/// accept or IO/Timer completion   대기
-		DWORD result = WaitForSingleObjectEx(hEvent, INFINITE, TRUE) ;
+		DWORD result = WaitForSingleObjectEx(hEvent, 0, TRUE) ;
+
+		//assert( LThreadType == THREAD_CLIENT ) ;
+
+		GClientManager->OnPeriodWork() ;
 
 		/// client connected
-		if ( result == WAIT_OBJECT_0 )
+		 if ( result == WAIT_OBJECT_0 )
 		{
 	
 			/// 소켓 정보 구조체 할당과 초기화
@@ -188,8 +192,8 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 		}
 
 		// APC에 있던 completion이 아니라면 에러다
-		if ( result != WAIT_IO_COMPLETION )
-			return -1 ;
+		//if ( result != WAIT_IO_COMPLETION )
+		//	return -1 ;
 	}
 
 	CloseHandle( hTimer ) ;
@@ -213,7 +217,7 @@ unsigned int WINAPI DatabaseHandlingThread( LPVOID lpParam )
 
 void CALLBACK TimerProc(LPVOID lpArg, DWORD dwTimerLowValue, DWORD dwTimerHighValue)
 {
-	assert( LThreadType == THREAD_CLIENT ) ;
+	//assert( LThreadType == THREAD_CLIENT ) ;
 
-	GClientManager->OnPeriodWork() ;
+	//GClientManager->OnPeriodWork() ;
 }

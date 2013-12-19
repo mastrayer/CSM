@@ -12,7 +12,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 }
 
 Player::Player(int id, ClientSession* client)
-	: mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(-10.f,-10.f)),
+	: mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
 	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
 	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
@@ -104,7 +104,7 @@ void Player::TransState(short state)
 			}
 			if(mPlayerState == PLAYER_STATE_IDLE)
 			{	
-				mMoveDirection = Point(-10.f,-10.f);
+				mMoveDirection = Point(0.f,0.f);
 				mPlayerState = state;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
@@ -126,11 +126,7 @@ void Player::TransState(short state)
 
 				mPlayerState = state;
 			}
-			else 
-			{	
-				mGameKeyStates.attackKey = KEYSTATE_NOTPRESSED;
-			}
-
+			mGameKeyStates.attackKey = KEYSTATE_NOTPRESSED;
 		}
 		break;
 	case PLAYER_STATE_DIE:
@@ -325,7 +321,7 @@ void Player::Update( float dTime)
 
 			//이전과 다른 방향으로 이동했니?
 			// -10, -10 이거 그냥 bool함수로 빼내서 초기화 다시 해줄것.
-			if( mMoveDirection == Point(-10.f,-10.f) || mMoveDirection != willGoDirection)
+			if( mMoveDirection == Point(0.f,0.f) || mMoveDirection != willGoDirection)
 			{
 				mMoveDirection = willGoDirection;
 				//방향바뀐 key정보를 보내야함.
