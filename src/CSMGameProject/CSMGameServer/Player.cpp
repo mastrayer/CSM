@@ -292,7 +292,7 @@ void Player::Update( float dTime)
 			if(  mType == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_B
 				||GGameMap->GetTileType(GetPosition()) == BARRACK_C
-				||GGameMap->GetTileType(GetPosition()) == BARRACK_C)
+				||GGameMap->GetTileType(GetPosition()) == BARRACK_D)
 				&& GGameMap->GetTileType(willGoPosition) == BARRACK_OUT)
 			{
 				TileType tileType = GGameMap->GetTileType(GetPosition());
