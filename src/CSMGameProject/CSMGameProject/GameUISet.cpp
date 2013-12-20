@@ -154,7 +154,7 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
 	AddChild(mTypeSKillTimer);
-	AddChild(mStatusWindow);
+	AddChild(mStatusWindow, 100);
 	
 	for (int i = 0; i <= EARTH; ++i)
 	{
@@ -294,8 +294,21 @@ void CStatusWindow::Init()
 	mPanel->SetOpacity(0.5f);
 
 	NNLabel *PanelName = NNLabel::Create(L"Score", L"¸¼Àº °íµñ", 40.f);
+	PanelName->SetColor(255, 255, 255);
 
-	AddChild(PanelName);
+
+	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+	{
+		wsprintf(mLabelBuf[i], L"Player%d", i);
+
+		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
+		mPlayerLabelList[i]->SetColor(255, 255, 255);
+
+		mPlayerLabelList[i]->SetVisible(false);
+		AddChild(mPlayerLabelList[i], 2);
+	}
+
+	AddChild(PanelName, 2);
 	AddChild(mPanel);
 
 	GetAllPlayerInfo();
@@ -321,25 +334,36 @@ void CStatusWindow::GetAllPlayerInfo()
 	float aY, bY;
 	aY = bY = 90.f;
 
-	for (auto &iter : playerList)
+	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+		mPlayerLabelList[i]->SetVisible(false);
+
+	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
-		wsprintf(mLabelBuf[iter.first], L"Player%d\t%d", iter.first, iter.second->GetKillScore());
-
-		NNLabel *playerLabel = NNLabel::Create(mLabelBuf[iter.first], L"¸¼Àº °íµñ", 15.f);
-		playerLabel->SetColor(255, 255, 255);
-
-		if (iter.second->GetTeam() == 0)
+		mPlayerLabelList[i]->SetVisible(true);
+		if (i % 2 == 0)
 		{
-			playerLabel->SetPosition(5, aY);
-			aY += 20.f;
+			mPlayerLabelList[i]->SetPosition(5, aY);
+			aY += 30.f;
 		}
-		else if (iter.second->GetTeam() == 1)
+		else if (i % 2 == 1)
 		{
-			playerLabel->SetPosition(305, bY);
-			bY += 20.f;
+			mPlayerLabelList[i]->SetPosition(305, bY);
+			bY += 30.f;
 		}
-
-		AddChild(playerLabel, 2);
-		//AddChild(NNLabel::Create(L"PLAYER1", L"¸¼Àº °íµñ", 30.f), 3);
 	}
+
+// 	for (auto &iter : playerList)
+// 	{
+// 		mPlayerLabelList[iter.first]->SetVisible(true);
+// 		if (iter.second->GetTeam() == 0)
+// 		{
+// 			mPlayerLabelList[iter.first]->SetPosition(5, aY);
+// 			aY += 20.f;
+// 		}
+// 		else if (iter.second->GetTeam() == 1)
+// 		{
+// 			mPlayerLabelList[iter.first]->SetPosition(305, bY);
+// 			bY += 20.f;
+// 		}
+// 	}
 }

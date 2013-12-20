@@ -26,7 +26,7 @@ public:
 	NNCREATE_FUNC(CStatusWindow);
 private:
 	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
-	std::list<NNLabel*> mPlayerLabelList;
+	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
 	std::list<int> mKillScoreList;
 	NNSprite *mPanel;
 };
