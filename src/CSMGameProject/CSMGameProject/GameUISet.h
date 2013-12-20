@@ -7,7 +7,29 @@
 #include "Player.h"
 #include "PlayerManager.h"
 #include "EffectManager.h"
+#include "NNInputSystem.h"
 #include "config.h"
+
+
+class CStatusWindow : public NNObject
+{
+public:
+	CStatusWindow();
+	virtual ~CStatusWindow();
+	void Init();
+
+	void Render();
+	void Update(float dTime);
+
+	void GetAllPlayerInfo();
+
+	NNCREATE_FUNC(CStatusWindow);
+private:
+	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
+	std::list<NNLabel*> mPlayerLabelList;
+	std::list<int> mKillScoreList;
+	NNSprite *mPanel;
+};
 
 class GameUISet : public NNUISet
 {
@@ -53,6 +75,8 @@ private:
 	CPlayer *mMyPlayer;
 	wchar_t mFPSLabelBuff[100];
 	wchar_t mSkillCooltimeBuff[2][5];
+
+	CStatusWindow *mStatusWindow;
 	
 	friend class Player;
 };

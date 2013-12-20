@@ -138,6 +138,10 @@ GameUISet::GameUISet()
 
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
+	mStatusWindow = CStatusWindow::Create();
+	mStatusWindow->SetVisible(false);
+	mStatusWindow->SetPosition(100.f, 100.f);
+
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
 	AddChild(mHpBarBackground);
@@ -150,6 +154,7 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
 	AddChild(mTypeSKillTimer);
+	AddChild(mStatusWindow);
 	
 	for (int i = 0; i <= EARTH; ++i)
 	{
@@ -239,6 +244,21 @@ void GameUISet::Update(float dTime)
 
 	for (int i = 0; i < SKILL_COUNT; ++i)
 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
+
+	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
+	{
+		mStatusWindow->SetVisible(true);
+		
+
+		//AddChild(mStatus, 100);
+	}
+	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED )
+	{
+		mStatusWindow->SetVisible(false);
+		//RemoveChild(mStatus);
+	}
+
 }
 
 void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
@@ -261,5 +281,65 @@ void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
 			mTypeSkillUI[type]->SetOpacity(1.f);
 			mTypeSKillTimer[type].SetString(L"");
 		}
+	}
+}
+
+
+CStatusWindow::CStatusWindow()
+{
+}
+void CStatusWindow::Init()
+{
+	mPanel = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Panel.png");
+	mPanel->SetOpacity(0.5f);
+
+	NNLabel *PanelName = NNLabel::Create(L"Score", L"¸¼Àº °íµñ", 40.f);
+
+	AddChild(PanelName);
+	AddChild(mPanel);
+
+	GetAllPlayerInfo();
+}
+CStatusWindow::~CStatusWindow()
+{
+}
+void CStatusWindow::Render()
+{
+	NNObject::Render();
+}
+
+void CStatusWindow::Update(float dTime)
+{
+	NNObject::Update(dTime);
+}
+
+void CStatusWindow::GetAllPlayerInfo()
+{
+	CPlayerManager *playerManager = CPlayerManager::GetInstance();
+
+	std::map<int, CPlayer*> playerList = playerManager->GetPlayerList();
+	float aY, bY;
+	aY = bY = 90.f;
+
+	for (auto &iter : playerList)
+	{
+		wsprintf(mLabelBuf[iter.first], L"Player%d\t%d", iter.first, iter.second->GetKillScore());
+
+		NNLabel *playerLabel = NNLabel::Create(mLabelBuf[iter.first], L"¸¼Àº °íµñ", 15.f);
+		playerLabel->SetColor(255, 255, 255);
+
+		if (iter.second->GetTeam() == 0)
+		{
+			playerLabel->SetPosition(5, aY);
+			aY += 20.f;
+		}
+		else if (iter.second->GetTeam() == 1)
+		{
+			playerLabel->SetPosition(305, bY);
+			bY += 20.f;
+		}
+
+		AddChild(playerLabel, 2);
+		//AddChild(NNLabel::Create(L"PLAYER1", L"¸¼Àº °íµñ", 30.f), 3);
 	}
 }
