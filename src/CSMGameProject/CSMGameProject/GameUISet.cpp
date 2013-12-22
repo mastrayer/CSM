@@ -296,6 +296,20 @@ void CStatusWindow::Init()
 	NNLabel *PanelName = NNLabel::Create(L"Score", L"¸¼Àº °íµñ", 40.f);
 	PanelName->SetColor(255, 255, 255);
 
+	NNLabel *RedID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
+	RedID->SetColor(255, 255, 255);
+	RedID->SetPosition(20.f, 60.f);
+	NNLabel *RedKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
+	RedKillScore->SetColor(255, 255, 255);
+	RedKillScore->SetPosition(150.f, 60.f);
+
+	NNLabel *BlueID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
+	BlueID->SetColor(255, 255, 255);
+	BlueID->SetPosition(320.f, 60.f);
+	NNLabel *BlueKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
+	BlueKillScore->SetColor(255, 255, 255);
+	BlueKillScore->SetPosition(450.f, 60.f);
+
 
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
@@ -310,6 +324,10 @@ void CStatusWindow::Init()
 
 	AddChild(PanelName, 2);
 	AddChild(mPanel);
+	AddChild(RedID);
+	AddChild(RedKillScore);
+	AddChild(BlueID);
+	AddChild(BlueKillScore);
 
 	GetAllPlayerInfo();
 }
