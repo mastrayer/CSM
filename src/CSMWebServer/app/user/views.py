@@ -28,8 +28,8 @@ def login():
 
 		if user and check_password_hash(user.password, form.password.data):
 			session['user_id'] = user.id
-			flash('Welcome %s' % user.name)
-			return redirect(url_for('user.home'))
+			flash('Welcome %s' % user.nickname)
+			return redirect(url_for('user.profile'))
 		flash('Worng email or password', 'error-message')
 	return render_template('user/login.html', form=form)
 
@@ -48,4 +48,8 @@ def register():
 		return redirect(url_for('user.profile'))
 	return render_template('user/register.html', form=form)
 
-
+@mod.route('/logout/', methods=['GET'])
+def logout():
+	session.clear()
+	g.user = None
+	return redirect(url_for('user.login'))
