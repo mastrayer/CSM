@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+Hello, {{ user.nickname }}! <br />
+Your Email {{ user.email }} <br />
+Your Password {{ user.password }} <br />
+Your Role {{ user.getRole() }} <br />
+Your Status {{ user.getStatus() }} <br />
+{% endblock %}

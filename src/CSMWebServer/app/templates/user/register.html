@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+{% block content %}
+	{% from "forms/user/macros.html" import render_field %}
+	<form method="POST" action="." class="">
+		{{ form.csrf_token }}
+		{{ render_field(form.email, class='') }}
+		{{ render_field(form.password, class='') }}
+		{{ render_field(form.confirm, class='') }}
+		{{ render_field(form.nickname, class='') }}
+		<label>ReCaptcha</label>
+		{{ form.recaptcha }}
+		<input type='submit' value='Register' class='' />
+	</form>
+	<a href="{{ url_for('user.login') }}">Login</a>
+{% endblock %}
