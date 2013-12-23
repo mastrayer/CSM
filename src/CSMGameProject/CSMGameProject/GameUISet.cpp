@@ -355,33 +355,33 @@ void CStatusWindow::GetAllPlayerInfo()
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 		mPlayerLabelList[i]->SetVisible(false);
 
-	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+// 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+// 	{
+// 		mPlayerLabelList[i]->SetVisible(true);
+// 		if (i % 2 == 0)
+// 		{
+// 			mPlayerLabelList[i]->SetPosition(5, aY);
+// 			aY += 30.f;
+// 		}
+// 		else if (i % 2 == 1)
+// 		{
+// 			mPlayerLabelList[i]->SetPosition(305, bY);
+// 			bY += 30.f;
+// 		}
+// 	}
+
+	for (auto &iter : playerList)
 	{
-		mPlayerLabelList[i]->SetVisible(true);
-		if (i % 2 == 0)
+		mPlayerLabelList[iter.first]->SetVisible(true);
+		if (iter.second->GetTeam() == 0)
 		{
-			mPlayerLabelList[i]->SetPosition(5, aY);
+			mPlayerLabelList[iter.first]->SetPosition(5, aY);
 			aY += 30.f;
 		}
-		else if (i % 2 == 1)
+		else if (iter.second->GetTeam() == 1)
 		{
-			mPlayerLabelList[i]->SetPosition(305, bY);
+			mPlayerLabelList[iter.first]->SetPosition(305, bY);
 			bY += 30.f;
 		}
 	}
-
-// 	for (auto &iter : playerList)
-// 	{
-// 		mPlayerLabelList[iter.first]->SetVisible(true);
-// 		if (iter.second->GetTeam() == 0)
-// 		{
-// 			mPlayerLabelList[iter.first]->SetPosition(5, aY);
-// 			aY += 20.f;
-// 		}
-// 		else if (iter.second->GetTeam() == 1)
-// 		{
-// 			mPlayerLabelList[iter.first]->SetPosition(305, bY);
-// 			bY += 20.f;
-// 		}
-// 	}
 }
