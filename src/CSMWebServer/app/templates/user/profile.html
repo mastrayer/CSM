@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
+{% block title %}
+{{user.nickname}}'s Profile
+{% endblock %}
+
 {% block content %}
-Hello, {{ user.nickname }}! <br />
-Your Email {{ user.email }} <br />
-Your Password {{ user.password }} <br />
-Your Role {{ user.getRole() }} <br />
-Your Status {{ user.getStatus() }} <br />
+<div class='jumbotron'>
+	<div class='container'>
+		<h1>Hello, {{ user.nickname }}!</h1>
+		<p>
+			Your Email {{ user.email }} <br />
+			Your Password {{ user.password }} <br />
+			Your Role {{ user.getRole() }} <br />
+			Your Status {{ user.getStatus() }} <br />
+		</p>
+		<p><a class='btn btn-primary btn-lg' role='button'>Go to lobby &raquo;</a></p>
+	</div>
+</div>
 {% endblock %}

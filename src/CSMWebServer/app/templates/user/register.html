@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% block title %} Register {% endblock %}
+
+{% block styles %}
+<link rel='stylesheet' href='/static/styles/register.css' />
+{% endblock %}
+
 {% block content %}
-	{% from "forms/user/macros.html" import render_field %}
-	<form method="POST" action="." class="">
-		{{ form.csrf_token }}
-		{{ render_field(form.email, class='') }}
-		{{ render_field(form.password, class='') }}
-		{{ render_field(form.confirm, class='') }}
-		{{ render_field(form.nickname, class='') }}
-		<label>ReCaptcha</label>
-		{{ form.recaptcha }}
-		<input type='submit' value='Register' class='' />
-	</form>
-	<a href="{{ url_for('user.login') }}">Login</a>
+	<div class='container' style='padding-top: 40px;'>
+		{% from "forms/user/macros.html" import render_field %}
+		<form method="POST" action="." class="form-register">
+			<h2>Plaese Register</h2>
+			{{ form.csrf_token }}
+			{{ render_field(form.email, placeholder="이메일", class='form-control') }}
+			{{ render_field(form.password, placeholder="비밀번호", class='form-control') }}
+			{{ render_field(form.confirm, placeholder="비밀번호 확인", class='form-control') }}
+			{{ render_field(form.nickname, placeholder="닉네임", class='form-control') }}
+			<p><strong>자동가입 방지</strong></p>
+			{{ form.recaptcha }}
+			<button class='btn btn-lg btn-info btn-block' type='submit'>회원가입</button>
+			<a href='{{ url_for('user.login') }}' class='btn btn-lg btn-primary btn-block'>로그인</a>
+		</form>
+	</div>
 {% endblock %}

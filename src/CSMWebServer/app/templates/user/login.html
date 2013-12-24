@@ -2,13 +2,23 @@
 
 {% block title %} Login {% endblock %}
 
+{% block styles %}
+<link rel='stylesheet' href='/static/styles/login.css' />
+{% endblock %}
+
 {% block content %}
-	{% from "forms/user/macros.html" import render_field %}
-	<form method="POST" action="." class="form">
-		{{ form.csrf_token }}
-		{{ render_field(form.email, class="") }}
-		{{ render_field(form.password, class="") }}
-		<input type='submit' value='Login' class='' />
-	</form>
-	<a href="{{ url_for('user.register') }}">Register</a>
+	<div class='container' style='padding-top: 40px;'>
+		{% from "forms/user/macros.html" import render_field %}
+		<form method="POST" action="." class="form-login" role='form'>
+			<h2 class='form-login-heading'>Please Login</h2>
+			{{ form.csrf_token }}
+			{{ render_field(form.email, placeholder="로그인", class="form-control") }}
+			{{ render_field(form.password, placeholder="비밀번호", class="form-control") }}
+			<label class='checkbox'>
+				<input type='checkbox' value='remember-me'> 아이디 저장
+			</label>
+			<button class='btn btn-lg btn-primary btn-block' type='submit'>Login</button>
+			<a href="{{ url_for('user.register') }}" class='btn btn-lg btn-info btn-block'>회원가입</a>
+		</form>
+	</div>
 {% endblock %}
