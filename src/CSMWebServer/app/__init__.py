@@ -11,4 +11,6 @@ def not_found(error):
 	return render_template('404.html'), 404
 
 from app.user.views import mod as userModule
+from app.general.views import mod as generalModule
 app.register_blueprint(userModule)
+app.register_blueprint(generalModule)
