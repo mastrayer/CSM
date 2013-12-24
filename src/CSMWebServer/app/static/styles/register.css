@@ -1,0 +1,44 @@
+
+.form-register {
+	width: 350px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-register .form-login-heading
+	margin-bottom: 10px;
+}
+
+.form-register .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webket-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+.form-register .form-control:focus {
+	z-index: 2;
+}
+
+.form-register input[type='email'] {
+	margin-bottom: -1;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-register input[type='text'] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.form-register input[type='password'] {
+	border-radius: 0;
+}
+
+#recaptcha_widget_div {
+	margin-bottom: 10px;
+}
