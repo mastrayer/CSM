@@ -13,6 +13,8 @@ How to build
 5. 마지막으로 가장 최신 상태로 유지하기 위해 `git pull origin master`를 입력해주세요.
 6. CSMGameProject 프로젝트를 Visual studio 2012로 연 후 컴파일한 후 실행하면 됩니다.
 
+* 로비가 되는 웹서버는 `src/CSMWebServer`의 문서를 참고해주세요.
+
 Thrid Party
 -----------
 
