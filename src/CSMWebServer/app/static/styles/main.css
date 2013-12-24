@@ -1,2 +1,7 @@
 
-
+.game-start-button {
+	width: 200px;
+	height: 100px;
+	font-size: 2em;
+	font-weight: bold;
+}
