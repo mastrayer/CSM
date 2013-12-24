@@ -29,7 +29,7 @@ def login():
 		if user and check_password_hash(user.password, form.password.data):
 			session['user_id'] = user.id
 			flash('Welcome %s' % user.nickname)
-			return redirect(url_for('user.profile'))
+			return redirect(url_for('general.main'))
 		flash('Worng email or password', 'error-message')
 	return render_template('user/login.html', form=form)
 
