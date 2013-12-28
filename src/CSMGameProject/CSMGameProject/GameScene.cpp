@@ -135,9 +135,9 @@ void CGameScene::InitNetworkSetting()
 
 
 
-	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
+	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
-	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
+	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }

@@ -27,7 +27,8 @@ public:
 private:
 	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
 	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
-	std::list<int> mKillScoreList;
+	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
+	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
 	NNSprite *mPanel;
 };
 

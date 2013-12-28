@@ -248,6 +248,7 @@ void GameUISet::Update(float dTime)
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
+		mStatusWindow->GetAllPlayerInfo();
 		mStatusWindow->SetVisible(true);
 		
 
@@ -316,10 +317,14 @@ void CStatusWindow::Init()
 		wsprintf(mLabelBuf[i], L"Player%d", i);
 
 		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
+		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 20.f);
 		mPlayerLabelList[i]->SetColor(255, 255, 255);
+		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
 
 		mPlayerLabelList[i]->SetVisible(false);
+		mPlayerKillScoreList[i]->SetVisible(false);
 		AddChild(mPlayerLabelList[i], 2);
+		AddChild(mPlayerKillScoreList[i], 2);
 	}
 
 	AddChild(PanelName, 2);
@@ -373,14 +378,19 @@ void CStatusWindow::GetAllPlayerInfo()
 	for (auto &iter : playerList)
 	{
 		mPlayerLabelList[iter.first]->SetVisible(true);
-		if (iter.second->GetTeam() == 0)
+		mPlayerKillScoreList[iter.first]->SetVisible(true);
+		wsprintf(mKillScoreBuf[iter.first], L"%d", iter.second->GetKillScore());
+
+		if (iter.second->GetTeam() == TeamColor::RED)
 		{
 			mPlayerLabelList[iter.first]->SetPosition(5, aY);
+			mPlayerKillScoreList[iter.first]->SetPosition(165, aY);
 			aY += 30.f;
 		}
-		else if (iter.second->GetTeam() == 1)
+		else if (iter.second->GetTeam() == TeamColor::BLUE)
 		{
 			mPlayerLabelList[iter.first]->SetPosition(305, bY);
+			mPlayerKillScoreList[iter.first]->SetPosition(465, bY);
 			bY += 30.f;
 		}
 	}
