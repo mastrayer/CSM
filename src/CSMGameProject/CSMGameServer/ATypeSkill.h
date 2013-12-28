@@ -15,10 +15,10 @@ private:
 	float mExploseRadius;
 	float mDamage;
 	float mExploseDistance;
-	float mBoomTimeDistance;
-	bool didFirstBoomFinish;
-	bool didSecondBoomFinish;
-	bool didThirdBoomFinish;
+	float mbulletTimeDistance;
+	bool didFirstbulletFinish;
+	bool didSecondbulletFinish;
+	bool didThirdbulletFinish;
 	Player* mOwnerPlayer;
 };
 

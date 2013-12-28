@@ -5,14 +5,15 @@
 
 CTypeAttackBullet::CTypeAttackBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
-	mVelocity = 500;
+	mIsTeamKill = false;
+	mVelocity = 1000;
 	SetPosition(position);
 	SetAngle(angle);
 	SetShape(CIRCLE);
-	SetRadius(10);
-	SetDamage(10);
-	SetLifeTime(0.5f);
+	SetRadius(7);
+	SetDamage(4);
 	mDidExplosed = false;
+	SetLifeTime(0.3);
 }
 
 
@@ -33,6 +34,11 @@ bool CTypeAttackBullet::isLive()
 void CTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
 	victimPlayer->Damaged(mDamage, attackerPlayer);
+	Boom();
+}
+
+void CTypeAttackBullet::Boom()
+{
 	mDidExplosed = false;
 	mLifeTime = -1;
 	CTypeAttackEndResult outPacket = CTypeAttackEndResult();

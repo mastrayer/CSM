@@ -95,6 +95,7 @@ void PlayerManager::UpdatePlayers()
 	for( std::map<int,Player*>::iterator it = mPlayers.begin(); it != mPlayers.end(); ++it ) 
 	{
 		it->second->Update((static_cast<float>(nowTime - prevTime))/1000.f);
+		if(it == mPlayers.end()) break;
 	}
 	prevTime = nowTime;
 }

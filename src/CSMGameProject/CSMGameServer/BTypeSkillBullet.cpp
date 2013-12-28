@@ -36,9 +36,10 @@ void BTypeSkillBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 	{
 		victimPlayer->Heal(mHeal);
 	}
+	Boom();
+}
+void BTypeSkillBullet::Boom()
+{
 	mLifeTime = -1;
 	mDidExplosed = true;
-	BTypeAttackEndResult outPacket = BTypeAttackEndResult();
-	outPacket.mIndex = GetBulletNumber();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
 }

@@ -9,7 +9,7 @@ public:
 	virtual bool isLive(void);
 	virtual void Update(float dTime);
 	virtual void Hit(Player* victimPlayer, Player* attackerPlayer);
-
+	virtual void Boom();
 private:
 	bool mDidExplosed;
 	int mHeal;

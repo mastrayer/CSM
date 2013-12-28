@@ -8,7 +8,10 @@ void ClientKeyStatePacket( ClientSession* client, PacketHeader* header, Circular
 {
 	GameKeyStatesUpdateRequest inPacket ;
 	buffer->Read((char*)&inPacket, header->mSize);
-
+	if(inPacket.mMyPlayerInfo.mGameKeyStates.leftDirectKey == KEYSTATE_PRESSED && inPacket.mMyPlayerInfo.mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED)
+	{
+		printf("ok");
+	}
 	Player* _player = GPlayerManager->GetPlayer(inPacket.mMyPlayerInfo.mPlayerId);
 	_player->SetGameKeyStates(inPacket.mMyPlayerInfo.mGameKeyStates);
 	_player->SetRotation(inPacket.mMyPlayerInfo.mAngle);

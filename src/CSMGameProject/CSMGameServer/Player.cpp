@@ -152,6 +152,11 @@ void Player::TransState(short state)
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
 				mPlayerState = state;
+				if(mType == TYPE_D)
+				{
+					mDSkillPostDelay = 0.3f;
+					new DTypeSkill(mRotation,this);
+				}
 			}
 			else 
 			{	
@@ -242,8 +247,11 @@ void Player::Update( float dTime)
 				break;
 			}
 			//Move myPlayer with Game Key States.
-			//Check Moving Input, and sしししじじしet Position to d
-
+			//Check Moving Input, and set Position to d
+			if(mGameKeyStates.leftDirectKey == KEYSTATE_PRESSED && mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED)
+			{
+				printf("ok");
+			}	
 
 			if ( mGameKeyStates.leftDirectKey ==  KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( -1.f, 0.f );
 			if ( mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED )willGoDirection = willGoDirection + Point( +1.f, 0.f );
@@ -321,7 +329,7 @@ void Player::Update( float dTime)
 
 			//戚穿引 陥献 号狽生稽 戚疑梅艦?
 			// -10, -10 戚暗 益撹 bool敗呪稽 皐鎧辞 段奄鉢 陥獣 背匝依.
-			if( mMoveDirection == Point(0.f,0.f) || mMoveDirection != willGoDirection)
+			if( mMoveDirection != willGoDirection)
 			{
 				mMoveDirection = willGoDirection;
 				//号狽郊駕 key舛左研 左鎧醤敗.
@@ -352,11 +360,13 @@ void Player::Update( float dTime)
 			case TYPE_C:
 				{	
 					mAttackDelay = 0.2f;
+					new CTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_D:
 				{	
 					mAttackDelay = 0.7f;
+					new DTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			default:
@@ -442,12 +452,17 @@ void Player::Update( float dTime)
 			case TYPE_C:
 				{	
 					mTypeSkillDelay = 3.f;
+					new CTypeSkill(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_D:
-				{	
-					mTypeSkillDelay = 3.f;
-					TransState(PLAYER_STATE_IDLE);
+				{
+					if(mDSkillPostDelay <= 0)
+					{
+						mTypeSkillDelay = 3.f;
+						TransState(PLAYER_STATE_IDLE);
+					}
+					mDSkillPostDelay -=dTime;
 				}break;
 			default:
 				break;

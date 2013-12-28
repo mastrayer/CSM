@@ -2,3 +2,7 @@
 #include "ATypeAttack.h"
 #include "BTypeSkill.h"
 #include "BTypeAttack.h"
+#include "CTypeSkill.h"
+#include "CTypeAttack.h"
+#include "DTypeSkill.h"
+#include "DTypeAttack.h"

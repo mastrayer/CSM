@@ -140,7 +140,7 @@
       <Filter>Game\TypeAttack&amp;Skill\C</Filter>
     </ClCompile>
     <ClCompile Include="SkillManager.cpp">
-      <Filter>Game\Skill\SkillManager</Filter>
+      <Filter>Game\TypeAttack&amp;Skill\Skill\SkillManager</Filter>
     </ClCompile>
     <ClCompile Include="BulletManager.cpp">
       <Filter>Game\Bullet\BulletManager</Filter>
@@ -310,10 +310,10 @@
       <Filter>Game\TypeAttack&amp;Skill\A</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
-      <Filter>Game\Skill</Filter>
+      <Filter>Game\TypeAttack&amp;Skill\Skill</Filter>
     </ClInclude>
     <ClInclude Include="Skills.h">
-      <Filter>Game\Skill</Filter>
+      <Filter>Game\TypeAttack&amp;Skill\Skill</Filter>
     </ClInclude>
     <ClInclude Include="ATypeAttack.h">
       <Filter>Game\TypeAttack&amp;Skill\A</Filter>
@@ -331,7 +331,7 @@
       <Filter>Game\TypeAttack&amp;Skill\C</Filter>
     </ClInclude>
     <ClInclude Include="SkillManager.h">
-      <Filter>Game\Skill\SkillManager</Filter>
+      <Filter>Game\TypeAttack&amp;Skill\Skill\SkillManager</Filter>
     </ClInclude>
     <ClInclude Include="BulletManager.h">
       <Filter>Game\Bullet\BulletManager</Filter>
@@ -431,12 +431,6 @@
     <Filter Include="Game\GameManager">
       <UniqueIdentifier>{d7a8d297-71b2-4b95-a7e8-fa2cd0ca4faa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Skill">
-      <UniqueIdentifier>{d8ef39e3-d2ee-4bea-8466-c9a5f51ebc5f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Bullet">
-      <UniqueIdentifier>{2d9220e0-8c9d-4b90-a70a-24dd318db0ea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\UserSkill">
       <UniqueIdentifier>{0d0c697a-795e-4207-a6cf-fa083ede5862}</UniqueIdentifier>
     </Filter>
@@ -452,12 +446,6 @@
     <Filter Include="Game\TypeAttack&amp;Skill\C">
       <UniqueIdentifier>{fd2e332e-5a97-44d7-9b4d-47a9f0afaf2c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Skill\SkillManager">
-      <UniqueIdentifier>{4f9ca94e-2fdc-4ae3-b156-74c7b24c430c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Bullet\BulletManager">
-      <UniqueIdentifier>{36e41141-1390-485e-951c-4223ff637c37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill\A\ATypeAttackBullet">
       <UniqueIdentifier>{81bb225a-3a5c-49a2-bd26-d904ca596c55}</UniqueIdentifier>
     </Filter>
@@ -472,6 +460,18 @@
     </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill\D">
       <UniqueIdentifier>{e0cbe3c4-0bb4-4201-91f8-a6a8f35a43eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\TypeAttack&amp;Skill\Skill">
+      <UniqueIdentifier>{d8ef39e3-d2ee-4bea-8466-c9a5f51ebc5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\TypeAttack&amp;Skill\Skill\SkillManager">
+      <UniqueIdentifier>{4f9ca94e-2fdc-4ae3-b156-74c7b24c430c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Bullet">
+      <UniqueIdentifier>{2d9220e0-8c9d-4b90-a70a-24dd318db0ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Bullet\BulletManager">
+      <UniqueIdentifier>{36e41141-1390-485e-951c-4223ff637c37}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

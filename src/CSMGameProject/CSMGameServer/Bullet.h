@@ -42,9 +42,12 @@ public:
 	
 	bool PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int BCounts);
 
+	bool CouldBulletGoPosition(float radius, Point position);
+
 	virtual void Update(float dTime);
 	virtual bool isLive();
 	virtual void Hit(Player* victimPlayer, Player* attackerPlayer);
+	virtual void Boom();
 
 protected:
 	bool mIsTeamKill;
@@ -62,7 +65,7 @@ protected:
 	Point mPosition;
 	Point mCenter;
 
-	Player* mOnwerPlayer;
+	Player* mOwnerPlayer;
 
 	int mDamage;
 

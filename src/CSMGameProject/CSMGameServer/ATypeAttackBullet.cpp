@@ -33,6 +33,10 @@ bool ATypeAttackBullet::isLive()
 void ATypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
 	victimPlayer->Damaged(mDamage, attackerPlayer);
+	Boom();
+}
+void ATypeAttackBullet::Boom()
+{
 	mDidExplosed = true;
 	mLifeTime = -1;
 	ATypeAttackEndResult outPacket = ATypeAttackEndResult();

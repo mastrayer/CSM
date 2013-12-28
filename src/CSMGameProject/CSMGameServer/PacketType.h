@@ -367,7 +367,7 @@ struct DTypeSkillShootResult : public PacketHeader
 	}
 	Point mStartPosition;
 	float mAngle;
-	int mIndex;
+	int mPlayerId;
 };
 struct DTypeSkillEndResult : public PacketHeader
 {
@@ -376,6 +376,6 @@ struct DTypeSkillEndResult : public PacketHeader
 		mSize = sizeof(DTypeSkillEndResult);
 		mType = PKT_SC_D_TYPESKILL_END;
 	}
-	int mIndex;
+	int mPlayerId;
 };
 #pragma pack(pop)

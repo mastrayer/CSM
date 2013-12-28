@@ -4,7 +4,7 @@
 #include "SkillManager.h"
 #include "ClientManager.h"
 
-ATypeSkill::ATypeSkill(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.9f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(18),mExploseDistance(80),mBoomTimeDistance(0.3f),didFirstBoomFinish(false),didSecondBoomFinish(false),didThirdBoomFinish(false)
+ATypeSkill::ATypeSkill(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.9f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(18),mExploseDistance(80),mbulletTimeDistance(0.3f),didFirstbulletFinish(false),didSecondbulletFinish(false),didThirdbulletFinish(false)
 {
 	GSkillManager->AddSkill(this);
 	ATypeSkillShootResult outPacket = ATypeSkillShootResult();
@@ -22,35 +22,35 @@ void ATypeSkill::Update(float dTime)
 {
 	mLifeTime -= dTime;
 
-	if(didFirstBoomFinish == false && mLifeTime <= 0.85f)
+	if(didFirstbulletFinish == false && mLifeTime <= 0.85f)
 	{
-		Bullet* boom = new Bullet(mOwnerPlayer);
-		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance);
-		boom->SetShape(CIRCLE);
-		boom->SetRadius(mExploseRadius);
-		boom->SetDamage(18);
-		boom->SetLifeTime(0);
-		didFirstBoomFinish = true;
+		Bullet* bullet = new Bullet(mOwnerPlayer);
+		bullet->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance);
+		bullet->SetShape(CIRCLE);
+		bullet->SetRadius(mExploseRadius);
+		bullet->SetDamage(18);
+		bullet->SetLifeTime(0);
+		didFirstbulletFinish = true;
 	}
-	if(didSecondBoomFinish == false && mLifeTime <= 0.55f)
+	if(didSecondbulletFinish == false && mLifeTime <= 0.55f)
 	{
-		Bullet* boom = new Bullet(mOwnerPlayer);
-		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 2);
-		boom->SetShape(CIRCLE);
-		boom->SetRadius(mExploseRadius);
-		boom->SetDamage(18);
-		boom->SetLifeTime(0);
-		didSecondBoomFinish = true;
+		Bullet* bullet = new Bullet(mOwnerPlayer);
+		bullet->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 2);
+		bullet->SetShape(CIRCLE);
+		bullet->SetRadius(mExploseRadius);
+		bullet->SetDamage(18);
+		bullet->SetLifeTime(0);
+		didSecondbulletFinish = true;
 	}
-	if(didThirdBoomFinish == false && mLifeTime <= 0.25f)
+	if(didThirdbulletFinish == false && mLifeTime <= 0.25f)
 	{
-		Bullet* boom = new Bullet(mOwnerPlayer);
-		boom->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 3);
-		boom->SetShape(CIRCLE);
-		boom->SetRadius(mExploseRadius);
-		boom->SetDamage(18);
-		boom->SetLifeTime(0);
-		didThirdBoomFinish = true;
+		Bullet* bullet = new Bullet(mOwnerPlayer);
+		bullet->SetPosition(mStartPosition + Point(cos(mAngle),sin(mAngle)) * mExploseDistance * 3);
+		bullet->SetShape(CIRCLE);
+		bullet->SetRadius(mExploseRadius);
+		bullet->SetDamage(18);
+		bullet->SetLifeTime(0);
+		didThirdbulletFinish = true;
 	}
 }
 bool ATypeSkill::IsLive()

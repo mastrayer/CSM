@@ -14,7 +14,7 @@ BTypeAttackBullet::BTypeAttackBullet(Player* ownerPlayer, Point position, float 
 	SetDamage(5);
 	mHeal = 10;
 	mDidExplosed = false;
-	SetLifeTime(1.0f);
+	SetLifeTime(0.6);
 }
 
 
@@ -43,6 +43,10 @@ void BTypeAttackBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 	{
 		victimPlayer->Heal(mHeal);
 	}
+	Boom();
+}
+void BTypeAttackBullet::Boom()
+{
 	mLifeTime = -1;
 	mDidExplosed = true;
 	BTypeAttackEndResult outPacket = BTypeAttackEndResult();

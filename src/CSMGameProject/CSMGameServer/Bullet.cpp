@@ -2,7 +2,7 @@
 #include "Bullet.h"
 #include "BulletManager.h"
 #include "EllipseCollisionTest.h"
-Bullet::Bullet(Player* ownerPlayer):mShape(CIRCLE),mVelocity(0),mAcceleraction(0),mAngle(0),mLifeTime(-1),mRotation(0),mPosition(Point()),mOnwerPlayer(ownerPlayer),mDamage(0),mRadius(0),mXRadius(0),mYRadius(0),mWidth(0),mHeight(0),mCenter(Point(0,0)),mNumber(-1),mIsTeamKill(false)
+Bullet::Bullet(Player* ownerPlayer):mShape(CIRCLE),mVelocity(0),mAcceleraction(0),mAngle(0),mLifeTime(-1),mRotation(0),mPosition(Point()),mOwnerPlayer(ownerPlayer),mDamage(0),mRadius(0),mXRadius(0),mYRadius(0),mWidth(0),mHeight(0),mCenter(Point(0,0)),mNumber(-1),mIsTeamKill(false)
 {
 	GBulletManager->AddBullet(this);
 	printf("oh\n");
@@ -17,7 +17,13 @@ void Bullet::Update(float dTime)
 {
 	mLifeTime -= dTime;
 
-	mPosition = mPosition + Point( cos(mAngle) * mVelocity , sin(mAngle) * mVelocity ) * dTime;
+	if(CouldBulletGoPosition(mRadius, mPosition + Point( cos(mAngle) * mVelocity , sin(mAngle) * mVelocity ) * dTime))
+		mPosition = mPosition + Point( cos(mAngle) * mVelocity , sin(mAngle) * mVelocity ) * dTime;
+	else
+	{
+		Boom();
+		return;
+	}
 
 	mVelocity = mVelocity + mAcceleraction * dTime;
 	printf("%.f %.f\n",mPosition.x,mPosition.y);
@@ -27,7 +33,7 @@ void Bullet::JudgeCollision(Player* player)
 {
 	if( isLive() == true )
 	{
-		if(mOnwerPlayer != player && (mIsTeamKill == true || player->GetTeam() != mOnwerPlayer->GetTeam()))
+		if(mOwnerPlayer != player && (mIsTeamKill == true || player->GetTeam() != mOwnerPlayer->GetTeam()))
 		{
 			switch (mShape)
 			{
@@ -35,7 +41,7 @@ void Bullet::JudgeCollision(Player* player)
 				{
 					if( Point().Distance(mPosition,player->GetPosition()) < mRadius + player->GetRadius() )
 					{
-						Hit(player, mOnwerPlayer);
+						Hit(player, mOwnerPlayer);
 					}
 				}
 				break;
@@ -45,7 +51,7 @@ void Bullet::JudgeCollision(Player* player)
 					if(ellipseCollisionTest.collide(mPosition.x, mPosition.y, cos(mRotation) * mXRadius, sin(mRotation) * mXRadius, mYRadius,
 						player->GetPosition().x, player->GetPosition().y,player->GetRadius(),0,player->GetRadius() ) == true)
 					{
-						Hit(player, mOnwerPlayer);
+						Hit(player, mOwnerPlayer);
 					}
 				}
 				break;
@@ -75,7 +81,7 @@ void Bullet::JudgeCollision(Player* player)
 					}
 					if(PolyCollisionTest(circlePoints,32,mPoints,mPointCount) == true)
 					{
-						Hit(player, mOnwerPlayer);
+						Hit(player, mOwnerPlayer);
 					}
 				}
 				break;
@@ -128,5 +134,33 @@ bool Bullet::PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int 
 void Bullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
 	victimPlayer->Damaged(mDamage, attackerPlayer);
+}
+void Bullet::Boom()
+{
 	mLifeTime = -1;
+}
+bool Bullet::CouldBulletGoPosition(float radius, Point position)
+{
+	for( int x = int(position.x - radius)/64; x <= int(position.x + radius)/64; x += 1 )//64 = tilesize
+	{
+		for( int y = int(position.y - radius)/64; y <= int(position.y + radius)/64; y += 1 )//64 = tilesize
+		{
+			if (GGameMap->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameMap->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT )
+				return false;
+			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
+				return false;
+		}
+	}
+
+	std::map<int,Player*> players = GPlayerManager->GetPlayers();
+	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+	{
+		Player* enemy = it->second;
+		if(enemy->GetTeam() == mOwnerPlayer->GetTeam()) continue;
+		if( Point().Distance( enemy->GetPosition(), position ) < enemy->GetRadius() + radius )
+		{
+			return false;
+		}
+	}
+	return true;
 }

@@ -51,6 +51,7 @@ private:
 
 	int mKillScore;
 	
+	float mDSkillPostDelay;
 public:
 	Player(void);
 	Player(int id, ClientSession* client);
@@ -78,8 +79,7 @@ public:
 
 	void Update( float dTime );
 
-
-private:
 	bool CouldGoPosition(Point position);
+private:
 };
 

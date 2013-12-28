@@ -1,8 +1,19 @@
 #pragma once
-class DTypeAttack
+#include "Skill.h"
+#include "Player.h"
+class DTypeAttack : public Skill
 {
+	
 public:
-	DTypeAttack(void);
-	~DTypeAttack(void);
+	DTypeAttack(float angle, Point startPosition, Player* ownerPlayer);
+	virtual ~DTypeAttack(void);
+	virtual void Update(float dTime);
+	virtual bool IsLive();
+
+private:
+	float mLifeTime;
+	float mAngle;
+	Point mStartPosition;
+	Player* mOwnerPlayer;
 };
 
