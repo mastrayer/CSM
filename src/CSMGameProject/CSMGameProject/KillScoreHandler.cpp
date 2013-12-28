@@ -34,7 +34,6 @@ void KillScoreHandler::HandlingPacket(short packetType, NNCircularBuffer* circul
 			}
 			else
 			{
-				assert(false);
 			}
 		}
 		break;
@@ -47,7 +46,6 @@ void KillScoreHandler::HandlingPacket(short packetType, NNCircularBuffer* circul
 			}
 			else
 			{
-				assert(false);
 			}
 		}
 		break;

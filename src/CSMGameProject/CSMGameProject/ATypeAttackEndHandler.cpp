@@ -20,12 +20,11 @@ void ATypeAttackEndHandler::HandlingPacket(short packetType, NNCircularBuffer* c
 		{
 			if (circularBuffer->Read((char*)&mATypeAttackEndResult, header->mSize))
 			{
-				//로그인이 잘못되어 캐릭터가 없을 수 있으므로
 				EffectManager::GetInstance()->GetATypeAttackEffect(mATypeAttackEndResult.mIndex)->Explose();
 			}
 			else
 			{
-				assert(false);
+
 			}
 		}
 		break;

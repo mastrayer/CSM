@@ -59,3 +59,15 @@ BTypeAttackEffect* EffectManager::GetBTypeAttackEffect(int index)
 	}
 	return nullptr;
 }
+DTypeSkillEffect* EffectManager::GetDTypeSkillEffect(int index)
+{
+	for(auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
+	{
+		DTypeSkillEffect* pDTypeSkillEffect = dynamic_cast<DTypeSkillEffect*>(*iter);
+		if(pDTypeSkillEffect != nullptr && pDTypeSkillEffect->GetIndex() == index)
+		{
+			return pDTypeSkillEffect;
+		}
+	}
+	return nullptr;
+}

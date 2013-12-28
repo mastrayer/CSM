@@ -20,13 +20,11 @@ void BTypeSkillShootHandler::HandlingPacket(short packetType, NNCircularBuffer* 
 		{
 			if (circularBuffer->Read((char*)&mBTypeSkillShootResult, header->mSize))
 			{
-
-				//로그인이 잘못되어 캐릭터가 없을 수 있으므로
 				EffectManager::GetInstance()->AddEffect(new BTypeSkillEffect(mBTypeSkillShootResult.mStartPosition));
 			}
 			else
 			{
-				assert(false);
+
 			}
 		}
 		break;

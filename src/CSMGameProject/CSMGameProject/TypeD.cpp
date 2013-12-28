@@ -2,7 +2,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition)
+DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition, int index):mIndex(index)
 {
 	mDashEffect = NNAnimation::Create();
 	mExplosionEffect = NNAnimation::Create();

@@ -26,13 +26,20 @@ private:
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	ATypeAttackEndHandler* mATypeAttackEndHandler;
 	ATypeAttackShootHandler* mATypeAttackShootHandler;
-	BTypeSkillShootHandler* mBTypeSkillShootHandler;
-	//CTypeSkillShootHandler* mCTypeSkillShootHandler;
-
-
 
 	BTypeAttackEndHandler* mBTypeAttackEndHandler;
 	BTypeAttackShootHandler* mBTypeAttackShootHandler;
+	BTypeSkillShootHandler* mBTypeSkillShootHandler;
+
+	
+	CTypeAttackEndHandler* mCTypeAttackEndHandler;
+	CTypeAttackShootHandler* mCTypeAttackShootHandler;
+	CTypeSkillShootHandler* mCTypeSkillShootHandler;
+
+	
+	DTypeAttackShootHandler* mDTypeAttackShootHandler;
+	DTypeSkillShootHandler* mDTypeSkillShootHandler;
+	DTypeSkillEndHandler* mDTypeSkillEndHandler;
 
 	float mAngle;
 	DWORD mLastAngleChangedTime;

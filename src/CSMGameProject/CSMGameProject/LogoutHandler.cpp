@@ -30,7 +30,6 @@ void LogoutHandler::HandlingPacket( short packetType, NNCircularBuffer* circular
 			}
 			else
 			{
-				assert(false) ;
 			}
 		}
 		break;

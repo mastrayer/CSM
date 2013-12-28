@@ -87,6 +87,12 @@
     <ClCompile Include="BTypeAttackEndHandler.cpp" />
     <ClCompile Include="BTypeAttackShootHandler.cpp" />
     <ClCompile Include="BTypeSkillShootHandler.cpp" />
+    <ClCompile Include="CTypeAttackEndHandler.cpp" />
+    <ClCompile Include="CTypeAttackShootHandler.cpp" />
+    <ClCompile Include="CTypeSkillShootHandler.cpp" />
+    <ClCompile Include="DTypeAttackShootHandler.cpp" />
+    <ClCompile Include="DTypeSkillEndHandler.cpp" />
+    <ClCompile Include="DTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="FifthCut.cpp" />
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="TypeD.h" />
     <ClInclude Include="UserSkillEffect.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

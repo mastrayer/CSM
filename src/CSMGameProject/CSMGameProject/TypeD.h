@@ -8,7 +8,7 @@
 class DTypeSkillEffect : public IEffect
 {
 public:
-	DTypeSkillEffect(float angle, NNPoint startPosition);
+	DTypeSkillEffect(float angle, NNPoint startPosition, int index);
 	virtual ~DTypeSkillEffect();
 
 	void Render();
@@ -16,6 +16,7 @@ public:
 
 	void CreateDustEffect();
 	void Crash();
+	int GetIndex(){ return mIndex; }
 
 private:
 	NNSprite *mTemp;
@@ -28,6 +29,7 @@ private:
 	float mSpeed;
 	float mAngle;
 	bool mIsCrash;
+	int mIndex;
 };
 class DTypeAttackEffect : public IEffect
 {

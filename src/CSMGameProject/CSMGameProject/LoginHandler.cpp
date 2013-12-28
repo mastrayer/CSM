@@ -48,7 +48,6 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 			}
 			else
 			{
-				assert(false) ;
 			}
 		}
 		break;

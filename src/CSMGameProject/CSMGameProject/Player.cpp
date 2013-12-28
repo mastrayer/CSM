@@ -164,8 +164,7 @@ void CPlayer::Update( float dTime )
 			mStop->SetVisible( false );
 			mMove->SetVisible( true );
 			SetPosition( GetPosition() + mMoveVelocity * dTime  );
-			break;
-		}
+		}break;
 	case ATTAACK:
 		{
 		}

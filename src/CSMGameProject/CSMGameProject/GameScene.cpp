@@ -65,7 +65,7 @@ void CGameScene::Update( float dTime )
 		{
 			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-				,0.99f));
+				,0.97f));
 		}
 
 		if( isChangedGameKeyStates() == true )
@@ -73,9 +73,12 @@ void CGameScene::Update( float dTime )
 			mLastAngleChangedTime = timeGetTime();
 			mAngle = GetNowAngle();
 			mNowGameKeyStates = GetNowGameKeyStates();
-			
+			if(mNowGameKeyStates.leftDirectKey == KEYSTATE_PRESSED && mNowGameKeyStates.rightDirectKey == KEYSTATE_PRESSED)
+			{
+				//printf("ok");
+			}
 			//send packet
-			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mGameKeyStates = GetNowGameKeyStates();
+			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mGameKeyStates = mNowGameKeyStates;
 			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
 			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mX = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionX();
 			mGameKeyStatesUpdateHandler->mGameKeyStatesUpdateRequest.mMyPlayerInfo.mY = CPlayerManager::GetInstance()->GetMyPlayer()->GetPositionY();
@@ -108,12 +111,18 @@ void CGameScene::InitNetworkSetting()
 	mATypeSkillShootHandler = new ATypeSkillShootHandler();
 	mATypeAttackEndHandler = new ATypeAttackEndHandler();
 	mATypeAttackShootHandler = new ATypeAttackShootHandler();
-	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
-	//mCTypeSkillShootHandler = new CTypeSkillShootHandler();
 
+	mBTypeSkillShootHandler = new BTypeSkillShootHandler();
 	mBTypeAttackEndHandler = new BTypeAttackEndHandler();
 	mBTypeAttackShootHandler = new BTypeAttackShootHandler();
 
+	mCTypeAttackEndHandler = new CTypeAttackEndHandler();
+	mCTypeAttackShootHandler = new CTypeAttackShootHandler();
+	mCTypeSkillShootHandler = new CTypeSkillShootHandler();
+	
+	mDTypeAttackShootHandler = new DTypeAttackShootHandler();
+	mDTypeSkillShootHandler = new DTypeSkillShootHandler();
+	mDTypeSkillEndHandler = new DTypeSkillEndHandler();
 
 	NNNetworkSystem::GetInstance()->Init();
 
@@ -129,15 +138,20 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPEATTACK_SHOOT, mATypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_A_TYPEATTACK_END, mATypeAttackEndHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPESKILL_SHOOT, mBTypeSkillShootHandler);
-	//NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_SHOOT, mBTypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_B_TYPEATTACK_END, mBTypeAttackEndHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPEATTACK_SHOOT, mCTypeAttackShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPEATTACK_END, mCTypeAttackEndHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_C_TYPESKILL_SHOOT, mCTypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPEATTACK_SHOOT, mDTypeAttackShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_SHOOT, mDTypeSkillShootHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
 
 
 
-	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
+	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
-	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
+	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
@@ -172,6 +186,7 @@ GameKeyStates CGameScene::GetNowGameKeyStates()
 bool CGameScene::isChangedGameKeyStates()
 {
 	GameKeyStates nowGameKeyState = GetNowGameKeyStates();
+	printf("%d - %d // %d - %d\n ", nowGameKeyState.leftDirectKey,nowGameKeyState.rightDirectKey,mNowGameKeyStates.leftDirectKey,mNowGameKeyStates.rightDirectKey);
 	if( nowGameKeyState.attackKey != mNowGameKeyStates.attackKey
 		||nowGameKeyState.upDirectKey != mNowGameKeyStates.upDirectKey
 		||nowGameKeyState.downDirectKey != mNowGameKeyStates.downDirectKey

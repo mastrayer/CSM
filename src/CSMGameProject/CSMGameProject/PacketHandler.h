@@ -4,6 +4,66 @@
 #include "NNBaseHandler.h"
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
+class CTypeAttackShootHandler : public NNBaseHandler
+{
+public:
+	CTypeAttackShootHandler();
+	virtual ~CTypeAttackShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	CTypeAttackShootResult mCTypeAttackShootResult;
+};
+class CTypeAttackEndHandler : public NNBaseHandler
+{
+public:
+	CTypeAttackEndHandler();
+	virtual ~CTypeAttackEndHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	CTypeAttackEndResult mCTypeAttackEndResult;
+};
+class CTypeSkillShootHandler : public NNBaseHandler
+{
+public:
+	CTypeSkillShootHandler();
+	virtual ~CTypeSkillShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	CTypeSkillShootResult mCTypeSkillShootResult;
+};
+class DTypeAttackShootHandler : public NNBaseHandler
+{
+public:
+	DTypeAttackShootHandler();
+	virtual ~DTypeAttackShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	DTypeAttackShootResult mDTypeAttackShootResult;
+};
+class DTypeSkillShootHandler : public NNBaseHandler
+{
+public:
+	DTypeSkillShootHandler();
+	virtual ~DTypeSkillShootHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	DTypeSkillShootResult mDTypeSkillShootResult;
+};
+class DTypeSkillEndHandler : public NNBaseHandler
+{
+public:
+	DTypeSkillEndHandler();
+	virtual ~DTypeSkillEndHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	DTypeSkillEndResult mDTypeSkillEndResult;
+};
 class ATypeAttackShootHandler : public NNBaseHandler
 {
 public:

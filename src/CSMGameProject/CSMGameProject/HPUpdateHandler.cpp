@@ -36,7 +36,6 @@ void HPUpdateHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 			}
 			else
 			{
-				assert(false) ;
 			}
 		}
 		break;

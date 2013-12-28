@@ -35,7 +35,6 @@ void MouseAngleUpdateHandler::HandlingPacket( short packetType, NNCircularBuffer
 			}
 			else
 			{
-				assert(false) ;
 			}
 		}
 		break;
