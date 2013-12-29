@@ -66,7 +66,7 @@ void ClientManager::CollectGarbageSessions()
 		{
 			ClientSession* client = it.second ;
 
-			if ( false == client->IsConnected() && false == client->DoingOverlappedOperation() )
+			if ( false == client->IsConnected() && false == client->DoingOverlappedRecvOperation() && false == client->DoingOverlappedSendOperation())
 				disconnectedSessions.push_back(client) ;
 		}
 	) ;
@@ -96,7 +96,8 @@ void ClientManager::ClientPeriodWork()
 	{
 		ClientSession* client = it.second ;
 		client->OnTick() ;
-		client->Send();
+		if( false == client->DoingOverlappedSendOperation() )
+			client->Send();
 	}
 }
 

@@ -55,7 +55,7 @@ bool ClientSession::PostRecv()
 			return false;
 	}
 
-	IncOverlappedRequest();
+	IncOverlappedRecvRequest();
 
 	return true;
 }
@@ -211,7 +211,7 @@ bool ClientSession::Send()
 		if ( WSAGetLastError() != WSA_IO_PENDING )
 			return false;
 	}
-	IncOverlappedRequest();
+	IncOverlappedSendRequest();
 	return true;
 }
 
@@ -325,7 +325,7 @@ void CALLBACK RecvCompletion( DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPE
 {
 	ClientSession* fromClient = static_cast<OverlappedIO*>(lpOverlapped)->mObject;
 
-	fromClient->DecOverlappedRequest();
+	fromClient->DecOverlappedRecvRequest();
 
 	if ( !fromClient->IsConnected() )
 		return ;
@@ -353,7 +353,7 @@ void CALLBACK SendCompletion( DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPE
 {
 	ClientSession* fromClient = static_cast<OverlappedIO*>(lpOverlapped)->mObject;
 
-	fromClient->DecOverlappedRequest();
+	fromClient->DecOverlappedSendRequest();
 
 	if ( !fromClient->IsConnected() )
 		return;

@@ -518,6 +518,7 @@ bool Player::Damaged(int damage, Player* player)
 		PlayerKillScoreUpdateResult outPlayerKillScoreUpdatePacket;
 		outPlayerKillScoreUpdatePacket.mPlayerId = player->mPlayerId;
 		outPlayerKillScoreUpdatePacket.mKillScore = player->mKillScore;
+		printf("asdfdasf %d\n",player->mKillScore);
 		mClient->Broadcast(&outPlayerKillScoreUpdatePacket);
 
 		return true;
@@ -561,6 +562,7 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mMoveDirection = mMoveDirection;
 	mPlayerInfo.mTeam = mTeam;
 	mPlayerInfo.mType = mType;
+	mPlayerInfo.mKillScore = mKillScore;
 	return mPlayerInfo;
 }
 

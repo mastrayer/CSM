@@ -23,7 +23,7 @@ class ClientSession
 {
 public:
 	ClientSession(SOCKET sock)
-		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedRequested(0)
+		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedSendRequested(0), mOverlappedRecvRequested(0)
 		, mDbUpdateCount(0)
 	{
 		memset( &mClientAddr, 0, sizeof(SOCKADDR_IN) );
@@ -51,10 +51,13 @@ public:
 
 
 	/// 현재 Send/Recv 요청 중인 상태인지 검사하기 위함
-	void	IncOverlappedRequest()		{ ++mOverlappedRequested; }
-	void	DecOverlappedRequest()		{ --mOverlappedRequested; }
-	bool	DoingOverlappedOperation() const { return mOverlappedRequested > 0 ; }
-
+	void	IncOverlappedSendRequest()		{ ++mOverlappedSendRequested; }
+	void	DecOverlappedSendRequest()		{ --mOverlappedSendRequested; }
+	bool	DoingOverlappedSendOperation() const { return mOverlappedSendRequested > 0 ; }
+	void	IncOverlappedRecvRequest()		{ ++mOverlappedRecvRequested; }
+	void	DecOverlappedRecvRequest()		{ --mOverlappedRecvRequested; }
+	bool	DoingOverlappedRecvOperation() const { return mOverlappedRecvRequested > 0 ; }
+	
 private:
 	void	OnTick();
 
@@ -76,7 +79,8 @@ public:
 
 	OverlappedIO	mOverlappedSend;
 	OverlappedIO	mOverlappedRecv;
-	int				mOverlappedRequested;
+	int				mOverlappedSendRequested;
+	int				mOverlappedRecvRequested;
 
 	int				mDbUpdateCount; ///< DB에 주기적으로 업데이트 하기 위한 변수
 
