@@ -220,6 +220,7 @@ void GameUISet::Update(float dTime)
  		mType->SetString(L"Wind");
  		mTypeFace[WIND]->SetVisible(true);
 		mTypeSkillUI[WIND]->SetVisible(true);
+		break;
 	case PlayerType::TYPE_D:
 		mType->SetString(L"Earth");
 		mTypeFace[EARTH]->SetVisible(true);
