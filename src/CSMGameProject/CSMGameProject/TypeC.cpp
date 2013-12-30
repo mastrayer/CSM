@@ -47,21 +47,21 @@ CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition)
 	mBullet = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 11; i++)
 	{
-		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/C/Attack/Bullet/%d.png", i);
 		mBullet->AddFrameNode(temp);
 	}
-	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
+	mBullet->SetFrameTimeInSection(0.03f, 0, 10);
 
 	mIsCrash = false;
 	mAngle = angle;
-	mSpeed = 500.f;
-	mLifeTime = 0.8f;
+	mSpeed = 1000.f;
+	mLifeTime = mBullet->GetPlayTime();
 
 	SetPosition(startPosition);
 	SetRotation(angle);
-	SetCenter(65.f, 65.f);
+	SetCenter(32.f, 32.f);
 
 	AddChild(mBullet);
 }
@@ -94,13 +94,13 @@ void CTypeAttackEffect::Explose()
 	mExplosion = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 18; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/C/Attack/Explosion/%d.png", i);
 
 		mExplosion->AddFrameNode(temp);
 	}
-	mExplosion->SetFrameTimeInSection(0.02f, 0, 17);
+	mExplosion->SetFrameTimeInSection(0.03f, 0, 9);
 
 	AddChild(mExplosion);
 
