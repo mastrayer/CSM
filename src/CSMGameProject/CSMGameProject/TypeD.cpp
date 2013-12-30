@@ -117,16 +117,12 @@ DTypeAttackEffect::DTypeAttackEffect(int PlayerID)
 
 	//mAngle = angle;
 	mFollower = CPlayerManager::GetInstance()->FindPlayerByID(PlayerID);
-	mAngle = mFollower->GetPlayerRotation();
 	mLifeTime = mSlash->GetPlayTime();
-
-	//SetPosition(startPosition);
-	//SetRotation(angle);
-
-	SetPosition(mFollower->GetPlayerPosition());
-	SetRotation(mFollower->GetPlayerRotation());
-	SetCenter(50.f, 30.f);
 	
+	SetCenter(40.f, 30.f);
+	SetRotation(mFollower->GetPlayerRotation());
+	SetPosition(mFollower->GetPlayerPosition());
+
 	AddChild(mSlash);
 }
 DTypeAttackEffect::~DTypeAttackEffect()

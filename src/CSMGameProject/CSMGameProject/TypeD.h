@@ -36,7 +36,7 @@ private:
 class DTypeAttackEffect : public IEffect
 {
 public :
-	DTypeAttackEffect(int PlayerID);// , float angle, NNPoint startPoint);
+	DTypeAttackEffect(int PlayerID);
 	virtual ~DTypeAttackEffect();
 
 	void Render();
@@ -45,5 +45,4 @@ public :
 private :
 	NNAnimation *mSlash;
 	CPlayer *mFollower;
-	float mAngle;
 };

@@ -20,7 +20,7 @@ void DTypeAttackShootHandler::HandlingPacket(short packetType, NNCircularBuffer*
 		{
 			if (circularBuffer->Read((char*)&mDTypeAttackShootResult, header->mSize))
 			{
-				EffectManager::GetInstance()->AddEffect( new DTypeAttackEffect());
+				EffectManager::GetInstance()->AddEffect( new DTypeAttackEffect(mDTypeAttackShootResult.mPlayerId));
 			}
 			else
 			{
