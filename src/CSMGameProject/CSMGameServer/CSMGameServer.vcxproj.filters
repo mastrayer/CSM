@@ -163,6 +163,9 @@
     <ClCompile Include="DTypeSkill.cpp">
       <Filter>Game\TypeAttack&amp;Skill\D</Filter>
     </ClCompile>
+    <ClCompile Include="CTypeSkillBullet.cpp">
+      <Filter>Game\TypeAttack&amp;Skill\C\CTypeSkillBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -354,6 +357,9 @@
     <ClInclude Include="DTypeSkill.h">
       <Filter>Game\TypeAttack&amp;Skill\D</Filter>
     </ClInclude>
+    <ClInclude Include="CTypeSkillBullet.h">
+      <Filter>Game\TypeAttack&amp;Skill\C\CTypeSkillBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -472,6 +478,9 @@
     </Filter>
     <Filter Include="Game\Bullet\BulletManager">
       <UniqueIdentifier>{36e41141-1390-485e-951c-4223ff637c37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\TypeAttack&amp;Skill\C\CTypeSkillBullet">
+      <UniqueIdentifier>{69e3d89a-e352-48b2-bb23-c5b875929cbb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

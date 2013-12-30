@@ -25,6 +25,7 @@
     <ClCompile Include="ClientSession.cpp" />
     <ClCompile Include="CTypeAttack.cpp" />
     <ClCompile Include="CTypeAttackBullet.cpp" />
+    <ClCompile Include="CTypeSkillBullet.cpp" />
     <ClCompile Include="DatabaseJobContext.cpp" />
     <ClCompile Include="DatabaseJobManager.cpp" />
     <ClCompile Include="DbHelper.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="CTypeAttack.h" />
     <ClInclude Include="CTypeAttackBullet.h" />
+    <ClInclude Include="CTypeSkillBullet.h" />
     <ClInclude Include="DatabaseJobContext.h" />
     <ClInclude Include="DatabaseJobManager.h" />
     <ClInclude Include="DbHelper.h" />

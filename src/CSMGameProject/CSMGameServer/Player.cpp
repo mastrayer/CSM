@@ -359,7 +359,7 @@ void Player::Update( float dTime)
 				}break;
 			case TYPE_C:
 				{	
-					mAttackDelay = 0.2f;
+					mAttackDelay = 0.4f;
 					new CTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;

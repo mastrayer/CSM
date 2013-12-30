@@ -4,16 +4,16 @@
 
 CTypeSkillBullet::CTypeSkillBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
-	mIsTeamKill = false;
+	mIsTeamKill = true;
 	mVelocity = 0;
 	SetPosition(position);
 	SetAngle(angle);
 	SetShape(CIRCLE);
 	SetRadius(7);
-	SetDamage(16);
+	SetDamage(9);
 	mDidExplosed = false;
 	SetLifeTime(0.9);
-	mAcceleraction = 600.f;
+	mAcceleraction = 800.f;
 }
 
 
@@ -33,9 +33,13 @@ bool CTypeSkillBullet::isLive()
 
 void CTypeSkillBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 {
-	victimPlayer->Damaged(mDamage, attackerPlayer);
-	mDidExplosed = false;
-	CTypeAttackEndResult outPacket = CTypeAttackEndResult();
-	outPacket.mIndex = GetBulletNumber();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	if(std::find(mHitPlayer.begin(), mHitPlayer.end(), victimPlayer->GetPlayerInfo().mPlayerId) == mHitPlayer.end() )
+	{
+		mHitPlayer.push_back(victimPlayer->GetPlayerInfo().mPlayerId);
+		victimPlayer->Damaged(mDamage, attackerPlayer);
+		mDidExplosed = false;
+		CTypeAttackEndResult outPacket = CTypeAttackEndResult();
+		outPacket.mIndex = GetBulletNumber();
+		GClientManager->BroadcastPacket(nullptr,&outPacket);
+	}
 }
