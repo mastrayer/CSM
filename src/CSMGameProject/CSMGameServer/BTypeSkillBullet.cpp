@@ -12,6 +12,7 @@ BTypeSkillBullet::BTypeSkillBullet(Player* ownerPlayer, Point position):Bullet(o
 	SetRadius(20);
 	mHeal = 20;
 	mDidExplosed = false;
+	mIsTeamKill = true;
 	SetLifeTime(0.f);
 }
 
