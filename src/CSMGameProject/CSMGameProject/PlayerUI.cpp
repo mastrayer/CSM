@@ -2,6 +2,7 @@
 #include "PlayerUI.h"
 #include "Player.h"
 #include "NNApplication.h"
+#include "PlayerManager.h"
 
 PlayerUI::PlayerUI()
 {
@@ -22,8 +23,13 @@ void PlayerUI::Init()
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
 	mHpBar[RED]->SetPosition( 0.f, -40.f );
 
+	wsprintf(mNicknameBuf, L"NICKNAME");
+	mNickname = NNLabel::Create(mNicknameBuf, L"¸¼Àº °íµñ", 10.f);
+	mNickname->SetPosition(0.f, -50.f);
+
 	AddChild(mHpBar[BLUE]);
 	AddChild(mHpBar[RED]);
+	AddChild(mNickname, 99);
 
 	SetCenter( mHpBar[BLUE]->GetImageWidth()/2.f, mHpBar[BLUE]->GetImageHeight()/2.f );
 }

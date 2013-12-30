@@ -135,7 +135,6 @@ GameUISet::GameUISet()
 
 	mTypeFace[EARTH] = NNSprite::Create(L"Resource/Sprite/CharacterFace/EarthSlime.png");
 	mTypeFace[EARTH]->SetPosition(5.f, 505.f);
-
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
 	mStatusWindow = CStatusWindow::Create();

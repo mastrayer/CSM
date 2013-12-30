@@ -29,4 +29,7 @@ private:
 	NNSprite* mHpBarFrame;
 	int mHp;
 	int mTeam;
+
+	wchar_t mNicknameBuf[256];
+	NNLabel *mNickname;
 };
