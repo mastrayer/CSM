@@ -4,6 +4,7 @@
 #include "Effect.h"
 #include "NNAnimation.h"
 #include "Player.h"
+#include "PlayerManager.h"
 
 class DTypeSkillEffect : public IEffect
 {
@@ -35,18 +36,14 @@ private:
 class DTypeAttackEffect : public IEffect
 {
 public :
-	DTypeAttackEffect(float angle, NNPoint startPoint);
+	DTypeAttackEffect(int PlayerID);// , float angle, NNPoint startPoint);
 	virtual ~DTypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
-	void Explose();
 
 private :
-	bool mIsCrash;
-	NNAnimation *mBullet;
-	NNAnimation *mExplosion;
-	float mAngle;
-	float mSpeed;
+	NNAnimation *mSlash;
 	CPlayer *mFollower;
+	float mAngle;
 };

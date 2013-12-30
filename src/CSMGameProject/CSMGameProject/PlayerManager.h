@@ -36,6 +36,7 @@ public:
 	int GetMyPlayerId() { return mMyPlayerId; };
 
 	std::map<int, CPlayer*> GetPlayerList() { return mPlayers; }
+	CPlayer *FindPlayerByID(int ID);
 
 private:
 	std::map<int,CPlayer*> mPlayers;
