@@ -9,7 +9,7 @@ BTypeSkillBullet::BTypeSkillBullet(Player* ownerPlayer, Point position):Bullet(o
 	mVelocity = 10;
 	SetPosition(position);
 	SetShape(CIRCLE);
-	SetRadius(20);
+	SetRadius(115);
 	mHeal = 20;
 	mDidExplosed = false;
 	mIsTeamKill = true;
