@@ -154,3 +154,13 @@ void CPlayerManager::DeletePlayer(int id)
 		NNSceneDirector::GetInstance()->GetNowScene()->RemoveChild(deleteTarget);
 	}
 }
+
+CPlayer *CPlayerManager::FindPlayerByID(int ID)
+{
+	for (auto &player : mPlayers)
+	{
+		if (player.first == ID)
+			return player.second;
+	}
+	return nullptr;
+}
