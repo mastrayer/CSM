@@ -37,7 +37,7 @@ void CTypeSkillEffect::Update(float dTime)
 
 	mMoveSpeed += 800.f * dTime;
 	this->SetPosition(this->GetPositionX() + mMoveSpeed * std::cosf(mDirection) * dTime, this->GetPositionY() + mMoveSpeed * std::sinf(mDirection) * dTime);
-
+	
 	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;
 }

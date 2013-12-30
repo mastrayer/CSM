@@ -57,16 +57,10 @@ void CGameScene::Update( float dTime )
 			// UI Setting
 			SetUISet( GameUISet::Create() );
 		}
-		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
-		{
-			GetCamera().SetPosition( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() );
-		}
-		else
-		{
-			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+		
+		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-				,0.97f));
-		}
+				,0.f));
 
 		if( isChangedGameKeyStates() == true )
 		{
@@ -149,9 +143,9 @@ void CGameScene::InitNetworkSetting()
 
 
 
-	//NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
+	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
-	NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
+	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }

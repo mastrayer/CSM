@@ -20,7 +20,7 @@ void DTypeSkillShootHandler::HandlingPacket(short packetType, NNCircularBuffer* 
 		{
 			if (circularBuffer->Read((char*)&mDTypeSkillShootResult, header->mSize))
 			{
-				EffectManager::GetInstance()->AddEffect( new DTypeSkillEffect(mDTypeSkillShootResult.mAngle,mDTypeSkillShootResult.mStartPosition,mDTypeSkillShootResult.mIndex));
+				EffectManager::GetInstance()->AddEffect( new DTypeSkillEffect(mDTypeSkillShootResult.mAngle,mDTypeSkillShootResult.mStartPosition,mDTypeSkillShootResult.mPlayerId));
 			}
 			else
 			{

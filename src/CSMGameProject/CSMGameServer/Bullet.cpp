@@ -145,21 +145,10 @@ bool Bullet::CouldBulletGoPosition(float radius, Point position)
 	{
 		for( int y = int(position.y - radius)/64; y <= int(position.y + radius)/64; y += 1 )//64 = tilesize
 		{
-			if (GGameMap->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameMap->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT )
+			if (GGameMap->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameMap->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT)
 				return false;
 			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
-		}
-	}
-
-	std::map<int,Player*> players = GPlayerManager->GetPlayers();
-	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
-	{
-		Player* enemy = it->second;
-		if(enemy->GetTeam() == mOwnerPlayer->GetTeam()) continue;
-		if( Point().Distance( enemy->GetPosition(), position ) < enemy->GetRadius() + radius )
-		{
-			return false;
 		}
 	}
 	return true;
