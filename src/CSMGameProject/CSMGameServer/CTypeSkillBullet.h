@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include "List"
 class CTypeSkillBullet : public Bullet
 {
 public:
@@ -12,5 +13,6 @@ public:
 
 private:
 	bool mDidExplosed;
+	std::list<int> mHitPlayer;
 };
 

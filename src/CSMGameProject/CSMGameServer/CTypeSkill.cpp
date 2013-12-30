@@ -3,18 +3,12 @@
 #include "Bullet.h"
 #include "SkillManager.h"
 #include "ClientManager.h"
-
+#include "CTypeSkillBullet.h"
 CTypeSkill::CTypeSkill(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition)
 {
 	GSkillManager->AddSkill(this);
 
-	Bullet* bullet = new Bullet(mOwnerPlayer);
-	bullet->SetPosition(mStartPosition);
-	bullet->SetShape(CIRCLE);
-	bullet->SetRadius(7);
-	bullet->SetDamage(9);
-	bullet->SetAcceleration(800);
-	bullet->SetLifeTime(0.9);
+	CTypeSkillBullet* bullet = new CTypeSkillBullet(ownerPlayer,startPosition,angle);
 
 	CTypeSkillShootResult outPacket = CTypeSkillShootResult();
 	outPacket.mAngle = mAngle;
