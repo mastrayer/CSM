@@ -1,12 +1,13 @@
 #include "TypeD.h"
-
+#include "PlayerManager.h"
 //////////////////////////////////////////////////////////////////////////
 
-DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition, int index):mIndex(index)
+DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition, int playerId):mPlayerId(playerId)
 {
 	mDashEffect = NNAnimation::Create();
 	mExplosionEffect = NNAnimation::Create();
-
+	mPlayer = CPlayerManager::GetInstance()->GetPlayerList().find(mPlayerId)->second;
+		
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 16; i++)
 	{
@@ -58,7 +59,7 @@ void DTypeSkillEffect::Update(float dTime)
 	{
 		mDustPoint.SetX(mDustPoint.GetX() + mSpeed * std::cosf(mAngle) * dTime);
 		mDustPoint.SetY(mDustPoint.GetY() + mSpeed * std::sinf(mAngle) * dTime);
-
+		mPlayer->SetPosition(mPlayer->GetPosition() + NNPoint(std::cosf(mAngle),std::sinf(mAngle)) * mSpeed * dTime);
 		if (mDustTimeCount >= mDustCreateTerm)
 		{
 			mDustTimeCount -= mDustCreateTerm;

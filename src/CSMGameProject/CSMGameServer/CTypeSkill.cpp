@@ -13,7 +13,7 @@ CTypeSkill::CTypeSkill(float angle, Point startPosition, Player* ownerPlayer):mO
 	bullet->SetShape(CIRCLE);
 	bullet->SetRadius(7);
 	bullet->SetDamage(18);
-	bullet->SetAcceleration(600);
+	bullet->SetAcceleration(800);
 	bullet->SetLifeTime(0.9);
 
 	CTypeSkillShootResult outPacket = CTypeSkillShootResult();

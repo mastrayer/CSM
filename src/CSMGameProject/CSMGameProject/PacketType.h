@@ -320,7 +320,7 @@ struct DTypeSkillShootResult : public NNPacketHeader
 	}
 	NNPoint mStartPosition;
 	float mAngle;
-	int mIndex;
+	int mPlayerId;
 };
 struct DTypeSkillEndResult : public NNPacketHeader
 {
