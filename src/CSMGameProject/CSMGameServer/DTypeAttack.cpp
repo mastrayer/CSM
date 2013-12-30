@@ -16,8 +16,7 @@ DTypeAttack::DTypeAttack(float angle, Point startPosition, Player* ownerPlayer):
 	bullet->SetLifeTime(0);
 
 	DTypeAttackShootResult outPacket = DTypeAttackShootResult();
-	outPacket.mAngle = mAngle;
-	outPacket.mStartPosition = mStartPosition;
+	outPacket.mPlayerId = ownerPlayer->GetPlayerInfo().mPlayerId;
 	GClientManager->BroadcastPacket(nullptr,&outPacket);
 }
 

@@ -308,8 +308,7 @@ struct DTypeAttackShootResult : public NNPacketHeader
 		mSize = sizeof(DTypeAttackShootResult);
 		mType = PKT_SC_D_TYPEATTACK_SHOOT;
 	}
-	NNPoint mStartPosition;
-	float mAngle;
+	int mPlayerId;
 };
 struct DTypeSkillShootResult : public NNPacketHeader
 {

@@ -355,8 +355,7 @@ struct DTypeAttackShootResult : public PacketHeader
 		mSize = sizeof(DTypeAttackShootResult);
 		mType = PKT_SC_D_TYPEATTACK_SHOOT;
 	}
-	Point mStartPosition;
-	float mAngle;
+	int mPlayerId;
 };
 struct DTypeSkillShootResult : public PacketHeader
 {
