@@ -5,6 +5,7 @@
 #include <list>
 #include "TypeA.h"
 #include "TypeB.h"
+#include "TypeC.h"
 #include "TypeD.h"
 
 class EffectManager : public NNObject
@@ -22,6 +23,7 @@ public:
 	}
 	ATypeAttackEffect* GetATypeAttackEffect(int index);
 	BTypeAttackEffect* GetBTypeAttackEffect(int index);
+	CTypeAttackEffect* GetCTypeAttackEffect(int index);
 	DTypeSkillEffect* GetDTypeSkillEffect(int index);
 private:
 	std::list<IEffect*> mEffectList;

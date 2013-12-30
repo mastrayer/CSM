@@ -42,7 +42,7 @@ void CTypeSkillEffect::Update(float dTime)
 		mIsEnd = true;
 }
 
-CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition)
+CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition, int index):mIndex(index)
 {
 	mBullet = NNAnimation::Create();
 

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "EffectManager.h"
-#include "TypeB.h"
+#include "TypeC.h"
 
 CTypeAttackEndHandler::CTypeAttackEndHandler()
 {
@@ -20,7 +20,7 @@ void CTypeAttackEndHandler::HandlingPacket(short packetType, NNCircularBuffer* c
 		{
 			if (circularBuffer->Read((char*)&mCTypeAttackEndResult, header->mSize))
 			{
-
+				EffectManager::GetInstance()->GetCTypeAttackEffect(mCTypeAttackEndResult.mIndex)->Explose();
 			}
 			else
 			{

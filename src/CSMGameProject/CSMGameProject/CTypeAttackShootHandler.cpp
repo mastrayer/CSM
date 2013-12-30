@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include "EffectManager.h"
-#include "TypeB.h"
+#include "TypeC.h"
 
 CTypeAttackShootHandler::CTypeAttackShootHandler()
 {
@@ -21,7 +21,7 @@ void CTypeAttackShootHandler::HandlingPacket(short packetType, NNCircularBuffer*
 		{
 			if (circularBuffer->Read((char*)&mCTypeAttackShootResult, header->mSize))
 			{
-
+				EffectManager::GetInstance()->AddEffect( new CTypeAttackEffect(mCTypeAttackShootResult.mAngle,mCTypeAttackShootResult.mStartPosition,mCTypeAttackShootResult.mIndex));
 			}
 			else
 			{

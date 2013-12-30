@@ -23,12 +23,13 @@ private:
 class CTypeAttackEffect : public IEffect
 {
 public:
-	CTypeAttackEffect(float angle, NNPoint startPoint);
+	CTypeAttackEffect(float angle, NNPoint startPoint, int index);
 	virtual ~CTypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
 	void Explose();
+	int GetIndex(){ return mIndex; }
 
 private:
 	bool mIsCrash;
@@ -37,4 +38,5 @@ private:
 	float mAngle;
 	float mSpeed;
 	CPlayer *mFollower;
+	int mIndex;
 };
