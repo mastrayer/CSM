@@ -4,13 +4,13 @@
 
 CTypeSkillBullet::CTypeSkillBullet(Player* ownerPlayer, Point position, float angle):Bullet(ownerPlayer)
 {
-	mIsTeamKill = true;
+	mIsTeamKill = false;
 	mVelocity = 0;
 	SetPosition(position);
 	SetAngle(angle);
 	SetShape(CIRCLE);
-	SetRadius(7);
-	SetDamage(9);
+	SetRadius(24);
+	SetDamage(17);
 	mDidExplosed = false;
 	SetLifeTime(0.9);
 	mAcceleraction = 800.f;
@@ -28,7 +28,7 @@ void CTypeSkillBullet::Update(float dTime)
 
 bool CTypeSkillBullet::isLive()
 {
-	return mLifeTime < 0;
+	return mLifeTime >= 0;
 }
 
 void CTypeSkillBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
@@ -37,9 +37,5 @@ void CTypeSkillBullet::Hit(Player* victimPlayer, Player* attackerPlayer)
 	{
 		mHitPlayer.push_back(victimPlayer->GetPlayerInfo().mPlayerId);
 		victimPlayer->Damaged(mDamage, attackerPlayer);
-		mDidExplosed = false;
-		CTypeAttackEndResult outPacket = CTypeAttackEndResult();
-		outPacket.mIndex = GetBulletNumber();
-		GClientManager->BroadcastPacket(nullptr,&outPacket);
 	}
 }
