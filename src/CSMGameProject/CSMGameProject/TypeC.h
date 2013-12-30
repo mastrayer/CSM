@@ -23,12 +23,18 @@ private:
 class CTypeAttackEffect : public IEffect
 {
 public:
-	CTypeAttackEffect(float angle, NNPoint startPosition);
+	CTypeAttackEffect(float angle, NNPoint startPoint);
 	virtual ~CTypeAttackEffect();
 
 	void Render();
 	void Update(float dTime);
+	void Explose();
 
 private:
-	NNAnimation *mAnimation;
+	bool mIsCrash;
+	NNAnimation *mBullet;
+	NNAnimation *mExplosion;
+	float mAngle;
+	float mSpeed;
+	CPlayer *mFollower;
 };

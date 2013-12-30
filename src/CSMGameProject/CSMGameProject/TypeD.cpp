@@ -102,28 +102,31 @@ void DTypeSkillEffect::Crash()
 }
 
 
-DTypeAttackEffect::DTypeAttackEffect(float angle, NNPoint startPosition)
+DTypeAttackEffect::DTypeAttackEffect(int PlayerID)
 {
-	mBullet = NNAnimation::Create();
+	mSlash = NNAnimation::Create();
 
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Bullet/%d.png", i);
-		mBullet->AddFrameNode(temp);
+		wsprintf(temp, L"Resource/Sprite/SkillEffect/D/Attack/%d.png", i);
+		mSlash->AddFrameNode(temp);
 	}
-	mBullet->SetFrameTimeInSection(0.02f, 0, 5);
+	mSlash->SetFrameTimeInSection(0.05f, 0, 4);
 
-	mIsCrash = false;
-	mAngle = angle;
-	mSpeed = 500.f;
-	mLifeTime = 0.8f;
+	//mAngle = angle;
+	mFollower = CPlayerManager::GetInstance()->FindPlayerByID(PlayerID);
+	mAngle = mFollower->GetPlayerRotation();
+	mLifeTime = mSlash->GetPlayTime();
 
-	SetPosition(startPosition);
-	SetRotation(angle);
-	SetCenter(65.f, 65.f);
+	//SetPosition(startPosition);
+	//SetRotation(angle);
+
+	SetPosition(mFollower->GetPlayerPosition());
+	SetRotation(mFollower->GetPlayerRotation());
+	SetCenter(50.f, 30.f);
 	
-	AddChild(mBullet);
+	AddChild(mSlash);
 }
 DTypeAttackEffect::~DTypeAttackEffect()
 {
@@ -135,37 +138,10 @@ void DTypeAttackEffect::Render()
 void DTypeAttackEffect::Update(float dTime)
 {
 	IEffect::Update(dTime);
+	SetPosition(mFollower->GetPlayerPosition());
+	SetRotation(mFollower->GetPlayerRotation());
 	
-	if (mIsCrash == false)
-		this->SetPosition(this->GetPositionX() + mSpeed * std::cosf(mAngle) * dTime, this->GetPositionY() + mSpeed * std::sinf(mAngle) * dTime);
-
 	if (mLifeTime < mNowLifeTime)
-	{
-		if (mIsCrash == false)
-			Explose();
-		else
-			mIsEnd = true;
-	}
+		mIsEnd = true;
 		
-}
-void DTypeAttackEffect::Explose()
-{
-	mBullet->SetVisible(false);
-	mExplosion = NNAnimation::Create();
-
-	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 18; i++)
-	{
-		wsprintf(temp, L"Resource/Sprite/SkillEffect/A/Attack/Explosion/%d.png", i);
-
-		mExplosion->AddFrameNode(temp);
-	}
-	mExplosion->SetFrameTimeInSection(0.02f, 0, 17);
-
-	AddChild(mExplosion);
-
-	mNowLifeTime = 0.f;
-	mLifeTime = mExplosion->GetPlayTime();
-
-	mIsCrash = true;
 }
