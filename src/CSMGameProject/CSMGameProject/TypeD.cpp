@@ -119,7 +119,7 @@ DTypeAttackEffect::DTypeAttackEffect(int PlayerID)
 	mFollower = CPlayerManager::GetInstance()->FindPlayerByID(PlayerID);
 	mLifeTime = mSlash->GetPlayTime();
 	
-	SetCenter(40.f, 30.f);
+	SetCenter(10.f, 30.f);
 	SetRotation(mFollower->GetPlayerRotation());
 	SetPosition(mFollower->GetPlayerPosition());
 
