@@ -1,7 +1,6 @@
 
 #include "PacketHandler.h"
 #include <stdio.h>
-#include <assert.h>
 #include "PlayerManager.h"
 
 HPUpdateHandler::HPUpdateHandler()
