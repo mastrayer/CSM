@@ -1,6 +1,5 @@
 
 #include <stdio.h>
-#include <assert.h>
 
 #include "PacketHandler.h"
 #include "GameManager.h"
