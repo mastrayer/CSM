@@ -7,7 +7,7 @@ class Board(db.Model):
 	__tablename__ = 'tbl_board'
 	id = db.Column(db.Integer, primary_key=True)
 	#user_id = db.Column(db.Integer, ForeignKey('user.id'))
-	user = db.ForeignKey(User)
+	#user = db.ForeignKey(User)
 	title = db.Column(db.String(150))
 	content = db.Column(db.Text)
 	type = db.Column(db.SmallInteger)
