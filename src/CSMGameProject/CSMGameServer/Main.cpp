@@ -15,6 +15,7 @@
 #include "GameManager.h"
 #include "BulletManager.h"
 #include "SkillManager.h"
+#include "ItemManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
 
@@ -44,6 +45,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	GGameManager = new GameManager();
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
+	GItemManager = new ItemManager();
 
 	/// DB Helper √ ±‚»≠
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
