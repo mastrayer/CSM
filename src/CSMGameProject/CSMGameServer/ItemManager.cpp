@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ItemManager.h"
 #include "PlayerManager.h"
-
+#include "GameManager.h"
 
 ItemManager::ItemManager(void)
 {
@@ -23,7 +23,9 @@ void ItemManager::Update(float dTime)
 		}
 		if( (*itemIt)->IsConsumed() == false )
 		{
-			for( auto playerIt = GPlayerManager->GetPlayers().begin(); playerIt != GPlayerManager->GetPlayers().end(); playerIt++ )
+			std::map<int,Player*> players;
+			GPlayerManager->GetPlayers((*itemIt)->GetGameId(),&players);
+			for( auto playerIt = players.begin(); playerIt != players.end(); playerIt++ )
 			{
 				if( Point().Distance( (*itemIt)->GetPosition() , playerIt->second->GetPosition() ) <= (*itemIt)->GetRadius() + playerIt->second->GetRadius() )
 				{
@@ -31,6 +33,11 @@ void ItemManager::Update(float dTime)
 
 				}
 			}
+		}
+		if((*itemIt)->GetItemType() == FLAG && (*itemIt)->IsConsumed() == true && Point().Distance( GPlayerManager->GetPlayer((*itemIt)->GetOwnerId())->GetPosition(), Point() ) < 48 )
+		{
+			GGameManager->AddScore((*itemIt)->GetGameId(),GPlayerManager->GetPlayer((*itemIt)->GetOwnerId())->GetTeam(),100);
+			GPlayerManager->GetPlayer((*itemIt)->GetOwnerId())->DropItem((*itemIt));
 		}
 	}
 }

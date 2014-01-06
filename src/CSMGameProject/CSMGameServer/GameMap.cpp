@@ -115,15 +115,15 @@ void GameMap::convertFileToMap( std::wstring path )
                 m_Tile[i][j]->m_Type = BARRACK_OUT;
 			else if ( temp == "A Team Starting Point" )
 			{
-				m_Tile[i][j]->m_Type = STARTING_POINT_A;
-				m_StartingPointAY = i * 64.f;
-				m_StartingPointAX = j * 64.f;
+				m_Tile[i][j]->m_Type = STARTING_Point_A;
+				m_StartingPointAY = i * 32.f;
+				m_StartingPointAX = j * 32.f;
 			}
 			else if ( temp == "B Team Starting Point" )
 			{
-				m_Tile[i][j]->m_Type = STARTING_POINT_B;
-				m_StartingPointBY = i * 64.f;
-				m_StartingPointBX = j * 64.f;
+				m_Tile[i][j]->m_Type = STARTING_Point_B;
+				m_StartingPointBY = i * 32.f;
+				m_StartingPointBX = j * 32.f;
 			}
 			printf("%d / %d : %d\n",j,i,m_Tile[i][j]->m_attribute);
 		}
@@ -142,7 +142,7 @@ void GameMap::convertFileToMap( std::wstring path )
 				y = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/TileImageInfo/@Y").c_str());
 				m_Tile[i][j]->m_attribute = strcmp(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@move").c_str() , "true") == 0 ? 1 : 0;
 				m_Tile[i][j]->m_height = atoi(m_MapXMLData->XPathToString("/map/tileInfo/tile[@Y=\"" + std::to_string(i) + "\" and @X=\"" + std::to_string(j) + "\"]/Attribute/@height").c_str());
-				printf("[%d/%d] (%0.f-%0.f)(%0.f-%0.f) \n",i,j,y + 0.f,y+64.f,x + 0.f,x+64.f);
+				printf("[%d/%d] (%0.f-%0.f)(%0.f-%0.f) \n",i,j,y + 0.f,y+32.f,x + 0.f,x+32.f);
 
 			}
 		}*/
@@ -200,6 +200,3 @@ Tile::~Tile()
 {
 
 }
-
-
-GameMap* GGameMap = nullptr;

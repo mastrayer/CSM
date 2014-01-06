@@ -25,7 +25,8 @@ void DTypeSkill::Update(float dTime)
 {
 	mLifeTime -= dTime;
 
-	std::map<int,Player*> players = GPlayerManager->GetPlayers();
+	std::map<int,Player*> players;
+	GPlayerManager->GetPlayers(mOwnerPlayer->GetGameId(), &players);
 	for( std::map<int,Player*>::iterator playerIt = players.begin(); playerIt != players.end(); ++playerIt ) 
 	{
 		Player* enemyPlayer = playerIt->second;

@@ -49,44 +49,31 @@ void PlayerManager::UpdatePlayerRotation(int _playerId, float angle)
 	}
 }
 
-Player* PlayerManager::NewPlayer(int id, ClientSession* client)
+Player* PlayerManager::NewPlayer(int playerId, int gameId, ClientSession* client)
 {
 	Player* newPlayer = NULL;
-	std::map<int,Player*>::iterator itor = mPlayers.find(id);
+	std::map<int,Player*>::iterator itor = mPlayers.find(playerId);
 	if( itor == mPlayers.end() ) 
 	{
 		mPlayersLength++;
-		newPlayer = new Player(id, client);
-		mPlayers.insert(std::map<int,Player*>::value_type(id,newPlayer));
+		newPlayer = new Player(playerId, gameId, client);
+		mPlayers.insert(std::map<int,Player*>::value_type(playerId,newPlayer));
 	}
 	else
-		newPlayer = mPlayers.find(id)->second;
+		newPlayer = mPlayers.find(playerId)->second;
 	return newPlayer;
 }
 
-void PlayerManager::DeletePlayer(int id)
+void PlayerManager::DeletePlayer(int playerId)
 {
-	std::map<int,Player*>::iterator itor = mPlayers.find(id);
+	std::map<int,Player*>::iterator itor = mPlayers.find(playerId);
 	if( itor != mPlayers.end() ) 
 	{
 		mPlayersLength--;
-		Player* deleteTarget = mPlayers.find(id)->second;
-		mPlayers.erase( mPlayers.find(id) );
+		Player* deleteTarget = mPlayers.find(playerId)->second;
+		mPlayers.erase( mPlayers.find(playerId) );
 		delete deleteTarget;
 	}
-}
-
-int PlayerManager::GetNewPlayerId()
-{
-	for(int id=0; id<20; id++)
-	{
-		std::map<int,Player*>::iterator itor = mPlayers.find(id);
-		if( itor == mPlayers.end() ) 
-		{
-			return id;	
-		}
-	}
-	return -1;
 }
 
 void PlayerManager::UpdatePlayers()
@@ -99,5 +86,13 @@ void PlayerManager::UpdatePlayers()
 	}
 	prevTime = nowTime;
 }
+
+void PlayerManager::GetPlayers(int gameId, std::map<int,Player*>* players) 
+{ 
+	players = new std::map<int,Player*>(); 
+	for(auto it = mPlayers.begin(); it != mPlayers.end(); it++) 
+		if( it->second->GetGameId() == gameId) 
+			players->insert(std::map<int,Player*>::value_type(it->first,it->second));
+};
 
 PlayerManager* GPlayerManager = nullptr;
