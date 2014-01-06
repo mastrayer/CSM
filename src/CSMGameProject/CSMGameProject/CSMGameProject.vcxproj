@@ -95,29 +95,46 @@
     <ClCompile Include="DTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
-    <ClCompile Include="FifthCut.cpp" />
-    <ClCompile Include="FirstCut.cpp" />
-    <ClCompile Include="FourthCut.cpp" />
+    <ClCompile Include="FifthCut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="FirstCut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="FourthCut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameUISet.cpp" />
     <ClCompile Include="HPUpdateHandler.cpp" />
-    <ClCompile Include="IntroScene.cpp" />
+    <ClCompile Include="IntroScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="KillScoreHandler.cpp" />
+    <ClCompile Include="LoadScene.cpp" />
     <ClCompile Include="LoginBroadcastHandler.cpp" />
     <ClCompile Include="LoginHandler.cpp" />
     <ClCompile Include="LogoutHandler.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MainMenuScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="MouseAngleUpdateHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
-    <ClCompile Include="SecondCut.cpp" />
-    <ClCompile Include="ThirdCut.cpp" />
-    <ClCompile Include="StoryScene.cpp" />
+    <ClCompile Include="SecondCut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ThirdCut.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="StoryScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="TypeA.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
@@ -134,13 +151,24 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
-    <ClInclude Include="FifthCut.h" />
-    <ClInclude Include="FirstCut.h" />
-    <ClInclude Include="FourthCut.h" />
+    <ClInclude Include="FifthCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="FirstCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="FourthCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameUISet.h" />
-    <ClInclude Include="IntroScene.h" />
-    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="IntroScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="LoadScene.h" />
+    <ClInclude Include="MainMenuScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="PacketHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="GameMap.h" />
@@ -148,10 +176,18 @@
     <ClInclude Include="PacketType.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="PlayerUI.h" />
-    <ClInclude Include="SecondCut.h" />
-    <ClInclude Include="StoryCut.h" />
-    <ClInclude Include="StoryScene.h" />
-    <ClInclude Include="ThirdCut.h" />
+    <ClInclude Include="SecondCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="StoryCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="StoryScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ThirdCut.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="TypeA.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
@@ -163,9 +199,6 @@
     </ClInclude>
     <ClInclude Include="TypeD.h" />
     <ClInclude Include="UserSkillEffect.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,15 +13,19 @@
 
 #include "NNLogger.h"
 
-CGameScene::CGameScene(void) : 
-	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
-	misInit(false)
+CGameScene::CGameScene(std::wstring path) :
+mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
+misInit(false),
+mLoadingComplete(false)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
+ 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
+ 	//AddChild(mBackgroundImage, 100);
+
 	// GameMap Create
-	mGameMap = CGameMap::Create(L"Resource/map/sample2.csm");
+	mGameMap = CGameMap::Create(path);
 
 	AddChild( mGameMap );
 
@@ -57,11 +61,26 @@ void CGameScene::Init()
 void CGameScene::Render()
 {
 	NNScene::Render();
+	if (mLoadingComplete == false)
+		mBackgroundImage->Render();
 }
 
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
+
+	if (mLoadingComplete == false)
+	{
+		if (mBackgroundImage->GetOpacity() > 0.f)
+			mBackgroundImage->SetOpacity(mBackgroundImage->GetOpacity() - 0.01f);
+		else
+		{
+			mLoadingComplete = true;
+			//RemoveChild(mBackgroundImage);
+			delete mBackgroundImage;
+		}
+	//return;
+	}
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
