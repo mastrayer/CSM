@@ -22,7 +22,6 @@ mLoadingComplete(false)
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
  	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
- 	//AddChild(mBackgroundImage, 100);
 
 	// GameMap Create
 	mGameMap = CGameMap::Create(path);
@@ -76,10 +75,8 @@ void CGameScene::Update( float dTime )
 		else
 		{
 			mLoadingComplete = true;
-			//RemoveChild(mBackgroundImage);
 			delete mBackgroundImage;
 		}
-	//return;
 	}
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )

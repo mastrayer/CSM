@@ -30,3 +30,10 @@ enum PlayerType
 	TYPE_C = 3,
 	TYPE_D = 4,
 };
+enum EmoticonType
+{
+	SMILE = 0,
+	SAD = 1,
+	ANGRY = 2,
+	HELP = 3,
+};
