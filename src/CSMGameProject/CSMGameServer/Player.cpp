@@ -503,7 +503,7 @@ bool Player::Damaged(int damage, Player* player)
 {
 	int calculatedDamage = damage;
 	if( player->HasDamageBuff() == true ) calculatedDamage *= 1.5;
-
+	if( this->HasHPBuff() == true) calculatedDamage /= 1.5;
 	if(mType == TYPE_ZERO) return false;
 
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= calculatedDamage)
@@ -681,8 +681,6 @@ void Player::ConsumeItem(Item* item)
 				mHPBuff->RemoveEffect();
 			}
 			mHPBuff = dynamic_cast<HPBuff*>(item);
-			mHP = mMaxHP * 1.5;
-			Heal(2048);
 		}
 		break;
 	case FLAG:
