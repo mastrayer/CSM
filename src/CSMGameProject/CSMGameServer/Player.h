@@ -67,7 +67,7 @@ private:
 
 public:
 	Player();
-	Player(int gameId, int id, ClientSession* client);
+	Player(int gameId, int playerId, ClientSession* client);
 	virtual ~Player(void);
 
 

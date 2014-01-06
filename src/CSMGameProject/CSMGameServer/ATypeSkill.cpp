@@ -10,7 +10,7 @@ ATypeSkill::ATypeSkill(float angle, Point startPosition, Player* ownerPlayer):mO
 	ATypeSkillShootResult outPacket = ATypeSkillShootResult();
 	outPacket.mAngle = mAngle;
 	outPacket.mStartPosition = mStartPosition;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }
 
 

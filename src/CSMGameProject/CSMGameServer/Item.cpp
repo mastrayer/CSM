@@ -15,7 +15,7 @@ Item::Item(int itemId,int gameId, Point position)
 	ItemComeResult outPacket = ItemComeResult();
 	outPacket.mItemType = GetItemType();
 	outPacket.mPosition = GetPosition();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 }
 
 

@@ -11,14 +11,14 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int gameId, int id, ClientSession* client)
+Player::Player(int gameId, int playerId, ClientSession* client)
 	: mGameId(gameId), mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
 	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
 	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
 	mType = 0;
 	InitWithType();
-	mPlayerId = id;
+	mPlayerId = playerId;
 	mClient = client;
 
 	mTeam = GGameManager->GenerateTeamNumber(gameId);
@@ -29,13 +29,13 @@ Player::Player(int gameId, int id, ClientSession* client)
 		float x, y;
 		if ( mTeam == 0 )
 		{
-			x = GGameManager->GetGameMap(gameId)->GetStartingPointAX() + 32.f;
-			y = GGameManager->GetGameMap(gameId)->GetStartingPointAY() + 32.f;
+			x = GGameManager->GetGameMap(gameId)->GetStartingPointAX() + 64.f;
+			y = GGameManager->GetGameMap(gameId)->GetStartingPointAY() + 64.f;
 		}
 		else
 		{
-			x = GGameManager->GetGameMap(gameId)->GetStartingPointBX() + 32.f;
-			y = GGameManager->GetGameMap(gameId)->GetStartingPointBY() + 32.f;
+			x = GGameManager->GetGameMap(gameId)->GetStartingPointBX() + 64.f;
+			y = GGameManager->GetGameMap(gameId)->GetStartingPointBY() + 64.f;
 		}
 
 		if ( cnt != 0 )
@@ -43,16 +43,16 @@ Player::Player(int gameId, int id, ClientSession* client)
 			switch ( cnt%4 ) 
 			{
 			case 0:
-				y -= int(cnt/4+1) * 32.f;
+				y -= int(cnt/4+1) * 64.f;
 				break;
 			case 1:
-				x += int(cnt/4+1) * 32.f;
+				x += int(cnt/4+1) * 64.f;
 				break;
 			case 2:
-				y += int(cnt/4+1) * 32.f;
+				y += int(cnt/4+1) * 64.f;
 				break;
 			case 3:
-				x -= int(cnt/4+1) * 32.f;
+				x -= int(cnt/4+1) * 64.f;
 				break;
 			default:
 				break;
@@ -387,13 +387,13 @@ void Player::Update( float dTime)
 					float x, y;
 					if ( mTeam == 0 )
 					{
-						x = GGameManager->GetGameMap(mGameId)->GetStartingPointAX() + 32.f;
-						y = GGameManager->GetGameMap(mGameId)->GetStartingPointAY() + 32.f;
+						x = GGameManager->GetGameMap(mGameId)->GetStartingPointAX() + 64.f;
+						y = GGameManager->GetGameMap(mGameId)->GetStartingPointAY() + 64.f;
 					}
 					else
 					{
-						x = GGameManager->GetGameMap(mGameId)->GetStartingPointBX() + 32.f;
-						y = GGameManager->GetGameMap(mGameId)->GetStartingPointBY() + 32.f;
+						x = GGameManager->GetGameMap(mGameId)->GetStartingPointBX() + 64.f;
+						y = GGameManager->GetGameMap(mGameId)->GetStartingPointBY() + 64.f;
 					}
 
 					if ( cnt != 0 )
@@ -401,16 +401,16 @@ void Player::Update( float dTime)
 						switch ( cnt%4 ) 
 						{
 						case 0:
-							y -= int(cnt/4+1) * 32.f;
+							y -= int(cnt/4+1) * 64.f;
 							break;
 						case 1:
-							x += int(cnt/4+1) * 32.f;
+							x += int(cnt/4+1) * 64.f;
 							break;
 						case 2:
-							y += int(cnt/4+1) * 32.f;
+							y += int(cnt/4+1) * 64.f;
 							break;
 						case 3:
-							x -= int(cnt/4+1) * 32.f;
+							x -= int(cnt/4+1) * 64.f;
 							break;
 						default:
 							break;
@@ -586,11 +586,11 @@ PlayerInfo Player::GetPlayerInfo()
 
 bool Player::CouldGoPosition(Point position)
 {
-	for( int x = int(position.x - mRadius)/32; x <= int(position.x + mRadius)/32; x += 1 )//32 = tilesize
+	for( int x = int(position.x - mRadius)/64; x <= int(position.x + mRadius)/64; x += 1 )//64 = tilesize
 	{
-		for( int y = int(position.y - mRadius)/32; y <= int(position.y + mRadius)/32; y += 1 )//32 = tilesize
+		for( int y = int(position.y - mRadius)/64; y <= int(position.y + mRadius)/64; y += 1 )//64 = tilesize
 		{
-			if ( GGameManager->GetGameMap(mGameId)->isValidTile(Point(x*32.f,y*32.f)) == false)
+			if ( GGameManager->GetGameMap(mGameId)->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
 		}
 	}

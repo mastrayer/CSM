@@ -3,7 +3,7 @@
 #include "NNResourceManager.h"
 #include "PacketType.h"
 #define ATTRIBUTE_MOVE 0x01
-#define TILESIZE 32
+#define TILESIZE 64
 
 enum TileType
 {

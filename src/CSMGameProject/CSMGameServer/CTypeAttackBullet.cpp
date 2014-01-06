@@ -43,5 +43,5 @@ void CTypeAttackBullet::Boom()
 	mLifeTime = -1;
 	CTypeAttackEndResult outPacket = CTypeAttackEndResult();
 	outPacket.mIndex = GetBulletNumber();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }

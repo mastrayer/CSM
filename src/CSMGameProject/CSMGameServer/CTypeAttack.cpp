@@ -13,7 +13,7 @@ CTypeAttack::CTypeAttack(float angle, Point startPosition, Player* ownerPlayer):
 	outPacket.mAngle = mAngle;
 	outPacket.mIndex = bullet->GetBulletNumber();
 	outPacket.mStartPosition = mStartPosition;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket,mOwnerPlayer->GetGameId());
 }
 
 

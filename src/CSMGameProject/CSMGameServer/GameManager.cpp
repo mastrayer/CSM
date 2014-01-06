@@ -36,7 +36,7 @@ void GameManager::AddScore(int gameId,int team, int scoreAmount)
 		outPacket.mKillLimit = mKillLimit[gameId];
 		outPacket.mKillScore[0] = mKillScore[team][0];
 		outPacket.mKillScore[1] = mKillScore[team][1];
-		GClientManager->BroadcastPacket(nullptr,&outPacket);
+		GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 	}
 }
 
@@ -72,7 +72,7 @@ void GameManager::EndOfGame(int playerId)
 	int team = GPlayerManager->GetPlayer(playerId)->GetTeam();
 	EndOfGameResult outPacket = EndOfGameResult();
 	outPacket.mWinnerTeam = team;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 	mGames[gameId] = nullptr;
 }
 
@@ -110,10 +110,10 @@ void GameManager::NewGame(int gameId, int mapType)
 
 void GameManager::LoadMap() // in gameManager Init
 {
-	mGameMap[0] = new GameMap(L"map/sample0.csm");
-	mGameMap[1] = new GameMap(L"map/sample1.csm");
-	mGameMap[2] = new GameMap(L"map/sample2.csm");
-	mGameMap[3] = new GameMap(L"map/sample3.csm");
+	mGameMap[0] = new GameMap(L"map/44.csm");
+	mGameMap[1] = new GameMap(L"map/44.csm");
+	mGameMap[2] = new GameMap(L"map/44.csm");
+	mGameMap[3] = new GameMap(L"map/44.csm");
 }
 
 GameManager* GGameManager = nullptr;

@@ -21,11 +21,14 @@ ClientSession* ClientManager::CreateClient(SOCKET sock)
 
 
 
-void ClientManager::BroadcastPacket(ClientSession* from, PacketHeader* pkt)
+void ClientManager::BroadcastPacket(ClientSession* from, PacketHeader* pkt, int gameId)
 {
 	///FYI: C++ STL iterator 스타일의 루프
 	std::map<int, Player*> players;
-	GPlayerManager->GetPlayers( GPlayerManager->GetPlayer(from->mPlayerId)->GetGameId(), &players );
+	int GameId;
+	if(from == nullptr) GameId = gameId;
+	else GameId = GPlayerManager->GetPlayer(from->mPlayerId)->GetGameId();
+	GPlayerManager->GetPlayers(GameId , &players );
 	for (auto it=players.begin() ; it!=players.end() ; ++it)
 	{
 		ClientSession* client = it->second->GetClient();
@@ -156,12 +159,6 @@ void ClientManager::CreatePlayer(int pid, double x, double y, double z, const ch
 
 	GDatabaseJobManager->PushDatabaseJobRequest(newPlayerJob) ;
 
-}
-
-void ClientManager::DeletePlayer(int pid)
-{
-	DeletePlayerDataContext* delPlayerJob = new DeletePlayerDataContext(pid) ;
-	GDatabaseJobManager->PushDatabaseJobRequest(delPlayerJob) ;
 }
 
 void ClientManager::CreatePlayerDone(DatabaseJobContext* dbJob)
