@@ -4,10 +4,26 @@
 
 #include "NNApplication.h"
 
+GameUISet* GameUISet::mInstance = nullptr;
+
+GameUISet* GameUISet::GetInstance()
+{
+	if (mInstance == nullptr)
+		mInstance = new GameUISet();
+	return mInstance;
+}
+void GameUISet::ReleaseInstance()
+{
+	if (mInstance != nullptr)
+		delete mInstance;
+}
 GameUISet::GameUISet()
 {
-	mSkillCooltime[0] = 3.0f;
-	mSkillCooltime[1] = 5.0f;
+	mSkillCooltime[0] = 5.0f;
+	mSkillCooltime[1] = 7.0f;
+	mSkillCooltime[2] = 3.0f;
+	mSkillCooltime[3] = 5.0f;
+
 	//mKillCount = 25;
 	//mRedKillCount = 40;
 	//mHp = 80;
@@ -58,8 +74,7 @@ GameUISet::GameUISet()
 	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
-	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER
-	]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
+	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
 	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
@@ -242,8 +257,10 @@ void GameUISet::Update(float dTime)
 	mKillBar[TeamColor::RED]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 
-	for (int i = 0; i < SKILL_COUNT; ++i)
-		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
+	ControlSkillTimer(dTime);
+
+// 	for (int i = 0; i < SKILL_COUNT; ++i)
+// 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
 
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
@@ -258,27 +275,42 @@ void GameUISet::Update(float dTime)
 
 }
 
-void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
+void GameUISet::ControlSkillTimer(float dTime)
 {
-	SkillType type = (SkillType)(skillType - TYPE_ACTIVE_SKILL);
+	//SkillType type = (SkillType)(skillType - TYPE_ACTIVE_SKILL);
 
-	if (mMyPlayer->GetSkillCooldown(type) == true)
+	int type = mMyPlayer->GetPlayerType();
+	if (mIsCooldown[0] == true)
 	{
-		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
-		mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
+		mNowSkillCooltime[0] += dTime;
+		mTypeSkillUI[type]->SetOpacity(mNowSkillCooltime[0] / mSkillCooltime[type]);
 
-		swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
-		mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
+		swprintf_s(mSkillCooltimeBuff[0], L"%.0f", mSkillCooltime[type] - mNowSkillCooltime[0]);
+		mTypeSKillTimer->SetString(mSkillCooltimeBuff[0]);
 
-		if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
+		if (mNowSkillCooltime[0] >= mSkillCooltime[type])
 		{
-			mMyPlayer->SetSkillCooldown(false, type);
-			mMyPlayer->SetSkillCount(0.f, type);
+			mIsCooldown[0] = false;
+			mNowSkillCooltime[0] = 0.f;
 
 			mTypeSkillUI[type]->SetOpacity(1.f);
-			mTypeSKillTimer[type].SetString(L"");
+			mTypeSKillTimer->SetString(L"");
 		}
 	}
+// 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
+// 	mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
+// 
+// 	swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
+// 	mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
+// 
+// 	if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
+// 	{
+// 		mMyPlayer->SetSkillCooldown(false, type);
+// 		mMyPlayer->SetSkillCount(0.f, type);
+// 
+// 		mTypeSkillUI[type]->SetOpacity(1.f);
+// 		mTypeSKillTimer[type].SetString(L"");
+// 	}
 }
 
 
@@ -330,7 +362,7 @@ void CStatusWindow::Init()
 	AddChild(BlueID);
 	AddChild(BlueKillScore);
 
-	GetAllPlayerInfo();
+	//GetAllPlayerInfo();
 }
 CStatusWindow::~CStatusWindow()
 {

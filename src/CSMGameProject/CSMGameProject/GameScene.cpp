@@ -86,7 +86,7 @@ void CGameScene::Update( float dTime )
 		{
 			misInit = true;
 			// UI Setting
-			SetUISet( GameUISet::Create() );
+			SetUISet( GameUISet::GetInstance() );
 		}
 		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
 		{
