@@ -51,6 +51,10 @@
 
 #define PKT_SC_PLAYER_KILLSCORE_UPDATE 26
 
+#define PKT_SC_ITEM_WILLCOME 27
+#define PKT_SC_ITEM_COME 28
+#define PKT_SC_ITEM_PLAYER_CONSUME 29
+#define PKT_SC_ITEM_PLAYER_DROP 30
 struct Point
 {
 	Point()
@@ -84,8 +88,8 @@ struct Point
 		return (float)pow(pow(aPoint.x-bPoint.x,2) + pow(aPoint.y-bPoint.y,2),0.5);
 	}
 	Point Rotate(Point point, float angle) const {
-	return Point(point.x * cos(angle) - point.y * sin(angle),
-		point.x * sin(angle) + point.y * cos(angle));
+		return Point(point.x * cos(angle) - point.y * sin(angle),
+			point.x * sin(angle) + point.y * cos(angle));
 	}
 	float x,y;
 };
@@ -377,4 +381,46 @@ struct DTypeSkillEndResult : public PacketHeader
 	}
 	int mPlayerId;
 };
+
+struct ItemWillComeResult : public PacketHeader
+{
+	ItemWillComeResult()
+	{
+		mSize = sizeof(ItemWillComeResult);
+		mType = PKT_SC_ITEM_WILLCOME;
+	}
+	int mItemType;
+	int mLeftTime;
+};
+struct ItemComeResult : public PacketHeader
+{
+	ItemComeResult()
+	{
+		mSize = sizeof(ItemComeResult);
+		mType = PKT_SC_ITEM_COME;
+	}
+	int mItemType;
+	Point mPosition;
+};
+struct ItemPlayerConsumeResult : public PacketHeader
+{
+	ItemPlayerConsumeResult()
+	{
+		mSize = sizeof(ItemPlayerConsumeResult);
+		mType = PKT_SC_ITEM_PLAYER_CONSUME;
+	}
+	int mItemType;
+	int mPlayerId;
+};
+struct ItemPlayerDropResult : public PacketHeader
+{
+	ItemPlayerDropResult()
+	{
+		mSize = sizeof(ItemPlayerDropResult);
+		mType = PKT_SC_ITEM_PLAYER_DROP;
+	}
+	int mItemType;
+	int mPlayerId;
+};
+
 #pragma pack(pop)
