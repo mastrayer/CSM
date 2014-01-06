@@ -95,6 +95,7 @@
     <ClCompile Include="DTypeSkillShootHandler.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="EmoticonHandler.cpp" />
     <ClCompile Include="FifthCut.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>

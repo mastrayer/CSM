@@ -235,6 +235,9 @@
     <ClCompile Include="EmoticonEffect.cpp">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Emoticon</Filter>
     </ClCompile>
+    <ClCompile Include="EmoticonHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
