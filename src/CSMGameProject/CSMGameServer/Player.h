@@ -2,6 +2,12 @@
 #include "PacketType.h"
 #include "ClientSession.h"
 #include "GameMap.h"
+
+#include "Item.h"
+#include "DamageBuff.h"
+#include "HPBuff.h"
+#include	"Flag.h"
+
 #define PLAYER_STATE_IDLE 0
 #define PLAYER_STATE_WALK 1
 #define PLAYER_STATE_ATTACK 2
@@ -52,21 +58,22 @@ private:
 	int mKillScore;
 	
 	float mDSkillPostDelay;
+
+	//Items
+	DamageBuff* mDamageBuff;
+	HPBuff* mHPBuff;
+	Flag* mFlag;
+
 public:
 	Player(void);
 	Player(int id, ClientSession* client);
 	virtual ~Player(void);
-	void TransState(short state);
 
-	void InitWithType();
 
 	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; }
 	void SetPosition(Point position) { mPosition = position; }
 	void SetRotation(float angle) { mRotation = angle; }
-	void SetHP(int hp) {mHP = hp;}
-	void SetType( int type ) { mType = type; }
-	void ChangeType(int type);
-
+	
 	Point GetPosition() { return mPosition; }
 	PlayerInfo GetPlayerInfo();
 	int GetTypeChangeResult(int killerType, int victimType);
@@ -78,8 +85,19 @@ public:
 	void Heal(int dHP);
 
 	void Update( float dTime );
-
 	bool CouldGoPosition(Point position);
+
+	void ConsumeItem(Item* item);
+	void DropItem(Item* item);
+
+	bool HasDamageBuff(){ return mDamageBuff != nullptr; }
+	bool HasHPBuff(){ return mHPBuff != nullptr; }
+	bool HasFlag(){ return mFlag != nullptr; }
+
 private:
+	void SetHP(int hp) {mHP = hp;}
+	void ChangeType(int type);
+	void TransState(short state);
+	void InitWithType();
 };
 
