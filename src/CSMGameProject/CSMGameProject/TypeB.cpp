@@ -19,7 +19,7 @@ BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 	mHealAnimation->SetFrameTimeInSection(0.03f, 0, 23);
 
 	mLifeTime = mHealAnimation->GetPlayTime();
-	mHealAnimation->SetCenter(128.f, 128.f);
+	mHealAnimation->SetCenter(64.f, 64.f);
 	//mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
 	//mMoveSpeed = 100.f;
 	//mIsCrash = false;
