@@ -4,7 +4,7 @@
 #include "NNObject.h"
 #include "NNSprite.h"
 #include "NNLabel.h"
-#include "NNAnimationAtlas.h"
+#include "NNAnimation.h"
 #include "PacketType.h"
 #include "NNParticleSystem.h"
 
@@ -51,8 +51,16 @@ private:
 
 private:
 	NNSprite* mDie;
-	NNAnimationAtlas* mMove;
-	NNSpriteAtlas* mStop;
+	NNAnimation* mMoveNormal;
+	NNAnimation* mMoveFire;
+	NNAnimation* mMoveWind;
+	NNAnimation* mMoveWater;
+	NNAnimation* mMoveEarth;
+	NNSprite* mStopNormal;
+	NNSprite* mStopFire;
+	NNSprite* mStopWind;
+	NNSprite* mStopWater;
+	NNSprite* mStopEarth;
 
 private:
 	std::list<NNParticleSystem*> mParticleSystemList;
