@@ -1,7 +1,6 @@
 #pragma once
 #include "PacketType.h"
 #include "ClientSession.h"
-#include "GameMap.h"
 
 #include "Item.h"
 #include "DamageBuff.h"
@@ -59,14 +58,16 @@ private:
 	
 	float mDSkillPostDelay;
 
+	int mGameId;
+
 	//Items
 	DamageBuff* mDamageBuff;
 	HPBuff* mHPBuff;
 	Flag* mFlag;
 
 public:
-	Player(void);
-	Player(int id, ClientSession* client);
+	Player();
+	Player(int gameId, int id, ClientSession* client);
 	virtual ~Player(void);
 
 
@@ -80,6 +81,8 @@ public:
 	int GetType(){ return mType; }
 	int GetTeam(){ return mTeam; }
 	int GetRadius(){ return mRadius; }
+	int GetGameId(){ return mGameId; }
+	ClientSession* GetClient(){ return mClient; }
 
 	bool Damaged(int damage, Player* player); // return value : true - die, false - non-die
 	void Heal(int dHP);

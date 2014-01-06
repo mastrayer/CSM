@@ -55,6 +55,11 @@
 #define PKT_SC_ITEM_COME 28
 #define PKT_SC_ITEM_PLAYER_CONSUME 29
 #define PKT_SC_ITEM_PLAYER_DROP 30
+
+#define PKT_CS_EMOTICON 31
+
+#define PKT_SC_EMOTICON 32
+
 struct Point
 {
 	Point()
@@ -142,6 +147,8 @@ struct LoginRequest : public PacketHeader
 		mSize = sizeof(LoginRequest);
 		mType = PKT_CS_LOGIN;
 	}
+	int mGameId;
+	int mPlayerId;
 };
 struct LoginResult : public PacketHeader
 {
@@ -423,4 +430,25 @@ struct ItemPlayerDropResult : public PacketHeader
 	int mPlayerId;
 };
 
+struct EmoticonRequest : public PacketHeader
+{
+	EmoticonRequest()
+	{
+		mSize = sizeof(EmoticonRequest);
+		mType = PKT_CS_EMOTICON;
+	}
+	int mPlayerId;
+	int mEmoticonNumber;
+};
+
+struct EmoticonResult : public PacketHeader
+{
+	EmoticonResult()
+	{
+		mSize = sizeof(EmoticonResult);
+		mType = PKT_SC_EMOTICON;
+	}
+	int mPlayerId;
+	int mEmoticonNumber;
+};
 #pragma pack(pop)

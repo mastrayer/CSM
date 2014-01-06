@@ -11,8 +11,8 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
 
-Player::Player(int id, ClientSession* client)
-	: mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
+Player::Player(int gameId, int id, ClientSession* client)
+	: mGameId(gameId), mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
 	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
 	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
 {
@@ -21,7 +21,7 @@ Player::Player(int id, ClientSession* client)
 	mPlayerId = id;
 	mClient = client;
 
-	mTeam = GGameManager->GiveTeamNumber();
+	mTeam = GGameManager->GenerateTeamNumber(gameId);
 
 	int cnt = 0;
 	while(1)
@@ -29,13 +29,13 @@ Player::Player(int id, ClientSession* client)
 		float x, y;
 		if ( mTeam == 0 )
 		{
-			x = GGameMap->GetStartingPointAX() + 32.f;
-			y = GGameMap->GetStartingPointAY() + 32.f;
+			x = GGameManager->GetGameMap(gameId)->GetStartingPointAX() + 32.f;
+			y = GGameManager->GetGameMap(gameId)->GetStartingPointAY() + 32.f;
 		}
 		else
 		{
-			x = GGameMap->GetStartingPointBX() + 32.f;
-			y = GGameMap->GetStartingPointBY() + 32.f;
+			x = GGameManager->GetGameMap(gameId)->GetStartingPointBX() + 32.f;
+			y = GGameManager->GetGameMap(gameId)->GetStartingPointBY() + 32.f;
 		}
 
 		if ( cnt != 0 )
@@ -43,16 +43,16 @@ Player::Player(int id, ClientSession* client)
 			switch ( cnt%4 ) 
 			{
 			case 0:
-				y -= int(cnt/4+1) * 64.f;
+				y -= int(cnt/4+1) * 32.f;
 				break;
 			case 1:
-				x += int(cnt/4+1) * 64.f;
+				x += int(cnt/4+1) * 32.f;
 				break;
 			case 2:
-				y += int(cnt/4+1) * 64.f;
+				y += int(cnt/4+1) * 32.f;
 				break;
 			case 3:
-				x -= int(cnt/4+1) * 64.f;
+				x -= int(cnt/4+1) * 32.f;
 				break;
 			default:
 				break;
@@ -97,7 +97,7 @@ void Player::TransState(short state)
 			if ( mGameKeyStates.upDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, -1.f ) * mDTime * (float)mSpeed;
 			if ( mGameKeyStates.downDirectKey == KEYSTATE_PRESSED )	willGoPosition = willGoPosition + Point( 0.f, +1.f ) * mDTime * (float)mSpeed;
 
-			if ( GGameMap->isValidTile(willGoPosition) == false )
+			if ( GGameManager->GetGameMap(mGameId)->isValidTile(willGoPosition) == false )
 			{
 				//못가니까 walk로 변환하지 않음.
 				break;
@@ -297,13 +297,13 @@ void Player::Update( float dTime)
 				}
 			}
 			willGoPosition = GetPosition() + willGoDirection * dTime;
-			if(  mType == TYPE_ZERO && (GGameMap->GetTileType(GetPosition()) == BARRACK_A
-				||GGameMap->GetTileType(GetPosition()) == BARRACK_B
-				||GGameMap->GetTileType(GetPosition()) == BARRACK_C
-				||GGameMap->GetTileType(GetPosition()) == BARRACK_D)
-				&& GGameMap->GetTileType(willGoPosition) == BARRACK_OUT)
+			if(  mType == TYPE_ZERO && (GGameManager->GetGameMap(mGameId)->GetTileType(GetPosition()) == BARRACK_A
+				||GGameManager->GetGameMap(mGameId)->GetTileType(GetPosition()) == BARRACK_B
+				||GGameManager->GetGameMap(mGameId)->GetTileType(GetPosition()) == BARRACK_C
+				||GGameManager->GetGameMap(mGameId)->GetTileType(GetPosition()) == BARRACK_D)
+				&& GGameManager->GetGameMap(mGameId)->GetTileType(willGoPosition) == BARRACK_OUT)
 			{
-				TileType tileType = GGameMap->GetTileType(GetPosition());
+				TileType tileType = GGameManager->GetGameMap(mGameId)->GetTileType(GetPosition());
 				int changeType = 0;
 				switch (tileType)
 				{
@@ -387,13 +387,13 @@ void Player::Update( float dTime)
 					float x, y;
 					if ( mTeam == 0 )
 					{
-						x = GGameMap->GetStartingPointAX() + 32.f;
-						y = GGameMap->GetStartingPointAY() + 32.f;
+						x = GGameManager->GetGameMap(mGameId)->GetStartingPointAX() + 32.f;
+						y = GGameManager->GetGameMap(mGameId)->GetStartingPointAY() + 32.f;
 					}
 					else
 					{
-						x = GGameMap->GetStartingPointBX() + 32.f;
-						y = GGameMap->GetStartingPointBY() + 32.f;
+						x = GGameManager->GetGameMap(mGameId)->GetStartingPointBX() + 32.f;
+						y = GGameManager->GetGameMap(mGameId)->GetStartingPointBY() + 32.f;
 					}
 
 					if ( cnt != 0 )
@@ -401,16 +401,16 @@ void Player::Update( float dTime)
 						switch ( cnt%4 ) 
 						{
 						case 0:
-							y -= int(cnt/4+1) * 64.f;
+							y -= int(cnt/4+1) * 32.f;
 							break;
 						case 1:
-							x += int(cnt/4+1) * 64.f;
+							x += int(cnt/4+1) * 32.f;
 							break;
 						case 2:
-							y += int(cnt/4+1) * 64.f;
+							y += int(cnt/4+1) * 32.f;
 							break;
 						case 3:
-							x -= int(cnt/4+1) * 64.f;
+							x -= int(cnt/4+1) * 32.f;
 							break;
 						default:
 							break;
@@ -529,7 +529,6 @@ bool Player::Damaged(int damage, Player* player)
 		}
 		if( HasFlag() == true)
 		{
-			player->ConsumeItem(mFlag);
 			DropItem(mFlag);
 		}
 
@@ -587,22 +586,23 @@ PlayerInfo Player::GetPlayerInfo()
 
 bool Player::CouldGoPosition(Point position)
 {
-	for( int x = int(position.x - mRadius)/64; x <= int(position.x + mRadius)/64; x += 1 )//64 = tilesize
+	for( int x = int(position.x - mRadius)/32; x <= int(position.x + mRadius)/32; x += 1 )//32 = tilesize
 	{
-		for( int y = int(position.y - mRadius)/64; y <= int(position.y + mRadius)/64; y += 1 )//64 = tilesize
+		for( int y = int(position.y - mRadius)/32; y <= int(position.y + mRadius)/32; y += 1 )//32 = tilesize
 		{
-			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
+			if ( GGameManager->GetGameMap(mGameId)->isValidTile(Point(x*32.f,y*32.f)) == false)
 				return false;
 		}
 	}
 
-	if(mType != TYPE_ZERO && (GGameMap->GetTileType(position) == BARRACK_A
-		||GGameMap->GetTileType(position) == BARRACK_B
-		||GGameMap->GetTileType(position) == BARRACK_C
-		||GGameMap->GetTileType(position) == BARRACK_D))
+	if(mType != TYPE_ZERO && (GGameManager->GetGameMap(mGameId)->GetTileType(position) == BARRACK_A
+		||GGameManager->GetGameMap(mGameId)->GetTileType(position) == BARRACK_B
+		||GGameManager->GetGameMap(mGameId)->GetTileType(position) == BARRACK_C
+		||GGameManager->GetGameMap(mGameId)->GetTileType(position) == BARRACK_D))
 		return false;
 
-	std::map<int,Player*> players = GPlayerManager->GetPlayers();
+	std::map<int,Player*> players;
+	GPlayerManager->GetPlayers(mGameId, &players);
 	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 	{
 		Player* enemy = it->second;
@@ -721,6 +721,7 @@ void Player::DropItem(Item* item)
 		break;
 	case FLAG:
 		{
+			mFlag->SetConsumeStatus(false);
 			mFlag = nullptr;
 		}
 		break;

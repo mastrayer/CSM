@@ -24,9 +24,11 @@ ClientSession* ClientManager::CreateClient(SOCKET sock)
 void ClientManager::BroadcastPacket(ClientSession* from, PacketHeader* pkt)
 {
 	///FYI: C++ STL iterator 스타일의 루프
-	for (ClientList::const_iterator it=mClientList.begin() ; it!=mClientList.end() ; ++it)
+	std::map<int, Player*> players;
+	GPlayerManager->GetPlayers( GPlayerManager->GetPlayer(from->mPlayerId)->GetGameId(), &players );
+	for (auto it=players.begin() ; it!=players.end() ; ++it)
 	{
-		ClientSession* client = it->second ;
+		ClientSession* client = it->second->GetClient();
 		
 		if ( from == client )
 			continue ;

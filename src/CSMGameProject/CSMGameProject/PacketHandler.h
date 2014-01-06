@@ -4,6 +4,16 @@
 #include "NNBaseHandler.h"
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
+class EmoticonHandler : public NNBaseHandler
+{
+public:
+	EmoticonHandler();
+	virtual ~EmoticonHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	EmoticonResult mEmoticonResult;
+};
 class CTypeAttackShootHandler : public NNBaseHandler
 {
 public:

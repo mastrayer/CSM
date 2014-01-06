@@ -28,6 +28,7 @@ bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 	mPacketHandler[PKT_CS_LOGIN] = ClientLoginPacket;
 	mPacketHandler[PKT_CS_KEYSTATE] = ClientKeyStatePacket;
 	mPacketHandler[PKT_CS_MOUSEANGLE] = ClientMouseAnglePacket;
+	mPacketHandler[PKT_CS_EMOTICON] = EmoticonPacket;
 
 	mConnected = true;
 

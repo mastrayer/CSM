@@ -8,17 +8,17 @@
 class Item
 {
 public:
-	Item(int id, Point position);
+	Item(int itemId,int gameId, Point position);
 	Item();
 	virtual ~Item(void);
 
 	int GetItemType(){ return mItemType; }
 
-	void SetItemId(int id){ mItemId = id; }
 	int GetItemId() { return mItemId; }
+	int GetGameId() { return mGameId; }
 
-	void SetOwnerId(int id){ mOwnerId = id; }
-	int GetOwnerId(int id){ return mOwnerId; }
+	void SetOwnerId(int playerId){ mOwnerId = playerId; }
+	int GetOwnerId(){ return mOwnerId; }
 
 	Point GetPosition(){ return mPosition; }
 	float GetRadius(){ return mRadius; }
@@ -34,6 +34,7 @@ public:
 	int mItemType;
 
 	int mItemId;
+	int mGameId;
 	int mOwnerId;
 
 	float mLifeTime; // must init this.

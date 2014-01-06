@@ -26,14 +26,23 @@
     <ClCompile Include="CTypeAttack.cpp" />
     <ClCompile Include="CTypeAttackBullet.cpp" />
     <ClCompile Include="CTypeSkillBullet.cpp" />
+    <ClCompile Include="DamageBuff.cpp" />
     <ClCompile Include="DatabaseJobContext.cpp" />
     <ClCompile Include="DatabaseJobManager.cpp" />
     <ClCompile Include="DbHelper.cpp" />
+    <ClCompile Include="DeathMatch44.cpp" />
+    <ClCompile Include="DeathMatch88.cpp" />
     <ClCompile Include="DTypeAttack.cpp" />
     <ClCompile Include="DTypeSkill.cpp" />
     <ClCompile Include="EllipseCollisionTest.h" />
+    <ClCompile Include="Flag.cpp" />
+    <ClCompile Include="FlagCaptureGame.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMap.cpp" />
+    <ClCompile Include="HPBuff.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="Library\MD5\md5.cpp" />
     <ClCompile Include="Library\TinyXML\action_store.cpp" />
     <ClCompile Include="Library\TinyXML\htmlutil.cpp" />
@@ -62,11 +71,7 @@
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SkillManager.cpp" />
-    <ClCompile Include="sqlite3.c">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
-    </ClCompile>
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -91,13 +96,22 @@
     <ClInclude Include="CTypeAttack.h" />
     <ClInclude Include="CTypeAttackBullet.h" />
     <ClInclude Include="CTypeSkillBullet.h" />
+    <ClInclude Include="DamageBuff.h" />
     <ClInclude Include="DatabaseJobContext.h" />
     <ClInclude Include="DatabaseJobManager.h" />
     <ClInclude Include="DbHelper.h" />
+    <ClInclude Include="DeathMatch44.h" />
+    <ClInclude Include="DeathMatch88.h" />
     <ClInclude Include="DTypeAttack.h" />
     <ClInclude Include="DTypeSkill.h" />
+    <ClInclude Include="Flag.h" />
+    <ClInclude Include="FlagCaptureGame.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMap.h" />
+    <ClInclude Include="HPBuff.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemManager.h" />
     <ClInclude Include="Library\MD5\md5.h" />
     <ClInclude Include="Library\TinyXML\action_store.h" />
     <ClInclude Include="Library\TinyXML\byte_stream.h" />
