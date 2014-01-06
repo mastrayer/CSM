@@ -148,10 +148,10 @@ void Player::TransState(short state)
 			{	
 				//mPreDelay = 0.1f;
 				mMoveDirection = Point(0,0);
+				mPlayerState = state;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
-				mPlayerState = state;
 				if(mType == TYPE_D)
 				{
 					mDSkillPostDelay = 0.3f;
@@ -171,10 +171,10 @@ void Player::TransState(short state)
 			{	
 				//mPreDelay = 0.1f;
 				mMoveDirection = Point(0,0);
+				mPlayerState = state;
 				GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
-				mPlayerState = state;
 			}
 			else 
 			{	
@@ -439,13 +439,13 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-					mTypeSkillDelay = 7.f;
+					mTypeSkillDelay = 5.f;
 					new ATypeSkill(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
 			case TYPE_B:
 				{
-					mTypeSkillDelay = 15.f;
+					mTypeSkillDelay = 7.f;
 					new BTypeSkill(this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;

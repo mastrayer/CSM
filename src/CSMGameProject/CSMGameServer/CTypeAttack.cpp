@@ -5,7 +5,7 @@
 #include "ClientManager.h"
 #include "CTypeAttackBullet.h"
 
-CTypeAttack::CTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10)
+CTypeAttack::CTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50)
 {
 	GSkillManager->AddSkill(this);
 	CTypeAttackBullet* bullet = new CTypeAttackBullet(mOwnerPlayer,mStartPosition,mAngle);
