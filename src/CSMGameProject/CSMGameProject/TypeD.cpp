@@ -1,5 +1,8 @@
 #include "TypeD.h"
 #include "PlayerManager.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
+
 //////////////////////////////////////////////////////////////////////////
 
 DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition, int playerId):mPlayerId(playerId)
@@ -41,6 +44,8 @@ DTypeSkillEffect::DTypeSkillEffect(float angle, NNPoint startPosition, int playe
 
 	mExplosionEffect->SetVisible(false);
 	mDashEffect->SetLoop(false);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_skill.wav"));
 }
 DTypeSkillEffect::~DTypeSkillEffect()
 {
@@ -124,6 +129,8 @@ DTypeAttackEffect::DTypeAttackEffect(int PlayerID)
 	SetPosition(mFollower->GetPlayerPosition());
 
 	AddChild(mSlash);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.wav"));
 }
 DTypeAttackEffect::~DTypeAttackEffect()
 {

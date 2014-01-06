@@ -1,4 +1,6 @@
 #include "TypeA.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -42,8 +44,9 @@ ATypeSkillEffect::ATypeSkillEffect(float angle, NNPoint startPosition)
 		AddChild(mExplosion[i]);
 	}
 
-
 	mExplosion[mIndex]->SetVisible(true);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_skill.wav"));
 }
 ATypeSkillEffect::~ATypeSkillEffect()
 {
@@ -62,6 +65,7 @@ void ATypeSkillEffect::Update(float dTime)
 	{
 		mTimeCount -= mExplosionTerm;
 		mExplosion[++mIndex]->SetVisible(true);
+		NNAudioSystem::GetInstance()->Reset(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_skill.wav"));
 	}
 	if (mLifeTime < mNowLifeTime)
 		mIsEnd = true;	
@@ -90,6 +94,8 @@ ATypeAttackEffect::ATypeAttackEffect(float angle, NNPoint startPosition, int ind
 	SetCenter(65.f, 65.f);
 	
 	AddChild(mBullet);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_attack.wav"));
 }
 ATypeAttackEffect::~ATypeAttackEffect()
 {
