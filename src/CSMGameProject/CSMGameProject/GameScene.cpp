@@ -5,6 +5,8 @@
 #include "NNNetworkSystem.h"
 #include "PacketHandler.h"
 #include "EffectManager.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
 
 #include "PlayerManager.h"
 #include "GameManager.h"
@@ -29,6 +31,19 @@ mLoadingComplete(false)
 
 	// EffectManager
 	AddChild( EffectManager::GetInstance() , 1);
+
+	// Sound Preload
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/player_walk.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/player_hit.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_skill.wav");
+
 
 	InitNetworkSetting();
 }
