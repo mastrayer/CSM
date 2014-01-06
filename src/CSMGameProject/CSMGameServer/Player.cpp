@@ -501,31 +501,50 @@ void Player::Update( float dTime)
 // return value : true - die, false - non-die
 bool Player::Damaged(int damage, Player* player)
 {
+	int calculatedDamage = damage;
+	if( player->HasDamageBuff() == true ) calculatedDamage *= 1.5;
+
 	if(mType == TYPE_ZERO) return false;
-	//ChangeType(GetTypeChangeResult(mType, enemy->mType));
-	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= damage)
+
+	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= calculatedDamage)
 	{
+		//Á×¾ú½¿´Ù
 		HPUpdateResult outPacket = HPUpdateResult();
 		outPacket.mPlayerId = mPlayerId;
 		outPacket.mHP = 0;
 		mClient->Broadcast(&outPacket);
-		//Á×¾ú½¿´Ù
+
 		GGameManager->DiePlayer(mTeam);
 		TransState(PLAYER_STATE_DIE);
+
+		if( HasDamageBuff() == true)
+		{
+			player->ConsumeItem(mDamageBuff);
+			DropItem(mDamageBuff);
+		}
+		if( HasHPBuff() == true)
+		{
+			player->ConsumeItem(mHPBuff);
+			DropItem(mHPBuff);
+		}
+		if( HasFlag() == true)
+		{
+			player->ConsumeItem(mFlag);
+			DropItem(mFlag);
+		}
 
 		++player->mKillScore;
 
 		PlayerKillScoreUpdateResult outPlayerKillScoreUpdatePacket;
 		outPlayerKillScoreUpdatePacket.mPlayerId = player->mPlayerId;
 		outPlayerKillScoreUpdatePacket.mKillScore = player->mKillScore;
-		printf("asdfdasf %d\n",player->mKillScore);
 		mClient->Broadcast(&outPlayerKillScoreUpdatePacket);
 
 		return true;
 	}
 	else
 	{
-		mHP-=damage;
+		mHP-=calculatedDamage;
 		//ÇöÀç ÇÇ ¾ó¸¶¶ó°í ºê·ÎµåÄ³½ºÆÃ
 		HPUpdateResult outPacket = HPUpdateResult();
 		outPacket.mPlayerId = mPlayerId;
@@ -610,7 +629,6 @@ void Player::InitWithType()
 	{
 	case TYPE_ZERO:
 		{
-
 			mSpeed = 150;
 		}
 	case TYPE_A:
@@ -640,4 +658,77 @@ void Player::InitWithType()
 	default:
 		break;
 	}
+}
+
+void Player::ConsumeItem(Item* item)
+{
+	if(item == nullptr) return;
+	switch (item->GetItemType())
+	{
+	case DAMAGEBUFF:
+		{
+			if( mDamageBuff != nullptr )
+			{
+				mDamageBuff->RemoveEffect();
+			}
+			mDamageBuff = dynamic_cast<DamageBuff*>(item);
+		}
+		break;
+	case HPBUFF:
+		{
+			if( mHPBuff != nullptr )
+			{
+				mHPBuff->RemoveEffect();
+			}
+			mHPBuff = dynamic_cast<HPBuff*>(item);
+			mHP = mMaxHP * 1.5;
+			Heal(2048);
+		}
+		break;
+	case FLAG:
+		{
+			if( mFlag != nullptr )
+			{
+				mFlag->RemoveEffect();
+			}
+			mFlag = dynamic_cast<Flag*>(item);
+		}
+		break;
+	default:
+		break;
+	}
+	
+	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
+	outPacket.mItemType = item->GetItemType();
+	outPacket.mPlayerId = mPlayerId;
+	mClient->Broadcast(&outPacket);
+}
+
+void Player::DropItem(Item* item)
+{
+	if(item == nullptr) return;
+	switch (item->GetItemType())
+	{
+	case DAMAGEBUFF:
+		{
+			mDamageBuff = nullptr;
+		}
+		break;
+	case HPBUFF:
+		{
+			mHPBuff = nullptr;
+		}
+		break;
+	case FLAG:
+		{
+			mFlag = nullptr;
+		}
+		break;
+	default:
+		break;
+	}
+	ItemPlayerDropResult outPacket = ItemPlayerDropResult();
+	outPacket.mItemType = item->GetItemType();
+	outPacket.mPlayerId = mPlayerId;
+	mClient->Broadcast(&outPacket);
 }
