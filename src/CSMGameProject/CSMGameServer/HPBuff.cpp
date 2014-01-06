@@ -7,6 +7,8 @@ HPBuff::HPBuff(int id, Point position)
 {
 	mItemType = HPBUFF;
 	mRadius = 32;
+	mIsPermanent = false;
+	mLifeTime = 60.f;
 }
 
 

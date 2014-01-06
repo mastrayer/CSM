@@ -6,6 +6,8 @@ DamageBuff::DamageBuff(int id, Point position)
 {
 	mItemType = DAMAGEBUFF;
 	mRadius = 32;
+	mIsPermanent = false;
+	mLifeTime = 60.f;
 }
 
 
