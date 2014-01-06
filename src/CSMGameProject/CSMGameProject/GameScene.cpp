@@ -98,6 +98,40 @@ void CGameScene::Update( float dTime )
 				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
 				,0.97f));
 		}
+		if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SMILE;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState('2') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SAD;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('3') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::ANGRY;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('4') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::HELP;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
 
 		if( isChangedGameKeyStates() == true )
 		{
@@ -178,6 +212,7 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPEATTACK_SHOOT, mDTypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_SHOOT, mDTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
 
 
 

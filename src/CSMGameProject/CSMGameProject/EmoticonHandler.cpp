@@ -4,6 +4,8 @@
 #include "PacketHandler.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
+#include "EffectManager.h"
+#include "EmoticonEffect.h"
 
 EmoticonHandler::EmoticonHandler()
 {
@@ -21,7 +23,7 @@ void EmoticonHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 		{
 			if ( circularBuffer->Read((char*)&mEmoticonResult, header->mSize) )
 			{
-
+				EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(mEmoticonResult.mPlayerId, (EmoticonType)(mEmoticonResult.mEmoticonNumber + 1)));
 			}
 			else
 			{

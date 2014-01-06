@@ -55,16 +55,6 @@ void PlayerUI::Update( float dTime )
 	mHpBar[result]->SetVisible(true);
 	mHpBar[result]->SetScale(mHp / 50.f, 1.f);
 
-	if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
-		EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(CPlayerManager::GetInstance()->GetMyPlayerId(), EmoticonType::SMILE));
-
-	if (NNInputSystem::GetInstance()->GetKeyState('2') == KEY_DOWN)
-		EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(CPlayerManager::GetInstance()->GetMyPlayerId(), EmoticonType::SAD));
-
-	if (NNInputSystem::GetInstance()->GetKeyState('3') == KEY_DOWN)
-		EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(CPlayerManager::GetInstance()->GetMyPlayerId(), EmoticonType::ANGRY));
-
-	if (NNInputSystem::GetInstance()->GetKeyState('4') == KEY_DOWN)
-		EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(CPlayerManager::GetInstance()->GetMyPlayerId(), EmoticonType::HELP));
+	
 
 }
