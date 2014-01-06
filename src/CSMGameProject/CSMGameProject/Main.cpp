@@ -2,7 +2,8 @@
 #include "NNApplication.h"
 #include "GameScene.h"
 #include "StoryScene.h"
-#include "MainMenuScene.h"
+//#include "MainMenuScene.h"
+#include "LoadScene.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "NNGameFramework_DEBUG.lib")
@@ -27,7 +28,9 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	Application->Init( L"CSM Project", 800, 600, D2D );
 
-	NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
+	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
+	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",0,0));
+	//NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(L"resource/map/44.csm"));
 
 	Application->Run();
 	Application->Release();

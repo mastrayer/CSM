@@ -97,6 +97,9 @@
     <Filter Include="Game\Packet\Attack&amp;Skill">
       <UniqueIdentifier>{e553e621-4fcc-486a-b768-bfac3bd689ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\LoadScene">
+      <UniqueIdentifier>{3b0d6841-45d3-444e-bcf4-5ed287f253c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -223,6 +226,9 @@
     <ClCompile Include="DTypeSkillShootHandler.cpp">
       <Filter>Game\Packet\Attack&amp;Skill</Filter>
     </ClCompile>
+    <ClCompile Include="LoadScene.cpp">
+      <Filter>Game\Scene\LoadScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -303,8 +309,8 @@
     <ClInclude Include="config.h">
       <Filter>Game</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="LoadScene.h">
+      <Filter>Game\Scene\LoadScene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
