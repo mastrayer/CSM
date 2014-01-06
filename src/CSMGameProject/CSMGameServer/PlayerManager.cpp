@@ -56,7 +56,8 @@ Player* PlayerManager::NewPlayer(int playerId, int gameId, ClientSession* client
 	if( itor == mPlayers.end() ) 
 	{
 		mPlayersLength++;
-		newPlayer = new Player(playerId, gameId, client);
+		newPlayer = new Player(gameId, playerId, client);
+		client->mPlayerId = playerId;
 		mPlayers.insert(std::map<int,Player*>::value_type(playerId,newPlayer));
 	}
 	else
@@ -89,7 +90,6 @@ void PlayerManager::UpdatePlayers()
 
 void PlayerManager::GetPlayers(int gameId, std::map<int,Player*>* players) 
 { 
-	players = new std::map<int,Player*>(); 
 	for(auto it = mPlayers.begin(); it != mPlayers.end(); it++) 
 		if( it->second->GetGameId() == gameId) 
 			players->insert(std::map<int,Player*>::value_type(it->first,it->second));

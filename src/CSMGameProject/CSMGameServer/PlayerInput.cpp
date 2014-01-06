@@ -15,17 +15,16 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 	if( GGameManager->GetGames()[inPacket.mGameId] == nullptr )
 	{
 		//TODO
+		GGameManager->NewGame(inPacket.mGameId,0);
 	}
 
 
-	GPlayerManager->NewPlayer(inPacket.mPlayerId, inPacket.mGameId, client);
-
+	
 	/// 로그인은 DB 작업을 거쳐야 하기 때문에 DB 작업 요청한다.
 	//LoadPlayerDataContext* newDbJob = new LoadPlayerDataContext(client->mSocket, id);
 	//GDatabaseJobManager->PushDatabaseJobRequest(newDbJob) ;
 
 	LoginResult outPacket ;
-	outPacket.mMyPlayerInfo = GPlayerManager->GetPlayer(inPacket.mPlayerId)->GetPlayerInfo();
 	outPacket.mNowPlayersLength = GPlayerManager->GetPlayersLength();
 	std::map<int,Player*> players;
 	GPlayerManager->GetPlayers(inPacket.mGameId,&players);
@@ -35,6 +34,9 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 		outPacket.mPlayerInfo[i] = it->second->GetPlayerInfo();
 		i++;
 	}
+	GPlayerManager->NewPlayer(inPacket.mPlayerId, inPacket.mGameId, client);
+	outPacket.mMyPlayerInfo = GPlayerManager->GetPlayer(inPacket.mPlayerId)->GetPlayerInfo();
+	
 	outPacket.mKillLimit = GGameManager->GetKillLimit(inPacket.mGameId);
 	outPacket.mKillScore[0] = GGameManager->GetKillScore(inPacket.mGameId)[0];
 	outPacket.mKillScore[1] = GGameManager->GetKillScore(inPacket.mGameId)[1];

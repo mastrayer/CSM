@@ -12,7 +12,7 @@ DTypeSkill::DTypeSkill(float angle, Player* ownerPlayer):mOwnerPlayer(ownerPlaye
 	outPacket.mAngle = mAngle;
 	outPacket.mStartPosition =  ownerPlayer->GetPosition();
 	outPacket.mPlayerId = ownerPlayer->GetPlayerInfo().mPlayerId;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }
 
 
@@ -40,7 +40,7 @@ void DTypeSkill::Update(float dTime)
 			//끝났다고 패킷 주고.
 			DTypeSkillEndResult outPacket = DTypeSkillEndResult();
 			outPacket.mPlayerId = mOwnerPlayer->GetPlayerInfo().mPlayerId;
-			GClientManager->BroadcastPacket(nullptr,&outPacket);
+			GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 			// 업데이트문 강제 종료.
 			return;
 		}
@@ -58,7 +58,7 @@ void DTypeSkill::Update(float dTime)
 			//끝났다고 패킷 주고.
 			DTypeSkillEndResult outPacket = DTypeSkillEndResult();
 			outPacket.mPlayerId = mOwnerPlayer->GetPlayerInfo().mPlayerId;
-			GClientManager->BroadcastPacket(nullptr,&outPacket);
+			GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 			// 업데이트문 강제 종료.
 			return;
 		}

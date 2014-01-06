@@ -17,7 +17,7 @@ DTypeAttack::DTypeAttack(float angle, Point startPosition, Player* ownerPlayer):
 
 	DTypeAttackShootResult outPacket = DTypeAttackShootResult();
 	outPacket.mPlayerId = ownerPlayer->GetPlayerInfo().mPlayerId;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }
 
 

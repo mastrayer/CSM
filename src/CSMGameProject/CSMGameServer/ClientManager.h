@@ -15,14 +15,12 @@ public:
 
 	ClientSession* CreateClient(SOCKET sock) ;
 	
-	void BroadcastPacket(ClientSession* from, PacketHeader* pkt) ;
+	void BroadcastPacket(ClientSession* from, PacketHeader* pkt, int gameId = -1) ;
 
 	void OnPeriodWork() ;
 
 	/// DB에 플레이어 정보를 생성하거나 삭제하는 함수
 	void CreatePlayer(int pid, double x, double y, double z, const char* name, const char* comment) ;
-	void DeletePlayer(int pid) ;
-
 private:
 	void CreatePlayerDone(DatabaseJobContext* dbJob) ;
 	void DeletePlayerDone(DatabaseJobContext* dbJob) ;

@@ -58,29 +58,29 @@ void Bullet::JudgeCollision(Player* player)
 				break;
 			case RECTANGLE:
 				{
-					Point circlePoints[32];
-					for( int i=0; i<32; i++)
+					Point circlePoints[64];
+					for( int i=0; i<64; i++)
 					{
-						circlePoints[i] = Point(cos(i*3.14f/32*2) * player->GetRadius(),sin(i*3.14f/32*2) * player->GetRadius());
+						circlePoints[i] = Point(cos(i*3.14f/64*2) * player->GetRadius(),sin(i*3.14f/64*2) * player->GetRadius());
 					}
 					Point rectanglePoints[4];
 					rectanglePoints[0] = Point( mPosition.x - mCenter.x, mPosition.y - mCenter.y );
 					rectanglePoints[1] = Point( mPosition.x - mCenter.x, mPosition.y - mCenter.y + mHeight );
 					rectanglePoints[2] = Point( mPosition.x - mCenter.x + mWidth, mPosition.y - mCenter.y + mHeight );
 					rectanglePoints[3] = Point( mPosition.x - mCenter.x + mWidth, mPosition.y + mCenter.y );
-					if(PolyCollisionTest(circlePoints,32,rectanglePoints,4) == true)
+					if(PolyCollisionTest(circlePoints,64,rectanglePoints,4) == true)
 					{
 					}
 				}
 				break;
 			case POLY:
 				{
-					Point circlePoints[32];
-					for( int i=0; i<32; i++)
+					Point circlePoints[64];
+					for( int i=0; i<64; i++)
 					{
-						circlePoints[i] = Point(cos(i*3.14f/32*2) * player->GetRadius(),sin(i*3.14f/32*2) * player->GetRadius());
+						circlePoints[i] = Point(cos(i*3.14f/64*2) * player->GetRadius(),sin(i*3.14f/64*2) * player->GetRadius());
 					}
-					if(PolyCollisionTest(circlePoints,32,mPoints,mPointCount) == true)
+					if(PolyCollisionTest(circlePoints,64,mPoints,mPointCount) == true)
 					{
 						Hit(player, mOwnerPlayer);
 					}
@@ -142,13 +142,13 @@ void Bullet::Boom()
 }
 bool Bullet::CouldBulletGoPosition(float radius, Point position)
 {
-	for( int x = int(position.x - radius)/32; x <= int(position.x + radius)/32; x += 1 )//32 = tilesize
+	for( int x = int(position.x - radius)/64; x <= int(position.x + radius)/64; x += 1 )//64 = tilesize
 	{
-		for( int y = int(position.y - radius)/32; y <= int(position.y + radius)/32; y += 1 )//32 = tilesize
+		for( int y = int(position.y - radius)/64; y <= int(position.y + radius)/64; y += 1 )//64 = tilesize
 		{
-			if (GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*32.f,y*32.f)) != TILE &&GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*32.f,y*32.f)) != BARRACK_OUT)
+			if (GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT)
 				return false;
-			if ( GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->isValidTile(Point(x*32.f,y*32.f)) == false)
+			if ( GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
 		}
 	}

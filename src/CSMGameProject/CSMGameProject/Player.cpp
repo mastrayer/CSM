@@ -191,6 +191,7 @@ void CPlayer::Update( float dTime )
 		}break;
 	case ATTAACK:
 		{
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case DIE:
@@ -206,12 +207,14 @@ void CPlayer::Update( float dTime )
 		break;
 	case USER_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	default:
