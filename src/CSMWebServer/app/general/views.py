@@ -8,8 +8,8 @@ mod = Blueprint('general', __name__, url_prefix='/')
 
 @mod.route('/')
 def main():
-	form = LoginForm(request.form)
-	return render_template('general/main.html', user=g.user, form=form)
+	#form = LoginForm(request.form)
+	return render_template('general/main.html', user=g.user)#, form=form)
 
 @mod.before_request
 def before_request():
