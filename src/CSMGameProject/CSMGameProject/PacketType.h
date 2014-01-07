@@ -90,6 +90,7 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
+	char mName[20];
 };
 #pragma pack(push,1)
 

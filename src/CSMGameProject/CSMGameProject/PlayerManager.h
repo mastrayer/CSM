@@ -32,6 +32,8 @@ public:
 	void UpdatePlayerTeam(int _playerId, int team);
 	void UpdatePlayerKillScore( int playerId, int killScore );
 	//void UpdatePlayerType(int _playerId, int type);
+
+	void UpdatePlayerName(int _playerId, char* name);
 	void UpdatePlayerType( int playerId, PlayerType type );
 	int GetMyPlayerId() { return mMyPlayerId; };
 

@@ -261,8 +261,8 @@ void CGameScene::InitNetworkSetting()
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
-	mLoginHandler->mLoginRequestPacket.mGameId = 0;
-	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
+	mLoginHandler->mLoginRequestPacket.mGameId = 1;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = 1;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

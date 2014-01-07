@@ -160,9 +160,9 @@ GameUISet::GameUISet()
 	mTypeFace[EARTH]->SetPosition(5.f, 505.f);
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
-	//mStatusWindow = CStatusWindow::Create();
-	//mStatusWindow->SetVisible(false);
-	//mStatusWindow->SetPosition(100.f, 100.f);
+	mStatusWindow = CStatusWindow::Create();
+	mStatusWindow->SetVisible(false);
+	mStatusWindow->SetPosition(100.f, 100.f);
 
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
@@ -181,7 +181,7 @@ GameUISet::GameUISet()
 	}
 	AddChild(mTypeSKillTimer);
 	AddChild(mUserSkillTimer);
-	//AddChild(mStatusWindow);
+	AddChild(mStatusWindow);
 	
 	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
 	mType->SetPosition(0.f, 450.f); 
@@ -308,16 +308,18 @@ void GameUISet::Update(float dTime)
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN &&
 		mStatusWindow == nullptr)
 	{
-		mStatusWindow = CStatusWindow::Create();
-		mStatusWindow->SetPosition(100.f, 100.f);
-		AddChild(mStatusWindow, 100);
+// 		mStatusWindow = CStatusWindow::Create();
+// 		mStatusWindow->SetPosition(100.f, 100.f);
+// 		AddChild(mStatusWindow, 100);
 		//mStatusWindow->GetAllPlayerInfo();
-		//mStatusWindow->SetVisible(true);
+		mStatusWindow->SetVisible(true);
 	}
 	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED && 
 		mStatusWindow != nullptr)
 	{
-		SafeDelete(mStatusWindow);
+		mStatusWindow->SetVisible(false);
+		//RemoveChild(mStatusWindow);
+//		SafeDelete(mStatusWindow);
 	}
 
 }
@@ -461,9 +463,18 @@ void CStatusWindow::SortByKillScore(int *result)
 		{
 			mPlayerLabel[iter.first].label = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 			mPlayerKillScore[iter.first].label = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+
+			AddChild(mPlayerLabel[result[iter.first]].label);
+			AddChild(mPlayerKillScore[result[iter.first]].label);
 		}
 
-		wsprintf(mPlayerLabel[iter.first].buf, L"%s", playerList[iter.first]->GetNickname().c_str());
+		const char *temp = playerList[iter.first]->GetNickname();
+		int nLen = strlen(temp) + 1;
+
+		wchar_t* pwstr = (LPWSTR)malloc(sizeof(wchar_t)* nLen);
+		mbstowcs(pwstr, temp, nLen);
+
+		wsprintf(mPlayerLabel[iter.first].buf, L"%s", pwstr);
 		mPlayerLabel[iter.first].label->SetString(mPlayerLabel[iter.first].buf);
 	}
 
@@ -514,10 +525,8 @@ void CStatusWindow::GetAllPlayerInfo()
 			mPlayerKillScore[result[i]].label->SetPosition(465, bY);
 			bY += 30.f;
 		}
-
-		AddChild(mPlayerLabel[result[i]].label);
-		AddChild(mPlayerKillScore[result[i]].label);
 	}
+
 // 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 // 	{
 // 		mPlayerLabelList[i]->SetVisible(false);

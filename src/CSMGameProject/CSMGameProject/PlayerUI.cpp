@@ -30,9 +30,9 @@ void PlayerUI::Init()
 	mHpBar[RED]->SetPosition(0.f, -40.f);
 	mHpBar[2]->SetPosition(0.f, -40.f);
 
-	CPlayer *temp = dynamic_cast<CPlayer*>(mFollower);
-	wsprintf(mNicknameBuf, L"%s", temp->GetNickname().c_str());// L"NICKNAME");
-	mNickname = NNLabel::Create(mNicknameBuf, L"¸¼Àº °íµñ", 10.f);
+	CPlayer *player = dynamic_cast<CPlayer*>(mFollower);
+
+	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 10.f);
 	mNickname->SetPosition(0.f, -50.f);
 
 	AddChild(mHpBar[BLUE]);
@@ -40,12 +40,20 @@ void PlayerUI::Init()
 	AddChild(mHpBar[2]);
 	AddChild(mNickname, 99);
 
-	mIsMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer() == temp;
+	mIsMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer() == player;
 	SetCenter( mHpBar[BLUE]->GetImageWidth()/2.f, mHpBar[BLUE]->GetImageHeight()/2.f );
 
 	mTeam = -1;
 }
+void PlayerUI::SetNickname(char value[20])
+{
+	int nLen = strlen(value) + 1;
 
+	wchar_t pwstr[21] = { 0, };
+	mbstowcs(pwstr, value, nLen);
+
+	mNickname->SetString(pwstr);
+}
 void PlayerUI::Render()
 {
 	NNObject::Render();
