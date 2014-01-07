@@ -1,108 +1,51 @@
 <!doctype html>
-<html lang='ko'>
+<html lang="ko">
 	<head>
 		<title>CSM :: {% block title %}{% endblock %}</title>
-		<meta charset='utf-8' />
-		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
-		<meta name='viewport' content='width-device-width, initial-scale=1.0' />
-		<meta name='description' content='' />
-		<meta name='author' content='' />
-
-		<!-- Bootstrap CDN -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport' content="width-device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
 
 		<!-- FontAwesome CDN -->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-		<!-- Custom Main CSS -->
-		<link rel="stylesheet" href="/static/styles/main.css" />
+		<!-- Normalize CSS -->
+		<link rel="stylesheet" href="/static/styles/normalize.css" />
+
+		<!-- Common CSS -->
+		<link rel="stylesheet" href="/static/styles/common.css?140106" />
 		{% block styles %}
 		{% endblock %}
 
 		<!-- jQuery CDN -->
-		<script src='//code.jquery.com/jquery-1.10.2.min.js'></script>
-		<!-- Bootstrap CDN -->
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 		{% block scripts %}
 		{% endblock %}
 	</head>
 
 	<body>
-		<div class='navbar navbar-inverse navbar-fixed-top' role='navigation'>
-			<div class='container'>
-				<div class='navbar-header'>
-					<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-						<span class='sr-only'>Toggle navigation</span>
-						<span class='icon-bar'></span>
-						<span class='icon-bar'></span>
-						<span class='icon-bar'></span>
-					</button>
-					<a class='navbar-brand' href='{{ url_for("general.main") }}'>CSM</a>
-				</div>
-				<div class='navbar-collapse collapse pull-right'>
-					<ul class='nav navbar-nav'>
-						<li><a href='#'>고객센터</a></li>
-						{% if 'user_id' in session %}
-						<!--<li><a href='{{ url_for("user.logout") }}'>로그아웃</a></li>-->
-						<li class='dropdown'>
-							<a href='#' class='dropdown-toggle' data-toggle='dropdown'>{{ user.nickname }} <i class='fa fa-cog'></i></a>
-							<ul class='dropdown-menu'>
-								<li><a href='#'>프로필</a></li>
-								<li class='divider'></li>
-								<li><a href='#'>로그아웃</a></li>
-							</ul>
-						</li>
-						{% else %}
-						<li><a href='{{ url_for("user.login") }}'>로그인</a></li>
-						<li><a href='{{ url_for("user.register") }}'>회원가입</a></li>
-						{% endif %}
-					</ul>
-				</div>
+		<div class="topTitleBar">
+			<div class="topTitleBarInner">
+				<div class="maker">CSM</div>
+				<div class="title">Title</div>
+				<ul class="subNav">
+					<li>로그인</li>
+					<li>회원가입</li>
+				</ul>
+			</div>
+		</div>
+		<div class="topNav">
+			<div class="topNavInner">
+				<ul class="leftNav">
+					<li></li>
+				</ul>
+				<ul class="rightNav">
+				</ul>
 			</div>
 		</div>
 
-		<div class='container' style='padding-top: 60px;'>
-			<ul class='nav nav-pills nav-justified'>
-				<li><a href='#'>새소식</a></li>
-				<li><a href='#'>게임정보</a></li>
-				<li><a href='{{ url_for("general.main") }}'><img src='http://static.cyphers.co.kr/img/lnb/logo_new.png' /></a></li>
-				<li><a href='#'>커뮤니티</a></li>
-				<li><a href='#'>자료실</a></li>
-			</ul>
-		</div>
-
-		<div class='container'>
-			<button type='button' class='btn btn-success game-start-button' role='game-start'>Game Start!</button>
-			<div class='container'>
-				<div class='row'>
-					<div class='col-md-3'>
-						{% from "forms/user/macros.html" import render_field %}
-						<form method='POST' action='{{ url_for("user.login") }}' class='form-login' role='form'>
-							{{ form.csrf_token }}
-							{{ render_field(form.email, placeholder="로그인", class="form-control") }}
-							{{ render_field(form.password, placeholder="비밀번호", class="form-control") }}
-							<label class='checkbox'>
-								<input type='checkbox' value='remember-me' />아이디 저장
-							</label>
-							<button class='btn btn-primary'>로그인</button>
-							<button class='btn btn-info'>회원가입</button>
-						</form>
-					</div>
-					<div class='col-md-6'>
-						<div style='background-color:black;width:100%;height:140px;'></div>
-					</div>
-					<div class='col-md-3'>
-						<h2>공지</h2>
-						<ul>
-							<li>잘좀하자</li>
-							<li>제발요</li>
-							<li>봐주세요</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 		{% block content %}
 		{% endblock %}
 	</body>
