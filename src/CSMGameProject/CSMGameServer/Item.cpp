@@ -7,6 +7,20 @@ Item::Item()
 {
 
 }
+Item::Item(int itemType, float lifeTime, int itemId,int gameId, Point position)
+{
+	mLifeTime = lifeTime;
+	mItemType = itemType;
+	mItemId = itemId;
+	mGameId = gameId;
+	mPosition = position;
+	ItemComeResult outPacket = ItemComeResult();
+	outPacket.mItemType = GetItemType();
+	outPacket.mPosition = GetPosition();
+	outPacket.mItemId = mItemId;
+	outPacket.mLifeTime = mLifeTime;
+	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
+}
 Item::Item(int itemType, int itemId,int gameId, Point position):mOwnerId(-1)
 {
 	mItemType = itemType;
@@ -17,6 +31,7 @@ Item::Item(int itemType, int itemId,int gameId, Point position):mOwnerId(-1)
 	outPacket.mItemType = GetItemType();
 	outPacket.mPosition = GetPosition();
 	outPacket.mItemId = mItemId;
+	outPacket.mLifeTime = mLifeTime;
 	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 }
 
