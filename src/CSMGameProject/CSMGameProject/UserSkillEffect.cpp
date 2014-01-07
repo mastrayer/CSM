@@ -25,8 +25,8 @@ Flash::Flash(NNPoint beforePosition, NNPoint afterPosition)
 	mDstAnimation->SetVisible(false);
 	mSrcAnimation->SetLoop(false);
 
-	mSrcAnimation->SetPosition(beforePosition);
-	mDstAnimation->SetPosition(afterPosition);
+	mSrcAnimation->SetPosition(beforePosition - NNPoint(-1,-1) * -65.f);
+	mDstAnimation->SetPosition(afterPosition - NNPoint(-1,-1) * -65.f);
 
 	AddChild(mSrcAnimation);
 	AddChild(mDstAnimation);
