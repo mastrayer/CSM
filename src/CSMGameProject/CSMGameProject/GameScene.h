@@ -26,6 +26,7 @@ private:
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	ATypeAttackEndHandler* mATypeAttackEndHandler;
 	ATypeAttackShootHandler* mATypeAttackShootHandler;
+	UserSkillFlashHandler* mUserSkillFlashHandler;
 
 	BTypeAttackEndHandler* mBTypeAttackEndHandler;
 	BTypeAttackShootHandler* mBTypeAttackShootHandler;
@@ -63,7 +64,9 @@ public:
 	}
 private:
 	NNSprite *mBackgroundImage;
+	NNSprite *mIntro1, *mIntro2;
 	bool mLoadingComplete;
+	bool mIsKeyDown;
 
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();

@@ -402,4 +402,14 @@ struct EmoticonResult : public NNPacketHeader
 	int mPlayerId;
 	int mEmoticonNumber;
 };
+struct UserSkillFlashResult : public NNPacketHeader
+{
+	UserSkillFlashResult()
+	{
+		mSize = sizeof(UserSkillFlashResult);
+		mType = PKT_SC_USERSKILL_FLASH;
+	}
+	NNPoint mBeforePosition;
+	NNPoint mAfterPosition;
+};
 #pragma pack(pop)

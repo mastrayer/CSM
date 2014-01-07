@@ -10,7 +10,7 @@ namespace USER_SKILL_EFFECT
 	class Flash : public IEffect
 	{
 	public:
-		Flash(CPlayer* follower);
+		Flash(NNPoint beforePosition, NNPoint afterPosition);
 		virtual ~Flash();
 
 		void Render();

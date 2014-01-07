@@ -347,7 +347,7 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-					mAttackDelay = 1.f;
+					mAttackDelay = 0.7f;
 					new ATypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -359,7 +359,7 @@ void Player::Update( float dTime)
 				}break;
 			case TYPE_C:
 				{	
-					mAttackDelay = 0.4f;
+					mAttackDelay = 0.5f;
 					new CTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -459,7 +459,7 @@ void Player::Update( float dTime)
 				{
 					if(mDSkillPostDelay <= 0)
 					{
-						mTypeSkillDelay = 5.f;
+						mTypeSkillDelay = 3.0f;
 						TransState(PLAYER_STATE_IDLE);
 					}
 					mDSkillPostDelay -=dTime;
@@ -473,25 +473,27 @@ void Player::Update( float dTime)
 	case PLAYER_STATE_USERSKILL:
 		{
 			//if(mPreDelay > 0) break;
-			switch (mType)
+
+			mUserSkillDelay = 10.f;
+
+			//패킷 보내고
+			UserSkillFlashResult outPacket = UserSkillFlashResult();
+			outPacket.mBeforePosition = outPacket.mAfterPosition = GetPosition();
+
+			std::map<int,Player*>players;
+			GPlayerManager->GetPlayers(mGameId,&players);
+			
+			for( float shortMove = 250.f; shortMove >= 0.f; shortMove -= 1.f)
 			{
-			case TYPE_A:
+				if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
 				{
-					mUserSkillDelay = 5.f;
-				}break;
-			case TYPE_B:
-				{
-					mUserSkillDelay = 10.f;
-				}break;
-			case TYPE_C:
-				{
-					mUserSkillDelay = 5.f;
-				}break;
-			default:
-				break;
+					outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
+					break;
+				}
 			}
+			SetPosition(outPacket.mAfterPosition);
+			mClient->Broadcast(&outPacket);
 			TransState(PLAYER_STATE_IDLE);
-			break;
 		}
 		break;
 	default:
@@ -695,7 +697,7 @@ void Player::ConsumeItem(Item* item)
 	default:
 		break;
 	}
-	
+
 	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;

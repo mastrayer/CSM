@@ -11,6 +11,12 @@
 #include "PlayerUI.h"
 #include "config.h"
 
+enum ITEMTYPE
+{
+	DAMAGEBUFF = 0,
+	HPBUFF = 1,
+	FLAG = 2,
+};
 class CPlayer : public NNObject
 {
 public:
@@ -38,6 +44,10 @@ public:
 	
 	bool IsEmoticonRunning() { return mIsEmoticonRunning; }
 	void SetEmoticonRunning(bool value) { mIsEmoticonRunning = value; }
+
+	bool HasItem(ITEMTYPE itemType){ return mHasItem[itemType]; }
+
+	void ConsumeItem(ITEMTYPE itemType);
 
 	NNCREATE_FUNC(CPlayer);
 
@@ -96,6 +106,8 @@ private:
 
 	bool mIsEmoticonRunning;
 	PlayerType mPlayerType;
+
+	bool mHasItem[3];
 
 	friend class PlayerManager;
 };

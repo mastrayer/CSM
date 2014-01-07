@@ -21,6 +21,7 @@ CPlayer::CPlayer()
 	  mIsEmoticonRunning(false),
 	  mNickname("")
 {
+	memset(mHasItem, false, sizeof(mHasItem));
 }
 
 CPlayer::~CPlayer( void )
@@ -488,4 +489,11 @@ void CPlayer::INitDieImage()
 	AddChild( mDieWater );
 	AddChild( mDieWind );
 	AddChild( mDieEarth );
+}
+
+void CPlayer::ConsumeItem(ITEMTYPE itemType)
+{
+
+
+	mHasItem[itemType] = true;
 }
