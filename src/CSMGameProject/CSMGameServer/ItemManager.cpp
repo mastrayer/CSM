@@ -17,9 +17,12 @@ void ItemManager::Update(float dTime)
 	for( auto itemIt = mItems.begin(); itemIt != mItems.end(); itemIt++)
 	{
 		(*itemIt)->Update(dTime);
+		printf("%d\n",(*itemIt)->GetLifeTime());
 		if( (*itemIt)->IsLive() == false)
 		{
 			RemoveItem((*itemIt));
+			if( itemIt != mItems.end() ) itemIt++;
+			break;
 		}
 		if( (*itemIt)->IsConsumed() == false )
 		{
@@ -66,4 +69,13 @@ void ItemManager::GenerateItem(Item* item)
 {
 	mItems.push_back(item);
 }
+
+void ItemManager::GetItems(int gameId, std::list<Item*>* items)
+{
+	for( auto It = mItems.begin(); It != mItems.end(); It++ )
+	{
+		if(gameId == (*It)->GetGameId())items->push_back((*It));
+	}
+}
+	
 ItemManager* GItemManager = nullptr;

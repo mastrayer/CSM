@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" type="type/css" href="/static/styles/main.css" />
+<link rel="stylesheet" type="type/css" href="/static/styles/main.css?20140108" />
 {% endblock %}
 
 {% block scripts %}
@@ -30,11 +30,13 @@
 	function gameStart() {
 		if (isLoad == true ) {
 			{% if user %}
-			plugin().testEvent();
+			//plugin().testEvent();
+			location.href = "{{url_for('room.room_list')}}";
 			{% else %}
 			alert('먼저 로그인 해주세요. :)');
 			{% endif %}
 		} else {
+			alert('설치호 새로고침 혹은 브라우저를 재실행 해주세요.');
 			location.href = ''; // 인스톨러 파일 링크
 		}
 	}

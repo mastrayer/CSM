@@ -18,7 +18,7 @@ public:
 	~GameManager(void);
 	void DiePlayer(int playerId);
 	int GenerateTeamNumber(int gameId);
-	void EndOfGame(int playerId);
+	void EndOfGame(int gameId, int team);
 	void LogOutPlayer(int playerId);
 	int GetKillLimit(int gameId) { return mKillLimit[gameId]; }
 	int* GetKillScore(int gameId) { return mKillScore[gameId]; }

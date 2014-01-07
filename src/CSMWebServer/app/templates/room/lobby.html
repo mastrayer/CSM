@@ -1,18 +1,48 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="/static/styles/lobby.css" />
+<link rel="stylesheet" type="text/css" href="/static/styles/main.css?20140108" />
+<link rel="stylesheet" type="text/css" href="/static/styles/lobby.css?20140108" />
 {% endblock %}
 
 {% block scripts %}
 {% endblock %}
 
 {% block content %}
+<script type="text/javascript">
+function plugin0() {
+	return document.getElementById('plugin0');
+}
+plugin = plugin0;
+function addEvent(obj, name, func) {
+	if (obj.attachEvent) {
+		obj.attachEvent("on"+name, func);
+	} else {
+		obj.addEventListener(name, func, false);
+	}
+}
+isLoad = false;
+function pluginLoaded() {
+	isLoad = true;
+}
+function gameStart() {
+	if (isLoad == true ) {
+		plugin().testEvent();
+	} else {
+		alert('게임 설치가 제대로 안된 것 같습니다..');
+		location.href = ''; // 인스톨러 파일 링크
+	}
+}
+</script>
+<object id="plugin0" type="application/x-csm" width="0" height="0" border="0">
+	<param name="onload" value="pluginLoaded" />
+</object>
 <div class="lobby">
 	<div class="lobbyInner">
+		<a href="{{url_for('general.main')}}" style='color:black' class="exit"><i class="fa fa-times"></i></a>
 		<div class="lobbyHeader">
 			<h1 class="lobbyTitle">레전도 오브 리그</h1>
-			<button class="createRoomBtn">새로운 게임 만들기</button>
+			<a href="{{url_for('room.room_create')}}" class="createRoomBtn">새로운 게임 만들기</a>
 		</div>
 		<div class="lobbyContent">
 			<div class="lobbyContentHeader">
@@ -22,20 +52,39 @@
 				<div class="headerCount">인원수</div>
 			</div>
 			<ul class="roomList">
+				<!--
 				<li class="room">
-					<div class="id">
-						1
-					</div>
-					<div class="title">
-						재미있는 겜 한판!
-					</div>
+					<div class="id">1</div>
+					<div class="title" onclick='javascript:gameStart()'>재미있는 겜 한판!</div>
+					<div class="type">섬멸전</div>
+					<div class="count">2명 / 7명</div>
+				</li>
+				-->
+				{% for game in game_list %}
+				<li class="room">
+					<div class="id">{{game.id}}</div>
+					<div class="title">{{game.title}}</div>
 					<div class="type">
-						섬멸전
+						{% if game.type == 0 %}
+						4대4 데스매치
+						{% elif game.type == 1 %}
+						8대8 데스매치
+						{% elif game.type == 2 %}
+						8대8 깃발뺏기
+						{% endif %}
 					</div>
 					<div class="count">
-						2명 / 7명
+						{{game.player_count}}명 /
+						{% if game.type == 0 %}
+						4명
+						{% elif game.type == 1 %}
+						8명
+						{% elif game.type == 2 %}
+						8명
+						{% endif %}
 					</div>
 				</li>
+				{% endfor %}
 			</ul>
 		</div>
 	</div>

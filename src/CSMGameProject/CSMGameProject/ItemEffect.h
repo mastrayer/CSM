@@ -19,7 +19,7 @@ namespace ITEM_EFFECT
 		virtual void Follow(int playerId);
 		virtual void Remove();
 		virtual void BackToStartPosition();
-
+		void SetLifeTime(float time){ mLifeTime = time; }
 		int GetId(){ return mItemId; }
 	protected:
 		NNPoint mStartPosition;
@@ -29,27 +29,31 @@ namespace ITEM_EFFECT
 	class DamageBuff : public Item
 	{
 	public:
-		DamageBuff(NNPoint startPosition, int itemId);
-		virtual ~DamageBuff();
+		DamageBuff(NNPoint startPosition, int itemId, float lifeTime);
+		 ~DamageBuff();
 
-		virtual void Render();
-		virtual void Update(float dTime);
+		 void Render();
+		void Update(float dTime);
+		void Follow(int playerId);
 
 	private:
-		NNAnimation *mAnimation;
+		NNAnimation *mBeforeConsumeAnimation;
+		NNAnimation *mAfterConsumeAnimation;
 	};
 
 	class HPBuff : public Item
 	{
 	public :
-		HPBuff(NNPoint startPosition, int itemId);
-		virtual ~HPBuff();
+		HPBuff(NNPoint startPosition, int itemId, float lifeTime);
+		 ~HPBuff();
 
-		virtual void Render();
-		virtual void Update(float dTime);
+		 void Render();
+		 void Update(float dTime);
+		 void Follow(int playerId);
 
 	private:
-		NNAnimation *mAnimation;
+		NNAnimation *mBeforeConsumeAnimation;
+		NNAnimation *mAfterConsumeAnimation;
 	};
 
 	class Flag : public Item

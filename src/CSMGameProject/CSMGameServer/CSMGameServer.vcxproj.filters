@@ -10,12 +10,6 @@
     <ClCompile Include="ClientSession.cpp">
       <Filter>Core\Client\ClientSession</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseJobContext.cpp">
-      <Filter>Core\Database\DatabaseJobContext</Filter>
-    </ClCompile>
-    <ClCompile Include="DatabaseJobManager.cpp">
-      <Filter>Core\Database\DatabaseJobManager</Filter>
-    </ClCompile>
     <ClCompile Include="DbHelper.cpp">
       <Filter>Core\Database\DbHelper</Filter>
     </ClCompile>
@@ -193,6 +187,12 @@
     <ClCompile Include="DeathMatch88.cpp">
       <Filter>Game\GameType\DeathMatch\DeathMatch88</Filter>
     </ClCompile>
+    <ClCompile Include="DatabaseJobManager.cpp">
+      <Filter>Core\Database</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseJobContext.cpp">
+      <Filter>Core\Database</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularBuffer.h">
@@ -203,12 +203,6 @@
     </ClInclude>
     <ClInclude Include="ClientSession.h">
       <Filter>Core\Client\ClientSession</Filter>
-    </ClInclude>
-    <ClInclude Include="DatabaseJobContext.h">
-      <Filter>Core\Database\DatabaseJobContext</Filter>
-    </ClInclude>
-    <ClInclude Include="DatabaseJobManager.h">
-      <Filter>Core\Database\DatabaseJobManager</Filter>
     </ClInclude>
     <ClInclude Include="DbHelper.h">
       <Filter>Core\Database\DbHelper</Filter>
@@ -414,6 +408,12 @@
     <ClInclude Include="DeathMatch88.h">
       <Filter>Game\GameType\DeathMatch\DeathMatch88</Filter>
     </ClInclude>
+    <ClInclude Include="DatabaseJobContext.h">
+      <Filter>Core\Database</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseJobManager.h">
+      <Filter>Core\Database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -436,12 +436,6 @@
     </Filter>
     <Filter Include="Core\Database">
       <UniqueIdentifier>{21383708-b675-4659-8cb3-acc2da6a9002}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Database\DatabaseJobContext">
-      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Database\DatabaseJobManager">
-      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Database\DbHelper">
       <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
@@ -490,6 +484,9 @@
     </Filter>
     <Filter Include="Game\GameManager">
       <UniqueIdentifier>{d7a8d297-71b2-4b95-a7e8-fa2cd0ca4faa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UserSkill">
+      <UniqueIdentifier>{0d0c697a-795e-4207-a6cf-fa083ede5862}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill">
       <UniqueIdentifier>{05cd51dd-94e1-4167-9a65-3850d8913588}</UniqueIdentifier>

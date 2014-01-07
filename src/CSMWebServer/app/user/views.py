@@ -8,11 +8,12 @@ from app.user.decorators import requires_login
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
+'''
 @mod.route('/')
 @requires_login
 def profile():
 	return render_template("user/profile.html", user=g.user)
-
+'''
 @mod.before_request
 def before_request():
 	g.user = None
@@ -45,7 +46,7 @@ def register():
 
 		flash('Thanks for registering')
 
-		return redirect(url_for('user.profile'))
+		return redirect(url_for('general.main'))
         return redirect(url_for('general.main'))
 
 @mod.route('/logout/', methods=['GET'])

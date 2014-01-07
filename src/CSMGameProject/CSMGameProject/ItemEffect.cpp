@@ -15,14 +15,10 @@ Item::~Item(void)
 void Item::Update(float dTime)
 {
 	IEffect::Update(dTime);
+	mLifeTime -= dTime;
 	if(mOwner != nullptr)
 	{
-		if(NNPoint().GetDistance(mOwner->GetPosition() - mOwner->GetCenter() - GetPosition()) > 50.f)
-		{
-			SetPosition( (mOwner->GetPosition() - mOwner->GetCenter() - GetPosition() )/ NNPoint().GetDistance(mOwner->GetPosition() - mOwner->GetCenter() - GetPosition()) * 50.f );
-		}
-		else
-			SetPosition(mOwner->GetPosition() - mOwner->GetCenter() - (  mOwner->GetPosition() - mOwner->GetCenter() - GetPosition() ) / 2);
+		SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
 	}
 }
 
@@ -42,31 +38,49 @@ void Item::BackToStartPosition()
 	mOwner = nullptr;
 }
 
-DamageBuff::DamageBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
+DamageBuff::DamageBuff(NNPoint startPosition, int itemId, float lifeTime):Item(startPosition,itemId)
 {	
-	mAnimation = NNAnimation::Create();
+	mLifeTime = lifeTime;
+	mBeforeConsumeAnimation = NNAnimation::Create();
+	mAfterConsumeAnimation = NNAnimation::Create();
 
 	//TODO
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 0; i++)
+	for (int i = 0; i < 25; i++)
 	{
-		//wsprintf(temp, L"Resource/Sprite/Item/DamageBuff/%d.png", i);
-		mAnimation->AddFrameNode(temp);
+		wsprintf(temp, L"Resource/Sprite/Object/Red/%d.png", i);
+		mBeforeConsumeAnimation->AddFrameNode(temp);
 	}
-	//mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
+	for (int i = 0; i < 15; i++)
+	{
+		wsprintf(temp, L"Resource/Sprite/Buff/AttackBuff/%d.png", i);
+		mAfterConsumeAnimation->AddFrameNode(temp);
+	}
+	mBeforeConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 24);
+	mAfterConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 14);
 
 
-	mLifeTime = 60.f;
-	mAnimation->SetVisible(false);
-	mAnimation->SetLoop(false);
+	mBeforeConsumeAnimation->SetLoop(true);
+	mAfterConsumeAnimation->SetLoop(true);
 	
 	//TODO
-	mAnimation->SetCenter(NNPoint());
+	mBeforeConsumeAnimation->SetCenter(NNPoint(32.f,32.f));
+	mBeforeConsumeAnimation->SetVisible(true);
+	mAfterConsumeAnimation->SetCenter(NNPoint(13.f,-9.f));
+	mAfterConsumeAnimation->SetVisible(false);
 
 
-	AddChild(mAnimation);
+	AddChild(mBeforeConsumeAnimation);
+	AddChild(mAfterConsumeAnimation);
 }
 
+void DamageBuff::Follow(int playerId)
+{
+	mOwner = CPlayerManager::GetInstance()->FindPlayerByID(playerId);
+	SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
+	mBeforeConsumeAnimation->SetVisible(false);
+	mAfterConsumeAnimation->SetVisible(true);
+}
 DamageBuff::~DamageBuff()
 {
 
@@ -78,33 +92,52 @@ void DamageBuff::Render()
 void DamageBuff::Update(float dTime)
 {
 	Item::Update(dTime);
+	if(mLifeTime < 0 ) mIsEnd = true;
 }
 
-HPBuff::HPBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
+HPBuff::HPBuff(NNPoint startPosition, int itemId, float lifeTime):Item(startPosition,itemId)
 {
-	mAnimation = NNAnimation::Create();
+	mLifeTime = lifeTime;
+	mBeforeConsumeAnimation = NNAnimation::Create();
+	mAfterConsumeAnimation = NNAnimation::Create();
 
 	//TODO
 	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 0; i++)
+	for (int i = 0; i < 15; i++)
 	{
-		//wsprintf(temp, L"Resource/Sprite/Item/HPBuff/%d.png", i);
-		mAnimation->AddFrameNode(temp);
+		wsprintf(temp, L"Resource/Sprite/Object/blue/%d.png", i);
+		mBeforeConsumeAnimation->AddFrameNode(temp);
 	}
-	//mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
+	for (int i = 0; i < 15; i++)
+	{
+		wsprintf(temp, L"Resource/Sprite/Buff/DefenceBuff/%d.png", i);
+		mAfterConsumeAnimation->AddFrameNode(temp);
+	}
+	mBeforeConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 14);
+	mAfterConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 14);
 
 
-	mLifeTime = 60.f;
-	mAnimation->SetVisible(false);
-	mAnimation->SetLoop(false);
+	mLifeTime = 45.f;
+	mBeforeConsumeAnimation->SetVisible(true);
+	mBeforeConsumeAnimation->SetLoop(true);
+	mBeforeConsumeAnimation->SetCenter(NNPoint(32.f,32.f));
+	mAfterConsumeAnimation->SetVisible(false);
+	mAfterConsumeAnimation->SetLoop(true);
+	mAfterConsumeAnimation->SetCenter(NNPoint(13.f,-9.f));
 	
-	//TODO
-	mAnimation->SetCenter(NNPoint());
 
-
-	AddChild(mAnimation);
+	
+	AddChild(mBeforeConsumeAnimation);
+	AddChild(mAfterConsumeAnimation);
 }
 
+void HPBuff::Follow(int playerId)
+{
+	mOwner = CPlayerManager::GetInstance()->FindPlayerByID(playerId);
+	SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
+	mBeforeConsumeAnimation->SetVisible(false);
+	mAfterConsumeAnimation->SetVisible(true);
+}
 HPBuff::~HPBuff()
 {
 
@@ -116,6 +149,7 @@ void HPBuff::Render()
 void HPBuff::Update(float dTime)
 {
 	Item::Update(dTime);
+	if(mLifeTime < 0 ) mIsEnd = true;
 }
 Flag::Flag(NNPoint startPosition, int itemId):Item(startPosition,itemId)
 {	mAnimation = NNAnimation::Create();

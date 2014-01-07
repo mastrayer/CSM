@@ -360,6 +360,7 @@ struct ItemComeResult : public NNPacketHeader
 	int mItemType;
 	NNPoint mPosition;
 	int mItemId;
+	float mLifeTime;
 };
 struct ItemPlayerConsumeResult : public NNPacketHeader
 {
@@ -371,6 +372,7 @@ struct ItemPlayerConsumeResult : public NNPacketHeader
 	int mItemType;
 	int mPlayerId;
 	int mItemId;
+	float mLifeTime;
 };
 struct ItemPlayerDropResult : public NNPacketHeader
 {
