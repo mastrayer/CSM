@@ -69,6 +69,7 @@ private:
 	bool isChangedGameKeyStates();
 	float GetNowAngle();
 	bool isChangedAngle();
+	CPlayer *mMyPlayer;
 
 	void InitNetworkSetting();
 };

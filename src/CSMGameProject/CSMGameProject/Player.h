@@ -33,6 +33,9 @@ public:
 	PlayerType GetPlayerType() { return mPlayerType; }
 	int GetTeam() { return mTeam; }
 	int GetKillScore() const { return mKillScore; }
+	
+	bool IsEmoticonRunning() { return mIsEmoticonRunning; }
+	void SetEmoticonRunning(bool value) { mIsEmoticonRunning = value; }
 
 	NNCREATE_FUNC(CPlayer);
 
@@ -84,9 +87,10 @@ private:
 	int mHp;
 	int mTeam;
 	int mSpeed;
-
+	
 	int mKillScore;
 
+	bool mIsEmoticonRunning;
 	PlayerType mPlayerType;
 
 	friend class PlayerManager;

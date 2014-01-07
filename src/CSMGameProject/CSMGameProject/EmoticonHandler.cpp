@@ -23,7 +23,7 @@ void EmoticonHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 		{
 			if ( circularBuffer->Read((char*)&mEmoticonResult, header->mSize) )
 			{
-				EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(mEmoticonResult.mPlayerId, (EmoticonType)(mEmoticonResult.mEmoticonNumber + 1)));
+				EffectManager::GetInstance()->AddEffect(new CEmoticonEffect(mEmoticonResult.mPlayerId, (EmoticonType)mEmoticonResult.mEmoticonNumber));
 			}
 			else
 			{
