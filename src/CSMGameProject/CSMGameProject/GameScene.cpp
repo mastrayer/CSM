@@ -89,16 +89,12 @@ void CGameScene::Update( float dTime )
 			// UI Setting
 			SetUISet( GameUISet::GetInstance() );
 		}
-		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
-		{
-			GetCamera().SetPosition( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() );
-		}
-		else
-		{
-			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
-				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-				,0.97f));
-		}
+
+		/*GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+		CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
+		,1.f));*/
+		GetCamera().SetPosition(CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition());
+
 		if (mMyPlayer->IsEmoticonRunning() == false)
 		{
 			if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
