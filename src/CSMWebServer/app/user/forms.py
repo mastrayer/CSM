@@ -13,4 +13,4 @@ class RegisterForm(Form):
 	confirm = PasswordField('Repeat Pasword', [Required(), EqualTo('password', message='Passwords must match')])
 	nickname = TextField('NickName', [Required()])
 
-	recaptcha = RecaptchaField()
+	#recaptcha = RecaptchaField()

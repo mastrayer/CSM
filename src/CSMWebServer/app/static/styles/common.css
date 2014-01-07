@@ -1,9 +1,90 @@
 @charset "utf-8";
 
-/* */
-/* Common */
-/* */
-
 /* Fonts */
 @import url(http://fonts.googleapis.com/css?family=Autour+One);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+/* */
+/* Common */
+/* */
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.bg {
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 105%;
+	height: 100%;
+	margin-left: -10px;
+	background-image: url('/static/images/main_background.png');
+	background-repeat: no-repeat;
+	background-size: 105% 100%;
+	z-index: 1;
+	filter:blur(2px);
+    -o-filter:blur(2px);
+    -ms-filter:blur(2px);
+    -moz-filter:blur(2px);
+    -webkit-filter:blur(2px);
+}
+
+.gameTitle {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	height: 200px;
+	font-size: 30pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: bold;
+	margin-left: -200px;
+	margin-top: -200px;
+	color: #111;
+	z-index: 2;
+}
+.gameTitle span {
+	font-size: 20pt;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 0.75em;
+	line-height: 2em;
+	background-color: #333;
+	color: white;
+	text-shadow: 1px 1px black;
+	padding: 0.5em 1em;
+	z-index: 2;
+}
+
+.footer .title {
+	color: white;
+	border-bottom: 1px solid #0084ff;
+	text-decoration: none;
+	-webket-transition: all .3s ease;
+	-moz-transition:all .3s ease;
+	-o-transition:all .3s ease;
+	-ms-transition:all .3s ease;
+	transition:all .3s ease;
+}
+
+.footer .title:hover {
+	color: #0084ff;
+	border-bottom: none;
+}
+.footer .creater {
+	float: right;
+	margin-right: 20px;
+}
+.footer:after {
+	content: '';
+	display: block;
+	clear: both;
+}

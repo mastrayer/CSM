@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="/static/styles/lobby.css" />
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<div class="lobby">
+	<div class="lobbyInner">
+		<div class="lobbyHeader">
+			<h1 class="lobbyTitle">레전도 오브 리그</h1>
+			<button class="createRoomBtn">새로운 게임 만들기</button>
+		</div>
+		<div class="lobbyContent">
+			<div class="lobbyContentHeader">
+				<div class="headerId">방번호</div>
+				<div class="headerTitle">제목</div>
+				<div class="headerType">경기형식</div>
+				<div class="headerCount">인원수</div>
+			</div>
+			<ul class="roomList">
+				<li class="room">
+					<div class="id">
+						1
+					</div>
+					<div class="title">
+						재미있는 겜 한판!
+					</div>
+					<div class="type">
+						섬멸전
+					</div>
+					<div class="count">
+						2명 / 7명
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

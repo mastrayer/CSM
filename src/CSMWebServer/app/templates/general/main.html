@@ -1,72 +1,101 @@
-<!doctype html>
-<html lang="ko">
-	<head>
-		<title>CSM :: Intro</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" type="type/css" href="/static/styles/normalize.css" />
-		<link rel="stylesheet" type="type/css" href="/static/styles/common.css" />
-		<link rel="stylesheet" type="type/css" href="/static/styles/main.css" />
-	</head>
-		<script type="text/javascript">
-			function plugin0() {
-				return document.getElementById('plugin0');
-			}
-			plugin = plugin0;
-			function addEvent(obj, name, func) {
-				if (obj.attachEvent) {
-					obj.attachEvent("on"+name, func);
-				} else {
-					obj.addEventListener(name, func, false);
-				}
-			}
+{% extends "base.html" %}
 
-			isLoad = false;
+{% block styles %}
+<link rel="stylesheet" type="type/css" href="/static/styles/main.css" />
+{% endblock %}
 
-			function pluginLoaded() {
-				isLoad = true;
-			}
-			function testEvent() {
-				if (isLoad == true ) {
-					plugin().testEvent();
-				} else {
-					location.href = ''; // 인스톨러 파일 링크
-				}
-			}
-			function pluginValid() {
-				if (plugin().valid) {
-					alert('되요');
-				} else {
-					alert('안되요');
-				}
-			}
-		</script>
-	<body>
-		<object id="plugin0" type="application/x-csm" width="0" height="0" border="0">
-			<param name="onload" value="pluginLoaded" />
-		</object>
+{% block scripts %}
+<script src="/static/scripts/main.js"></script>
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+	function plugin0() {
+		return document.getElementById('plugin0');
+	}
+	plugin = plugin0;
+	function addEvent(obj, name, func) {
+		if (obj.attachEvent) {
+			obj.attachEvent("on"+name, func);
+		} else {
+			obj.addEventListener(name, func, false);
+		}
+	}
+
+	isLoad = false;
+
+	function pluginLoaded() {
+		isLoad = true;
+	}
+	function gameStart() {
+		if (isLoad == true ) {
+			{% if user %}
+			plugin().testEvent();
+			{% else %}
+			alert('먼저 로그인 해주세요. :)');
+			{% endif %}
+		} else {
+			location.href = ''; // 인스톨러 파일 링크
+		}
+	}
+</script>
+
+<object id="plugin0" type="application/x-csm" width="0" height="0" border="0">
+	<param name="onload" value="pluginLoaded" />
+</object>
 		
-		<div class="bg"></div>
+<div class="mainNav">
+	<div class="startBtn" onclick="javascript:gameStart();">
+		Start!
+	</div>
+	<ul class="menuList">
+		{% if not user %}
+		<li id="login">로그인</li>
+		<li id="regist">회원가입</li>
+		{% else %}
+		<li id="info">정보보기</li>
+		<li id="logout">로그아웃</li>
+		{% endif %}
+	</ul>
+</div>
 
-		<div class="gameTitle">레전드 오브 리그 <span>: 정령왕</span></div>
+<div class="loginModal">
+	<div class="loginModalInner">
+		<div class="exit"><i class="fa fa-times"></i></div>
+		{% from "forms/user/macros.html" import render_field %}
+		<form class="form formLogin" method="post" action="{{url_for('user.login')}}">
+			<h2 class='formHeading'>어서오세요!</h2>
+			{{ login_form.csrf_token }}
+			{{ render_field(login_form.email, placeholder="로그인") }}
+			{{ render_field(login_form.password, placeholder="비밀번호") }}
+			<button class='loginBtn'>로그인</button>
+			<!--<a href="{{ url_for('user.register') }}" class='registBtn'>회원가입</a>-->
+		</form>
+	</div>
+</div>
 
-		<div class="mainNav">
-			<div class="startBtn" onclick="javascript:testEvent();">
-				Start!
-			</div>
-			<ul class="menuList">
-				{% if not user %}
-				<li>로그인</li>
-				<li>회원가입</li>
-				{% else %}
-				<li>정보보기</li>
-				<li>로그아웃</li>
-				{% endif %}
-			</ul>
-		</div>
+<div class="registModal">
+	<div class="registModal">
+		<div class="exit"><i class="fa fa-times"></i></div>
+		{% from "forms/user/macros.html" import render_field %}
+		<form class="form formRegist" method="post" action="{{url_for('user.register')}}">
+			<h2 class="formHeading">환영합니다!</h2>
+			{{ register_form.csrf_token }}
+			{{ render_field(register_form.email, placeholder="이메일") }}
+			{{ render_field(register_form.password, placeholder="비밀번호") }}
+			{{ render_field(register_form.confirm, placeholder="비밀번호 확인") }}
+			{{ render_field(register_form.nickname, placeholder="당신의 이름") }}
+			<button class='registBtn'>회원가입</button>
+		</form>
+	</div>
+</div>
 
-		<div class='footer'>
-			<a class='title'>레전드 오브 리그: 정령왕</a>
-			<span class='creater'>CSM - 김지환, 남세현, 이선협, 장문익</span>
-		</div>
-	</body>
-</html>
+<div class="userInfoModal">
+	<div class="userInfoModalInner">
+		<div class="exit"><i class="fa fa-times"></i></div>
+		<div>총 게임 수: {{user.play_count}}</div>
+		<div>승리 수: {{user.win_count}}</div>
+		<div>패배 수: {{user.lose_count}}</div>
+	</div>
+</div>
+{% endblock %}
