@@ -23,6 +23,7 @@ private:
 	HPUpdateHandler* mHPUpdateHandler;
 	KillScoreHandler* mKillScoreHandler;
 	KillScoreHandler* mPlayerKillScoreHandler;
+	EndOfGameHandler* mEndOfGameHandler;
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	ATypeAttackEndHandler* mATypeAttackEndHandler;
 	ATypeAttackShootHandler* mATypeAttackShootHandler;

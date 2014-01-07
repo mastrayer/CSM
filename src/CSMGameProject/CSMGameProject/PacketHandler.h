@@ -7,6 +7,17 @@
 
 	
 	
+class EndOfGameHandler : public NNBaseHandler
+{
+public:
+	EndOfGameHandler();
+	virtual ~EndOfGameHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	EndOfGameResult mEndOfGameResult;
+};
+
 class UserSkillFlashHandler : public NNBaseHandler
 {
 public:
