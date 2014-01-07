@@ -1,4 +1,7 @@
 #include "UserSkillEffect.h"
+#include "NNResourceManager.h"
+#include "NNAudioSystem.h"
+
 using namespace USER_SKILL_EFFECT;
 
 Flash::Flash(NNPoint beforePosition, NNPoint afterPosition)
@@ -30,6 +33,8 @@ Flash::Flash(NNPoint beforePosition, NNPoint afterPosition)
 
 	AddChild(mSrcAnimation);
 	AddChild(mDstAnimation);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/Flash.mp3"));
 }
 Flash::~Flash()
 {

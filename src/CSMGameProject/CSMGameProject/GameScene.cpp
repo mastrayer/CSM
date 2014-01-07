@@ -47,6 +47,7 @@ mLoadingComplete(false), mIsKeyDown(false)
 	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.wav");
 	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_skill.wav");
 	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/GameScene.mp3");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/Flash.mp3");
 	
 	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/GameScene.mp3"));
 
