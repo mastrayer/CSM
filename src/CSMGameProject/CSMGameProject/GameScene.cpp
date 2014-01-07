@@ -221,6 +221,11 @@ void CGameScene::InitNetworkSetting()
 	mUserSkillFlashHandler = new UserSkillFlashHandler();
 
 	mEmoticonHandler = new EmoticonHandler();
+
+	mItemComeHandler = new ItemComeHandler();
+	mItemPlayerConsumeHandler = new ItemPlayerConsumeHandler();
+	mItemPlayerDropHandler = new ItemPlayerDropHandler();
+
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -246,6 +251,10 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_USERSKILL_FLASH, mUserSkillFlashHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_COME, mItemComeHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_PLAYER_CONSUME, mItemPlayerConsumeHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_PLAYER_DROP, mItemPlayerDropHandler);
+	
 
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );

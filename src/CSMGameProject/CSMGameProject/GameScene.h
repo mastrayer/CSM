@@ -45,6 +45,10 @@ private:
 
 	EmoticonHandler* mEmoticonHandler;
 
+	ItemComeHandler* mItemComeHandler;
+	ItemPlayerConsumeHandler* mItemPlayerConsumeHandler;
+	ItemPlayerDropHandler* mItemPlayerDropHandler;
+
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
