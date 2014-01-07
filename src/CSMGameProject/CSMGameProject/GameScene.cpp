@@ -24,6 +24,8 @@ mLoadingComplete(false), mIsKeyDown(false)
  	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
 	mIntro1 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
 	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
+	mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
+	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
 
 	// GameMap Create
 	mGameMap = CGameMap::Create(path);

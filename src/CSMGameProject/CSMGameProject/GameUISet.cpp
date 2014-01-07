@@ -90,7 +90,7 @@ GameUISet::GameUISet()
 	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
 	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.png");
+	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.jpg");
 	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
 	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 235);
 
