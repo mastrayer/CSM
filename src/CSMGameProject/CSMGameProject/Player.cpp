@@ -111,7 +111,7 @@ void CPlayer::Update( float dTime )
 	mDie->SetVisible( false );
 
 	// Normal
-	mStopNormal->SetVisible( true );
+	mStopNormal->SetVisible( false );
 	mMoveNormal->SetVisible( false );
 	mAttackNormal->SetVisible( false );
 	mDieNormal->SetVisible( false );
