@@ -130,12 +130,12 @@ GameUISet::GameUISet()
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
 	//KillPoint count label
-	mKillPoint[BLUE] = NNLabel::Create(L"40", L"¸¼Àº °íµñ", 20.f);
+	mKillPoint[BLUE] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[BLUE]->SetCenter(mKillPoint[BLUE]->GetCenterX(), mKillPoint[BLUE]->GetCenterY());
 	mKillPoint[BLUE]->SetPosition(width / 2.f - 270, 20);
 	mKillPoint[BLUE]->SetRGBA(0, 0, 0, 255);
 
-	mKillPoint[RED] = NNLabel::Create(L"25", L"¸¼Àº °íµñ", 20.f);
+	mKillPoint[RED] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[RED]->SetCenter(mKillPoint[RED]->GetCenterX(), mKillPoint[RED]->GetCenterY());
 	mKillPoint[RED]->SetPosition(width / 2.f + 250, 20);
 	mKillPoint[RED]->SetRGBA(0, 0, 0, 255);
@@ -273,9 +273,14 @@ void GameUISet::Update(float dTime)
 	*/
 	mKillBar[TeamColor::BLUE]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
 	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::RED)) - 60, 20);
+	swprintf_s(mKillBuf[TeamColor::BLUE], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::BLUE));
+	mKillPoint[BLUE]->SetString(mKillBuf[TeamColor::BLUE]);
+
 	mKillBar[TeamColor::RED]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
-
+	swprintf_s(mKillBuf[TeamColor::RED], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::RED));
+	mKillPoint[RED]->SetString(mKillBuf[TeamColor::RED]);
+	
 	ControlSkillTimer(dTime);
 
 // 	for (int i = 0; i < SKILL_COUNT; ++i)

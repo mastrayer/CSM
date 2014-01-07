@@ -72,6 +72,7 @@ private:
 	NNSprite *mHpBar;
 	NNSprite *mHpBarBackground;
 	NNSprite *mKillBar[2];
+	wchar_t mKillBuf[2][10];
 	
 	NNSprite *mCrown;
 
