@@ -23,10 +23,10 @@ void ItemComeHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 				switch (mItemComeResult.mItemType)
 				{
 				case DAMAGEBUFF:
-						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::DamageBuff(mItemComeResult.mPosition,mItemComeResult.mItemId));
+						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::DamageBuff(mItemComeResult.mPosition,mItemComeResult.mItemId,mItemComeResult.mLifeTime));
 					break;
 				case HPBUFF:
-						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::HPBuff(mItemComeResult.mPosition,mItemComeResult.mItemId));
+						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::HPBuff(mItemComeResult.mPosition,mItemComeResult.mItemId,mItemComeResult.mLifeTime));
 					break;
 				case FLAG:
 						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::Flag(mItemComeResult.mPosition,mItemComeResult.mItemId));
