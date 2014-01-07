@@ -116,6 +116,7 @@ struct LoginResult : public NNPacketHeader
 	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
 	int mKillScore[2];
 	int mKillLimit;
+	int mMapType;
 };
 struct LoginBroadcastResult : public NNPacketHeader
 {

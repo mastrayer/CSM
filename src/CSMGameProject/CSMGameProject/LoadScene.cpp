@@ -9,11 +9,11 @@
 
 #include "GameScene.h"
 
-LoadScene::LoadScene(std::wstring path, int roomNum, int playerID)
+LoadScene::LoadScene(int roomNum, int playerID)
 : mCount(0.f)
 {
-	mPath = path;
-	NNZip *temp = NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title");
+
+	NNZip *temp = NNResourceManager::GetInstance()->UnzipFileToMemory(L"resource/map/44.csm", L"title");
 	mBackgroundImage = NNSprite::Create(temp);
 
 	mIntro = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
@@ -41,6 +41,6 @@ void LoadScene::Update(float dTime)
  	mCount += dTime;
 // 
  	if (mCount >= 0.1f)
-		NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(mPath));
+		NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create());
 		
 }

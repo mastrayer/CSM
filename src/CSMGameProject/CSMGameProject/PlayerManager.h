@@ -39,9 +39,11 @@ public:
 
 	std::map<int, CPlayer*> GetPlayerList() { return mPlayers; }
 	CPlayer *FindPlayerByID(int ID);
-
+	int GetMapType(){ return mMapType;}
+	void SetMapType(int mapType){ mMapType = mapType; }
 private:
 	std::map<int,CPlayer*> mPlayers;
 	CPlayer* mMyPlayer;
 	int mMyPlayerId; // init : -1
+	int mMapType;
 };
