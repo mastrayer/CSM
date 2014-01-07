@@ -478,14 +478,23 @@ void Player::Update( float dTime)
 			case TYPE_A:
 				{
 					mUserSkillDelay = 5.f;
-				}break;
-			case TYPE_B:
-				{
-					mUserSkillDelay = 10.f;
-				}break;
-			case TYPE_C:
-				{
-					mUserSkillDelay = 5.f;
+
+					//패킷 보내고
+					UserSkillFlashResult outPacket = UserSkillFlashResult();
+					outPacket.mBeforePosition = GetPosition();
+
+					std::map<int,Player*>players;
+					GPlayerManager->GetPlayers(mGameId,&players);
+
+					for( float shortMove = 200.f; shortMove >= 0.f; shortMove -= 1.f)
+					{
+						if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
+							outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
+						else
+							break;
+					}
+					SetPosition(outPacket.mAfterPosition);
+					mClient->Broadcast(&outPacket);
 				}break;
 			default:
 				break;
@@ -695,7 +704,7 @@ void Player::ConsumeItem(Item* item)
 	default:
 		break;
 	}
-	
+
 	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;

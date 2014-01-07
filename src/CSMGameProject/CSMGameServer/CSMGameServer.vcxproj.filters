@@ -491,9 +491,6 @@
     <Filter Include="Game\GameManager">
       <UniqueIdentifier>{d7a8d297-71b2-4b95-a7e8-fa2cd0ca4faa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\UserSkill">
-      <UniqueIdentifier>{0d0c697a-795e-4207-a6cf-fa083ede5862}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill">
       <UniqueIdentifier>{05cd51dd-94e1-4167-9a65-3850d8913588}</UniqueIdentifier>
     </Filter>
