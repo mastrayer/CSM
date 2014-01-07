@@ -17,7 +17,7 @@ public:
 	void UpdatePlayerRotation(int _playerId, float angle);
 	void UpdatePlayers();
 
-	Player* GetPlayer(int playerId) { return mPlayers.find(playerId)->second; };
+	Player* GetPlayer(int playerId) { if(mPlayers.find(playerId) != mPlayers.end()) return mPlayers.find(playerId)->second; else return nullptr; };
 
 	int GetNewPlayerId();
 	int GetPlayersLength() { return mPlayersLength; };

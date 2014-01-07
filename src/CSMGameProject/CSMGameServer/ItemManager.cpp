@@ -20,6 +20,8 @@ void ItemManager::Update(float dTime)
 		if( (*itemIt)->IsLive() == false)
 		{
 			RemoveItem((*itemIt));
+			if( itemIt != mItems.end() ) itemIt++;
+			break;
 		}
 		if( (*itemIt)->IsConsumed() == false )
 		{
