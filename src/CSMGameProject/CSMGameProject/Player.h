@@ -40,6 +40,11 @@ private:
 	void Render();
 	void Update( float dTime );
 
+	void InitStopImage();
+	void InitMoveImage();
+	void InitAttackImage();
+	void INitDieImage();
+
 private:
 	NNSprite* mDie;
 	NNAnimation* mMoveNormal;
@@ -47,11 +52,24 @@ private:
 	NNAnimation* mMoveWind;
 	NNAnimation* mMoveWater;
 	NNAnimation* mMoveEarth;
-	NNSprite* mStopNormal;
-	NNSprite* mStopFire;
-	NNSprite* mStopWind;
-	NNSprite* mStopWater;
-	NNSprite* mStopEarth;
+
+	NNAnimation* mStopNormal;
+	NNAnimation* mStopFire;
+	NNAnimation* mStopWind;
+	NNAnimation* mStopWater;
+	NNAnimation* mStopEarth;
+
+	NNAnimation* mAttackNormal;
+	NNAnimation* mAttackFire;
+	NNAnimation* mAttackWind;
+	NNAnimation* mAttackWater;
+	NNAnimation* mAttackEarth;
+
+	NNAnimation* mDieNormal;
+	NNAnimation* mDieFire;
+	NNAnimation* mDieWind;
+	NNAnimation* mDieWater;
+	NNAnimation* mDieEarth;
 
 private:
 	std::list<NNParticleSystem*> mParticleSystemList;
