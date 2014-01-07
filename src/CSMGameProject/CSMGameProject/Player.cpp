@@ -84,7 +84,7 @@ void CPlayer::TransState( PlayerState state )
 
 	case DIE:
 		
-		SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
+		//SetCenter( mDie->GetImageWidth()/2.f, mDie->GetImageHeight()/2.f );
 		//mRebirthTimer = NNLabel::Create(L"À¸¾Ó~ Áê±Ý~ XÃÊ ¿ì¸® Á» Àß ÇØº¾½Ã´Ù", L"¸¼Àº °íµñ", 40.f);
 		//mRebirthTimer->SetCenter(width / 2, height / 2 - 200);
 		break;
@@ -110,6 +110,8 @@ void CPlayer::Update( float dTime )
 
 	mPlayerUI->SetRotation( -this->GetRotation() );
 	mPlayerUI->SetHP( mHp );
+
+	mPlayerUI->SetVisible(true);
 
 	// Die
 	mDie->SetVisible( false );
@@ -245,7 +247,7 @@ void CPlayer::Update( float dTime )
 		break;
 	case DIE:
 		{
-			mDie->SetVisible( true );
+			//mDie->SetVisible( true );
 			switch (mPlayerType)
 			{
 			case TYPE_ZERO:
@@ -274,6 +276,8 @@ void CPlayer::Update( float dTime )
 				}
 				break;
 			}
+			SetRotation( 90.f/180.f*3.14f );
+			mPlayerUI->SetVisible(false);
 			mPlayerUI->SetHP( 0 );
 		}
 		break;
@@ -458,31 +462,31 @@ void CPlayer::InitAttackImage()
 }
 void CPlayer::INitDieImage()
 {
-	mDieNormal = NNAnimation::Create( 4, 0.05f, 
-		L"Resource/Sprite/Player/Normal/normal_dead1.png",
-		L"Resource/Sprite/Player/Normal/normal_dead2.png",
-		L"Resource/Sprite/Player/Normal/normal_dead3.png",
-		L"Resource/Sprite/Player/Normal/normal_dead4.png" );
-	mDieFire = NNAnimation::Create( 4, 0.05f, 
-		L"Resource/Sprite/Player/Fire/fire_dead1.png",
-		L"Resource/Sprite/Player/Fire/fire_dead2.png",
-		L"Resource/Sprite/Player/Fire/fire_dead3.png",
-		L"Resource/Sprite/Player/Fire/fire_dead4.png" );
-	mDieWater = NNAnimation::Create( 4, 0.05f, 
-		L"Resource/Sprite/Player/Water/water_dead1.png",
-		L"Resource/Sprite/Player/Water/water_dead2.png",
-		L"Resource/Sprite/Player/Water/water_dead3.png",
-		L"Resource/Sprite/Player/Water/water_dead4.png" );
-	mDieWind = NNAnimation::Create( 4, 0.05f, 
-		L"Resource/Sprite/Player/Wind/wind_dead1.png",
-		L"Resource/Sprite/Player/Wind/wind_dead2.png",
-		L"Resource/Sprite/Player/Wind/wind_dead3.png",
-		L"Resource/Sprite/Player/Wind/wind_dead4.png" );
-	mDieEarth = NNAnimation::Create( 4, 0.05f, 
-		L"Resource/Sprite/Player/Earth/earth_dead1.png",
-		L"Resource/Sprite/Player/Earth/earth_dead2.png",
-		L"Resource/Sprite/Player/Earth/earth_dead3.png",
-		L"Resource/Sprite/Player/Earth/earth_dead4.png" );
+	mDieNormal = NNAnimation::Create( 1, 0.05f, 
+		L"Resource/Sprite/Player/Normal/normal_dead1.png" );
+		//L"Resource/Sprite/Player/Normal/normal_dead2.png",
+		//L"Resource/Sprite/Player/Normal/normal_dead3.png",
+		//L"Resource/Sprite/Player/Normal/normal_dead4.png" );
+	mDieFire = NNAnimation::Create( 1, 0.05f, 
+		L"Resource/Sprite/Player/Fire/fire_dead1.png" );
+		//L"Resource/Sprite/Player/Fire/fire_dead2.png",
+		//L"Resource/Sprite/Player/Fire/fire_dead3.png",
+		//L"Resource/Sprite/Player/Fire/fire_dead4.png" );
+	mDieWater = NNAnimation::Create( 1, 0.05f, 
+		L"Resource/Sprite/Player/Water/water_dead1.png" );
+		//L"Resource/Sprite/Player/Water/water_dead2.png",
+		//L"Resource/Sprite/Player/Water/water_dead3.png",
+		//L"Resource/Sprite/Player/Water/water_dead4.png" );
+	mDieWind = NNAnimation::Create( 1, 0.05f, 
+		L"Resource/Sprite/Player/Wind/wind_dead1.png" );
+		//L"Resource/Sprite/Player/Wind/wind_dead2.png",
+		//L"Resource/Sprite/Player/Wind/wind_dead3.png",
+		//L"Resource/Sprite/Player/Wind/wind_dead4.png" );
+	mDieEarth = NNAnimation::Create( 1, 0.05f, 
+		L"Resource/Sprite/Player/Earth/earth_dead1.png" );
+		//L"Resource/Sprite/Player/Earth/earth_dead2.png",
+		//L"Resource/Sprite/Player/Earth/earth_dead3.png",
+		//L"Resource/Sprite/Player/Earth/earth_dead4.png" );
 
 	AddChild( mDieNormal );
 	AddChild( mDieFire );
