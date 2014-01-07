@@ -53,7 +53,7 @@ DamageBuff::DamageBuff(NNPoint startPosition, int itemId):Item(startPosition,ite
 		//wsprintf(temp, L"Resource/Sprite/Item/DamageBuff/%d.png", i);
 		mAnimation->AddFrameNode(temp);
 	}
-	mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
+	//mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
 
 
 	mLifeTime = 60.f;
@@ -91,7 +91,7 @@ HPBuff::HPBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
 		//wsprintf(temp, L"Resource/Sprite/Item/HPBuff/%d.png", i);
 		mAnimation->AddFrameNode(temp);
 	}
-	mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
+	//mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
 
 
 	mLifeTime = 60.f;
@@ -127,7 +127,7 @@ Flag::Flag(NNPoint startPosition, int itemId):Item(startPosition,itemId)
 		//wsprintf(temp, L"Resource/Sprite/Item/Flag/%d.png", i);
 		mAnimation->AddFrameNode(temp);
 	}
-	mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
+	//mAnimation->SetFrameTimeInSection(0.00f, 0, 0);
 
 
 	//¹«ÇÑ. //mLifeTime = ;
