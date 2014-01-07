@@ -1,0 +1,44 @@
+
+.createRoom {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 300px;
+	height: 100px;
+	margin-left: -150px;
+	margin-top: -50px;
+	border: 1px solid #444;
+	border-radius: 10px;
+	background-color: white;
+	z-index: 2;
+}
+.createRoomInner {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	box-sizing: border-box;
+}
+select {
+	width: 143px;
+	height: 25px;
+	padding: 2px;
+	margin: 4px;
+	font-size: 12pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	border: 1px solid #333;
+	border-radius: 4px;
+	box-sizing: content-box;
+}
+input[type=submit] {
+	width: 100px;
+	height: 25px;
+	padding: 2px;
+	margin: 4px;
+	font-size: 12pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: white;
+	border: 1px solid #333;
+	border-radius: 4px;
+	background-color: #444;
+	box-sizing: content-box;
+}

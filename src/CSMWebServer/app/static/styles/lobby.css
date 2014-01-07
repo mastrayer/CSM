@@ -37,6 +37,7 @@
 	height: 50px;
 	text-align: center;
 	line-height: 50px;
+	text-decoration: none;
 	font-size: 15pt;
 	font-family: 'Nanum Gothic', sans-serif;
 	color: white;
@@ -76,10 +77,10 @@
 	width: 80px;
 }
 .lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerTitle {
-	width: 300px;
+	width: 260px;
 }
 .lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerType {
-	width: 80px;
+	width: 120px;
 }
 .lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerCount {
 	width: 80px;
@@ -109,10 +110,11 @@
 	width: 80px;
 }
 .roomList li .title {
-	width: 300px;
+	width: 260px;
+	cursor: pointer;
 }
 .roomList li .type {
-	width: 80px;
+	width: 120px;
 }
 .roomList li .count {
 	width: 80px;
