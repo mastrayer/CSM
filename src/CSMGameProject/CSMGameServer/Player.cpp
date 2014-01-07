@@ -473,34 +473,25 @@ void Player::Update( float dTime)
 	case PLAYER_STATE_USERSKILL:
 		{
 			//if(mPreDelay > 0) break;
-			switch (mType)
+
+			mUserSkillDelay = 10.f;
+
+			//패킷 보내고
+			UserSkillFlashResult outPacket = UserSkillFlashResult();
+			outPacket.mBeforePosition = outPacket.mAfterPosition = GetPosition();
+
+			std::map<int,Player*>players;
+			GPlayerManager->GetPlayers(mGameId,&players);
+			
+			for( float shortMove = 250.f; shortMove >= 0.f; shortMove -= 1.f)
 			{
-			case TYPE_A:
-				{
-					mUserSkillDelay = 5.f;
-
-					//패킷 보내고
-					UserSkillFlashResult outPacket = UserSkillFlashResult();
-					outPacket.mBeforePosition = GetPosition();
-
-					std::map<int,Player*>players;
-					GPlayerManager->GetPlayers(mGameId,&players);
-
-					for( float shortMove = 200.f; shortMove >= 0.f; shortMove -= 1.f)
-					{
-						if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
-							outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
-						else
-							break;
-					}
-					SetPosition(outPacket.mAfterPosition);
-					mClient->Broadcast(&outPacket);
-				}break;
-			default:
-				break;
+				if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
+					outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
+					break;
 			}
+			SetPosition(outPacket.mAfterPosition);
+			mClient->Broadcast(&outPacket);
 			TransState(PLAYER_STATE_IDLE);
-			break;
 		}
 		break;
 	default:
