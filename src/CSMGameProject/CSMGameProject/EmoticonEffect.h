@@ -17,7 +17,6 @@ public:
 	void Update(float dTime);
 
 private:
-	static bool mIsRunning;
 	NNSprite *mIcon;
 	CPlayer *mFollower;
 };

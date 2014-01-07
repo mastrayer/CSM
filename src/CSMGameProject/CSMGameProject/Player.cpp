@@ -17,7 +17,8 @@
 
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
-	  mRebirthDelayTime(10), mTeam(0), mKillScore(0)
+	  mRebirthDelayTime(10), mTeam(0), mKillScore(0),
+	  mIsEmoticonRunning(false)
 {
 }
 
