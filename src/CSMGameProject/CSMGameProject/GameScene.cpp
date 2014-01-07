@@ -89,9 +89,10 @@ void CGameScene::Update( float dTime )
 			SetUISet( GameUISet::GetInstance() );
 		}
 
-		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+		/*GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 			CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-			,1.f));
+			,1.f));*/
+		GetCamera().SetPosition(CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition());
 
 		if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
 		{
