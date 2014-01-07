@@ -10,7 +10,7 @@ CTypeSkillBullet::CTypeSkillBullet(Player* ownerPlayer, Point position, float an
 	SetAngle(angle);
 	SetShape(CIRCLE);
 	SetRadius(24);
-	SetDamage(17);
+	SetDamage(12);
 	mDidExplosed = false;
 	SetLifeTime(0.9);
 	mAcceleraction = 800.f;

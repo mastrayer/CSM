@@ -347,7 +347,7 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-					mAttackDelay = 1.f;
+					mAttackDelay = 0.7f;
 					new ATypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -359,7 +359,7 @@ void Player::Update( float dTime)
 				}break;
 			case TYPE_C:
 				{	
-					mAttackDelay = 0.4f;
+					mAttackDelay = 0.5f;
 					new CTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -459,7 +459,7 @@ void Player::Update( float dTime)
 				{
 					if(mDSkillPostDelay <= 0)
 					{
-						mTypeSkillDelay = 5.f;
+						mTypeSkillDelay = 3.0f;
 						TransState(PLAYER_STATE_IDLE);
 					}
 					mDSkillPostDelay -=dTime;
