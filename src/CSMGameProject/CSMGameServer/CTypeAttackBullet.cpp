@@ -11,7 +11,7 @@ CTypeAttackBullet::CTypeAttackBullet(Player* ownerPlayer, Point position, float 
 	SetAngle(angle);
 	SetShape(CIRCLE);
 	SetRadius(4);
-	SetDamage(4);
+	SetDamage(6);
 	mDidExplosed = false;
 	SetLifeTime(0.3);
 }
@@ -43,5 +43,5 @@ void CTypeAttackBullet::Boom()
 	mLifeTime = -1;
 	CTypeAttackEndResult outPacket = CTypeAttackEndResult();
 	outPacket.mIndex = GetBulletNumber();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }

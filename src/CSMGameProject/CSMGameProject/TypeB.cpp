@@ -1,5 +1,7 @@
 
 #include "TypeB.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
 
 BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 {
@@ -17,13 +19,15 @@ BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 	mHealAnimation->SetFrameTimeInSection(0.03f, 0, 23);
 
 	mLifeTime = mHealAnimation->GetPlayTime();
-	mHealAnimation->SetCenter(128.f, 128.f);
+	mHealAnimation->SetCenter(64.f, 64.f);
 	//mDirection = std::atan2f(targetPosition.GetY() - startPosition.GetX(), targetPosition.GetX() - startPosition.GetX());
 	//mMoveSpeed = 100.f;
 	//mIsCrash = false;
 
 	//mHealAnimation->SetRotation(mDirection);
 	AddChild(mHealAnimation);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_skill.wav", false));
 }
 BTypeSkillEffect::~BTypeSkillEffect()
 {
@@ -93,6 +97,8 @@ BTypeAttackEffect::BTypeAttackEffect(float angle, NNPoint startPosition, int ind
 	SetCenter(65.f, 65.f);
 
 	AddChild(mBullet);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_attack.wav"));
 }
 BTypeAttackEffect::~BTypeAttackEffect()
 {

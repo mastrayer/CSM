@@ -10,7 +10,7 @@ BTypeSkill::BTypeSkill(Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(
 	BTypeSkillBullet* bullet = new BTypeSkillBullet(ownerPlayer,mStartPosition);
 	BTypeSkillShootResult outPacket = BTypeSkillShootResult();
 	outPacket.mStartPosition = mStartPosition;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }
 
 

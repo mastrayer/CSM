@@ -13,8 +13,8 @@ enum TileType
 	BARRACK_C,
 	BARRACK_D,
 	BARRACK_OUT,
-	STARTING_POINT_A,
-	STARTING_POINT_B,
+	STARTING_Point_A,
+	STARTING_Point_B,
 };
 
 class Tile
@@ -44,12 +44,6 @@ public:
 	//void CreateMap(NNXML* xml, );
 	void convertFileToMap(std::wstring path);
 
-	static GameMap* Create(std::wstring path)
-	{
-		GameMap* pInstance = new GameMap(path);
-		return pInstance;
-	}
-	//NNCREATE_FUNC(GameMap);
 	int GetWidth(){ return m_Width; }
 	int GetHeight(){ return m_Height; }
 
@@ -67,5 +61,3 @@ private:
 protected:
 	Point positionToArrayIndex( Point p );
 };
-
-extern GameMap* GGameMap;

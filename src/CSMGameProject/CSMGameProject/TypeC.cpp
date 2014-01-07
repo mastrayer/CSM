@@ -1,5 +1,7 @@
 
 #include "TypeC.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
 
 CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 {
@@ -23,6 +25,8 @@ CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 	mLifeTime = mAnimation->GetPlayTime();
 
 	AddChild(mAnimation);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.wav"));
 }
 CTypeSkillEffect::~CTypeSkillEffect()
 {
@@ -64,6 +68,8 @@ CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition, int ind
 	SetCenter(32.f, 32.f);
 
 	AddChild(mBullet);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_attack.wav"));
 }
 CTypeAttackEffect::~CTypeAttackEffect()
 {

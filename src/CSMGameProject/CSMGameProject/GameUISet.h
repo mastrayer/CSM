@@ -10,6 +10,7 @@
 #include "NNInputSystem.h"
 #include "config.h"
 
+#define SKILL_COUNT 2
 
 class CStatusWindow : public NNObject
 {
@@ -23,6 +24,7 @@ public:
 
 	void GetAllPlayerInfo();
 
+	
 	NNCREATE_FUNC(CStatusWindow);
 private:
 	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
@@ -35,6 +37,9 @@ private:
 class GameUISet : public NNUISet
 {
 public:
+	static GameUISet* GetInstance();
+	static void ReleaseInstance();
+
 	GameUISet();
 	virtual ~GameUISet();
 	void Init();
@@ -42,24 +47,24 @@ public:
 	void Render();
 	void Update(float dTime);
 
-	void ControlSkillUI(PlayerState skillType, float dTime);
+	void SetSkillCooldown(PlayerState type) { mIsCooldown[type - TYPE_ACTIVE_SKILL] = true; }
 
-	float GetTypeSkillCooltime() { return mSkillCooltime[0]; }
- 	float GetUserSkillCooltime() { return mSkillCooltime[1]; }
- 
-	void SetTypeSkillCooltime(float value) { mSkillCooltime[0] = value; }
-	void SetUserSkillCooltime(float value) { mSkillCooltime[1] = value; }
-
-	NNCREATE_FUNC(GameUISet);
+	void ControlSkillTimer(float dTime);
 
 private:
+	static GameUISet* mInstance;
+
 	NNLabel* mFPSLabel;
 
 	NNSprite *mTypeSkillUI[5];
 	NNSprite *mUserSkillUI;
+
 	NNLabel *mTypeSKillTimer;
 	NNLabel *mUserSkillTimer;
-	float mSkillCooltime[SKILL_COUNT];
+	float mSkillCooltime[PlayerType::TYPE_D];
+	float mNowSkillCooltime[SKILL_COUNT];
+	wchar_t mSkillCooltimeBuff[2][5];
+	bool mIsCooldown[SKILL_COUNT];
 
 	NNSprite *mCharacterUIFrame;
 	NNSprite *mSkillUIFrame;
@@ -75,7 +80,6 @@ private:
 	
 	CPlayer *mMyPlayer;
 	wchar_t mFPSLabelBuff[100];
-	wchar_t mSkillCooltimeBuff[2][5];
 
 	CStatusWindow *mStatusWindow;
 	

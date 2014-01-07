@@ -15,6 +15,7 @@
 #include "GameManager.h"
 #include "BulletManager.h"
 #include "SkillManager.h"
+#include "ItemManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
 
@@ -41,10 +42,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	GDatabaseJobManager = new DatabaseJobManager ;
 	GResourceManager = new NNResourceManager;
 	GPlayerManager = new PlayerManager;
-	GGameMap = new GameMap(L"map/sample2.csm");
-	GGameManager = new GameManager(10);
+	GGameManager = new GameManager();
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
+	GItemManager = new ItemManager();
 
 	/// DB Helper 초기화
 	if ( false == DbHelper::Initialize(DB_CONN_STR) )
@@ -126,7 +127,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	// 윈속 종료
 	WSACleanup() ;
 
-	delete GGameMap;
 	delete GGameManager;
 	delete GPlayerManager;
 	delete GBulletManager;

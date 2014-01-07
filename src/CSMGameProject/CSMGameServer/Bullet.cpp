@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "BulletManager.h"
 #include "EllipseCollisionTest.h"
+#include "GameManager.h"
 Bullet::Bullet(Player* ownerPlayer):mShape(CIRCLE),mVelocity(0),mAcceleraction(0),mAngle(0),mLifeTime(-1),mRotation(0),mPosition(Point()),mOwnerPlayer(ownerPlayer),mDamage(0),mRadius(0),mXRadius(0),mYRadius(0),mWidth(0),mHeight(0),mCenter(Point(0,0)),mNumber(-1),mIsTeamKill(false)
 {
 	GBulletManager->AddBullet(this);
@@ -48,8 +49,8 @@ void Bullet::JudgeCollision(Player* player)
 			case ELLIPSE:
 				{
 					EllipseCollisionTest ellipseCollisionTest(10);
-					if(ellipseCollisionTest.collide(mPosition.x, mPosition.y, cos(mRotation) * mXRadius, sin(mRotation) * mXRadius, mYRadius,
-						player->GetPosition().x, player->GetPosition().y,player->GetRadius(),0,player->GetRadius() ) == true)
+					if(ellipseCollisionTest.collide(mPosition.x, mPosition.y, cosf(mRotation) * mXRadius, sinf(mRotation) * mXRadius, mYRadius,
+						player->GetPosition().x, player->GetPosition().y,(float)player->GetRadius(),0.f,(float)player->GetRadius() ) == true)
 					{
 						Hit(player, mOwnerPlayer);
 					}
@@ -57,29 +58,29 @@ void Bullet::JudgeCollision(Player* player)
 				break;
 			case RECTANGLE:
 				{
-					Point circlePoints[32];
-					for( int i=0; i<32; i++)
+					Point circlePoints[64];
+					for( int i=0; i<64; i++)
 					{
-						circlePoints[i] = Point(cos(i*3.14f/32*2) * player->GetRadius(),sin(i*3.14f/32*2) * player->GetRadius());
+						circlePoints[i] = Point(cos(i*3.14f/64*2) * player->GetRadius(),sin(i*3.14f/64*2) * player->GetRadius());
 					}
 					Point rectanglePoints[4];
 					rectanglePoints[0] = Point( mPosition.x - mCenter.x, mPosition.y - mCenter.y );
 					rectanglePoints[1] = Point( mPosition.x - mCenter.x, mPosition.y - mCenter.y + mHeight );
 					rectanglePoints[2] = Point( mPosition.x - mCenter.x + mWidth, mPosition.y - mCenter.y + mHeight );
 					rectanglePoints[3] = Point( mPosition.x - mCenter.x + mWidth, mPosition.y + mCenter.y );
-					if(PolyCollisionTest(circlePoints,32,rectanglePoints,4) == true)
+					if(PolyCollisionTest(circlePoints,64,rectanglePoints,4) == true)
 					{
 					}
 				}
 				break;
 			case POLY:
 				{
-					Point circlePoints[32];
-					for( int i=0; i<32; i++)
+					Point circlePoints[64];
+					for( int i=0; i<64; i++)
 					{
-						circlePoints[i] = Point(cos(i*3.14f/32*2) * player->GetRadius(),sin(i*3.14f/32*2) * player->GetRadius());
+						circlePoints[i] = Point(cos(i*3.14f/64*2) * player->GetRadius(),sin(i*3.14f/64*2) * player->GetRadius());
 					}
-					if(PolyCollisionTest(circlePoints,32,mPoints,mPointCount) == true)
+					if(PolyCollisionTest(circlePoints,64,mPoints,mPointCount) == true)
 					{
 						Hit(player, mOwnerPlayer);
 					}
@@ -104,7 +105,7 @@ bool Bullet::PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int 
 	for( int i = 0; i<ACounts; i++)
 	{
 		Point axis = APoints[i] - APoints[(i+1)%ACounts];
-		Point normalAxis = Point().Rotate(axis,3.14/2);
+		Point normalAxis = Point().Rotate(axis,3.14f/2.f);
 		float theta = atan2(normalAxis.y,normalAxis.x);
 		float AMaxX = 0;
 		float AMinX = 0;
@@ -145,9 +146,9 @@ bool Bullet::CouldBulletGoPosition(float radius, Point position)
 	{
 		for( int y = int(position.y - radius)/64; y <= int(position.y + radius)/64; y += 1 )//64 = tilesize
 		{
-			if (GGameMap->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameMap->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT)
+			if (GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*64.f,y*64.f)) != TILE &&GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->GetTileType(Point(x*64.f,y*64.f)) != BARRACK_OUT)
 				return false;
-			if ( GGameMap->isValidTile(Point(x*64.f,y*64.f)) == false)
+			if ( GGameManager->GetGameMap(mOwnerPlayer->GetGameId())->isValidTile(Point(x*64.f,y*64.f)) == false)
 				return false;
 		}
 	}

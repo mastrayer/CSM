@@ -13,7 +13,7 @@ CTypeSkill::CTypeSkill(float angle, Point startPosition, Player* ownerPlayer):mO
 	CTypeSkillShootResult outPacket = CTypeSkillShootResult();
 	outPacket.mAngle = mAngle;
 	outPacket.mStartPosition = mStartPosition;
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }
 
 

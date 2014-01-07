@@ -13,6 +13,7 @@
 #include "TypeB.h"
 #include "TypeC.h"
 #include "UserSkillEffect.h"
+#include "GameUISet.h"
 
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
@@ -28,16 +29,49 @@ void CPlayer::Init()
 {
 	/* Player Animation, Sprite Init */
 	mDie = NNSprite::Create( L"Resource/Sprite/Player/die.png" );
-	mStop = NNSpriteAtlas::Create( L"Resource/Sprite/Player/player.png" );
-	mStop->SetCutSize( NNSize(0,41,65,83) );
-	mMove = NNAnimationAtlas::Create( L"Resource/Sprite/Player/player.png", 3, 0.05f, NNSize(0,0,65,41), NNSize(0,41,65,83), NNSize(0,83,65,125) );
+	//mStop = NNSpriteAtlas::Create( L"Resource/Sprite/Player/player.png" );
+	//mStop->SetCutSize( NNSize(0,41,65,83) );
+	//mMove = NNAnimationAtlas::Create( L"Resource/Sprite/Player/player.png", 3, 0.05f, NNSize(0,0,65,41), NNSize(0,41,65,83), NNSize(0,83,65,125) );
+	mStopNormal = NNSprite::Create( L"Resource/Sprite/Player/Normal/normal1.png" );
+	mStopFire = NNSprite::Create( L"Resource/Sprite/Player/Fire/fire1.png" );
+
+	mMoveNormal = NNAnimation::Create( 5, 0.1f, 
+		L"Resource/Sprite/Player/Normal/normal1.png",
+		L"Resource/Sprite/Player/Normal/normal2.png",
+		L"Resource/Sprite/Player/Normal/normal3.png",
+		L"Resource/Sprite/Player/Normal/normal4.png",
+		L"Resource/Sprite/Player/Normal/normal5.png" );
+	
+	mMoveNormal->GetFrame(0)->SetFrameTime(0.15f);
+	mMoveNormal->GetFrame(1)->SetFrameTime(0.13f);
+	mMoveNormal->GetFrame(2)->SetFrameTime(0.11f);
+	mMoveNormal->GetFrame(3)->SetFrameTime(0.09f);
+	mMoveNormal->GetFrame(4)->SetFrameTime(0.07f);
+
+	mMoveFire = NNAnimation::Create( 5, 0.1f, 
+		L"Resource/Sprite/Player/Fire/fire1.png",
+		L"Resource/Sprite/Player/Fire/fire2.png",
+		L"Resource/Sprite/Player/Fire/fire3.png",
+		L"Resource/Sprite/Player/Fire/fire4.png",
+		L"Resource/Sprite/Player/Fire/fire5.png" );
+
+	mMoveFire->GetFrame(0)->SetFrameTime(0.15f);
+	mMoveFire->GetFrame(1)->SetFrameTime(0.13f);
+	mMoveFire->GetFrame(2)->SetFrameTime(0.11f);
+	mMoveFire->GetFrame(3)->SetFrameTime(0.09f);
+	mMoveFire->GetFrame(4)->SetFrameTime(0.07f);
+	
 	AddChild( mDie );
-	AddChild( mStop );
-	AddChild( mMove );
+	AddChild( mStopNormal );
+	AddChild( mStopFire );
+	AddChild( mMoveNormal );
+	AddChild( mMoveFire );
 
 	mDie->SetVisible( false );
-	mStop->SetVisible( false );
-	mMove->SetVisible( false );
+	mStopNormal->SetVisible( false );
+	mMoveNormal->SetVisible( false );
+	mStopFire->SetVisible( false );
+	mMoveFire->SetVisible( false );
 
 	TransState(PlayerState::IDLE);
 
@@ -45,48 +79,8 @@ void CPlayer::Init()
 	mPlayerUI->SetParent( this );
 	mPlayerUI->SetPosition( 21.f, 24.f );
 	AddChild( mPlayerUI );
-
-	ZeroMemory( mSkillCount, sizeof(mSkillCount) );
-	ZeroMemory( mSkillCooldown, sizeof(mSkillCooldown) );
 }
 
-void CPlayer::CreateSkillEffect(PlayerType type, SkillType skillType)
-{
-	switch (skillType)
-	{
-	case SkillType::TYPE_SKILL:
-		
-		//if (type == TYPE_A) EffectManager::GetInstance()->AddEffect();
-		//else if (type == TYPE_B) EffectManager::GetInstance()->AddEffect();
-		//else if (type == TYPE_C) EffectManager::GetInstance()->AddEffect();
-
-		break;
-	case SkillType::USER_SKILL:
-
-		break;
-	}
-
-// 	switch (type)
-// 	{
-// 	case TYPE_A :
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
-// 		break;
-// 
-// 	case TYPE_B :
-// 		//if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BUserEffect(this));
-// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Dash(this));
-// 		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Flash(this));
-// 		break;
-// 
-// 	case TYPE_C :
-// 
-// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CUserEffect(this));
-// 		break;
-// 	}
-
-}
 void CPlayer::TransState( PlayerState state )
 {
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
@@ -120,19 +114,11 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case TYPE_ACTIVE_SKILL:
-		if (GetSkillCooldown(SkillType::TYPE_SKILL) == false)
-		{
-			SetSkillCooldown(true, SkillType::TYPE_SKILL);
-			CreateSkillEffect(mPlayerType, SkillType::TYPE_SKILL);
-		}
+		GameUISet::GetInstance()->SetSkillCooldown(TYPE_ACTIVE_SKILL);
 		break;
 
 	case USER_ACTIVE_SKILL:
-		if (GetSkillCooldown(SkillType::USER_SKILL) == false)
-		{
-			SetSkillCooldown(true, SkillType::USER_SKILL);
-			CreateSkillEffect(mPlayerType, SkillType::USER_SKILL);
-		}
+		GameUISet::GetInstance()->SetSkillCooldown(USER_ACTIVE_SKILL);
 		break;
 
 	default:
@@ -152,8 +138,27 @@ void CPlayer::Update( float dTime )
 	case IDLE:
 		{
 			mDie->SetVisible( false );
-			mStop->SetVisible( true );
-			mMove->SetVisible( false );
+			switch (mPlayerType)
+			{
+			case TYPE_ZERO:
+				{
+					mStopNormal->SetVisible( true );
+					mMoveNormal->SetVisible( false );
+
+					mStopFire->SetVisible( false );
+					mMoveFire->SetVisible( false );
+				}
+				break;
+			case TYPE_A:
+				{
+					mStopNormal->SetVisible( false );
+					mMoveNormal->SetVisible( false );
+
+					mStopFire->SetVisible( true );
+					mMoveFire->SetVisible( false );
+				}
+				break;
+			}
 		}
 		break;
 	case WALK:
@@ -161,30 +166,55 @@ void CPlayer::Update( float dTime )
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
 			mDie->SetVisible( false );
-			mStop->SetVisible( false );
-			mMove->SetVisible( true );
+			switch (mPlayerType)
+			{
+			case TYPE_ZERO:
+				{
+					mStopNormal->SetVisible( false );
+					mMoveNormal->SetVisible( true );
+
+					mStopFire->SetVisible( false );
+					mMoveFire->SetVisible( false );
+				}
+				break;
+			case TYPE_A:
+				{
+					mStopNormal->SetVisible( false );
+					mMoveNormal->SetVisible( false );
+
+					mStopFire->SetVisible( false );
+					mMoveFire->SetVisible( true );
+				}
+				break;
+			}
 			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}break;
 	case ATTAACK:
 		{
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case DIE:
 		{
 			mDie->SetVisible( true );
-			mStop->SetVisible( false );
-			mMove->SetVisible( false );
+			mStopNormal->SetVisible( false );
+			mMoveNormal->SetVisible( false );
+
+			mStopFire->SetVisible( false );
+			mMoveFire->SetVisible( false );
 			mPlayerUI->SetHP( 0 );
 		}
 		break;
 	case USER_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	default:

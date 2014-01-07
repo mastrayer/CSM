@@ -5,26 +5,44 @@
 #include "NNNetworkSystem.h"
 #include "PacketHandler.h"
 #include "EffectManager.h"
+#include "NNAudioSystem.h"
+#include "NNResourceManager.h"
 
 #include "PlayerManager.h"
 #include "GameManager.h"
 
 #include "NNLogger.h"
 
-CGameScene::CGameScene(void) : 
-	mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
-	misInit(false)
+CGameScene::CGameScene(std::wstring path) :
+mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
+misInit(false),
+mLoadingComplete(false)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
+ 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
+
 	// GameMap Create
-	mGameMap = CGameMap::Create(L"Resource/map/sample2.csm");
+	mGameMap = CGameMap::Create(path);
 
 	AddChild( mGameMap );
 
 	// EffectManager
 	AddChild( EffectManager::GetInstance() , 1);
+
+	// Sound Preload
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/player_walk.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/player_hit.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/fire_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.wav");
+	NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_skill.wav");
+
 
 	InitNetworkSetting();
 }
@@ -42,11 +60,24 @@ void CGameScene::Init()
 void CGameScene::Render()
 {
 	NNScene::Render();
+	if (mLoadingComplete == false)
+		mBackgroundImage->Render();
 }
 
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
+
+	if (mLoadingComplete == false)
+	{
+		if (mBackgroundImage->GetOpacity() > 0.f)
+			mBackgroundImage->SetOpacity(mBackgroundImage->GetOpacity() - 0.01f);
+		else
+		{
+			mLoadingComplete = true;
+			delete mBackgroundImage;
+		}
+	}
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
@@ -55,12 +86,52 @@ void CGameScene::Update( float dTime )
 		{
 			misInit = true;
 			// UI Setting
-			SetUISet( GameUISet::Create() );
+			SetUISet( GameUISet::GetInstance() );
 		}
-		
-		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
+		{
+			GetCamera().SetPosition( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() );
+		}
+		else
+		{
+			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-				,0.f));
+				,0.97f));
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SMILE;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState('2') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SAD;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('3') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::ANGRY;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('4') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::HELP;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
 
 		if( isChangedGameKeyStates() == true )
 		{
@@ -118,6 +189,7 @@ void CGameScene::InitNetworkSetting()
 	mDTypeSkillShootHandler = new DTypeSkillShootHandler();
 	mDTypeSkillEndHandler = new DTypeSkillEndHandler();
 
+	mEmoticonHandler = new EmoticonHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -140,12 +212,16 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPEATTACK_SHOOT, mDTypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_SHOOT, mDTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
+
 
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
+	mLoginHandler->mLoginRequestPacket.mGameId = 0;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

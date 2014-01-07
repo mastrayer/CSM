@@ -50,6 +50,14 @@
 #define PKT_SC_USERSKILL_DASH 25
 
 #define PKT_SC_PLAYER_KILLSCORE_UPDATE 26
+#define PKT_SC_ITEM_WILLCOME 27
+#define PKT_SC_ITEM_COME 28
+#define PKT_SC_ITEM_PLAYER_CONSUME 29
+#define PKT_SC_ITEM_PLAYER_DROP 30
+
+#define PKT_CS_EMOTICON 31
+
+#define PKT_SC_EMOTICON 32
 
 struct GameKeyStates
 {
@@ -92,6 +100,8 @@ struct LoginRequest : public NNPacketHeader
 		mSize = sizeof(LoginRequest);
 		mType = PKT_CS_LOGIN;
 	}
+	int mGameId;
+	int mPlayerId;
 };
 struct LoginResult : public NNPacketHeader
 {
@@ -329,5 +339,67 @@ struct DTypeSkillEndResult : public NNPacketHeader
 		mType = PKT_SC_D_TYPESKILL_END;
 	}
 	int mIndex;
+};
+struct ItemWillComeResult : public NNPacketHeader
+{
+	ItemWillComeResult()
+	{
+		mSize = sizeof(ItemWillComeResult);
+		mType = PKT_SC_ITEM_WILLCOME;
+	}
+	int mItemType;
+	int mLeftTime;
+};
+struct ItemComeResult : public NNPacketHeader
+{
+	ItemComeResult()
+	{
+		mSize = sizeof(ItemComeResult);
+		mType = PKT_SC_ITEM_COME;
+	}
+	int mItemType;
+	NNPoint mPosition;
+};
+struct ItemPlayerConsumeResult : public NNPacketHeader
+{
+	ItemPlayerConsumeResult()
+	{
+		mSize = sizeof(ItemPlayerConsumeResult);
+		mType = PKT_SC_ITEM_PLAYER_CONSUME;
+	}
+	int mItemType;
+	int mPlayerId;
+};
+struct ItemPlayerDropResult : public NNPacketHeader
+{
+	ItemPlayerDropResult()
+	{
+		mSize = sizeof(ItemPlayerDropResult);
+		mType = PKT_SC_ITEM_PLAYER_DROP;
+	}
+	int mItemType;
+	int mPlayerId;
+};
+
+struct EmoticonRequest : public NNPacketHeader
+{
+	EmoticonRequest()
+	{
+		mSize = sizeof(EmoticonRequest);
+		mType = PKT_CS_EMOTICON;
+	}
+	int mPlayerId;
+	int mEmoticonNumber;
+};
+
+struct EmoticonResult : public NNPacketHeader
+{
+	EmoticonResult()
+	{
+		mSize = sizeof(EmoticonResult);
+		mType = PKT_SC_EMOTICON;
+	}
+	int mPlayerId;
+	int mEmoticonNumber;
 };
 #pragma pack(pop)

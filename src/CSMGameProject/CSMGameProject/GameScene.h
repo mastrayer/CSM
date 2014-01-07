@@ -41,19 +41,30 @@ private:
 	DTypeSkillShootHandler* mDTypeSkillShootHandler;
 	DTypeSkillEndHandler* mDTypeSkillEndHandler;
 
+	EmoticonHandler* mEmoticonHandler;
+
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
 
 public:
-	CGameScene(void);
+	CGameScene(std::wstring path);
 	virtual ~CGameScene(void);
 	void Init();
 
 	void Render();
 	void Update( float dTime );
-	NNCREATE_FUNC(CGameScene);
+
+	static CGameScene* Create(std::wstring path)
+	{
+		CGameScene* pInstance = new CGameScene(path);
+		pInstance->Init();
+		return pInstance;
+	}
 private:
+	NNSprite *mBackgroundImage;
+	bool mLoadingComplete;
+
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();
 	float GetNowAngle();
