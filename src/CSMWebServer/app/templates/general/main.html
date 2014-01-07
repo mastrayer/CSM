@@ -1,7 +1,72 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="ko">
+	<head>
+		<title>CSM :: Intro</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="type/css" href="/static/styles/normalize.css" />
+		<link rel="stylesheet" type="type/css" href="/static/styles/common.css" />
+		<link rel="stylesheet" type="type/css" href="/static/styles/main.css" />
+	</head>
+		<script type="text/javascript">
+			function plugin0() {
+				return document.getElementById('plugin0');
+			}
+			plugin = plugin0;
+			function addEvent(obj, name, func) {
+				if (obj.attachEvent) {
+					obj.attachEvent("on"+name, func);
+				} else {
+					obj.addEventListener(name, func, false);
+				}
+			}
 
-{% block title %} Main {% endblock %}
+			isLoad = false;
 
-{% block content %}
-	
-{% endblock %}
+			function pluginLoaded() {
+				isLoad = true;
+			}
+			function testEvent() {
+				if (isLoad == true ) {
+					plugin().testEvent();
+				} else {
+					location.href = ''; // 인스톨러 파일 링크
+				}
+			}
+			function pluginValid() {
+				if (plugin().valid) {
+					alert('되요');
+				} else {
+					alert('안되요');
+				}
+			}
+		</script>
+	<body>
+		<object id="plugin0" type="application/x-csm" width="0" height="0" border="0">
+			<param name="onload" value="pluginLoaded" />
+		</object>
+		
+		<div class="bg"></div>
+
+		<div class="gameTitle">레전드 오브 리그 <span>: 정령왕</span></div>
+
+		<div class="mainNav">
+			<div class="startBtn" onclick="javascript:testEvent();">
+				Start!
+			</div>
+			<ul class="menuList">
+				{% if not user %}
+				<li>로그인</li>
+				<li>회원가입</li>
+				{% else %}
+				<li>정보보기</li>
+				<li>로그아웃</li>
+				{% endif %}
+			</ul>
+		</div>
+
+		<div class='footer'>
+			<a class='title'>레전드 오브 리그: 정령왕</a>
+			<span class='creater'>CSM - 김지환, 남세현, 이선협, 장문익</span>
+		</div>
+	</body>
+</html>
