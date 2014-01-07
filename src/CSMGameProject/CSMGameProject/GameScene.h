@@ -63,7 +63,9 @@ public:
 	}
 private:
 	NNSprite *mBackgroundImage;
+	NNSprite *mIntro1, *mIntro2;
 	bool mLoadingComplete;
+	bool mIsKeyDown;
 
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();

@@ -27,5 +27,6 @@ public:
 private:
 	float mCount;
 	NNSprite *mBackgroundImage;
+	NNSprite *mIntro;
 	std::wstring mPath;
 };

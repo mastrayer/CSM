@@ -16,12 +16,14 @@
 CGameScene::CGameScene(std::wstring path) :
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false)
+mLoadingComplete(false), mIsKeyDown(false)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
  	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
+	mIntro1 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
+	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
 
 	// GameMap Create
 	mGameMap = CGameMap::Create(path);
@@ -61,14 +63,28 @@ void CGameScene::Render()
 {
 	NNScene::Render();
 	if (mLoadingComplete == false)
+	{
 		mBackgroundImage->Render();
+
+		if (mIsKeyDown == false)
+		{
+			mIntro1->Render();
+			mIntro2->Render();
+		}
+	}
 }
 
 void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
-	if (mLoadingComplete == false)
+	if (mIsKeyDown == false && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN)
+	{
+		mIsKeyDown = true;
+		
+	}
+
+	if (mIsKeyDown == true && mLoadingComplete == false)
 	{
 		if (mBackgroundImage->GetOpacity() > 0.f)
 			mBackgroundImage->SetOpacity(mBackgroundImage->GetOpacity() - 0.01f);
@@ -76,6 +92,8 @@ void CGameScene::Update( float dTime )
 		{
 			mLoadingComplete = true;
 			delete mBackgroundImage;
+			delete mIntro1;
+			delete mIntro2;
 		}
 	}
 

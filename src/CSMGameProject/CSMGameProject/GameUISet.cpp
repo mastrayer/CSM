@@ -64,7 +64,7 @@ GameUISet::GameUISet()
 
 	mKillBar[RED] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointRedBar.png");
 	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
-	//mRedKillBar->SetScaleX(-1.f);
+	//mRedKillBar->SetSc	aleX(-1.f);
 
 	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/ZeroTypeSkillUI.png");
 	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
