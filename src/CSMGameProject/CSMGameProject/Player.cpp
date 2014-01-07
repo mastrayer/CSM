@@ -127,7 +127,7 @@ void CPlayer::Update( float dTime )
 	mMoveFire->SetVisible( false );
 	mAttackFire->SetVisible( false );
 	mDieFire->SetVisible( false );
-
+	
 	// Water
 	mStopWater->SetVisible( false );
 	mMoveWater->SetVisible( false );
