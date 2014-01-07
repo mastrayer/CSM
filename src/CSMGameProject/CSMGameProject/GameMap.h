@@ -72,8 +72,6 @@ public:
 	}
 	//NNCREATE_FUNC(CGameMap);
 	
-	
-
 private:
 	NNSprite* mMapSprite;
 	NNXML* mMapXMLData;
