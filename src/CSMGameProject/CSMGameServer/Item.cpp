@@ -7,14 +7,15 @@ Item::Item()
 {
 
 }
-Item::Item(int id, Point position)
+Item::Item(int itemId,int gameId, Point position)
 {
-	mItemId = id;
+	mItemId = itemId;
+	mGameId = gameId;
 	mPosition = position;
 	ItemComeResult outPacket = ItemComeResult();
 	outPacket.mItemType = GetItemType();
 	outPacket.mPosition = GetPosition();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 }
 
 
@@ -30,5 +31,5 @@ void Item::ConsumeBy(int playerId)
 
 void Item::RemoveEffect()
 {
-
+	GPlayerManager->GetPlayer(mOwnerId)->DropItem(this);
 }

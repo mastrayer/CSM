@@ -1,22 +1,43 @@
 #pragma once
+#include "GameMap.h"
+#include "Map"
+#include "DeathMatch44.h"
+#include "DeathMatch88.h"
+#include "FlagCaptureGame.h"
+#include "Game.h"
+
+#define DEATHMATCH44 0
+#define DEATHMATCH88 1
+#define FLAGCAPTURE 2
+
+
 class GameManager
 {
 public:
-	GameManager( int killLimit );
+	GameManager( void );
 	~GameManager(void);
-	void DiePlayer(int team);
-	int GiveTeamNumber();
-	void EndOfGame(int winnerTeam);
-	void LogOutPlayer(int team);
-	int GetKillLimit() { return mKillLimit; }
-	int* GetKillScore() { return mKillScore; }
+	void DiePlayer(int playerId);
+	int GenerateTeamNumber(int gameId);
+	void EndOfGame(int playerId);
+	void LogOutPlayer(int playerId);
+	int GetKillLimit(int gameId) { return mKillLimit[gameId]; }
+	int* GetKillScore(int gameId) { return mKillScore[gameId]; }
+	void AddScore(int gameId, int team, int scoreAmount);
+
+	void NewGame(int gameId, int mapType);
+
+	GameMap* GetGameMap(int gameId){ return mGameMap[mGameMapTypes[gameId]]; }
+	std::map<int, Game*>& GetGames(){ return mGames; }
+private:
+	void LoadMap(); // in gameManager Init
 
 private:
-	int mPlayerCount[2];
-	int mKillScore[2];
-	int mKillLimit;
+	int mPlayerCount[64][2];
+	int mKillScore[64][2];
+	int mKillLimit[64];
+	GameMap* mGameMap[4];
+	std::map<int, int> mGameMapTypes;
+	std::map<int, Game*> mGames;
 };
-
-
 
 extern GameManager* GGameManager;

@@ -51,5 +51,5 @@ void BTypeAttackBullet::Boom()
 	mDidExplosed = true;
 	BTypeAttackEndResult outPacket = BTypeAttackEndResult();
 	outPacket.mIndex = GetBulletNumber();
-	GClientManager->BroadcastPacket(nullptr,&outPacket);
+	GClientManager->BroadcastPacket(nullptr,&outPacket, mOwnerPlayer->GetGameId());
 }

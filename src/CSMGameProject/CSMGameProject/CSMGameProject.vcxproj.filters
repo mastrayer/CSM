@@ -100,6 +100,9 @@
     <Filter Include="Game\Scene\LoadScene">
       <UniqueIdentifier>{3b0d6841-45d3-444e-bcf4-5ed287f253c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Emoticon">
+      <UniqueIdentifier>{784b2b18-91c3-4cc7-bb6f-f9f4086e0b38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -229,6 +232,12 @@
     <ClCompile Include="LoadScene.cpp">
       <Filter>Game\Scene\LoadScene</Filter>
     </ClCompile>
+    <ClCompile Include="EmoticonEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Emoticon</Filter>
+    </ClCompile>
+    <ClCompile Include="EmoticonHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -311,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="LoadScene.h">
       <Filter>Game\Scene\LoadScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EmoticonEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Emoticon</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

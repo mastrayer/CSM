@@ -38,6 +38,7 @@ public:
 	float GetWidth(){ return mWidth; }
 	float GetHeight(){ return mHeight; }
 	int GetBulletNumber(){ return mNumber; }
+	Player* GetOwnerPlayer(){ return mOwnerPlayer; }
 
 	
 	bool PolyCollisionTest(Point* APoints, int ACounts, Point* BPoints, int BCounts);

@@ -23,7 +23,12 @@ CTypeSkillBullet::~CTypeSkillBullet(void)
 
 void CTypeSkillBullet::Update(float dTime)
 {
-	Bullet::Update(dTime);
+	mLifeTime -= dTime;
+
+	
+	mPosition = mPosition + Point( cos(mAngle) * mVelocity , sin(mAngle) * mVelocity ) * dTime;
+	
+	mVelocity = mVelocity + mAcceleraction * dTime;
 }
 
 bool CTypeSkillBullet::isLive()

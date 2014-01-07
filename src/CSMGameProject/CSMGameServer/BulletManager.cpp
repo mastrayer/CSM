@@ -26,7 +26,8 @@ void BulletManager::Update(float dTime)
 {
 	for( std::map<int,Bullet*>::iterator bulletIt = mBullets.begin(); bulletIt != mBullets.end();) 
 	{
-		std::map<int,Player*> players = GPlayerManager->GetPlayers();
+		std::map<int,Player*> players;
+		GPlayerManager->GetPlayers(bulletIt->second->GetOwnerPlayer()->GetGameId(), &players);
 		for( std::map<int,Player*>::iterator playerIt = players.begin(); playerIt != players.end(); ++playerIt ) 
 		{
 			bulletIt->second->JudgeCollision(playerIt->second);

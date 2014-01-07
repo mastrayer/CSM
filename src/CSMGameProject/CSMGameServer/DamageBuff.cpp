@@ -2,7 +2,7 @@
 #include "DamageBuff.h"
 #include "PlayerManager.h"
 
-DamageBuff::DamageBuff(int id, Point position)
+DamageBuff::DamageBuff(int itemId,int gameId, Point position)
 {
 	mItemType = DAMAGEBUFF;
 	mRadius = 32;

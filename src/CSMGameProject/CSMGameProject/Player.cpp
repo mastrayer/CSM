@@ -13,6 +13,7 @@
 #include "TypeB.h"
 #include "TypeC.h"
 #include "UserSkillEffect.h"
+#include "GameUISet.h"
 
 CPlayer::CPlayer( void )
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
@@ -78,48 +79,8 @@ void CPlayer::Init()
 	mPlayerUI->SetParent( this );
 	mPlayerUI->SetPosition( 21.f, 24.f );
 	AddChild( mPlayerUI );
-
-	ZeroMemory( mSkillCount, sizeof(mSkillCount) );
-	ZeroMemory( mSkillCooldown, sizeof(mSkillCooldown) );
 }
 
-void CPlayer::CreateSkillEffect(PlayerType type, SkillType skillType)
-{
-	switch (skillType)
-	{
-	case SkillType::TYPE_SKILL:
-		
-		//if (type == TYPE_A) EffectManager::GetInstance()->AddEffect();
-		//else if (type == TYPE_B) EffectManager::GetInstance()->AddEffect();
-		//else if (type == TYPE_C) EffectManager::GetInstance()->AddEffect();
-
-		break;
-	case SkillType::USER_SKILL:
-
-		break;
-	}
-
-// 	switch (type)
-// 	{
-// 	case TYPE_A :
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new AUserEffect(this));
-// 		break;
-// 
-// 	case TYPE_B :
-// 		//if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BTypeEffect(this));
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new BUserEffect(this));
-// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Dash(this));
-// 		if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new USER_SKILL::Flash(this));
-// 		break;
-// 
-// 	case TYPE_C :
-// 
-// 		if (skillType == TYPE_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CTypeEffect(this));
-// 		//if (skillType == USER_ACTIVE_SKILL) EffectManager::GetInstance()->AddEffect(new CUserEffect(this));
-// 		break;
-// 	}
-
-}
 void CPlayer::TransState( PlayerState state )
 {
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
@@ -153,19 +114,11 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case TYPE_ACTIVE_SKILL:
-		if (GetSkillCooldown(SkillType::TYPE_SKILL) == false)
-		{
-			SetSkillCooldown(true, SkillType::TYPE_SKILL);
-			CreateSkillEffect(mPlayerType, SkillType::TYPE_SKILL);
-		}
+		GameUISet::GetInstance()->SetSkillCooldown(TYPE_ACTIVE_SKILL);
 		break;
 
 	case USER_ACTIVE_SKILL:
-		if (GetSkillCooldown(SkillType::USER_SKILL) == false)
-		{
-			SetSkillCooldown(true, SkillType::USER_SKILL);
-			CreateSkillEffect(mPlayerType, SkillType::USER_SKILL);
-		}
+		GameUISet::GetInstance()->SetSkillCooldown(USER_ACTIVE_SKILL);
 		break;
 
 	default:
@@ -238,6 +191,7 @@ void CPlayer::Update( float dTime )
 		}break;
 	case ATTAACK:
 		{
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case DIE:
@@ -253,12 +207,14 @@ void CPlayer::Update( float dTime )
 		break;
 	case USER_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case TYPE_ACTIVE_SKILL:
 		{
-
+			
+			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	default:

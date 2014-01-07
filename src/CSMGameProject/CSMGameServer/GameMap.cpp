@@ -115,13 +115,13 @@ void GameMap::convertFileToMap( std::wstring path )
                 m_Tile[i][j]->m_Type = BARRACK_OUT;
 			else if ( temp == "A Team Starting Point" )
 			{
-				m_Tile[i][j]->m_Type = STARTING_POINT_A;
+				m_Tile[i][j]->m_Type = STARTING_Point_A;
 				m_StartingPointAY = i * 64.f;
 				m_StartingPointAX = j * 64.f;
 			}
 			else if ( temp == "B Team Starting Point" )
 			{
-				m_Tile[i][j]->m_Type = STARTING_POINT_B;
+				m_Tile[i][j]->m_Type = STARTING_Point_B;
 				m_StartingPointBY = i * 64.f;
 				m_StartingPointBX = j * 64.f;
 			}
@@ -200,6 +200,3 @@ Tile::~Tile()
 {
 
 }
-
-
-GameMap* GGameMap = nullptr;

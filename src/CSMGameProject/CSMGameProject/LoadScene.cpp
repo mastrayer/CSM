@@ -32,7 +32,7 @@ void LoadScene::Update(float dTime)
 	NNScene::Update(dTime);
  	mCount += dTime;
 // 
- 	if (mCount >= 1.f)
+ 	if (mCount >= 0.1f)
 		NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(mPath));
 		
 }

@@ -41,6 +41,8 @@ private:
 	DTypeSkillShootHandler* mDTypeSkillShootHandler;
 	DTypeSkillEndHandler* mDTypeSkillEndHandler;
 
+	EmoticonHandler* mEmoticonHandler;
+
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;

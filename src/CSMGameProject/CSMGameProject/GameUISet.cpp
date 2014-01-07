@@ -4,10 +4,27 @@
 
 #include "NNApplication.h"
 
+GameUISet* GameUISet::mInstance = nullptr;
+
+GameUISet* GameUISet::GetInstance()
+{
+	if (mInstance == nullptr)
+		mInstance = new GameUISet();
+	return mInstance;
+}
+void GameUISet::ReleaseInstance()
+{
+	if (mInstance != nullptr)
+		delete mInstance;
+}
 GameUISet::GameUISet()
 {
-	mSkillCooltime[0] = 3.0f;
-	mSkillCooltime[1] = 5.0f;
+	mSkillCooltime[0] = 5.0f;
+	mSkillCooltime[1] = 7.0f;
+	mSkillCooltime[2] = 3.0f;
+	mSkillCooltime[3] = 5.0f;
+
+	ZeroMemory(mNowSkillCooltime, sizeof(mNowSkillCooltime));
 	//mKillCount = 25;
 	//mRedKillCount = 40;
 	//mHp = 80;
@@ -58,8 +75,7 @@ GameUISet::GameUISet()
 	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
-	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER
-	]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
+	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
 	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
 	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
@@ -83,9 +99,11 @@ GameUISet::GameUISet()
 	mSkillUI[1]->SetPosition(width / 2.f + 32, height / 2.f + 235);*/
 
 	//TypeSKill icon cooltime count label
-	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mTypeSKillTimer->SetCenter(mTypeSKillTimer->GetCenterX(), mTypeSKillTimer->GetCenterY());
-	mTypeSKillTimer->SetPosition(width / 2.f - 35, height / 2.f + 250);
+	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 225);
+	//mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
+	mTypeSKillTimer->SetBold(true);
 	mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
 
 	/*mTypeSKillTimer[WATER] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
@@ -104,9 +122,9 @@ GameUISet::GameUISet()
 	mTypeSKillTimer[EARTH]->SetRGBA(255, 255, 255, 255);*/
 
 	//UserSKill icon cooltime count label
-	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 40.f);
+	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
-	mUserSkillTimer->SetPosition(width / 2.f + 35, height / 2.f + 250);
+	mUserSkillTimer->SetPosition(width / 2.f + 20, height / 2.f + 230);
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
 	//KillPoint count label
@@ -148,18 +166,17 @@ GameUISet::GameUISet()
 	AddChild(mKillBar[RED]);
 	AddChild(mKillBar[BLUE]);
 	AddChild(mCrown);
-	AddChild(mUserSkillTimer);
 	AddChild(mKillPoint[RED]);
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
-	AddChild(mTypeSKillTimer);
-	AddChild(mStatusWindow, 100);
-	
 	for (int i = 0; i <= EARTH; ++i)
 	{
 		AddChild(mTypeSkillUI[i]);
 		AddChild(mTypeFace[i]);
 	}
+	AddChild(mTypeSKillTimer);
+	AddChild(mUserSkillTimer);
+	AddChild(mStatusWindow);
 	
 	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
 	mType->SetPosition(0.f, 450.f); 
@@ -201,26 +218,41 @@ void GameUISet::Update(float dTime)
  	switch (mMyPlayer->GetPlayerType())
  	{
 	case PlayerType::TYPE_ZERO:
+		if (mTypeFace[ZERO]->IsVisible() == true)
+			break;
+
 		mType->SetString(L"Zero");
 		mTypeFace[ZERO]->SetVisible(true);
 		mTypeSkillUI[ZERO]->SetVisible(true);
 		break;
  	case PlayerType::TYPE_A:
+		if (mTypeFace[FIRE]->IsVisible() == true)
+			break;
+
  		mType->SetString(L"Fire");
 		mTypeFace[FIRE]->SetVisible(true);
 		mTypeSkillUI[FIRE]->SetVisible(true);
  		break;
  	case PlayerType::TYPE_B:
+		if (mTypeFace[WATER]->IsVisible() == true)
+			break;
+
  		mType->SetString(L"Water");
  		mTypeFace[WATER]->SetVisible(true);
 		mTypeSkillUI[WATER]->SetVisible(true);
  		break;
  	case PlayerType::TYPE_C:
+		if (mTypeFace[WIND]->IsVisible() == true)
+			break;
+
  		mType->SetString(L"Wind");
  		mTypeFace[WIND]->SetVisible(true);
 		mTypeSkillUI[WIND]->SetVisible(true);
 		break;
 	case PlayerType::TYPE_D:
+		if (mTypeFace[EARTH]->IsVisible() == true)
+			break;
+
 		mType->SetString(L"Earth");
 		mTypeFace[EARTH]->SetVisible(true);
 		mTypeSkillUI[EARTH]->SetVisible(true);
@@ -242,8 +274,10 @@ void GameUISet::Update(float dTime)
 	mKillBar[TeamColor::RED]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 
-	for (int i = 0; i < SKILL_COUNT; ++i)
-		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
+	ControlSkillTimer(dTime);
+
+// 	for (int i = 0; i < SKILL_COUNT; ++i)
+// 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
 
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
@@ -258,27 +292,40 @@ void GameUISet::Update(float dTime)
 
 }
 
-void GameUISet::ControlSkillUI(PlayerState skillType, float dTime)
+void GameUISet::ControlSkillTimer(float dTime)
 {
-	SkillType type = (SkillType)(skillType - TYPE_ACTIVE_SKILL);
-
-	if (mMyPlayer->GetSkillCooldown(type) == true)
+	int type = mMyPlayer->GetPlayerType() - 1;
+	if (mIsCooldown[0] == true)
 	{
-		mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
-		mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
+		mNowSkillCooltime[0] += dTime;
+		mTypeSkillUI[type +1]->SetOpacity(pow(mNowSkillCooltime[0] / mSkillCooltime[type],3));
 
-		swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
-		mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
+		swprintf_s(mSkillCooltimeBuff[0], L"%.1f", mSkillCooltime[type] - mNowSkillCooltime[0]);
+		mTypeSKillTimer->SetString(mSkillCooltimeBuff[0]);
 
-		if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
+		if (mNowSkillCooltime[0] >= mSkillCooltime[type])
 		{
-			mMyPlayer->SetSkillCooldown(false, type);
-			mMyPlayer->SetSkillCount(0.f, type);
+			mIsCooldown[0] = false;
+			mNowSkillCooltime[0] = 0.f;
 
-			mTypeSkillUI[type]->SetOpacity(1.f);
-			mTypeSKillTimer[type].SetString(L"");
+			mTypeSkillUI[type+1]->SetOpacity(1.f);
+			mTypeSKillTimer->SetString(L"");
 		}
 	}
+// 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
+// 	mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
+// 
+// 	swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
+// 	mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
+// 
+// 	if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
+// 	{
+// 		mMyPlayer->SetSkillCooldown(false, type);
+// 		mMyPlayer->SetSkillCount(0.f, type);
+// 
+// 		mTypeSkillUI[type]->SetOpacity(1.f);
+// 		mTypeSKillTimer[type].SetString(L"");
+// 	}
 }
 
 
@@ -330,7 +377,7 @@ void CStatusWindow::Init()
 	AddChild(BlueID);
 	AddChild(BlueKillScore);
 
-	GetAllPlayerInfo();
+	//GetAllPlayerInfo();
 }
 CStatusWindow::~CStatusWindow()
 {

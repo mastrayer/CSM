@@ -22,7 +22,6 @@ mLoadingComplete(false)
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
  	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
- 	//AddChild(mBackgroundImage, 100);
 
 	// GameMap Create
 	mGameMap = CGameMap::Create(path);
@@ -76,10 +75,8 @@ void CGameScene::Update( float dTime )
 		else
 		{
 			mLoadingComplete = true;
-			//RemoveChild(mBackgroundImage);
 			delete mBackgroundImage;
 		}
-	//return;
 	}
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
@@ -89,12 +86,52 @@ void CGameScene::Update( float dTime )
 		{
 			misInit = true;
 			// UI Setting
-			SetUISet( GameUISet::Create() );
+			SetUISet( GameUISet::GetInstance() );
 		}
-		
-		GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
+		if ( GetCamera().GetPosition().GetDistance( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() ) > 100.f ) 
+		{
+			GetCamera().SetPosition( CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition() );
+		}
+		else
+		{
+			GetCamera().SetPosition(NNPoint().Lerp(GetCamera().GetPosition(),
 				CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition()
-				,0.f));
+				,0.97f));
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState('1') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SMILE;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+		if (NNInputSystem::GetInstance()->GetKeyState('2') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::SAD;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('3') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::ANGRY;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
+
+		if (NNInputSystem::GetInstance()->GetKeyState('4') == KEY_DOWN)
+		{
+			EmoticonRequest outPacket = EmoticonRequest();
+			outPacket.mEmoticonNumber = EmoticonType::HELP;
+			outPacket.mPlayerId = CPlayerManager::GetInstance()->GetMyPlayerId();
+			NNNetworkSystem::GetInstance()->Write((const char*)&outPacket,
+				outPacket.mSize);
+		}
 
 		if( isChangedGameKeyStates() == true )
 		{
@@ -152,6 +189,7 @@ void CGameScene::InitNetworkSetting()
 	mDTypeSkillShootHandler = new DTypeSkillShootHandler();
 	mDTypeSkillEndHandler = new DTypeSkillEndHandler();
 
+	mEmoticonHandler = new EmoticonHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -174,12 +212,16 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPEATTACK_SHOOT, mDTypeAttackShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_SHOOT, mDTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
+
 
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
+	mLoginHandler->mLoginRequestPacket.mGameId = 0;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

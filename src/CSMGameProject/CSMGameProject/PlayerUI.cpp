@@ -3,6 +3,10 @@
 #include "Player.h"
 #include "NNApplication.h"
 #include "PlayerManager.h"
+#include "NNInputSystem.h"
+#include "EffectManager.h"
+
+#include "EmoticonEffect.h"
 
 PlayerUI::PlayerUI()
 {
@@ -50,4 +54,7 @@ void PlayerUI::Update( float dTime )
 	
 	mHpBar[result]->SetVisible(true);
 	mHpBar[result]->SetScale(mHp / 50.f, 1.f);
+
+	
+
 }

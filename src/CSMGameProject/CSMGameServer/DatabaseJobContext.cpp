@@ -7,7 +7,7 @@
 
 bool LoadPlayerDataContext::OnExecute()
 {
-	DbHelper dbhelper(SQL_SelectTest) ;
+	DbHelper dbhelper(SQL_SelectTest) ; // TODO 
 	dbhelper.BindParamInt(mPlayerId) ;
 
 	/// 데이터가 없네?
