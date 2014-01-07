@@ -4,6 +4,52 @@
 #include "NNBaseHandler.h"
 #include "NNCircularBuffer.h"
 #include "PacketType.h"
+
+	
+	
+class UserSkillFlashHandler : public NNBaseHandler
+{
+public:
+	UserSkillFlashHandler();
+	virtual ~UserSkillFlashHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	UserSkillFlashResult mUserSkillFlashResult;
+};
+
+class ItemComeHandler : public NNBaseHandler
+{
+public:
+	ItemComeHandler();
+	virtual ~ItemComeHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	ItemComeResult mItemComeResult;
+};
+
+class ItemPlayerConsumeHandler : public NNBaseHandler
+{
+public:
+	ItemPlayerConsumeHandler();
+	virtual ~ItemPlayerConsumeHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	ItemPlayerConsumeResult mItemPlayerConsumeResult;
+};
+
+class ItemPlayerDropHandler : public NNBaseHandler
+{
+public:
+	ItemPlayerDropHandler();
+	virtual ~ItemPlayerDropHandler();
+
+	void HandlingPacket(short packetType, NNCircularBuffer* circularBuffer, NNPacketHeader* header);
+
+	ItemPlayerDropResult mItemPlayerDropResult;
+};
 class EmoticonHandler : public NNBaseHandler
 {
 public:

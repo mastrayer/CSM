@@ -194,6 +194,8 @@ void CGameScene::InitNetworkSetting()
 	mDTypeSkillShootHandler = new DTypeSkillShootHandler();
 	mDTypeSkillEndHandler = new DTypeSkillEndHandler();
 
+	mUserSkillFlashHandler = new UserSkillFlashHandler();
+
 	mEmoticonHandler = new EmoticonHandler();
 	NNNetworkSystem::GetInstance()->Init();
 
@@ -218,7 +220,7 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_SHOOT, mDTypeSkillShootHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
-
+	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_USERSKILL_FLASH, mUserSkillFlashHandler);
 
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );

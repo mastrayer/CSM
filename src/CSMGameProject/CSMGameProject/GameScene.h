@@ -26,6 +26,7 @@ private:
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	ATypeAttackEndHandler* mATypeAttackEndHandler;
 	ATypeAttackShootHandler* mATypeAttackShootHandler;
+	UserSkillFlashHandler* mUserSkillFlashHandler;
 
 	BTypeAttackEndHandler* mBTypeAttackEndHandler;
 	BTypeAttackShootHandler* mBTypeAttackShootHandler;

@@ -103,6 +103,9 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Emoticon">
       <UniqueIdentifier>{784b2b18-91c3-4cc7-bb6f-f9f4086e0b38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Packet\Item">
+      <UniqueIdentifier>{cf1ef5b2-c6c2-418f-b367-575bb246c7f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -237,6 +240,18 @@
     </ClCompile>
     <ClCompile Include="EmoticonHandler.cpp">
       <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemComeHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPlayerConsumeHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPlayerDropHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="UserSkillFlashHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
