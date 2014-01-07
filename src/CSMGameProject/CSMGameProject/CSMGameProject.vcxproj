@@ -118,6 +118,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ItemComeHandler.cpp" />
+    <ClCompile Include="ItemEffect.cpp" />
     <ClCompile Include="ItemPlayerConsumeHandler.cpp" />
     <ClCompile Include="ItemPlayerDropHandler.cpp" />
     <ClCompile Include="KillScoreHandler.cpp" />
@@ -184,6 +185,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ItemEffect.h" />
     <ClInclude Include="LoadScene.h" />
     <ClInclude Include="MainMenuScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

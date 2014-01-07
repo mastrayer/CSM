@@ -701,6 +701,7 @@ void Player::ConsumeItem(Item* item)
 	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
+	outPacket.mItemId = item->GetItemId();
 	mClient->Broadcast(&outPacket);
 }
 
@@ -731,5 +732,6 @@ void Player::DropItem(Item* item)
 	ItemPlayerDropResult outPacket = ItemPlayerDropResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
+	outPacket.mItemId = item->GetItemId();
 	mClient->Broadcast(&outPacket);
 }

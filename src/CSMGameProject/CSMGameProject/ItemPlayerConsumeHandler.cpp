@@ -2,6 +2,7 @@
 
 #include "PacketHandler.h"
 #include "PlayerManager.h"
+#include "EffectManager.h"
 
 ItemPlayerConsumeHandler::ItemPlayerConsumeHandler()
 {
@@ -19,6 +20,9 @@ void ItemPlayerConsumeHandler::HandlingPacket( short packetType, NNCircularBuffe
 		{
 			if ( circularBuffer->Read((char*)&mItemPlayerConsumeResult, header->mSize) )
 			{
+				ITEM_EFFECT::Item* item;
+				item = EffectManager::GetInstance()->GetItemEffect(mItemPlayerConsumeResult.mItemId);
+				item->Follow(mItemPlayerConsumeResult.mPlayerId);
 			}
 			else
 			{

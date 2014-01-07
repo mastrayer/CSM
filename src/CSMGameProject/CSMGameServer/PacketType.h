@@ -408,6 +408,7 @@ struct ItemComeResult : public PacketHeader
 	}
 	int mItemType;
 	Point mPosition;
+	int mItemId;
 };
 struct ItemPlayerConsumeResult : public PacketHeader
 {
@@ -418,6 +419,7 @@ struct ItemPlayerConsumeResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
 };
 struct ItemPlayerDropResult : public PacketHeader
 {
@@ -428,6 +430,7 @@ struct ItemPlayerDropResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
 };
 
 struct EmoticonRequest : public PacketHeader

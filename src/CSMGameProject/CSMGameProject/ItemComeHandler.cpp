@@ -2,6 +2,7 @@
 
 #include "PacketHandler.h"
 #include "PlayerManager.h"
+#include "EffectManager.h"
 
 ItemComeHandler::ItemComeHandler()
 {
@@ -19,7 +20,20 @@ void ItemComeHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 		{
 			if ( circularBuffer->Read((char*)&mItemComeResult, header->mSize) )
 			{
-
+				switch (mItemComeResult.mItemType)
+				{
+				case DAMAGEBUFF:
+						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::DamageBuff(mItemComeResult.mPosition,mItemComeResult.mItemId));
+					break;
+				case HPBUFF:
+						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::HPBuff(mItemComeResult.mPosition,mItemComeResult.mItemId));
+					break;
+				case FLAG:
+						EffectManager::GetInstance()->AddEffect( new ITEM_EFFECT::Flag(mItemComeResult.mPosition,mItemComeResult.mItemId));
+					break;
+				default:
+					break;
+				}
 			}
 			else
 			{
