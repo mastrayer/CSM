@@ -61,7 +61,7 @@ private:
 
 	NNLabel *mTypeSKillTimer;
 	NNLabel *mUserSkillTimer;
-	float mSkillCooltime[PlayerType::TYPE_D];
+	float mSkillCooltime[PlayerType::TYPE_D + 1]; // +1 for userskill
 	float mNowSkillCooltime[SKILL_COUNT];
 	wchar_t mSkillCooltimeBuff[2][5];
 	bool mIsCooldown[SKILL_COUNT];
