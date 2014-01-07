@@ -90,7 +90,11 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
+<<<<<<< HEAD
+	char mName[255];
+=======
 	char mName[20];
+>>>>>>> a59793e80d372646437908e5959fcffefd5a5cc6
 };
 #pragma pack(push,1)
 
