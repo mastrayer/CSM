@@ -32,11 +32,12 @@ public:
 	}
 
 private:
-	NNSprite* mHpBar[2];
+	NNSprite* mHpBar[3];
 	NNSprite* mHpBarFrame;
 	int mHp;
 	int mTeam;
 
+	bool mIsMyPlayer;
 	wchar_t mNicknameBuf[256];
 	NNLabel *mNickname;
 

@@ -12,6 +12,11 @@
 
 #define SKILL_COUNT 2
 
+struct Label
+{
+	wchar_t buf[256];
+	NNLabel *label;
+};
 class CStatusWindow : public NNObject
 {
 public:
@@ -23,14 +28,24 @@ public:
 	void Update(float dTime);
 
 	void GetAllPlayerInfo();
+	void SortByKillScore(int *result);
 
-	
 	NNCREATE_FUNC(CStatusWindow);
+
 private:
-	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
-	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
-	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
-	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
+	std::map<int, Label> mPlayerLabel;
+	std::map<int, Label> mPlayerKillScore;
+
+// 	std::map<int, wchar_t[100]> mLabelBuf;
+// 	std::map<int, NNLabel*> mPlayerLabelList;
+// 	std::map<int, wchar_t[100]> mKillScoreBuf;
+// 	std::map<int, NNLabel*> mPlayerKillScoreList;
+
+	//wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
+	//NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
+// 	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
+// 	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
+
 	NNSprite *mPanel;
 };
 
