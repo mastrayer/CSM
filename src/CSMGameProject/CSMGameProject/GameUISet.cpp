@@ -40,12 +40,12 @@ GameUISet::GameUISet()
 	AddChild(mFPSLabel);
 
 	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/UI/GameUI/CharacterUIFrame.png");
-	mCharacterUIFrame->SetPosition(0.f, 500.f);
+	mCharacterUIFrame->SetPosition(0.f, 520.f);
 	mCharacterUIFrame->SetOpacity(0.9f);
 
 	mSkillUIFrame = NNSprite::Create(L"Resource/Sprite/UI/Skill/SkillUIFrame.png");
 	mSkillUIFrame->SetCenter(mSkillUIFrame->GetImageWidth() / 2.f, mSkillUIFrame->GetImageHeight() / 2.f);
-	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
+	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 270);
 	mSkillUIFrame->SetOpacity(0.9f);
 
 	//mHpBarBackground = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar_BackGround.png");
@@ -67,32 +67,38 @@ GameUISet::GameUISet()
 	mKillBar[BLUE]->SetPosition(width / 2.f + 32, 20);
 	mKillBar[BLUE]->SetScaleX(1.f);
 
-	
+
 	//mRedKillBar->SetSc	aleX(-1.f);
 
 	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/ZeroTypeSkillUI.png");
 	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
-	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 32, height / 2.f + 255);
+	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[ZERO]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[FIRE] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/FireTypeSkillUI.png");
 	mTypeSkillUI[FIRE]->SetCenter(mTypeSkillUI[FIRE]->GetImageWidth() / 2.f, mTypeSkillUI[FIRE]->GetImageHeight() / 2.f);
-	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 255);
+	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[FIRE]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
 	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
-	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 255);
+	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[WATER]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
 	mTypeSkillUI[WIND]->SetCenter(mTypeSkillUI[WIND]->GetImageWidth() / 2.f, mTypeSkillUI[WIND]->GetImageHeight() / 2.f);
-	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 32, height / 2.f + 255);
+	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[WIND]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[EARTH] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/EarthTypeSkillUI.png");
 	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
-	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 255);
+	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[EARTH]->SetScale(0.91f, 0.86f);
 
-	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.jpg");
+	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.png");
 	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
-	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 255);
+	mUserSkillUI->SetPosition(width / 2.f + 30, height / 2.f + 270);
+	mUserSkillUI->SetScale(0.92f, 0.88f);
 
 	/*mSkillUI[0] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI.png");
 	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
@@ -145,19 +151,19 @@ GameUISet::GameUISet()
 
 	//Character Face Sprite
 	mTypeFace[ZERO] = NNSprite::Create(L"Resource/Sprite/CharacterFace/ZeroSlime.png");
-	mTypeFace[ZERO]->SetPosition(5.f, 505.f);
+	mTypeFace[ZERO]->SetPosition(10.f, 535.f);
 
 	mTypeFace[FIRE] = NNSprite::Create(L"Resource/Sprite/CharacterFace/EarthSlime.png");
-	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
+	mTypeFace[FIRE]->SetPosition(10.f, 535.f);
 
 	mTypeFace[WATER] = NNSprite::Create(L"Resource/Sprite/CharacterFace/BlueSlime.png");
-	mTypeFace[WATER]->SetPosition(5.f, 505.f);
+	mTypeFace[WATER]->SetPosition(10.f, 535.f);
 
 	mTypeFace[WIND] = NNSprite::Create(L"Resource/Sprite/CharacterFace/MetalSlime.png");
-	mTypeFace[WIND]->SetPosition(5.f, 505.f);
+	mTypeFace[WIND]->SetPosition(10.f, 535.f);
 
 	mTypeFace[EARTH] = NNSprite::Create(L"Resource/Sprite/CharacterFace/EarthSlime.png");
-	mTypeFace[EARTH]->SetPosition(5.f, 505.f);
+	mTypeFace[EARTH]->SetPosition(10.f, 535.f);
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
 	//mStatusWindow = CStatusWindow::Create();
