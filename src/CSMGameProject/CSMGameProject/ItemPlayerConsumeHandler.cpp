@@ -19,7 +19,6 @@ void ItemPlayerConsumeHandler::HandlingPacket( short packetType, NNCircularBuffe
 		{
 			if ( circularBuffer->Read((char*)&mItemPlayerConsumeResult, header->mSize) )
 			{
-				Ga
 			}
 			else
 			{

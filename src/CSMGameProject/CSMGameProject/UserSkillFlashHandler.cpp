@@ -19,9 +19,8 @@ void UserSkillFlashHandler::HandlingPacket(short packetType, NNCircularBuffer* c
 		{
 			if (circularBuffer->Read((char*)&mUserSkillFlashResult, header->mSize))
 			{
-				//TODO
-				//mUserSkillFlashResult.mAfterPosition
-				//mUserSkillFlashResult.mBeforePosition
+				
+				EffectManager::GetInstance()->AddEffect( new USER_SKILL_EFFECT::Flash(mUserSkillFlashResult.mBeforePosition, mUserSkillFlashResult.mAfterPosition) );
 			}
 		}
 		break;
