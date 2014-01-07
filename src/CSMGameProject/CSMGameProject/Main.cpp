@@ -23,6 +23,15 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	printf_s("Console Open \n");
 #endif
+	HANDLE hMutex = NULL;
+	hMutex = CreateMutex( NULL, FALSE, L"CSM" );
+	if( hMutex == NULL ) {
+		return false;
+	} else {
+		if( GetLastError() == ERROR_ALREADY_EXISTS ) {
+			exit(-1);
+		}
+	}
 
 	NNApplication* Application = NNApplication::GetInstance();
 
