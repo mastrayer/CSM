@@ -90,11 +90,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1 ;
 
 
-	/// DB Thread
-	HANDLE hDbThread = (HANDLE)_beginthreadex (NULL, 0, DatabaseHandlingThread, NULL, 0, (unsigned int*)&dwThreadId) ;
-	if (hDbThread == NULL)
-		return -1 ;
-
 	/// accept loop
 	while ( true )
 	{
@@ -122,7 +117,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	CloseHandle( hThread ) ;
 	CloseHandle( hEvent ) ;
-	CloseHandle( hDbThread ) ;
 
 	// 윈속 종료
 	WSACleanup() ;
@@ -198,21 +192,6 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 	CloseHandle( hTimer ) ;
 	return 0;
 } 
-
-unsigned int WINAPI DatabaseHandlingThread( LPVOID lpParam )
-{
-	LThreadType = THREAD_DATABASE ;
-
-	while ( true )
-	{
-		/// 기본적으로 polling 하면서 Job이 있다면 처리 하는 방식
-		GDatabaseJobManager->ExecuteDatabaseJobs() ;
-
-		Sleep(1) ;
-	}
-
-	return 0 ;
-}
 
 void CALLBACK TimerProc(LPVOID lpArg, DWORD dwTimerLowValue, DWORD dwTimerHighValue)
 {
