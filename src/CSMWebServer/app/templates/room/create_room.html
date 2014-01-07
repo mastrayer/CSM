@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="/static/styles/main.css" />
+<link rel="stylesheet" type="text/css" href="/static/styles/create_room.css" />
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<div class="createRoom">
+	<div class="createRoomInner">
+		<form class="form formCreateRoom" method="post" action=".">
+			<input type="text" name="title" placeholder="방제목" />
+			<select name="type">
+				<option>게임 방식</option>
+				<option value='0'>4대4 데스매치</option>
+				<option value='1'>8대8 데스매치</option>
+				<option value='2'>8대8 깃발뺏기</option>
+			</select>
+			<input type="submit" value="만들기" />
+		</form>
+	</div>
+</div>
+{% endblock %}
