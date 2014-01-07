@@ -357,7 +357,7 @@ void CPlayer::InitMoveImage()
 		L"Resource/Sprite/Player/Normal/normal_walk2.png",
 		L"Resource/Sprite/Player/Normal/normal_walk3.png",
 		L"Resource/Sprite/Player/Normal/normal_walk4.png",
-		L"Resource/Sprite/Player/Normal/normal_walk5.png" );
+		L"Resource/Sprite/Player/Normal/normal_walk4.png" );
 	mMoveNormal->GetFrame(0)->SetFrameTime(0.15f);
 	mMoveNormal->GetFrame(1)->SetFrameTime(0.13f);
 	mMoveNormal->GetFrame(2)->SetFrameTime(0.11f);
@@ -369,7 +369,7 @@ void CPlayer::InitMoveImage()
 		L"Resource/Sprite/Player/Fire/fire_walk2.png",
 		L"Resource/Sprite/Player/Fire/fire_walk3.png",
 		L"Resource/Sprite/Player/Fire/fire_walk4.png",
-		L"Resource/Sprite/Player/Fire/fire_walk5.png" );
+		L"Resource/Sprite/Player/Fire/fire_walk4.png" );
 	mMoveFire->GetFrame(0)->SetFrameTime(0.15f);
 	mMoveFire->GetFrame(1)->SetFrameTime(0.13f);
 	mMoveFire->GetFrame(2)->SetFrameTime(0.11f);
@@ -381,7 +381,7 @@ void CPlayer::InitMoveImage()
 		L"Resource/Sprite/Player/Water/water_walk2.png",
 		L"Resource/Sprite/Player/Water/water_walk3.png",
 		L"Resource/Sprite/Player/Water/water_walk4.png",
-		L"Resource/Sprite/Player/Water/water_walk5.png" );
+		L"Resource/Sprite/Player/Water/water_walk4.png" );
 	mMoveWater->GetFrame(0)->SetFrameTime(0.15f);
 	mMoveWater->GetFrame(1)->SetFrameTime(0.13f);
 	mMoveWater->GetFrame(2)->SetFrameTime(0.11f);
@@ -393,7 +393,7 @@ void CPlayer::InitMoveImage()
 		L"Resource/Sprite/Player/Wind/wind_walk2.png",
 		L"Resource/Sprite/Player/Wind/wind_walk3.png",
 		L"Resource/Sprite/Player/Wind/wind_walk4.png",
-		L"Resource/Sprite/Player/Wind/wind_walk5.png" );
+		L"Resource/Sprite/Player/Wind/wind_walk4.png" );
 	mMoveWind->GetFrame(0)->SetFrameTime(0.15f);
 	mMoveWind->GetFrame(1)->SetFrameTime(0.13f);
 	mMoveWind->GetFrame(2)->SetFrameTime(0.11f);
@@ -405,7 +405,7 @@ void CPlayer::InitMoveImage()
 		L"Resource/Sprite/Player/Earth/earth_walk2.png",
 		L"Resource/Sprite/Player/Earth/earth_walk3.png",
 		L"Resource/Sprite/Player/Earth/earth_walk4.png",
-		L"Resource/Sprite/Player/Earth/earth_walk5.png" );
+		L"Resource/Sprite/Player/Earth/earth_walk4.png" );
 	mMoveEarth->GetFrame(0)->SetFrameTime(0.15f);
 	mMoveEarth->GetFrame(1)->SetFrameTime(0.13f);
 	mMoveEarth->GetFrame(2)->SetFrameTime(0.11f);
