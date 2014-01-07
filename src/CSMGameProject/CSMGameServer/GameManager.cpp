@@ -108,12 +108,18 @@ void GameManager::NewGame(int gameId, int mapType)
 	}
 }
 
+void GameManager::Update(float dTime)
+{
+	for(auto it = mGames.begin(); it != mGames.end(); it++)
+	{
+		it->second->Update(dTime);
+	}
+}
 void GameManager::LoadMap() // in gameManager Init
 {
-	mGameMap[0] = new GameMap(L"map/44.csm");
-	mGameMap[1] = new GameMap(L"map/44.csm");
-	mGameMap[2] = new GameMap(L"map/44.csm");
-	mGameMap[3] = new GameMap(L"map/44.csm");
+	mGameMap[DEATHMATCH44] = new GameMap(L"map/44.csm");
+	mGameMap[DEATHMATCH88] = new GameMap(L"map/88.csm");
+	mGameMap[FLAGCAPTURE] = new GameMap(L"map/88.csm");
 }
 
 GameManager* GGameManager = nullptr;

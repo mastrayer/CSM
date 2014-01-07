@@ -23,7 +23,7 @@ public:
 	int GetKillLimit(int gameId) { return mKillLimit[gameId]; }
 	int* GetKillScore(int gameId) { return mKillScore[gameId]; }
 	void AddScore(int gameId, int team, int scoreAmount);
-
+	void Update(float dTime);
 	void NewGame(int gameId, int mapType);
 
 	GameMap* GetGameMap(int gameId){ return mGameMap[mGameMapTypes[gameId]]; }
