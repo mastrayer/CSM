@@ -486,8 +486,10 @@ void Player::Update( float dTime)
 			for( float shortMove = 250.f; shortMove >= 0.f; shortMove -= 1.f)
 			{
 				if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
+				{
 					outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
 					break;
+				}
 			}
 			SetPosition(outPacket.mAfterPosition);
 			mClient->Broadcast(&outPacket);
