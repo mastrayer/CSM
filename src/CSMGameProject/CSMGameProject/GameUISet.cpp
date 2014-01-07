@@ -22,7 +22,7 @@ GameUISet::GameUISet()
 	mSkillCooltime[0] = 5.0f;
 	mSkillCooltime[1] = 7.0f;
 	mSkillCooltime[2] = 3.0f;
-	mSkillCooltime[3] = 3.5f;
+	mSkillCooltime[3] = 3.0f;
 
 	ZeroMemory(mNowSkillCooltime, sizeof(mNowSkillCooltime));
 	//mKillCount = 25;

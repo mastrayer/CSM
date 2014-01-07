@@ -514,7 +514,7 @@ bool Player::Damaged(int damage, Player* player)
 		outPacket.mHP = 0;
 		mClient->Broadcast(&outPacket);
 
-		GGameManager->DiePlayer(mTeam);
+		GGameManager->DiePlayer(mPlayerId);
 		TransState(PLAYER_STATE_DIE);
 
 		if( HasDamageBuff() == true)
