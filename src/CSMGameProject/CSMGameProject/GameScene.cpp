@@ -13,24 +13,25 @@
 
 #include "NNLogger.h"
 
-CGameScene::CGameScene(std::wstring path) :
+CGameScene::CGameScene() :
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false)
+mLoadingComplete(false), mIsKeyDown(false),mFristLogin(true)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
- 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
+ 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(L"resource/map/44.csm", L"title"));
 	mIntro1 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
 	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
 	mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
 	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
 
 	// GameMap Create
-	mGameMap = CGameMap::Create(path);
+	mGameMap[0] = CGameMap::Create(L"resource/map/44.csm");
+	mGameMap[1] = CGameMap::Create(L"resource/map/44.csm");
+	mGameMap[2] = CGameMap::Create(L"resource/map/44.csm");
 
-	AddChild( mGameMap );
 
 	// EffectManager
 	AddChild( EffectManager::GetInstance() , 1);
@@ -104,6 +105,11 @@ void CGameScene::Update( float dTime )
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
+		if(mFristLogin == true)
+		{
+			AddChild(mGameMap[CPlayerManager::GetInstance()->GetMapType()],-1);
+			mFristLogin = false;
+		}
 	//	TODO :: CPlayerManager의 Score, Limit를 표현해주세요
 		if(misInit == false)
 		{
@@ -261,8 +267,8 @@ void CGameScene::InitNetworkSetting()
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
-	mLoginHandler->mLoginRequestPacket.mGameId = 0;
-	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
+	mLoginHandler->mLoginRequestPacket.mGameId = 1;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = 4;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

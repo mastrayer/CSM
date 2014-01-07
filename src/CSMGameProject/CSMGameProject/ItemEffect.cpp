@@ -77,7 +77,8 @@ DamageBuff::DamageBuff(NNPoint startPosition, int itemId, float lifeTime):Item(s
 void DamageBuff::Follow(int playerId)
 {
 	mOwner = CPlayerManager::GetInstance()->FindPlayerByID(playerId);
-	SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
+	if(mOwner != nullptr)
+		SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
 	mBeforeConsumeAnimation->SetVisible(false);
 	mAfterConsumeAnimation->SetVisible(true);
 }
@@ -134,7 +135,8 @@ HPBuff::HPBuff(NNPoint startPosition, int itemId, float lifeTime):Item(startPosi
 void HPBuff::Follow(int playerId)
 {
 	mOwner = CPlayerManager::GetInstance()->FindPlayerByID(playerId);
-	SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
+	if(mOwner != nullptr)
+		SetPosition(mOwner->GetPosition() - mOwner->GetCenter());
 	mBeforeConsumeAnimation->SetVisible(false);
 	mAfterConsumeAnimation->SetVisible(true);
 }
