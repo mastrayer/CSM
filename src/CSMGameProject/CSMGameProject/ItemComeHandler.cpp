@@ -18,7 +18,7 @@ void ItemComeHandler::HandlingPacket( short packetType, NNCircularBuffer* circul
 	{
 	case PKT_SC_ITEM_COME:
 		{
-			if ( circularBuffer->Read((char*)&mItemComeResult, header->mSize) )
+ 			if ( circularBuffer->Read((char*)&mItemComeResult, header->mSize) )
 			{
 				switch (mItemComeResult.mItemType)
 				{

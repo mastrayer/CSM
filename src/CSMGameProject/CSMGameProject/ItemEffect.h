@@ -30,26 +30,30 @@ namespace ITEM_EFFECT
 	{
 	public:
 		DamageBuff(NNPoint startPosition, int itemId);
-		virtual ~DamageBuff();
+		 ~DamageBuff();
 
-		virtual void Render();
-		virtual void Update(float dTime);
+		 void Render();
+		void Update(float dTime);
+		void Follow(int playerId);
 
 	private:
-		NNAnimation *mAnimation;
+		NNAnimation *mBeforeConsumeAnimation;
+		NNAnimation *mAfterConsumeAnimation;
 	};
 
 	class HPBuff : public Item
 	{
 	public :
 		HPBuff(NNPoint startPosition, int itemId);
-		virtual ~HPBuff();
+		 ~HPBuff();
 
-		virtual void Render();
-		virtual void Update(float dTime);
+		 void Render();
+		 void Update(float dTime);
+		 void Follow(int playerId);
 
 	private:
-		NNAnimation *mAnimation;
+		NNAnimation *mBeforeConsumeAnimation;
+		NNAnimation *mAfterConsumeAnimation;
 	};
 
 	class Flag : public Item
