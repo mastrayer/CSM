@@ -36,6 +36,13 @@ public:
 	{
 		strcpy(mNickname, value);  
 		mPlayerUI->SetNickname(value);
+
+		//const char *temp = playerList[iter.first]->GetNickname();
+		int nLen = strlen(value) + 1;
+
+		//wchar_t* pwstr = (LPWSTR)malloc(sizeof(wchar_t)* nLen);
+		//mbstowcs(pwstr, value, nLen);
+		mbstowcs(mNicknameW, value, nLen);
 	}
 
 	NNPoint GetPlayerPosition() { return GetPosition(); }
@@ -45,6 +52,7 @@ public:
 	int GetTeam() { return mTeam; }
 	int GetKillScore() const { return mKillScore; }
 	char *GetNickname() { return mNickname; }
+	wchar_t *GetNicknameW() { return mNicknameW;  }
 	
 	bool IsEmoticonRunning() { return mIsEmoticonRunning; }
 	void SetEmoticonRunning(bool value) { mIsEmoticonRunning = value; }
@@ -101,6 +109,7 @@ private:
 	
 	//std::string mNickname;
 	char mNickname[20];
+	wchar_t mNicknameW[12];
 
 	float mRebirthDelayTime;
 	int mHp;

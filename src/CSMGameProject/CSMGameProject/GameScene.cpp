@@ -1,4 +1,3 @@
-
 #include "GameScene.h"
 #include "NNApplication.h"
 #include "PacketType.h"
@@ -16,7 +15,7 @@
 CGameScene::CGameScene() :
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false),mFristLogin(true)
+mLoadingComplete(false), mIsKeyDown(false),mFirstLogin(true)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
@@ -28,11 +27,10 @@ mLoadingComplete(false), mIsKeyDown(false),mFristLogin(true)
 	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
 
 	// GameMap Create
-	mGameMap[0] = CGameMap::Create(L"resource/map/44.csm");
-	mGameMap[1] = CGameMap::Create(L"resource/map/44.csm");
-	mGameMap[2] = CGameMap::Create(L"resource/map/44.csm");
+	mGameMap = CGameMap::Create(L"resource/map/44.csm");
 
 
+	AddChild(mGameMap, -1);
 	// EffectManager
 	AddChild( EffectManager::GetInstance() , 1);
 
@@ -105,11 +103,6 @@ void CGameScene::Update( float dTime )
 
 	if( CPlayerManager::GetInstance()->IsLogin() == true )
 	{
-		if(mFristLogin == true)
-		{
-			AddChild(mGameMap[CPlayerManager::GetInstance()->GetMapType()],-1);
-			mFristLogin = false;
-		}
 	//	TODO :: CPlayerManager의 Score, Limit를 표현해주세요
 		if(misInit == false)
 		{

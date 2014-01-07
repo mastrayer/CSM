@@ -32,8 +32,9 @@ void PlayerUI::Init()
 
 	CPlayer *player = dynamic_cast<CPlayer*>(mFollower);
 
-	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 10.f);
-	mNickname->SetPosition(0.f, -50.f);
+	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+	mNickname->SetPosition(0.f, -70.f);
+	mNickname->SetBold(true);
 
 	AddChild(mHpBar[BLUE]);
 	AddChild(mHpBar[RED]);
@@ -49,7 +50,7 @@ void PlayerUI::SetNickname(char value[20])
 {
 	int nLen = strlen(value) + 1;
 
-	wchar_t pwstr[21] = { 0, };
+	wchar_t *pwstr = (LPWSTR)malloc(sizeof(wchar_t)* nLen);
 	mbstowcs(pwstr, value, nLen);
 
 	mNickname->SetString(pwstr);
