@@ -61,7 +61,7 @@ CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition, int ind
 	mIsCrash = false;
 	mAngle = angle;
 	mSpeed = 1000.f;
-	mLifeTime = mBullet->GetPlayTime();
+	mLifeTime = mBullet->GetPlayTime() - 0.03;
 
 	SetPosition(startPosition);
 	SetRotation(angle);

@@ -15,10 +15,11 @@
 #include "UserSkillEffect.h"
 #include "GameUISet.h"
 
-CPlayer::CPlayer( void )
+CPlayer::CPlayer()
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
 	  mRebirthDelayTime(10), mTeam(0), mKillScore(0),
-	  mIsEmoticonRunning(false)
+	  mIsEmoticonRunning(false),
+	  mNickname("")
 {
 }
 
@@ -41,7 +42,6 @@ void CPlayer::Init()
 	InitAttackImage();
 	INitDieImage();
 	
-
 	mDie->SetVisible( false );
 	mStopNormal->SetVisible( false );
 	mMoveNormal->SetVisible( false );
@@ -50,7 +50,7 @@ void CPlayer::Init()
 
 	TransState(PlayerState::IDLE);
 
-	mPlayerUI = PlayerUI::Create();
+	mPlayerUI = PlayerUI::Create(this);
 	mPlayerUI->SetParent( this );
 	mPlayerUI->SetPosition( 21.f, 24.f );
 	AddChild( mPlayerUI );
@@ -89,11 +89,13 @@ void CPlayer::TransState( PlayerState state )
 		break;
 
 	case TYPE_ACTIVE_SKILL:
-		GameUISet::GetInstance()->SetSkillCooldown(TYPE_ACTIVE_SKILL);
+		if (CPlayerManager::GetInstance()->GetMyPlayer() == this)
+			GameUISet::GetInstance()->SetSkillCooldown(TYPE_ACTIVE_SKILL);
 		break;
 
 	case USER_ACTIVE_SKILL:
-		GameUISet::GetInstance()->SetSkillCooldown(USER_ACTIVE_SKILL);
+		if (CPlayerManager::GetInstance()->GetMyPlayer() == this)
+			GameUISet::GetInstance()->SetSkillCooldown(USER_ACTIVE_SKILL);
 		break;
 
 	default:
