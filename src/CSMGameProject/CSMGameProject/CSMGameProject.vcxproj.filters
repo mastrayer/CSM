@@ -253,6 +253,9 @@
     <ClCompile Include="UserSkillFlashHandler.cpp">
       <Filter>Game\Packet\Attack&amp;Skill</Filter>
     </ClCompile>
+    <ClCompile Include="EndOfGameHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -309,9 +312,6 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="TypeB.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
     </ClInclude>
@@ -338,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="EmoticonEffect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Emoticon</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
