@@ -90,7 +90,7 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
-	char mName[255];
+	char mName[20];
 };
 #pragma pack(push,1)
 
@@ -116,6 +116,7 @@ struct LoginResult : public NNPacketHeader
 	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
 	int mKillScore[2];
 	int mKillLimit;
+	int mMapType;
 };
 struct LoginBroadcastResult : public NNPacketHeader
 {
