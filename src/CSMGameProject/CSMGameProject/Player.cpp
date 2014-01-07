@@ -18,8 +18,8 @@
 CPlayer::CPlayer()
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
 	  mRebirthDelayTime(10), mTeam(0), mKillScore(0),
-	  mIsEmoticonRunning(false),
-	  mNickname("")
+	  mIsEmoticonRunning(false)
+	  //mNickname("")
 {
 	memset(mHasItem, false, sizeof(mHasItem));
 }
