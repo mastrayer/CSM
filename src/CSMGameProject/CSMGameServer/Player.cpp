@@ -583,6 +583,7 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mTeam = mTeam;
 	mPlayerInfo.mType = mType;
 	mPlayerInfo.mKillScore = mKillScore;
+	wcscpy(mPlayerInfo.mName,mName.c_str());
 	return mPlayerInfo;
 }
 
@@ -705,6 +706,7 @@ void Player::ConsumeItem(Item* item)
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
 	outPacket.mItemId = item->GetItemId();
+	outPacket.mLifeTime = item->GetLifeTime();
 	mClient->Broadcast(&outPacket);
 }
 

@@ -26,6 +26,7 @@ public:
 
 	void RemoveItem(Item* item);
 
+	void GetItems(int gameId, std::list<Item*>* items);
 private:
 	int GenerateItemId();
 };

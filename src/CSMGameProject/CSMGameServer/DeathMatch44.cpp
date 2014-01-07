@@ -10,7 +10,7 @@ DeathMatch44::DeathMatch44(int gameId):Game(gameId)
 	mDamageBuffCycleTime = 60.f;
 	mHPBuffPosition = Point(20.5*64,11.5*64);
 	mHPBuffCycleTime = 60.f;
-	mHPBuffLeftTime = 10.f;//120.f;
+	mHPBuffLeftTime = 120.f;
 }
 
 

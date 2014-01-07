@@ -38,8 +38,9 @@ void Item::BackToStartPosition()
 	mOwner = nullptr;
 }
 
-DamageBuff::DamageBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
+DamageBuff::DamageBuff(NNPoint startPosition, int itemId, float lifeTime):Item(startPosition,itemId)
 {	
+	mLifeTime = lifeTime;
 	mBeforeConsumeAnimation = NNAnimation::Create();
 	mAfterConsumeAnimation = NNAnimation::Create();
 
@@ -59,7 +60,6 @@ DamageBuff::DamageBuff(NNPoint startPosition, int itemId):Item(startPosition,ite
 	mAfterConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 14);
 
 
-	mLifeTime = 60.f;
 	mBeforeConsumeAnimation->SetLoop(true);
 	mAfterConsumeAnimation->SetLoop(true);
 	
@@ -92,10 +92,12 @@ void DamageBuff::Render()
 void DamageBuff::Update(float dTime)
 {
 	Item::Update(dTime);
+	if(mLifeTime < 0 ) mIsEnd = true;
 }
 
-HPBuff::HPBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
+HPBuff::HPBuff(NNPoint startPosition, int itemId, float lifeTime):Item(startPosition,itemId)
 {
+	mLifeTime = lifeTime;
 	mBeforeConsumeAnimation = NNAnimation::Create();
 	mAfterConsumeAnimation = NNAnimation::Create();
 
@@ -115,7 +117,7 @@ HPBuff::HPBuff(NNPoint startPosition, int itemId):Item(startPosition,itemId)
 	mAfterConsumeAnimation->SetFrameTimeInSection(0.02f, 0, 14);
 
 
-	mLifeTime = 60.f;
+	mLifeTime = 45.f;
 	mBeforeConsumeAnimation->SetVisible(true);
 	mBeforeConsumeAnimation->SetLoop(true);
 	mBeforeConsumeAnimation->SetCenter(NNPoint(32.f,32.f));
@@ -147,6 +149,7 @@ void HPBuff::Render()
 void HPBuff::Update(float dTime)
 {
 	Item::Update(dTime);
+	if(mLifeTime < 0 ) mIsEnd = true;
 }
 Flag::Flag(NNPoint startPosition, int itemId):Item(startPosition,itemId)
 {	mAnimation = NNAnimation::Create();
