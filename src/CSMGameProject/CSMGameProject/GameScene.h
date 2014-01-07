@@ -65,6 +65,7 @@ public:
 private:
 	NNSprite *mBackgroundImage;
 	NNSprite *mIntro1, *mIntro2;
+	NNSprite *mVictory, *mDefeat;
 	bool mLoadingComplete;
 	bool mIsKeyDown;
 
