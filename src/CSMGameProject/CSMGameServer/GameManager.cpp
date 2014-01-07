@@ -50,7 +50,7 @@ int GameManager::GenerateTeamNumber(int gameId)
 		mPlayerCount[gameId][team]++;
 		return team;
 	}
-	else if(mPlayerCount[1] < mPlayerCount[0])
+	else if(mPlayerCount[gameId][1] < mPlayerCount[gameId][0])
 	{
 		mPlayerCount[gameId][1]++;
 		return 1;

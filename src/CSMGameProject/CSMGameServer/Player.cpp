@@ -14,7 +14,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 Player::Player(int gameId, int playerId, ClientSession* client)
 	: mGameId(gameId), mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
 	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
-	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
+	mTypeSkillDelay(0), mSpeed(0), mKillScore(0), mDamageBuff(nullptr), mHPBuff(nullptr), mFlag(nullptr)
 {
 	mType = 0;
 	InitWithType();
@@ -459,7 +459,7 @@ void Player::Update( float dTime)
 				{
 					if(mDSkillPostDelay <= 0)
 					{
-						mTypeSkillDelay = 3.f;
+						mTypeSkillDelay = 5.f;
 						TransState(PLAYER_STATE_IDLE);
 					}
 					mDSkillPostDelay -=dTime;
