@@ -359,6 +359,7 @@ struct ItemComeResult : public NNPacketHeader
 	}
 	int mItemType;
 	NNPoint mPosition;
+	int mItemId;
 };
 struct ItemPlayerConsumeResult : public NNPacketHeader
 {
@@ -369,6 +370,7 @@ struct ItemPlayerConsumeResult : public NNPacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
 };
 struct ItemPlayerDropResult : public NNPacketHeader
 {
@@ -379,6 +381,7 @@ struct ItemPlayerDropResult : public NNPacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
 };
 
 struct EmoticonRequest : public NNPacketHeader
@@ -401,5 +404,15 @@ struct EmoticonResult : public NNPacketHeader
 	}
 	int mPlayerId;
 	int mEmoticonNumber;
+};
+struct UserSkillFlashResult : public NNPacketHeader
+{
+	UserSkillFlashResult()
+	{
+		mSize = sizeof(UserSkillFlashResult);
+		mType = PKT_SC_USERSKILL_FLASH;
+	}
+	NNPoint mBeforePosition;
+	NNPoint mAfterPosition;
 };
 #pragma pack(pop)

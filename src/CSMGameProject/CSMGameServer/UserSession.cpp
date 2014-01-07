@@ -41,5 +41,5 @@ void EmoticonPacket( ClientSession* client, PacketHeader* header, CircularBuffer
 	outPacket.mEmoticonNumber = inPacket.mEmoticonNumber;
 	outPacket.mPlayerId = inPacket.mPlayerId;
 
-	client->BroadcastWithoutSelf(&outPacket);
+	client->Broadcast(&outPacket);
 }

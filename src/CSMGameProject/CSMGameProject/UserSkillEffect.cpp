@@ -1,11 +1,14 @@
 #include "UserSkillEffect.h"
+#include "NNResourceManager.h"
+#include "NNAudioSystem.h"
+
 using namespace USER_SKILL_EFFECT;
 
-Flash::Flash(CPlayer* follower)
+Flash::Flash(NNPoint beforePosition, NNPoint afterPosition)
 {
 	////////////////////// Set Animation ///////////////////////
 	mSrcAnimation = NNAnimation::Create();
-	mDstAnimation = NNAnimation::Create();
+	mDstAnimation = NNAnimation::Create(); 
 
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 25; i++)
@@ -20,19 +23,18 @@ Flash::Flash(CPlayer* follower)
 
 
 	////////////////////// Set Settings ///////////////////////
-	mFollower = follower;
 	mLifeTime = mSrcAnimation->GetPlayTime() * 1.3f;
-	mDirection = mFollower->GetPlayerRotation();
-	mDistance = 200.f;
 	mDstAnimationStart = false;
 	mDstAnimation->SetVisible(false);
 	mSrcAnimation->SetLoop(false);
 
-	SetPosition(mFollower->GetPlayerPosition().GetX() - 65.f, mFollower->GetPlayerPosition().GetY() - 65.f);
-	mDstPoint.SetPoint(mDistance * std::cosf(mDirection), mDistance * std::sinf(mDirection));
+	mSrcAnimation->SetPosition(beforePosition - NNPoint(-1,-1) * -65.f);
+	mDstAnimation->SetPosition(afterPosition - NNPoint(-1,-1) * -65.f);
 
 	AddChild(mSrcAnimation);
 	AddChild(mDstAnimation);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/Flash.mp3"));
 }
 Flash::~Flash()
 {
@@ -48,7 +50,6 @@ void Flash::Update(float dTime)
 	if (!mDstAnimationStart && mNowLifeTime >= mLifeTime / 3)
 	{
 		mDstAnimationStart = true;
-		mDstAnimation->SetPosition(mDstPoint);
 		mDstAnimation->SetVisible(true);
 	}
 	if (mLifeTime < mNowLifeTime)

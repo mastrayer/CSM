@@ -1,0 +1,67 @@
+
+#pragma once
+
+#include "Effect.h"
+#include "NNAnimation.h"
+#include "Player.h"
+
+namespace ITEM_EFFECT
+{
+	class Item : public IEffect
+	{
+	public:
+		Item(NNPoint startPosition, int itemId);
+		virtual ~Item();
+
+		virtual void Render() = 0;
+		virtual void Update(float dTime) = 0;
+
+		virtual void Follow(int playerId);
+		virtual void Remove();
+		virtual void BackToStartPosition();
+
+		int GetId(){ return mItemId; }
+	protected:
+		NNPoint mStartPosition;
+		CPlayer* mOwner;
+		int mItemId;
+	};
+	class DamageBuff : public Item
+	{
+	public:
+		DamageBuff(NNPoint startPosition, int itemId);
+		virtual ~DamageBuff();
+
+		virtual void Render();
+		virtual void Update(float dTime);
+
+	private:
+		NNAnimation *mAnimation;
+	};
+
+	class HPBuff : public Item
+	{
+	public :
+		HPBuff(NNPoint startPosition, int itemId);
+		virtual ~HPBuff();
+
+		virtual void Render();
+		virtual void Update(float dTime);
+
+	private:
+		NNAnimation *mAnimation;
+	};
+
+	class Flag : public Item
+	{
+	public:
+		Flag(NNPoint startPosition, int itemId);
+		virtual ~Flag();
+
+		virtual void Render();
+		virtual void Update(float dTime);
+
+	private:
+		NNAnimation *mAnimation;
+	};
+}

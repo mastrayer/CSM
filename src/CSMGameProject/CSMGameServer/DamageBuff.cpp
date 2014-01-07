@@ -7,7 +7,7 @@ DamageBuff::DamageBuff(int itemId,int gameId, Point position)
 	mItemType = DAMAGEBUFF;
 	mRadius = 32;
 	mIsPermanent = false;
-	mLifeTime = 60.f;
+	mLifeTime = 45.f;
 }
 
 

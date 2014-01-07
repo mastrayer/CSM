@@ -8,12 +8,12 @@
 enum TeamColor
 {
 	RED = 0,
-	BLUE = 1
+	BLUE = 1,
 };
 class PlayerUI : public NNObject
 {
 public:
-	PlayerUI();
+	PlayerUI(NNObject *follower);
 	virtual ~PlayerUI();
 
 	void Init();
@@ -23,7 +23,14 @@ public:
 	void SetHP(int hp) { mHp = hp; }
 	void SetTeam(int team) { mTeam = team; }
 
-	NNCREATE_FUNC(PlayerUI);
+	//NNCREATE_FUNC(PlayerUI);
+	static PlayerUI* Create(NNObject *follower)
+	{
+		PlayerUI* pInstance = new PlayerUI(follower);
+		pInstance->Init();
+		return pInstance;
+	}
+
 private:
 	NNSprite* mHpBar[2];
 	NNSprite* mHpBarFrame;
@@ -32,4 +39,6 @@ private:
 
 	wchar_t mNicknameBuf[256];
 	NNLabel *mNickname;
+
+	NNObject *mFollower;
 };

@@ -26,7 +26,7 @@ CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 
 	AddChild(mAnimation);
 
-	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.wav"));
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.mp3"));
 }
 CTypeSkillEffect::~CTypeSkillEffect()
 {
@@ -61,7 +61,7 @@ CTypeAttackEffect::CTypeAttackEffect(float angle, NNPoint startPosition, int ind
 	mIsCrash = false;
 	mAngle = angle;
 	mSpeed = 1000.f;
-	mLifeTime = mBullet->GetPlayTime();
+	mLifeTime = mBullet->GetPlayTime() - 0.03;
 
 	SetPosition(startPosition);
 	SetRotation(angle);

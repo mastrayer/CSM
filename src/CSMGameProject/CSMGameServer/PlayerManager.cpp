@@ -71,9 +71,9 @@ void PlayerManager::DeletePlayer(int playerId)
 	if( itor != mPlayers.end() ) 
 	{
 		mPlayersLength--;
-		Player* deleteTarget = mPlayers.find(playerId)->second;
-		mPlayers.erase( mPlayers.find(playerId) );
-		delete deleteTarget;
+		//TODO ERRER
+		//delete itor->second;
+		mPlayers.erase( itor );
 	}
 }
 

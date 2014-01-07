@@ -23,9 +23,11 @@ private:
 	HPUpdateHandler* mHPUpdateHandler;
 	KillScoreHandler* mKillScoreHandler;
 	KillScoreHandler* mPlayerKillScoreHandler;
+	EndOfGameHandler* mEndOfGameHandler;
 	ATypeSkillShootHandler* mATypeSkillShootHandler;
 	ATypeAttackEndHandler* mATypeAttackEndHandler;
 	ATypeAttackShootHandler* mATypeAttackShootHandler;
+	UserSkillFlashHandler* mUserSkillFlashHandler;
 
 	BTypeAttackEndHandler* mBTypeAttackEndHandler;
 	BTypeAttackShootHandler* mBTypeAttackShootHandler;
@@ -42,6 +44,10 @@ private:
 	DTypeSkillEndHandler* mDTypeSkillEndHandler;
 
 	EmoticonHandler* mEmoticonHandler;
+
+	ItemComeHandler* mItemComeHandler;
+	ItemPlayerConsumeHandler* mItemPlayerConsumeHandler;
+	ItemPlayerDropHandler* mItemPlayerDropHandler;
 
 	float mAngle;
 	DWORD mLastAngleChangedTime;
@@ -63,12 +69,16 @@ public:
 	}
 private:
 	NNSprite *mBackgroundImage;
+	NNSprite *mIntro1, *mIntro2;
+	NNSprite *mVictory, *mDefeat;
 	bool mLoadingComplete;
+	bool mIsKeyDown;
 
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();
 	float GetNowAngle();
 	bool isChangedAngle();
+	CPlayer *mMyPlayer;
 
 	void InitNetworkSetting();
 };

@@ -22,7 +22,8 @@ GameUISet::GameUISet()
 	mSkillCooltime[0] = 5.0f;
 	mSkillCooltime[1] = 7.0f;
 	mSkillCooltime[2] = 3.0f;
-	mSkillCooltime[3] = 5.0f;
+	mSkillCooltime[3] = 3.0f;
+	mSkillCooltime[4] = 10.f;
 
 	ZeroMemory(mNowSkillCooltime, sizeof(mNowSkillCooltime));
 	//mKillCount = 25;
@@ -58,13 +59,16 @@ GameUISet::GameUISet()
 	mCrown->SetCenter(mCrown->GetImageWidth() / 2.f, mCrown->GetImageHeight() / 2.f);
 	mCrown->SetPosition(width / 2.f, 30);
 
-	mKillBar[BLUE] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointBlueBar.png");
-	mKillBar[BLUE]->SetPosition(width / 2.f - 32, 20);
-	mKillBar[BLUE]->SetScaleX(-1.f);
-
 	mKillBar[RED] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointRedBar.png");
-	mKillBar[RED]->SetPosition(width / 2.f + 32, 20);
-	//mRedKillBar->SetScaleX(-1.f);
+	mKillBar[RED]->SetPosition(width / 2.f - 32, 20);
+	mKillBar[RED]->SetScaleX(-1.f);
+
+	mKillBar[BLUE] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/KillPointBlueBar.png");
+	mKillBar[BLUE]->SetPosition(width / 2.f + 32, 20);
+	mKillBar[BLUE]->SetScaleX(1.f);
+
+	
+	//mRedKillBar->SetSc	aleX(-1.f);
 
 	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/ZeroTypeSkillUI.png");
 	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
@@ -86,7 +90,7 @@ GameUISet::GameUISet()
 	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
 	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 235);
 
-	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.png");
+	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.jpg");
 	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
 	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 235);
 
@@ -101,7 +105,7 @@ GameUISet::GameUISet()
 	//TypeSKill icon cooltime count label
 	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mTypeSKillTimer->SetCenter(mTypeSKillTimer->GetCenterX(), mTypeSKillTimer->GetCenterY());
-	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 225);
+	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 230);
 	//mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
 	mTypeSKillTimer->SetBold(true);
 	mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
@@ -125,15 +129,16 @@ GameUISet::GameUISet()
 	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
 	mUserSkillTimer->SetPosition(width / 2.f + 20, height / 2.f + 230);
+	mUserSkillTimer->SetBold(true);
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
 	//KillPoint count label
-	mKillPoint[BLUE] = NNLabel::Create(L"40", L"¸¼Àº °íµñ", 20.f);
+	mKillPoint[BLUE] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[BLUE]->SetCenter(mKillPoint[BLUE]->GetCenterX(), mKillPoint[BLUE]->GetCenterY());
 	mKillPoint[BLUE]->SetPosition(width / 2.f - 270, 20);
 	mKillPoint[BLUE]->SetRGBA(0, 0, 0, 255);
 
-	mKillPoint[RED] = NNLabel::Create(L"25", L"¸¼Àº °íµñ", 20.f);
+	mKillPoint[RED] = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mKillPoint[RED]->SetCenter(mKillPoint[RED]->GetCenterX(), mKillPoint[RED]->GetCenterY());
 	mKillPoint[RED]->SetPosition(width / 2.f + 250, 20);
 	mKillPoint[RED]->SetRGBA(0, 0, 0, 255);
@@ -269,10 +274,32 @@ void GameUISet::Update(float dTime)
 	mKillBar[TeamColor::RED]->SetScale(CPlayerManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * CPlayerManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
 	*/
-	mKillBar[TeamColor::BLUE]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
-	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::RED)) - 60, 20);
-	mKillBar[TeamColor::RED]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
-	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
+
+	
+	//int t = GameManager::GetInstance()->GetKillScore(TeamColor::RED);
+ 	mKillBar[TeamColor::RED]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
+ 	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
+ 	swprintf_s(mKillBuf[TeamColor::RED], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::BLUE));
+ 	mKillPoint[RED]->SetString(mKillBuf[TeamColor::RED]);
+
+	//t = GameManager::GetInstance()->GetKillScore(TeamColor::BLUE);
+	mKillBar[TeamColor::BLUE]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
+	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::BLUE)) - 60, 20);
+	swprintf_s(mKillBuf[TeamColor::BLUE], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::RED));
+	mKillPoint[BLUE]->SetString(mKillBuf[TeamColor::BLUE]);
+
+	
+	/*
+	mKillBar[TeamColor::RED]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f); 
+	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::RED)) + 40, 20);
+	swprintf_s(mKillBuf[TeamColor::RED], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::RED));
+	mKillPoint[RED]->SetString(mKillBuf[TeamColor::RED]);
+
+	mKillBar[TeamColor::BLUE]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
+	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) - 60, 20); 
+	swprintf_s(mKillBuf[TeamColor::BLUE], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::BLUE));
+	mKillPoint[BLUE]->SetString(mKillBuf[TeamColor::BLUE]);
+	*/
 
 	ControlSkillTimer(dTime);
 
@@ -310,6 +337,23 @@ void GameUISet::ControlSkillTimer(float dTime)
 
 			mTypeSkillUI[type+1]->SetOpacity(1.f);
 			mTypeSKillTimer->SetString(L"");
+		}
+	}
+	if (mIsCooldown[1] == true)
+	{
+		mNowSkillCooltime[1] += dTime;
+		mUserSkillUI->SetOpacity(pow(mNowSkillCooltime[1] / mSkillCooltime[4],3));
+
+		swprintf_s(mSkillCooltimeBuff[1], L"%.1f", mSkillCooltime[4] - mNowSkillCooltime[1]);
+		mUserSkillTimer->SetString(mSkillCooltimeBuff[1]);
+
+		if (mNowSkillCooltime[1] >= mSkillCooltime[4])
+		{
+			mIsCooldown[1] = false;
+			mNowSkillCooltime[1] = 0.f;
+
+			mUserSkillUI->SetOpacity(1.f);
+			mUserSkillTimer->SetString(L"");
 		}
 	}
 // 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);

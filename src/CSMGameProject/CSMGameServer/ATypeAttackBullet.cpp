@@ -10,7 +10,7 @@ ATypeAttackBullet::ATypeAttackBullet(Player* ownerPlayer, Point position, float 
 	SetAngle(angle);
 	SetShape(CIRCLE);
 	SetRadius(10);
-	SetDamage(10);
+	SetDamage(12);
 	SetLifeTime(0.5f);
 	mDidExplosed = false;
 }

@@ -15,11 +15,19 @@ LoadScene::LoadScene(std::wstring path, int roomNum, int playerID)
 	mPath = path;
 	NNZip *temp = NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title");
 	mBackgroundImage = NNSprite::Create(temp);
+
+	mIntro = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
+
 	AddChild(mBackgroundImage);
+
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/Loading.mp3"));
+
+	AddChild(mIntro);
 }
 
 LoadScene::~LoadScene()
 {
+	NNAudioSystem::GetInstance()->Stop(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/Loading.mp3"));
 }
 
 void LoadScene::Render()

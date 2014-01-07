@@ -14,7 +14,7 @@ Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 Player::Player(int gameId, int playerId, ClientSession* client)
 	: mGameId(gameId), mHP(), mPlayerState(PLAYER_STATE_IDLE), mMoveDirection(Point(0.f,0.f)),
 	mAttackRange(64), mRadius(24), mRotation(0), mAttackDelay(0), mUserSkillDelay(0),
-	mTypeSkillDelay(0), mSpeed(0), mKillScore(0)
+	mTypeSkillDelay(0), mSpeed(0), mKillScore(0), mDamageBuff(nullptr), mHPBuff(nullptr), mFlag(nullptr)
 {
 	mType = 0;
 	InitWithType();
@@ -347,7 +347,7 @@ void Player::Update( float dTime)
 			{
 			case TYPE_A:
 				{
-					mAttackDelay = 1.f;
+					mAttackDelay = 0.7f;
 					new ATypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -359,7 +359,7 @@ void Player::Update( float dTime)
 				}break;
 			case TYPE_C:
 				{	
-					mAttackDelay = 0.4f;
+					mAttackDelay = 0.5f;
 					new CTypeAttack(mRotation,mPosition,this);
 					TransState(PLAYER_STATE_IDLE);
 				}break;
@@ -459,7 +459,7 @@ void Player::Update( float dTime)
 				{
 					if(mDSkillPostDelay <= 0)
 					{
-						mTypeSkillDelay = 3.f;
+						mTypeSkillDelay = 3.0f;
 						TransState(PLAYER_STATE_IDLE);
 					}
 					mDSkillPostDelay -=dTime;
@@ -473,25 +473,27 @@ void Player::Update( float dTime)
 	case PLAYER_STATE_USERSKILL:
 		{
 			//if(mPreDelay > 0) break;
-			switch (mType)
+
+			mUserSkillDelay = 10.f;
+
+			//패킷 보내고
+			UserSkillFlashResult outPacket = UserSkillFlashResult();
+			outPacket.mBeforePosition = outPacket.mAfterPosition = GetPosition();
+
+			std::map<int,Player*>players;
+			GPlayerManager->GetPlayers(mGameId,&players);
+			
+			for( float shortMove = 250.f; shortMove >= 0.f; shortMove -= 1.f)
 			{
-			case TYPE_A:
+				if( CouldGoPosition(GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove) )
 				{
-					mUserSkillDelay = 5.f;
-				}break;
-			case TYPE_B:
-				{
-					mUserSkillDelay = 10.f;
-				}break;
-			case TYPE_C:
-				{
-					mUserSkillDelay = 5.f;
-				}break;
-			default:
-				break;
+					outPacket.mAfterPosition = GetPosition() + Point(cos(mRotation),sin(mRotation)) * shortMove;
+					break;
+				}
 			}
+			SetPosition(outPacket.mAfterPosition);
+			mClient->Broadcast(&outPacket);
 			TransState(PLAYER_STATE_IDLE);
-			break;
 		}
 		break;
 	default:
@@ -514,7 +516,7 @@ bool Player::Damaged(int damage, Player* player)
 		outPacket.mHP = 0;
 		mClient->Broadcast(&outPacket);
 
-		GGameManager->DiePlayer(mTeam);
+		GGameManager->DiePlayer(mPlayerId);
 		TransState(PLAYER_STATE_DIE);
 
 		if( HasDamageBuff() == true)
@@ -695,10 +697,11 @@ void Player::ConsumeItem(Item* item)
 	default:
 		break;
 	}
-	
+
 	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
+	outPacket.mItemId = item->GetItemId();
 	mClient->Broadcast(&outPacket);
 }
 
@@ -729,5 +732,6 @@ void Player::DropItem(Item* item)
 	ItemPlayerDropResult outPacket = ItemPlayerDropResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
+	outPacket.mItemId = item->GetItemId();
 	mClient->Broadcast(&outPacket);
 }

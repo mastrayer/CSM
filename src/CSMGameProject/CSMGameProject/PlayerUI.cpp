@@ -8,8 +8,9 @@
 
 #include "EmoticonEffect.h"
 
-PlayerUI::PlayerUI()
+PlayerUI::PlayerUI(NNObject *follower)
 {
+	mFollower = follower;
 }
 
 PlayerUI::~PlayerUI()
@@ -27,7 +28,8 @@ void PlayerUI::Init()
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
 	mHpBar[RED]->SetPosition( 0.f, -40.f );
 
-	wsprintf(mNicknameBuf, L"NICKNAME");
+	CPlayer *temp = dynamic_cast<CPlayer*>(mFollower);
+	wsprintf(mNicknameBuf, L"%s", temp->GetNickname().c_str());// L"NICKNAME");
 	mNickname = NNLabel::Create(mNicknameBuf, L"¸¼Àº °íµñ", 10.f);
 	mNickname->SetPosition(0.f, -50.f);
 
@@ -36,6 +38,8 @@ void PlayerUI::Init()
 	AddChild(mNickname, 99);
 
 	SetCenter( mHpBar[BLUE]->GetImageWidth()/2.f, mHpBar[BLUE]->GetImageHeight()/2.f );
+
+	mTeam = -1;
 }
 
 void PlayerUI::Render()
@@ -50,10 +54,16 @@ void PlayerUI::Update( float dTime )
 	mHpBar[BLUE]->SetVisible(false);
 	mHpBar[RED]->SetVisible(false);
 
-	TeamColor result = (TeamColor)(dynamic_cast<CPlayer*>(GetParent())->GetTeam());
+	//TeamColor mTeam = (TeamColor)(dynamic_cast<CPlayer*>(GetParent())->GetTeam());
+	if (mTeam == -1)
+	{
+		mTeam = (TeamColor)(dynamic_cast<CPlayer*>(mFollower)->GetTeam());
+		return;
+	}
 	
-	mHpBar[result]->SetVisible(true);
-	mHpBar[result]->SetScale(mHp / 50.f, 1.f);
+	
+	mHpBar[mTeam]->SetVisible(true);
+	mHpBar[mTeam]->SetScale(mHp / 50.f, 1.f);
 
 	
 

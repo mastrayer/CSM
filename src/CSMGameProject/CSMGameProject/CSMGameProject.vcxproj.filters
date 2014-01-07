@@ -103,6 +103,12 @@
     <Filter Include="Game\Scene\GameScene\Object\EffectManager\Emoticon">
       <UniqueIdentifier>{784b2b18-91c3-4cc7-bb6f-f9f4086e0b38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Packet\Item">
+      <UniqueIdentifier>{cf1ef5b2-c6c2-418f-b367-575bb246c7f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect">
+      <UniqueIdentifier>{816ee27d-c338-4715-8fc4-132819a205d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -238,6 +244,24 @@
     <ClCompile Include="EmoticonHandler.cpp">
       <Filter>Game\Packet\UserSession</Filter>
     </ClCompile>
+    <ClCompile Include="ItemComeHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPlayerConsumeHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPlayerDropHandler.cpp">
+      <Filter>Game\Packet\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="UserSkillFlashHandler.cpp">
+      <Filter>Game\Packet\Attack&amp;Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="EndOfGameHandler.cpp">
+      <Filter>Game\Packet\UserSession</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -294,9 +318,6 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="TypeB.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\B</Filter>
     </ClInclude>
@@ -323,6 +344,12 @@
     </ClInclude>
     <ClInclude Include="EmoticonEffect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Emoticon</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
