@@ -5,7 +5,7 @@ class Game
 public:
 	Game(int gameId);
 	~Game(void);
-	virtual void Update(float dTime){ mPlayTime += dTime, mDamageBuffLeftTime -= dTime, mHPBuffCycleTime -= dTime; RegenItem(); }
+	virtual void Update(float dTime){ mPlayTime += dTime, mDamageBuffLeftTime -= dTime, mHPBuffLeftTime -= dTime; RegenItem(); }
 	virtual void RegenItem();
 protected:
 	float mPlayTime;

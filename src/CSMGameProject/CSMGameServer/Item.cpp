@@ -7,8 +7,9 @@ Item::Item()
 {
 
 }
-Item::Item(int itemId,int gameId, Point position)
+Item::Item(int itemType, int itemId,int gameId, Point position):mOwnerId(-1)
 {
+	mItemType = itemType;
 	mItemId = itemId;
 	mGameId = gameId;
 	mPosition = position;
@@ -32,5 +33,6 @@ void Item::ConsumeBy(int playerId)
 
 void Item::RemoveEffect()
 {
-	GPlayerManager->GetPlayer(mOwnerId)->DropItem(this);
+	if(mOwnerId != -1 && GPlayerManager->GetPlayer(mOwnerId) != nullptr)
+		GPlayerManager->GetPlayer(mOwnerId)->DropItem(this);
 }

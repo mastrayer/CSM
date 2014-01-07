@@ -3,12 +3,12 @@
 #include "PlayerManager.h"
 
 
-HPBuff::HPBuff(int itemId,int gameId, Point position)
+HPBuff::HPBuff(int itemId,int gameId, Point position):Item(HPBUFF,itemId,gameId,position)
 {
-	mItemType = HPBUFF;
 	mRadius = 32;
 	mIsPermanent = false;
 	mLifeTime = 45.f;
+	mIsConsumed = false;
 }
 
 

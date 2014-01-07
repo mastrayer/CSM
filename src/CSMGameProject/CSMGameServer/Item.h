@@ -8,7 +8,7 @@
 class Item
 {
 public:
-	Item(int itemId,int gameId, Point position);
+	Item(int itemType, int itemId,int gameId, Point position);
 	Item();
 	virtual ~Item(void);
 

@@ -8,7 +8,8 @@
 #include "PlayerManager.h"
 #include "BulletManager.h"
 #include "SkillManager.h"
-
+#include "ItemManager.h"
+#include "GameManager.h"
 ClientManager* GClientManager = nullptr ;
 
 ClientSession* ClientManager::CreateClient(SOCKET sock)
@@ -95,6 +96,8 @@ void ClientManager::ClientPeriodWork()
 	mLastTime = nowTime;
 	GBulletManager->Update(dTime);
 	GSkillManager->Update(dTime);
+	GGameManager->Update(dTime);
+	GItemManager->Update(dTime);
 	
 	/// FYI: C++ 11 스타일의 루프
 	for (auto& it : mClientList)
