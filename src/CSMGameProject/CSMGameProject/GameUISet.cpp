@@ -23,6 +23,7 @@ GameUISet::GameUISet()
 	mSkillCooltime[1] = 7.0f;
 	mSkillCooltime[2] = 3.0f;
 	mSkillCooltime[3] = 3.0f;
+	mSkillCooltime[4] = 10.f;
 
 	ZeroMemory(mNowSkillCooltime, sizeof(mNowSkillCooltime));
 	//mKillCount = 25;
@@ -101,7 +102,7 @@ GameUISet::GameUISet()
 	//TypeSKill icon cooltime count label
 	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mTypeSKillTimer->SetCenter(mTypeSKillTimer->GetCenterX(), mTypeSKillTimer->GetCenterY());
-	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 225);
+	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 230);
 	//mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
 	mTypeSKillTimer->SetBold(true);
 	mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
@@ -125,6 +126,7 @@ GameUISet::GameUISet()
 	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
 	mUserSkillTimer->SetPosition(width / 2.f + 20, height / 2.f + 230);
+	mUserSkillTimer->SetBold(true);
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
 	//KillPoint count label
@@ -310,6 +312,23 @@ void GameUISet::ControlSkillTimer(float dTime)
 
 			mTypeSkillUI[type+1]->SetOpacity(1.f);
 			mTypeSKillTimer->SetString(L"");
+		}
+	}
+	if (mIsCooldown[1] == true)
+	{
+		mNowSkillCooltime[1] += dTime;
+		mUserSkillUI->SetOpacity(pow(mNowSkillCooltime[1] / mSkillCooltime[4],3));
+
+		swprintf_s(mSkillCooltimeBuff[1], L"%.1f", mSkillCooltime[4] - mNowSkillCooltime[1]);
+		mUserSkillTimer->SetString(mSkillCooltimeBuff[1]);
+
+		if (mNowSkillCooltime[1] >= mSkillCooltime[4])
+		{
+			mIsCooldown[1] = false;
+			mNowSkillCooltime[1] = 0.f;
+
+			mUserSkillUI->SetOpacity(1.f);
+			mUserSkillTimer->SetString(L"");
 		}
 	}
 // 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);

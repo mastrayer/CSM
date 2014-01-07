@@ -451,4 +451,14 @@ struct EmoticonResult : public PacketHeader
 	int mPlayerId;
 	int mEmoticonNumber;
 };
+struct UserSkillFlashResult : public PacketHeader
+{
+	UserSkillFlashResult()
+	{
+		mSize = sizeof(UserSkillFlashResult);
+		mType = PKT_SC_USERSKILL_FLASH;
+	}
+	Point mBeforePosition;
+	Point mAfterPosition;
+};
 #pragma pack(pop)
