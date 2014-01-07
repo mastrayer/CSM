@@ -4,9 +4,9 @@
 	left: 50%;
 	top: 50%;
 	width: 300px;
-	height: 100px;
+	height: 130px;
 	margin-left: -150px;
-	margin-top: -50px;
+	margin-top: -65px;
 	border: 1px solid #444;
 	border-radius: 10px;
 	background-color: white;
@@ -17,6 +17,14 @@
 	height: auto;
 	padding: 10px;
 	box-sizing: border-box;
+}
+.createRoomTitle {
+	margin: 0;
+	padding: 0;
+	margin-left: 5px;
+	font-size: 14pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #333;
 }
 select {
 	width: 143px;

@@ -20,10 +20,10 @@
 }
 .lobby .lobbyInner .lobbyHeader {
 	width: 100%;
-	height: 100px;
+	height: 80px;
 }
 .lobby .lobbyInner .lobbyHeader .lobbyTitle {
-	float: left;
+	/*float: left;*/
 	margin: 0;
 	font-size: 20pt;
 	font-family: 'Nanum Gothic', sans-serif;
@@ -31,14 +31,15 @@
 	color: #333;
 }
 .lobby .lobbyInner .lobbyHeader .createRoomBtn {
-	float: right;
+	/*float: right;*/
 	display: block;
-	width: 200px;
-	height: 50px;
+	width: 140px;
+	height: 25px;
+	margin-top: 10px;
 	text-align: center;
-	line-height: 50px;
+	line-height: 25px;
 	text-decoration: none;
-	font-size: 15pt;
+	font-size: 10pt;
 	font-family: 'Nanum Gothic', sans-serif;
 	color: white;
 	border: 1px solid #333;

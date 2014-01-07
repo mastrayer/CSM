@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" type="text/css" href="/static/styles/main.css" />
-<link rel="stylesheet" type="text/css" href="/static/styles/create_room.css" />
+<link rel="stylesheet" type="text/css" href="/static/styles/main.css?20140108" />
+<link rel="stylesheet" type="text/css" href="/static/styles/create_room.css?20140108" />
 {% endblock %}
 
 {% block scripts %}
@@ -11,6 +11,8 @@
 {% block content %}
 <div class="createRoom">
 	<div class="createRoomInner">
+		<a href="{{url_for('room.room_list')}}" style="color:black;" class="exit"><i class="fa fa-times"></i></a>
+		<h1 class="createRoomTitle">방 만들기</div>
 		<form class="form formCreateRoom" method="post" action=".">
 			<input type="text" name="title" placeholder="방제목" />
 			<select name="type">

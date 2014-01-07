@@ -4,6 +4,7 @@ from app import db
 from app.room.forms import CreateRoomForm
 from app.room.models import Room
 from app.user.models import User
+from app.player.models import Player
 from app.user.decorators import requires_login
 
 mod = Blueprint('room', __name__, url_prefix='/room')
@@ -12,6 +13,13 @@ mod = Blueprint('room', __name__, url_prefix='/room')
 @requires_login
 def room_list():
     game_list = Room.query.all()
+    for game in game_list:
+        game.player_count = Player.query.filter_by(room_id=game.id).count()
+
+    user = Player.query.filter_by(user_id=session['user_id']).first()
+    if user:
+        return redirect(url_for("room.already"))
+
     return render_template("room/lobby.html", game_list=game_list)
 
 @mod.route('/create/', methods=['GET','POST'])
@@ -28,6 +36,15 @@ def room_create():
         return redirect(url_for("room.room_list"))
     
     return render_template("room/create_room.html")
+
+@mod.route('/already/')
+@requires_login
+def already():
+    user = Player.query.filter_by(user_id=session['user_id']).first()
+    if not user:
+        return redirect(url_for("room.room_list"))
+
+    return render_template("room/already_game.html")
 
 @mod.before_request
 def before_request():
