@@ -5,6 +5,7 @@
 #include "NNSprite.h"
 #include "NNResourceManager.h"
 #include "NNSpriteAtlas.h"
+#include "NNAnimation.h"
 
 #define ATTRIBUTE_MOVE 0x01
 #define TILESIZE 64
@@ -59,6 +60,7 @@ public:
 	void Update( float dTime );
 
 	//void CreateMap(NNXML* xml, );
+	NNAnimation *CreateBarrackGate(TileType type);
 	void convertFileToMap(std::wstring path);
 
 	static CGameMap* Create(std::wstring path)

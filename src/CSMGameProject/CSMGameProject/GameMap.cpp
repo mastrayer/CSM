@@ -32,6 +32,39 @@ void CGameMap::Render()
 {
 	NNObject::Render();
 }
+NNAnimation *CGameMap::CreateBarrackGate(TileType type)
+{
+	NNAnimation *Gate = NNAnimation::Create();
+	std::wstring path = L"Resource/Sprite/Barrack/";
+
+	switch (type)
+	{
+	case BARRACK_A:
+		path += L"FireBarrack/";
+		break;
+	case BARRACK_B:
+		path += L"WaterBarrack/";
+		break;
+	case BARRACK_C:
+		path += L"WindBarrack/";
+		break;
+	case BARRACK_D:
+		path += L"SandBarrack/";
+		break;
+	default:
+		return nullptr;
+	}
+	wchar_t temp[256] = { 0 };
+	for (int i = 0; i < 20; i++)
+	{
+		wsprintf(temp, L"%s%d.png", path.c_str(), i);
+
+		Gate->AddFrameNode(temp);
+	}
+	Gate->SetFrameTimeInSection(0.03f, 0, 19);
+	
+	return Gate;
+}
 void CGameMap::convertFileToMap( std::wstring path )
 {
 	std::wstring FILENAME[2] = { L"map.xml", L"TileSet" };
@@ -92,10 +125,20 @@ void CGameMap::convertFileToMap( std::wstring path )
 
 			TiXmlElement* tileObject = child->FirstChild("Object")->ToElement();
 
+			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
+			mTile[i][j]->AddChild(mTile[i][j]->mimage);
+			AddChild(mTile[i][j]);
+
+			mTile[i][j]->mimage->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
+
+			mTile[i][j]->mimage->SetPosition(j*64.f, i*64.f);
+
 			std::string temp = tileObject->Attribute("Type");
+
+
 			if ( temp == "Tile" )
 				mTile[i][j]->mType = TILE;
-			else if ( temp == "Barrack A In" )
+			else if (temp == "Barrack A In")
 				mTile[i][j]->mType = BARRACK_A;
 			else if ( temp == "Barrack B In" )
 				mTile[i][j]->mType = BARRACK_B;
@@ -110,13 +153,12 @@ void CGameMap::convertFileToMap( std::wstring path )
 			else if ( temp == "B Team Starting Point" )
 				mTile[i][j]->mType = STARTING_POINT_B;
 
-			mTile[i][j]->mimage = NNSpriteAtlas::Create(tileSetLoad[tileSetIndex]);
-			mTile[i][j]->AddChild(mTile[i][j]->mimage);
-			AddChild(mTile[i][j]);
-
-			mTile[i][j]->mimage->SetCutSize((float)y, (float)x, y + 64.f, x + 64.f);
-
-			mTile[i][j]->mimage->SetPosition(j*64.f, i*64.f);
+			NNAnimation *Gate = CreateBarrackGate(mTile[i][j]->mType);
+			if (Gate != nullptr)
+			{
+				Gate->SetPosition(j*64.f, i*64.f);
+				AddChild(Gate);
+			}
 		}
 	}
 

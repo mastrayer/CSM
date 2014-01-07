@@ -19,7 +19,7 @@ CEmoticonEffect::CEmoticonEffect(int PlayerID, EmoticonType type)
 		mIcon = NNSprite::Create(iconPath[type]);
 
 		mFollower = CPlayerManager::GetInstance()->FindPlayerByID(PlayerID);
-		mLifeTime = 1.f;
+		mLifeTime = 2.f;
 
 		SetCenter(45.f, 40.f);
 		SetPosition(mFollower->GetPlayerPosition());
@@ -47,7 +47,9 @@ void CEmoticonEffect::Update(float dTime)
 
 	IEffect::Update(dTime);
 	SetPosition(mFollower->GetPlayerPosition());
-	mIcon->SetOpacity(mIcon->GetOpacity() - 0.01f);
+
+	if (mNowLifeTime >= 0.5f)
+		mIcon->SetOpacity(mIcon->GetOpacity() - 0.01f);
 	
 	if (mLifeTime < mNowLifeTime)
 	{
