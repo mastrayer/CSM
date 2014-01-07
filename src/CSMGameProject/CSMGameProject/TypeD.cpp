@@ -130,7 +130,7 @@ DTypeAttackEffect::DTypeAttackEffect(int PlayerID)
 
 	AddChild(mSlash);
 
-	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.wav"));
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/earth_attack.mp3"));
 }
 DTypeAttackEffect::~DTypeAttackEffect()
 {

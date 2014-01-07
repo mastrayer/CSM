@@ -26,7 +26,7 @@ CTypeSkillEffect::CTypeSkillEffect(NNPoint startPosition, float angle)
 
 	AddChild(mAnimation);
 
-	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.wav"));
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/wind_skill.mp3"));
 }
 CTypeSkillEffect::~CTypeSkillEffect()
 {

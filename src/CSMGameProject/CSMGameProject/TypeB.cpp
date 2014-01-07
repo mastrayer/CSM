@@ -27,7 +27,7 @@ BTypeSkillEffect::BTypeSkillEffect(NNPoint startPosition)
 	//mHealAnimation->SetRotation(mDirection);
 	AddChild(mHealAnimation);
 
-	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_skill.wav", false));
+	NNAudioSystem::GetInstance()->Play(NNResourceManager::GetInstance()->LoadSoundFromFile("Resource/Sound/water_skill.mp3", false));
 }
 BTypeSkillEffect::~BTypeSkillEffect()
 {
