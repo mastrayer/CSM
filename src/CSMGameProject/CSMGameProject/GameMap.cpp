@@ -52,6 +52,7 @@ NNAnimation *CGameMap::CreateBarrackGate(TileType type)
 		path += L"SandBarrack/";
 		break;
 	default:
+		delete Gate;
 		return nullptr;
 	}
 	wchar_t temp[256] = { 0 };
