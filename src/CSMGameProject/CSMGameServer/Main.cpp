@@ -39,7 +39,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	/// Manager Init
 	GClientManager = new ClientManager ;
-	GDatabaseJobManager = new DatabaseJobManager ;
+	//GDatabaseJobManager = new DatabaseJobManager ;
 	GResourceManager = new NNResourceManager;
 	GPlayerManager = new PlayerManager;
 	GGameManager = new GameManager();
@@ -48,8 +48,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	GItemManager = new ItemManager();
 
 	/// DB Helper 초기화
-	if ( false == DbHelper::Initialize(DB_CONN_STR) )
-		return -1 ;
+	//if ( false == DbHelper::Initialize(DB_CONN_STR) )
+	//	return -1 ;
 
 	/// 윈속 초기화
 	WSADATA wsa ;

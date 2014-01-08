@@ -70,8 +70,8 @@ DamageBuff::DamageBuff(NNPoint startPosition, int itemId, float lifeTime):Item(s
 	mAfterConsumeAnimation->SetVisible(false);
 
 
-	AddChild(mBeforeConsumeAnimation);
-	AddChild(mAfterConsumeAnimation);
+	AddChild(mBeforeConsumeAnimation,-1);
+	AddChild(mAfterConsumeAnimation,-1);
 }
 
 void DamageBuff::Follow(int playerId)
