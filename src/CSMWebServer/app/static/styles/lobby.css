@@ -1,0 +1,122 @@
+
+.lobby {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 600px;
+	height: 700px;
+	margin-left: -300px;
+	margin-top: -350px;
+	border: 1px solid #444;
+	border-radius: 10px;
+	background-color: white;
+	z-index: 2;
+}
+.lobby .lobbyInner {
+	width: 100%;
+	height: auto;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.lobby .lobbyInner .lobbyHeader {
+	width: 100%;
+	height: 80px;
+}
+.lobby .lobbyInner .lobbyHeader .lobbyTitle {
+	/*float: left;*/
+	margin: 0;
+	font-size: 20pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: bold;
+	color: #333;
+}
+.lobby .lobbyInner .lobbyHeader .createRoomBtn {
+	/*float: right;*/
+	display: block;
+	width: 140px;
+	height: 25px;
+	margin-top: 10px;
+	text-align: center;
+	line-height: 25px;
+	text-decoration: none;
+	font-size: 10pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: white;
+	border: 1px solid #333;
+	border-radius: 4px;
+	background-color: #444;
+}
+.lobby .lobbyInner .lobbyHeader:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.lobby .lobbyInner .lobbyContent {
+	width: 100%;
+	height: auto;
+	border: 1px solid #777;
+}
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader {
+	width: 100%;
+	height: auto;
+	padding: 5px 0;
+	border-bottom: 1px solid #777;
+}
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerId,
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerTitle,
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerType,
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerCount {
+	display: inline-block;
+	text-align: center;
+	font-size: 12pt;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: bold;
+}
+
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerId {
+	width: 80px;
+}
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerTitle {
+	width: 260px;
+}
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerType {
+	width: 120px;
+}
+.lobby .lobbyInner .lobbyContent .lobbyContentHeader .headerCount {
+	width: 80px;
+}
+
+.lobby .lobbyInner .lobbyContent .roomList {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.roomList li {
+	display: block;
+	width: 100%;
+	padding: 5px 0;
+	font-size: 12pt;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+.roomList li .id,
+.roomList li .title,
+.roomList li .type,
+.roomList li .count {
+	display: inline-block;
+	text-align: center;
+}
+.roomList li .id {
+	width: 80px;
+}
+.roomList li .title {
+	width: 260px;
+	cursor: pointer;
+}
+.roomList li .type {
+	width: 120px;
+}
+.roomList li .count {
+	width: 80px;
+}
