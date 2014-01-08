@@ -32,14 +32,18 @@ public:
 	void UpdatePlayerTeam(int _playerId, int team);
 	void UpdatePlayerKillScore( int playerId, int killScore );
 	//void UpdatePlayerType(int _playerId, int type);
+
+	void UpdatePlayerName(int _playerId, char* name);
 	void UpdatePlayerType( int playerId, PlayerType type );
 	int GetMyPlayerId() { return mMyPlayerId; };
 
 	std::map<int, CPlayer*> GetPlayerList() { return mPlayers; }
 	CPlayer *FindPlayerByID(int ID);
-
+	int GetMapType(){ return mMapType;}
+	void SetMapType(int mapType){ mMapType = mapType; }
 private:
 	std::map<int,CPlayer*> mPlayers;
 	CPlayer* mMyPlayer;
 	int mMyPlayerId; // init : -1
+	int mMapType;
 };

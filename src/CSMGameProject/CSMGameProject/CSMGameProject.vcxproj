@@ -40,7 +40,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <LibraryPath>..\NNGameFramework\NNGameFramework\include\library\DirectX\lib\x86;..\NNGameFramework\NNGameFramework\include\Library\FMOD\lib;..\NNGameFramework\NNGameFramework\lib;.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
     <IncludePath>..\NNGameFramework\NNGameFramework\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -109,6 +109,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GameEnd.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameUISet.cpp" />
@@ -118,6 +119,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ItemComeHandler.cpp" />
+    <ClCompile Include="ItemEffect.cpp" />
     <ClCompile Include="ItemPlayerConsumeHandler.cpp" />
     <ClCompile Include="ItemPlayerDropHandler.cpp" />
     <ClCompile Include="KillScoreHandler.cpp" />
@@ -178,12 +180,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="GameEnd.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameUISet.h" />
     <ClInclude Include="IntroScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ItemEffect.h" />
     <ClInclude Include="LoadScene.h" />
     <ClInclude Include="MainMenuScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

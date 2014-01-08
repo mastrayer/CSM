@@ -71,7 +71,10 @@
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="SkillManager.cpp" />
-    <ClCompile Include="sqlite3.c" />
+    <ClCompile Include="sqlite3.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -146,7 +149,9 @@
     <ClInclude Include="SkillManager.h" />
     <ClInclude Include="Skills.h" />
     <ClInclude Include="SPSCQueue.h" />
-    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="sqlite3ext.h" />
     <ClInclude Include="SQLStatement.h" />
     <ClInclude Include="stdafx.h" />

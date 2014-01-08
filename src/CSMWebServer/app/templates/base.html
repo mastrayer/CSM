@@ -1,52 +1,36 @@
 <!doctype html>
 <html lang="ko">
 	<head>
-		<title>CSM :: {% block title %}{% endblock %}</title>
+		<title>레전드 오브 리그 - 정령왕</title>
 		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport' content="width-device-width, initial-scale=1.0" />
-		<meta name="description" content="" />
-		<meta name="author" content="" />
-
 		<!-- FontAwesome CDN -->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
 		<!-- Normalize CSS -->
 		<link rel="stylesheet" href="/static/styles/normalize.css" />
-
 		<!-- Common CSS -->
 		<link rel="stylesheet" href="/static/styles/common.css?140106" />
+        <!-- jQuery CDN -->
+		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+		<link rel="stylesheet" type="type/css" href="/static/styles/common.css" />
+
 		{% block styles %}
 		{% endblock %}
 
-		<!-- jQuery CDN -->
-		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 		{% block scripts %}
 		{% endblock %}
 	</head>
-
 	<body>
-		<div class="topTitleBar">
-			<div class="topTitleBarInner">
-				<div class="maker">CSM</div>
-				<div class="title">Title</div>
-				<ul class="subNav">
-					<li>로그인</li>
-					<li>회원가입</li>
-				</ul>
-			</div>
-		</div>
-		<div class="topNav">
-			<div class="topNavInner">
-				<ul class="leftNav">
-					<li></li>
-				</ul>
-				<ul class="rightNav">
-				</ul>
-			</div>
-		</div>
+		<div class="bg"></div>
+
+		<div class="gameTitle">레전드 오브 리그 <span>: 정령왕</span></div>
 
 		{% block content %}
 		{% endblock %}
+
+		<div class='footer'>
+			<a class='title'>레전드 오브 리그: 정령왕</a>
+			<span class='creater'>CSM - 김지환, 남세현, 이선협, 장문익</span>
+		</div>
 	</body>
 </html>

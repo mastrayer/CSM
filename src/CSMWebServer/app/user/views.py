@@ -8,18 +8,19 @@ from app.user.decorators import requires_login
 
 mod = Blueprint('user', __name__, url_prefix='/user')
 
+'''
 @mod.route('/')
 @requires_login
 def profile():
 	return render_template("user/profile.html", user=g.user)
-
+'''
 @mod.before_request
 def before_request():
 	g.user = None
 	if 'user_id' in session:
 		g.user = User.query.get(session['user_id'])
 
-@mod.route('/login/', methods=['GET','POST'])
+@mod.route('/login/', methods=['POST'])
 def login():
 	form = LoginForm(request.form)
 
@@ -31,9 +32,9 @@ def login():
 			flash('Welcome %s' % user.nickname)
 			return redirect(url_for('general.main'))
 		flash('Worng email or password', 'error-message')
-	return render_template('user/login.html', form=form)
+	return redirect(url_for('general.main')) 
 
-@mod.route('/register/', methods=['GET','POST'])
+@mod.route('/register/', methods=['POST'])
 def register():
 	form = RegisterForm(request.form)
 	if form.validate_on_submit():
@@ -45,11 +46,11 @@ def register():
 
 		flash('Thanks for registering')
 
-		return redirect(url_for('user.profile'))
-	return render_template('user/register.html', form=form)
+		return redirect(url_for('general.main'))
+        return redirect(url_for('general.main'))
 
 @mod.route('/logout/', methods=['GET'])
 def logout():
 	session.clear()
 	g.user = None
-	return redirect(url_for('user.login'))
+	return redirect(url_for('general.main'))

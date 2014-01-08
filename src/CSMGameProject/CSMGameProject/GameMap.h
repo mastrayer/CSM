@@ -20,6 +20,8 @@ enum TileType
 	BARRACK_OUT,
 	STARTING_POINT_A,
 	STARTING_POINT_B,
+	BUFF_ATTACK,
+	BUFF_DEFENCE
 };
 
 class CTile : public NNObject
@@ -70,8 +72,6 @@ public:
 	}
 	//NNCREATE_FUNC(CGameMap);
 	
-	
-
 private:
 	NNSprite* mMapSprite;
 	NNXML* mMapXMLData;

@@ -106,6 +106,12 @@
     <Filter Include="Game\Packet\Item">
       <UniqueIdentifier>{cf1ef5b2-c6c2-418f-b367-575bb246c7f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect">
+      <UniqueIdentifier>{816ee27d-c338-4715-8fc4-132819a205d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene\GameScene\GameEnd">
+      <UniqueIdentifier>{478d7021-2083-4ed9-b8b8-186826ba7c54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp">
@@ -256,6 +262,12 @@
     <ClCompile Include="EndOfGameHandler.cpp">
       <Filter>Game\Packet\UserSession</Filter>
     </ClCompile>
+    <ClCompile Include="ItemEffect.cpp">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEnd.cpp">
+      <Filter>Game\Scene\GameScene\GameEnd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -341,6 +353,12 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Game\Scene\GameScene\Object\EffectManager\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemEffect.h">
+      <Filter>Game\Scene\GameScene\Object\EffectManager\Effect\ItemEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEnd.h">
+      <Filter>Game\Scene\GameScene\GameEnd</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

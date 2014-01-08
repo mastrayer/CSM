@@ -20,22 +20,22 @@ void GameManager::DiePlayer(int playerId)
 {
 	int gameId =GPlayerManager->GetPlayer(playerId)->GetGameId();
 	int team = GPlayerManager->GetPlayer(playerId)->GetTeam();
-	AddScore(gameId,team,1);
+	AddScore(gameId,(team+1)%2,1);
 	
 }
 void GameManager::AddScore(int gameId,int team, int scoreAmount)
 {
 	mKillScore[gameId][team] += scoreAmount;
-	if(mKillScore[gameId][team] > mKillLimit[gameId])
+	if(mKillScore[gameId][team] >= mKillLimit[gameId])
 	{
-		EndOfGame(gameId);
+		EndOfGame(gameId, team);
 	}
 	else
 	{
 		KillScoreResult outPacket = KillScoreResult();
 		outPacket.mKillLimit = mKillLimit[gameId];
-		outPacket.mKillScore[0] = mKillScore[team][0];
-		outPacket.mKillScore[1] = mKillScore[team][1];
+		outPacket.mKillScore[0] = mKillScore[gameId][0];
+		outPacket.mKillScore[1] = mKillScore[gameId][1];
 		GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 	}
 }
@@ -66,10 +66,8 @@ void GameManager::LogOutPlayer(int playerId)
 	mPlayerCount[gameId][team]--;
 }
 
-void GameManager::EndOfGame(int playerId)
+void GameManager::EndOfGame(int gameId, int team)
 {
-	int gameId =GPlayerManager->GetPlayer(playerId)->GetGameId();
-	int team = GPlayerManager->GetPlayer(playerId)->GetTeam();
 	EndOfGameResult outPacket = EndOfGameResult();
 	outPacket.mWinnerTeam = team;
 	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
@@ -108,12 +106,18 @@ void GameManager::NewGame(int gameId, int mapType)
 	}
 }
 
+void GameManager::Update(float dTime)
+{
+	for(auto it = mGames.begin(); it != mGames.end(); it++)
+	{
+		it->second->Update(dTime);
+	}
+}
 void GameManager::LoadMap() // in gameManager Init
 {
-	mGameMap[0] = new GameMap(L"map/44.csm");
-	mGameMap[1] = new GameMap(L"map/44.csm");
-	mGameMap[2] = new GameMap(L"map/44.csm");
-	mGameMap[3] = new GameMap(L"map/44.csm");
+	mGameMap[DEATHMATCH44] = new GameMap(L"map/44.csm");
+	mGameMap[DEATHMATCH88] = new GameMap(L"map/88.csm");
+	mGameMap[FLAGCAPTURE] = new GameMap(L"map/88.csm");
 }
 
 GameManager* GGameManager = nullptr;

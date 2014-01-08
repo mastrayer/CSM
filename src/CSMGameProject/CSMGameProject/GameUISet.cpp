@@ -4,6 +4,13 @@
 
 #include "NNApplication.h"
 
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 GameUISet* GameUISet::mInstance = nullptr;
 
 GameUISet* GameUISet::GetInstance()
@@ -40,20 +47,20 @@ GameUISet::GameUISet()
 	AddChild(mFPSLabel);
 
 	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/UI/GameUI/CharacterUIFrame.png");
-	mCharacterUIFrame->SetPosition(0.f, 500.f);
+	mCharacterUIFrame->SetPosition(0.f, 520.f);
 	mCharacterUIFrame->SetOpacity(0.9f);
 
 	mSkillUIFrame = NNSprite::Create(L"Resource/Sprite/UI/Skill/SkillUIFrame.png");
 	mSkillUIFrame->SetCenter(mSkillUIFrame->GetImageWidth() / 2.f, mSkillUIFrame->GetImageHeight() / 2.f);
-	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 250);
+	mSkillUIFrame->SetPosition(width / 2.f, height / 2.f + 270);
 	mSkillUIFrame->SetOpacity(0.9f);
 
-	mHpBarBackground = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar_BackGround.png");
-	mHpBarBackground->SetCenter(mHpBarBackground->GetImageWidth() / 2.f, mHpBarBackground->GetImageHeight() / 2.f);
-	mHpBarBackground->SetPosition(width / 2.f, height / 2.f + 280);
+	//mHpBarBackground = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar_BackGround.png");
+	//mHpBarBackground->SetCenter(mHpBarBackground->GetImageWidth() / 2.f, mHpBarBackground->GetImageHeight() / 2.f);
+	//mHpBarBackground->SetPosition(width / 2.f, height / 2.f + 280);
 
-	mHpBar = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar.png");
-	mHpBar->SetPosition(340.f, 570.f);
+	//mHpBar = NNSprite::Create(L"Resource/Sprite/UI/GameUI/GameHpBar.png");
+	//mHpBar->SetPosition(340.f, 570.f);
 
 	mCrown = NNSprite::Create(L"Resource/Sprite/Object/Crown.png");
 	mCrown->SetCenter(mCrown->GetImageWidth() / 2.f, mCrown->GetImageHeight() / 2.f);
@@ -67,32 +74,38 @@ GameUISet::GameUISet()
 	mKillBar[BLUE]->SetPosition(width / 2.f + 32, 20);
 	mKillBar[BLUE]->SetScaleX(1.f);
 
-	
+
 	//mRedKillBar->SetSc	aleX(-1.f);
 
 	mTypeSkillUI[ZERO] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/ZeroTypeSkillUI.png");
 	mTypeSkillUI[ZERO]->SetCenter(mTypeSkillUI[ZERO]->GetImageWidth() / 2.f, mTypeSkillUI[ZERO]->GetImageHeight() / 2.f);
-	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mTypeSkillUI[ZERO]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[ZERO]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[FIRE] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/FireTypeSkillUI.png");
 	mTypeSkillUI[FIRE]->SetCenter(mTypeSkillUI[FIRE]->GetImageWidth() / 2.f, mTypeSkillUI[FIRE]->GetImageHeight() / 2.f);
-	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mTypeSkillUI[FIRE]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[FIRE]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[WATER] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WaterTypeSkillUI.png");
 	mTypeSkillUI[WATER]->SetCenter(mTypeSkillUI[WATER]->GetImageWidth() / 2.f, mTypeSkillUI[WATER]->GetImageHeight() / 2.f);
-	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mTypeSkillUI[WATER]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[WATER]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[WIND] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/WindTypeSkillUI.png");
 	mTypeSkillUI[WIND]->SetCenter(mTypeSkillUI[WIND]->GetImageWidth() / 2.f, mTypeSkillUI[WIND]->GetImageHeight() / 2.f);
-	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mTypeSkillUI[WIND]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[WIND]->SetScale(0.91f, 0.86f);
 
 	mTypeSkillUI[EARTH] = NNSprite::Create(L"Resource/Sprite/UI/Skill/TypeSkill/EarthTypeSkillUI.png");
 	mTypeSkillUI[EARTH]->SetCenter(mTypeSkillUI[EARTH]->GetImageWidth() / 2.f, mTypeSkillUI[EARTH]->GetImageHeight() / 2.f);
-	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 32, height / 2.f + 235);
+	mTypeSkillUI[EARTH]->SetPosition(width / 2.f - 30, height / 2.f + 270);
+	mTypeSkillUI[EARTH]->SetScale(0.91f, 0.86f);
 
-	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.jpg");
+	mUserSkillUI = NNSprite::Create(L"Resource/Sprite/UI/Skill/UserSkill/Dash.png");
 	mUserSkillUI->SetCenter(mUserSkillUI->GetImageWidth() / 2.f, mUserSkillUI->GetImageHeight() / 2.f);
-	mUserSkillUI->SetPosition(width / 2.f + 32, height / 2.f + 235);
+	mUserSkillUI->SetPosition(width / 2.f + 30, height / 2.f + 270);
+	mUserSkillUI->SetScale(0.92f, 0.88f);
 
 	/*mSkillUI[0] = NNSprite::Create(L"Resource/Sprite/TypeSkillUI.png");
 	mSkillUI[0]->SetCenter(mSkillUI[0]->GetImageWidth() / 2.f, mSkillUI[0]->GetImageHeight() / 2.f);
@@ -105,7 +118,7 @@ GameUISet::GameUISet()
 	//TypeSKill icon cooltime count label
 	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mTypeSKillTimer->SetCenter(mTypeSKillTimer->GetCenterX(), mTypeSKillTimer->GetCenterY());
-	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 230);
+	mTypeSKillTimer->SetPosition(width / 2.f - 50, height / 2.f + 250);
 	//mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
 	mTypeSKillTimer->SetBold(true);
 	mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
@@ -128,7 +141,7 @@ GameUISet::GameUISet()
 	//UserSKill icon cooltime count label
 	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
-	mUserSkillTimer->SetPosition(width / 2.f + 20, height / 2.f + 230);
+	mUserSkillTimer->SetPosition(width / 2.f + 10, height / 2.f + 250);
 	mUserSkillTimer->SetBold(true);
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
@@ -145,29 +158,29 @@ GameUISet::GameUISet()
 
 	//Character Face Sprite
 	mTypeFace[ZERO] = NNSprite::Create(L"Resource/Sprite/CharacterFace/ZeroSlime.png");
-	mTypeFace[ZERO]->SetPosition(5.f, 505.f);
+	mTypeFace[ZERO]->SetPosition(10.f, 535.f);
 
 	mTypeFace[FIRE] = NNSprite::Create(L"Resource/Sprite/CharacterFace/EarthSlime.png");
-	mTypeFace[FIRE]->SetPosition(5.f, 505.f);
+	mTypeFace[FIRE]->SetPosition(10.f, 535.f);
 
 	mTypeFace[WATER] = NNSprite::Create(L"Resource/Sprite/CharacterFace/BlueSlime.png");
-	mTypeFace[WATER]->SetPosition(5.f, 505.f);
+	mTypeFace[WATER]->SetPosition(10.f, 535.f);
 
 	mTypeFace[WIND] = NNSprite::Create(L"Resource/Sprite/CharacterFace/MetalSlime.png");
-	mTypeFace[WIND]->SetPosition(5.f, 505.f);
+	mTypeFace[WIND]->SetPosition(10.f, 535.f);
 
 	mTypeFace[EARTH] = NNSprite::Create(L"Resource/Sprite/CharacterFace/EarthSlime.png");
-	mTypeFace[EARTH]->SetPosition(5.f, 505.f);
+	mTypeFace[EARTH]->SetPosition(10.f, 535.f);
 	//mRedKillPointNumber->SetScaleX(-1.f);
 
 	mStatusWindow = CStatusWindow::Create();
 	mStatusWindow->SetVisible(false);
-	mStatusWindow->SetPosition(100.f, 100.f);
+	mStatusWindow->SetPosition(150.f, 100.f);
 
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
-	AddChild(mHpBarBackground);
-	AddChild(mHpBar);
+	//AddChild(mHpBarBackground);
+	//AddChild(mHpBar);
 	AddChild(mKillBar[RED]);
 	AddChild(mKillBar[BLUE]);
 	AddChild(mCrown);
@@ -182,10 +195,6 @@ GameUISet::GameUISet()
 	AddChild(mTypeSKillTimer);
 	AddChild(mUserSkillTimer);
 	AddChild(mStatusWindow);
-	
-	mType = NNLabel::Create(L"asdf", L"¸¼Àº °íµñ", 50.f);
-	mType->SetPosition(0.f, 450.f); 
-	AddChild(mType);
 	 		
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
 	ZeroMemory( mFPSLabelBuff, sizeof(mFPSLabelBuff) );
@@ -226,7 +235,6 @@ void GameUISet::Update(float dTime)
 		if (mTypeFace[ZERO]->IsVisible() == true)
 			break;
 
-		mType->SetString(L"Zero");
 		mTypeFace[ZERO]->SetVisible(true);
 		mTypeSkillUI[ZERO]->SetVisible(true);
 		break;
@@ -234,7 +242,6 @@ void GameUISet::Update(float dTime)
 		if (mTypeFace[FIRE]->IsVisible() == true)
 			break;
 
- 		mType->SetString(L"Fire");
 		mTypeFace[FIRE]->SetVisible(true);
 		mTypeSkillUI[FIRE]->SetVisible(true);
  		break;
@@ -242,7 +249,6 @@ void GameUISet::Update(float dTime)
 		if (mTypeFace[WATER]->IsVisible() == true)
 			break;
 
- 		mType->SetString(L"Water");
  		mTypeFace[WATER]->SetVisible(true);
 		mTypeSkillUI[WATER]->SetVisible(true);
  		break;
@@ -250,7 +256,6 @@ void GameUISet::Update(float dTime)
 		if (mTypeFace[WIND]->IsVisible() == true)
 			break;
 
- 		mType->SetString(L"Wind");
  		mTypeFace[WIND]->SetVisible(true);
 		mTypeSkillUI[WIND]->SetVisible(true);
 		break;
@@ -258,7 +263,6 @@ void GameUISet::Update(float dTime)
 		if (mTypeFace[EARTH]->IsVisible() == true)
 			break;
 
-		mType->SetString(L"Earth");
 		mTypeFace[EARTH]->SetVisible(true);
 		mTypeSkillUI[EARTH]->SetVisible(true);
  		break;
@@ -267,7 +271,7 @@ void GameUISet::Update(float dTime)
 	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
 	mFPSLabel->SetString(mFPSLabelBuff);
-	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
+	//mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
 	/*
 	mKillBar[TeamColor::BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
 	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE)) - 60, 20);
@@ -276,13 +280,11 @@ void GameUISet::Update(float dTime)
 	*/
 
 	
-	//int t = GameManager::GetInstance()->GetKillScore(TeamColor::RED);
  	mKillBar[TeamColor::RED]->SetScale(-GameManager::GetInstance()->GetKillScore(TeamColor::RED) / 50.f, 1.f);
  	mKillPoint[TeamColor::RED]->SetPosition(width / 2.f + 5 * GameManager::GetInstance()->GetKillScore(TeamColor::RED) + 40, 20);
  	swprintf_s(mKillBuf[TeamColor::RED], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::BLUE));
  	mKillPoint[RED]->SetString(mKillBuf[TeamColor::RED]);
 
-	//t = GameManager::GetInstance()->GetKillScore(TeamColor::BLUE);
 	mKillBar[TeamColor::BLUE]->SetScale(GameManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
 	mKillPoint[TeamColor::BLUE]->SetPosition(width / 2.f - 5 * (GameManager::GetInstance()->GetKillScore(TeamColor::BLUE)) - 60, 20);
 	swprintf_s(mKillBuf[TeamColor::BLUE], L"%d", GameManager::GetInstance()->GetKillScore(TeamColor::RED));
@@ -309,10 +311,10 @@ void GameUISet::Update(float dTime)
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
-		mStatusWindow->GetAllPlayerInfo();
+		//mStatusWindow->GetAllPlayerInfo();
 		mStatusWindow->SetVisible(true);
 	}
-	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED )
+	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED)
 	{
 		mStatusWindow->SetVisible(false);
 	}
@@ -356,22 +358,7 @@ void GameUISet::ControlSkillTimer(float dTime)
 			mUserSkillTimer->SetString(L"");
 		}
 	}
-// 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
-// 	mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
-// 
-// 	swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
-// 	mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
-// 
-// 	if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
-// 	{
-// 		mMyPlayer->SetSkillCooldown(false, type);
-// 		mMyPlayer->SetSkillCount(0.f, type);
-// 
-// 		mTypeSkillUI[type]->SetOpacity(1.f);
-// 		mTypeSKillTimer[type].SetString(L"");
-// 	}
 }
-
 
 CStatusWindow::CStatusWindow()
 {
@@ -381,45 +368,22 @@ void CStatusWindow::Init()
 	mPanel = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Panel.png");
 	mPanel->SetOpacity(0.5f);
 
-	NNLabel *PanelName = NNLabel::Create(L"Score", L"¸¼Àº °íµñ", 40.f);
-	PanelName->SetColor(255, 255, 255);
+// 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+// 	{
+// 		wsprintf(mLabelBuf[i], L"Player%d", i);
+// 
+// 		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
+// 		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 20.f);
+// 		mPlayerLabelList[i]->SetColor(255, 255, 255);
+// 		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
+// 
+// 		mPlayerLabelList[i]->SetVisible(false);
+// 		mPlayerKillScoreList[i]->SetVisible(false);
+// 		AddChild(mPlayerLabelList[i], 2);
+// 		AddChild(mPlayerKillScoreList[i], 2);
+// 	}
 
-	NNLabel *RedID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
-	RedID->SetColor(255, 255, 255);
-	RedID->SetPosition(20.f, 60.f);
-	NNLabel *RedKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
-	RedKillScore->SetColor(255, 255, 255);
-	RedKillScore->SetPosition(150.f, 60.f);
-
-	NNLabel *BlueID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
-	BlueID->SetColor(255, 255, 255);
-	BlueID->SetPosition(320.f, 60.f);
-	NNLabel *BlueKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
-	BlueKillScore->SetColor(255, 255, 255);
-	BlueKillScore->SetPosition(450.f, 60.f);
-
-
-	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
-	{
-		wsprintf(mLabelBuf[i], L"Player%d", i);
-
-		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
-		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 20.f);
-		mPlayerLabelList[i]->SetColor(255, 255, 255);
-		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
-
-		mPlayerLabelList[i]->SetVisible(false);
-		mPlayerKillScoreList[i]->SetVisible(false);
-		AddChild(mPlayerLabelList[i], 2);
-		AddChild(mPlayerKillScoreList[i], 2);
-	}
-
-	AddChild(PanelName, 2);
 	AddChild(mPanel);
-	AddChild(RedID);
-	AddChild(RedKillScore);
-	AddChild(BlueID);
-	AddChild(BlueKillScore);
 
 	//GetAllPlayerInfo();
 }
@@ -434,40 +398,79 @@ void CStatusWindow::Render()
 void CStatusWindow::Update(float dTime)
 {
 	NNObject::Update(dTime);
-	//GetAllPlayerInfo();
-}
+	printf("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
+	GetAllPlayerInfo();
+}
+void CStatusWindow::SortByKillScore(int *result)
+{
+	std::map<int, CPlayer*> playerList = CPlayerManager::GetInstance()->GetPlayerList();
+	int kill[MAX_PLAYER_LEN] = { 0, };
+	int n = 0;
+
+	for (auto &iter : playerList)
+	{
+		result[n++] = iter.first;
+		kill[n++] = (iter.second)->GetKillScore();
+
+		if (mPlayerLabel.find(iter.first) == mPlayerLabel.end())
+		{
+			mPlayerLabel[iter.first].label = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+			mPlayerKillScore[iter.first].label = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+
+			AddChild(mPlayerLabel[result[iter.first]].label);
+			AddChild(mPlayerKillScore[result[iter.first]].label);
+		}
+
+		wsprintf(mPlayerLabel[iter.first].buf, L"%s", playerList[iter.first]->GetNicknameW());
+		mPlayerLabel[iter.first].label->SetString(mPlayerLabel[iter.first].buf);
+	}
+
+	for (int i = 0; i < n; ++i)
+	{
+		int idx = i;
+		int idxValue = kill[idx];
+
+		for (int j = i + 1; j < n; ++j)
+		{
+			if (kill[j] > idxValue)
+			{
+				idxValue = kill[j];
+				idx = j;
+			}
+		}
+		swap(&kill[idx], &kill[i]);
+		swap(&result[idx], &result[i]);
+	}
+}
 void CStatusWindow::GetAllPlayerInfo()
 {
 	CPlayerManager *playerManager = CPlayerManager::GetInstance();
 
 	std::map<int, CPlayer*> playerList = playerManager->GetPlayerList();
+	int result[MAX_PLAYER_LEN] = { 0, };
 	float aY, bY;
 	aY = bY = 90.f;
 
-	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
+	SortByKillScore(result);
+	for (int i = 0; i < playerList.size(); ++i)
 	{
-		mPlayerLabelList[i]->SetVisible(false);
-		mPlayerKillScoreList[i]->SetVisible(false);
-	}
+		mPlayerLabel[result[i]].label->SetVisible(true);
+		mPlayerKillScore[result[i]].label->SetVisible(true);
 
-	for (auto &iter : playerList)
-	{
-		mPlayerLabelList[iter.first]->SetVisible(true);
-		mPlayerKillScoreList[iter.first]->SetVisible(true);
-		wsprintf(mKillScoreBuf[iter.first], L"%d", iter.second->GetKillScore());
-		mPlayerKillScoreList[iter.first]->SetString(mKillScoreBuf[iter.first]);
+		wsprintf(mPlayerKillScore[result[i]].buf, L"%d", playerList[result[i]]->GetKillScore());
+		mPlayerKillScore[result[i]].label->SetString(mPlayerKillScore[result[i]].buf);
 
-		if (iter.second->GetTeam() == TeamColor::RED)
+		if (playerList[result[i]]->GetTeam() == TeamColor::RED)
 		{
-			mPlayerLabelList[iter.first]->SetPosition(5, aY);
-			mPlayerKillScoreList[iter.first]->SetPosition(165, aY);
+			mPlayerLabel[result[i]].label->SetPosition(5, aY);
+			mPlayerKillScore[result[i]].label->SetPosition(165, aY);
 			aY += 30.f;
 		}
-		else if (iter.second->GetTeam() == TeamColor::BLUE)
+		else if (playerList[result[i]]->GetTeam() == TeamColor::BLUE)
 		{
-			mPlayerLabelList[iter.first]->SetPosition(305, bY);
-			mPlayerKillScoreList[iter.first]->SetPosition(465, bY);
+			mPlayerLabel[result[i]].label->SetPosition(305, bY);
+			mPlayerKillScore[result[i]].label->SetPosition(465, bY);
 			bY += 30.f;
 		}
 	}

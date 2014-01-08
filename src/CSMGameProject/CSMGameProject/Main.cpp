@@ -23,13 +23,22 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	printf_s("Console Open \n");
 #endif
+	HANDLE hMutex = NULL;
+	hMutex = CreateMutex( NULL, FALSE, L"CSM" );
+	if( hMutex == NULL ) {
+		return false;
+	} else {
+		if( GetLastError() == ERROR_ALREADY_EXISTS ) {
+			exit(-1);
+		}
+	}
 
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"CSM Project", 800, 600, D2D );
 
 	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
-	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",0,0));
+	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(0,0));
 	//NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(L"resource/map/44.csm"));
 
 	Application->Run();
