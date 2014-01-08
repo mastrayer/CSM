@@ -17,26 +17,6 @@ struct Label
 	wchar_t buf[256];
 	NNLabel *label;
 };
-class CSWPlayerList : public NNObject
-{
-public:
-	CSWPlayerList();
-	virtual ~CSWPlayerList();
-	void Init();
-
-	void Render();
-	void Update(float dTime);
-
-	void GetAllPlayerInfo();
-	void SortByKillScore(int *result);
-
-	int GetRenderCount() { return mRenderCount; }
-
-private :
-	int mRenderCount;
-	std::map<int, Label> mPlayerLabel;
-	std::map<int, Label> mPlayerKillScore;
-};
 class CStatusWindow : public NNObject
 {
 public:
@@ -47,10 +27,14 @@ public:
 	void Render();
 	void Update(float dTime);
 
+	void GetAllPlayerInfo();
+	void SortByKillScore(int *result);
+
 	NNCREATE_FUNC(CStatusWindow);
 
 private:
-	CSWPlayerList *mList;
+	std::map<int, Label> mPlayerLabel;
+	std::map<int, Label> mPlayerKillScore;
 
 // 	std::map<int, wchar_t[100]> mLabelBuf;
 // 	std::map<int, NNLabel*> mPlayerLabelList;

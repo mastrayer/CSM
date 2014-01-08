@@ -175,7 +175,7 @@ GameUISet::GameUISet()
 
 	mStatusWindow = CStatusWindow::Create();
 	mStatusWindow->SetVisible(false);
-	mStatusWindow->SetPosition(100.f, 100.f);
+	mStatusWindow->SetPosition(150.f, 100.f);
 
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
@@ -309,21 +309,14 @@ void GameUISet::Update(float dTime)
 // 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
 
 	if( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
-		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN &&
-		mStatusWindow == nullptr)
+		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
-// 		mStatusWindow = CStatusWindow::Create();
-// 		mStatusWindow->SetPosition(100.f, 100.f);
-// 		AddChild(mStatusWindow, 100);
 		//mStatusWindow->GetAllPlayerInfo();
 		mStatusWindow->SetVisible(true);
 	}
-	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED && 
-		mStatusWindow != nullptr)
+	else if ( NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED)
 	{
 		mStatusWindow->SetVisible(false);
-		//RemoveChild(mStatusWindow);
-//		SafeDelete(mStatusWindow);
 	}
 
 }
@@ -365,45 +358,51 @@ void GameUISet::ControlSkillTimer(float dTime)
 			mUserSkillTimer->SetString(L"");
 		}
 	}
-// 	mMyPlayer->SetSkillCount(mMyPlayer->GetSkillCount(type) + dTime, type);
-// 	mTypeSkillUI[type]->SetOpacity(mMyPlayer->GetSkillCount(type) / mSkillCooltime[type]);
-// 
-// 	swprintf_s(mSkillCooltimeBuff[type], L"%.0f", mSkillCooltime[type] - mMyPlayer->GetSkillCount(type));
-// 	mTypeSKillTimer[type].SetString(mSkillCooltimeBuff[type]);
-// 
-// 	if (mMyPlayer->GetSkillCount(type) >= mSkillCooltime[type])
+}
+
+CStatusWindow::CStatusWindow()
+{
+}
+void CStatusWindow::Init()
+{
+	mPanel = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Panel.png");
+	mPanel->SetOpacity(0.5f);
+
+// 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 // 	{
-// 		mMyPlayer->SetSkillCooldown(false, type);
-// 		mMyPlayer->SetSkillCount(0.f, type);
+// 		wsprintf(mLabelBuf[i], L"Player%d", i);
 // 
-// 		mTypeSkillUI[type]->SetOpacity(1.f);
-// 		mTypeSKillTimer[type].SetString(L"");
+// 		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
+// 		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 20.f);
+// 		mPlayerLabelList[i]->SetColor(255, 255, 255);
+// 		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
+// 
+// 		mPlayerLabelList[i]->SetVisible(false);
+// 		mPlayerKillScoreList[i]->SetVisible(false);
+// 		AddChild(mPlayerLabelList[i], 2);
+// 		AddChild(mPlayerKillScoreList[i], 2);
 // 	}
-}
 
+	AddChild(mPanel);
 
-CSWPlayerList::CSWPlayerList()
-{
-}
-void CSWPlayerList::Init()
-{
-	mRenderCount = 0;
-}
-CSWPlayerList::~CSWPlayerList()
-{
-}
-void CSWPlayerList::Render()
-{
-	NNObject::Render();
-	mRenderCount++;
-}
-
-void CSWPlayerList::Update(float dTime)
-{
-	NNObject::Update(dTime);
 	//GetAllPlayerInfo();
 }
-void CSWPlayerList::SortByKillScore(int *result)
+CStatusWindow::~CStatusWindow()
+{
+}
+void CStatusWindow::Render()
+{
+	NNObject::Render();
+}
+
+void CStatusWindow::Update(float dTime)
+{
+	NNObject::Update(dTime);
+	printf("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+
+	GetAllPlayerInfo();
+}
+void CStatusWindow::SortByKillScore(int *result)
 {
 	std::map<int, CPlayer*> playerList = CPlayerManager::GetInstance()->GetPlayerList();
 	int kill[MAX_PLAYER_LEN] = { 0, };
@@ -432,7 +431,7 @@ void CSWPlayerList::SortByKillScore(int *result)
 		int idx = i;
 		int idxValue = kill[idx];
 
-		for (int j = i+1; j < n; ++j)
+		for (int j = i + 1; j < n; ++j)
 		{
 			if (kill[j] > idxValue)
 			{
@@ -442,9 +441,9 @@ void CSWPlayerList::SortByKillScore(int *result)
 		}
 		swap(&kill[idx], &kill[i]);
 		swap(&result[idx], &result[i]);
-	}	
+	}
 }
-void CSWPlayerList::GetAllPlayerInfo()
+void CStatusWindow::GetAllPlayerInfo()
 {
 	CPlayerManager *playerManager = CPlayerManager::GetInstance();
 
@@ -475,76 +474,4 @@ void CSWPlayerList::GetAllPlayerInfo()
 			bY += 30.f;
 		}
 	}
-}
-
-CStatusWindow::CStatusWindow()
-{
-}
-void CStatusWindow::Init()
-{
-	mPanel = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Panel.png");
-	mPanel->SetOpacity(0.5f);
-
-	NNLabel *PanelName = NNLabel::Create(L"Score", L"¸¼Àº °íµñ", 40.f);
-	PanelName->SetColor(255, 255, 255);
-
-	NNLabel *RedID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
-	RedID->SetColor(255, 255, 255);
-	RedID->SetPosition(20.f, 60.f);
-	NNLabel *RedKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
-	RedKillScore->SetColor(255, 255, 255);
-	RedKillScore->SetPosition(150.f, 60.f);
-
-	NNLabel *BlueID = NNLabel::Create(L"ID", L"¸¼Àº °íµñ", 30.f);
-	BlueID->SetColor(255, 255, 255);
-	BlueID->SetPosition(320.f, 60.f);
-	NNLabel *BlueKillScore = NNLabel::Create(L"KILL", L"¸¼Àº °íµñ", 30.f);
-	BlueKillScore->SetColor(255, 255, 255);
-	BlueKillScore->SetPosition(450.f, 60.f);
-
-	mList = nullptr;
-
-// 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
-// 	{
-// 		wsprintf(mLabelBuf[i], L"Player%d", i);
-// 
-// 		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 20.f);
-// 		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 20.f);
-// 		mPlayerLabelList[i]->SetColor(255, 255, 255);
-// 		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
-// 
-// 		mPlayerLabelList[i]->SetVisible(false);
-// 		mPlayerKillScoreList[i]->SetVisible(false);
-// 		AddChild(mPlayerLabelList[i], 2);
-// 		AddChild(mPlayerKillScoreList[i], 2);
-// 	}
-
-	AddChild(PanelName, 2);
-	AddChild(mPanel);
-	AddChild(RedID);
-	AddChild(RedKillScore);
-	AddChild(BlueID);
-	AddChild(BlueKillScore);
-
-	//GetAllPlayerInfo();
-}
-CStatusWindow::~CStatusWindow()
-{
-}
-void CStatusWindow::Render()
-{
-	NNObject::Render();
-}
-
-void CStatusWindow::Update(float dTime)
-{
-	NNObject::Update(dTime);
-
-	if (mList == nullptr)
-		mList = new CSWPlayerList();
-
-	if (mList->GetRenderCount() > 10)
-		RemoveChild(mList);
-
-	//GetAllPlayerInfo();
 }

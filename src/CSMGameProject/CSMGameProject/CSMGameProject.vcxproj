@@ -109,6 +109,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GameEnd.cpp" />
     <ClCompile Include="GameKeyStatesUpdateHandler.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameUISet.cpp" />
@@ -179,6 +180,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="GameEnd.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameUISet.h" />
     <ClInclude Include="IntroScene.h">
