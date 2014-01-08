@@ -118,7 +118,7 @@ GameUISet::GameUISet()
 	//TypeSKill icon cooltime count label
 	mTypeSKillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mTypeSKillTimer->SetCenter(mTypeSKillTimer->GetCenterX(), mTypeSKillTimer->GetCenterY());
-	mTypeSKillTimer->SetPosition(width / 2.f - 45, height / 2.f + 250);
+	mTypeSKillTimer->SetPosition(width / 2.f - 50, height / 2.f + 250);
 	//mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
 	mTypeSKillTimer->SetBold(true);
 	mTypeSKillTimer->SetRGBA(255, 255, 255, 255);
@@ -141,7 +141,7 @@ GameUISet::GameUISet()
 	//UserSKill icon cooltime count label
 	mUserSkillTimer = NNLabel::Create(L"", L"¸¼Àº °íµñ", 30.f);
 	mUserSkillTimer->SetCenter(mUserSkillTimer->GetCenterX(), mUserSkillTimer->GetCenterY());
-	mUserSkillTimer->SetPosition(width / 2.f + 20, height / 2.f + 250);
+	mUserSkillTimer->SetPosition(width / 2.f + 10, height / 2.f + 250);
 	mUserSkillTimer->SetBold(true);
 	mUserSkillTimer->SetRGBA(255, 255, 255, 255);
 
