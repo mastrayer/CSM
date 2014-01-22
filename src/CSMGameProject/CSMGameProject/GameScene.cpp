@@ -1,3 +1,4 @@
+
 #include "GameScene.h"
 #include "NNApplication.h"
 #include "PacketType.h"
@@ -12,25 +13,25 @@
 
 #include "NNLogger.h"
 
-CGameScene::CGameScene() :
+CGameScene::CGameScene(std::wstring path) :
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false),mFirstLogin(true)
+mLoadingComplete(false), mIsKeyDown(false)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
 
- 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(L"resource/map/44.csm", L"title"));
+ 	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
 	mIntro1 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
 	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
 	mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
 	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
 
 	// GameMap Create
-	mGameMap = CGameMap::Create(L"resource/map/44.csm");
+	mGameMap = CGameMap::Create(path);
 
+	AddChild( mGameMap );
 
-	AddChild(mGameMap, -1);
 	// EffectManager
 	AddChild( EffectManager::GetInstance() , 1);
 
@@ -220,11 +221,6 @@ void CGameScene::InitNetworkSetting()
 	mUserSkillFlashHandler = new UserSkillFlashHandler();
 
 	mEmoticonHandler = new EmoticonHandler();
-
-	mItemComeHandler = new ItemComeHandler();
-	mItemPlayerConsumeHandler = new ItemPlayerConsumeHandler();
-	mItemPlayerDropHandler = new ItemPlayerDropHandler();
-
 	NNNetworkSystem::GetInstance()->Init();
 
 	NNNetworkSystem::GetInstance()->SetPacketHandler( PKT_SC_KEYSTATE, mGameKeyStatesUpdateHandler );
@@ -250,18 +246,14 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_D_TYPESKILL_END, mDTypeSkillEndHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_USERSKILL_FLASH, mUserSkillFlashHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_COME, mItemComeHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_PLAYER_CONSUME, mItemPlayerConsumeHandler);
-	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_ITEM_PLAYER_DROP, mItemPlayerDropHandler);
-	
 
 
 	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
-	mLoginHandler->mLoginRequestPacket.mGameId = 1;
-	mLoginHandler->mLoginRequestPacket.mPlayerId = 3;
+	mLoginHandler->mLoginRequestPacket.mGameId = 0;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

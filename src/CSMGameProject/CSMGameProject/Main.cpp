@@ -16,36 +16,27 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc( 69253 );
-
+	/*
 	AllocConsole();
 	FILE* console;
 	freopen_s( &console, "CONOUT$", "wt", stdout );
 
-	printf_s("Console Open \n");
+	printf_s("Console Open \n");*/
 #endif
-	HANDLE hMutex = NULL;
-	hMutex = CreateMutex( NULL, FALSE, L"CSM" );
-	if( hMutex == NULL ) {
-		return false;
-	} else {
-		if( GetLastError() == ERROR_ALREADY_EXISTS ) {
-			exit(-1);
-		}
-	}
 
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"CSM Project", 800, 600, D2D );
 
 	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
-	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(0,0));
+	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",0,0));
 	//NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(L"resource/map/44.csm"));
 
 	Application->Run();
 	Application->Release();
 
 #ifdef _DEBUG
-	FreeConsole();
+	//FreeConsole();
 #endif
 
 	return 0;

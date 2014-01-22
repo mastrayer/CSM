@@ -23,8 +23,6 @@ public:
 	void SetHP(int hp) { mHp = hp; }
 	void SetTeam(int team) { mTeam = team; }
 
-	void SetNickname(char value[20]);
-
 	//NNCREATE_FUNC(PlayerUI);
 	static PlayerUI* Create(NNObject *follower)
 	{
@@ -34,14 +32,10 @@ public:
 	}
 
 private:
-	NNSprite* mHpBar[3];
+	NNSprite* mHpBar[2];
 	NNSprite* mHpBarFrame;
 	int mHp;
 	int mTeam;
-
-	bool mIsMyPlayer;
-	wchar_t mNicknameBuf[256];
-	NNLabel *mNickname;
 
 	NNObject *mFollower;
 };

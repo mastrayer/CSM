@@ -27,7 +27,6 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 					/// 여기 걸리면 로그인 실패다.
 					PostQuitMessage(-1) ;
 				}
-				CPlayerManager::GetInstance()->SetMapType(mLoginResultPacket.mMapType);
 				CPlayerManager::GetInstance()->SetMyPlayerId( mLoginResultPacket.mMyPlayerInfo.mPlayerId );
 				CPlayerManager::GetInstance()->UpdatePlayerInfo(mLoginResultPacket.mMyPlayerInfo);
 				//먼저 들어와있던 플레이어의 객체 만들기

@@ -130,7 +130,6 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
-	wchar_t mName[256];
 };
 #pragma pack(push, 1)
 
@@ -409,8 +408,6 @@ struct ItemComeResult : public PacketHeader
 	}
 	int mItemType;
 	Point mPosition;
-	int mItemId;
-	float mLifeTime;
 };
 struct ItemPlayerConsumeResult : public PacketHeader
 {
@@ -421,8 +418,6 @@ struct ItemPlayerConsumeResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
-	int mItemId;
-	float mLifeTime;
 };
 struct ItemPlayerDropResult : public PacketHeader
 {
@@ -433,7 +428,6 @@ struct ItemPlayerDropResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
-	int mItemId;
 };
 
 struct EmoticonRequest : public PacketHeader

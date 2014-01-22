@@ -8,8 +8,7 @@
 class Item
 {
 public:
-	Item(int itemType, float lifeTime, int itemId,int gameId, Point position);
-	Item(int itemType, int itemId,int gameId, Point position);
+	Item(int itemId,int gameId, Point position);
 	Item();
 	virtual ~Item(void);
 
@@ -27,7 +26,6 @@ public:
 	virtual void Update(float dTime) { if(mIsPermanent == false) mLifeTime -= dTime; }
 	virtual bool IsLive() { if(mIsPermanent == true || mLifeTime >= 0) return true; else return false; }
 	virtual bool IsConsumed(){ return mIsConsumed; }
-	float GetLifeTime(){return mLifeTime; }
 	
 	virtual void ConsumeBy(int playerId);
 	virtual void RemoveEffect();

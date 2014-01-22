@@ -583,7 +583,6 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mTeam = mTeam;
 	mPlayerInfo.mType = mType;
 	mPlayerInfo.mKillScore = mKillScore;
-	wcscpy(mPlayerInfo.mName,mName.c_str());
 	return mPlayerInfo;
 }
 
@@ -675,7 +674,6 @@ void Player::ConsumeItem(Item* item)
 				mDamageBuff->RemoveEffect();
 			}
 			mDamageBuff = dynamic_cast<DamageBuff*>(item);
-			mDamageBuff->SetOwnerId(mPlayerId);
 		}
 		break;
 	case HPBUFF:
@@ -685,7 +683,6 @@ void Player::ConsumeItem(Item* item)
 				mHPBuff->RemoveEffect();
 			}
 			mHPBuff = dynamic_cast<HPBuff*>(item);
-			mHPBuff->SetOwnerId(mPlayerId);
 		}
 		break;
 	case FLAG:
@@ -695,7 +692,6 @@ void Player::ConsumeItem(Item* item)
 				mFlag->RemoveEffect();
 			}
 			mFlag = dynamic_cast<Flag*>(item);
-			mFlag->SetOwnerId(mPlayerId);
 		}
 		break;
 	default:
@@ -705,8 +701,6 @@ void Player::ConsumeItem(Item* item)
 	ItemPlayerConsumeResult outPacket = ItemPlayerConsumeResult();
 	outPacket.mItemType = item->GetItemType();
 	outPacket.mPlayerId = mPlayerId;
-	outPacket.mItemId = item->GetItemId();
-	outPacket.mLifeTime = item->GetLifeTime();
 	mClient->Broadcast(&outPacket);
 }
 
@@ -717,29 +711,25 @@ void Player::DropItem(Item* item)
 	{
 	case DAMAGEBUFF:
 		{
-			mDamageBuff->SetOwnerId(-1);
 			mDamageBuff = nullptr;
 		}
 		break;
 	case HPBUFF:
 		{
-			mHPBuff->SetOwnerId(-1);
 			mHPBuff = nullptr;
 		}
 		break;
 	case FLAG:
 		{
-			ItemPlayerDropResult outPacket = ItemPlayerDropResult();
-			outPacket.mItemType = item->GetItemType();
-			outPacket.mPlayerId = mPlayerId;
-			outPacket.mItemId = item->GetItemId();
-			mClient->Broadcast(&outPacket);
 			mFlag->SetConsumeStatus(false);
-			mFlag->SetOwnerId(-1);
 			mFlag = nullptr;
 		}
 		break;
 	default:
 		break;
 	}
+	ItemPlayerDropResult outPacket = ItemPlayerDropResult();
+	outPacket.mItemType = item->GetItemType();
+	outPacket.mPlayerId = mPlayerId;
+	mClient->Broadcast(&outPacket);
 }

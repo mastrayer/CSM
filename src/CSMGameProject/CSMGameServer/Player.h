@@ -64,14 +64,13 @@ private:
 	DamageBuff* mDamageBuff;
 	HPBuff* mHPBuff;
 	Flag* mFlag;
-	std::wstring mName;
 
 public:
 	Player();
 	Player(int gameId, int playerId, ClientSession* client);
 	virtual ~Player(void);
 
-	void SetName(std::wstring name) { mName = name; }
+
 	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; }
 	void SetPosition(Point position) { mPosition = position; }
 	void SetRotation(float angle) { mRotation = angle; }
@@ -84,7 +83,6 @@ public:
 	int GetRadius(){ return mRadius; }
 	int GetGameId(){ return mGameId; }
 	ClientSession* GetClient(){ return mClient; }
-	
 
 	bool Damaged(int damage, Player* player); // return value : true - die, false - non-die
 	void Heal(int dHP);

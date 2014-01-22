@@ -90,7 +90,6 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
-	char mName[20];
 };
 #pragma pack(push,1)
 
@@ -116,7 +115,6 @@ struct LoginResult : public NNPacketHeader
 	PlayerInfo mPlayerInfo[MAX_PLAYER_LEN];
 	int mKillScore[2];
 	int mKillLimit;
-	int mMapType;
 };
 struct LoginBroadcastResult : public NNPacketHeader
 {
@@ -361,8 +359,6 @@ struct ItemComeResult : public NNPacketHeader
 	}
 	int mItemType;
 	NNPoint mPosition;
-	int mItemId;
-	float mLifeTime;
 };
 struct ItemPlayerConsumeResult : public NNPacketHeader
 {
@@ -373,8 +369,6 @@ struct ItemPlayerConsumeResult : public NNPacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
-	int mItemId;
-	float mLifeTime;
 };
 struct ItemPlayerDropResult : public NNPacketHeader
 {
@@ -385,7 +379,6 @@ struct ItemPlayerDropResult : public NNPacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
-	int mItemId;
 };
 
 struct EmoticonRequest : public NNPacketHeader

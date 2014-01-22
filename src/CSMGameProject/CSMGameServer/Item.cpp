@@ -7,31 +7,14 @@ Item::Item()
 {
 
 }
-Item::Item(int itemType, float lifeTime, int itemId,int gameId, Point position)
+Item::Item(int itemId,int gameId, Point position)
 {
-	mLifeTime = lifeTime;
-	mItemType = itemType;
 	mItemId = itemId;
 	mGameId = gameId;
 	mPosition = position;
 	ItemComeResult outPacket = ItemComeResult();
 	outPacket.mItemType = GetItemType();
 	outPacket.mPosition = GetPosition();
-	outPacket.mItemId = mItemId;
-	outPacket.mLifeTime = mLifeTime;
-	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
-}
-Item::Item(int itemType, int itemId,int gameId, Point position):mOwnerId(-1)
-{
-	mItemType = itemType;
-	mItemId = itemId;
-	mGameId = gameId;
-	mPosition = position;
-	ItemComeResult outPacket = ItemComeResult();
-	outPacket.mItemType = GetItemType();
-	outPacket.mPosition = GetPosition();
-	outPacket.mItemId = mItemId;
-	outPacket.mLifeTime = mLifeTime;
 	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
 }
 
@@ -48,6 +31,5 @@ void Item::ConsumeBy(int playerId)
 
 void Item::RemoveEffect()
 {
-	if(mOwnerId != -1 && GPlayerManager->GetPlayer(mOwnerId) != nullptr)
-		GPlayerManager->GetPlayer(mOwnerId)->DropItem(this);
+	GPlayerManager->GetPlayer(mOwnerId)->DropItem(this);
 }

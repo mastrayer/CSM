@@ -83,16 +83,3 @@ DTypeSkillEffect* EffectManager::GetDTypeSkillEffect(int index)
 	}
 	return nullptr;
 }
-
-ITEM_EFFECT::Item* EffectManager::GetItemEffect(int itemId)
-{
-	for(auto& iter=mEffectList.begin(); iter!=mEffectList.end(); iter++ )
-	{
-		ITEM_EFFECT::Item* pItem = dynamic_cast<ITEM_EFFECT::Item*>(*iter);
-		if(pItem != nullptr && pItem->GetId() == itemId)
-		{
-			return pItem;
-		}
-	}
-	return nullptr;
-}

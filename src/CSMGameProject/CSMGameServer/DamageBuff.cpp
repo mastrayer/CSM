@@ -2,11 +2,12 @@
 #include "DamageBuff.h"
 #include "PlayerManager.h"
 
-DamageBuff::DamageBuff(int itemId,int gameId, Point position):Item(DAMAGEBUFF,45.f,itemId,gameId,position)
+DamageBuff::DamageBuff(int itemId,int gameId, Point position)
 {
+	mItemType = DAMAGEBUFF;
 	mRadius = 32;
 	mIsPermanent = false;
-	mIsConsumed = false;
+	mLifeTime = 60.f;
 }
 
 

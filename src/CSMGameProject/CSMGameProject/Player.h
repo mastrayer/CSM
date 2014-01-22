@@ -32,18 +32,7 @@ public:
 	void SetPlayerHP(int hp) { mHp = hp; }	void SetPlayerTeam(int team) { mTeam = team; }
 	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
 	void SetKillScore( int killScore ) { mKillScore = killScore; }
-	void SetNickname(char value[20]) 
-	{
-		strcpy(mNickname, value);  
-		mPlayerUI->SetNickname(value);
-
-		//const char *temp = playerList[iter.first]->GetNickname();
-		int nLen = strlen(value) + 1;
-
-		//wchar_t* pwstr = (LPWSTR)malloc(sizeof(wchar_t)* nLen);
-		//mbstowcs(pwstr, value, nLen);
-		mbstowcs(mNicknameW, value, nLen);
-	}
+	void SetNickname(std::string value) { mNickname = value; }
 
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mRotation; }
@@ -51,8 +40,7 @@ public:
 	PlayerType GetPlayerType() { return mPlayerType; }
 	int GetTeam() { return mTeam; }
 	int GetKillScore() const { return mKillScore; }
-	char *GetNickname() { return mNickname; }
-	wchar_t *GetNicknameW() { return mNicknameW;  }
+	std::string GetNickname() { return mNickname; }
 	
 	bool IsEmoticonRunning() { return mIsEmoticonRunning; }
 	void SetEmoticonRunning(bool value) { mIsEmoticonRunning = value; }
@@ -107,9 +95,7 @@ private:
 	NNPoint mMoveVelocity;
 	NNLabel *mRebirthTimer;
 	
-	//std::string mNickname;
-	char mNickname[20];
-	wchar_t mNicknameW[12];
+	std::string mNickname;
 
 	float mRebirthDelayTime;
 	int mHp;

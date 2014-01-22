@@ -65,40 +65,7 @@ NNAnimation *CGameMap::CreateBarrackGate(TileType type)
 	Gate->SetFrameTimeInSection(0.03f, 0, 19);
 	
 	return Gate;
-
 }
-
-/*
-NNAnimation *CGameMap::CreateBuff(TileType type)
-{
-	NNAnimation *Buff = NNAnimation::Create();
-	std::wstring path = L"Resource/Sprite/Buff";
-
-	switch (type)
-	{
-	case BUFF_ATTACK:
-		path += L"AttackBuff/";
-		break;
-	case BUFF_DEFENCE:
-		path += L"DefenceBuff/";
-		break;
-	default:
-		delete Buff;
-		return nullptr;
-	}
-	wchar_t temp[256] = { 0 };
-	for (int i = 0; i < 15; i++)
-	{
-		wsprintf(temp, L"%s%d.png", path.c_str(), i);
-
-		Buff->AddFrameNode(temp);
-	}
-	Buff->SetFrameTimeInSection(0.03f, 0, 19);
-
-	return Buff;
-}
-*/
-
 void CGameMap::convertFileToMap( std::wstring path )
 {
 	std::wstring FILENAME[2] = { L"map.xml", L"TileSet" };

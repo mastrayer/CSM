@@ -9,7 +9,7 @@
 class LoadScene : public NNScene
 {
 public:
-	LoadScene( int roomNum, int playerID);
+	LoadScene(std::wstring path, int roomNum, int playerID);
 	virtual ~LoadScene();
 	void Init() {};
 
@@ -17,9 +17,9 @@ public:
 	void Render();
 	void Update(float dTime);
 
-	static LoadScene* Create(int roomNum, int playerID)
+	static LoadScene* Create(std::wstring path, int roomNum, int playerID)
 	{
-		LoadScene* pInstance = new LoadScene(roomNum, playerID);
+		LoadScene* pInstance = new LoadScene(path, roomNum, playerID);
 		pInstance->Init();
 		return pInstance;
 	}

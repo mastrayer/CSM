@@ -2,9 +2,6 @@
 
 #include "PacketHandler.h"
 #include "GameManager.h"
-#include "PlayerManager.h"
-#include "NNSceneDirector.h"
-#include "GameEnd.h"
 
 EndOfGameHandler::EndOfGameHandler()
 {
@@ -24,10 +21,6 @@ void EndOfGameHandler::HandlingPacket( short packetType, NNCircularBuffer* circu
 			{
 				//TODO
 				//mEndOfGameResult.mWinnerTeam
-				if (CPlayerManager::GetInstance()->GetMyPlayer()->GetTeam() == mEndOfGameResult.mWinnerTeam)
-					NNSceneDirector::GetInstance()->ChangeScene(CGameEnd::Create(true));
-				else if (CPlayerManager::GetInstance()->GetMyPlayer()->GetTeam() != mEndOfGameResult.mWinnerTeam)
-					NNSceneDirector::GetInstance()->ChangeScene(CGameEnd::Create(false));
 			}
 			else
 			{

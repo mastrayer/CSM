@@ -45,25 +45,21 @@ private:
 
 	EmoticonHandler* mEmoticonHandler;
 
-	ItemComeHandler* mItemComeHandler;
-	ItemPlayerConsumeHandler* mItemPlayerConsumeHandler;
-	ItemPlayerDropHandler* mItemPlayerDropHandler;
-
 	float mAngle;
 	DWORD mLastAngleChangedTime;
 	bool misInit;
 
 public:
-	CGameScene();
+	CGameScene(std::wstring path);
 	virtual ~CGameScene(void);
 	void Init();
 
 	void Render();
 	void Update( float dTime );
 
-	static CGameScene* Create()
+	static CGameScene* Create(std::wstring path)
 	{
-		CGameScene* pInstance = new CGameScene();
+		CGameScene* pInstance = new CGameScene(path);
 		pInstance->Init();
 		return pInstance;
 	}
@@ -74,7 +70,6 @@ private:
 	bool mLoadingComplete;
 	bool mIsKeyDown;
 
-	bool mFirstLogin;
 	GameKeyStates GetNowGameKeyStates();
 	bool isChangedGameKeyStates();
 	float GetNowAngle();

@@ -3,11 +3,11 @@
 #include "PlayerManager.h"
 
 
-Flag::Flag(int itemId,int gameId, Point position):Item(FLAG,itemId,gameId,position)
+Flag::Flag(int itemId,int gameId, Point position)
 {
+	mItemType = FLAG;
 	mRadius = 32;
 	mIsPermanent = true;
-	mIsConsumed = false;
 }
 
 

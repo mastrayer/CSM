@@ -2,7 +2,7 @@
 
 
 /// DB 연결 스트링 
-#define DB_CONN_STR "sqlite:///10.73.44.106/home/csm/projects/CSM/src/CSMWebServer/app.db" 
+#define DB_CONN_STR "..\\Database\\user_example.db3" // TODO
 #define LISTEN_PORT	9001
 
 
