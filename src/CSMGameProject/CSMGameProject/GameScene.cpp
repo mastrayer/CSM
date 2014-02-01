@@ -13,10 +13,10 @@
 
 #include "NNLogger.h"
 
-CGameScene::CGameScene(std::wstring path) :
+CGameScene::CGameScene(std::wstring path, int roomNum, int playerID):
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false)
+mLoadingComplete(false), mIsKeyDown(false),mRoomNumber(roomNum), mPlyaerId(mPlyaerId)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
@@ -252,8 +252,8 @@ void CGameScene::InitNetworkSetting()
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
-	mLoginHandler->mLoginRequestPacket.mGameId = 0;
-	mLoginHandler->mLoginRequestPacket.mPlayerId = rand()%20;
+	mLoginHandler->mLoginRequestPacket.mGameId = mRoomNumber;
+	mLoginHandler->mLoginRequestPacket.mPlayerId = mPlyaerId;
 	NNNetworkSystem::GetInstance()->Write( (const char*)&mLoginHandler->mLoginRequestPacket, mLoginHandler->mLoginRequestPacket.mSize );
 }
 

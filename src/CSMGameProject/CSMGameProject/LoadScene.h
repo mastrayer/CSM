@@ -29,4 +29,5 @@ private:
 	NNSprite *mBackgroundImage;
 	NNSprite *mIntro;
 	std::wstring mPath;
+	int mRoomNumber , mPlyaerId;
 };

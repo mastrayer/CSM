@@ -50,16 +50,16 @@ private:
 	bool misInit;
 
 public:
-	CGameScene(std::wstring path);
+	CGameScene(std::wstring path, int roomNum, int playerID);
 	virtual ~CGameScene(void);
 	void Init();
 
 	void Render();
 	void Update( float dTime );
 
-	static CGameScene* Create(std::wstring path)
+	static CGameScene* Create(std::wstring path , int roomNum, int playerID)
 	{
-		CGameScene* pInstance = new CGameScene(path);
+		CGameScene* pInstance = new CGameScene(path, roomNum, playerID);
 		pInstance->Init();
 		return pInstance;
 	}
@@ -75,6 +75,9 @@ private:
 	float GetNowAngle();
 	bool isChangedAngle();
 	CPlayer *mMyPlayer;
+
+	
+	int mRoomNumber , mPlyaerId;
 
 	void InitNetworkSetting();
 };
