@@ -2,10 +2,6 @@
 #include "PacketType.h"
 #include "ClientSession.h"
 
-#include "Item.h"
-#include "DamageBuff.h"
-#include "HPBuff.h"
-#include	"Flag.h"
 
 #define PLAYER_STATE_IDLE 0
 #define PLAYER_STATE_WALK 1
@@ -60,17 +56,14 @@ private:
 
 	int mGameId;
 
-	//Items
-	DamageBuff* mDamageBuff;
-	HPBuff* mHPBuff;
-	Flag* mFlag;
+	std::wstring mName;
 
 public:
 	Player();
 	Player(int gameId, int playerId, ClientSession* client);
 	virtual ~Player(void);
 
-
+	void SetName(std::wstring name) { mName = name; }
 	void SetGameKeyStates(GameKeyStates _gameKeySates) { mGameKeyStates = _gameKeySates; }
 	void SetPosition(Point position) { mPosition = position; }
 	void SetRotation(float angle) { mRotation = angle; }
@@ -83,6 +76,7 @@ public:
 	int GetRadius(){ return mRadius; }
 	int GetGameId(){ return mGameId; }
 	ClientSession* GetClient(){ return mClient; }
+	
 
 	bool Damaged(int damage, Player* player); // return value : true - die, false - non-die
 	void Heal(int dHP);
@@ -90,12 +84,12 @@ public:
 	void Update( float dTime );
 	bool CouldGoPosition(Point position);
 
-	void ConsumeItem(Item* item);
-	void DropItem(Item* item);
+	//void ConsumeItem(Item* item);
+	//void DropItem(Item* item);
 
-	bool HasDamageBuff(){ return mDamageBuff != nullptr; }
-	bool HasHPBuff(){ return mHPBuff != nullptr; }
-	bool HasFlag(){ return mFlag != nullptr; }
+	//bool HasDamageBuff(){ return mDamageBuff != nullptr; }
+	//bool HasHPBuff(){ return mHPBuff != nullptr; }
+	//bool HasFlag(){ return mFlag != nullptr; }
 
 private:
 	void SetHP(int hp) {mHP = hp;}

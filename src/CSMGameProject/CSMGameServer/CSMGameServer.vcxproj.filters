@@ -10,15 +10,6 @@
     <ClCompile Include="ClientSession.cpp">
       <Filter>Core\Client\ClientSession</Filter>
     </ClCompile>
-    <ClCompile Include="DatabaseJobContext.cpp">
-      <Filter>Core\Database\DatabaseJobContext</Filter>
-    </ClCompile>
-    <ClCompile Include="DatabaseJobManager.cpp">
-      <Filter>Core\Database\DatabaseJobManager</Filter>
-    </ClCompile>
-    <ClCompile Include="DbHelper.cpp">
-      <Filter>Core\Database\DbHelper</Filter>
-    </ClCompile>
     <ClCompile Include="Exception.cpp">
       <Filter>Core\Util\Exception</Filter>
     </ClCompile>
@@ -163,35 +154,14 @@
     <ClCompile Include="CTypeSkillBullet.cpp">
       <Filter>Game\TypeAttack&amp;Skill\C\CTypeSkillBullet</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Game\Item\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="DamageBuff.cpp">
-      <Filter>Game\Item\DamageBuff</Filter>
-    </ClCompile>
-    <ClCompile Include="HPBuff.cpp">
-      <Filter>Game\Item\HPBuff</Filter>
-    </ClCompile>
-    <ClCompile Include="Flag.cpp">
-      <Filter>Game\Item\Flag</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemManager.cpp">
-      <Filter>Game\Item\ItemManager</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Game\GameType\Default</Filter>
-    </ClCompile>
-    <ClCompile Include="FlagCaptureGame.cpp">
-      <Filter>Game\GameType\FlagCapture</Filter>
     </ClCompile>
     <ClCompile Include="DeathMatch44.cpp">
       <Filter>Game\GameType\DeathMatch\DeathMatch44</Filter>
     </ClCompile>
     <ClCompile Include="DeathMatch88.cpp">
       <Filter>Game\GameType\DeathMatch\DeathMatch88</Filter>
-    </ClCompile>
-    <ClCompile Include="sqlite3.c">
-      <Filter>Core\Util\sqlite3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,20 +174,8 @@
     <ClInclude Include="ClientSession.h">
       <Filter>Core\Client\ClientSession</Filter>
     </ClInclude>
-    <ClInclude Include="DatabaseJobContext.h">
-      <Filter>Core\Database\DatabaseJobContext</Filter>
-    </ClInclude>
-    <ClInclude Include="DatabaseJobManager.h">
-      <Filter>Core\Database\DatabaseJobManager</Filter>
-    </ClInclude>
-    <ClInclude Include="DbHelper.h">
-      <Filter>Core\Database\DbHelper</Filter>
-    </ClInclude>
     <ClInclude Include="Exception.h">
       <Filter>Core\Util\Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="SQLStatement.h">
-      <Filter>Core\Database</Filter>
     </ClInclude>
     <ClInclude Include="SPSCQueue.h">
       <Filter>Core\Util</Filter>
@@ -381,32 +339,8 @@
     <ClInclude Include="CTypeSkillBullet.h">
       <Filter>Game\TypeAttack&amp;Skill\C\CTypeSkillBullet</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Game\Item\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="DamageBuff.h">
-      <Filter>Game\Item\DamageBuff</Filter>
-    </ClInclude>
-    <ClInclude Include="HPBuff.h">
-      <Filter>Game\Item\HPBuff</Filter>
-    </ClInclude>
-    <ClInclude Include="Flag.h">
-      <Filter>Game\Item\Flag</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemManager.h">
-      <Filter>Game\Item\ItemManager</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite3.h">
-      <Filter>Core\Util\sqlite3</Filter>
-    </ClInclude>
-    <ClInclude Include="sqlite3ext.h">
-      <Filter>Core\Util\sqlite3</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Game\GameType\Default</Filter>
-    </ClInclude>
-    <ClInclude Include="FlagCaptureGame.h">
-      <Filter>Game\GameType\FlagCapture</Filter>
     </ClInclude>
     <ClInclude Include="DeathMatch44.h">
       <Filter>Game\GameType\DeathMatch\DeathMatch44</Filter>
@@ -434,18 +368,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{bd5dda4b-2249-48a5-bd29-886e66e4770b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Database">
-      <UniqueIdentifier>{21383708-b675-4659-8cb3-acc2da6a9002}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Database\DatabaseJobContext">
-      <UniqueIdentifier>{dbfbff2c-ee46-4a8c-84f2-46e3eb2355cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Database\DatabaseJobManager">
-      <UniqueIdentifier>{fb8d5ac6-7f23-48ac-ae42-87bb6bb62a17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Database\DbHelper">
-      <UniqueIdentifier>{802b68a7-8504-4aae-8f70-b044bfaff761}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Client">
       <UniqueIdentifier>{06e6fe4a-cb04-4953-8565-cbe9321ca52d}</UniqueIdentifier>
     </Filter>
@@ -457,9 +379,6 @@
     </Filter>
     <Filter Include="Core\Util">
       <UniqueIdentifier>{52940f35-d8c9-4189-92ce-b616749ab805}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Util\sqlite3">
-      <UniqueIdentifier>{360cca3b-5a58-49d3-97c7-b67f4c0a090c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\Util\CircularBuffer">
       <UniqueIdentifier>{d42c3ca7-bd79-4cc8-8991-e825ce97327d}</UniqueIdentifier>
@@ -490,6 +409,9 @@
     </Filter>
     <Filter Include="Game\GameManager">
       <UniqueIdentifier>{d7a8d297-71b2-4b95-a7e8-fa2cd0ca4faa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UserSkill">
+      <UniqueIdentifier>{0d0c697a-795e-4207-a6cf-fa083ede5862}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\TypeAttack&amp;Skill">
       <UniqueIdentifier>{05cd51dd-94e1-4167-9a65-3850d8913588}</UniqueIdentifier>
@@ -533,24 +455,6 @@
     <Filter Include="Game\TypeAttack&amp;Skill\C\CTypeSkillBullet">
       <UniqueIdentifier>{69e3d89a-e352-48b2-bb23-c5b875929cbb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Item">
-      <UniqueIdentifier>{1e8e42d4-f163-4a21-9f22-e89c44d6193c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Item\ItemManager">
-      <UniqueIdentifier>{794162ba-a75f-4e74-8ea8-5058130d87ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Item\Item">
-      <UniqueIdentifier>{11a82e32-d2b2-46bb-8b15-9839d1809ec8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Item\DamageBuff">
-      <UniqueIdentifier>{dd0c68f0-1348-4699-b4b4-c6056b41a65a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Item\HPBuff">
-      <UniqueIdentifier>{a81ca7db-4b74-4a68-9749-91d19341e59e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Item\Flag">
-      <UniqueIdentifier>{7e01ab11-c045-4703-abea-f5a5ddb007e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\GameType">
       <UniqueIdentifier>{00f69b34-fe39-431a-8d1e-09901357497d}</UniqueIdentifier>
     </Filter>
@@ -565,9 +469,6 @@
     </Filter>
     <Filter Include="Game\GameType\DeathMatch\DeathMatch88">
       <UniqueIdentifier>{71600057-32c5-4604-a63e-e2792d2a7117}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\GameType\FlagCapture">
-      <UniqueIdentifier>{79fae538-b91e-480b-acc2-43504e8872e0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

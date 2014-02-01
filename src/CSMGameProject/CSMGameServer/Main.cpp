@@ -7,17 +7,21 @@
 #include "Exception.h"
 #include "ClientSession.h"
 #include "ClientManager.h"
-#include "DatabaseJobManager.h"
-#include "DbHelper.h"
 
 #include "GameMap.h"
 #include "PlayerManager.h"
 #include "GameManager.h"
 #include "BulletManager.h"
 #include "SkillManager.h"
-#include "ItemManager.h"
 #pragma comment(lib,"ws2_32.lib")
 
+#include <my_global.h>
+#include <mysql.h>
+
+#pragma comment(lib, "libmySQL.lib")
+#pragma comment(lib, "libmysql")
+
+#pragma comment(lib, "mysqlclient")
 
 
 SOCKET g_AcceptedSocket = NULL ;
@@ -39,17 +43,21 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	/// Manager Init
 	GClientManager = new ClientManager ;
-	GDatabaseJobManager = new DatabaseJobManager ;
 	GResourceManager = new NNResourceManager;
 	GPlayerManager = new PlayerManager;
 	GGameManager = new GameManager();
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
-	GItemManager = new ItemManager();
 
-	/// DB Helper 초기화
-	if ( false == DbHelper::Initialize(DB_CONN_STR) )
-		return -1 ;
+	MYSQL conn;
+	mysql_init(&conn);
+	GMYSQLConnection = mysql_real_connect(&conn, "10.73.44.106", "root", "apple", "csm", 3306, (char*)NULL, 0);
+	if(GMYSQLConnection == NULL)
+	{
+		printf("Mysql connection error : %s", mysql_error(&conn));
+		return 1;
+	}
+
 
 	/// 윈속 초기화
 	WSADATA wsa ;
@@ -90,11 +98,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1 ;
 
 
-	/// DB Thread
-	HANDLE hDbThread = (HANDLE)_beginthreadex (NULL, 0, DatabaseHandlingThread, NULL, 0, (unsigned int*)&dwThreadId) ;
-	if (hDbThread == NULL)
-		return -1 ;
-
 	/// accept loop
 	while ( true )
 	{
@@ -122,7 +125,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	CloseHandle( hThread ) ;
 	CloseHandle( hEvent ) ;
-	CloseHandle( hDbThread ) ;
 
 	// 윈속 종료
 	WSACleanup() ;
@@ -134,10 +136,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	delete GResourceManager;
 
-	DbHelper::Finalize() ;
-
 	delete GClientManager ;
-	delete GDatabaseJobManager ;
 
 	return 0 ;
 }
@@ -198,21 +197,6 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 	CloseHandle( hTimer ) ;
 	return 0;
 } 
-
-unsigned int WINAPI DatabaseHandlingThread( LPVOID lpParam )
-{
-	LThreadType = THREAD_DATABASE ;
-
-	while ( true )
-	{
-		/// 기본적으로 polling 하면서 Job이 있다면 처리 하는 방식
-		GDatabaseJobManager->ExecuteDatabaseJobs() ;
-
-		Sleep(1) ;
-	}
-
-	return 0 ;
-}
 
 void CALLBACK TimerProc(LPVOID lpArg, DWORD dwTimerLowValue, DWORD dwTimerHighValue)
 {

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Game.h"
-#include "ItemManager.h"
 
 
 Game::Game(int gameId):mPlayTime(0), mGameId(gameId)
@@ -14,7 +13,7 @@ Game::~Game(void)
 
 void Game::RegenItem()
 {
-	if(mDamageBuffLeftTime < 0)
+	/*if(mDamageBuffLeftTime < 0)
 	{
 		GItemManager->GenerateDamageBuff(mGameId,mDamageBuffPosition);
 		mDamageBuffLeftTime += mDamageBuffCycleTime;
@@ -24,5 +23,5 @@ void Game::RegenItem()
 	{
 		GItemManager->GenerateHPBuff(mGameId,mDamageBuffPosition);
 		mHPBuffLeftTime += mDamageBuffCycleTime;
-	}
+	}*/
 }

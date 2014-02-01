@@ -2,6 +2,10 @@
 
 #include <map>
 #include <winsock2.h>
+#include <my_global.h>
+#include <mysql.h>
+
+#pragma comment(lib, "libmySQL.lib")
 
 class ClientSession ;
 struct PacketHeader ;
@@ -40,3 +44,4 @@ private:
 } ;
 
 extern ClientManager* GClientManager ;
+extern MYSQL* GMYSQLConnection;

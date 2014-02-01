@@ -4,8 +4,9 @@
 #include <Windows.h>
 #include "GameManager.h"
 
-PlayerManager::PlayerManager(void):mPlayersLength(0)
+PlayerManager::PlayerManager(void)
 {
+	memset(mPlayersLength,0,sizeof(mPlayersLength));
 	nowTime = prevTime = timeGetTime();
 }
 
@@ -55,7 +56,7 @@ Player* PlayerManager::NewPlayer(int playerId, int gameId, ClientSession* client
 	std::map<int,Player*>::iterator itor = mPlayers.find(playerId);
 	if( itor == mPlayers.end() ) 
 	{
-		mPlayersLength++;
+		mPlayersLength[gameId]++;
 		newPlayer = new Player(gameId, playerId, client);
 		client->mPlayerId = playerId;
 		mPlayers.insert(std::map<int,Player*>::value_type(playerId,newPlayer));
@@ -83,7 +84,7 @@ void PlayerManager::DeletePlayer(int playerId)
 	std::map<int,Player*>::iterator itor = mPlayers.find(playerId);
 	if( itor != mPlayers.end() ) 
 	{
-		mPlayersLength--;
+		mPlayersLength[itor->second->GetGameId()] --;
 		//TODO ERRER
 		//delete itor->second;
 		mPlayers.erase( itor );

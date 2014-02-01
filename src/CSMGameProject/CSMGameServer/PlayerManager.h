@@ -20,13 +20,13 @@ public:
 	Player* GetPlayer(int playerId) { return mPlayers.find(playerId)->second; };
 
 	int GetNewPlayerId();
-	int GetPlayersLength() { return mPlayersLength; };
+	int GetPlayersLength(int gameId) { return mPlayersLength[gameId]; };
 
 	void GetPlayers(int gameId, std::map<int,Player*>* players); 
 	int GeneratePlayerId();
 private:
 	std::map<int,Player*> mPlayers;
-	int mPlayersLength;
+	int mPlayersLength[255];
 	int prevTime;
 	int nowTime;
 	

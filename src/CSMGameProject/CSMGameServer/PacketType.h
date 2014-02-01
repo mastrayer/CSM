@@ -51,14 +51,8 @@
 
 #define PKT_SC_PLAYER_KILLSCORE_UPDATE 26
 
-#define PKT_SC_ITEM_WILLCOME 27
-#define PKT_SC_ITEM_COME 28
-#define PKT_SC_ITEM_PLAYER_CONSUME 29
-#define PKT_SC_ITEM_PLAYER_DROP 30
-
-#define PKT_CS_EMOTICON 31
-
-#define PKT_SC_EMOTICON 32
+#define PKT_CS_EMOTICON 27
+#define PKT_SC_EMOTICON 28
 
 struct Point
 {
@@ -130,6 +124,7 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
+	wchar_t mName[256];
 };
 #pragma pack(push, 1)
 
@@ -388,7 +383,7 @@ struct DTypeSkillEndResult : public PacketHeader
 	}
 	int mPlayerId;
 };
-
+/*
 struct ItemWillComeResult : public PacketHeader
 {
 	ItemWillComeResult()
@@ -408,6 +403,8 @@ struct ItemComeResult : public PacketHeader
 	}
 	int mItemType;
 	Point mPosition;
+	int mItemId;
+	float mLifeTime;
 };
 struct ItemPlayerConsumeResult : public PacketHeader
 {
@@ -418,6 +415,8 @@ struct ItemPlayerConsumeResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
+	float mLifeTime;
 };
 struct ItemPlayerDropResult : public PacketHeader
 {
@@ -428,8 +427,9 @@ struct ItemPlayerDropResult : public PacketHeader
 	}
 	int mItemType;
 	int mPlayerId;
+	int mItemId;
 };
-
+*/
 struct EmoticonRequest : public PacketHeader
 {
 	EmoticonRequest()
