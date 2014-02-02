@@ -14,14 +14,14 @@
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
 #ifdef _DEBUG
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
+	/*_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 	_CrtSetBreakAlloc( 69253 );
 	
 	AllocConsole();
 	FILE* console;
 	freopen_s( &console, "CONOUT$", "wt", stdout );
 
-	printf_s("Console Open \n");
+	printf_s("Console Open \n");*/
 #endif
 
 	char* param = lpszCmdParam;
@@ -42,7 +42,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	Application->Init( L"CSM Project", 800, 600, D2D );
 
 	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
-	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",roomNum,playerID));
+	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",7,1));//,roomNum,playerID));
 	//NNSceneDirector::GetInstance()->ChangeScene(CGameScene::Create(L"resource/map/44.csm"));
 
 	Application->Run();
