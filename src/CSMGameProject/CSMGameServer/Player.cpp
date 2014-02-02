@@ -81,6 +81,7 @@ void Player::TransState(short state)
 	{
 	case PLAYER_STATE_IDLE:
 		{
+			mMoveDirection = Point(0,0);
 			mPlayerState = state;
 
 			GameKeyStatesUpdateResult outPacket = GameKeyStatesUpdateResult();
@@ -236,16 +237,6 @@ void Player::Update( float dTime)
 				TransState(PLAYER_STATE_TYPESKILL);
 				break;
 			}
-			if( mGameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED)
-			{
-				TransState(PLAYER_STATE_USERSKILL);
-				break;
-			}
-			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
-			{
-				TransState(PLAYER_STATE_ATTACK);
-				break;
-			}
 			//Move myPlayer with Game Key States.
 			//Check Moving Input, and set Position to d
 			if(mGameKeyStates.leftDirectKey == KEYSTATE_PRESSED && mGameKeyStates.rightDirectKey == KEYSTATE_PRESSED)
@@ -337,7 +328,17 @@ void Player::Update( float dTime)
 				outPacket.mMyPlayerInfo = this->GetPlayerInfo();
 				mClient->Broadcast(&outPacket);
 			}
-
+			
+			if( mGameKeyStates.userActiveSkillKey == KEYSTATE_PRESSED)
+			{
+				TransState(PLAYER_STATE_USERSKILL);
+				break;
+			}
+			if( mGameKeyStates.attackKey == KEYSTATE_PRESSED )
+			{
+				TransState(PLAYER_STATE_ATTACK);
+				break;
+			}
 		}
 		break;
 	case PLAYER_STATE_ATTACK:

@@ -6,7 +6,7 @@
 #include "PlayerInput.h"
 #include "UserSession.h"
 #include "PlayerManager.h"
-
+#include "ClientManager.h"
 bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 {
 	memcpy( &mClientAddr, addr, sizeof(SOCKADDR_IN) );
@@ -63,6 +63,19 @@ void ClientSession::Disconnect()
 {
 	if ( !IsConnected() )
 		return;
+
+	// delete player //
+	int query_stat;
+	char query[255] = "";
+
+	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
+	query_stat = mysql_query(GMYSQLConnection, query);
+	if( query_stat != 0)
+	{
+		printf( "Mysql query error : %s", mysql_error(GMYSQLConnection));
+		return;
+	}
+	//
 
 	LogoutResult outPacket;
 	outPacket.mPlayerId = mPlayerId;
