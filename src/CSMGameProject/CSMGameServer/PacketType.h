@@ -124,7 +124,7 @@ struct PlayerInfo
 	int mTeam;
 	int mType;
 	int mKillScore;
-	wchar_t mName[256];
+	wchar_t mName[10];
 };
 #pragma pack(push, 1)
 
