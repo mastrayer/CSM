@@ -16,7 +16,7 @@
 CGameScene::CGameScene(std::wstring path, int roomNum, int playerID):
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false),mRoomNumber(roomNum), mPlyaerId(mPlyaerId)
+mLoadingComplete(false), mIsKeyDown(false),mRoomNumber(roomNum), mPlyaerId(playerID)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);

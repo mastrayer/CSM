@@ -34,7 +34,6 @@ void CGameMap::Render()
 }
 NNAnimation *CGameMap::CreateBarrackGate(TileType type)
 {
-	NNAnimation *Gate = NNAnimation::Create();
 	std::wstring path = L"Resource/Sprite/Barrack/";
 
 	switch (type)
@@ -52,9 +51,10 @@ NNAnimation *CGameMap::CreateBarrackGate(TileType type)
 		path += L"SandBarrack/";
 		break;
 	default:
-		delete Gate;
 		return nullptr;
 	}
+	NNAnimation *Gate = NNAnimation::Create();
+	
 	wchar_t temp[256] = { 0 };
 	for (int i = 0; i < 20; i++)
 	{

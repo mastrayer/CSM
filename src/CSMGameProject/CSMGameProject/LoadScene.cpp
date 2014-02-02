@@ -9,7 +9,7 @@
 
 #include "GameScene.h"
 
-LoadScene::LoadScene(std::wstring path, int roomNum, int playerID):mRoomNumber(roomNum), mPlyaerId(mPlyaerId), mCount(0.f)
+LoadScene::LoadScene(std::wstring path, int roomNum, int playerID):mRoomNumber(roomNum), mPlyaerId(playerID), mCount(0.f)
 {
 	mPath = path;
 	NNZip *temp = NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title");
