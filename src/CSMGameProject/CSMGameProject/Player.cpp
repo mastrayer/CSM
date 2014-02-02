@@ -145,7 +145,8 @@ void CPlayer::Update( float dTime )
 	mMoveEarth->SetVisible( false );
 	mAttackEarth->SetVisible( false );
 	mDieEarth->SetVisible( false );
-
+	
+	SetPosition( GetPosition() + mMoveVelocity * dTime  );
 	switch (mPlayerState)
 	{
 	case IDLE:
@@ -210,7 +211,7 @@ void CPlayer::Update( float dTime )
 				}
 				break;
 			}
-			SetPosition( GetPosition() + mMoveVelocity * dTime  );
+			//SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}break;
 	case ATTAACK:
 		{
@@ -242,7 +243,6 @@ void CPlayer::Update( float dTime )
 				}
 				break;
 			}
-			SetPosition( GetPosition() + mMoveVelocity * dTime  );
 		}
 		break;
 	case DIE:
