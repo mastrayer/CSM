@@ -12,7 +12,7 @@
 #include "GameManager.h"
 
 #include "NNLogger.h"
-
+#include <fstream>
 CGameScene::CGameScene(std::wstring path, int roomNum, int playerID):
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
@@ -247,8 +247,12 @@ void CGameScene::InitNetworkSetting()
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_EMOTICON, mEmoticonHandler);
 	NNNetworkSystem::GetInstance()->SetPacketHandler(PKT_SC_USERSKILL_FLASH, mUserSkillFlashHandler);
 
+	char ip[24] = "";
+	std::ifstream fin;
+	fin.open("Resource/serverIP.txt");
+	fin>>ip;
 
-	NNNetworkSystem::GetInstance()->Connect( "10.73.44.30", 9001 );
+	NNNetworkSystem::GetInstance()->Connect( ip, 9001 );
 	//NNNetworkSystem::GetInstance()->Connect("10.73.43.90", 9001);
 	//NNNetworkSystem::GetInstance()->Connect( "127.0.0.1", 9001 );
 
