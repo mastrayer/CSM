@@ -12,6 +12,20 @@
 
 #define SKILL_COUNT 2
 
+struct StatusElement
+{
+	StatusElement() 
+	{
+		ZeroMemory(mNicknameBuf, sizeof(mNicknameBuf));
+		ZeroMemory(mKillBuf, sizeof(mKillBuf));
+		mKillLabel = nullptr;
+		mNicknameLabel = nullptr;
+	}
+	wchar_t mNicknameBuf[20];
+	wchar_t mKillBuf[20];
+	NNLabel *mNicknameLabel;
+	NNLabel *mKillLabel;
+};
 class CStatusWindow : public NNObject
 {
 public:
@@ -23,6 +37,7 @@ public:
 	void Update(float dTime);
 
 	void GetAllPlayerInfo();
+	void SortByKillScore(int *result);
 
 
 	NNCREATE_FUNC(CStatusWindow);
@@ -31,6 +46,7 @@ private:
 	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
 	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
 	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
+	StatusElement mElement[MAX_PLAYER_LEN];
 	NNSprite *mPanel;
 };
 

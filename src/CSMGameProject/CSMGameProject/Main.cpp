@@ -38,7 +38,6 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 	printf("\n%d\n%d\n",roomNum, playerID);
 
 	NNApplication* Application = NNApplication::GetInstance();
-
 	Application->Init( L"CSM Project", 800, 600, D2D );
 
 	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
