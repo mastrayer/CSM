@@ -498,7 +498,7 @@ void CPlayer::INitDieImage()
 
 void CPlayer::ConsumeItem(ITEMTYPE itemType)
 {
-
+	
 
 	mHasItem[itemType] = true;
 }
