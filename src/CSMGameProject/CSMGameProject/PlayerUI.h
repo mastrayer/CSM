@@ -33,7 +33,7 @@ public:
 	}
 
 private:
-	NNSprite* mHpBar[2];
+	NNSprite* mHpBar[3];
 	NNSprite* mHpBarFrame;
 	NNLabel *mNickname;
 	int mHp;

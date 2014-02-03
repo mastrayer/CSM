@@ -26,7 +26,7 @@ void PlayerUI::Init()
 	mHpBar[RED] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/RedHpBar.png");
 
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
-	mHpBar[RED]->SetPosition( 0.f, -40.f );
+	mHpBar[RED]->SetPosition(0.f, -40.f);
 
 	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mNickname->SetPosition(0.f, -70.f);
@@ -57,6 +57,7 @@ void PlayerUI::Update( float dTime )
 	if (mTeam == -1)
 	{
 		mTeam = (TeamColor)(dynamic_cast<CPlayer*>(mFollower)->GetTeam());
+
 		return;
 	}
 	

@@ -70,7 +70,7 @@ public:
 private:
 	static GameUISet* mInstance;
 
-	NNLabel* mFPSLabel;
+	//NNLabel* mFPSLabel;
 
 	NNSprite *mTypeSkillUI[5];
 	NNSprite *mUserSkillUI;
@@ -92,11 +92,14 @@ private:
 
 	NNSprite *mCrown;
 
+	NNSprite *mHelp;
+	NNSprite *mHelpPanel;
+
 	NNLabel *mKillPoint[2];
 	//NNLabel *mType;
 
 	CPlayer *mMyPlayer;
-	wchar_t mFPSLabelBuff[100];
+	//wchar_t mFPSLabelBuff[100];
 
 	CStatusWindow *mStatusWindow;
 

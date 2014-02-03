@@ -42,8 +42,8 @@ GameUISet::GameUISet()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	mFPSLabel = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20);
-	AddChild(mFPSLabel);
+	//mFPSLabel = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20);
+	//AddChild(mFPSLabel);
 
 	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/UI/GameUI/CharacterUIFrame.png");
 	mCharacterUIFrame->SetPosition(0.f, 520.f);
@@ -164,6 +164,19 @@ GameUISet::GameUISet()
 	mStatusWindow->SetVisible(false);
 	mStatusWindow->SetPosition(100.f, 100.f);
 
+	mHelp = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Help.png");
+	mHelp->SetOpacity(0.75f);
+	//mHelp->SetPosition(10.f, 480.f);
+	//mHelp->SetPosition(20.f, 20.f);
+
+	mHelpPanel = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
+	//mHelpPanel->SetOpacity(0.5f);
+	//mHelpPanel->SetPosition(100.f, 100.f);
+	mHelpPanel->SetVisible(false);
+
+	AddChild(mHelp);
+	AddChild(mHelpPanel);
+
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
 	/*AddChild(mHpBarBackground);
@@ -172,6 +185,7 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[RED]);
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
+
 	for (int i = 0; i <= EARTH; ++i)
 	{
 		AddChild(mTypeSkillUI[i]);
@@ -186,7 +200,7 @@ GameUISet::GameUISet()
 	AddChild(mType);*/
 
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
-	ZeroMemory(mFPSLabelBuff, sizeof(mFPSLabelBuff));
+	//ZeroMemory(mFPSLabelBuff, sizeof(mFPSLabelBuff));
 }
 
 GameUISet::~GameUISet()
@@ -262,9 +276,9 @@ void GameUISet::Update(float dTime)
 		break;
 	}
 
-	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
+	//swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
-	mFPSLabel->SetString(mFPSLabelBuff);
+	//mFPSLabel->SetString(mFPSLabelBuff);
 	//	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
 	/*
 	mKillBar[TeamColor::BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
@@ -315,6 +329,15 @@ void GameUISet::Update(float dTime)
 		mStatusWindow->SetVisible(false);
 	}
 
+	if (NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_DOWN)
+	{
+		mHelpPanel->SetVisible(true);
+	}
+	else if (NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_NOTPRESSED)
+	{
+		mHelpPanel->SetVisible(false);
+	}
 }
 
 void GameUISet::ControlSkillTimer(float dTime)
