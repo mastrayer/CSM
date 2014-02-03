@@ -14,14 +14,14 @@
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 {
 #ifdef _DEBUG
-	/*_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 	_CrtSetBreakAlloc( 69253 );
 	
 	AllocConsole();
 	FILE* console;
 	freopen_s( &console, "CONOUT$", "wt", stdout );
 
-	printf_s("Console Open \n");*/
+	printf_s("Console Open \n");
 #endif
 
 	char* param = lpszCmdParam;
@@ -39,6 +39,12 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 
 	NNApplication* Application = NNApplication::GetInstance();
 	Application->Init( L"CSM Project", 800, 600, D2D );
+
+	if (roomNum == 0 || playerID == 0)
+	{
+		MessageBox(NNApplication::GetInstance()->GetHWND(), L"잘못된 접근입니다!", L"ERROR", 0);
+		exit(0);
+	}
 
 	//NNSceneDirector::GetInstance()->ChangeScene( MainMenuScene::Create() );
 	NNSceneDirector::GetInstance()->ChangeScene( LoadScene::Create(L"resource/map/44.csm",roomNum,playerID));
