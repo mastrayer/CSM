@@ -10,7 +10,8 @@
 
 {% block content %}
 <script type="text/javascript">
-function plugin0() {
+function plugin0()
+{
 	return document.getElementById('plugin0');
 }
 plugin = plugin0;
@@ -25,9 +26,9 @@ isLoad = false;
 function pluginLoaded() {
 	isLoad = true;
 }
-function gameStart() {
+function gameStart(roomId, userId) {
 	if (isLoad == true ) {
-		plugin().testEvent();
+		plugin().startGame(roomId,userId);
 	} else {
 		alert('게임 설치가 제대로 안된 것 같습니다..');
 		location.href = ''; // 인스톨러 파일 링크
@@ -52,18 +53,10 @@ function gameStart() {
 				<div class="headerCount">인원수</div>
 			</div>
 			<ul class="roomList">
-				<!--
-				<li class="room">
-					<div class="id">1</div>
-					<div class="title" onclick='javascript:gameStart()'>재미있는 겜 한판!</div>
-					<div class="type">섬멸전</div>
-					<div class="count">2명 / 7명</div>
-				</li>
-				-->
 				{% for game in game_list %}
 				<li class="room">
 					<div class="id">{{game.id}}</div>
-					<div class="title">{{game.title}}</div>
+					<div class="title" onclick='javascript:gameStart({{game.id}},{{user_id}})'>{{game.title}}</div>
 					<div class="type">
 						{% if game.type == 0 %}
 						4대4 데스매치

@@ -148,9 +148,9 @@ object a {
 	left: 50%;
 	top: 50%;
 	width: 350px;
-	height: 100px;
+	height: 120px;
 	margin-left: -175px;
-	margin-top: -100px;
+	margin-top: -60px;
 	background-color: white;
 	border: 1px solid #444;
 	border-radius: 10px;

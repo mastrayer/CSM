@@ -20,7 +20,7 @@ def room_list():
     if user:
         return redirect(url_for("room.already"))
 
-    return render_template("room/lobby.html", game_list=game_list)
+    return render_template("room/lobby.html", game_list=game_list, user_id=session['user_id'])
 
 @mod.route('/create/', methods=['GET','POST'])
 @requires_login

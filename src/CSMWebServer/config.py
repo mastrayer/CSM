@@ -8,7 +8,7 @@ ADMINS = frozenset(['kciter@naver.com'])
 SECRET_KEY = 'CSMProjectSecretKey'
 
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(_basedir, 'app.db')
-SQLALCHEMY_DATABASE_URI = 'mysql://root:apple@localhost/csm'
+SQLALCHEMY_DATABASE_URI = 'mysql://root:qq!n?22GqAr8@localhost/csm?charset=utf8'
 DATABASE_CONNECT_OPTION = {}
 
 THREADS_PER_PAGE = 8
