@@ -19,13 +19,14 @@ CPlayer::CPlayer()
 	: mMoveVelocity(NNPoint(0,0)), mHp(100),
 	  mRebirthDelayTime(10), mTeam(0), mKillScore(0),
 	  mIsEmoticonRunning(false),
-	  mNickname("")
+	  mNickname(nullptr)
 {
 	memset(mHasItem, false, sizeof(mHasItem));
 }
 
 CPlayer::~CPlayer( void )
 {
+	delete[] mNickname;
 }
 
 void CPlayer::Init()
@@ -500,4 +501,13 @@ void CPlayer::ConsumeItem(ITEMTYPE itemType)
 
 
 	mHasItem[itemType] = true;
+}
+void CPlayer::SetNickname(std::wstring value)
+{
+	if (mNickname != nullptr)
+		return;
+	
+	mNickname = new wchar_t[value.size()+1];
+	wcsncpy(mNickname, value.c_str(),value.size()+1);
+	mPlayerUI->SetNickname();
 }

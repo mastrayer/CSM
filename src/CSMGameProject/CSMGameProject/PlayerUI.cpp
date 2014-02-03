@@ -28,6 +28,11 @@ void PlayerUI::Init()
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
 	mHpBar[RED]->SetPosition( 0.f, -40.f );
 
+	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+	mNickname->SetPosition(0.f, -70.f);
+	mNickname->SetBold(true);
+
+	AddChild(mNickname);
 	AddChild(mHpBar[BLUE]);
 	AddChild(mHpBar[RED]);
 
@@ -61,4 +66,10 @@ void PlayerUI::Update( float dTime )
 
 	
 
+}
+
+void PlayerUI::SetNickname()
+{
+	CPlayer *player = dynamic_cast<CPlayer*>(mFollower);
+	mNickname->SetString(player->GetNickname());
 }

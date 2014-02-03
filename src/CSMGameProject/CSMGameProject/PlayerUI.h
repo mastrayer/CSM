@@ -22,6 +22,7 @@ public:
 
 	void SetHP(int hp) { mHp = hp; }
 	void SetTeam(int team) { mTeam = team; }
+	void SetNickname();
 
 	//NNCREATE_FUNC(PlayerUI);
 	static PlayerUI* Create(NNObject *follower)
@@ -34,6 +35,7 @@ public:
 private:
 	NNSprite* mHpBar[2];
 	NNSprite* mHpBarFrame;
+	NNLabel *mNickname;
 	int mHp;
 	int mTeam;
 
