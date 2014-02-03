@@ -3,6 +3,7 @@
 #include "ClientManager.h"
 #include "PacketType.h"
 #include "PlayerManager.h"
+#include "DBCommand.h"
 
 GameManager::GameManager()
 {
@@ -71,7 +72,36 @@ void GameManager::EndOfGame(int gameId, int team)
 	EndOfGameResult outPacket = EndOfGameResult();
 	outPacket.mWinnerTeam = team;
 	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
+
+	delete mGames[gameId];
 	mGames[gameId] = nullptr;
+	
+	std::map<int,Player*> players;
+	GPlayerManager->GetPlayers(gameId,&players);
+	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
+	{
+		int playerId = it->second->GetPlayerInfo().mPlayerId;
+		int playerTeam = it->second->GetPlayerInfo().mTeam;
+		int playerKillscore = it->second->GetPlayerInfo().mKillScore;
+		char query[255] = "";
+		
+		sprintf_s(query,"update tbl_user set play_count=play_count+1 where id=%d",playerId);
+		doQuery(query);
+
+		sprintf_s(query,"update tbl_user set kill_sum=kill_sum+%d where id=%d",playerKillscore,playerId);
+		doQuery(query);
+
+		if(team == playerTeam)
+		{
+			sprintf_s(query,"update tbl_user set win_count=win_count+1 where id=%d",playerId);
+			doQuery(query);
+		}
+		else
+		{
+			sprintf_s(query,"update tbl_user set lose_count=lose_count+1 where id=%d",playerId);
+			doQuery(query);
+		}
+	}
 }
 
 void GameManager::NewGame(int gameId, int mapType)
@@ -86,7 +116,7 @@ void GameManager::NewGame(int gameId, int mapType)
 	case DEATHMATCH44:
 		{
 			mGames[gameId] = new DeathMatch44(gameId);
-			mKillLimit[gameId] = 40;
+			mKillLimit[gameId] = 3;//40;
 		}
 		break;
 	/*case DEATHMATCH88:

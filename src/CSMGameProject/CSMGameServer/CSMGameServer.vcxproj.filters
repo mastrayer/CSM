@@ -348,6 +348,9 @@
     <ClInclude Include="DeathMatch88.h">
       <Filter>Game\GameType\DeathMatch\DeathMatch88</Filter>
     </ClInclude>
+    <ClInclude Include="DBCommand.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">

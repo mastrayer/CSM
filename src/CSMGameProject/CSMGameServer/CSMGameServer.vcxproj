@@ -86,6 +86,7 @@
     <ClInclude Include="CTypeAttack.h" />
     <ClInclude Include="CTypeAttackBullet.h" />
     <ClInclude Include="CTypeSkillBullet.h" />
+    <ClInclude Include="DBCommand.h" />
     <ClInclude Include="DeathMatch44.h" />
     <ClInclude Include="DeathMatch88.h" />
     <ClInclude Include="DTypeAttack.h" />
