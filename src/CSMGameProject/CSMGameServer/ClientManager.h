@@ -44,5 +44,5 @@ private:
 } ;
 
 extern ClientManager* GClientManager ;
-extern MYSQL* GMYSQLConnection;
-extern MYSQL* GMYSQLCONN;
+//extern MYSQL* GMYSQLConnection;
+//extern MYSQL* GMYSQLCONN;

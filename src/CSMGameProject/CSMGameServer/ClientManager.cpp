@@ -9,8 +9,9 @@
 #include "GameManager.h"
 
 ClientManager* GClientManager = nullptr ;
-MYSQL* GMYSQLConnection = NULL;
-MYSQL* GMYSQLCONN = NULL;
+//MYSQL* GMYSQLConnection = NULL;
+//MYSQL* GMYSQLCONN = NULL;
+
 ClientSession* ClientManager::CreateClient(SOCKET sock)
 {
 	ClientSession* client = new ClientSession(sock) ;

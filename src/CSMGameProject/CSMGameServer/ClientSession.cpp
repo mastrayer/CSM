@@ -80,10 +80,10 @@ void ClientSession::Disconnect()
 	BroadcastWithoutSelf(&outPacket);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port));
 
-
 	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
-	doQuery(query);
-	mysql_close(GMYSQLConnection);
+	ExcuteNonQuery(query);
+	//mysql_close(GMYSQLConnection);
+	//GMYSQLConnection = nullptr;
 	
 }
 	

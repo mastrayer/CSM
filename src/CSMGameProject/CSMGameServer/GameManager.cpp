@@ -103,29 +103,29 @@ void GameManager::DestroyGame(int gameId)
 		int playerKillscore = it->second->GetPlayerInfo().mKillScore;
 		
 		sprintf_s(query,"update tbl_user set play_count = play_count+1 where id=%d",playerId);
-		doQuery(query);
+		ExcuteNonQuery(query);
 
 		sprintf_s(query,"update tbl_user set kill_sum = kill_sum + %d where id = %d",playerKillscore,playerId);
-		doQuery(query);
+		ExcuteNonQuery(query);
 
 		if(mVictoryTeam[gameId] == playerTeam)
 		{
 			sprintf_s(query,"update tbl_user set win_count=win_count+1 where id=%d",playerId);
-			doQuery(query);
+			ExcuteNonQuery(query);
 		}
 		else
 		{
 			sprintf_s(query,"update tbl_user set lose_count=lose_count+1 where id=%d",playerId);
-			doQuery(query);
+			ExcuteNonQuery(query);
 		}
 		GPlayerManager->DeletePlayer(playerId);
 		if(it == players.end()) break;
 	}
 	sprintf_s(query,"delete from tbl_room where id=%d",gameId);
-	doQuery(query);
+	ExcuteNonQuery(query);
 	mIsFinishGame[gameId] = false;
 	mVictoryTeam[gameId] = -1;
-	GMYSQLConnection = NULL;
+	//GMYSQLConnection = NULL;
 	mIsDestoring[gameId] = false;
 }
 void GameManager::NewGame(int gameId, int mapType)
