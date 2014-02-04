@@ -29,6 +29,7 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 				}
 				CPlayerManager::GetInstance()->SetMyPlayerId( mLoginResultPacket.mMyPlayerInfo.mPlayerId );
 				CPlayerManager::GetInstance()->UpdatePlayerInfo(mLoginResultPacket.mMyPlayerInfo);
+				CPlayerManager::GetInstance()->UpdatePlayerNickname(mLoginResultPacket.mMyPlayerInfo.mPlayerId, mLoginResultPacket.mMyPlayerInfo.mName);
 				//먼저 들어와있던 플레이어의 객체 만들기
 				for(int i=0; i<mLoginResultPacket.mNowPlayersLength; i++)
 				{
@@ -36,6 +37,7 @@ void LoginHandler::HandlingPacket( short packetType, NNCircularBuffer* circularB
 					{
 						CPlayerManager::GetInstance()->NewPlayer( mLoginResultPacket.mPlayerInfo[i].mPlayerId );
 						CPlayerManager::GetInstance()->UpdatePlayerInfo( mLoginResultPacket.mPlayerInfo[i] );
+						CPlayerManager::GetInstance()->UpdatePlayerNickname(mLoginResultPacket.mPlayerInfo[i].mPlayerId, mLoginResultPacket.mPlayerInfo[i].mName);
 					}
 				}
 				//CPlayerManager::GetInstance()->SetKillLimit(mLoginResultPacket.mKillLimit);

@@ -26,6 +26,7 @@ void LoginBroadcastHandler::HandlingPacket( short packetType, NNCircularBuffer* 
 				}
 				CPlayerManager::GetInstance()->NewPlayer( mLoginBroadcastResultPacket.mMyPlayerInfo.mPlayerId );
 				CPlayerManager::GetInstance()->UpdatePlayerInfo( mLoginBroadcastResultPacket.mMyPlayerInfo );
+				CPlayerManager::GetInstance()->UpdatePlayerNickname(mLoginBroadcastResultPacket.mMyPlayerInfo.mPlayerId, mLoginBroadcastResultPacket.mMyPlayerInfo.mName);
 				printf("NEW LOGIN SUCCESS ClientId[%d] \n", mLoginBroadcastResultPacket.mMyPlayerInfo.mPlayerId) ;
 			}
 			else

@@ -104,13 +104,22 @@ void CPlayerManager::UpdatePlayerKillScore( int playerId, int killScore )
 		player->SetKillScore( killScore );
 	}
 }
-void CPlayerManager::UpdatePlayerType( int playerId, PlayerType type )
+void CPlayerManager::UpdatePlayerType(int playerId, PlayerType type)
 {
-	std::map<int,CPlayer*>::iterator itor = mPlayers.find(playerId);
-	if( itor != mPlayers.end() ) 
+	std::map<int, CPlayer*>::iterator itor = mPlayers.find(playerId);
+	if (itor != mPlayers.end())
 	{
 		CPlayer* player = mPlayers.find(playerId)->second;
-		player->SetPlayerType( type );
+		player->SetPlayerType(type);
+	}
+}
+void CPlayerManager::UpdatePlayerNickname(int playerId, std::wstring nickname)
+{
+	std::map<int, CPlayer*>::iterator itor = mPlayers.find(playerId);
+	if (itor != mPlayers.end())
+	{
+		CPlayer* player = mPlayers.find(playerId)->second;
+		player->SetNickname(nickname);
 	}
 }
 void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
@@ -122,6 +131,7 @@ void CPlayerManager::UpdatePlayerInfo(PlayerInfo info)
 	UpdatePlayerHP(info.mPlayerId, info.mHP);
 	UpdatePlayerTeam(info.mPlayerId, info.mTeam);
 	UpdatePlayerType(info.mPlayerId, (PlayerType)info.mType);
+	//UpdatePlayerNickname(info.mPlayerId, info.mName);
 	UpdatePlayerKillScore( info.mPlayerId, info.mKillScore );
 }
 

@@ -1,9 +1,15 @@
 
 #include "GameUISet.h"
 #include "GameManager.h"
-
+#include "GameScene.h"
 #include "NNApplication.h"
 
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
 GameUISet* GameUISet::mInstance = nullptr;
 
 GameUISet* GameUISet::GetInstance()
@@ -36,8 +42,8 @@ GameUISet::GameUISet()
 	float width = (float)NNApplication::GetInstance()->GetScreenWidth();
 	float height = (float)NNApplication::GetInstance()->GetScreenHeight();
 
-	mFPSLabel = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20);
-	AddChild(mFPSLabel);
+	//mFPSLabel = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20);
+	//AddChild(mFPSLabel);
 
 	mCharacterUIFrame = NNSprite::Create(L"Resource/Sprite/UI/GameUI/CharacterUIFrame.png");
 	mCharacterUIFrame->SetPosition(0.f, 520.f);
@@ -156,7 +162,16 @@ GameUISet::GameUISet()
 
 	mStatusWindow = CStatusWindow::Create();
 	mStatusWindow->SetVisible(false);
-	mStatusWindow->SetPosition(100.f, 100.f);
+	mStatusWindow->SetPosition(150.f, 100.f);
+
+	mHelp = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Help.png");
+	mHelp->SetOpacity(0.75f);
+
+	mHelpPanel = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
+	mHelpPanel->SetVisible(false);
+
+	AddChild(mHelp);
+	AddChild(mHelpPanel);
 
 	AddChild(mCharacterUIFrame);
 	AddChild(mSkillUIFrame);
@@ -166,6 +181,7 @@ GameUISet::GameUISet()
 	AddChild(mKillPoint[RED]);
 	AddChild(mKillPoint[BLUE]);
 	AddChild(mUserSkillUI);
+
 	for (int i = 0; i <= EARTH; ++i)
 	{
 		AddChild(mTypeSkillUI[i]);
@@ -180,7 +196,7 @@ GameUISet::GameUISet()
 	AddChild(mType);*/
 
 	mMyPlayer = CPlayerManager::GetInstance()->GetMyPlayer();
-	ZeroMemory(mFPSLabelBuff, sizeof(mFPSLabelBuff));
+	//ZeroMemory(mFPSLabelBuff, sizeof(mFPSLabelBuff));
 }
 
 GameUISet::~GameUISet()
@@ -256,9 +272,9 @@ void GameUISet::Update(float dTime)
 		break;
 	}
 
-	swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
+	//swprintf_s(mFPSLabelBuff, L"%d", (int)NNApplication::GetInstance()->GetFPS());
 
-	mFPSLabel->SetString(mFPSLabelBuff);
+	//mFPSLabel->SetString(mFPSLabelBuff);
 	//	mHpBar->SetScale(mMyPlayer->GetPlayerHP() / 50.f, 1.f);
 	/*
 	mKillBar[TeamColor::BLUE]->SetScale(CPlayerManager::GetInstance()->GetKillScore(TeamColor::BLUE) / 50.f, 1.f);
@@ -298,6 +314,9 @@ void GameUISet::Update(float dTime)
 	// 	for (int i = 0; i < SKILL_COUNT; ++i)
 	// 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
 
+	if (dynamic_cast<CGameScene*>(NNSceneDirector::GetInstance()->GetNowScene())->IsEnd() == true)
+		return;
+
 	if (NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
@@ -309,6 +328,15 @@ void GameUISet::Update(float dTime)
 		mStatusWindow->SetVisible(false);
 	}
 
+	if (NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_PRESSED ||
+		NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_DOWN)
+	{
+		mHelpPanel->SetVisible(true);
+	}
+	else if (NNInputSystem::GetInstance()->GetKeyState(VK_F1) == KEY_NOTPRESSED)
+	{
+		mHelpPanel->SetVisible(false);
+	}
 }
 
 void GameUISet::ControlSkillTimer(float dTime)
@@ -374,20 +402,50 @@ void CStatusWindow::Init()
 	mPanel->SetOpacity(0.5f);
 
 	AddChild(mPanel);
+
+	ZeroMemory(mTeamKillScoreBuf, sizeof(mTeamKillScoreBuf));
+
+	for (int i = 0; i < 3; ++i)
+	{
+		mTeamKillScore[i] = NNLabel::Create(mTeamKillScoreBuf[i], L"¸¼Àº °íµñ", 20.f);
+		mTeamKillScore[i]->SetBold(true);
+		mTeamKillScore[i]->SetColor(255, 255, 255);
+
+		AddChild(mTeamKillScore[i]);
+	}
+	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
+	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
+	wsprintf(mTeamKillScoreBuf[2], L"%d", GameManager::GetInstance()->GetKillLimit());
+
+	mTeamKillScore[0]->SetPosition(140.f, 35.f);
+	mTeamKillScore[1]->SetPosition(370.f, 35.f);
+	mTeamKillScore[2]->SetPosition(250.f, 5.f);
+
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
-		wsprintf(mLabelBuf[i], L"Player%d", i);
+		//wsprintf(mLabelBuf[i], L"Player%d", i);
 
-		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 15.f);
-		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 15.f);
+		mElement[i].mNicknameLabel = NNLabel::Create(mElement[i].mNicknameBuf, L"¸¼Àº °íµñ", 15.f);
+		mElement[i].mKillLabel = NNLabel::Create(mElement[i].mKillBuf, L"¸¼Àº °íµñ", 15.f);
 
-		mPlayerLabelList[i]->SetColor(255, 255, 255);
-		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
+		mElement[i].mNicknameLabel->SetColor(255, 255, 255);
+		mElement[i].mKillLabel->SetColor(255, 255, 255);
 
-		mPlayerLabelList[i]->SetVisible(false);
-		mPlayerKillScoreList[i]->SetVisible(false);
-		AddChild(mPlayerLabelList[i], 2);
-		AddChild(mPlayerKillScoreList[i], 2);
+		mElement[i].mNicknameLabel->SetVisible(false);
+		mElement[i].mKillLabel->SetVisible(false);
+
+		AddChild(mElement[i].mNicknameLabel, 2);
+		AddChild(mElement[i].mKillLabel, 2);
+// 		mPlayerLabelList[i] = NNLabel::Create(mLabelBuf[i], L"¸¼Àº °íµñ", 15.f);
+// 		mPlayerKillScoreList[i] = NNLabel::Create(L"0", L"¸¼Àº °íµñ", 15.f);
+// 
+// 		mPlayerLabelList[i]->SetColor(255, 255, 255);
+// 		mPlayerKillScoreList[i]->SetColor(255, 255, 255);
+// 
+// 		mPlayerLabelList[i]->SetVisible(false);
+// 		mPlayerKillScoreList[i]->SetVisible(false);
+// 		AddChild(mPlayerLabelList[i], 2);
+// 		AddChild(mPlayerKillScoreList[i], 2);
 	}
 
 	
@@ -405,41 +463,105 @@ void CStatusWindow::Render()
 void CStatusWindow::Update(float dTime)
 {
 	NNObject::Update(dTime);
-	//GetAllPlayerInfo();
+	GetAllPlayerInfo();
+	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
+	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
 }
+void CStatusWindow::SortByKillScore(int *result)
+{
+	std::map<int, CPlayer*> playerList = CPlayerManager::GetInstance()->GetPlayerList();
+	int kill[MAX_PLAYER_LEN] = { 0, };
+	int n = 0;
 
+	for (auto &iter : playerList)
+	{
+		result[n] = iter.first;
+		kill[n++] = (iter.second)->GetKillScore();
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		int MaxValue = kill[i];
+		int idx = i;
+
+		for (int j = i+1; j < n; ++j)
+		{
+			if (kill[j] > MaxValue)
+			{
+				idx = j;
+				MaxValue = kill[j];
+			}
+		}
+		swap(&result[i], &result[idx]);
+		swap(&kill[i], &kill[idx]);
+	}
+}
 void CStatusWindow::GetAllPlayerInfo()
 {
 	CPlayerManager *playerManager = CPlayerManager::GetInstance();
 
 	std::map<int, CPlayer*> playerList = playerManager->GetPlayerList();
+	int SortOrder[MAX_PLAYER_LEN] = { 0, };
 	float aY, bY;
 	aY = bY = 90.f;
 
+	SortByKillScore(SortOrder);
+	
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
-		mPlayerLabelList[i]->SetVisible(false);
-		mPlayerKillScoreList[i]->SetVisible(false);
+		mElement[i].mKillLabel->SetVisible(false);
+		mElement[i].mKillLabel->SetColor(240, 240, 240);
+		mElement[i].mNicknameLabel->SetVisible(false);
+		mElement[i].mNicknameLabel->SetColor(240, 240, 240);
+// 		mPlayerLabelList[i]->SetVisible(false);
+// 		mPlayerKillScoreList[i]->SetVisible(false);
 	}
 
-	for (auto &iter : playerList)
+	for (int i = 0; i < playerList.size(); ++i)
 	{
-		mPlayerLabelList[iter.first]->SetVisible(true);
-		mPlayerKillScoreList[iter.first]->SetVisible(true);
-		wsprintf(mKillScoreBuf[iter.first], L"%d", iter.second->GetKillScore());
-		mPlayerKillScoreList[iter.first]->SetString(mKillScoreBuf[iter.first]);
-
-		if (iter.second->GetTeam() == TeamColor::RED)
+		if (SortOrder[i] == CPlayerManager::GetInstance()->GetMyPlayerId())
 		{
-			mPlayerLabelList[iter.first]->SetPosition(55, aY);
-			mPlayerKillScoreList[iter.first]->SetPosition(205, aY);
-			aY += 20.f;
+			mElement[i].mKillLabel->SetColor(240, 240, 0);
+			mElement[i].mNicknameLabel->SetColor(240, 240, 0);
 		}
-		else if (iter.second->GetTeam() == TeamColor::BLUE)
+			
+		wsprintf(mElement[i].mNicknameBuf, L"%s", playerList[SortOrder[i]]->GetNickname());
+		wsprintf(mElement[i].mKillBuf, L"%d", playerList[SortOrder[i]]->GetKillScore());
+		mElement[i].mKillLabel->SetVisible(true);
+		mElement[i].mNicknameLabel->SetVisible(true);
+
+		switch (playerList[SortOrder[i]]->GetTeam())
 		{
-			mPlayerLabelList[iter.first]->SetPosition(295, bY);
-			mPlayerKillScoreList[iter.first]->SetPosition(415, bY);
+		case TeamColor::RED :
+			mElement[i].mNicknameLabel->SetPosition(70, aY);
+			mElement[i].mKillLabel->SetPosition(200, aY);
+			aY += 20.f;
+			break;
+
+		case TeamColor::BLUE :
+			mElement[i].mNicknameLabel->SetPosition(300, bY);
+			mElement[i].mKillLabel->SetPosition(410, bY);
 			bY += 20.f;
+			break;
 		}
 	}
+//	for (auto &iter : playerList)
+//	{
+// 		mPlayerLabelList[iter.first]->SetVisible(true);
+// 		mPlayerKillScoreList[iter.first]->SetVisible(true);
+// 		wsprintf(mKillScoreBuf[iter.first], L"%d", iter.second->GetKillScore());
+// 		mPlayerKillScoreList[iter.first]->SetString(mKillScoreBuf[iter.first]);
+// 
+// 		if (iter.second->GetTeam() == TeamColor::RED)
+// 		{
+// 			mPlayerLabelList[iter.first]->SetPosition(55, aY);
+// 			mPlayerKillScoreList[iter.first]->SetPosition(205, aY);
+// 			aY += 20.f;
+// 		}
+// 		else if (iter.second->GetTeam() == TeamColor::BLUE)
+// 		{
+// 			mPlayerLabelList[iter.first]->SetPosition(295, bY);
+// 			mPlayerKillScoreList[iter.first]->SetPosition(415, bY);
+// 			bY += 20.f;
+// 		}
+//	}
 }

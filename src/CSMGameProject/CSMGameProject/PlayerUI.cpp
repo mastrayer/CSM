@@ -26,8 +26,14 @@ void PlayerUI::Init()
 	mHpBar[RED] = NNSprite::Create(L"Resource/Sprite/UI/GameUI/RedHpBar.png");
 
 	mHpBar[BLUE]->SetPosition( 0.f, -40.f );
-	mHpBar[RED]->SetPosition( 0.f, -40.f );
+	mHpBar[RED]->SetPosition(0.f, -40.f);
 
+	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
+	mNickname->SetPosition(0.f, -70.f);
+	mNickname->SetColor(30, 30, 30);
+	mNickname->SetBold(true);
+
+	AddChild(mNickname);
 	AddChild(mHpBar[BLUE]);
 	AddChild(mHpBar[RED]);
 
@@ -52,13 +58,17 @@ void PlayerUI::Update( float dTime )
 	if (mTeam == -1)
 	{
 		mTeam = (TeamColor)(dynamic_cast<CPlayer*>(mFollower)->GetTeam());
+
 		return;
 	}
 	
 	
 	mHpBar[mTeam]->SetVisible(true);
 	mHpBar[mTeam]->SetScale(mHp / 50.f, 1.f);
+}
 
-	
-
+void PlayerUI::SetNickname()
+{
+	CPlayer *player = dynamic_cast<CPlayer*>(mFollower);
+	mNickname->SetString(player->GetNickname());
 }

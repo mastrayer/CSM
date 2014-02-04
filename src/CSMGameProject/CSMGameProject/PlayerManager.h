@@ -31,6 +31,7 @@ public:
 	void UpdatePlayerState(int _playerId, short state );
 	void UpdatePlayerTeam(int _playerId, int team);
 	void UpdatePlayerKillScore( int playerId, int killScore );
+	void UpdatePlayerNickname(int playerId, std::wstring nickname);
 	//void UpdatePlayerType(int _playerId, int type);
 	void UpdatePlayerType( int playerId, PlayerType type );
 	int GetMyPlayerId() { return mMyPlayerId; };

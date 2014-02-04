@@ -32,7 +32,7 @@ public:
 	void SetPlayerHP(int hp) { mHp = hp; }	void SetPlayerTeam(int team) { mTeam = team; }
 	void SetPlayerType( PlayerType type ) { mPlayerType = type; InitWithType(); }
 	void SetKillScore( int killScore ) { mKillScore = killScore; }
-	void SetNickname(std::string value) { mNickname = value; }
+	void SetNickname(std::wstring value);
 
 	NNPoint GetPlayerPosition() { return GetPosition(); }
 	float GetPlayerRotation( ) { return mRotation; }
@@ -40,7 +40,7 @@ public:
 	PlayerType GetPlayerType() { return mPlayerType; }
 	int GetTeam() { return mTeam; }
 	int GetKillScore() const { return mKillScore; }
-	std::string GetNickname() { return mNickname; }
+	wchar_t *GetNickname() { return mNickname; }
 	
 	bool IsEmoticonRunning() { return mIsEmoticonRunning; }
 	void SetEmoticonRunning(bool value) { mIsEmoticonRunning = value; }
@@ -95,7 +95,7 @@ private:
 	NNPoint mMoveVelocity;
 	NNLabel *mRebirthTimer;
 	
-	std::string mNickname;
+	wchar_t *mNickname;
 
 	float mRebirthDelayTime;
 	int mHp;

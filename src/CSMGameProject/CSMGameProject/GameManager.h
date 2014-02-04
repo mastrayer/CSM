@@ -20,7 +20,8 @@ public:
 
 public:
 	GameState GetGameState() const { return mGameState; }
-	int GetKillScore( TeamColor color ) const { return mKillScore[color]; }
+	int GetKillScore(TeamColor color) const { return mKillScore[color]; }
+	int GetKillLimit() const { return mKillLimit; }
 
 	void SetKillLimit( int limit ) { mKillLimit = limit; }
 	void SetKillScore( int* Score ) { mKillScore[0] = Score[0]; mKillScore[1] = Score[1];}
