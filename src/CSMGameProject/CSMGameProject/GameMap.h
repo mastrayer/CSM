@@ -6,6 +6,8 @@
 #include "NNResourceManager.h"
 #include "NNSpriteAtlas.h"
 #include "NNAnimation.h"
+#include "PlayerManager.h"
+#include "NNApplication.h"
 
 #define ATTRIBUTE_MOVE 0x01
 #define TILESIZE 64

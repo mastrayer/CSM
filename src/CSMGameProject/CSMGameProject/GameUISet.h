@@ -42,11 +42,15 @@ public:
 
 	NNCREATE_FUNC(CStatusWindow);
 private:
-	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
-	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
-	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
-	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
+// 	wchar_t mLabelBuf[MAX_PLAYER_LEN][256];
+// 	NNLabel *mPlayerLabelList[MAX_PLAYER_LEN];
+// 	wchar_t mKillScoreBuf[MAX_PLAYER_LEN][10];
+// 	NNLabel *mPlayerKillScoreList[MAX_PLAYER_LEN];
 	StatusElement mElement[MAX_PLAYER_LEN];
+	
+	wchar_t mTeamKillScoreBuf[3][10];
+	NNLabel *mTeamKillScore[3];
+
 	NNSprite *mPanel;
 };
 

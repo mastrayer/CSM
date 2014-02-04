@@ -1,7 +1,7 @@
 
 #include "GameUISet.h"
 #include "GameManager.h"
-
+#include "GameScene.h"
 #include "NNApplication.h"
 
 void swap(int *a, int *b)
@@ -162,16 +162,12 @@ GameUISet::GameUISet()
 
 	mStatusWindow = CStatusWindow::Create();
 	mStatusWindow->SetVisible(false);
-	mStatusWindow->SetPosition(100.f, 100.f);
+	mStatusWindow->SetPosition(150.f, 100.f);
 
 	mHelp = NNSprite::Create(L"Resource/Sprite/UI/GameUI/Help.png");
 	mHelp->SetOpacity(0.75f);
-	//mHelp->SetPosition(10.f, 480.f);
-	//mHelp->SetPosition(20.f, 20.f);
 
 	mHelpPanel = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
-	//mHelpPanel->SetOpacity(0.5f);
-	//mHelpPanel->SetPosition(100.f, 100.f);
 	mHelpPanel->SetVisible(false);
 
 	AddChild(mHelp);
@@ -318,6 +314,9 @@ void GameUISet::Update(float dTime)
 	// 	for (int i = 0; i < SKILL_COUNT; ++i)
 	// 		ControlSkillUI((PlayerState)(TYPE_ACTIVE_SKILL + i), dTime);
 
+	if (dynamic_cast<CGameScene*>(NNSceneDirector::GetInstance()->GetNowScene())->IsEnd() == true)
+		return;
+
 	if (NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
@@ -403,6 +402,25 @@ void CStatusWindow::Init()
 	mPanel->SetOpacity(0.5f);
 
 	AddChild(mPanel);
+
+	ZeroMemory(mTeamKillScoreBuf, sizeof(mTeamKillScoreBuf));
+
+	for (int i = 0; i < 3; ++i)
+	{
+		mTeamKillScore[i] = NNLabel::Create(mTeamKillScoreBuf[i], L"¸¼Àº °íµñ", 20.f);
+		mTeamKillScore[i]->SetBold(true);
+		mTeamKillScore[i]->SetColor(255, 255, 255);
+
+		AddChild(mTeamKillScore[i]);
+	}
+	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
+	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
+	wsprintf(mTeamKillScoreBuf[2], L"%d", GameManager::GetInstance()->GetKillLimit());
+
+	mTeamKillScore[0]->SetPosition(140.f, 35.f);
+	mTeamKillScore[1]->SetPosition(370.f, 35.f);
+	mTeamKillScore[2]->SetPosition(250.f, 5.f);
+
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
 		//wsprintf(mLabelBuf[i], L"Player%d", i);
@@ -446,6 +464,8 @@ void CStatusWindow::Update(float dTime)
 {
 	NNObject::Update(dTime);
 	GetAllPlayerInfo();
+	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
+	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
 }
 void CStatusWindow::SortByKillScore(int *result)
 {
@@ -489,13 +509,21 @@ void CStatusWindow::GetAllPlayerInfo()
 	for (int i = 0; i < MAX_PLAYER_LEN; ++i)
 	{
 		mElement[i].mKillLabel->SetVisible(false);
+		mElement[i].mKillLabel->SetColor(240, 240, 240);
 		mElement[i].mNicknameLabel->SetVisible(false);
+		mElement[i].mNicknameLabel->SetColor(240, 240, 240);
 // 		mPlayerLabelList[i]->SetVisible(false);
 // 		mPlayerKillScoreList[i]->SetVisible(false);
 	}
 
 	for (int i = 0; i < playerList.size(); ++i)
 	{
+		if (SortOrder[i] == CPlayerManager::GetInstance()->GetMyPlayerId())
+		{
+			mElement[i].mKillLabel->SetColor(240, 240, 0);
+			mElement[i].mNicknameLabel->SetColor(240, 240, 0);
+		}
+			
 		wsprintf(mElement[i].mNicknameBuf, L"%s", playerList[SortOrder[i]]->GetNickname());
 		wsprintf(mElement[i].mKillBuf, L"%d", playerList[SortOrder[i]]->GetKillScore());
 		mElement[i].mKillLabel->SetVisible(true);

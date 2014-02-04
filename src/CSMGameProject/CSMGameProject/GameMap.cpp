@@ -207,6 +207,18 @@ CTile::~CTile()
 }
 void CTile::Update( float dTime )
 {
+	if (CPlayerManager::GetInstance()->GetMyPlayer() == nullptr)
+		return;
+
+	NNPoint PlayerPosition = CPlayerManager::GetInstance()->GetMyPlayer()->GetPosition();
+	NNPoint TilePosition = this->GetPosition();
+	int Width = 200;// NNApplication::GetInstance()->GetScreenWidth();
+	int Height = 200;// NNApplication::GetInstance()->GetScreenHeight();
+
+	if (!((TilePosition.GetX() > PlayerPosition.GetX() - Width/2 && TilePosition.GetX() < PlayerPosition.GetX() + Width/2) &&
+		(TilePosition.GetY() > PlayerPosition.GetY() - Height / 2 && TilePosition.GetY() < PlayerPosition.GetY() + Height / 2)))
+		return;
+
 	NNObject::Update( dTime );
 }
 

@@ -13,10 +13,10 @@
 
 #include "NNLogger.h"
 #include <fstream>
-CGameScene::CGameScene(std::wstring path, int roomNum, int playerID):
+CGameScene::CGameScene(std::wstring path, int roomNum, int playerID) :
 mNowGameKeyStates(), mAngle(0), mLastAngleChangedTime(timeGetTime()),
 misInit(false),
-mLoadingComplete(false), mIsKeyDown(false),mRoomNumber(roomNum), mPlyaerId(playerID)
+mLoadingComplete(false), mIsKeyDown(false), mRoomNumber(roomNum), mPlyaerId(playerID), mGameEnd(false)
 {
 	// Camera Setting
 	GetCamera().SetCameraAnchor(CameraAnchor::MIDDLE_CENTER);
@@ -26,6 +26,13 @@ mLoadingComplete(false), mIsKeyDown(false),mRoomNumber(roomNum), mPlyaerId(playe
 	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
 	mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
 	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
+	mResultBackground = NNSprite::Create(L"Resource/Sprite/GameOver/Background.png");
+	mPressEnterKey = NNSprite::Create(L"Resource/Sprite/GameOver/Enter.png");
+
+	mResultBackground->SetOpacity(0.5f);
+	mVictory->SetPosition(125.f, 190.f);
+	mDefeat->SetPosition(125.f, 190.f);
+	mPressEnterKey->SetPosition(240.f, 450.f);
 
 	// GameMap Create
 	mGameMap = CGameMap::Create(path);
@@ -67,6 +74,15 @@ void CGameScene::Init()
 void CGameScene::Render()
 {
 	NNScene::Render();
+
+	if (mGameEnd == true)
+	{
+		mResultBackground->Render();
+		mPressEnterKey->Render();
+		mVictory->Render();
+		return;
+	}
+
 	if (mLoadingComplete == false)
 	{
 		mBackgroundImage->Render();
@@ -83,6 +99,14 @@ void CGameScene::Update( float dTime )
 {
 	NNScene::Update(dTime);
 
+	if (mGameEnd == true)
+	{
+		if (NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN)
+			exit(0);
+
+		return;
+	}
+
 	if (mIsKeyDown == false && NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN)
 	{
 		mIsKeyDown = true;
@@ -98,7 +122,7 @@ void CGameScene::Update( float dTime )
 			mLoadingComplete = true;
 			delete mBackgroundImage;
 			delete mIntro1;
-			delete mIntro2;
+			//delete mIntro2;
 		}
 	}
 
@@ -321,4 +345,21 @@ bool CGameScene::isChangedAngle()
 			return true;
 	}
 	return false;
+}
+
+void CGameScene::GameSet()
+{
+	//NNNetworkSystem::ReleaseInstance();
+
+	mGameEnd = true;
+	
+// 	while (1)
+// 	{
+// 		temp->Render();
+// 		if (NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_PRESSED ||
+// 			NNInputSystem::GetInstance()->GetKeyState(VK_RETURN) == KEY_DOWN)
+// 		{
+// 			exit(0);
+// 		}
+// 	}
 }

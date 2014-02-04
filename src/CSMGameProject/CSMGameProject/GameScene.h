@@ -54,6 +54,8 @@ public:
 	virtual ~CGameScene(void);
 	void Init();
 
+	void GameSet();
+	bool IsEnd() { return mGameEnd; }
 	void Render();
 	void Update( float dTime );
 
@@ -67,6 +69,8 @@ private:
 	NNSprite *mBackgroundImage;
 	NNSprite *mIntro1, *mIntro2;
 	NNSprite *mVictory, *mDefeat;
+	NNSprite *mResultBackground, *mPressEnterKey;
+	bool mGameEnd;
 	bool mLoadingComplete;
 	bool mIsKeyDown;
 
@@ -75,7 +79,6 @@ private:
 	float GetNowAngle();
 	bool isChangedAngle();
 	CPlayer *mMyPlayer;
-
 	
 	int mRoomNumber , mPlyaerId;
 

@@ -30,6 +30,7 @@ void PlayerUI::Init()
 
 	mNickname = NNLabel::Create(L"", L"¸¼Àº °íµñ", 20.f);
 	mNickname->SetPosition(0.f, -70.f);
+	mNickname->SetColor(30, 30, 30);
 	mNickname->SetBold(true);
 
 	AddChild(mNickname);
@@ -64,9 +65,6 @@ void PlayerUI::Update( float dTime )
 	
 	mHpBar[mTeam]->SetVisible(true);
 	mHpBar[mTeam]->SetScale(mHp / 50.f, 1.f);
-
-	
-
 }
 
 void PlayerUI::SetNickname()
