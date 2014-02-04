@@ -65,11 +65,8 @@ void ClientSession::Disconnect()
 	if ( !IsConnected() )
 		return;
 	
-	mConnected = false;
 	
 
-	::shutdown(mSocket, SD_BOTH);
-	::closesocket(mSocket);
 	// delete player //	
 	char query[255] = "";	
 
@@ -77,6 +74,11 @@ void ClientSession::Disconnect()
 	outPacket.mPlayerId = mPlayerId;
 	BroadcastWithoutSelf(&outPacket);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port));
+	
+	mConnected = false;
+	
+	::shutdown(mSocket, SD_BOTH);
+	::closesocket(mSocket);
 
 	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
 	ExcuteNonQuery(query);
