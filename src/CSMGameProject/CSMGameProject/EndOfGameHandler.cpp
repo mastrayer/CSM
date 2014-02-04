@@ -22,7 +22,10 @@ void EndOfGameHandler::HandlingPacket( short packetType, NNCircularBuffer* circu
 			{
 				//TODO
 				//mEndOfGameResult.mWinnerTeam
-				dynamic_cast<CGameScene*>(NNSceneDirector::GetInstance()->GetNowScene())->GameSet();
+				if (CPlayerManager::GetInstance()->GetMyPlayer()->GetTeam() == mEndOfGameResult.mWinnerTeam)
+					dynamic_cast<CGameScene*>(NNSceneDirector::GetInstance()->GetNowScene())->GameSet(true);
+				else if (CPlayerManager::GetInstance()->GetMyPlayer()->GetTeam() != mEndOfGameResult.mWinnerTeam)
+					dynamic_cast<CGameScene*>(NNSceneDirector::GetInstance()->GetNowScene())->GameSet(false);
 			}
 			else
 			{

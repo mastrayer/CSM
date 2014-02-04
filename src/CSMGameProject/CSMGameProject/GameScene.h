@@ -54,7 +54,7 @@ public:
 	virtual ~CGameScene(void);
 	void Init();
 
-	void GameSet();
+	void GameSet(bool isWin);
 	bool IsEnd() { return mGameEnd; }
 	void Render();
 	void Update( float dTime );
@@ -68,7 +68,8 @@ public:
 private:
 	NNSprite *mBackgroundImage;
 	NNSprite *mIntro1, *mIntro2;
-	NNSprite *mVictory, *mDefeat;
+	NNSprite *mGameResult;
+	//NNSprite *mVictory, *mDefeat;
 	NNSprite *mResultBackground, *mPressEnterKey;
 	bool mGameEnd;
 	bool mLoadingComplete;

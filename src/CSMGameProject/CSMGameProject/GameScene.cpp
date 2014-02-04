@@ -24,14 +24,14 @@ mLoadingComplete(false), mIsKeyDown(false), mRoomNumber(roomNum), mPlyaerId(play
  	mBackgroundImage = NNSprite::Create(NNResourceManager::GetInstance()->UnzipFileToMemory(path, L"title"));
 	mIntro1 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro.png");
 	mIntro2 = NNSprite::Create(L"Resource/Sprite/UI/Loading/intro2.png");
-	mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
-	mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
+	//mVictory = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");
+	//mDefeat = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
 	mResultBackground = NNSprite::Create(L"Resource/Sprite/GameOver/Background.png");
 	mPressEnterKey = NNSprite::Create(L"Resource/Sprite/GameOver/Enter.png");
 
 	mResultBackground->SetOpacity(0.5f);
-	mVictory->SetPosition(125.f, 190.f);
-	mDefeat->SetPosition(125.f, 190.f);
+	//mVictory->SetPosition(125.f, 190.f);
+	//mDefeat->SetPosition(125.f, 190.f);
 	mPressEnterKey->SetPosition(240.f, 450.f);
 
 	// GameMap Create
@@ -79,7 +79,8 @@ void CGameScene::Render()
 	{
 		mResultBackground->Render();
 		mPressEnterKey->Render();
-		mVictory->Render();
+		//mVictory->Render();
+		mGameResult->Render();
 		return;
 	}
 
@@ -347,12 +348,19 @@ bool CGameScene::isChangedAngle()
 	return false;
 }
 
-void CGameScene::GameSet()
+void CGameScene::GameSet(bool isWin)
 {
-	//NNNetworkSystem::ReleaseInstance();
+	NNNetworkSystem::GetInstance()->Destroy();
 
 	mGameEnd = true;
-	
+
+	if (isWin == true)
+		mGameResult = NNSprite::Create(L"Resource/Sprite/GameOver/Victory.png");	
+	else
+		mGameResult = NNSprite::Create(L"Resource/Sprite/GameOver/Defeat.png");
+
+	mGameResult->SetPosition(125.f, 190.f);
+
 // 	while (1)
 // 	{
 // 		temp->Render();
