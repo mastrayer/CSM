@@ -140,7 +140,7 @@ void GameManager::NewGame(int gameId, int mapType)
 	case DEATHMATCH44:
 		{
 			mGames[gameId] = new DeathMatch44(gameId);
-			mKillLimit[gameId] = 1;//1;//40;
+			mKillLimit[gameId] = 40;
 		}
 		break;
 	/*case DEATHMATCH88:

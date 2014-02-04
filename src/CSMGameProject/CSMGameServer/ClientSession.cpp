@@ -71,9 +71,7 @@ void ClientSession::Disconnect()
 	::shutdown(mSocket, SD_BOTH);
 	::closesocket(mSocket);
 	// delete player //	
-	char query[255] = "";
-	
-	
+	char query[255] = "";	
 
 	LogoutResult outPacket;
 	outPacket.mPlayerId = mPlayerId;
@@ -85,6 +83,7 @@ void ClientSession::Disconnect()
 	//mysql_close(GMYSQLConnection);
 	//GMYSQLConnection = nullptr;
 	
+	GPlayerManager->DeletePlayer(mPlayerId);
 }
 	
 
@@ -291,9 +290,9 @@ void CALLBACK RecvCompletion( DWORD dwError, DWORD cbTransferred, LPWSAOVERLAPPE
 
 	/// 받은 데이터 처리
 	fromClient->OnRead(cbTransferred);
-
 	/// 다시 받기
-	if ( false == fromClient->PostRecv() )
+	//fromClient->IsConnected() == true
+	if (false == fromClient->PostRecv() )
 	{
 		fromClient->Disconnect();
 		return;

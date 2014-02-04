@@ -64,7 +64,3 @@ inline bool ExcuteQuery(const char* query, MYSQL_RES **sql_result)
 
 	return true;
 }
-
-
-
-

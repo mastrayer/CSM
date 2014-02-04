@@ -538,7 +538,6 @@ bool Player::Damaged(int damage, Player* player)
 			DropItem(mFlag);
 		}
 		*/
-		++player->mKillScore;
 
 		PlayerKillScoreUpdateResult outPlayerKillScoreUpdatePacket;
 		outPlayerKillScoreUpdatePacket.mPlayerId = player->mPlayerId;
