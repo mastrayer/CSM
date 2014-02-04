@@ -320,7 +320,7 @@ void GameUISet::Update(float dTime)
 	if (NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_PRESSED ||
 		NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_DOWN)
 	{
-		mStatusWindow->GetAllPlayerInfo();
+		mStatusWindow->UpdateScore();
 		mStatusWindow->SetVisible(true);
 	}
 	else if (NNInputSystem::GetInstance()->GetKeyState(VK_TAB) == KEY_NOTPRESSED)
@@ -450,7 +450,7 @@ void CStatusWindow::Init()
 
 	
 
-	//GetAllPlayerInfo();
+	//UpdateScore();
 }
 CStatusWindow::~CStatusWindow()
 {
@@ -463,9 +463,7 @@ void CStatusWindow::Render()
 void CStatusWindow::Update(float dTime)
 {
 	NNObject::Update(dTime);
-	GetAllPlayerInfo();
-	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
-	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
+	UpdateScore();
 }
 void CStatusWindow::SortByKillScore(int *result)
 {
@@ -495,9 +493,12 @@ void CStatusWindow::SortByKillScore(int *result)
 		swap(&kill[i], &kill[idx]);
 	}
 }
-void CStatusWindow::GetAllPlayerInfo()
+void CStatusWindow::UpdateScore()
 {
 	CPlayerManager *playerManager = CPlayerManager::GetInstance();
+
+	wsprintf(mTeamKillScoreBuf[0], L"%d", GameManager::GetInstance()->GetKillScore(RED));
+	wsprintf(mTeamKillScoreBuf[1], L"%d", GameManager::GetInstance()->GetKillScore(BLUE));
 
 	std::map<int, CPlayer*> playerList = playerManager->GetPlayerList();
 	int SortOrder[MAX_PLAYER_LEN] = { 0, };

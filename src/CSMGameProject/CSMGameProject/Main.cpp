@@ -14,7 +14,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 {
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc( 145 );
+//_CrtSetBreakAlloc( 265 );
 	
 // 	AllocConsole();
 // 	FILE* console;
@@ -23,16 +23,16 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdP
 // 	printf_s("Console Open \n");
 #endif
 
-// 	HANDLE hMutex = NULL;
-// 	hMutex = CreateMutex(NULL, FALSE, L"CSM");
-// 	if (hMutex == NULL) {
-// 		return false;
-// 	}
-// 	else {
-// 		if (GetLastError() == ERROR_ALREADY_EXISTS) {
-// 			exit(-1);
-// 		}
-// 	}
+	HANDLE hMutex = NULL;
+	hMutex = CreateMutex(NULL, FALSE, L"CSM");
+	if (hMutex == NULL) {
+		return false;
+	}
+	else {
+		if (GetLastError() == ERROR_ALREADY_EXISTS) {
+			exit(-1);
+		}
+	}
 
 	char* param = lpszCmdParam;
 	char* param1 = nullptr;
