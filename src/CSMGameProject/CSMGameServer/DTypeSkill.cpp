@@ -5,7 +5,7 @@
 #include "ClientManager.h"
 #include "PlayerManager.h"
 
-DTypeSkill::DTypeSkill(float angle, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.3f),mAngle(angle),mDamage(17),mVelocity(700)
+DTypeSkill::DTypeSkill(Player* ownerPlayer, float angle):Skill(ownerPlayer),mLifeTime(0.3f),mAngle(angle),mDamage(17),mVelocity(700)
 {
 	GSkillManager->AddSkill(this);
 	DTypeSkillShootResult outPacket = DTypeSkillShootResult();

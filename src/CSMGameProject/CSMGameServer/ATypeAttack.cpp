@@ -6,7 +6,7 @@
 #include "ATypeAttackBullet.h"
 #include "BulletManager.h"
 
-ATypeAttack::ATypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10)
+ATypeAttack::ATypeAttack(float angle, Point startPosition, Player* ownerPlayer):Skill(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10)
 {
 	GSkillManager->AddSkill(this);
 	ATypeAttackBullet* bullet = new ATypeAttackBullet(mOwnerPlayer,mStartPosition,mAngle);

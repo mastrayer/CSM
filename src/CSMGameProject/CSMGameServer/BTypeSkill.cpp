@@ -4,7 +4,7 @@
 #include "ClientManager.h"
 #include "BTypeSkillBullet.h"
 
-BTypeSkill::BTypeSkill(Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mStartPosition(ownerPlayer->GetPosition()),mHealRadius(50),mHeal(20)
+BTypeSkill::BTypeSkill(Player* ownerPlayer):Skill(ownerPlayer),mLifeTime(0.f),mStartPosition(ownerPlayer->GetPosition()),mHealRadius(50),mHeal(20)
 {
 	GSkillManager->AddSkill(this);
 	BTypeSkillBullet* bullet = new BTypeSkillBullet(ownerPlayer,mStartPosition);

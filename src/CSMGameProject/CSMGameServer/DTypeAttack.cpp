@@ -4,8 +4,9 @@
 #include "SkillManager.h"
 #include "ClientManager.h"
 
-DTypeAttack::DTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition)
+DTypeAttack::DTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),Skill(ownerPlayer)
 {
+	mOwnerPlayer = ownerPlayer;
 	GSkillManager->AddSkill(this);
 
 	Bullet* bullet = new Bullet(mOwnerPlayer);

@@ -9,7 +9,8 @@
 #include "GameManager.h"
 
 ClientManager* GClientManager = nullptr ;
-MYSQL* GMYSQLConnection = nullptr;
+MYSQL* GMYSQLConnection = NULL;
+MYSQL* GMYSQLCONN = NULL;
 ClientSession* ClientManager::CreateClient(SOCKET sock)
 {
 	ClientSession* client = new ClientSession(sock) ;
@@ -26,7 +27,7 @@ void ClientManager::BroadcastPacket(ClientSession* from, PacketHeader* pkt, int 
 	std::map<int, Player*> players;
 	int GameId;
 	if(from == nullptr) GameId = gameId;
-	else GameId = GPlayerManager->GetPlayer(from->mPlayerId)->GetGameId();
+	else GameId = from->mGameId;
 	GPlayerManager->GetPlayers(GameId , &players );
 	for (auto it=players.begin() ; it!=players.end() ; ++it)
 	{
@@ -63,7 +64,7 @@ void ClientManager::OnPeriodWork()
 void ClientManager::CollectGarbageSessions()
 {
 	std::vector<ClientSession*> disconnectedSessions ;
-	
+	try{
 	///FYI: C++ 11 람다를 이용한 스타일
 	std::for_each(mClientList.begin(), mClientList.end(),
 		[&](ClientList::const_reference it)
@@ -74,6 +75,9 @@ void ClientManager::CollectGarbageSessions()
 				disconnectedSessions.push_back(client) ;
 		}
 	) ;
+	}
+	catch(int e){
+	}
 	
 
 	///FYI: C언어 스타일의 루프
@@ -88,14 +92,6 @@ void ClientManager::CollectGarbageSessions()
 
 void ClientManager::ClientPeriodWork()
 {
-	GPlayerManager->UpdatePlayers();
-	int nowTime = timeGetTime();
-	float dTime = (static_cast<float>(nowTime - mLastTime))/1000.f;
-	mLastTime = nowTime;
-	GBulletManager->Update(dTime);
-	GSkillManager->Update(dTime);
-	GGameManager->Update(dTime);
-	
 	/// FYI: C++ 11 스타일의 루프
 	for (auto& it : mClientList)
 	{
@@ -104,5 +100,15 @@ void ClientManager::ClientPeriodWork()
 		if( false == client->DoingOverlappedSendOperation() )
 			client->Send();
 	}
+
+	int nowTime = timeGetTime();
+	float dTime = (static_cast<float>(nowTime - mLastTime))/1000.f;
+	mLastTime = nowTime;
+	if(GGameManager->isRunning() == true) return;
+	GGameManager->Update(dTime);
+	GBulletManager->Update(dTime);
+	GSkillManager->Update(dTime);
+	GPlayerManager->UpdatePlayers(dTime);
+	
 }
 

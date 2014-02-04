@@ -4,7 +4,7 @@
 #include "SkillManager.h"
 #include "ClientManager.h"
 #include "CTypeSkillBullet.h"
-CTypeSkill::CTypeSkill(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition)
+CTypeSkill::CTypeSkill(float angle, Point startPosition, Player* ownerPlayer):Skill(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition)
 {
 	GSkillManager->AddSkill(this);
 

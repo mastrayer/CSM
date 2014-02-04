@@ -165,8 +165,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files (x86)\MySQL\MySQL Server 5.6\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);Library/zip;Library/MD5;Library/TinyXML;</IncludePath>
-    <LibraryPath>C:\Program Files (x86)\MySQL\MySQL Server 5.6\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <IncludePath>C:\Program Files (x86)\MySQL\MySQL Server 5.5\include;$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);Library/zip;Library/MD5;Library/TinyXML;</IncludePath>
+    <LibraryPath>C:\Program Files (x86)\MySQL\MySQL Server 5.5\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

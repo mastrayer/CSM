@@ -16,6 +16,5 @@ private:
 	Point mStartPosition;
 	float mExploseRadius;
 	float mDamage;
-	Player* mOwnerPlayer;
 };
 

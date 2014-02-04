@@ -4,9 +4,14 @@
 #include "PacketType.h"
 #include "PlayerManager.h"
 #include "DBCommand.h"
-
+#include "SkillManager.h"
+#include "BulletManager.h"
 GameManager::GameManager()
 {
+	mIsRunning = false;
+	memset(mIsFinishGame,false,sizeof(mIsFinishGame));
+	memset(mVictoryTeam,-1,sizeof(mVictoryTeam));
+	memset(mIsDestoring,false,sizeof(mIsDestoring));
 	memset(mKillScore,0,sizeof(mKillScore));
 	memset(mPlayerCount,0,sizeof(mPlayerCount));
 	LoadMap();
@@ -17,19 +22,20 @@ GameManager::~GameManager(void)
 {
 }
 
-void GameManager::DiePlayer(int playerId)
+bool GameManager::DiePlayer(int playerId)
 {
 	int gameId =GPlayerManager->GetPlayer(playerId)->GetGameId();
 	int team = GPlayerManager->GetPlayer(playerId)->GetTeam();
-	AddScore(gameId,(team+1)%2,1);
+	return AddScore(gameId,(team+1)%2,1);
 	
 }
-void GameManager::AddScore(int gameId,int team, int scoreAmount)
+bool GameManager::AddScore(int gameId,int team, int scoreAmount)
 {
 	mKillScore[gameId][team] += scoreAmount;
 	if(mKillScore[gameId][team] >= mKillLimit[gameId])
 	{
 		EndOfGame(gameId, team);
+		return true;
 	}
 	else
 	{
@@ -38,6 +44,7 @@ void GameManager::AddScore(int gameId,int team, int scoreAmount)
 		outPacket.mKillScore[0] = mKillScore[gameId][0];
 		outPacket.mKillScore[1] = mKillScore[gameId][1];
 		GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
+		return false;
 	}
 }
 
@@ -69,29 +76,39 @@ void GameManager::LogOutPlayer(int playerId)
 
 void GameManager::EndOfGame(int gameId, int team)
 {
+	if(mIsFinishGame[gameId] == true) return;
 	EndOfGameResult outPacket = EndOfGameResult();
 	outPacket.mWinnerTeam = team;
 	GClientManager->BroadcastPacket(nullptr,&outPacket, gameId);
+	mIsFinishGame[gameId] = true;
+	mVictoryTeam[gameId] = team;
+}
 
-	delete mGames[gameId];
-	mGames[gameId] = nullptr;
-	
+void GameManager::DestroyGame(int gameId)
+{
+	if(mIsDestoring[gameId] == true)
+		return;
+	else
+		mIsDestoring[gameId] = true;
+	GSkillManager->RemoveSkill(gameId);
+	GBulletManager->RemoveBullet(gameId);
+
 	std::map<int,Player*> players;
 	GPlayerManager->GetPlayers(gameId,&players);
+	char query[255] = "";
 	for( std::map<int,Player*>::iterator it = players.begin(); it != players.end(); ++it ) 
 	{
 		int playerId = it->second->GetPlayerInfo().mPlayerId;
 		int playerTeam = it->second->GetPlayerInfo().mTeam;
 		int playerKillscore = it->second->GetPlayerInfo().mKillScore;
-		char query[255] = "";
 		
-		sprintf_s(query,"update tbl_user set play_count=play_count+1 where id=%d",playerId);
+		sprintf_s(query,"update tbl_user set play_count = play_count+1 where id=%d",playerId);
 		doQuery(query);
 
-		sprintf_s(query,"update tbl_user set kill_sum=kill_sum+%d where id=%d",playerKillscore,playerId);
+		sprintf_s(query,"update tbl_user set kill_sum = kill_sum + %d where id = %d",playerKillscore,playerId);
 		doQuery(query);
 
-		if(team == playerTeam)
+		if(mVictoryTeam[gameId] == playerTeam)
 		{
 			sprintf_s(query,"update tbl_user set win_count=win_count+1 where id=%d",playerId);
 			doQuery(query);
@@ -101,9 +118,16 @@ void GameManager::EndOfGame(int gameId, int team)
 			sprintf_s(query,"update tbl_user set lose_count=lose_count+1 where id=%d",playerId);
 			doQuery(query);
 		}
+		GPlayerManager->DeletePlayer(playerId);
+		if(it == players.end()) break;
 	}
+	sprintf_s(query,"delete from tbl_room where id=%d",gameId);
+	doQuery(query);
+	mIsFinishGame[gameId] = false;
+	mVictoryTeam[gameId] = -1;
+	GMYSQLConnection = NULL;
+	mIsDestoring[gameId] = false;
 }
-
 void GameManager::NewGame(int gameId, int mapType)
 {
 	memset(mPlayerCount[gameId],0,sizeof(mPlayerCount[gameId]));
@@ -116,7 +140,7 @@ void GameManager::NewGame(int gameId, int mapType)
 	case DEATHMATCH44:
 		{
 			mGames[gameId] = new DeathMatch44(gameId);
-			mKillLimit[gameId] = 3;//40;
+			mKillLimit[gameId] = 1;//1;//40;
 		}
 		break;
 	/*case DEATHMATCH88:
@@ -138,10 +162,21 @@ void GameManager::NewGame(int gameId, int mapType)
 
 void GameManager::Update(float dTime)
 {
+	mIsRunning = true;
 	for(auto it = mGames.begin(); it != mGames.end(); it++)
 	{
-		it->second->Update(dTime);
+		if(mIsFinishGame[it->first] == true)
+		{
+			this->DestroyGame(it->first);
+			delete it->second;
+			it = mGames.erase(it);
+			if(it == mGames.end() )
+				break;
+		}
+		else
+			it->second->Update(dTime);
 	}
+	mIsRunning = false;
 }
 void GameManager::LoadMap() // in gameManager Init
 {

@@ -5,7 +5,7 @@
 #include "ClientManager.h"
 #include "BTypeAttackBullet.h"
 
-BTypeAttack::BTypeAttack(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10),mExploseDistance(80)
+BTypeAttack::BTypeAttack(float angle, Point startPosition, Player* ownerPlayer):Skill(ownerPlayer),mLifeTime(0.f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(10),mExploseDistance(80)
 {
 	GSkillManager->AddSkill(this);
 	BTypeAttackBullet* bullet = new BTypeAttackBullet(mOwnerPlayer,mStartPosition,mAngle);

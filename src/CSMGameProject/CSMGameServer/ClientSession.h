@@ -5,7 +5,13 @@
 #include "CircularBuffer.h"
 #include <map>
 #include <winsock2.h>
+#include <my_global.h>
+#include <mysql.h>
 
+#pragma comment(lib, "libmySQL.lib")
+#pragma comment(lib, "libmysql")
+
+#pragma comment(lib, "mysqlclient")
 #define BUFSIZE	(1024*10)
 
 class ClientSession;
@@ -24,8 +30,9 @@ class ClientSession
 public:
 	ClientSession(SOCKET sock)
 		: mConnected(false), mLogon(false), mSocket(sock), mPlayerId(-1), mSendBuffer(BUFSIZE), mRecvBuffer(BUFSIZE), mOverlappedSendRequested(0), mOverlappedRecvRequested(0)
-		, mDbUpdateCount(0)
+		, mDbUpdateCount(0),GMYSQLConnection(NULL),GMYSQLCONN()
 	{
+
 		memset( &mClientAddr, 0, sizeof(SOCKADDR_IN) );
 	}
 	~ClientSession() {}
@@ -70,8 +77,12 @@ public:
 	bool			mConnected;
 	bool			mLogon;
 	SOCKET			mSocket;
+	
+	MYSQL*			GMYSQLConnection;
+	MYSQL			GMYSQLCONN;
 
 	int				mPlayerId;
+	int				mGameId;
 	SOCKADDR_IN		mClientAddr;
 
 	CircularBuffer	mSendBuffer;

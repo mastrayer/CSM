@@ -26,13 +26,13 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 	int gameId = inPacket.mGameId;
 	std::wstring playerName;
 	int mapType;
-	MYSQL_RES *sql_result;
+	MYSQL_RES *sql_result = nullptr;
 	MYSQL_ROW sql_row;
 	char query[255] = "";
-
+	
 	// SELECT nickname //
 	sprintf_s(query,"SELECT nickname FROM tbl_user WHERE id=%d",playerId);
-	doQuery(query);
+	if(doQuery(query) == false) return;
 	sql_result=mysql_store_result(GMYSQLConnection);
 	while((sql_row=mysql_fetch_row(sql_result))!=NULL)
 	{
@@ -42,7 +42,7 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 
 	// SELECT type //
 	sprintf_s(query,"SELECT type FROM tbl_room WHERE id=%d",gameId);
-	doQuery(query);
+	if(doQuery(query) == false) return;
 	sql_result=mysql_store_result(GMYSQLConnection);
 	while((sql_row=mysql_fetch_row(sql_result))!=NULL)
 	{
@@ -52,11 +52,13 @@ void ClientLoginPacket( ClientSession* client, PacketHeader* header, CircularBuf
 
 	// INSERT newPlayer //
 	sprintf_s(query,"INSERT INTO tbl_player (user_id, room_id) values ( %d, %d )",playerId,gameId);
-	doQuery(query);
+	if(doQuery(query) == false) return;
 	if( GGameManager->GetGames()[gameId] == nullptr )
 	{
 		GGameManager->NewGame(gameId,mapType);
 	}
+	mysql_close(GMYSQLConnection);
+	GMYSQLConnection = NULL;
 	LoginResult outPacket ;
 	outPacket.mNowPlayersLength = GPlayerManager->GetPlayersLength(gameId);
 	std::map<int,Player*> players;

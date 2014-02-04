@@ -4,7 +4,7 @@
 class DTypeSkill : public Skill
 {
 public:
-	DTypeSkill(float angle, Player* ownerPlayer);
+	DTypeSkill(Player* ownerPlayer, float angle);
 	virtual ~DTypeSkill(void);
 	virtual void Update(float dTime);
 	virtual bool IsLive();
@@ -13,6 +13,5 @@ private:
 	float mAngle;
 	float mDamage;
 	float mVelocity;
-	Player* mOwnerPlayer;
 };
 

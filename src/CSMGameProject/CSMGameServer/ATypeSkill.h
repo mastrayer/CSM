@@ -19,6 +19,5 @@ private:
 	bool didFirstbulletFinish;
 	bool didSecondbulletFinish;
 	bool didThirdbulletFinish;
-	Player* mOwnerPlayer;
 };
 

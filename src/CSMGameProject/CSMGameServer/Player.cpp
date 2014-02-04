@@ -156,7 +156,7 @@ void Player::TransState(short state)
 				if(mType == TYPE_D)
 				{
 					mDSkillPostDelay = 0.3f;
-					new DTypeSkill(mRotation,this);
+					new DTypeSkill(this,mRotation);
 				}
 			}
 			else 
@@ -512,12 +512,15 @@ bool Player::Damaged(int damage, Player* player)
 	if(mPlayerState != PLAYER_STATE_DIE && mHP  <= calculatedDamage)
 	{
 		//ав╬З╫©╢ы
+		
+		++player->mKillScore;
+
 		HPUpdateResult outPacket = HPUpdateResult();
 		outPacket.mPlayerId = mPlayerId;
 		outPacket.mHP = 0;
 		mClient->Broadcast(&outPacket);
 
-		GGameManager->DiePlayer(mPlayerId);
+		if( GGameManager->DiePlayer(mPlayerId) == true) return true;
 		TransState(PLAYER_STATE_DIE);
 		/*
 		if( HasDamageBuff() == true)

@@ -19,6 +19,7 @@ public:
 	void AddBullet(Bullet* bullet);
 	void Update(float dTime);
 
+	void RemoveBullet(int gameId);
 private:
 	int GenerateBulletNumber();
 

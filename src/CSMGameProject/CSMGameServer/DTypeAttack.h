@@ -14,6 +14,5 @@ private:
 	float mLifeTime;
 	float mAngle;
 	Point mStartPosition;
-	Player* mOwnerPlayer;
 };
 

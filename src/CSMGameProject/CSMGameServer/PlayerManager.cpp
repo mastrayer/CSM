@@ -59,6 +59,7 @@ Player* PlayerManager::NewPlayer(int playerId, int gameId, ClientSession* client
 		mPlayersLength[gameId]++;
 		newPlayer = new Player(gameId, playerId, client);
 		client->mPlayerId = playerId;
+		client->mGameId = gameId;
 		mPlayers.insert(std::map<int,Player*>::value_type(playerId,newPlayer));
 	}
 	else
@@ -91,15 +92,13 @@ void PlayerManager::DeletePlayer(int playerId)
 	}
 }
 
-void PlayerManager::UpdatePlayers()
+void PlayerManager::UpdatePlayers(float dTime)
 {
-	nowTime = timeGetTime();
 	for( std::map<int,Player*>::iterator it = mPlayers.begin(); it != mPlayers.end(); ++it ) 
 	{
-		it->second->Update((static_cast<float>(nowTime - prevTime))/1000.f);
+		it->second->Update(dTime);
 		if(it == mPlayers.end()) break;
 	}
-	prevTime = nowTime;
 }
 
 void PlayerManager::GetPlayers(int gameId, std::map<int,Player*>* players) 

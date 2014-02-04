@@ -10,6 +10,21 @@ SkillManager::SkillManager(void)
 SkillManager::~SkillManager(void)
 {
 }
+void SkillManager::RemoveSkill(int gameId)
+{
+	for (auto& iter=mSkills.begin(); iter!=mSkills.end(); iter++ )
+	{
+		if ( (*iter)->mOwnerPlayer->GetGameId() == gameId)
+		{
+			delete( *iter );
+			iter = mSkills.erase( iter );
+			if ( iter == mSkills.end() )
+			{
+				break;   
+			}
+		}
+	}
+}
 
 void SkillManager::AddSkill(Skill* skill)
 {

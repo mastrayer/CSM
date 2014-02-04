@@ -31,7 +31,9 @@ void BulletManager::Update(float dTime)
 		for( std::map<int,Player*>::iterator playerIt = players.begin(); playerIt != players.end(); ++playerIt ) 
 		{
 			bulletIt->second->JudgeCollision(playerIt->second);
+//			if(bulletIt == mBullets.end()) break;
 		}
+//		if(bulletIt == mBullets.end()) break;
 		bulletIt->second->Update(dTime);
 
 
@@ -60,4 +62,18 @@ int BulletManager::GenerateBulletNumber()
 	return -1;
 }
 
+void BulletManager::RemoveBullet(int gameId)
+{
+	for( std::map<int,Bullet*>::iterator bulletIt = mBullets.begin(); bulletIt != mBullets.end(); ++bulletIt) 
+	{
+		if(bulletIt->second->GetOwnerPlayer()->GetGameId() == gameId)
+		{
+			delete bulletIt->second;
+			bulletIt = mBullets.erase(bulletIt);
+			if ( bulletIt == mBullets.end() )
+				break;
+		}
+	}
+}
+	
 BulletManager* GBulletManager = nullptr;

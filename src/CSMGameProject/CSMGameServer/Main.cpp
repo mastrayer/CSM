@@ -33,9 +33,8 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 #ifdef _DEBUG
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc( 3651 );
+	//_CrtSetBreakAlloc( 45402 );
 #endif
-
 	/// crash 발생시 dump 남기기 위해서
 	SetUnhandledExceptionFilter(ExceptionFilter) ;
 
@@ -49,15 +48,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	GBulletManager = new BulletManager();
 	GSkillManager = new SkillManager();
 
-	MYSQL conn;
-	mysql_init(&conn);
-	GMYSQLConnection = mysql_real_connect(&conn, "125.209.199.224", "root", "qq!n?22GqAr8", "csm", 3306, (char*)NULL, 0);
-	if(GMYSQLConnection == NULL)
-	{
-		printf("Mysql connection error : %s", mysql_error(&conn));
-		return 1;
-	}
-
+	
 
 	/// 윈속 초기화
 	WSADATA wsa ;
@@ -162,6 +153,7 @@ unsigned int WINAPI ClientHandlingThread( LPVOID lpParam )
 
 	while ( true )
 	{
+		
 		/// accept or IO/Timer completion   대기
 		DWORD result = WaitForSingleObjectEx(hEvent, INFINITE, TRUE) ;
 

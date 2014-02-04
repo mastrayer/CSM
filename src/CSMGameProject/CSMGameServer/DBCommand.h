@@ -1,28 +1,34 @@
 
 #include "ClientManager.h"
 
-inline void doQuery(const char* query)
+inline bool doQuery(const char* query)
 {	
-	while(true)
+	if(GMYSQLConnection == NULL)
 	{
-		int query_stat = mysql_query(GMYSQLConnection, query);
-		if( query_stat != 0)
+		if(GMYSQLCONN == NULL)
+			GMYSQLCONN = (MYSQL*)malloc(sizeof(GMYSQLCONN));
+		if(mysql_init(GMYSQLCONN) == NULL)
 		{
-			while(true)
-			{
-				MYSQL conn;
-				mysql_init(&conn);
-				GMYSQLConnection = mysql_real_connect(&conn, "125.209.199.224", "root", "qq!n?22GqAr8", "csm", 3306, (char*)NULL, 0);
-				if(GMYSQLConnection == NULL)
-				{
-					for(int i=0; i<100000000; i++);
-				}
-				else break;
-			}
+			printf("Mysql connection error : %s", mysql_error(GMYSQLCONN));
+			return false;
 		}
-		else
-			break;
+		GMYSQLConnection = mysql_real_connect(GMYSQLCONN, "125.209.199.224", "root", "qq!n?22GqAr8", "csm", 3306, (char*)NULL, 0);
+		if(GMYSQLConnection == NULL)
+		{
+			printf("Mysql connection error : %s", mysql_error(GMYSQLCONN));
+			return false;
+		}
 	}
+
+	int query_stat = mysql_query(GMYSQLConnection, query);
+	if( query_stat != 0)
+	{
+		printf("Mysql connection error : %s", mysql_error(GMYSQLCONN));
+		GMYSQLConnection = NULL;	
+		return false;
+
+	}
+	return true;
 }
 
 

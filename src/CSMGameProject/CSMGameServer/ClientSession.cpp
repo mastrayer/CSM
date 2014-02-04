@@ -64,25 +64,27 @@ void ClientSession::Disconnect()
 {
 	if ( !IsConnected() )
 		return;
-
-	// delete player //
-	char query[255] = "";
+	
+	mConnected = false;
 	
 
-	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
-	doQuery(query);
-
+	::shutdown(mSocket, SD_BOTH);
+	::closesocket(mSocket);
+	// delete player //	
+	char query[255] = "";
+	
+	
 
 	LogoutResult outPacket;
 	outPacket.mPlayerId = mPlayerId;
 	BroadcastWithoutSelf(&outPacket);
-	GPlayerManager->DeletePlayer(mPlayerId);
 	printf("[DEBUG] Client Disconnected: IP=%s, PORT=%d\n", inet_ntoa(mClientAddr.sin_addr), ntohs(mClientAddr.sin_port));
 
-	::shutdown(mSocket, SD_BOTH);
-	::closesocket(mSocket);
 
-	mConnected = false;
+	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
+	doQuery(query);
+	mysql_close(GMYSQLConnection);
+	
 }
 	
 

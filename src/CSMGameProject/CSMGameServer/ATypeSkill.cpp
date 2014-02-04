@@ -4,7 +4,7 @@
 #include "SkillManager.h"
 #include "ClientManager.h"
 
-ATypeSkill::ATypeSkill(float angle, Point startPosition, Player* ownerPlayer):mOwnerPlayer(ownerPlayer),mLifeTime(0.9f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(18),mExploseDistance(80),mbulletTimeDistance(0.3f),didFirstbulletFinish(false),didSecondbulletFinish(false),didThirdbulletFinish(false)
+ATypeSkill::ATypeSkill(float angle, Point startPosition, Player* ownerPlayer):Skill(ownerPlayer),mLifeTime(0.9f),mAngle(angle),mStartPosition(startPosition),mExploseRadius(50),mDamage(18),mExploseDistance(80),mbulletTimeDistance(0.3f),didFirstbulletFinish(false),didSecondbulletFinish(false),didThirdbulletFinish(false)
 {
 	GSkillManager->AddSkill(this);
 	ATypeSkillShootResult outPacket = ATypeSkillShootResult();

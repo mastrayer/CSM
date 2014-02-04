@@ -10,6 +10,7 @@ public:
 	void Update(float dTime);
 	
 	void AddSkill(Skill* skill);
+	void RemoveSkill(int gameId);
 private:
 	std::list<Skill*>mSkills;
 };

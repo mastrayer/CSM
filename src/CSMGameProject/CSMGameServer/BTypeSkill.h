@@ -13,5 +13,4 @@ private:
 	Point mStartPosition;
 	float mHealRadius;
 	float mHeal;
-	Player* mOwnerPlayer;
 };

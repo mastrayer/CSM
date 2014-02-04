@@ -15,7 +15,7 @@ public:
 	void UpdatePlayerGameKeyStates(int _playerId, GameKeyStates _gameKeyStaets);
 	void UpdatePlayerPosition(int _playerId, Point point);
 	void UpdatePlayerRotation(int _playerId, float angle);
-	void UpdatePlayers();
+	void UpdatePlayers(float dTime);
 
 	Player* GetPlayer(int playerId) { return mPlayers.find(playerId)->second; };
 
