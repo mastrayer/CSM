@@ -7,6 +7,8 @@
 
 #include "GameMap.h"
 
+#define _CRT_SECURE_NO_WARNING
+
 Player::Player(void):mPosition(0,0),mPlayerState(PLAYER_STATE_IDLE)
 {
 }
@@ -72,7 +74,6 @@ Player::Player(int gameId, int playerId, ClientSession* client)
 Player::~Player(void)
 {
 	//소멸자가 제대로 호출 안될 수도 있을거같은데..
-	GGameManager->LogOutPlayer(mTeam);
 }
 
 void Player::TransState(short state)
@@ -586,7 +587,7 @@ PlayerInfo Player::GetPlayerInfo()
 	mPlayerInfo.mTeam = mTeam;
 	mPlayerInfo.mType = mType;
 	mPlayerInfo.mKillScore = mKillScore;
-	wcscpy(mPlayerInfo.mName,mName.c_str());
+	wcsncpy_s(mPlayerInfo.mName,sizeof(mPlayerInfo.mName),mName.c_str(),mName.size());
 	return mPlayerInfo;
 }
 

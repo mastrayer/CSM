@@ -35,6 +35,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc( 45402 );
 #endif
+	HANDLE hMutex = CreateMutex( NULL, FALSE, _T("CSMServer") );
+	if( hMutex == NULL ) {
+		return false;
+	}
 	/// crash 발생시 dump 남기기 위해서
 	SetUnhandledExceptionFilter(ExceptionFilter) ;
 

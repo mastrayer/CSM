@@ -72,6 +72,7 @@ void GameManager::LogOutPlayer(int playerId)
 	int gameId =GPlayerManager->GetPlayer(playerId)->GetGameId();
 	int team = GPlayerManager->GetPlayer(playerId)->GetTeam();
 	mPlayerCount[gameId][team]--;
+
 }
 
 void GameManager::EndOfGame(int gameId, int team)

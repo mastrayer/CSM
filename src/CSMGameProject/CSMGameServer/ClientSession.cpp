@@ -8,6 +8,7 @@
 #include "PlayerManager.h"
 #include "ClientManager.h"
 #include "DBCommand.h"
+#include "GameManager.h"
 bool ClientSession::OnConnect(SOCKADDR_IN* addr)
 {
 	memcpy( &mClientAddr, addr, sizeof(SOCKADDR_IN) );
@@ -79,7 +80,8 @@ void ClientSession::Disconnect()
 	
 	::shutdown(mSocket, SD_BOTH);
 	::closesocket(mSocket);
-
+	
+	GGameManager->LogOutPlayer(mPlayerId);
 	sprintf_s(query,"DELETE FROM tbl_player WHERE user_id=%d",mPlayerId);
 	ExcuteNonQuery(query);
 	//mysql_close(GMYSQLConnection);
