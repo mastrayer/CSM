@@ -36,7 +36,7 @@ public:
 	void Render();
 	void Update(float dTime);
 
-	void GetAllPlayerInfo();
+	void UpdateScore();
 	void SortByKillScore(int *result);
 
 

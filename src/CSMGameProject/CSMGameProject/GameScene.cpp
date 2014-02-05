@@ -63,6 +63,10 @@ mLoadingComplete(false), mIsKeyDown(false), mRoomNumber(roomNum), mPlyaerId(play
 
 CGameScene::~CGameScene(void)
 {
+	delete mResultBackground;
+	delete mPressEnterKey;
+	delete mGameResult;
+
 	CPlayerManager::ReleaseInstance();
 	GameManager::ReleaseInstance();
 }
@@ -79,7 +83,6 @@ void CGameScene::Render()
 	{
 		mResultBackground->Render();
 		mPressEnterKey->Render();
-		//mVictory->Render();
 		mGameResult->Render();
 		return;
 	}
@@ -123,7 +126,7 @@ void CGameScene::Update( float dTime )
 			mLoadingComplete = true;
 			delete mBackgroundImage;
 			delete mIntro1;
-			//delete mIntro2;
+			delete mIntro2;
 		}
 	}
 
@@ -350,7 +353,7 @@ bool CGameScene::isChangedAngle()
 
 void CGameScene::GameSet(bool isWin)
 {
-	NNNetworkSystem::GetInstance()->Destroy();
+	//NNNetworkSystem::GetInstance()->Destroy();
 
 	mGameEnd = true;
 
