@@ -1,0 +1,66 @@
+HKCR {
+    CSM.csm.1 = s 'CSM Plugin' {
+        CLSID = s '{d87d90d5-ef1a-56ce-91ba-ef1767b471ea}'
+    }
+    CSM.csm = s 'CSM Plugin' {
+        CLSID = s '{d87d90d5-ef1a-56ce-91ba-ef1767b471ea}'
+        CurVer = s 'CSM.csm.1'
+    }
+    NoRemove CLSID {
+        ForceRemove {d87d90d5-ef1a-56ce-91ba-ef1767b471ea} = s 'CSM Plugin' {
+            ProgID = s 'CSM.csm.1'
+            VersionIndependentProgID = s 'CSM.csm'
+            ForceRemove 'Programmable'
+            InprocServer32 = s '%MODULE%' {
+                val ThreadingModel = s '%THREADING%'
+            }
+            val AppID = s '%APPID%'
+            ForceRemove 'Control'
+            'MiscStatus' = s '0' {
+                '1' = s '131473'
+            }
+            'TypeLib' = s '%LIBID%'
+            'Version' = s '1'
+        }
+    }
+    NoRemove MIME {
+        NoRemove Database {
+            NoRemove 'Content Type' {
+                'application/x-csm' = s 'CSM Plugin' {
+                    val Extension = s ''
+                    val CLSID = s '{d87d90d5-ef1a-56ce-91ba-ef1767b471ea}'
+                }
+            }
+        }
+    }            
+}
+HKCU {
+    NoRemove Software {
+        NoRemove Microsoft {
+            NoRemove Windows {
+                NoRemove CurrentVersion {
+                    NoRemove Ext {
+                        NoRemove PreApproved {
+                            ForceRemove '{d87d90d5-ef1a-56ce-91ba-ef1767b471ea}'
+                        }
+                        NoRemove Stats {
+                            ForceRemove '{d87d90d5-ef1a-56ce-91ba-ef1767b471ea}' {
+                                iexplore {
+                                    AllowedDomains {
+                                        '*'
+                                    }
+                                    val Count = d ''
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        NoRemove MozillaPlugins {
+            ForceRemove 'csm.com/csm' {
+                val Path = s '%MODULE%'
+            }
+        }
+    }
+}

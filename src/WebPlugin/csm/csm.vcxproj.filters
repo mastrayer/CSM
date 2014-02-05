@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\projects\csm\csm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\projects\csm\csmAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\projects\csm\Factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\projects\csm\csm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\projects\csm\csmAPI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\rcgen.sh.in">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\global\axplugin_defs.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\global\COM_config.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\global\config.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\global\resource.h">
+      <Filter>Generated</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Sun-hyoup\Desktop\projects\csm\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Sun-hyoup\Desktop\projects\csm\PluginConfig.cmake" />
+    <None Include="gen\ExportList_plugin.txt">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\FBControl.htm">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\FBControl.rgs">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\FireBreathWin.rgs">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\global">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\README.txt">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\version_script.txt">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="gen\global\axplugin_defs.inc">
+      <Filter>Generated</Filter>
+    </None>
+    <None Include="C:\Users\Sun-hyoup\Desktop\projects\csm\Win\projectDef.cmake">
+      <Filter>Win</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="gen\firebreathWin.rc">
+      <Filter>Generated</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{789751D8-BCD9-4DC9-9E85-87F9DDFEFF22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0381C971-3FED-405C-B659-45788C534D26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{1EDDEBA0-0323-4AA6-9DF3-F40591DE99C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win">
+      <UniqueIdentifier>{DCD0F748-D72E-407C-B00A-ADFD3DFE989D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

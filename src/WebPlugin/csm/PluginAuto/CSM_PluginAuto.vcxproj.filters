@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\PluginInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\precompiled_headers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\null\NullLogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axmain.cpp">
+      <Filter>WindowsATL</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axPluginObjects.cpp">
+      <Filter>WindowsATL</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\dllmain.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\FireBreathWin.cpp">
+      <Filter>WindowsATL</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\NpapiPluginWin.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\np_winmain.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowlessWin.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowWin.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen\FireBreathWin_i.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\precompiled_headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axmain.h">
+      <Filter>WindowsATL</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\NpapiPluginWin.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowlessWin.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowWin.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\gen\FireBreathWin.tlb" />
+    <ClInclude Include="..\gen\FireBreathWin_i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\NpapiPluginMac.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMac.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMac.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\FactoryDummiesMac.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMac.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\NpapiPluginMac.mm">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMac.mm">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\np_macmain.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMacCG.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMacCG.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCarbon.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.mm">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCarbon.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCocoa.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCocoa.h">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCocoa.mm">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCocoa.cpp">
+      <Filter>Mac</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\KeyCodesX11.h">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\NpapiPluginX11.h">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\PluginWindowX11.h">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\WindowContextX11.h">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\KeyCodesX11.cpp">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\NpapiPluginX11.cpp">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\np_x11main.cpp">
+      <Filter>X11</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\PluginWindowX11.cpp">
+      <Filter>X11</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt" />
+    <CustomBuild Include="..\..\..\CMakeFiles\17444fff86a6bb75815da89a005628ef\FireBreathWin.tlb.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\DONTTOUCHTHISPROJECT.txt" />
+    <None Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{789751D8-BCD9-4DC9-9E85-87F9DDFEFF22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{0381C971-3FED-405C-B659-45788C534D26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{05D05388-FDB7-41D0-BFA6-6C2A42924357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="X11">
+      <UniqueIdentifier>{2E5D6983-685D-4C20-B0A0-792489CC3D3D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{D2DC5191-AFFB-4196-93D6-BB9839FFB004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowsATL">
+      <UniqueIdentifier>{123483D5-8EC9-47EC-ADD2-CFE15C868304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mac">
+      <UniqueIdentifier>{70010D1E-36EA-4712-ACAF-D4B2A8948095}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

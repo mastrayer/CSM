@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{F149D8D4-F5B6-40F6-9EA9-DCF49DC8E403}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>CSM_PluginAuto</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\Debug\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CSM_PluginAuto.dir\Debug\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CSM_PluginAuto</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\Release\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CSM_PluginAuto.dir\Release\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CSM_PluginAuto</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\MinSizeRel\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CSM_PluginAuto.dir\MinSizeRel\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CSM_PluginAuto</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\RelWithDebInfo\</OutDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CSM_PluginAuto.dir\RelWithDebInfo\</IntDir>
+      <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CSM_PluginAuto</TargetName>
+      <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4290</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UndefinePreprocessorDefinitions>MBCS;_MBCS</UndefinePreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;DEBUG;_DEBUG;UNICODE;_UNICODE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;DEBUG;_DEBUG;UNICODE;_UNICODE;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4996;4290</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UndefinePreprocessorDefinitions>MBCS;_MBCS</UndefinePreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4996;4290</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UndefinePreprocessorDefinitions>MBCS;_MBCS</UndefinePreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <DebugInformationFormat></DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4290</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UndefinePreprocessorDefinitions>MBCS;_MBCS</UndefinePreprocessorDefinitions>
+      <WarningLevel>Level3</WarningLevel>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDLL;FB_WIN=1;XP_WIN=1;UNICODE;_UNICODE;_WINDOWS;BOOST_ALL_NO_LIB=1;NDEBUG;UNICODE;_UNICODE;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/gecko-sdk/includes;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto;C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen;C:/Users/Sun-hyoup/Desktop/firebreath/src/config;C:/Users/Sun-hyoup/Desktop/firebreath/src/3rdParty/boost;C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ScriptingCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/NpapiCore;C:/Users/Sun-hyoup/Desktop/firebreath/src/ActiveXCore;C:/Program Files (x86)/Microsoft Visual Studio 11.0/VC/atlmfc/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Sun-hyoup/Desktop/firebreath -BC:/Users/Sun-hyoup/Desktop/build --check-stamp-file C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Sun-hyoup/Desktop/firebreath -BC:/Users/Sun-hyoup/Desktop/build --check-stamp-file C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Sun-hyoup/Desktop/firebreath -BC:/Users/Sun-hyoup/Desktop/build --check-stamp-file C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake 2.8\bin\cmake.exe" -HC:/Users/Sun-hyoup/Desktop/firebreath -BC:/Users/Sun-hyoup/Desktop/build --check-stamp-file C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Sun-hyoup/Desktop/firebreath/src/PluginAuto/CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\CMakeFiles\17444fff86a6bb75815da89a005628ef\FireBreathWin.tlb.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating ../gen/FireBreathWin.tlb, ../gen/FireBreathWin_i.h, ../gen/FireBreathWin_i.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+cd C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+midl.exe C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen/FireBreathWin.idl /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D UNICODE /D _UNICODE /D _ATL_STATIC_REGISTRY /D CMAKE_INTDIR=Debug /nologo /char signed /env win32 /Oicf /out C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen /tlb FireBreathWin.tlb /h FireBreathWin_i.h /iid FireBreathWin_i.c
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/Sun-hyoup/Desktop/build/CMakeFiles/17444fff86a6bb75815da89a005628ef/FireBreathWin.tlb.rule;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.idl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.tlb;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.h;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.c</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating ../gen/FireBreathWin.tlb, ../gen/FireBreathWin_i.h, ../gen/FireBreathWin_i.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+cd C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+midl.exe C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen/FireBreathWin.idl /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D UNICODE /D _UNICODE /D _ATL_STATIC_REGISTRY /D CMAKE_INTDIR=Debug /nologo /char signed /env win32 /Oicf /out C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen /tlb FireBreathWin.tlb /h FireBreathWin_i.h /iid FireBreathWin_i.c
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/Sun-hyoup/Desktop/build/CMakeFiles/17444fff86a6bb75815da89a005628ef/FireBreathWin.tlb.rule;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.idl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.tlb;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.h;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.c</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Generating ../gen/FireBreathWin.tlb, ../gen/FireBreathWin_i.h, ../gen/FireBreathWin_i.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+cd C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+midl.exe C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen/FireBreathWin.idl /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D UNICODE /D _UNICODE /D _ATL_STATIC_REGISTRY /D CMAKE_INTDIR=Debug /nologo /char signed /env win32 /Oicf /out C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen /tlb FireBreathWin.tlb /h FireBreathWin_i.h /iid FireBreathWin_i.c
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/Sun-hyoup/Desktop/build/CMakeFiles/17444fff86a6bb75815da89a005628ef/FireBreathWin.tlb.rule;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.idl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.tlb;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.h;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.c</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Generating ../gen/FireBreathWin.tlb, ../gen/FireBreathWin_i.h, ../gen/FireBreathWin_i.c</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+cd C:\Users\Sun-hyoup\Desktop\build\projects\csm\PluginAuto
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+midl.exe C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen/FireBreathWin.idl /D _CRT_SECURE_NO_WARNINGS /D _WINDOWS /D UNICODE /D _UNICODE /D _ATL_STATIC_REGISTRY /D CMAKE_INTDIR=Debug /nologo /char signed /env win32 /Oicf /out C:/Users/Sun-hyoup/Desktop/build/projects/csm/gen /tlb FireBreathWin.tlb /h FireBreathWin_i.h /iid FireBreathWin_i.c
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/Sun-hyoup/Desktop/build/CMakeFiles/17444fff86a6bb75815da89a005628ef/FireBreathWin.tlb.rule;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.idl;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin.tlb;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.h;C:\Users\Sun-hyoup\Desktop\build\projects\csm\gen\FireBreathWin_i.c</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\precompiled_headers.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axmain.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\NpapiPluginWin.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowlessWin.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowWin.h" />
+    <ClInclude Include="..\gen\FireBreathWin.tlb" />
+    <ClInclude Include="..\gen\FireBreathWin_i.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\NpapiPluginMac.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMac.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMac.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\FactoryDummiesMac.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMac.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\NpapiPluginMac.mm" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMac.mm" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\np_macmain.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMacCG.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginWindowMacCG.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCarbon.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.mm" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCarbon.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCarbon.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCocoa.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCocoa.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\PluginEventMacCocoa.mm" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Mac\KeyCodesCocoa.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\KeyCodesX11.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\NpapiPluginX11.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\PluginWindowX11.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\WindowContextX11.h" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\KeyCodesX11.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\NpapiPluginX11.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\np_x11main.cpp" />
+    <ClInclude Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\X11\PluginWindowX11.cpp" />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\PluginInfo.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\precompiled_headers.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\null\NullLogger.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axmain.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\axPluginObjects.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\dllmain.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\FireBreathWin.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\NpapiPluginWin.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\np_winmain.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowlessWin.cpp"  />
+    <ClCompile Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\Win\PluginWindowWin.cpp"  />
+    <ClCompile Include="..\gen\FireBreathWin_i.c" >
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">CompileAsC</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">CompileAsC</CompileAs>
+    </ClCompile>
+    <None Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\DONTTOUCHTHISPROJECT.txt" />
+    <None Include="C:\Users\Sun-hyoup\Desktop\firebreath\src\PluginAuto\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/Sun-hyoup/Desktop/build/ZERO_CHECK.vcxproj">
+      <Project>A992F368-B54D-4BB1-AA05-D137BA794B1D</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
