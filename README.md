@@ -3,6 +3,10 @@ CSM
 
 2013년 3학기 게임개발경험프로젝트 치킨정식팀 (Chicken set meal : 장문익, 이선협, 김지환, 남세현)
 
+Demo Video
+----------
+[Youtube Link](https://www.youtube.com/watch?v=CjgzqgIMD6I&t=6s)
+
 How to Play
 -----------
 1. http://125.209.199.224/ 에 접속합니다.
