@@ -473,6 +473,10 @@ namespace Maptool
         }
         private void Main_Resize(object sender, EventArgs e)
         {
+            if (mainMap == null)
+            {
+                return;
+            }
             // main_map resizing
             main_map_panel.Size = new Size(this.Size.Width - this.main_map_panel.Location.X, this.Size.Height - this.main_map_panel.Location.Y - 15);
             mainMap.SetBounds(0, 0, mainMap.Parent.Size.Width - 10, mainMap.Parent.Size.Height - 30);
